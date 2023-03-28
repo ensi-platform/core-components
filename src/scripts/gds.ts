@@ -9,20 +9,11 @@ import {
 } from '@greensight/gds';
 
 import tokens from '../../public/tokens.json';
-import { Accordion, AccordionTheme } from './themes/accordion';
 import { Button } from './themes/button';
-import { Calendar, CalendarTheme } from './themes/calendar';
 import { global } from './themes/global';
-import { Input, InputTheme } from './themes/input';
-import { Select, SelectTheme } from './themes/select';
-import { Tabs, TabsTheme } from './themes/tabs';
 
 interface ComponentsThemeExtended extends ComponentsTheme {
-    Calendar?: CalendarTheme;
-    Tabs?: TabsTheme;
-    Input?: InputTheme;
-    Select?: SelectTheme;
-    Accordion?: AccordionTheme;
+
 }
 
 export const {
@@ -44,11 +35,6 @@ const settings: ExtendedTheme = {
     global,
     components: {
         Button,
-        Calendar,
-        Tabs,
-        Input,
-        Select,
-        Accordion,
     },
 };
 
