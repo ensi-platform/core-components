@@ -23,3 +23,4 @@ public/docs
 .env.local
 next-env.d.ts
 !robots.txt
+*.tsbuildinfo
