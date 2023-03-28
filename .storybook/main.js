@@ -11,6 +11,13 @@ module.exports = {
         'storybook-addon-paddings',
         // '@storybook/addon-a11y',
         'storybook-addon-next-router',
+        {
+            name: 'storybook-addon-turbo-build',
+            options: {
+                // Please refer below tables for available options
+                optimizationLevel: 2,
+            },
+        },
     ],
     typescript: {
         reactDocgen: 'none',
