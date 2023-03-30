@@ -1,4 +1,5 @@
 module.exports = {
+    testEnvironment: 'jsdom',
     collectCoverageFrom: ['**/*.{js,jsx,ts,tsx}', '!**/*.d.ts', '!**/node_modules/**'],
     moduleNameMapper: {
         // Handle CSS imports (with CSS modules)
@@ -28,7 +29,22 @@ module.exports = {
     transform: {
         // Use babel-jest to transpile tests with the next/babel preset
         // https://jestjs.io/docs/configuration#transform-objectstring-pathtotransformer--pathtotransformer-object
-        '^.+\\.(js|jsx|ts|tsx)$': ['babel-jest', { presets: ['next/babel'] }],
+        '^.+\\.(js|jsx|ts|tsx)$': [
+            'babel-jest',
+            {
+                presets: [
+                    'next/babel',
+                    [
+                        '@babel/preset-react',
+                        {
+                            runtime: 'automatic',
+                            importSource: '@emotion/core',
+                        },
+                    ],
+                ],
+                plugins: ['@emotion/babel-plugin'],
+            },
+        ],
     },
     transformIgnorePatterns: ['/node_modules/', '^.+\\.module\\.(css|sass|scss)$'],
     setupFilesAfterEnv: ['<rootDir>/jest.setup.js'],
