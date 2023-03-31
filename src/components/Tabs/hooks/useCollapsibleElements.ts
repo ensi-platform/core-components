@@ -27,7 +27,7 @@ export const useCollapsibleElements = <ContainerType extends HTMLElement, AddonT
 
             const addon = addonRef.current;
             const moreElements = Array.from(tabList.querySelectorAll('[role="tablist"]')) as HTMLElement[];
-            
+
             const moreElementRect = moreElements.pop()?.getBoundingClientRect();
             const elements = Array.from(container.querySelectorAll(selectors)) as HTMLElement[];
             const containerWidth = (inlineSize || container.clientWidth) - (moreElementRect?.width || 0) * 1.5; // при рассчётах, даём кнопке "Ещё" чуть больше места, чтобы точно влезла

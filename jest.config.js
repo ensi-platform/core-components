@@ -9,8 +9,19 @@ module.exports = {
         '!.storybook/**',
         '!.husky/**',
         '!public/**',
+        '!**/themes/**',
+        '!src/scripts/**',
+        '!**/stories/**',
+        '!**/types/**/*.{ts,js}',
+        '!**/enums/**/*.{ts,js}',
+        '!**/{constants,types,typings,context,synthetic-events}.{ts,js,tsx,jsx}',
+        '!.eslintrc.js',
+        '!.prettierrc.js',
+        '!jest.config.js',
+        '!next.config.js',
+        '!coverage/**',
     ],
-    coverageDirectory: "coverage",
+    coverageDirectory: 'coverage',
     moduleNameMapper: {
         // Handle CSS imports (with CSS modules)
         // https://jestjs.io/docs/webpack#mocking-css-modules
@@ -54,6 +65,7 @@ module.exports = {
                 ],
                 plugins: ['@emotion/babel-plugin'],
             },
+            'jest-preview/transforms/file',
         ],
     },
     transformIgnorePatterns: ['/node_modules/', '^.+\\.module\\.(css|sass|scss)$'],

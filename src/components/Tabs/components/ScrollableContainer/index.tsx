@@ -1,5 +1,5 @@
 import { CSSObject } from '@emotion/core';
-import { compute } from 'compute-scroll-into-view'
+import { compute } from 'compute-scroll-into-view';
 import { ReactNode, useEffect, useRef } from 'react';
 
 import { useTabsTheme } from '../../context';
