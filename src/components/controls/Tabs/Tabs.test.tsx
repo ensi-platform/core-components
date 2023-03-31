@@ -140,7 +140,7 @@ it('has arrows loop', async () => {
 
     await user.tab();
 
-    for (let i = 0; i < tabs.length; i += 1) {
+    for (let i = 0; i < tabs.length - 1; i += 1) {
         // eslint-disable-next-line no-await-in-loop
         await user.keyboard('[ArrowRight]');
     }

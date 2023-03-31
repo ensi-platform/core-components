@@ -76,7 +76,6 @@
         "@storybook/react": "^6.5.16",
         "@svgr/webpack": "^6.5.1",
         "@trivago/prettier-plugin-sort-imports": "^3.2.0",
-        "@types/": "juggle/resize-observer",
         "@types/debounce": "1.2.0",
         "@types/react": "17.0.9",
         "@typescript-eslint/eslint-plugin": "^4.26.0",

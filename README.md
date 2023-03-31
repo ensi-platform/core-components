@@ -8,15 +8,15 @@
 
 ## Разработка сервиса
 
-Инструкцию описывающую разворот, запуск и тестирование сервиса на локальной машине можно найти в отдельном документе в [Gitlab Pages](https://ensi-platform.gitlab.io/docs/tech/adminGui)
+Инструкцию описывающую разворот, запуск и тестирование сервиса на локальной машине можно найти в отдельном документе в [Ensi Docs](https://docs.ensi.tech/installation/local/frontend)
 
 ## Среды
 
 ### Test
 
-CI: https://jenkins-infra.ensi.tech/job/ensi-stage-1/job/admin-gui/job/admin-gui-frontend/
+CI: https://jenkins-infra.ensi.tech/job/ensi-cloud/job/backoffice/job/gui-frontend/
 
-URL: https://admin-gui-frontend-master-dev.ensi.tech/
+URL: https://gui-frontend-master-dev-cloud.ensi.tech/
 
 ### Preprod
 

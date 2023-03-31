@@ -1,6 +1,16 @@
 module.exports = {
     testEnvironment: 'jsdom',
-    collectCoverageFrom: ['**/*.{js,jsx,ts,tsx}', '!**/*.d.ts', '!**/node_modules/**'],
+    collectCoverageFrom: [
+        '**/*.{js,jsx,ts,tsx}',
+        '!**/node_modules/**',
+        '!**/*.d.ts',
+        '!.next/**',
+        '!.yarn/**',
+        '!.storybook/**',
+        '!.husky/**',
+        '!public/**',
+    ],
+    coverageDirectory: "coverage",
     moduleNameMapper: {
         // Handle CSS imports (with CSS modules)
         // https://jestjs.io/docs/webpack#mocking-css-modules
