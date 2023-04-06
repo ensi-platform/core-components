@@ -12,6 +12,7 @@ module.exports = {
         '!**/themes/**',
         '!src/scripts/**',
         '!**/stories/**',
+        '!**/*.stories.{tsx,mdx}',
         '!**/types/**/*.{ts,js}',
         '!**/enums/**/*.{ts,js}',
         '!**/{constants,types,typings,context,synthetic-events}.{ts,js,tsx,jsx}',
