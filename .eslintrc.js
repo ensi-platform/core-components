@@ -91,4 +91,7 @@ module.exports = {
             extends: ['plugin:mdx/overrides'],
         },
     ],
+    globals: {
+        JSX: true,
+    },
 };

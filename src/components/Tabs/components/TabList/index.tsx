@@ -1,4 +1,7 @@
+import { CSSObject } from '@emotion/core';
 import { useEffect, useMemo, useRef } from 'react';
+
+import { BreakpointParam, MEDIA_QUERIES } from '@scripts/gds';
 
 import { useTabsTheme } from '../../context';
 import { useMedia } from '../../hooks/useMedia';
@@ -9,6 +12,13 @@ import { KeyboardFocusable } from '../KeyboardFocusable';
 import { ScrollableContainer } from '../ScrollableContainer';
 import { ShowMoreButton as DefaultTooltipButton } from '../ShowMore';
 import { Title } from '../Title';
+
+// TODO: после импорта компонента Select заменить
+interface OptionShape {
+    value: any;
+}
+
+export const getMediaQuery = (br: BreakpointParam) => MEDIA_QUERIES[`${br}Min`].replace('@media ', '');
 
 export const TabList = ({
     ShowMoreButton: TooltipButton = DefaultTooltipButton,
@@ -21,12 +31,12 @@ export const TabList = ({
     collapsedTabsIds,
     onChange,
     dataTestId,
-    breakpoint = 1024,
+    breakpoint = 'md',
 }: TabListProps) => {
     const lineRef = useRef<HTMLDivElement>(null);
     const wrapperRef = useRef<HTMLDivElement>(null);
 
-    const [view] = useMedia<TabsMatchMedia>([['desktop', `(min-width: ${breakpoint}px)`]], 'desktop');
+    const [view] = useMedia<TabsMatchMedia>([['desktop', getMediaQuery(breakpoint)]], 'desktop');
 
     const scrollable = view === 'desktop' ? propsScrollable : true;
     const collapsible = view === 'desktop' ? propsCollapsible : false;
@@ -63,7 +73,7 @@ export const TabList = ({
         [tablistTitles]
     );
 
-    const handleOptionsChange = ({ selected }: { selected: any }) => {
+    const handleOptionsChange = ({ selected }: { selected: OptionShape }) => {
         if (selected?.value && onChange) {
             const nativeMouseEvent = new MouseEvent('change');
             const syntheticMouseEvent = createSyntheticMouseEvent(nativeMouseEvent);
@@ -77,7 +87,13 @@ export const TabList = ({
     const collapsedCount = tablistTitles.filter(title => title.collapsed).length;
 
     const renderContent = () => (
-        <div role="tablist" data-testid={dataTestId} className={className} css={getCSS('tabList') as any} ref={wrapperRef}>
+        <div
+            role="tablist"
+            data-testid={dataTestId}
+            className={className}
+            css={getCSS('tabList') as CSSObject}
+            ref={wrapperRef}
+        >
             {tablistTitles.map((title, index) => (
                 <KeyboardFocusable key={title.id}>
                     {(ref, focused) =>
@@ -105,7 +121,7 @@ export const TabList = ({
                 </div>
             ) : null}
 
-            <div css={getCSS('line') as any} ref={lineRef} />
+            <div css={getCSS('line') as CSSObject} ref={lineRef} />
         </div>
     );
 

@@ -10,7 +10,7 @@ export const basicTheme: TabsTheme = {
         position: 'relative',
         overflow: 'hidden',
     }),
-    scrollableContainer: ({ fullWidthScroll = false, mobile = false }) => ({
+    scrollableContainer: ({ fullWidthScroll = false, isMobile = false }) => ({
         position: 'relative',
         overflowX: 'auto',
         overflowY: 'hidden',
@@ -21,7 +21,7 @@ export const basicTheme: TabsTheme = {
             margin: `0 -${scale(2)}px`,
         }),
 
-        ...(mobile
+        ...(isMobile
             ? {
                   '::-webkit-scrollbar': {
                       display: 'none',

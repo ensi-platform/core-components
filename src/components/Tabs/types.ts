@@ -4,8 +4,7 @@ import type { FC, MouseEvent, ReactElement, ReactNode } from 'react';
 
 // TODO: port select
 // import type { BaseSelectProps } from '@controls/future/Select';
-
-import type { BaseThemeState, StyleDefinition } from '@scripts/gds';
+import type { BaseThemeState, BreakpointParam, StyleDefinition } from '@scripts/gds';
 
 // eslint-disable-next-line import/no-cycle
 import { TABS_THEMES } from './themes';
@@ -28,7 +27,7 @@ export interface ShowMoreButtonOption {
     content: ReactNode;
 }
 
-export interface ShowMoreButtonProps
+export interface ShowMoreButtonProps {
     // extends Omit<
     //     BaseSelectProps,
     //     | 'Field'
@@ -45,15 +44,14 @@ export interface ShowMoreButtonProps
     //     | 'options'
     //     | 'allowUnselect'
     // >
-    {
-        onChange?: any;
+    onChange?: any;
     options: ShowMoreButtonOption[];
     count: number;
     ['data-collapse']?: 'true';
 }
 
 export interface TabsState {
-    mobile: boolean;
+    isMobile: boolean;
 
     /**
      * При скроле табы будут уходить в край экрана
@@ -97,7 +95,7 @@ export type TabsProps = Partial<Omit<BaseThemeState<typeof TabsVariant, typeof T
     Partial<TabsState> & {
         theme?: TabsTheme | keyof typeof TABS_THEMES;
 
-        breakpoint?: number;
+        breakpoint?: BreakpointParam;
 
         prefix?: string;
 
@@ -166,7 +164,7 @@ export type TabProps = {
     /**
      * Заголовок таба
      */
-    title: string;
+    title: string | ReactNode;
 
     /**
      * Дополнительный класс для контейнера содержимого таба
@@ -219,7 +217,7 @@ export type TabProps = {
           /**
            * Кастомный рендер тайтла
            */
-          renderTitle?: (props: TabListTitle) => Exclude<ReactNode, undefined | null | {}>;
+          renderTitle?: (props: TabListTitle) => ReactNode;
           unfocusable?: boolean;
       }
     | {
@@ -270,9 +268,8 @@ export type TabListProps = Pick<
     titles?: TabListTitle[];
     /**
      * Контрольная точка, с нее начинается desktop версия
-     * @default md
      */
-    breakpoint?: number;
+    breakpoint?: BreakpointParam;
 
     ShowMoreButton?: FC<ShowMoreButtonProps>;
 };

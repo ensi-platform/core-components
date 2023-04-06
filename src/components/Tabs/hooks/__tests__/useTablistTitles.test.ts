@@ -1,5 +1,7 @@
 import { renderHook } from '@testing-library/react-hooks';
 
+import { BreakpointParam } from '@scripts/gds';
+
 import { useTablistTitles } from '../useTablistTitles';
 
 describe('useTablistTitles', () => {
@@ -12,7 +14,7 @@ describe('useTablistTitles', () => {
         const selectedId = 1;
         const collapsible = true;
         const collapsedTabsIds = ['2'];
-        const breakpoint = 768;
+        const breakpoint: BreakpointParam = 'md';
         const onChange = () => {};
 
         const { result } = renderHook(() =>

@@ -16,7 +16,7 @@ describe('ScrollableContainer', () => {
                 theme={TABS_THEMES.basic}
                 variant="primary"
                 state={{
-                    mobile: false,
+                    isMobile: false,
                     collapsible: false,
                     scrollable: true,
                 }}

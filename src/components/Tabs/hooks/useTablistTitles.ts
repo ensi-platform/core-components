@@ -1,5 +1,6 @@
 import { useMemo } from 'react';
 
+import { getMediaQuery } from '../components/TabList';
 import type { TabListProps, TabsMatchMedia } from '../types';
 import { useCollapsibleElements } from './useCollapsibleElements';
 import { useMedia } from './useMedia';
@@ -19,7 +20,7 @@ export const useTablistTitles = ({
         [titles]
     );
 
-    const [view] = useMedia<TabsMatchMedia>([['desktop', `(min-width: ${breakpoint}px)`]], 'desktop');
+    const [view] = useMedia<TabsMatchMedia>([['desktop', getMediaQuery(breakpoint)]], 'desktop');
 
     const tablistTitles = useMemo(() => {
         const idsCollapsedTitles: string[] = [];

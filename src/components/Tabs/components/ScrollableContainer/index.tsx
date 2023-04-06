@@ -10,6 +10,43 @@ import { useTabsTheme } from '../../context';
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 const getExtraScrollValue = (_: Element) => 40;
 
+const isFullyVisible = (element: HTMLElement, container: HTMLElement) => {
+    const elementRect = element.getBoundingClientRect();
+    const containerRect = container.getBoundingClientRect();
+    return (
+        elementRect.left >= containerRect.left &&
+        elementRect.right <= containerRect.right &&
+        elementRect.top >= containerRect.top &&
+        elementRect.bottom <= containerRect.bottom
+    );
+};
+
+const THRESHOLD = 40;
+
+const scrollToVisible = (element: HTMLElement, container: HTMLElement) => {
+    const containerRect = container.getBoundingClientRect();
+    const elementRect = element.getBoundingClientRect();
+    const visibleWidth = containerRect.width;
+
+    let targetScrollLeft = container.scrollLeft;
+
+    if (elementRect.left < containerRect.left) {
+        // The left side of the element is not visible
+        targetScrollLeft = Math.max(0, elementRect.left - containerRect.left + container.scrollLeft - THRESHOLD);
+    } else if (elementRect.right > containerRect.right) {
+        // The right side of the element is not visible
+        targetScrollLeft = Math.min(
+            container.scrollWidth - visibleWidth,
+            elementRect.right - visibleWidth + container.scrollLeft + THRESHOLD
+        );
+    }
+
+    container.scrollTo({
+        left: targetScrollLeft,
+        behavior: 'smooth',
+    });
+};
+
 export type ScrollableContainerProps = {
     /**
      * Дополнительный класс контейнера
@@ -39,11 +76,19 @@ export const ScrollableContainer = ({ containerCSS, children, activeChild }: Scr
                 boundary: containerRef.current,
             });
 
-            actions.forEach(({ el, left }, index) => {
-                if (index === 0) return;
-                // eslint-disable-next-line no-param-reassign
-                el.scrollLeft = el.scrollLeft > left ? left - getExtraScrollValue(el) : left + getExtraScrollValue(el);
-            });
+            if (actions.length > 1) {
+                actions.forEach(({ el, left }, index) => {
+                    if (index === 0) return;
+                    // eslint-disable-next-line no-param-reassign
+                    el.scrollLeft =
+                        el.scrollLeft > left ? left - getExtraScrollValue(el) : left + getExtraScrollValue(el);
+                });
+                return;
+            }
+
+            if (!isFullyVisible(activeChild, containerRef.current || document.documentElement)) {
+                scrollToVisible(activeChild, containerRef.current || document.documentElement);
+            }
         }
     }, [activeChild]);
 

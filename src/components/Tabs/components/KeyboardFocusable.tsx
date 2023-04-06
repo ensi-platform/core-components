@@ -1,4 +1,4 @@
-import { MutableRefObject, RefObject, useCallback, useEffect, useRef, useState } from 'react';
+import { MutableRefObject, ReactNode, RefObject, useCallback, useEffect, useRef, useState } from 'react';
 
 type KeyboardFocusableProps = {
     /**
@@ -7,7 +7,7 @@ type KeyboardFocusableProps = {
      * Реф нужно установить на интерактивный элемент или на одного из его родителей.
      */
     // eslint-disable-next-line no-undef
-    children: (ref: RefObject<any>, focused: boolean) => JSX.Element;
+    children: (ref: RefObject<any>, focused: boolean) => ReactNode;
 };
 
 export type InputMethod = 'keyboard' | 'mouse';
@@ -86,7 +86,7 @@ export const KeyboardFocusable = ({ children }: KeyboardFocusableProps) => {
 
     const [focused] = useFocus(targetRef, 'keyboard');
 
-    return children(targetRef, focused);
+    return children(targetRef, focused) as JSX.Element;
 };
 
 KeyboardFocusable.displayName = 'KeyboardFocusable';

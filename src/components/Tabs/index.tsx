@@ -1,6 +1,6 @@
-import { FC, MouseEvent, useId, useMemo, useState } from 'react';
+import { FC, MouseEvent, ReactNode, useId, useMemo, useState } from 'react';
 
-import { Breakpoints, MEDIA_QUERIES } from '@scripts/gds';
+import { MEDIA_QUERIES } from '@scripts/gds';
 
 import { Tab } from './components/Tab';
 import { TabList as DefaultTabList } from './components/TabList';
@@ -18,39 +18,41 @@ interface TabsCompositionProps {
     LinkTitle: typeof LinkTitle;
 }
 
-type TabsComponentProps = Omit<TabsProps, 'TabList'> & {
+type TabsComponentProps = Omit<TabsProps, 'TabList' | 'children'> & {
     TabList?: TabsProps['TabList'];
+    children: ReactNode | ReactNode[];
 };
 
 const Tabs: FC<TabsComponentProps> & TabsCompositionProps = ({
     TabList = DefaultTabList,
     variant = 'primary',
     size = 'md',
-    mobile: mobileProps,
+    isMobile: mobileProps,
     collapsible,
     fullWidthScroll,
     scrollable,
     onChange,
     selectedId: propsSelectedId,
     theme: themeName = 'basic',
-    breakpoint = Breakpoints.md,
+    breakpoint = 'md',
     prefix: propsPrefix,
+    children,
     ...props
 }) => {
     const isControlled = typeof propsSelectedId !== 'undefined' && typeof onChange !== 'undefined';
     const theme = typeof themeName === 'string' ? TABS_THEMES[themeName] : themeName;
 
     const [view] = useMedia<TabsMatchMedia>([['desktop', MEDIA_QUERIES.mdMin]], 'desktop');
-    const mobile = typeof mobileProps === 'undefined' ? view === 'mobile' : mobileProps;
+    const isMobile = typeof mobileProps === 'undefined' ? view === 'mobile' : mobileProps;
 
     const state = useMemo<TabsState>(
         () => ({
-            mobile,
+            isMobile,
             collapsible,
             fullWidthScroll,
             scrollable,
         }),
-        [collapsible, fullWidthScroll, mobile, scrollable]
+        [collapsible, fullWidthScroll, isMobile, scrollable]
     );
 
     const localPrefix = useId();
@@ -74,11 +76,14 @@ const Tabs: FC<TabsComponentProps> & TabsCompositionProps = ({
             <TabsComponent
                 TabList={TabList}
                 selectedId={selectedId}
+                scrollable={scrollable}
                 collapsible={collapsible}
                 onChange={handleChange}
                 breakpoint={breakpoint}
                 {...props}
-            />
+            >
+                {children as TabsProps['children']}
+            </TabsComponent>
         </TabsThemeProvider>
     );
 };

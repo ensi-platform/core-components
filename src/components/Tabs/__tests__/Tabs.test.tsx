@@ -1,5 +1,7 @@
-import { fireEvent, render } from '@testing-library/react';
+import { cleanup, fireEvent, render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
+import { useEffect, useLayoutEffect, useState } from 'react';
+import { renderToString } from 'react-dom/server';
 
 import Tabs from '../index';
 
@@ -13,212 +15,301 @@ const tabs = [
 
 const disabledIndex = 4;
 
-it('renders first tab by default', async () => {
-    const { findByText, getByTestId } = render(
-        <Tabs dataTestId="tabs" prefix="prefix__">
-            {tabs.map(tab => (
-                <Tabs.Tab key={tab.id} id={tab.id} title={tab.title} dataTestId="tab" disabled={tab.disabled}>
-                    {tab.content}
-                </Tabs.Tab>
-            ))}
-        </Tabs>
-    );
+afterEach(cleanup);
 
-    const component = getByTestId('tab');
-    const foundByContent = await findByText(tabs[0].content);
+const mockIsomorphicState = {
+    isSsr: false,
+    useEffect,
+    useLayoutEffect,
+};
 
-    expect(component).toBe(foundByContent);
-});
+jest.mock('@scripts/hooks/useIsomorphicLayoutEffect', () => ({
+    useIsomorphicLayoutEffect: jest.fn().mockImplementation((...args: [any, any]) => {
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+        if (mockIsomorphicState.isSsr) return mockIsomorphicState.useEffect(...args);
 
-it('supports different themes', async () => {
-    let themeName: any = 'secondary';
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+        return mockIsomorphicState.useLayoutEffect(...args);
+    }),
+}));
 
-    const Component = () => (
-        <Tabs dataTestId="tabs" theme={themeName as any}>
-            {tabs.map(tab => (
-                <Tabs.Tab key={tab.id} id={tab.id} title={tab.title} dataTestId="tab" disabled={tab.disabled}>
-                    {tab.content}
-                </Tabs.Tab>
-            ))}
-        </Tabs>
-    );
+afterAll(() => jest.unmock('@scripts/hooks/useIsomorphicLayoutEffect'));
 
-    const { container, rerender } = render(<Component />);
+const SsrTabs = () => {
+    const [isMounted, setMounted] = useState(false);
 
-    expect(container).toBeInTheDocument();
+    useEffect(() => {
+        setMounted(true);
+    }, []);
 
-    themeName = {};
-
-    rerender(<Component />);
-
-    expect(container).toBeInTheDocument();
-});
-
-it('supports mobile and view', async () => {
-    const Component = ({ mobile }: { mobile: boolean }) => (
-        <Tabs dataTestId="tabs" mobile={mobile}>
-            {tabs.map(tab => (
-                <Tabs.Tab key={tab.id} id={tab.id} title={tab.title} dataTestId="tab" disabled={tab.disabled}>
-                    {tab.content}
-                </Tabs.Tab>
-            ))}
-        </Tabs>
-    );
-
-    const { container, rerender } = render(<Component mobile />);
-
-    expect(container).toBeInTheDocument();
-
-    rerender(<Component mobile={false} />);
-
-    expect(container).toBeInTheDocument();
-});
-
-it('click on non-disabled tab changes active tab', async () => {
-    const { getByTestId, getAllByRole, getByText } = render(
+    return (
         <Tabs dataTestId="tabs">
             {tabs.map(tab => (
                 <Tabs.Tab key={tab.id} id={tab.id} title={tab.title} dataTestId="tab" disabled={tab.disabled}>
                     {tab.content}
                 </Tabs.Tab>
             ))}
+            {isMounted && (
+                <Tabs.Tab id="ssr" title={<span data-testid="ssr-tab-title">SSR tab</span>}>
+                    SSR content
+                </Tabs.Tab>
+            )}
         </Tabs>
     );
+};
 
-    const buttons = getAllByRole('tab');
-    const indicies: number[] = [];
-    tabs.forEach((_, index) => {
-        if (index !== disabledIndex) indicies.push(index);
+describe('TabComponent', () => {
+    it('supports SSR', () => {
+        mockIsomorphicState.isSsr = true;
+
+        const element = <SsrTabs />;
+        const markup = renderToString(element);
+
+        expect(markup).toContain('content 1');
+        expect(markup).toContain('Tab 4');
+
+        const container = document.createElement('div');
+        document.body.appendChild(container);
+
+        container.innerHTML = markup;
+
+        mockIsomorphicState.isSsr = false;
+
+        render(element, { hydrate: true, container });
+
+        expect(screen.getByTestId('ssr-tab-title')).toHaveTextContent('SSR tab');
     });
 
-    const randomIndex = indicies[Math.floor(Math.random() * indicies.length)];
-    const randomButton = buttons[randomIndex];
+    it('should unmount properly without remaining listeners and timers', () => {
+        jest.useFakeTimers();
+        const spy = jest.spyOn(window, 'removeEventListener');
 
-    fireEvent(
-        randomButton,
-        new MouseEvent('click', {
-            bubbles: true,
-            cancelable: true,
-        })
-    );
+        const { unmount } = render(
+            <Tabs dataTestId="tabs">
+                {tabs.map(tab => (
+                    <Tabs.Tab key={tab.id} id={tab.id} title={tab.title} dataTestId="tab" disabled={tab.disabled}>
+                        {tab.content}
+                    </Tabs.Tab>
+                ))}
+            </Tabs>
+        );
 
-    const activeTab = getByTestId('tab');
+        unmount();
 
-    const shouldBeActiveText = getByText(tabs[randomIndex].content);
+        jest.runAllTimers();
 
-    expect(activeTab).toBe(shouldBeActiveText);
-});
+        expect(spy).toHaveBeenCalledTimes(0);
 
-it('click on disabled tab doesnt change active tab', async () => {
-    const { getAllByRole, queryByText } = render(
-        <Tabs dataTestId="tabs">
-            {tabs.map(tab => (
-                <Tabs.Tab key={tab.id} id={tab.id} title={tab.title} dataTestId="tab" disabled={tab.disabled}>
-                    {tab.content}
-                </Tabs.Tab>
-            ))}
-        </Tabs>
-    );
+        jest.useRealTimers();
+    });
 
-    const buttons = getAllByRole('tab');
-    const disabledButton = buttons[disabledIndex];
+    it('renders first tab by default', async () => {
+        const { findByText, getByTestId } = render(
+            <Tabs dataTestId="tabs" prefix="prefix__">
+                {tabs.map(tab => (
+                    <Tabs.Tab key={tab.id} id={tab.id} title={tab.title} dataTestId="tab" disabled={tab.disabled}>
+                        {tab.content}
+                    </Tabs.Tab>
+                ))}
+            </Tabs>
+        );
 
-    fireEvent(
-        disabledButton,
-        new MouseEvent('click', {
-            bubbles: true,
-            cancelable: true,
-        })
-    );
+        const component = getByTestId('tab');
+        const foundByContent = await findByText(tabs[0].content);
 
-    const disabledContent = queryByText(tabs[disabledIndex].content);
-    expect(disabledContent).toBeNull();
-});
+        expect(component).toBe(foundByContent);
+    });
 
-it('being focused, right arrow press + enter switched tab to next one', async () => {
-    const user = userEvent.setup();
+    it('supports different themes', async () => {
+        let themeName: any = 'secondary';
 
-    const { getByText } = render(
-        <Tabs dataTestId="tabs">
-            {tabs.map(tab => (
-                <Tabs.Tab
-                    key={tab.id}
-                    id={tab.id}
-                    title={tab.title}
-                    dataTestId={`tab-${tab.id}`}
-                    disabled={tab.disabled}
-                >
-                    {tab.content}
-                </Tabs.Tab>
-            ))}
-        </Tabs>
-    );
+        const Component = () => (
+            <Tabs dataTestId="tabs" theme={themeName as any}>
+                {tabs.map(tab => (
+                    <Tabs.Tab key={tab.id} id={tab.id} title={tab.title} dataTestId="tab" disabled={tab.disabled}>
+                        {tab.content}
+                    </Tabs.Tab>
+                ))}
+            </Tabs>
+        );
 
-    await user.tab();
+        const { container, rerender } = render(<Component />);
 
-    await user.keyboard('[ArrowRight]');
-    await user.keyboard('[Enter]');
+        expect(container).toBeInTheDocument();
 
-    const element = getByText(tabs[1].content);
-    expect(element).toBeTruthy();
-});
+        themeName = {};
 
-it('has arrows loop', async () => {
-    const user = userEvent.setup();
+        rerender(<Component />);
 
-    const { getByText } = render(
-        <Tabs dataTestId="tabs">
-            {tabs.map(tab => (
-                <Tabs.Tab
-                    key={tab.id}
-                    id={tab.id}
-                    title={tab.title}
-                    dataTestId={`tab-${tab.id}`}
-                    disabled={tab.disabled}
-                >
-                    {tab.content}
-                </Tabs.Tab>
-            ))}
-        </Tabs>
-    );
+        expect(container).toBeInTheDocument();
+    });
 
-    await user.tab();
+    it('supports mobile and view', async () => {
+        const Component = ({ mobile }: { mobile: boolean }) => (
+            <Tabs dataTestId="tabs" isMobile={mobile}>
+                {tabs.map(tab => (
+                    <Tabs.Tab key={tab.id} id={tab.id} title={tab.title} dataTestId="tab" disabled={tab.disabled}>
+                        {tab.content}
+                    </Tabs.Tab>
+                ))}
+            </Tabs>
+        );
 
-    for (let i = 0; i < tabs.length - 1; i += 1) {
-        // eslint-disable-next-line no-await-in-loop
+        const { container, rerender } = render(<Component mobile />);
+
+        expect(container).toBeInTheDocument();
+
+        rerender(<Component mobile={false} />);
+
+        expect(container).toBeInTheDocument();
+    });
+
+    it('click on non-disabled tab changes active tab', async () => {
+        const { getByTestId, getAllByRole, getByText } = render(
+            <Tabs dataTestId="tabs">
+                {tabs.map(tab => (
+                    <Tabs.Tab key={tab.id} id={tab.id} title={tab.title} dataTestId="tab" disabled={tab.disabled}>
+                        {tab.content}
+                    </Tabs.Tab>
+                ))}
+            </Tabs>
+        );
+
+        const buttons = getAllByRole('tab');
+        const indicies: number[] = [];
+        tabs.forEach((_, index) => {
+            if (index !== disabledIndex) indicies.push(index);
+        });
+
+        const randomIndex = indicies[Math.floor(Math.random() * indicies.length)];
+        const randomButton = buttons[randomIndex];
+
+        fireEvent(
+            randomButton,
+            new MouseEvent('click', {
+                bubbles: true,
+                cancelable: true,
+            })
+        );
+
+        const activeTab = getByTestId('tab');
+
+        const shouldBeActiveText = getByText(tabs[randomIndex].content);
+
+        expect(activeTab).toBe(shouldBeActiveText);
+    });
+
+    it('click on disabled tab doesnt change active tab', async () => {
+        const { getAllByRole, queryByText } = render(
+            <Tabs dataTestId="tabs">
+                {tabs.map(tab => (
+                    <Tabs.Tab key={tab.id} id={tab.id} title={tab.title} dataTestId="tab" disabled={tab.disabled}>
+                        {tab.content}
+                    </Tabs.Tab>
+                ))}
+            </Tabs>
+        );
+
+        const buttons = getAllByRole('tab');
+        const disabledButton = buttons[disabledIndex];
+
+        fireEvent(
+            disabledButton,
+            new MouseEvent('click', {
+                bubbles: true,
+                cancelable: true,
+            })
+        );
+
+        const disabledContent = queryByText(tabs[disabledIndex].content);
+        expect(disabledContent).toBeNull();
+    });
+
+    it('being focused, right arrow press + enter switched tab to next one', async () => {
+        const user = userEvent.setup();
+
+        const { getByText } = render(
+            <Tabs dataTestId="tabs">
+                {tabs.map(tab => (
+                    <Tabs.Tab
+                        key={tab.id}
+                        id={tab.id}
+                        title={tab.title}
+                        dataTestId={`tab-${tab.id}`}
+                        disabled={tab.disabled}
+                    >
+                        {tab.content}
+                    </Tabs.Tab>
+                ))}
+            </Tabs>
+        );
+
+        await user.tab();
+
         await user.keyboard('[ArrowRight]');
-    }
+        await user.keyboard('[Enter]');
 
-    await user.keyboard('[Enter]');
+        const element = getByText(tabs[1].content);
+        expect(element).toBeTruthy();
+    });
 
-    const element = getByText(tabs[0].content);
-    expect(element).toBeTruthy();
-});
+    it('has arrows loop', async () => {
+        const user = userEvent.setup();
 
-it('if click on non-disabled, fires handleChange', async () => {
-    const onChange = jest.fn();
+        const { getByText } = render(
+            <Tabs dataTestId="tabs">
+                {tabs.map(tab => (
+                    <Tabs.Tab
+                        key={tab.id}
+                        id={tab.id}
+                        title={tab.title}
+                        dataTestId={`tab-${tab.id}`}
+                        disabled={tab.disabled}
+                    >
+                        {tab.content}
+                    </Tabs.Tab>
+                ))}
+            </Tabs>
+        );
 
-    const { getAllByRole } = render(
-        <Tabs dataTestId="tabs" onChange={onChange} selectedId={tabs[0].id} theme="secondary">
-            {tabs.map(tab => (
-                <Tabs.Tab key={tab.id} id={tab.id} title={tab.title} dataTestId="tab" disabled={tab.disabled}>
-                    {tab.content}
-                </Tabs.Tab>
-            ))}
-        </Tabs>
-    );
+        await user.tab();
 
-    const buttons = getAllByRole('tab');
+        for (let i = 0; i < tabs.length - 1; i += 1) {
+            // eslint-disable-next-line no-await-in-loop
+            await user.keyboard('[ArrowRight]');
+        }
 
-    const randomButton = buttons[2];
+        await user.keyboard('[Enter]');
 
-    fireEvent(
-        randomButton,
-        new MouseEvent('click', {
-            bubbles: true,
-            cancelable: true,
-        })
-    );
+        const element = getByText(tabs[0].content);
+        expect(element).toBeTruthy();
+    });
 
-    expect(onChange).toHaveBeenCalled();
+    it('if click on non-disabled, fires handleChange', async () => {
+        const onChange = jest.fn();
+
+        const { getAllByRole } = render(
+            <Tabs dataTestId="tabs" onChange={onChange} selectedId={tabs[0].id} theme="secondary">
+                {tabs.map(tab => (
+                    <Tabs.Tab key={tab.id} id={tab.id} title={tab.title} dataTestId="tab" disabled={tab.disabled}>
+                        {tab.content}
+                    </Tabs.Tab>
+                ))}
+            </Tabs>
+        );
+
+        const buttons = getAllByRole('tab');
+
+        const randomButton = buttons[2];
+
+        fireEvent(
+            randomButton,
+            new MouseEvent('click', {
+                bubbles: true,
+                cancelable: true,
+            })
+        );
+
+        expect(onChange).toHaveBeenCalled();
+    });
 });

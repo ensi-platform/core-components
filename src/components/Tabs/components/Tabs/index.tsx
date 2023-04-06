@@ -1,4 +1,4 @@
-import { Children, cloneElement, ReactElement } from 'react';
+import { Children, ReactElement, cloneElement } from 'react';
 
 import { useTabsTheme } from '../../context';
 import { TabProps, TabsProps } from '../../types';

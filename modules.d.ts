@@ -5,6 +5,11 @@ declare module '*.svg' {
     export default SVG;
 }
 
+declare module '*.md' {
+    const content: string;
+    export default content;
+}
+
 declare module 'react-loading-skeleton';
 declare module 'react-imask';
 declare module 'react-tabs';

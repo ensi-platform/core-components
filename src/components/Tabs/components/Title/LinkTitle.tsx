@@ -2,9 +2,11 @@ import Link, { LinkProps } from 'next/link';
 import { HTMLProps, forwardRef } from 'react';
 
 import { useTabsTheme } from '../../context';
-import { TabListTitle } from '../../types';
+import { SelectedId, TabListTitle } from '../../types';
 
-type Props = TabListTitle & Omit<LinkProps, 'passHref'> & HTMLProps<HTMLAnchorElement>;
+type Props = Omit<TabListTitle & Omit<LinkProps, 'passHref'> & HTMLProps<HTMLAnchorElement>, 'id'> & {
+    id?: SelectedId;
+};
 
 export const LinkTitle = forwardRef<HTMLAnchorElement, Props>(
     (
@@ -34,7 +36,7 @@ export const LinkTitle = forwardRef<HTMLAnchorElement, Props>(
         delete restProps.unfocusable;
         const { getCSS } = useTabsTheme();
 
-        if (hidden) return null;
+        if (hidden) return <></>;
 
         return (
             <Link
@@ -56,13 +58,13 @@ export const LinkTitle = forwardRef<HTMLAnchorElement, Props>(
                     ref={ref}
                     id={`${id}`}
                     css={{
-                        ...getCSS('toggle', {
+                        ...(getCSS('toggle', {
                             disabled,
                             isSelected: selected,
                             focused,
                             isOption,
                             isCollapsed: collapsed && !isOption,
-                        }) as any,
+                        }) as any),
                         ...toggleCSS,
                     }}
                     {...restProps}
