@@ -184,13 +184,7 @@ describe('TabComponent', () => {
         const randomIndex = indicies[Math.floor(Math.random() * indicies.length)];
         const randomButton = buttons[randomIndex];
 
-        fireEvent(
-            randomButton,
-            new MouseEvent('click', {
-                bubbles: true,
-                cancelable: true,
-            })
-        );
+        fireEvent.click(randomButton);
 
         const activeTab = getByTestId('tab');
 
@@ -213,13 +207,7 @@ describe('TabComponent', () => {
         const buttons = getAllByRole('tab');
         const disabledButton = buttons[disabledIndex];
 
-        fireEvent(
-            disabledButton,
-            new MouseEvent('click', {
-                bubbles: true,
-                cancelable: true,
-            })
-        );
+        fireEvent.click(disabledButton);
 
         const disabledContent = queryByText(tabs[disabledIndex].content);
         expect(disabledContent).toBeNull();
@@ -302,13 +290,7 @@ describe('TabComponent', () => {
 
         const randomButton = buttons[2];
 
-        fireEvent(
-            randomButton,
-            new MouseEvent('click', {
-                bubbles: true,
-                cancelable: true,
-            })
-        );
+        fireEvent.click(randomButton);
 
         expect(onChange).toHaveBeenCalled();
     });
