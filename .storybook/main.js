@@ -4,7 +4,7 @@ const { EnvironmentPlugin } = require(`webpack`);
 const resolver = path => resolve(__dirname, path);
 
 module.exports = {
-    stories: ['../src/**/intro/welcome.stories.mdx', '../src/**/intro/*.stories.mdx', '../src/**/*.stories.mdx'],
+    stories: ['../src/**/intro/welcome.stories.mdx', '../src/**/intro/*.stories.mdx', '../src/**/*.stories.mdx', '../src/**/*.stories.tsx'],
     addons: [
         '@storybook/addon-links',
         '@storybook/addon-essentials',
