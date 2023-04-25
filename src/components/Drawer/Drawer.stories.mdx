@@ -1,0 +1,49 @@
+import { action } from '@storybook/addon-actions';
+import { ArgsTable, Meta, Story } from '@storybook/addon-docs';
+import { useState } from 'react';
+import { Button } from '@scripts/gds';
+import Drawer from '.';
+
+<Meta title="Controls / Drawer" component={Drawer} />
+
+# Drawer
+
+Компонент, представляющим собой заготовку для реализации сайд-панелей. В основе компонента лежит BaseModal
+
+<Story
+    name="Basic"
+    args={{
+        placement: 'left',
+        timeout: 300,
+    }}
+    argTypes={{
+        placement: { control: { type: 'select', options: ['right', 'left'] } },
+    }}
+>
+    {args => {
+        const [isOpen, setOpen] = useState(false);
+        return (
+            <div style={{ zIndex: 1, position: 'relative' }}>
+                <Button onClick={() => setOpen(!isOpen)}>{isOpen ? 'Close' : 'Open'} me</Button>
+                <Drawer
+                    {...args}
+                    open={isOpen}
+                    onClose={e => {
+                        setOpen(false);
+                        action(e)();
+                    }}
+                >
+                    <Drawer.Header title="Drawer title" hasCloseButton onClose={() => setOpen(!isOpen)} />
+                    <Drawer.Content>Drawer content</Drawer.Content>
+                    <Drawer.Footer>
+                        <Button onClick={() => setOpen(!isOpen)}>Footer button</Button>
+                    </Drawer.Footer>
+                </Drawer>
+            </div>
+        );
+    }}
+</Story>
+
+## Props
+
+<ArgsTable story="Basic" />
