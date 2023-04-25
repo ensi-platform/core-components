@@ -33,7 +33,7 @@ export const parameters = {
     },
     options: {
         storySort: {
-            order: ['Intro', 'Autokits', 'Components'],
+            order: ['Intro', 'Components'],
         },
     },
     nextRouter: {

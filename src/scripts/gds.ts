@@ -12,9 +12,7 @@ import tokens from '../../public/tokens.json';
 import { Button } from './themes/button';
 import { global } from './themes/global';
 
-interface ComponentsThemeExtended extends ComponentsTheme {
-
-}
+interface ComponentsThemeExtended extends ComponentsTheme {}
 
 export const {
     colors,
@@ -24,6 +22,7 @@ export const {
 export type BreakpointParam = keyof typeof Breakpoints;
 export type ColorsTheme = typeof colors;
 export type TypographyParam = keyof typeof tokens.typography.styles;
+export type BreakpointParam = keyof typeof tokens.layout.breakpoints;
 
 export const MEDIA_QUERIES = createMediaQueries(tokens.layout.breakpoints);
 
