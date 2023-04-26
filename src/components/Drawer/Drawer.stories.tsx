@@ -1,26 +1,41 @@
+/* eslint-disable react-hooks/rules-of-hooks */
 import { action } from '@storybook/addon-actions';
-import { ArgsTable, Meta, Story } from '@storybook/addon-docs';
-import { useState } from 'react';
+import type { Meta, StoryObj } from '@storybook/react';
+import { ComponentProps, useState } from 'react';
+
 import { Button } from '@scripts/gds';
-import Drawer from '.';
 
-<Meta title="Controls / Drawer" component={Drawer} />
+import README from './README.md';
+import Drawer from './index';
 
-# Drawer
+export default {
+    title: 'Components / Drawer',
+    component: Drawer,
+    parameters: {
+        docs: {
+            description: {
+                component: README,
+            },
+        },
+    },
+} as Meta<typeof Drawer>;
 
-Компонент, представляющим собой заготовку для реализации сайд-панелей. В основе компонента лежит BaseModal
-
-<Story
-    name="Basic"
-    args={{
+export const Basic: StoryObj<ComponentProps<typeof Drawer>> = {
+    args: {
         placement: 'left',
         timeout: 300,
-    }}
-    argTypes={{
+    },
+    argTypes: {
         placement: { control: { type: 'select', options: ['right', 'left'] } },
-    }}
->
-    {args => {
+    },
+    parameters: {
+        docs: {
+            description: {
+                story: 'Story description',
+            },
+        },
+    },
+    render: args => {
         const [isOpen, setOpen] = useState(false);
         return (
             <div style={{ zIndex: 1, position: 'relative' }}>
@@ -30,7 +45,7 @@ import Drawer from '.';
                     open={isOpen}
                     onClose={e => {
                         setOpen(false);
-                        action(e)();
+                        action('close')(e);
                     }}
                 >
                     <Drawer.Header title="Drawer title" hasCloseButton onClose={() => setOpen(!isOpen)} />
@@ -41,9 +56,5 @@ import Drawer from '.';
                 </Drawer>
             </div>
         );
-    }}
-</Story>
-
-## Props
-
-<ArgsTable story="Basic" />
+    },
+};

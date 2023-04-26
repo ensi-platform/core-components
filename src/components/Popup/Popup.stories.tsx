@@ -1,18 +1,40 @@
-import { ArgsTable, Meta, Story } from '@storybook/addon-docs';
-import { useMemo, useRef, useState } from 'react';
+/* eslint-disable react-hooks/rules-of-hooks */
+import type { Meta, StoryObj } from '@storybook/react';
+import { ComponentProps, useMemo, useRef, useState } from 'react';
+
 import { Button } from '@scripts/gds';
+
 import Popup from '.';
 import PopupDesktop from './DesktopComponent';
 import PopupMobile from './MobileComponent';
 import { PopupSize } from './types';
 
-<Meta title="Controls /  Popup" component={Popup} />
+export default {
+    title: 'Components / Popup',
+    component: Popup,
+    parameters: {
+        docs: {
+            description: {
+                // component: README,
+            },
+        },
+        backgrounds: {
+            default: 'grey100',
+        },
+    },
+} as Meta<typeof Popup>;
 
-# Popup
-
-<Story
-    name="Basic"
-    args={{
+export const Basic: StoryObj<
+    Omit<ComponentProps<typeof Popup>, 'open'> & {
+        component: 'PopupResponsive' | 'PopupDesktop' | 'PopupMobile';
+        header: boolean;
+        headerTitle: string;
+        footer: boolean;
+        flexContent: boolean;
+        showMore: boolean;
+    }
+> = {
+    args: {
         component: 'PopupResponsive',
         size: 'md',
         header: true,
@@ -28,8 +50,8 @@ import { PopupSize } from './types';
         fixedPosition: true,
         showMore: false,
         innerScroll: false,
-    }}
-    argTypes={{
+    },
+    argTypes: {
         component: {
             options: ['PopupResponsive', 'PopupDesktop', 'PopupMobile'],
             control: { type: 'radio' },
@@ -42,9 +64,8 @@ import { PopupSize } from './types';
             options: Object.keys(PopupSize),
             control: { type: 'radio' },
         },
-    }}
->
-    {({ header, footer, component, headerTitle, ...args }) => {
+    },
+    render: ({ header, footer, component, headerTitle, ...args }) => {
         const [open, setOpen] = useState(false);
         const [isLoading, setLoading] = useState(false);
         const scrollHandler = useRef(null);
@@ -79,31 +100,31 @@ import { PopupSize } from './types';
                 </Button>
             </>
         );
-        const Content = () => {
-            return (
-                <>
-                    <Text />
-                    {showMore && (
-                        <>
-                            <Text />
-                            <Text />
-                            <Text />
-                            <Text />
-                        </>
-                    )}
-                    <Button size="sm" type="Button" onClick={() => setShowMore(!showMore)}>
-                        {showMore ? 'Скрыть' : 'Показать еще'}
-                    </Button>
-                </>
-            );
-        };
-        const PopupComponent = useMemo(() => {
-            return {
-                PopupResponsive: Popup,
-                PopupDesktop,
-                PopupMobile,
-            }[component];
-        }, [component]);
+        const Content = () => (
+            <>
+                <Text />
+                {showMore && (
+                    <>
+                        <Text />
+                        <Text />
+                        <Text />
+                        <Text />
+                    </>
+                )}
+                <Button size="sm" type="button" onClick={() => setShowMore(!showMore)}>
+                    {showMore ? 'Скрыть' : 'Показать еще'}
+                </Button>
+            </>
+        );
+        const PopupComponent = useMemo(
+            () =>
+                ({
+                    PopupResponsive: Popup,
+                    PopupDesktop,
+                    PopupMobile,
+                }[component]),
+            [component]
+        );
         return (
             <>
                 <Button type="button" onClick={handleModalOpen}>
@@ -127,5 +148,5 @@ import { PopupSize } from './types';
                 </PopupComponent>
             </>
         );
-    }}
-</Story>
+    },
+};

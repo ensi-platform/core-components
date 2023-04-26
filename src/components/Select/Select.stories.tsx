@@ -1,25 +1,41 @@
-import { ArgsTable, Meta, Props, Story } from '@storybook/addon-docs/blocks';
-import { useState, useMemo } from 'react';
+/* eslint-disable react-hooks/rules-of-hooks */
+import type { Meta, StoryObj } from '@storybook/react';
+import { ComponentProps, useMemo, useState } from 'react';
 import * as Yup from 'yup';
-import Form from '@controls/Form';
+
+import Form from '@components/Form';
+
 import { Button, scale } from '@scripts/gds';
+
 import FormikSelect, { SimpleSelect as NewSelect } from '.';
+import README from './README.md';
 import useSelectClear from './presets/useSelectClear';
 
-<Meta title="Controls / Future / Select" component={NewSelect} />
+export default {
+    title: 'Components / Select',
+    component: NewSelect,
+    parameters: {
+        docs: {
+            description: {
+                component: README,
+            },
+        },
+        backgrounds: {
+            default: 'grey100',
+        },
+    },
+} as Meta<typeof NewSelect>;
 
-# Select
-
-### Uncontrolled
-
-<Story
-    name="Select"
-    args={{
+export const Basic: StoryObj<
+    ComponentProps<typeof NewSelect> & {
+        closeOnClear: boolean;
+    }
+> = {
+    args: {
         closeOnClear: false,
         wrap: true,
         multiple: false,
         disabled: false,
-        circularNavigation: true,
         closeOnSelect: true,
         options: [
             {
@@ -74,23 +90,31 @@ import useSelectClear from './presets/useSelectClear';
                 value: '5',
             },
         ],
-    }}
->
-    {({ closeOnClear, ...args }) => {
-        const [value, setValue] = useState();
+    },
+    parameters: {
+        docs: {
+            description: {
+                story: 'Uncontrolled',
+            },
+        },
+    },
+    render: ({ closeOnClear, ...args }) => {
+        const [value, setValue] = useState<any>();
         const [open, setOpen] = useState(false);
         const clearSelectProps = useSelectClear({
             closeOnClear,
         });
-        const selectedValues = Array.isArray(value) ? value : [value];
+        const selectedValues = useMemo(() => (Array.isArray(value) ? value : [value]), [value]);
         const selected = useMemo(
             () =>
-                args.options.filter(e => {
-                    if ('value' in e) {
-                        return selectedValues.includes(e.value);
-                    }
-                    return false;
-                }).map(e => e.key),
+                args.options
+                    .filter(e => {
+                        if ('value' in e) {
+                            return selectedValues.includes(e.value);
+                        }
+                        return false;
+                    })
+                    .map(e => (e as any).key),
             [args.options, selectedValues]
         );
         return (
@@ -111,7 +135,7 @@ import useSelectClear from './presets/useSelectClear';
                     selected={selected}
                     open={open}
                     onOpen={payload => {
-                        setOpen(payload.open);
+                        setOpen(payload.open!);
                     }}
                     allowUnselect
                     placeholder="Выберите"
@@ -122,22 +146,11 @@ import useSelectClear from './presets/useSelectClear';
                 </Button>
             </div>
         );
-    }}
-</Story>
+    },
+};
 
-Селект на основе [Альфа Банк Core components](https://core-ds.github.io/core-components/master/?path=/docs/%D0%BA%D0%BE%D0%BC%D0%BF%D0%BE%D0%BD%D0%B5%D0%BD%D1%82%D1%8B-select--select)
-
-<ArgsTable
-    components={{
-        Select: NewSelect,
-    }}
-/>
-
-### Пример с формой
-
-<Story
-    name="Inside Form"
-    args={{
+export const InsideForm: StoryObj<ComponentProps<typeof NewSelect>> = {
+    args: {
         multiple: false,
         disabled: false,
         wrap: true,
@@ -168,7 +181,6 @@ import useSelectClear from './presets/useSelectClear';
                 content: '5',
                 value: '5',
             },
-            
             {
                 key: '6',
                 content: '6',
@@ -180,27 +192,27 @@ import useSelectClear from './presets/useSelectClear';
                 value: '7',
             },
         ],
-    }}
->
-    {args => (
+    },
+    render: args => (
         <Form
             initialValues={{ selectValue: '', otherField: '' }}
             validationSchema={Yup.object().shape({
                 selectValue: Yup.string().required('Обязательное поле'),
                 otherField: Yup.string().required('Обязательное поле'),
             })}
+            onSubmit={console.log}
         >
-            {({ values }) => (
+            {({ watch }) => (
                 <>
                     <p>
-                        Значение из формы: <b>{JSON.stringify(values)}</b>
+                        Значение из формы: <b>{JSON.stringify(watch())}</b>
                     </p>
                     <Form.Field name="selectValue" label="Я селект">
                         <FormikSelect {...args} css={{ minWidth: 200 }} />
                     </Form.Field>
-                    <br/>
+                    <br />
                     <Form.Field name="otherField" placeholder="При вводе в это поле нет лагов перерендера" size="md" />
-                    <br/>
+                    <br />
                     <Button type="submit">Отправить</Button>
                     <Button type="reset" theme="secondary">
                         Сбросить
@@ -208,9 +220,5 @@ import useSelectClear from './presets/useSelectClear';
                 </>
             )}
         </Form>
-    )}
-</Story>
-
-## Props
-
-<Props of={NewSelect} />
+    ),
+};
