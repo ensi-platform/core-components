@@ -1,10 +1,11 @@
-import { ButtonHTMLAttributes, forwardRef } from 'react';
+import { ButtonHTMLAttributes, ReactNode, forwardRef } from 'react';
 
 import { useTabsTheme } from '../../context';
 import { TabListTitle } from '../../types';
 
-type Props = TabListTitle &
-    Omit<ButtonHTMLAttributes<HTMLButtonElement>, 'id'>;
+type Props = Omit<ButtonHTMLAttributes<HTMLButtonElement>, 'id' | 'title'> & {
+    title: ReactNode;
+} & Omit<TabListTitle, 'title'>;
 
 export const Title = forwardRef<HTMLButtonElement, Props>(
     (
@@ -39,13 +40,13 @@ export const Title = forwardRef<HTMLButtonElement, Props>(
                 type="button"
                 id={`${id}`}
                 css={{
-                    ...getCSS('toggle', {
+                    ...(getCSS('toggle', {
                         disabled,
                         isSelected: selected,
                         focused,
                         isOption,
                         isCollapsed: collapsed && !isOption,
-                    }) as any,
+                    }) as any),
                     ...toggleCSS,
                 }}
             >

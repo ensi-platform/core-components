@@ -1,11 +1,12 @@
 import Link, { LinkProps } from 'next/link';
-import { HTMLProps, forwardRef } from 'react';
+import { HTMLProps, ReactNode, forwardRef } from 'react';
 
 import { useTabsTheme } from '../../context';
 import { SelectedId, TabListTitle } from '../../types';
 
-type Props = Omit<TabListTitle & Omit<LinkProps, 'passHref'> & HTMLProps<HTMLAnchorElement>, 'id'> & {
+type Props = Omit<TabListTitle & Omit<LinkProps, 'passHref'> & HTMLProps<HTMLAnchorElement>, 'id' | 'title'> & {
     id?: SelectedId;
+    title: ReactNode;
 };
 
 export const LinkTitle = forwardRef<HTMLAnchorElement, Props>(

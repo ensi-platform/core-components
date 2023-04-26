@@ -227,7 +227,7 @@ export type TabProps = {
 );
 
 export type TabListTitle = {
-    title: string;
+    title: string | ReactNode;
     id: SelectedId;
     disabled?: boolean;
     rightAddons?: ReactNode;
