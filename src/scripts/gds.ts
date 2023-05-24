@@ -19,7 +19,6 @@ export const {
     shadows,
     layout: { breakpoints: Breakpoints },
 } = tokens;
-export type BreakpointParam = keyof typeof Breakpoints;
 export type ColorsTheme = typeof colors;
 export type TypographyParam = keyof typeof tokens.typography.styles;
 export type BreakpointParam = keyof typeof tokens.layout.breakpoints;
