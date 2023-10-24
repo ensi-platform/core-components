@@ -1,0 +1,23 @@
+{
+  "include": [
+    "src",
+    "../../typings",
+    "src/**/*.tsx",
+  ],
+  "extends": "../../tsconfig.json",
+  "compilerOptions": {
+    "outDir": "dist",
+    "rootDirs": [
+      "src"
+    ],
+    "baseUrl": ".",
+    "paths": {
+      "@greensight/core-components-*": [
+        "../*/src"
+      ]
+    }
+  },
+  "references": [
+    { "path": "../common/tsconfig.json" },
+  ]
+}

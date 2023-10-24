@@ -1,0 +1,11 @@
+{
+    "include": ["src", "../../typings", "../types", "src/defaultTokens.json", "src/**/*.tsx"],
+    "extends": "../../tsconfig.json",
+    "compilerOptions": {
+        "outDir": "dist",
+        "rootDirs": ["src"],
+        "baseUrl": ".",
+        "esModuleInterop": true,
+        "resolveJsonModule": true
+    }
+}

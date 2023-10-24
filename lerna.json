@@ -1,0 +1,12 @@
+{
+    "packages": ["packages/*"],
+    "npmClient": "yarn",
+    "version": "independent",
+    "command": {
+        "version": {
+            "message": "chore: publish [skip ci]",
+            "ignoreChanges": ["*.stories.*", "**/__snapshots__/**", "*.test.*"]
+        }
+    },
+    "$schema": "node_modules/lerna/schemas/lerna-schema.json"
+}

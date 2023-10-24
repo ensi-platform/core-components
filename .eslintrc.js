@@ -6,7 +6,6 @@ module.exports = {
         jest: true,
     },
     extends: [
-        'next',
         'airbnb',
         'prettier',
         'plugin:mdx/recommended',
