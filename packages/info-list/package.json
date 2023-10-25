@@ -1,0 +1,22 @@
+{
+  "name": "@greensight/core-components-info-list",
+  "version": "1.0.0",
+  "description": "info-list component",
+  "keywords": [],
+  "license": "MIT",
+  "main": "index.js",
+  "module": "./esm/index.js",
+  "publishConfig": {
+    "access": "public",
+    "directory": "dist"
+  },
+  "peerDependencies": {
+    "@emotion/styled": "11.3.0"
+  },
+  "dependencies": {
+    "@emotion/react": "^11.11.1",
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
+    "tslib": "^2.4.0"
+  }
+}

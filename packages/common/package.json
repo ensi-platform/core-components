@@ -23,7 +23,8 @@
         "@loadable/component": "^5.15.3",
         "case": "^1.6.3",
         "tslib": "^2.4.0",
-        "@svgr/plugin-jsx": "8.1.0"
+        "@svgr/plugin-jsx": "8.1.0",
+        "date-fns": "^2.29.3"
     },
     "devDependencies": {
         "@types/loadable__component": "5.13.6",

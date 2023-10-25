@@ -1,7 +1,9 @@
+import { format } from 'date-fns';
+import { ru } from 'date-fns/locale';
 
 import { ParsedUrlQuery } from 'querystring';
 
-import { KOPECKS_IN_ROUBLE, LIMIT_PAGE } from './constants';
+import { DEFAULT_TIMEZONE, KOPECKS_IN_ROUBLE, LIMIT_PAGE } from './constants';
 
 export const isTouch = () => 'ontouchstart' in window;
 
@@ -60,8 +62,20 @@ export const convertPrice = (rub: string | number, penny: string | number) =>
 export const fromKopecksToRouble = (kopecks: number) => kopecks / KOPECKS_IN_ROUBLE;
 export const fromRoubleToKopecks = (rub: number) => Math.floor(rub * KOPECKS_IN_ROUBLE);
 
-export const formatPrice = (value: number, toFixed = 2) =>
-    value?.toFixed(value.toFixed(2).slice(-3) === '.00' ? 0 : toFixed).replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
+export const formatPrice = (unsafeValue: number | string, locale: string = 'ru-RU') => {
+    const value = +unsafeValue;
+    if (Number.isNaN(value)) {
+        return '0';
+    }
+    return value >= 1000 ? value.toLocaleString(locale) : `${value}`;
+};
+
+export const formatDate = (date: Date, dateFormat = 'dd.MM.yyyy HH:mm', withTimeZone = false) => {
+    const result = format(date, dateFormat, { locale: ru });
+
+    if (!withTimeZone) return result;
+    return `${result} ${DEFAULT_TIMEZONE}`;
+};
 
 export type Flatten<T> = T extends any[] ? T[number] : T;
 

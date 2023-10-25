@@ -1,6 +1,5 @@
 /* eslint-disable import/no-extraneous-dependencies */
-// eslint-disable-next-line no-use-before-define
-import React, { ComponentProps, useState } from 'react';
+import { ComponentProps, useState } from 'react';
 import { Button } from '@greensight/core-components-common/src/index';
 import { action } from '@storybook/addon-actions';
 import type { Meta, StoryObj } from '@storybook/react';

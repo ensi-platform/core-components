@@ -1,8 +1,5 @@
-import { FC, HTMLAttributes, useEffect, useState } from 'react';
-import { scale, Link, useLinkCSS } from '@greensight/core-components-common';
-
-import CheckIcon from '@icons/small/check.svg';
-import CopyIcon from '@icons/small/copy.svg';
+import { HTMLAttributes, useEffect, useState } from 'react';
+import { IconSmallCheck, IconSmallCopy, scale, Link, useLinkCSS } from '@greensight/core-components-common';
 
 export interface CopyButtonProps extends Omit<HTMLAttributes<HTMLButtonElement>, 'children'> {
     children: string;
@@ -10,7 +7,7 @@ export interface CopyButtonProps extends Omit<HTMLAttributes<HTMLButtonElement>,
     linkStyle?: Link;
 }
 
-const CopyButton: FC<CopyButtonProps> = ({ children, timeout = 1000, linkStyle, ...props }) => {
+const CopyButton = ({ children, timeout = 1000, linkStyle, ...props }: CopyButtonProps) => {
     const linkStyles = useLinkCSS(linkStyle);
     const [isSuccess, setIsSuccess] = useState(false);
 
@@ -34,9 +31,9 @@ const CopyButton: FC<CopyButtonProps> = ({ children, timeout = 1000, linkStyle, 
         >
             {children}
             {isSuccess ? (
-                <CheckIcon css={{ marginLeft: scale(1, true) }} />
+                <IconSmallCheck css={{ marginLeft: scale(1, true) }} />
             ) : (
-                <CopyIcon css={{ marginLeft: scale(1, true) }} />
+                <IconSmallCopy css={{ marginLeft: scale(1, true) }} />
             )}
         </button>
     );

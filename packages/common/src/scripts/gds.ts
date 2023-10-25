@@ -50,7 +50,24 @@ export type ExtractBreakpoint<T extends TokensInterface> = keyof T['layout']['br
 export type ExtractColor<T extends TokensInterface> = keyof T['colors'];
 export type ExtractTypography<T extends TokensInterface> = Exclude<keyof T['typography']['styles'], number | symbol>;
 
-export const defineTheme = <T extends TokensInterface<string, string, string, string>>(tokens: T, global: Theme['global']) => {
+export type DefinedTheme<T extends TokensInterface> = {
+    tokens: T;
+    theme: GdsTheme;
+    useTheme: () => GdsTheme;
+    typography: (name: ExtractTypography<T>) => CSSObject;
+    mediaQueries: Record<
+        ExtractBreakpoint<T> extends string ? ExtractBreakpoint<T> : never,
+        `@media (max-width: ${number}px)`
+    > &
+        Record<
+            `${ExtractBreakpoint<T> extends string ? ExtractBreakpoint<T> : never}Min`,
+            `@media (min-width: ${number}px)`
+        >;
+    colors: T['colors'];
+    shadows: T['shadows'];
+};
+
+export const defineTheme = <T extends TokensInterface>(tokens: T, global: Theme['global']) => {
     const mediaQueries = createMediaQueries(tokens.layout.breakpoints);
 
     const settings: GdsTheme = {
@@ -68,11 +85,12 @@ export const defineTheme = <T extends TokensInterface<string, string, string, st
     const useTheme = () => useGDSTheme() as GdsTheme;
 
     return {
+        tokens,
         theme,
         useTheme,
         typography,
         mediaQueries,
         colors: tokens.colors as T['colors'],
         shadows: tokens.shadows as T['shadows'],
-    };
+    } as DefinedTheme<T>;
 };

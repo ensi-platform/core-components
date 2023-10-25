@@ -1,5 +1,4 @@
-// eslint-disable-next-line no-use-before-define
-import React, { ComponentProps } from 'react';
+import { ComponentProps } from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
 
 import README from '../README.md';

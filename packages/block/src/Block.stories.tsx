@@ -1,8 +1,7 @@
-/* eslint-disable no-use-before-define */
 import type { Meta, StoryObj } from '@storybook/react';
 import type { ComponentProps } from 'react';
 
-import React from 'react';
+
 import README from '../README.md';
 import Block from './index';
 

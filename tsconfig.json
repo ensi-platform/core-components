@@ -27,6 +27,6 @@
             "@greensight/core-components-stack/*": ["packages/stack/src/*"]
         }
     },
-    "exclude": ["node_modules", "dist", "**/*.stories*", "**/*.test*"],
+    "exclude": ["node_modules", "dist", "**/*.test*"],
     "include": ["./typings"]
 }

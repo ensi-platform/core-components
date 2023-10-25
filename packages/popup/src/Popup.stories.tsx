@@ -1,8 +1,7 @@
-/* eslint-disable react-hooks/rules-of-hooks */
 import type { Meta, StoryObj } from '@storybook/react';
 import { ComponentProps, useMemo, useRef, useState } from 'react';
 
-import { Button } from '@scripts/gds';
+import { Button } from '@greensight/core-components-common';
 
 import Popup from '.';
 import PopupDesktop from './DesktopComponent';
@@ -24,16 +23,16 @@ export default {
     },
 } as Meta<typeof Popup>;
 
-export const Basic: StoryObj<
-    Omit<ComponentProps<typeof Popup>, 'open'> & {
-        component: 'PopupResponsive' | 'PopupDesktop' | 'PopupMobile';
-        header: boolean;
-        headerTitle: string;
-        footer: boolean;
-        flexContent: boolean;
-        showMore: boolean;
-    }
-> = {
+type Args = Omit<ComponentProps<typeof Popup>, 'open'> & {
+    component: 'PopupResponsive' | 'PopupDesktop' | 'PopupMobile';
+    header: boolean;
+    headerTitle: string;
+    footer: boolean;
+    flexContent: boolean;
+    showMore: boolean;
+};
+
+export const Basic: StoryObj<Args> = {
     args: {
         component: 'PopupResponsive',
         size: 'md',
@@ -65,7 +64,8 @@ export const Basic: StoryObj<
             control: { type: 'radio' },
         },
     },
-    render: ({ header, footer, component, headerTitle, ...args }) => {
+    render: props => {
+        const { header, footer, component, headerTitle, ...args } = props as never as Args;
         const [open, setOpen] = useState(false);
         const [isLoading, setLoading] = useState(false);
         const scrollHandler = useRef(null);
