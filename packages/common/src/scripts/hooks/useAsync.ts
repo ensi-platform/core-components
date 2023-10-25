@@ -9,7 +9,7 @@ function useSafeDispatch<T>(dispatch: Dispatch<T>) {
             mounted.current = false;
         };
     }, []);
-    return useCallback(action => (mounted.current ? dispatch(action) : void 0), [dispatch]);
+    return useCallback((action: any) => (mounted.current ? dispatch(action) : void 0), [dispatch]);
 }
 
 // Example usage:
@@ -36,12 +36,12 @@ function useAsync(initialState: any) {
 
     const safeSetState = useSafeDispatch(setState);
 
-    const setData = useCallback(data => safeSetState({ data, status: 'resolved' }), [safeSetState]);
-    const setError = useCallback(error => safeSetState({ error, status: 'rejected' }), [safeSetState]);
+    const setData = useCallback((data: any) => safeSetState({ data, status: 'resolved' }), [safeSetState]);
+    const setError = useCallback((error: any) => safeSetState({ error, status: 'rejected' }), [safeSetState]);
     const reset = useCallback(() => safeSetState(initialStateRef.current), [safeSetState]);
 
     const run = useCallback(
-        promise => {
+        (promise: Promise<any>) => {
             if (!promise || !promise.then) {
                 throw new Error(
                     `The argument passed to useAsync().run must be a promise. Maybe a function that's passed isn't returning anything?`

@@ -37,6 +37,6 @@ export const Portal = forwardRef<Element, PortalProps>(
             return () => null;
         }, [ref, mountNode]);
 
-        return mountNode ? createPortal(children as any, mountNode) : mountNode;
+        return mountNode ? <>{createPortal(children as any, mountNode)}</> : mountNode;
     }
 );
