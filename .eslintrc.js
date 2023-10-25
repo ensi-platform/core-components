@@ -6,12 +6,12 @@ module.exports = {
         jest: true,
     },
     extends: [
-        'next',
         'airbnb',
         'prettier',
         'plugin:mdx/recommended',
         'plugin:jsx-a11y/recommended',
         'plugin:storybook/recommended',
+        "plugin:react-hooks/recommended"
     ],
     parser: '@typescript-eslint/parser',
     parserOptions: {
