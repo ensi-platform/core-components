@@ -2,6 +2,7 @@ import { CSSObject } from '@emotion/react';
 import { HTMLProps, useMemo } from 'react';
 
 import {
+    defaultTheme,
     DefinedTheme,
     ExtractBreakpoint,
     ExtractColor,
@@ -23,11 +24,12 @@ export interface PriceProps<Breakpoint extends string | number | symbol, Typogra
     unit?: string;
 }
 
-const definePrice = <TTokens extends TokensInterface>(
+export const definePrice = <TTokens extends TokensInterface>(
     theme: DefinedTheme<TTokens>,
     defaultTypography: ExtractTypography<TTokens>,
     crossedColor: ExtractColor<TTokens>
 ) => {
+    // eslint-disable-next-line react-hooks/rules-of-hooks
     const mediaQueries = useMedia(theme.tokens);
 
     return ({
@@ -48,7 +50,7 @@ const definePrice = <TTokens extends TokensInterface>(
                 res[mediaQueries[media]] = theme.typography(name!);
                 return res;
             }, {}) as CSSObject;
-        }, [mediaQueries, typographyProp]);
+        }, [typographyProp]);
 
         const styles = useMemo<CSSObject>(
             () => ({
@@ -91,4 +93,6 @@ const definePrice = <TTokens extends TokensInterface>(
     };
 };
 
-export default definePrice;
+const Price = definePrice(defaultTheme, 'bodyMdBold', 'danger');
+
+export default Price;

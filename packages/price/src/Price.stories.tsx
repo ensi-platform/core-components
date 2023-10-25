@@ -3,9 +3,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import type { ComponentProps } from 'react';
 
 import README from '../README.md';
-import definePrice, { PriceProps } from './index';
-
-const Price = definePrice(defaultTheme, 'bodyMdBold', 'danger');
+import Price, { PriceProps } from './index';
 
 export default {
     title: 'Components / Price',

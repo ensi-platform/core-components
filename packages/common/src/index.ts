@@ -1,5 +1,3 @@
-import validateInn from './scripts/validateInn';
-
 import { defineTheme } from './scripts/gds';
 import defaultTokens from './defaultTokens.json';
 
@@ -37,8 +35,7 @@ const defaultTheme = defineTheme(defaultTokens, {
     },
 });
 
-
-export { defaultTheme, validateInn };
+export { defaultTheme };
 
 export * from './scripts/constants';
 export * from './scripts/enums';
@@ -46,6 +43,5 @@ export * from './scripts/gds';
 export * from './scripts/helpers';
 export * from './scripts/hooks';
 export * from './scripts/mask';
-export * from './scripts/regex';
 
 export * from './icons-export';
