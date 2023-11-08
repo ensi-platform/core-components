@@ -1,8 +1,8 @@
-import { useEffect, RefObject, SetStateAction } from 'react';
+import { useEffect, RefObject } from 'react';
 
-export const useOnClickOutside = (ref: RefObject<Element>, handler: SetStateAction<any>) => {
+export const useOnClickOutside = (ref: RefObject<Element>, handler: (event: MouseEvent | TouchEvent) => void) => {
     useEffect(() => {
-        const listener = (event: any) => {
+        const listener = (event: MouseEvent | TouchEvent) => {
             if (!ref.current || ref.current.contains(event.target as Node)) return;
             handler(event);
         };

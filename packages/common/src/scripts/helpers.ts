@@ -3,7 +3,7 @@ import { ru } from 'date-fns/locale';
 
 import { ParsedUrlQuery } from 'querystring';
 
-import { DEFAULT_TIMEZONE, KOPECKS_IN_ROUBLE, LIMIT_PAGE } from './constants';
+import { DEFAULT_TIMEZONE, KOPECKS_IN_ROUBLE,  } from './constants';
 
 export const isTouch = () => 'ontouchstart' in window;
 
@@ -79,11 +79,6 @@ export const formatDate = (date: Date, dateFormat = 'dd.MM.yyyy HH:mm', withTime
 
 export type Flatten<T> = T extends any[] ? T[number] : T;
 
-export const getTotalPages = (data: { meta?: { pagination?: { total: number } } } = {}, limit = LIMIT_PAGE) =>
-    Math.ceil((data?.meta?.pagination?.total || 0) / limit);
-
-export const getTotal = (data: { meta?: { pagination?: { total: number } } } = {}) =>
-    data?.meta?.pagination?.total || 0;
 export interface INestedRow {
     id: number;
     parent_id?: number | null;

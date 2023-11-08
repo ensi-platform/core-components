@@ -1,0 +1,31 @@
+{
+  "include": [
+    "src",
+    "../../typings",
+    "src/popover.stories.tsx"
+  ],
+  "extends": "../../tsconfig.json",
+  "compilerOptions": {
+    "outDir": "dist",
+    "rootDirs": [
+      "src"
+    ],
+    "baseUrl": ".",
+    "paths": {
+      "@greensight/core-components-*": [
+        "../*/src"
+      ]
+    }
+  },
+  "references": [
+    {
+      "path": "../common/tsconfig.json"
+    },
+    {
+      "path": "../stack/tsconfig.json",
+    },
+    {
+      "path": "../portal/tsconfig.json",
+    }
+  ]
+}

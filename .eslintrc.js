@@ -11,7 +11,7 @@ module.exports = {
         'plugin:mdx/recommended',
         'plugin:jsx-a11y/recommended',
         'plugin:storybook/recommended',
-        "plugin:react-hooks/recommended"
+        'plugin:react-hooks/recommended',
     ],
     parser: '@typescript-eslint/parser',
     parserOptions: {
@@ -89,6 +89,12 @@ module.exports = {
         {
             files: ['*.mdx'],
             extends: ['plugin:mdx/overrides'],
+        },
+        {
+            files: ['*.stories.tsx'],
+            rules: {
+                'react-hooks/rules-of-hooks': 'off',
+            },
         },
     ],
     globals: {

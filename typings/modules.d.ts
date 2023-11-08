@@ -14,7 +14,6 @@ declare module '*.md' {
 
 
 declare module 'react-loading-skeleton';
-declare module 'react-imask';
 declare module 'react-tabs';
 
 type ListFormatOptions = {

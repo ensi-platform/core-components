@@ -1,5 +1,5 @@
 {
-    "include": ["src", "src/**/*.ts", "src/**/*.tsx", "src/ActionPopup.stories.tsx", "../../typings"],
+    "include": ["src", "README.md", "src/**/*.ts", "src/**/*.tsx", "src/ActionPopup.stories.tsx", "../../typings"],
     "extends": "../../tsconfig.json",
     "compilerOptions": {
         "outDir": "dist",

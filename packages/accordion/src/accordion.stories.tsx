@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import type { ComponentProps } from 'react';
 
-import PlusIcon from '@icons/plus.svg';
+import { IconPlus } from '@greensight/core-components-common';
 
 import README from '../README.md';
 import Accordion from './index';
@@ -105,5 +105,5 @@ export const CustomAnimation: Story = {
 };
 export const CustomIcon: Story = {
     args: {},
-    render: () => <StoryComponent Icon={PlusIcon} />,
+    render: () => <StoryComponent Icon={IconPlus} />,
 };
