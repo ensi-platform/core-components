@@ -1,4 +1,5 @@
 export * from './useDebounce';
+export * from './useDeferredLoading';
 export * from './useLinkCSS';
 export * from './useListCSS';
 export * from './useLocalStorage';

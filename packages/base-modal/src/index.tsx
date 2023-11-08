@@ -282,29 +282,33 @@ const BaseModal = forwardRef<HTMLDivElement, BaseModalProps>(
         const handleExited = useCallback(() => {
             removeResizeHandle();
 
-            setExited(true);
-
             if (scrollableNodeRef.current) {
                 scrollableNodeRef.current.removeEventListener('scroll', handleScroll);
             }
 
-            if (onUnmount) onUnmount();
-
             if (restoreContainerStylesRef.current) {
                 restoreContainerStylesRef.current();
             }
-        }, [handleScroll, onUnmount, removeResizeHandle]);
+        }, [handleScroll, removeResizeHandle]);
+
+        const handleUnmount = useCallback(() => {
+            setExited(true);
+            if (onUnmount) onUnmount();
+        }, [onUnmount]);
 
         const handlersRef = useRef({
             entered: handleEntered,
             exited: handleExited,
+            unmount: handleUnmount,
         });
         handlersRef.current.entered = handleEntered;
         handlersRef.current.exited = handleExited;
+        handlersRef.current.unmount = handleUnmount;
 
         useEffect(() => {
             if (status === 'entering') handlersRef.current.entered();
             if (status === 'exiting') handlersRef.current.exited();
+            if (status === 'exited') handlersRef.current.unmount();
         }, [status]);
 
         useEffect(() => {

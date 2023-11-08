@@ -2,7 +2,7 @@ const fs = require('fs/promises');
 const inquirerAsync = import('inquirer');
 
 // Function to create a package
-async function createPackage(packageName) {
+async function createPackage(packageName, deps) {
     await fs.mkdir(`packages/${packageName}`);
 
     await fs.mkdir(`packages/${packageName}/src`);
@@ -41,8 +41,15 @@ async function createPackage(packageName) {
                 '@greensight/core-components-*': ['../*/src'],
             },
         },
-        references: [],
+        references: deps.map(dep => ({ path: `../${dep}/tsconfig.json` })),
     };
+
+    const rootTsConfigJson = JSON.parse(await fs.readFile('./tsconfig.json'));
+    rootTsConfigJson.compilerOptions.paths[`@greensight/core-components-${packageName}/*`] = [
+        `packages/${packageName}/src/*`,
+    ];
+
+    await fs.writeFile('./tsconfig.json', JSON.stringify(rootTsConfigJson, null, 2));
 
     await fs.writeFile(`packages/${packageName}/package.json`, JSON.stringify(packageJson, null, 2));
     await fs.writeFile(`packages/${packageName}/tsconfig.json`, JSON.stringify(tsConfigJson, null, 2));
@@ -59,6 +66,9 @@ function isKebabCase(str) {
 async function main() {
     const { default: inquirer } = await inquirerAsync;
 
+    const packageNames = await fs.readdir('./packages');
+    packageNames.sort((a, b) => a - b);
+
     const answers = await inquirer.prompt([
         {
             name: 'packageName',
@@ -70,10 +80,20 @@ async function main() {
                 return 'Please enter a valid subfolder name (only a-z, "-" are allowed).';
             },
         },
+        {
+            name: 'deps',
+            type: 'checkbox',
+            message: `Select the dep packages`,
+            choices: packageNames,
+            pageSize: 15,
+        },
     ]);
 
-    const { packageName } = answers;
-    await createPackage(packageName);
+    const { packageName, deps } = answers;
+
+    await createPackage(packageName, deps);
+
+    console.log('Successfully created!');
 }
 
 main().catch(console.error);

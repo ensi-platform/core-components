@@ -1,5 +1,5 @@
 {
-    "include": ["src", "../../typings", "src/accordion.stories.tsx"],
+    "include": ["src", "README.md", "../../typings", "src/accordion.stories.tsx"],
     "extends": "../../tsconfig.json",
     "compilerOptions": {
         "outDir": "dist",

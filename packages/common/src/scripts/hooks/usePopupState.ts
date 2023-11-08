@@ -17,6 +17,9 @@ export const usePopupState = <T>(initialState: T): [T, Dispatch<Action<T>>] => {
                 case ActionType.Add: {
                     return { ...state, action: action.type, open: true };
                 }
+                case ActionType.PreClose: {
+                    return { ...state, ...action.payload, action: action.type, open: false };
+                }
                 case ActionType.Close: {
                     return { ...initialState, action: action.type, open: false };
                 }
