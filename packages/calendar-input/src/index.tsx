@@ -4,7 +4,7 @@ import { useMaskito } from '@maskito/react';
 import endOfDay from 'date-fns/endOfDay';
 import startOfDay from 'date-fns/startOfDay';
 
-import { DATE_RANGE_SEPARATOR, DEFAULT_MAX_DATE, DEFAULT_MIN_DATE, HOURS_MINUTES_SEPARATOR } from './constants';
+import { DATE_RANGE_SEPARATOR, DEFAULT_MAX_DATE, DEFAULT_MIN_DATE, HOURS_MINUTES_SEPARATOR } from './scripts/constants';
 import { createMaskOptions } from './mask';
 import { BaseCalendarInputProps } from './types';
 import { DateInput } from './components/date-input';

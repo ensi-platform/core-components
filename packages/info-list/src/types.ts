@@ -10,10 +10,16 @@ export interface BaseInfoListTypes {
     value?: any;
     valueNoWrap?: boolean;
     type?: 'base';
+    
+    link?: unknown;
+    renderLink?: unknown;
 }
 
 export interface InfoListItemTypes extends Omit<BaseInfoListTypes, 'type'> {
     type: 'date' | 'boolean';
+    
+    link?: unknown;
+    renderLink?: unknown;
 }
 
 export interface InfoListItemLinkTypes extends Omit<BaseInfoListTypes, 'type'> {

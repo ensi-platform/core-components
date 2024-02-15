@@ -27,7 +27,7 @@ import {
     isScrolledToBottom,
     isScrolledToTop,
     restoreContainerStyles,
-} from './utils';
+} from './scripts/utils';
 
 export * from './types';
 

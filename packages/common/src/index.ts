@@ -3,7 +3,7 @@ import defaultTokens from './defaultTokens.json';
 
 export { defaultTokens };
 
-const defaultTheme = defineTheme(defaultTokens, {
+const getDefaultTheme = () => defineTheme(defaultTokens, {
     base: {
         focus: {
             width: 2,
@@ -22,10 +22,11 @@ const defaultTheme = defineTheme(defaultTokens, {
             'input[type="number"]': {
                 appearance: 'auto',
             },
-            'input[type="number"]::-webkit-outer-spin-button, input[type="number"]::-webkit-inner-spin-button': {
-                margin: 0,
-                appearance: 'none',
-            },
+            'input[type="number"]::-webkit-outer-spin-button, input[type="number"]::-webkit-inner-spin-button':
+                {
+                    margin: 0,
+                    appearance: 'none',
+                },
             hr: { borderColor: defaultTokens.colors.grey400, borderWidth: '1px 0 0 0', borderStyle: 'solid' },
             '.tox-notifications-container': { display: `none !important` },
             'input[type="time"]::-webkit-calendar-picker-indicator': {
@@ -33,7 +34,22 @@ const defaultTheme = defineTheme(defaultTokens, {
             },
         },
     },
-});
+})
+
+const getCachedDefaultTheme = () => {
+    const key = '__gds_default_theme';
+    if (typeof window === 'undefined' || !(key in window)) {
+        const defaultTheme = getDefaultTheme();
+
+        (window as Record<string, any>)[key] = defaultTheme;
+
+        return defaultTheme;
+    }
+
+    return (window as Record<string, any>)[key] as ReturnType<typeof getDefaultTheme>;
+};
+
+const defaultTheme = getCachedDefaultTheme();
 
 export { defaultTheme };
 

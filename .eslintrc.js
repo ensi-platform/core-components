@@ -41,6 +41,7 @@ module.exports = {
         camelcase: 0,
         'react/jsx-filename-extension': 0,
         'react/jsx-props-no-spreading': 0,
+        'react/function-component-definition': 0,
         'import/no-unresolved': [
             2,
             {

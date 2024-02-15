@@ -1,6 +1,9 @@
 import InfoListItem from './components/InfoListItem';
-import { useInfoListCSS } from './hooks';
+import { useInfoListCSS } from './scripts';
 import { InfoListTypes } from './types';
+
+export * from './types';
+export * from './scripts/helper';
 
 const InfoList = ({ children, className }: InfoListTypes) => {
     const { ulStyles } = useInfoListCSS();

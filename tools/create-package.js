@@ -1,6 +1,10 @@
 const fs = require('fs/promises');
 const inquirerAsync = import('inquirer');
 
+const ucfirst = str => {
+    return str.slice(0, 1).toUpperCase() + str.slice(1);
+};
+
 // Function to create a package
 async function createPackage(packageName, deps) {
     await fs.mkdir(`packages/${packageName}`);
@@ -31,7 +35,7 @@ async function createPackage(packageName, deps) {
     };
 
     const tsConfigJson = {
-        include: ['src', '../../typings', `src/${packageName}.stories.tsx`],
+        include: ['src', '../../typings', `src/${ucfirst(packageName)}.stories.tsx`],
         extends: '../../tsconfig.json',
         compilerOptions: {
             outDir: 'dist',
@@ -56,7 +60,10 @@ async function createPackage(packageName, deps) {
 
     await fs.writeFile(`packages/${packageName}/README.md`, `# Компонент ${packageName}`);
     await fs.writeFile(`packages/${packageName}/src/index.tsx`, `/// `);
-    await fs.writeFile(`packages/${packageName}/src/${packageName}.stories.tsx`, `/// `);
+    await fs.mkdir(`packages/${packageName}/src/components`);
+    await fs.mkdir(`packages/${packageName}/src/scripts`);
+    await fs.mkdir(`packages/${packageName}/src/themes`);
+    await fs.writeFile(`packages/${packageName}/src/${ucfirst(packageName)}.stories.tsx`, `/// `);
 }
 
 function isKebabCase(str) {

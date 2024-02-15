@@ -3,9 +3,9 @@ import { isEqual, isLastDayOfMonth, isSameDay, isToday, isWithinInterval, startO
 import { TransitionGroup as TransitionGroupTyped, CSSTransition as CSSTransitionTyped } from 'react-transition-group';
 
 import { usePrevious, Button } from '@greensight/core-components-common';
-import useCalendarTheme from '../../useCalendarTheme';
+import useCalendarTheme from '../../scripts/useCalendarTheme';
 
-import { WEEKDAYS, getSelectionRange } from '../../utils';
+import { WEEKDAYS, getSelectionRange } from '../../scripts/utils';
 import { Day } from '../../types';
 
 const TransitionGroup = TransitionGroupTyped as never as (props: any) => JSX.Element;

@@ -4,9 +4,9 @@ import Popup, { PopupProps, Content } from '@greensight/core-components-popup';
 
 import { Button, scale, defaultTheme } from '@greensight/core-components-common';
 
-import { ActionEnum } from './enums';
+import { ActionEnum } from './scripts/enums';
 
-export * from './enums';
+export * from './scripts/enums';
 export * from './types';
 
 const { typography } = defaultTheme;

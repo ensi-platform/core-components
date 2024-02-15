@@ -2,13 +2,13 @@ import { useMemo } from 'react';
 
 import { Accordion as ReactAccordion } from 'react-accessible-accordion';
 import { IconArrowDown, useThemeCSSPart } from '@greensight/core-components-common';
-import { AccordionContext } from './useAccordion';
-import Item from './Item';
-import Heading from './Heading';
-import Panel from './Panel';
-import Button from './Button';
+import { AccordionContext } from './scripts/useAccordion';
+import Item from './components/Item';
+import Heading from './components/Heading';
+import Panel from './components/Panel';
+import Button from './components/Button';
 import { AccordionProps, AccordionState, AccordionThemeState } from './types';
-import { accordionThemes } from './defaultTheme';
+import { accordionThemes } from './themes/defaultTheme';
 
 const BasicAccordion = ({
     children,

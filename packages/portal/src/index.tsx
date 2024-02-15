@@ -1,7 +1,7 @@
 import { ReactNode, forwardRef, useEffect, useState } from 'react';
 import { createPortal } from 'react-dom';
 
-import { getDefaultPortalContainer, setRef } from './utils';
+import { getDefaultPortalContainer, setRef } from './scripts/utils';
 
 export type PortalProps = {
     /** Контент */

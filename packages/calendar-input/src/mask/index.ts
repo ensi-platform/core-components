@@ -1,6 +1,6 @@
 import { MaskitoMask, MaskitoMaskExpression, MaskitoOptions } from '@maskito/core';
 
-import { TEMPLATES } from '../constants';
+import { TEMPLATES } from '../scripts/constants';
 import { DateTemplate, View } from '../types';
 
 import { createCaretPosPlugin } from './plugins';

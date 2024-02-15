@@ -16,3 +16,4 @@ export * from './useDidUpdateEffect';
 export * from './useLineClampCSS';
 export * from './useFiltersHelperClient';
 export * from './useMediaQuery';
+export * from './useIsFocusVisible';

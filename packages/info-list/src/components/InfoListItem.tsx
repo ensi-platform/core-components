@@ -1,4 +1,4 @@
-import { useGetInfoItemValue, useInfoListCSS } from '../hooks';
+import { useGetInfoItemValue, useInfoListCSS } from '../scripts';
 import { InfoListItemCommonType } from '../types';
 
 const InfoListItem = (props: InfoListItemCommonType) => {

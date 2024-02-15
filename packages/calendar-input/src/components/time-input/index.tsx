@@ -2,9 +2,9 @@ import { ChangeEvent, FocusEvent, forwardRef, useEffect, useRef, useState } from
 
 import Input from '@greensight/core-components-input';
 
-import { HOURS_MINUTES_SEPARATOR } from '../../constants';
+import { HOURS_MINUTES_SEPARATOR } from '../../scripts/constants';
 import type { InnerTimeInputProps } from '../../types';
-import { isCompleteTime } from '../../utils';
+import { isCompleteTime } from '../../scripts/utils';
 
 const defaultTime = `00${HOURS_MINUTES_SEPARATOR}00`;
 

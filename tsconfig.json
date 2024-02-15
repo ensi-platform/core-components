@@ -102,6 +102,12 @@
       ],
       "@greensight/core-components-password/*": [
         "packages/password/src/*"
+      ],
+      "@greensight/core-components-radio/*": [
+        "packages/radio/src/*"
+      ],
+      "@greensight/core-components-rating/*": [
+        "packages/rating/src/*"
       ]
     }
   },

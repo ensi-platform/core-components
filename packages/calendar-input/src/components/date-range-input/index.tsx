@@ -7,7 +7,7 @@ import Input from '@greensight/core-components-input';
 import { Popover } from '@greensight/core-components-popover';
 import { IconCalendar, useOnClickOutside } from '@greensight/core-components-common';
 
-import { DATE_RANGE_SEPARATOR, DEFAULT_MAX_DATE, DEFAULT_MIN_DATE } from '../../constants';
+import { DATE_RANGE_SEPARATOR, DEFAULT_MAX_DATE, DEFAULT_MIN_DATE } from '../../scripts/constants';
 import { InnerDateRangeInputProps } from '../../types';
 import {
     formatDate,
@@ -17,7 +17,7 @@ import {
     parseDateString,
     preventDefault,
     updateRange,
-} from '../../utils';
+} from '../../scripts/utils';
 
 export const DateRangeInput = forwardRef<HTMLInputElement, InnerDateRangeInputProps>(
     (

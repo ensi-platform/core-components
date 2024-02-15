@@ -4,7 +4,7 @@ import { forwardRef, useMemo } from 'react';
 
 import { useThemeCSSPart } from '@greensight/core-components-common';
 
-import { formControlThemes } from './defaultTheme';
+import { formControlThemes } from './themes/defaultTheme';
 import { FormControlProps, FormControlThemeState } from './types';
 
 export * from './types';

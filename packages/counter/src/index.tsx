@@ -3,7 +3,7 @@ import { Layout, IconMinus, IconPlus, useThemeCSSPart } from '@greensight/core-c
 
 import FormControl from '@greensight/core-components-form-control';
 import { CounterProps, CounterThemeState } from './types';
-import { counterThemes } from './defaultTheme';
+import { counterThemes } from './themes/defaultTheme';
 
 const Counter = ({
     name,
@@ -90,7 +90,7 @@ const Counter = ({
                     <button
                         type="button"
                         onClick={() => changeValue(Number(innerValue) - step)}
-                        disabled={innerValue < min + step}
+                        disabled={Number(innerValue) < Number(min + step)}
                         title={`Уменьшить на ${step}`}
                         css={getCSS('decrButton')}
                     >
@@ -118,7 +118,7 @@ const Counter = ({
                     <button
                         type="button"
                         onClick={() => changeValue(Number(innerValue) + step)}
-                        disabled={innerValue > max - step}
+                        disabled={Number(innerValue) > Number(max - step)}
                         title={`Увеличить на ${step}`}
                         css={getCSS('incrButton')}
                     >

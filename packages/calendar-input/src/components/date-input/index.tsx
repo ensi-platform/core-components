@@ -13,9 +13,9 @@ import {
     DATE_TIME_SEPARATOR,
     DEFAULT_MAX_DATE,
     DEFAULT_MIN_DATE,
-} from '../../constants';
+} from '../../scripts/constants';
 import type { InnerDateInputProps } from '../../types';
-import { formatDate, isCompleteDate, isCompleteTime, isValidDate, parseDateString, preventDefault } from '../../utils';
+import { formatDate, isCompleteDate, isCompleteTime, isValidDate, parseDateString, preventDefault } from '../../scripts/utils';
 
 export const DateInput = forwardRef<HTMLInputElement, InnerDateInputProps>(
     (

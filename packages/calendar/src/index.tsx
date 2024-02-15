@@ -7,14 +7,14 @@ import { DaysTable } from './components/days-table';
 import { YearsTable } from './components/years-table';
 import { MonthsTable } from './components/months-table/index';
 
-import { useCalendar } from './useCalendar';
-import { limitDate, monthName } from './utils';
+import { useCalendar } from './scripts/useCalendar';
+import { limitDate, monthName } from './scripts/utils';
 import { View, CalendarProps, CalendarState, CalendarThemeState, CalendarThemeContextProps } from './types';
-import { сalendarThemes } from './defaultTheme';
-import { CalendarThemeContext } from './useCalendarTheme';
+import { сalendarThemes } from './themes/defaultTheme';
+import { CalendarThemeContext } from './scripts/useCalendarTheme';
 
 export * from './types';
-export * from './utils';
+export * from './scripts/utils';
 
 const Calendar = forwardRef<HTMLDivElement, CalendarProps>(
     (

@@ -3,10 +3,10 @@ import { ElementType, ReactNode } from 'react';
 
 import { scale, defaultTokens } from '@greensight/core-components-common';
 
-import BlockBody from './BlockBody';
-import BlockMobileFluid from './BlockBodyFluid';
-import BlockFooter from './BlockFooter';
-import BlockHeader from './BlockHeader';
+import BlockBody from './components/BlockBody';
+import BlockMobileFluid from './components/BlockBodyFluid';
+import BlockFooter from './components/BlockFooter';
+import BlockHeader from './components/BlockHeader';
 
 type BlockProps<P extends ElementType = 'section'> = {
     /** Use your own React component for render. */

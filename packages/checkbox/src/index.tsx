@@ -6,7 +6,7 @@ import deepmerge from 'deepmerge';
 
 import { IconCheck, useThemeCSSPart } from '@greensight/core-components-common';
 
-import { useFocus } from './hooks';
+import { useFocus } from './scripts/hooks';
 import { CheckboxProps, CheckboxSize, CheckboxThemeState, CheckboxVariant } from './types';
 import { checkboxThemes } from './defaultTheme';
 

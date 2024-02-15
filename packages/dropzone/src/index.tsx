@@ -12,10 +12,10 @@ import { useDeferredLoading, scale, FormFieldDescendantProps } from '@greensight
 
 import LoadingSkeleton from '@greensight/core-components-loading-skeleton';
 import FormControl from '@greensight/core-components-form-control';
-import DropzoneArea from './DropzoneArea';
-import { DraggableDropzoneFile, DropzoneFile, DropzoneFileProps, FileType } from './DropzoneFile';
-import { ErrorCodes, ImagePreview } from './constants';
-import { canPreviewImages, getFileSize, makeMatrixArray, removeItemFromArray } from './utils';
+import DropzoneArea from './components/DropzoneArea';
+import { DraggableDropzoneFile, DropzoneFile, DropzoneFileProps, FileType } from './components/DropzoneFile';
+import { ErrorCodes, ImagePreview } from './scripts/constants';
+import { canPreviewImages, getFileSize, makeMatrixArray, removeItemFromArray } from './scripts/utils';
 
 const DragDropContext = UntypedDragDropContext as never as FC<DragDropContextProps & { children: ReactNode }>;
 const Droppable = UntypedDroppable as never as FC<DroppableProps>;

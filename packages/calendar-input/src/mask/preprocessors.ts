@@ -3,9 +3,9 @@ import { MaskitoPreprocessor } from '@maskito/core';
 import { ElementState } from '@maskito/core/lib/types';
 import isValid from 'date-fns/isValid';
 
-import { DATE_RANGE_SEPARATOR } from '../constants';
+import { DATE_RANGE_SEPARATOR } from '../scripts/constants';
 import { DateTemplate } from '../types';
-import { parseDateString } from '../utils';
+import { parseDateString } from '../scripts/utils';
 
 import {
     countSeparatorsFromHead,
