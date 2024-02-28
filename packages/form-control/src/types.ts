@@ -49,8 +49,19 @@ export interface FormControlState {
      */
     labelWrap?: boolean;
 
+    /**
+     * Есть ли левый слот
+     */
     hasLeftAddons?: boolean;
+
+    /**
+     * Есть ли правый слот
+     */
     hasRightAddons?: boolean;
+
+    /**
+     * Есть ли внутренний лейбл
+     */
     hasInnerLabel?: boolean;
 
     /**
@@ -63,7 +74,7 @@ export interface FormControlState {
 export type FormControlThemeState = BaseThemeState<typeof FormControlVariant, typeof FormControlSize, never> &
     FormControlState;
 
-type FormControlParts = 'wrapper' | 'inner' | 'label' | 'sub' | 'error' | 'controlWrapper';
+type FormControlParts = 'wrapper' | 'inner' | 'label' | 'sub' | 'error' | 'controlWrapper' | 'clear';
 
 export type FormControlTheme = ValueOrFunction<
     Record<FormControlParts, StyleDefinition<FormControlThemeState>> & {

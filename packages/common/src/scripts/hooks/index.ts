@@ -17,3 +17,5 @@ export * from './useLineClampCSS';
 export * from './useFiltersHelperClient';
 export * from './useMediaQuery';
 export * from './useIsFocusVisible';
+export * from './useControlHook';
+export * from './useIsomorphicLayoutEffect';

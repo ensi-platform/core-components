@@ -98,7 +98,7 @@ const Rating = ({
                       }
             );
         },
-        [onMouseMove, precision]
+        [onHoverChange, onMouseMove, precision]
     );
 
     const handleMouseLeave = (event: MouseEvent) => {
@@ -266,8 +266,6 @@ const Rating = ({
                                             itemValue - 1 + (indexDecimal + 1) * precision,
                                             precision
                                         );
-
-                                        console.log('itemDecimalValue=', itemDecimalValue, 'value=', value);
 
                                         return (
                                             <>

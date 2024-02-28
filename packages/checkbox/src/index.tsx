@@ -1,10 +1,10 @@
 import { CSSObject } from '@emotion/react';
 
-import { ChangeEvent, forwardRef, useMemo, useRef } from 'react';
+import { forwardRef, useMemo, useRef } from 'react';
 import mergeRefs from 'react-merge-refs';
 import deepmerge from 'deepmerge';
 
-import { IconCheck, useThemeCSSPart } from '@greensight/core-components-common';
+import { IconCheck, useCheckboxLikeControlHookRHF, useThemeCSSPart } from '@greensight/core-components-common';
 
 import { useFocus } from './scripts/hooks';
 import { CheckboxProps, CheckboxSize, CheckboxThemeState, CheckboxVariant } from './types';
@@ -17,7 +17,7 @@ export { checkboxThemes, CheckboxSize, CheckboxVariant };
 const Checkbox = forwardRef<HTMLLabelElement, CheckboxProps>(
     (
         {
-            checked,
+            checked: propsChecked,
             children,
             label = children,
             hint,
@@ -38,19 +38,16 @@ const Checkbox = forwardRef<HTMLLabelElement, CheckboxProps>(
             size = 'md',
             theme = checkboxThemes.basic,
             css,
+            useControlHook = useCheckboxLikeControlHookRHF,
             ...restProps
         },
         ref
     ) => {
         const labelRef = useRef<HTMLLabelElement>(null);
 
-        const [focused] = useFocus(labelRef, 'keyboard');
+        const { checked, handleChange } = useControlHook(name!, onChange!, propsChecked);
 
-        const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
-            if (onChange) {
-                onChange(event, { checked: event.target.checked, name });
-            }
-        };
+        const [focused] = useFocus(labelRef, 'keyboard');
 
         const themeState = useMemo<CheckboxThemeState>(
             () => ({

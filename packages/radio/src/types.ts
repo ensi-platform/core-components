@@ -1,5 +1,10 @@
 import { HTMLProps, Ref } from 'react';
-import { BaseThemeState, StyleDefinition, ValueOrFunction } from '@greensight/core-components-common';
+import {
+    BaseThemeState,
+    StyleDefinition,
+    ValueOrFunction,
+    useCheckboxLikeControlHookType,
+} from '@greensight/core-components-common';
 
 import { CSSObject } from '@emotion/react';
 import { radioThemes } from './themes';
@@ -73,7 +78,7 @@ export interface RadioProps
     extends Omit<BaseThemeState<typeof RadioVariant, typeof RadioSize, RadioTheme>, 'theme'>,
         Omit<HTMLProps<HTMLInputElement>, 'size'> {
     /** Ref for inner input */
-    innerRef?: Ref<HTMLInputElement>;
+    inputRef?: Ref<HTMLInputElement>;
 
     /** Additional class */
     className?: string;
@@ -89,4 +94,6 @@ export interface RadioProps
     inputCSS?: CSSObject;
     wrapperCSS?: CSSObject;
     labelCSS?: CSSObject;
+
+    useControlHook?: useCheckboxLikeControlHookType;
 }

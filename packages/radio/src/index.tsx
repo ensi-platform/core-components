@@ -1,9 +1,9 @@
 import { CSSObject } from '@emotion/react';
 import deepmerge from 'deepmerge';
-import { ChangeEvent, useCallback, useMemo, useRef } from 'react';
+import { useMemo, useRef } from 'react';
 import mergeRefs from 'react-merge-refs';
 
-import { useThemeCSSPart } from '@greensight/core-components-common';
+import { useCheckboxLikeControlHookRHF, useThemeCSSPart } from '@greensight/core-components-common';
 
 import { radioThemes } from './themes';
 import { RadioProps, RadioThemeState } from './types';
@@ -15,13 +15,13 @@ const Radio = ({
     value,
     label,
     error,
-    innerRef,
+    inputRef: innerRef,
     children,
     className,
     theme: themeName = 'basic',
     size = 'md',
     variant = 'primary',
-    checked,
+    checked: propsChecked,
     allowUnselectDisabledOptions = false,
     disabled,
     inputCSS: propsInputCSS,
@@ -29,9 +29,12 @@ const Radio = ({
     wrapperCSS,
     view = 'padded-knob',
     onChange,
+    useControlHook = useCheckboxLikeControlHookRHF,
     ...props
 }: RadioProps) => {
     const inputId = `${name}-${value}-${props.id}`;
+
+    const { checked, handleChange } = useControlHook(name!, onChange!, propsChecked);
 
     const ref = useRef<HTMLInputElement>(null);
 
@@ -61,13 +64,6 @@ const Radio = ({
         [getCSS, propsLabelCSS]
     );
 
-    const handleInputChange = useCallback(
-        (event: ChangeEvent<HTMLInputElement>) => {
-            if (onChange) onChange(event);
-        },
-        [onChange]
-    );
-
     return (
         <div className={className} css={wrapperCSS}>
             <input
@@ -79,7 +75,7 @@ const Radio = ({
                 value={value}
                 ref={mergeRefs([innerRef!, ref])}
                 css={inputCSS}
-                onChange={handleInputChange}
+                onChange={handleChange}
                 disabled={allowUnselectDisabledOptions && checked ? false : disabled}
             />
             <label htmlFor={inputId} css={labelCSS}>

@@ -92,6 +92,8 @@ const FormControl = forwardRef<HTMLDivElement, FormControlProps>(
 
         const innerCSS = useMemo(() => deepmerge.all<CSSObject>([getCSS('inner'), fieldCSS!]), [fieldCSS, getCSS]);
 
+        const totalClearCSS = useMemo(() => getCSS('clear'), [getCSS]);
+
         return (
             <div className={className} css={totalWrapperCSS}>
                 {label && (
@@ -111,7 +113,7 @@ const FormControl = forwardRef<HTMLDivElement, FormControlProps>(
                     </label>
                 )}
                 {errorMessage && errorPlacement === 'above' && <p css={getCSS('error')}>{errorMessage}</p>}
-                <div {...restProps} css={innerCSS} ref={ref}>
+                <div {...restProps} css={{ ...innerCSS, '.clear': totalClearCSS }} ref={ref}>
                     {leftAddons && (
                         <div css={deepmerge.all<CSSObject>([getCSS('addons', { isLeft: true }), leftAddonsCSS])}>
                             {leftAddons}

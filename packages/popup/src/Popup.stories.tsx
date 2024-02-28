@@ -1,12 +1,10 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 import type { Meta, StoryObj } from '@storybook/react';
-import { ComponentProps, useMemo, useRef, useState } from 'react';
+import { ComponentProps,useRef, useState } from 'react';
 
 import { Button } from '@greensight/core-components-common';
 
 import Popup from '.';
-import PopupDesktop from './DesktopComponent';
-import PopupMobile from './MobileComponent';
 import { PopupSize } from './types';
 
 export default {
@@ -25,7 +23,6 @@ export default {
 } as Meta<typeof Popup>;
 
 type Args = Omit<ComponentProps<typeof Popup>, 'open'> & {
-    component: 'PopupResponsive' | 'PopupDesktop' | 'PopupMobile';
     header: boolean;
     headerTitle: string;
     footer: boolean;
@@ -35,7 +32,6 @@ type Args = Omit<ComponentProps<typeof Popup>, 'open'> & {
 
 export const Basic: StoryObj<Args> = {
     args: {
-        component: 'PopupResponsive',
         size: 'md',
         header: true,
         headerTitle: 'Заголовок попапа может иметь любую длину',
@@ -52,10 +48,6 @@ export const Basic: StoryObj<Args> = {
         innerScroll: false,
     },
     argTypes: {
-        component: {
-            options: ['PopupResponsive', 'PopupDesktop', 'PopupMobile'],
-            control: { type: 'radio' },
-        },
         align: {
             options: ['left', 'right', 'center'],
             control: { type: 'radio' },
@@ -66,7 +58,7 @@ export const Basic: StoryObj<Args> = {
         },
     },
     render: props => {
-        const { header, footer, component, headerTitle, ...args } = props as never as Args;
+        const { header, footer, headerTitle, ...args } = props as never as Args;
         const [open, setOpen] = useState(false);
         const [isLoading, setLoading] = useState(false);
         const scrollHandler = useRef(null);
@@ -117,36 +109,27 @@ export const Basic: StoryObj<Args> = {
                 </Button>
             </>
         );
-        const PopupComponent = useMemo(
-            () =>
-                ({
-                    PopupResponsive: Popup,
-                    PopupDesktop,
-                    PopupMobile,
-                }[component]),
-            [component]
-        );
         return (
             <>
                 <Button type="button" onClick={handleModalOpen}>
                     Открыть попап
                 </Button>
-                <PopupComponent
+                <Popup
                     open={open}
                     onClose={handleModalOpen}
                     scrollHandler={args.innerScroll ? scrollHandler : undefined}
                     {...args}
                 >
-                    {header && <PopupComponent.Header title={headerTitle} />}
-                    <PopupComponent.Content ref={scrollHandler}>
+                    {header && <Popup.Header title={headerTitle} />}
+                    <Popup.Content ref={scrollHandler}>
                         <Content />
-                    </PopupComponent.Content>
+                    </Popup.Content>
                     {footer && (
-                        <PopupComponent.Footer gap={8}>
+                        <Popup.Footer gap={8}>
                             <Footer />
-                        </PopupComponent.Footer>
+                        </Popup.Footer>
                     )}
-                </PopupComponent>
+                </Popup>
             </>
         );
     },

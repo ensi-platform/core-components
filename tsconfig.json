@@ -108,6 +108,21 @@
       ],
       "@greensight/core-components-rating/*": [
         "packages/rating/src/*"
+      ],
+      "@greensight/core-components-skip/*": [
+        "packages/skip/src/*"
+      ],
+      "@greensight/core-components-switcher/*": [
+        "packages/switcher/src/*"
+      ],
+      "@greensight/core-components-select/*": [
+        "packages/select/src/*"
+      ],
+      "@greensight/core-components-tabs/*": [
+        "packages/tabs/src/*"
+      ],
+      "@greensight/core-components-picture/*": [
+        "packages/picture/src/*"
       ]
     }
   },

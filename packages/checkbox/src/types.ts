@@ -4,6 +4,7 @@ import {
     FormFieldDescendantProps,
     StyleDefinition,
     ValueOrFunction,
+    useCheckboxLikeControlHookType,
 } from '@greensight/core-components-common';
 import { ChangeEvent, InputHTMLAttributes, ReactNode } from 'react';
 
@@ -82,13 +83,7 @@ export type CheckboxProps = Omit<CheckboxState, 'focused' | 'error'> &
         /**
          * Обработчик переключения чекбокса
          */
-        onChange?: (
-            event: ChangeEvent<HTMLInputElement>,
-            payload: {
-                checked: boolean;
-                name?: string;
-            }
-        ) => void;
+        onChange?: (event: ChangeEvent<HTMLInputElement>) => void;
 
         /**
          * Текст подписи к чекбоксу
@@ -133,4 +128,6 @@ export type CheckboxProps = Omit<CheckboxState, 'focused' | 'error'> &
         children?: ReactNode | ReactNode[];
 
         css?: CSSObject;
+
+        useControlHook?: useCheckboxLikeControlHookType;
     };

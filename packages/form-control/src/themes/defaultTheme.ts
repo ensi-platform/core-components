@@ -170,6 +170,23 @@ const basicTheme: FormControlTheme = {
             ...(hasError && { color: colors.danger }),
         };
     },
+    clear: ({ size = 'md', hasRightAddons }) => {
+        const sized: OptionizedCSS<typeof FormControlSize> = {
+            sm: {},
+            md: {
+                ...(hasRightAddons && {
+                    marginRight: scale(1),
+                }),
+            },
+            lg: {},
+        };
+        return {
+            height: '100%',
+            display: 'flex',
+            alignItems: 'center',
+            ...extractCSSOption(sized, size),
+        };
+    },
 };
 
 export const formControlThemes = {
