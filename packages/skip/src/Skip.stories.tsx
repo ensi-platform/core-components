@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { ComponentProps } from 'react';
 
 import README from '../README.md';
-import Skip, { SkipProps } from './index';
+import Skip, { SkipProps } from '.';
 
 export default {
     title: 'Components / Skip',

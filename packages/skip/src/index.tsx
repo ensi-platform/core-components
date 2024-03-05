@@ -2,7 +2,7 @@ import { scale, defaultTheme } from '@greensight/core-components-common';
 import { CSSObject } from '@emotion/react';
 import { SkipProps } from './types';
 
-export { SkipProps } from './types';
+export * from './types';
 
 const { colors, typography } = defaultTheme;
 

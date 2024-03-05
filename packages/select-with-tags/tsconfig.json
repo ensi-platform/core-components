@@ -1,0 +1,25 @@
+{
+  "include": [
+    "src",
+    "../../typings",
+    "src/Select-with-tags.stories.tsx"
+  ],
+  "extends": "../../tsconfig.json",
+  "compilerOptions": {
+    "outDir": "dist",
+    "rootDirs": [
+      "src"
+    ],
+    "baseUrl": ".",
+    "paths": {
+      "@greensight/core-components-*": [
+        "../*/src"
+      ]
+    }
+  },
+  "references": [
+    {
+      "path": "../select/tsconfig.json"
+    }
+  ]
+}

@@ -2,7 +2,7 @@
   "include": [
     "src",
     "../../typings",
-    "src/Select.stories.tsx"
+    "src/Drawer.stories.tsx"
   ],
   "extends": "../../tsconfig.json",
   "compilerOptions": {
@@ -20,24 +20,6 @@
   "references": [
     {
       "path": "../base-modal/tsconfig.json"
-    },
-    {
-      "path": "../common/tsconfig.json"
-    },
-    {
-      "path": "../form-control/tsconfig.json"
-    },
-    {
-      "path": "../loading-skeleton/tsconfig.json"
-    },
-    {
-      "path": "../popover/tsconfig.json"
-    },
-    {
-      "path": "../portal/tsconfig.json"
-    },
-    {
-      "path": "../stack/tsconfig.json"
     }
   ]
 }

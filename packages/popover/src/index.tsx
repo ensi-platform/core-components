@@ -380,7 +380,8 @@ export const Popover = forwardRef<HTMLDivElement, PopoverProps>(
                                     position: 'absolute',
                                     width: 12,
                                     height: 12,
-                                    border: `1px solid ${colors.primary}`,
+                                    border: `0px solid ${colors.white}`,
+                                    borderWidth: '0 8px 8px',
                                     transform: 'rotate(45deg)',
                                 },
                                 '[data-popper-placement="left"] &, [data-popper-placement="left-start"] &, [data-popper-placement="left-end"] &':

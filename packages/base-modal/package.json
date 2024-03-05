@@ -21,6 +21,6 @@
         "@juggle/resize-observer": "^3.4.0",
         "react-focus-lock": "^2.9.4",
         "react-merge-refs": "1.1.0",
-        "react-transition-state": "^2.1.0"
+        "react-transition-state": "^2.1.1"
     }
 }

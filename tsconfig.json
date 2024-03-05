@@ -123,6 +123,24 @@
       ],
       "@greensight/core-components-picture/*": [
         "packages/picture/src/*"
+      ],
+      "@greensight/core-components-textarea/*": [
+        "packages/textarea/src/*"
+      ],
+      "@greensight/core-components-autocomplete/*": [
+        "packages/autocomplete/src/*"
+      ],
+      "@greensight/core-components-autocomplete-async/*": [
+        "packages/autocomplete-async/src/*"
+      ],
+      "@greensight/core-components-drawer/*": [
+        "packages/drawer/src/*"
+      ],
+      "@greensight/core-components-select-with-tags/*": [
+        "packages/select-with-tags/src/*"
+      ],
+      "@greensight/core-components-tags/*": [
+        "packages/tags/src/*"
       ]
     }
   },
