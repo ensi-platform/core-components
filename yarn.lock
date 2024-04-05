@@ -17710,11 +17710,6 @@ react-transition-group@^4.4.5:
     loose-envify "^1.4.0"
     prop-types "^15.6.2"
 
-react-transition-state@^2.1.0:
-  version "2.1.0"
-  resolved "https://registry.yarnpkg.com/react-transition-state/-/react-transition-state-2.1.0.tgz#e9f33e850b76a98ecf732d93e585fe60568ec19a"
-  integrity sha512-b8ldw2pbZk++XM43vcD4ETaFWlzTsjpUX33CmT8BBPPFYlQ2R50wxcY4ZeJ1TesJYziYZ9/rNPFnyA9tR0iKDw==
-
 react-transition-state@^2.1.1:
   version "2.1.1"
   resolved "https://registry.yarnpkg.com/react-transition-state/-/react-transition-state-2.1.1.tgz#1601a6177926b647041b7d598bf124321ab8d25b"

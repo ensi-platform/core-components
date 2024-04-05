@@ -15,7 +15,7 @@ export const FormSelect = forwardRef<
         () =>
             items.filter(e => {
                 if ('value' in e) {
-                    return selectedValues.includes(e.value!);
+                    return selectedValues.includes(e.value!.toString());
                 }
                 return false;
             }) as SelectItem[],

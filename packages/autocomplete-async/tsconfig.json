@@ -2,7 +2,7 @@
   "include": [
     "src",
     "../../typings",
-    "src/AutocompleteAsync.stories.tsx"
+    "src/autocompleteAsync.stories.tsx"
   ],
   "extends": "../../tsconfig.json",
   "compilerOptions": {
@@ -19,10 +19,19 @@
   },
   "references": [
     {
-      "path": "../autocomplete/tsconfig.json"
+      "path": "../common/tsconfig.json"
     },
     {
-      "path": "../common/tsconfig.json"
+      "path": "../select/tsconfig.json"
+    },
+    {
+      "path": "../tags/tsconfig.json"
+    },
+    {
+      "path": "../input/tsconfig.json"
+    },
+    {
+      "path": "../select-with-tags/tsconfig.json"
     }
   ]
 }
