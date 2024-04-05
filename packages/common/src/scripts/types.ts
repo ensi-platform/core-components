@@ -22,10 +22,12 @@ export interface FormFieldDescendantProps<TValue = any, TPayload = never> {
         value?: TValue;
     };
 
+    helpers?: { setValue: (value: TValue) => void };
+
     meta?: {
         /**
          * Ошибка в поле. Если нужна логика с touched, нужно в компоненте формы ее задавать.
-        */
+         */
         error?: string;
     };
 }

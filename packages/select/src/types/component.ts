@@ -201,4 +201,8 @@ export interface SelectProps
      * Ширину определяет контент, либо ширина равна ширине поля
      */
     optionsListWidth?: 'content' | 'field';
+    /**
+     * Показывать OptionsList, если он пустой
+     */
+    showEmptyOptionsList?: boolean;
 }

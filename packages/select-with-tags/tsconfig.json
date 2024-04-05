@@ -2,7 +2,7 @@
   "include": [
     "src",
     "../../typings",
-    "src/Select-with-tags.stories.tsx"
+    "src/SelectWithTags.stories.tsx"
   ],
   "extends": "../../tsconfig.json",
   "compilerOptions": {
@@ -20,6 +20,15 @@
   "references": [
     {
       "path": "../select/tsconfig.json"
+    },
+    {
+      "path": "../input/tsconfig.json"
+    },
+    {
+      "path": "../select-with-tags/tsconfig.json"
+    },
+    {
+      "path": "../tags/tsconfig.json"
     }
   ]
 }

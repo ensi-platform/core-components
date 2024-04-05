@@ -19,7 +19,7 @@ export type SelectItem = {
     /**
      * Дополнительные данные
      */
-    value?: number | string;
+    value?: number | string | boolean;
 
     // Опция-прелоадер
     isPreloader?: boolean;
@@ -27,6 +27,6 @@ export type SelectItem = {
 
 export type SelectPayload = {
     selected: SelectItem[] | null;
-    actionItem: SelectItem | null;
+    actionItem?: SelectItem | null;
     name?: string;
 };

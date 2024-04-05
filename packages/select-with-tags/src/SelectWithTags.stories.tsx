@@ -1,0 +1,131 @@
+import { StoryObj } from '@storybook/react';
+
+import { ComponentProps, SetStateAction, useCallback, useMemo, useState } from 'react';
+
+import { Button, scale } from '@greensight/gds';
+import { SelectItem, SelectPayload } from '@greensight/core-components-select';
+
+import SelectWithTags, { SelectWithTagsProps } from '.';
+import README from '../README.md';
+import { SimpleSelectWithTags } from './SelectWithTags';
+
+const optionItems: SelectItem[] = [
+    {
+        label: 'true',
+        content: 'True value',
+        value: true,
+    },
+    {
+        label: 'false',
+        content: 'False value',
+        value: false,
+    },
+    {
+        label: 'zero',
+        content: <i>Zero value</i>,
+        value: 0,
+    },
+    {
+        label: 'empty string value',
+        content: 'Empty string',
+        value: '',
+    },
+    {
+        label: 'you can use bold',
+        content: <strong>You can use bold</strong>,
+        value: 'bold',
+    },
+    {
+        label: '1',
+        content: '1',
+        value: '1',
+    },
+    {
+        label: '3',
+        content: '3',
+        value: '3',
+    },
+    {
+        label: '4',
+        content: '4',
+        value: '4',
+    },
+    {
+        label: 'also may be a long string you decide what to do with it',
+        content: (
+            <>
+                <s>Also may be</s>&nbsp;a long string <b>you decide what to do with it</b>
+            </>
+        ),
+        value: '5',
+    },
+];
+
+export default {
+    title: 'Components / SelectWithTags',
+    component: SelectWithTags,
+    parameters: {
+        docs: {
+            description: {
+                component: README,
+            },
+        },
+        backgrounds: {
+            default: 'grey100',
+        },
+    },
+};
+
+type Args = Omit<ComponentProps<typeof SelectWithTags>, 'isOpen'> & {};
+
+export const Basic: StoryObj<Args> = {
+    argTypes: {},
+    args: {
+        collapseTagList: true,
+        moveInputToNewLine: true,
+        block: true,
+        disabled: false,
+        options: optionItems,
+        autocomplete: true,
+    },
+    render: args => {
+        const [open, setOpen] = useState(false);
+        const [value, setValue] = useState('');
+        const [selected, setSelected] = useState<SelectWithTagsProps['selected']>([]);
+        const selectedValues = useMemo(() => selected?.map((e: SelectItem) => e.value), [selected]);
+        const handleInput = (event: { target: { value: SetStateAction<string> } }) => {
+            setValue(event.target.value);
+        };
+        // <SelectWithTagsProps['onChange']>
+        const handleChange: SelectWithTagsProps['onChange'] = useCallback((event: any, payload: SelectPayload) => {
+            setSelected(payload.selected);
+        }, []);
+        const transformCollapsedTagText = (count: number) => `+${count} элементов`;
+
+        return (
+            <div style={{ width: 500, minHeight: 800 }}>
+                <p>
+                    Выбраны значения: <b>{JSON.stringify(selectedValues)}</b>
+                </p>
+                <SimpleSelectWithTags
+                    {...args}
+                    name="name"
+                    selected={selected}
+                    isOpen={open}
+                    onOpen={payload => {
+                        if (!payload.open) return;
+                        setOpen(payload.open);
+                    }}
+                    placeholder="Выберите"
+                    onInput={handleInput}
+                    transformCollapsedTagText={transformCollapsedTagText}
+                    value={value}
+                    onChange={handleChange}
+                />
+                <Button css={{ marginTop: scale(1) }} onClick={() => setOpen(!open)}>
+                    {!open ? 'Открыть' : 'Закрыть'} вручную
+                </Button>
+            </div>
+        );
+    },
+};

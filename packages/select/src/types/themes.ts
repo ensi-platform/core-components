@@ -1,5 +1,6 @@
 import { BaseThemeState, StyleDefinition, ValueOrFunction } from '@greensight/core-components-common';
 
+import { SelectItem } from '@greensight/core-components-select';
 import { SELECT_THEMES } from '../themes';
 
 export enum SelectSize {

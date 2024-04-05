@@ -17,4 +17,8 @@ export interface OptionsListProps {
      * Количество видимых пунктов меню (5 = 5.5)
      */
     visibleOptionsCount?: number;
+    /**
+     * Элемент для отображения в случае пустого списка
+     */
+    emptyPlaceholder?: ReactNode;
 }
