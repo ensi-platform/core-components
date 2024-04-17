@@ -60,6 +60,7 @@ export const BaseSelect = forwardRef(
             selectedItems,
             getMenuProps,
             getInputProps,
+            setSelectedItems,
             getItemProps,
             highlightedIndex,
             toggleMenu,
@@ -77,7 +78,6 @@ export const BaseSelect = forwardRef(
             multiple,
             isOpen: isOpenProp,
             emitChangeOnClick,
-
             onChange,
             onOpen,
         });
@@ -111,13 +111,11 @@ export const BaseSelect = forwardRef(
             ref,
             listRef,
             fieldRef,
-
             highlightedIndex,
             getInputProps,
             getDropdownProps,
             openMenu,
             toggleMenu,
-
             onFocus,
             onBlur,
             autocomplete,
@@ -157,9 +155,7 @@ export const BaseSelect = forwardRef(
         useList({
             listRef,
             wrapperRef,
-
             selectedItems,
-
             items,
             isOpen,
             optionsListWidth,
@@ -187,6 +183,8 @@ export const BaseSelect = forwardRef(
                         disabled={disabled}
                         isOpen={isOpen}
                         selected={selectedItems}
+                        setSelectedItems={setSelectedItems}
+                        toggleMenu={toggleMenu}
                         wrap={wrap}
                         placeholder={placeholder}
                         Arrow={Arrow && <Arrow disabled={disabled} />}
@@ -221,11 +219,13 @@ export const BaseSelect = forwardRef(
                         zIndex={zIndexPopover}
                     >
                         <div {...getMenuProps({ ref: listRef }, { suppressRefError: true })}>
-                            <OptionsList {...optionsListProps} isOpen={isOpen}>
-                                {visibleItems.map((option, i) => (
-                                    <Option key={option.label} {...getOptionProps(option, i)} />
-                                ))}
-                            </OptionsList>
+                            <OptionsList
+                                {...optionsListProps}
+                                isOpen={isOpen}
+                                options={visibleItems}
+                                Option={Option}
+                                getOptionProps={getOptionProps}
+                            />
                         </div>
                     </Popover>
                 </div>

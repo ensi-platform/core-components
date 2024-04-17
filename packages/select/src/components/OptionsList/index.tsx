@@ -1,44 +1,131 @@
-import { forwardRef, useEffect, useMemo, useRef } from 'react';
+import { forwardRef, useCallback, useEffect, useRef } from 'react';
 
 import mergeRefs from 'react-merge-refs';
 
+import { defaultTheme } from '@greensight/core-components-common';
+import { scale } from '@greensight/gds';
+
+import { SelectItem } from '@greensight/core-components-select';
+
 import { useSelectTheme } from '../../context';
-import { OptionsListProps } from './types';
+import { OptionsListProps, useVisibleOptionsArgs } from './types';
 
-export const OptionsList = forwardRef(
-    ({ className, visibleOptionsCount = 4, isOpen, children }: OptionsListProps, ref) => {
-        const listRef = useRef<HTMLDivElement>(null);
-        const { getCSS } = useSelectTheme();
+const createCounter = () => {
+    let count = 0;
+    // eslint-disable-next-line no-plusplus
+    return () => count++;
+};
+const { colors } = defaultTheme;
 
-        useEffect(() => {
-            if (!isOpen || !listRef.current) return;
+export function useVisibleOptions({
+    visibleOptions,
+    listRef,
+    styleTargetRef = listRef,
+    isOpen,
+    invalidate,
+}: useVisibleOptionsArgs) {
+    useEffect(() => {
+        const list = listRef.current;
+        const styleTarget = styleTargetRef.current;
 
-            const list = listRef.current;
-            const visibleChildren = Array.from(list.children).slice(0, visibleOptionsCount + 1);
-            let height = visibleChildren
-                .slice(0, visibleOptionsCount)
-                .reduce((acc, child) => acc + child.clientHeight, 0);
+        if (isOpen && list && styleTarget) {
+            const optionsNodes = ([] as HTMLElement[]).slice.call(list.children, 0, visibleOptions + 1);
 
-            if (visibleChildren.length > visibleOptionsCount) {
-                height += Math.ceil(visibleChildren[visibleChildren.length - 1].clientHeight / 2);
+            let height = optionsNodes.slice(0, visibleOptions).reduce((acc, child) => acc + child.clientHeight, 0);
+
+            if (visibleOptions < list.children.length) {
+                // Добавляем половинку
+                height += Math.ceil(optionsNodes[optionsNodes.length - 1].clientHeight / 2);
             }
 
-            list.style.height = `${height}px`;
-        }, [listRef, isOpen, visibleOptionsCount, children]);
+            styleTarget.style.height = `${height}px`;
+        }
+    }, [listRef, isOpen, styleTargetRef, visibleOptions, invalidate]);
+}
 
-        const totalListCSS = useMemo(
-            () => ({
-                ...getCSS('optionList'),
-            }),
-            [getCSS]
+export const OptionsList = forwardRef(
+    (
+        {
+            className,
+            Option,
+            getOptionProps,
+            options = [],
+            emptyPlaceholder,
+            visibleOptions = 4,
+            onScroll,
+            isOpen,
+            header,
+            footer,
+        }: OptionsListProps,
+        ref
+    ) => {
+        const renderOption = useCallback(
+            // @ts-ignore
+            (option: SelectItem, index: number) => <Option key={option.label} {...getOptionProps(option, index)} />,
+            [Option, getOptionProps]
+        );
+
+        const listRef = useRef<HTMLDivElement>(null);
+        const counter = createCounter();
+
+        useVisibleOptions({
+            visibleOptions,
+            listRef,
+            isOpen,
+            invalidate: options,
+        });
+
+        const { getCSS } = useSelectTheme();
+
+        if (options.length === 0 && !emptyPlaceholder) {
+            return null;
+        }
+
+        const renderListItems = () => (
+            <>
+                {options.map(option => renderOption(option, counter()))}
+
+                {emptyPlaceholder && options.length === 0 && (
+                    <div
+                        css={{
+                            color: colors.grey400,
+                            padding: scale(1),
+                        }}
+                    >
+                        {emptyPlaceholder}
+                    </div>
+                )}
+            </>
+        );
+
+        const renderWithNativeScrollbar = () => (
+            <ul
+                className="option-list"
+                css={{
+                    overflow: 'auto',
+                    width: '100%',
+                    ...(getCSS('optionListWrapper') as any),
+                }}
+                ref={mergeRefs([listRef, ref])}
+                onScroll={onScroll as any}
+            >
+                {renderListItems()}
+            </ul>
         );
 
         return (
-            <ul css={totalListCSS} ref={mergeRefs([listRef, ref])} className={className}>
-                {children}
-            </ul>
+            <div
+                className={className}
+                css={{
+                    width: '100%',
+                    outline: 'none',
+                    ...(getCSS('optionList') as any),
+                }}
+            >
+                {header}
+                {renderWithNativeScrollbar()}
+                {footer}
+            </div>
         );
     }
 );
-
-export default OptionsList;

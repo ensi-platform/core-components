@@ -17,7 +17,6 @@ export const useSelect = ({
     multiple,
     isOpen: isOpenProp,
     emitChangeOnClick,
-
     onChange,
     onOpen,
 }: {
@@ -31,7 +30,6 @@ export const useSelect = ({
     multiple: SelectProps['multiple'];
     isOpen: SelectProps['isOpen'];
     emitChangeOnClick: SelectProps['emitChangeOnClick'];
-
     onChange: SelectProps['onChange'];
     onOpen: SelectProps['onOpen'];
 }) => {
@@ -111,7 +109,7 @@ export const useSelect = ({
                      *  Вызываем обработчик асинхронно.
                      *
                      * Иначе при клике вне открытого селекта сначала сработает onOpen, который закроет селект,
-                     * А затем сработает onClick кнопки открытия\закрытия с open=false и в итоге селект откроется снова.
+                     * А затем сработает onClick кнопки открытия\закрытия с isOpen=false и в итоге селект откроется снова.
                      */
                     setTimeout(() => {
                         onOpen({
@@ -176,6 +174,7 @@ export const useSelect = ({
     return {
         isOpen,
         selectedItems: selectedItemsCombobox,
+        setSelectedItems,
         getMenuProps,
         getInputProps,
         getItemProps,

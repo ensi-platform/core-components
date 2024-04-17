@@ -48,6 +48,10 @@ export const Field = ({
     valueRenderer,
     Arrow,
     wrap = false,
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    setSelectedItems,
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    toggleMenu,
     rightAddons,
     innerProps,
     ...props

@@ -54,7 +54,6 @@ export const calculateTotalElementsPerRow = (container: HTMLDivElement, input?: 
 
     return totalVisibleElements;
 };
-/// /////
 
 const defaultMatch: OptionMatcher = (option, inputValue) =>
     option.label.toLowerCase().indexOf(`${inputValue}`.toLowerCase(), 0) !== -1;

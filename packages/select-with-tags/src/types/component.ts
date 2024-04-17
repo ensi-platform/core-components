@@ -1,32 +1,28 @@
-import type { ChangeEvent, FC, ReactNode } from 'react';
-import { TagProps } from '@greensight/core-components-tags';
+import type { ChangeEvent, ReactNode } from 'react';
+
 import { SelectItem, SelectPayload, SelectProps } from '@greensight/core-components-select';
+import { TagComponent } from './common';
 
-export type OptionMatcher = (option: SelectItem, inputValue: string) => boolean;
-
-export type TagComponent = FC<TagProps>;
-
-export interface SelectWithTagsProps extends Omit<SelectProps, 'multiple'> {
+interface SelectWithTagsStates {
     /**
      * Значение поля ввода
      */
     value: string;
-
     isLoading?: boolean;
     resetOnChange?: boolean;
     resetOnClose?: boolean;
-
+    /**
+     * Список выбранных пунктов (controlled-селект)
+     */
+    selected?: SelectItem[] | null;
+}
+interface SelectWithTagsHandlers {
     onReset?: () => void;
 
     /**
      * Обработчик ввода
      */
     onInput: (event: ChangeEvent<HTMLInputElement>) => void;
-
-    /**
-     * Список выбранных пунктов (controlled-селект)
-     */
-    selected?: SelectItem[] | null;
 
     /**
      * Обработчик выбора
@@ -39,31 +35,21 @@ export interface SelectWithTagsProps extends Omit<SelectProps, 'multiple'> {
     ) => void;
 
     /**
-     * Режим автокомплита
+     * Сворачивать при закрытии. По-умолчанию выключено
      */
-    autocomplete?: boolean;
-
+    collapseOnClose?: boolean;
+}
+interface SelectWithTagsParts {
     /**
      * Компонент Тэг
      */
     Tag?: TagComponent;
-
+}
+interface SelectWithTagsPartsProps {
     /**
      * Показывать тэги только в одном ряду, а если не помещаются в один ряд - схлопнуть в одну кнопку
      */
     collapseTagList?: boolean;
-
-    /**
-     * Если текст не помещается в инпут, то нужно перенести инпут на новую строку.
-     */
-    moveInputToNewLine?: boolean;
-
-    overflow?: 'grow-height' | 'truncate';
-
-    /**
-     * Сворачивать при закрытии. По-умолчанию выключено
-     */
-    collapseOnClose?: boolean;
 
     /**
      * Трансформировать текст компонента Тэг который отображает общее количество выбранных элементов
@@ -74,4 +60,23 @@ export interface SelectWithTagsProps extends Omit<SelectProps, 'multiple'> {
      * Трансформировать текст компонента Тэг
      */
     transformTagText?: (tagText?: ReactNode) => ReactNode;
+}
+
+export interface SelectWithTagsProps
+    extends Omit<SelectProps, 'multiple' | 'selected' | 'onReset' | 'onInput' | 'onChange'>,
+        SelectWithTagsStates,
+        SelectWithTagsHandlers,
+        SelectWithTagsParts,
+        SelectWithTagsPartsProps {
+    /**
+     * Режим автокомплита
+     */
+    autocomplete?: boolean;
+
+    /**
+     * Если текст не помещается в инпут, то нужно перенести инпут на новую строку.
+     */
+    moveInputToNewLine?: boolean;
+
+    overflow?: 'grow-height' | 'truncate';
 }
