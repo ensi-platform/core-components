@@ -174,18 +174,6 @@ export const Basic: StoryObj<ComponentProps<typeof AutocompleteAsync>> = {
                     const total = optionItems.filter(e => e.label.includes(queryString));
                     const slice = total.slice(offset, offset + limit);
                     const hasMore = offset + limit < total.length;
-                    console.log(
-                        '[loading] offset:',
-                        offset,
-                        'limit:',
-                        limit,
-                        'has more:',
-                        hasMore,
-                        'result=',
-                        slice,
-                        'total=',
-                        total
-                    );
                     setTimeout(() => resolve({ options: slice, hasMore }), 1500);
                 }),
             []
@@ -193,7 +181,6 @@ export const Basic: StoryObj<ComponentProps<typeof AutocompleteAsync>> = {
         const asyncOptionsByValuesFn = useCallback(
             async (vals: string[]): Promise<SelectItem[]> =>
                 new Promise(resolve => {
-                    console.log('[loading by values]:', vals);
                     const total = optionItems.filter(e => e.value && vals.includes(e.value.toString()));
                     setTimeout(() => resolve(total), 1800);
                 }),

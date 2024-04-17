@@ -9,8 +9,10 @@ import FormikSelect, {
     SelectItem,
 } from '@greensight/core-components-select';
 
+import { useSelectClear } from '@greensight/core-components-select/src/components';
 import { SelectWithTagsProps } from './types';
 import { filterOptions } from './scripts/helpers';
+import { TagList } from './components';
 
 export const SimpleSelectWithTags = forwardRef<HTMLDivElement, SelectWithTagsProps>(
     (
@@ -124,13 +126,14 @@ export const SimpleSelectWithTags = forwardRef<HTMLDivElement, SelectWithTagsPro
         const selectedCount = selected ? selected.length : selectedTags.length;
         const isEverythingSelected = options && selectedCount >= options.length;
 
-        // const clearableProps = useSelectClear({ Field: TagList, onClearClick: onReset, disabled: restProps.disabled });
+        const clearableProps = useSelectClear({ Field: TagList, onClearClick: onReset, disabled: restProps.disabled });
 
         return (
             <BaseSelect
                 {...restProps}
                 ref={ref}
                 Option={Option}
+                Field={clearableProps.Field}
                 OptionsList={OptionsList}
                 Arrow={Arrow}
                 multiple
@@ -186,7 +189,6 @@ export const SelectWithTags = forwardRef<
     }
 >(({ name, field, options, meta, onChange, onBlur, selected, ...props }, ref) => {
     const selectedValues = useMemo(() => {
-        // eslint-disable-next-line no-nested-ternary
         const selectedProps = selected ? (Array.isArray(selected) ? selected.map(getValue) : [getValue(selected)]) : [];
 
         return Array.isArray(field?.value) ? field?.value || [] : selectedProps;
@@ -218,6 +220,7 @@ export const SelectWithTags = forwardRef<
             onInput={handleInput}
             error={meta?.touched && meta?.error}
             selected={selectedOptions as any}
+            collapseOnClose
             onChange={(event, payload) => {
                 onChange?.(event, payload);
 
@@ -232,5 +235,3 @@ export const SelectWithTags = forwardRef<
 });
 
 FormikSelect.displayName = 'FormikSelect';
-
-export default SelectWithTags;

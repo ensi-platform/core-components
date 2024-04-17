@@ -96,9 +96,9 @@ export const Basic: StoryObj<Args> = {
         const handleInput = (event: { target: { value: SetStateAction<string> } }) => {
             setValue(event.target.value);
         };
-        // <SelectWithTagsProps['onChange']>
+
         const handleChange: SelectWithTagsProps['onChange'] = useCallback((event: any, payload: SelectPayload) => {
-            setSelected(payload.selected);
+            setSelected(payload.selected === null ? [] : payload.selected);
         }, []);
         const transformCollapsedTagText = (count: number) => `+${count} элементов`;
 
@@ -113,8 +113,7 @@ export const Basic: StoryObj<Args> = {
                     selected={selected}
                     isOpen={open}
                     onOpen={payload => {
-                        if (!payload.open) return;
-                        setOpen(payload.open);
+                        setOpen(payload.open!);
                     }}
                     placeholder="Выберите"
                     onInput={handleInput}

@@ -26,6 +26,7 @@ enum SelectParts {
     optionList,
     arrowButton,
     closeButton,
+    optionListWrapper,
     optgroup,
 }
 
@@ -47,5 +48,9 @@ export type SelectTheme = ValueOrFunction<
 export type SelectThemeProps = Partial<
     Omit<BaseThemeState<typeof SelectVariant, typeof SelectSize, SelectTheme>, 'theme'> & {
         theme?: SelectTheme | keyof typeof SELECT_THEMES;
+        /**
+         * Список вариантов выбора
+         */
+        options: Array<SelectItem>;
     }
 >;
