@@ -62,6 +62,7 @@
     "react-merge-refs": "1.1.0",
     "react-popper": "^2.3.0",
     "react-test-renderer": "^18.2.0",
+    "react-textarea-autosize": "8.5.3",
     "react-transition-group": "^4.4.5",
     "react-transition-state": "^2.1.1",
     "recharts": "^2.6.2",

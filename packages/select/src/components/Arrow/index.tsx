@@ -1,6 +1,6 @@
 import { useMemo } from 'react';
 
-// import ArrowIcon from '@icons/small/chevronUp.svg';
+import { IconSmallChevronUp } from '@greensight/core-components-common';
 import { useSelectTheme } from '../../context';
 import { ArrowProps } from './types';
 
@@ -13,7 +13,7 @@ export const Arrow = ({ disabled, className }: ArrowProps) => {
 
     return (
         <span css={totalArrowButtonCSS}>
-            {/* <ArrowIcon
+            <IconSmallChevronUp
                 className={className}
                 css={{
                     cursor: disabled ? 'not-allowed' : 'pointer',
@@ -23,7 +23,7 @@ export const Arrow = ({ disabled, className }: ArrowProps) => {
                         opacity: 0.5,
                     },
                 }}
-            /> */}
+            />
         </span>
     );
 };

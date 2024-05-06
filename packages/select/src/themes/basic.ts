@@ -64,6 +64,20 @@ export const basicTheme: SelectTheme = {
             borderRadius: scale(4),
         },
     },
+    optionListWrapper: {
+        '::-webkit-scrollbar-thumb': {
+            backgroundColor: colors?.grey600,
+            borderRadius: scale(4),
+        },
+        '::-webkit-scrollbar': {
+            maxWidth: 8,
+        },
+
+        '::-webkit-scrollbar-track': {
+            backgroundColor: colors?.grey100,
+            borderRadius: scale(4),
+        },
+    },
     optgroup: {
         flexGrow: 1,
         position: 'relative',

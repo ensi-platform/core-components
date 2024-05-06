@@ -13,6 +13,16 @@ export interface FieldProps extends FormControlProps {
     selected?: SelectItem[];
 
     /**
+     * Метод переключающий видимость выпадающего списка
+     */
+    toggleMenu: () => void;
+
+    /**
+     * Метод для ручной установки выбранных пунктов
+     */
+    setSelectedItems: (selected: SelectItem[]) => void;
+
+    /**
      * Разрешить растягивать компонент по вертикали чтобы уместить содержимое
      */
     wrap?: boolean;
