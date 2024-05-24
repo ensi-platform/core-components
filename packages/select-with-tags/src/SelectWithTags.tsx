@@ -1,15 +1,15 @@
 import { ChangeEvent, forwardRef, useCallback, useMemo, useRef, useState } from 'react';
 
-import FormikSelect, {
+import {
     BaseSelect,
     Arrow as DefaultArrow,
     Option as DefaultOption,
     OptionsList as DefaultOptionsList,
     SelectProps,
     SelectItem,
+    useSelectClear,
 } from '@greensight/core-components-select';
 
-import { useSelectClear } from '@greensight/core-components-select/src/components';
 import { SelectWithTagsProps } from './types';
 import { filterOptions } from './scripts/helpers';
 import { TagList } from './components';
@@ -233,5 +233,3 @@ export const SelectWithTags = forwardRef<
         />
     );
 });
-
-FormikSelect.displayName = 'FormikSelect';

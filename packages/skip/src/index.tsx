@@ -20,10 +20,8 @@ const skipStyles: CSSObject = {
     ':hover': { backgroundColor: colors.primaryHover },
 };
 
-const Skip = ({ link, children, ...props }: SkipProps) => (
+export const Skip = ({ link, children, ...props }: SkipProps) => (
     <a href={link} css={skipStyles} {...props}>
         {children}
     </a>
 );
-
-export default Skip;

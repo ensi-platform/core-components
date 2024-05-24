@@ -20,6 +20,12 @@
   "references": [
     {
       "path": "../base-modal/tsconfig.json"
+    },
+    {
+      "path": "../common/tsconfig.json"
+    },
+    {
+      "path": "../popup/tsconfig.json"
     }
   ]
 }

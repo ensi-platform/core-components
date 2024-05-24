@@ -23,6 +23,10 @@ export interface FieldProps extends FormControlProps {
     setSelectedItems: (selected: SelectItem[]) => void;
 
     /**
+     * Заглушка пустого поля
+     */
+    placeholder?: string;
+    /**
      * Разрешить растягивать компонент по вертикали чтобы уместить содержимое
      */
     wrap?: boolean;

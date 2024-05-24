@@ -30,23 +30,21 @@ const defaultStatusColors: StatusColors = {
     regular: {
         color: colors.white,
         backgroundColor: colors.secondaryHover,
-    }
-}
+    },
+};
 
-const Badge = ({ text, type = STATUSES.REGULAR }: BadgeProps) => (
-        <div
-            css={{
-                display: 'inline-flex',
-                alignItems: 'center',
-                ...(defaultStatusColors[type]),
-                borderRadius: 2,
-                padding: `1px ${scale(1, true)}px`,
-                whiteSpace: 'pre-line',
-                ...typography('smallBold'),
-            }}
-        >
-            {text}
-        </div>
-    );
-
-export default Badge;
+export const Badge = ({ text, type = STATUSES.REGULAR }: BadgeProps) => (
+    <div
+        css={{
+            display: 'inline-flex',
+            alignItems: 'center',
+            ...defaultStatusColors[type],
+            borderRadius: 2,
+            padding: `1px ${scale(1, true)}px`,
+            whiteSpace: 'pre-line',
+            ...typography('smallBold'),
+        }}
+    >
+        {text}
+    </div>
+);

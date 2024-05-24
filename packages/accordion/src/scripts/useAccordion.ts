@@ -3,7 +3,7 @@ import { AccordionContextProps } from '../types';
 
 export const AccordionContext = createContext<AccordionContextProps | undefined>(undefined);
 
-const useAccordion = (): AccordionContextProps => {
+export const useAccordion = (): AccordionContextProps => {
     const context = useContext(AccordionContext);
 
     if (!context) {
@@ -12,5 +12,3 @@ const useAccordion = (): AccordionContextProps => {
 
     return context;
 };
-
-export default useAccordion;

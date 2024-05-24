@@ -1,10 +1,10 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 import type { Meta, StoryObj } from '@storybook/react';
-import { ComponentProps,useRef, useState } from 'react';
+import { ComponentProps, useRef, useState } from 'react';
 
 import { Button } from '@greensight/core-components-common';
-
-import Popup from '.';
+import README from '../README.md';
+import { Popup } from '.';
 import { PopupSize } from './types';
 
 export default {
@@ -13,7 +13,7 @@ export default {
     parameters: {
         docs: {
             description: {
-                // component: README,
+                component: README,
             },
         },
         backgrounds: {

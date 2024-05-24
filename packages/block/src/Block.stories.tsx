@@ -1,9 +1,8 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import type { ComponentProps } from 'react';
 
-
 import README from '../README.md';
-import Block from './index';
+import { Block } from './index';
 
 export default {
     title: 'Components / Block',

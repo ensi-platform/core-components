@@ -27,7 +27,6 @@ export interface CheckboxGroupProps extends FormFieldDescendantProps<string[]> {
     /** Name of checkbox group (inner) */
     name?: string;
 
-
     /** Hint for Legend hint */
     hint?: string;
 
@@ -170,5 +169,3 @@ export const CheckboxGroup = ({
         </div>
     );
 };
-
-export default CheckboxGroup;

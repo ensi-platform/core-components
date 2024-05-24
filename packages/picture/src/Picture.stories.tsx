@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import type { CSSProperties, ComponentProps } from 'react';
 
 import README from '../README.md';
-import Picture from './index';
+import { Picture } from './index';
 
 export default {
     title: 'Controls / Picture',

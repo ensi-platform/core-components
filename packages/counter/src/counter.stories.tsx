@@ -4,7 +4,7 @@ import { ComponentProps, useState } from 'react';
 import { Button } from '@greensight/core-components-common';
 
 import README from '../README.md';
-import Counter from './index';
+import { Counter } from './index';
 
 export default {
     title: 'Controls / Form / Counter',

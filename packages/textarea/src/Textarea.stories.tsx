@@ -2,7 +2,7 @@ import { StoryObj } from '@storybook/react';
 import { ComponentProps } from 'react';
 
 import README from '../README.md';
-import Textarea from './index';
+import { Textarea } from './index';
 
 export default {
     title: 'Components / TextArea',

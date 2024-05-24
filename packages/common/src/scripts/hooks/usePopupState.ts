@@ -8,6 +8,7 @@ export type Action<T> = {
 
 export const usePopupState = <T>(initialState: T): [T, Dispatch<Action<T>>] => {
     const reducer = useCallback(
+        // eslint-disable-next-line default-param-last
         (state: T = initialState, action: Action<T>): T => {
             switch (action.type) {
                 case ActionType.Edit:

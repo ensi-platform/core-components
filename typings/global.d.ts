@@ -19,6 +19,7 @@ declare global {
         /** dataLayer object for GTM */
         dataLayer: any;
         gtag: any;
+        [key: string]: any;
     }
     namespace React {
         function useTransition(): [boolean, TransitionStartFunction];

@@ -1,9 +1,9 @@
 import { forwardRef, useMemo } from 'react';
 import deepmerge from 'deepmerge';
 
-import BaseModal from '@greensight/core-components-base-modal';
-
 import { useThemeCSSPart } from '@greensight/core-components-common';
+import { BaseModal } from '@greensight/core-components-base-modal';
+
 import { Content } from './components/Content';
 import { Footer } from './components/Footer';
 import { Header } from './components/Header';
@@ -77,10 +77,8 @@ const DrawerComponent = forwardRef<HTMLDivElement, DrawerProps>(
     }
 );
 
-const Drawer = Object.assign(DrawerComponent, {
+export const Drawer = Object.assign(DrawerComponent, {
     Header,
     Content,
     Footer,
 });
-
-export default Drawer;

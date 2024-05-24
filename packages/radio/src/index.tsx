@@ -10,7 +10,7 @@ import { RadioProps, RadioThemeState } from './types';
 
 export * from './types';
 
-const Radio = ({
+export const Radio = ({
     name,
     value,
     label,
@@ -84,4 +84,3 @@ const Radio = ({
         </div>
     );
 };
-export default Radio;

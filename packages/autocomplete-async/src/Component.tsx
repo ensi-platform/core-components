@@ -8,10 +8,9 @@ import {
     scale,
     usePrevious,
 } from '@greensight/core-components-common';
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+import { SelectItem, OptionProps, useSelectTheme } from '@greensight/core-components-select';
 
-import { SelectItem } from '@greensight/core-components-select';
-
-import { OptionProps } from '@greensight/core-components-select/src/components/Option/types';
 import { AutocompleteAsyncPropsType } from './types';
 import { useLazyLoading } from './scripts/hooks';
 import { Autocomplete } from './components';
@@ -418,5 +417,3 @@ export const AutocompleteAsync = forwardRef<HTMLInputElement, AutocompleteAsyncP
 );
 
 AutocompleteAsync.displayName = 'AutocompleteAsync';
-
-export default AutocompleteAsync;

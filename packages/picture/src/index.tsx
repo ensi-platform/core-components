@@ -15,7 +15,7 @@ function getInt(x: unknown): number | undefined {
     return NaN;
 }
 
-const Picture = ({
+export const Picture = ({
     sources,
     placeholder = 'empty',
     fadeCompleteCSS = {},
@@ -168,5 +168,3 @@ const Picture = ({
         </>
     );
 };
-
-export default Picture;

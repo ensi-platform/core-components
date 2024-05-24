@@ -1,12 +1,24 @@
 import { ChangeEvent, useCallback } from 'react';
 import { useWatch } from 'react-hook-form';
 
+const useCheckFormWatch = (name: string) => {
+    let formChecked;
+
+    try {
+        // eslint-disable-next-line react-hooks/rules-of-hooks
+        formChecked = useWatch({ name });
+    } catch (e) {
+        console.error('form not found');
+    }
+    return formChecked;
+};
+
 export const useCheckboxLikeControlHookRHF = (
     name: string,
     propsOnChange: (e: ChangeEvent<HTMLInputElement>) => void,
     propsChecked?: boolean
 ) => {
-    const formChecked = useWatch({ name });
+    const formChecked = useCheckFormWatch(name);
 
     const handleChange = useCallback(
         (e?: ChangeEvent<HTMLInputElement>, newChecked = false) => {

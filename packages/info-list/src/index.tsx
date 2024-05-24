@@ -5,7 +5,7 @@ import { InfoListTypes } from './types';
 export * from './types';
 export * from './scripts/helper';
 
-const InfoList = ({ children, className }: InfoListTypes) => {
+export const InfoList = ({ children, className }: InfoListTypes) => {
     const { ulStyles } = useInfoListCSS();
 
     return (
@@ -16,5 +16,3 @@ const InfoList = ({ children, className }: InfoListTypes) => {
 };
 
 InfoList.Item = InfoListItem;
-
-export default InfoList;

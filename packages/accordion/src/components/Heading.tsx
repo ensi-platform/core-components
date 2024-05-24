@@ -13,5 +13,3 @@ export const AccordionHeading = ({ children, 'aria-level': ariaLevel, ...props }
         {children}
     </ReactAccordionItemHeading>
 );
-
-export default AccordionHeading;

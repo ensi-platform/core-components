@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { ComponentProps, useState } from 'react';
 
 import README from '../README.md';
-import CalendarInput from './index';
+import { CalendarInput } from './index';
 
 export default {
     title: 'Controls / CalendarInput',

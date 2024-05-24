@@ -1,8 +1,8 @@
 import type { StoryObj } from '@storybook/react';
 import { ChangeEvent, ComponentProps, useCallback, useState } from 'react';
 import { SelectHandlers, SelectItem } from '@greensight/core-components-select';
-import Autocomplete from './components/Autocomplete';
-import AutocompleteAsync from './Component';
+import { Autocomplete } from './components/Autocomplete';
+import { AutocompleteAsync } from './Component';
 import README from '../README.md';
 import { IOptionsFetcherResponse } from './types';
 

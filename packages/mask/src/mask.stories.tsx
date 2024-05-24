@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { ComponentProps, useState } from 'react';
 
 import README from '../README.md';
-import Mask from './index';
+import { Mask } from './index';
 
 /** Телефонный номер (+7(000) 000-00-00) */
 const maskPhone = '+7(000) 000-00-00';

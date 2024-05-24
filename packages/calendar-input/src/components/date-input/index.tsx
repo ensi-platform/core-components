@@ -1,8 +1,8 @@
 import { ChangeEvent, FocusEvent, forwardRef, useEffect, useRef, useState } from 'react';
 import mergeRefs from 'react-merge-refs';
 
-import DefaultCalendar, { CalendarProps } from '@greensight/core-components-calendar';
-import Input from '@greensight/core-components-input';
+import { Calendar as DefaultCalendar, CalendarProps } from '@greensight/core-components-calendar';
+import { Input } from '@greensight/core-components-input';
 import { Popover } from '@greensight/core-components-popover';
 
 import { useOnClickOutside, IconCalendar } from '@greensight/core-components-common';
@@ -15,7 +15,14 @@ import {
     DEFAULT_MIN_DATE,
 } from '../../scripts/constants';
 import type { InnerDateInputProps } from '../../types';
-import { formatDate, isCompleteDate, isCompleteTime, isValidDate, parseDateString, preventDefault } from '../../scripts/utils';
+import {
+    formatDate,
+    isCompleteDate,
+    isCompleteTime,
+    isValidDate,
+    parseDateString,
+    preventDefault,
+} from '../../scripts/utils';
 
 export const DateInput = forwardRef<HTMLInputElement, InnerDateInputProps>(
     (

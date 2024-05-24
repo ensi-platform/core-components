@@ -182,6 +182,11 @@ export interface SelectProps
     className?: string;
 
     /**
+     * Заглушка пустого поля
+     */
+    placeholder?: string;
+
+    /**
      * Дополнительный стиль для поля
      */
     fieldCSS?: CSSObject;

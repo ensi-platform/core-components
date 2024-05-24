@@ -2,8 +2,8 @@ import { ChangeEvent, FocusEvent, forwardRef, useEffect, useMemo, useRef, useSta
 import mergeRefs from 'react-merge-refs';
 import startOfMonth from 'date-fns/startOfMonth';
 
-import DefaultCalendar, { CalendarProps } from '@greensight/core-components-calendar';
-import Input from '@greensight/core-components-input';
+import { Calendar as DefaultCalendar, CalendarProps } from '@greensight/core-components-calendar';
+import { Input } from '@greensight/core-components-input';
 import { Popover } from '@greensight/core-components-popover';
 import { IconCalendar, useOnClickOutside } from '@greensight/core-components-common';
 

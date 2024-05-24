@@ -7,7 +7,7 @@ import {
     Arrow as DefaultArrow,
 } from '@greensight/core-components-select';
 
-import { TagList } from '@greensight/core-components-select-with-tags/src/components/TagList';
+import { TagList } from '@greensight/core-components-select-with-tags';
 
 import { IAutocompleteProps } from './types';
 import AutocompleteField from '../Field';
@@ -77,5 +77,3 @@ export const Autocomplete = forwardRef<HTMLInputElement, IAutocompleteProps>(
 );
 
 Autocomplete.displayName = 'Autocomplete';
-
-export default Autocomplete;

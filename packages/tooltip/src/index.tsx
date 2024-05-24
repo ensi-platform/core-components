@@ -15,7 +15,7 @@ const DEFAULT_OFFSET: [number, number] = [0, 16];
 
 const EMPTY_OBJ: CSSObject = {};
 
-const Tooltip: FC<TooltipProps> = ({
+export const Tooltip: FC<TooltipProps> = ({
     children,
     content,
     trigger: propsTrigger = 'hover',
@@ -260,5 +260,3 @@ const Tooltip: FC<TooltipProps> = ({
         </>
     );
 };
-
-export default Tooltip;

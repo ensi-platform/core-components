@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import type { ComponentProps } from 'react';
 
 import README from '../README.md';
-import LoadingSkeleton from './index';
+import { LoadingSkeleton } from './index';
 
 export default {
     title: 'Controls / LoadingSkeleton',

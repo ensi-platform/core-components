@@ -14,9 +14,14 @@ import {
 } from 'react';
 import mergeRefs from 'react-merge-refs';
 
-import { FormFieldDescendantProps, defaultTheme, scale, IconSmallClosed as CloseIcon } from '@greensight/core-components-common';
+import {
+    FormFieldDescendantProps,
+    defaultTheme,
+    scale,
+    IconSmallClosed as CloseIcon,
+} from '@greensight/core-components-common';
 
-import FormControl from '@greensight/core-components-form-control';
+import { FormControl } from '@greensight/core-components-form-control';
 
 import { InputProps } from './types';
 
@@ -62,10 +67,7 @@ export const BASE_INPUT_CSS: CSSObject = {
 
 const emptyStyle = {};
 
-const Input = forwardRef<
-    HTMLInputElement,
-    InputProps & FormFieldDescendantProps<string>
->(
+export const Input = forwardRef<HTMLInputElement, InputProps & FormFieldDescendantProps<string>>(
     (
         {
             type = 'text',
@@ -294,5 +296,3 @@ const Input = forwardRef<
 );
 
 Input.displayName = 'Input';
-
-export default Input;

@@ -1,6 +1,6 @@
 import { ReactNode, cloneElement, isValidElement, useCallback, useMemo, useRef, useState } from 'react';
 
-import FormControl, { FormControlSize, FormControlVariant } from '@greensight/core-components-form-control';
+import { FormControl, FormControlSize, FormControlVariant } from '@greensight/core-components-form-control';
 
 import { EnumLike, defaultTheme } from '@greensight/core-components-common';
 

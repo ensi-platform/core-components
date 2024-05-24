@@ -1,9 +1,11 @@
-import {  useEffect, useRef } from 'react';
+import { useEffect, useRef } from 'react';
 import { useTransition } from 'react-transition-state';
 
 import type { BackdropProps } from './types';
 
-const Backdrop = ({
+export * from './types';
+
+export const Backdrop = ({
     className,
     open = false,
     invisible = false,
@@ -75,7 +77,5 @@ const Backdrop = ({
         >
             {children}
         </div>
-    ) ;
+    );
 };
-
-export default Backdrop;

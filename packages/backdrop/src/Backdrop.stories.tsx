@@ -1,11 +1,11 @@
 /* eslint-disable import/no-extraneous-dependencies */
 import { ComponentProps, useState } from 'react';
-import { Button } from '@greensight/core-components-common/src/index';
+import { Button } from '@greensight/core-components-common';
 import { action } from '@storybook/addon-actions';
 import type { Meta, StoryObj } from '@storybook/react';
 
 import README from '../README.md';
-import Backdrop from './index';
+import { Backdrop } from './index';
 
 export default {
     title: 'Components / Backdrop',

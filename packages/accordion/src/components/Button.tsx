@@ -1,6 +1,6 @@
 import { useMemo, HTMLProps, ReactNode } from 'react';
 import { AccordionItemButton as ReactAccordionItemButton } from 'react-accessible-accordion';
-import useAccordion from '../scripts/useAccordion';
+import { useAccordion } from '../scripts/useAccordion';
 
 export interface AccordionButtonProps extends HTMLProps<HTMLDivElement> {
     /** Heading content */
@@ -20,5 +20,3 @@ export const AccordionButton = ({ children, ...props }: AccordionButtonProps) =>
         </ReactAccordionItemButton>
     );
 };
-
-export default AccordionButton;

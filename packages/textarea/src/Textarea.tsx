@@ -5,7 +5,7 @@ import React, { ChangeEvent, useMemo, useState } from 'react';
 import { scale } from '@greensight/core-components-common';
 import { useTheme } from '@greensight/gds';
 
-import FormControl from '@greensight/core-components-form-control';
+import { FormControl } from '@greensight/core-components-form-control';
 import TextareaAutosize from 'react-textarea-autosize';
 import { ITextareaProps } from './types';
 

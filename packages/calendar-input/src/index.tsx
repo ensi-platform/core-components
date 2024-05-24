@@ -11,7 +11,7 @@ import { DateInput } from './components/date-input';
 import { DateRangeInput } from './components/date-range-input';
 import { TimeInput } from './components/time-input';
 
-const CalendarInput = forwardRef<HTMLInputElement, BaseCalendarInputProps>(
+export const CalendarInput = forwardRef<HTMLInputElement, BaseCalendarInputProps>(
     (
         {
             autoCorrection = true,
@@ -204,5 +204,3 @@ const CalendarInput = forwardRef<HTMLInputElement, BaseCalendarInputProps>(
         }
     }
 );
-
-export default CalendarInput;

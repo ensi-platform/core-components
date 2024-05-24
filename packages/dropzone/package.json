@@ -13,16 +13,16 @@
   "peerDependencies": {
     "react": "^16.9.0 || ^17.0.1 || ^18.0.0",
     "react-dom": "^16.9.0 || ^17.0.1 || ^18.0.0",
-    "@emotion/react": "^11.11.1",
-    "@emotion/styled": "11.3.0"
+    "@emotion/react": "11.11.1",
+    "@emotion/styled": "^11.3.0"
   },
   "dependencies": {
-    "tslib": "^2.4.0",
-    "react-dropzone": "11.4.2",
+    "tslib": "^2.6.2",
+    "react-dropzone": "11.7.1",
     "react-beautiful-dnd": "^13.1.1"
   },
   "devDependencies": {
-    "@types/react-beautiful-dnd": "^13.1.6"
+    "@types/react-beautiful-dnd": "^13.1.8"
   },
   "overrides": {
     "@types/react": "^18.0.0"

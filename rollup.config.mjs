@@ -8,7 +8,9 @@ import multiInput from 'rollup-plugin-multi-input';
 import typescript from 'rollup-plugin-ts';
 import ts from 'typescript';
 import { babel } from '@rollup/plugin-babel';
-
+import postcss from 'rollup-plugin-postcss';
+import postcssPresetEnv from 'postcss-preset-env';
+import dts from 'rollup-plugin-dts';
 import {
     coreComponentsResolver,
     coreComponentsRootPackageResolver,
@@ -80,7 +82,7 @@ const es5 = {
     output: [
         {
             esModule: true,
-            dir: 'dist',
+            dir: `../../dist/${currentComponentName}/cjs`,
             format: 'cjs',
             interop: 'compat',
             dynamicImportInCjs: false,
@@ -96,7 +98,7 @@ const es5 = {
                 tsBuildInfoFile: 'tsconfig.tsbuildinfo',
             }),
         }),
-        // babelPlugin,
+        babelPlugin,
         json(),
         assetsCopyPlugin('dist'),
         copy({ targets: [{ src: ['package.json'], dest: 'dist' }] }),
@@ -107,32 +109,32 @@ const es5 = {
 /**
  * Сборка ES2020 с esm модулями.
  */
-const modern = {
-    ...baseConfig,
-    output: [
-        {
-            dir: 'dist/modern',
-            format: 'esm',
-            generatedCode: 'es2015',
-            plugins: [coreComponentsResolver({ importFrom: 'modern' }), packagesTypingResolver()],
-        },
-    ],
-    plugins: [
-        ...baseConfig.plugins,
-        multiInputPlugin,
-        typescript({
-            outDir: 'dist/modern',
-            tsconfig: resolvedConfig => ({
-                ...resolvedConfig,
-                target: ScriptTarget.ES2020,
-                tsBuildInfoFile: 'tsconfig.tsbuildinfo',
-            }),
-        }),
-        // babelPlugin,
-        json(),
-        assetsCopyPlugin('dist/modern'),
-    ],
-};
+// const modern = {
+//     ...baseConfig,
+//     output: [
+//         {
+//             dir: 'dist/modern',
+//             format: 'esm',
+//             generatedCode: 'es2015',
+//             plugins: [coreComponentsResolver({ importFrom: 'modern' }), packagesTypingResolver()],
+//         },
+//     ],
+//     plugins: [
+//         ...baseConfig.plugins,
+//         multiInputPlugin,
+//         typescript({
+//             outDir: 'dist/modern',
+//             tsconfig: resolvedConfig => ({
+//                 ...resolvedConfig,
+//                 target: ScriptTarget.ES2020,
+//                 tsBuildInfoFile: 'tsconfig.tsbuildinfo',
+//             }),
+//         }),
+//         // babelPlugin,
+//         json(),
+//         assetsCopyPlugin('dist/modern'),
+//     ],
+// };
 
 /**
  * Сборка ES5 с esm модулями.
@@ -181,7 +183,7 @@ const root = {
                 { src: ['dist/**/*', '!**/*.js', '!dist/src/**'], dest: rootDir },
                 {
                     src: 'package.json',
-                    dest: `../../dist/${currentComponentName}`,
+                    dest: rootDir,
                     transform: () => createPackageJson('./esm/index.js'),
                 },
             ],
@@ -196,6 +198,5 @@ const root = {
     ],
 };
 
-const configs = (process.env.BUILD_MODERN_ONLY === 'true' ? [modern, root] : [es5, modern, esm, root]).filter(Boolean);
-
+const configs = (process.env.BUILD_MODERN_ONLY === 'true' ? [esm, root] : [es5, esm, root]).filter(Boolean);
 export default configs;

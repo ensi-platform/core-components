@@ -104,7 +104,7 @@ export const OptionsList = forwardRef(
                 css={{
                     overflow: 'auto',
                     width: '100%',
-                    ...(getCSS('optionListWrapper') as any),
+                    ...getCSS('optionListWrapper'),
                 }}
                 ref={mergeRefs([listRef, ref])}
                 onScroll={onScroll as any}
@@ -119,7 +119,7 @@ export const OptionsList = forwardRef(
                 css={{
                     width: '100%',
                     outline: 'none',
-                    ...(getCSS('optionList') as any),
+                    ...getCSS('optionList'),
                 }}
             >
                 {header}

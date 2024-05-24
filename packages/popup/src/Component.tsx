@@ -2,7 +2,7 @@ import { CSSObject } from '@emotion/react';
 import { forwardRef, useMemo, useRef } from 'react';
 import mergeRefs from 'react-merge-refs';
 
-import BaseModal from '@greensight/core-components-base-modal';
+import { BaseModal } from '@greensight/core-components-base-modal';
 
 import { useThemeCSSPart } from '@greensight/core-components-common';
 

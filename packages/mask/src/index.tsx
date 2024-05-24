@@ -1,6 +1,6 @@
 import { useIMask } from 'react-imask';
 import { forwardRef, Ref, useEffect, useRef } from 'react';
-import Input from '@greensight/core-components-input';
+import { Input } from '@greensight/core-components-input';
 import mergeRefs from 'react-merge-refs';
 import { FormFieldDescendantProps } from '@greensight/core-components-common';
 
@@ -23,7 +23,7 @@ export interface MaskProps extends FormFieldDescendantProps<string> {
     hint?: string;
 }
 
-const Mask = forwardRef(
+export const Mask = forwardRef(
     (
         { hint, mask, label, meta, field, placeholderChar = '_', lazy = true, className, ...props }: MaskProps,
         rootRef: Ref<HTMLInputElement>
@@ -82,5 +82,3 @@ const Mask = forwardRef(
         );
     }
 );
-
-export default Mask;

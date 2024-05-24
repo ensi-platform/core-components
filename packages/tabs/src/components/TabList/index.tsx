@@ -52,7 +52,7 @@ export const TabList = ({
             tablistTitles.reduce<ShowMoreButtonOption[]>((options, title) => {
                 if (title.collapsed) {
                     options.push({
-                        key: title.title,
+                        label: title.title,
                         value: title.id,
                         content: <Title {...title} isOption />,
                     });
@@ -77,13 +77,7 @@ export const TabList = ({
     const collapsedCount = tablistTitles.filter(title => title.collapsed).length;
 
     const renderContent = () => (
-        <div
-            role="tablist"
-            data-test-id={dataTestId}
-            className={className}
-            css={getCSS('tabList') as any}
-            ref={wrapperRef}
-        >
+        <div role="tablist" data-test-id={dataTestId} className={className} css={getCSS('tabList')} ref={wrapperRef}>
             {tablistTitles.map((title, index) => (
                 <KeyboardFocusable key={title.id}>
                     {(ref, focused) =>
@@ -111,7 +105,7 @@ export const TabList = ({
                 </div>
             ) : null}
 
-            <div css={getCSS('line') as any} ref={lineRef} />
+            <div css={getCSS('line')} ref={lineRef} />
         </div>
     );
 
