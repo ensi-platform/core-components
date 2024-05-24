@@ -13,7 +13,7 @@ export * from './types';
 /**
  * Компонент переключателя
  */
-const Switcher = ({
+export const Switcher = ({
     name,
     value,
     error,
@@ -78,5 +78,3 @@ const Switcher = ({
         </div>
     );
 };
-
-export default Switcher;

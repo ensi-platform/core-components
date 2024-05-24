@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { ComponentProps, useState } from 'react';
 
-import Tooltip, { TooltipProps } from './index';
+import { Tooltip, TooltipProps } from './index';
 import README from '../README.md';
 
 export default {

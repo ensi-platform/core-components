@@ -5,7 +5,7 @@ import type { ComponentProps } from 'react';
 import { usePopupState, ActionType, Button } from '@greensight/core-components-common';
 
 import README from '../README.md';
-import ActionPopup, { ActionEnum, ActionState } from './index';
+import { ActionPopup, ActionEnum, ActionState } from './index';
 
 export default {
     title: 'Components / ActionPopup',

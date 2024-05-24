@@ -16,7 +16,7 @@ import { CalendarThemeContext } from './scripts/useCalendarTheme';
 export * from './types';
 export * from './scripts/utils';
 
-const Calendar = forwardRef<HTMLDivElement, CalendarProps>(
+export const Calendar = forwardRef<HTMLDivElement, CalendarProps>(
     (
         {
             className,
@@ -208,5 +208,3 @@ const Calendar = forwardRef<HTMLDivElement, CalendarProps>(
         );
     }
 );
-
-export default Calendar;

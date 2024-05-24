@@ -27,7 +27,7 @@ type TabsComponentProps = Omit<TabsProps, 'TabList'> & {
     TabList?: TabsProps['TabList'];
 };
 
-const Tabs: FC<TabsComponentProps> & TabsCompositionProps = ({
+export const Tabs: FC<TabsComponentProps> & TabsCompositionProps = ({
     TabList = DefaultTabList,
     variant = 'primary',
     size = 'md',
@@ -90,5 +90,3 @@ const Tabs: FC<TabsComponentProps> & TabsCompositionProps = ({
 
 Tabs.Tab = Tab;
 Tabs.displayName = 'Tabs';
-
-export default Tabs;

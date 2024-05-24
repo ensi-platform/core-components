@@ -7,7 +7,7 @@ export interface CopyButtonProps extends Omit<HTMLAttributes<HTMLButtonElement>,
     linkStyle?: Link;
 }
 
-const CopyButton = ({ children, timeout = 1000, linkStyle, ...props }: CopyButtonProps) => {
+export const CopyButton = ({ children, timeout = 1000, linkStyle, ...props }: CopyButtonProps) => {
     const linkStyles = useLinkCSS(linkStyle);
     const [isSuccess, setIsSuccess] = useState(false);
 
@@ -38,5 +38,3 @@ const CopyButton = ({ children, timeout = 1000, linkStyle, ...props }: CopyButto
         </button>
     );
 };
-
-export default CopyButton;

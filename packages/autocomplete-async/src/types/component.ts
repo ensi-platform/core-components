@@ -1,6 +1,5 @@
-import { SelectItem } from '@greensight/core-components-select';
+import { SelectItem, OptionProps } from '@greensight/core-components-select';
 import { SelectWithTagsProps } from '@greensight/core-components-select-with-tags';
-import { OptionProps } from '@greensight/core-components-select/src/components/Option/types';
 
 import { FC, ReactNode } from 'react';
 import { FormFieldDescendantProps } from '@greensight/core-components-common';

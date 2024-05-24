@@ -2,7 +2,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { ComponentProps, useEffect, useState } from 'react';
 
-import Tabs from '.';
+import { Tabs } from '.';
 import README from '../README.md';
 
 export default {

@@ -29,10 +29,8 @@ const ModalResponsiveComponent = forwardRef<HTMLDivElement, PopupProps>(
     }
 );
 
-const Popup = Object.assign(ModalResponsiveComponent, {
+export const Popup = Object.assign(ModalResponsiveComponent, {
     Header,
     Content,
     Footer,
 });
-
-export default Popup;

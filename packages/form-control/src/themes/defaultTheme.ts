@@ -102,15 +102,15 @@ const basicTheme: FormControlTheme = {
     label: ({ size = 'md', hasError, labelWrap }) => {
         const sized: OptionizedCSS<typeof FormControlSize> = {
             sm: {
-                ...typography('bodySmBold')!,
+                ...(typography('bodySmBold') as any),
                 marginBottom: scale(1, true),
             },
             md: {
-                ...typography('bodySmBold')!,
+                ...(typography('bodySmBold') as any),
                 marginBottom: scale(1),
             },
             lg: {
-                ...typography('bodySmBold')!,
+                ...(typography('bodySmBold') as any),
                 marginBottom: scale(1),
             },
         };
@@ -158,7 +158,7 @@ const basicTheme: FormControlTheme = {
             md: {
                 marginTop: scale(1),
             },
-            lg: { ...typography('bodySm'), marginTop: scale(3, true) },
+            lg: { ...(typography('bodySm') as any), marginTop: scale(3, true) },
         };
         const variants: OptionizedCSS<typeof FormControlVariant> = {
             primary: { color: colors?.grey600 },

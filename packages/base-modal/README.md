@@ -1,5 +1,6 @@
 Базовый компонент для модальных окон
 
+Основан на  [alfalab/core-components](https://github.com/alfa-laboratory/core-components)
 ```js
 import BaseModal from '@components/BaseModal';
 

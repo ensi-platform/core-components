@@ -8,7 +8,7 @@ export const Tab = ({ children, hidden, className, disabled, dataTestId }: TabPr
     return (
         <div
             className={className}
-            css={getCSS('tab', { hidden }) as any}
+            css={getCSS('tab', { hidden })}
             hidden={hidden}
             role="tabpanel"
             tabIndex={disabled ? -1 : 0}

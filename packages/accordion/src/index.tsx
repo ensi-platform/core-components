@@ -3,10 +3,10 @@ import { useMemo } from 'react';
 import { Accordion as ReactAccordion } from 'react-accessible-accordion';
 import { IconArrowDown, useThemeCSSPart } from '@greensight/core-components-common';
 import { AccordionContext } from './scripts/useAccordion';
-import Item from './components/Item';
-import Heading from './components/Heading';
-import Panel from './components/Panel';
-import Button from './components/Button';
+import { AccordionItem as Item } from './components/Item';
+import { AccordionHeading as Heading } from './components/Heading';
+import { AccordionPanel as Panel } from './components/Panel';
+import { AccordionButton as Button } from './components/Button';
 import { AccordionProps, AccordionState, AccordionThemeState } from './types';
 import { accordionThemes } from './themes/defaultTheme';
 
@@ -81,11 +81,9 @@ const BasicAccordion = ({
     );
 };
 
-const Accordion = Object.assign(BasicAccordion, {
+export const Accordion = Object.assign(BasicAccordion, {
     Item,
     Heading,
     Button,
     Panel,
 });
-
-export default Accordion;

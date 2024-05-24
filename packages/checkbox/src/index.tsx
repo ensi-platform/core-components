@@ -14,7 +14,7 @@ export * from './types';
 
 export { checkboxThemes, CheckboxSize, CheckboxVariant };
 
-const Checkbox = forwardRef<HTMLLabelElement, CheckboxProps>(
+export const Checkbox = forwardRef<HTMLLabelElement, CheckboxProps>(
     (
         {
             checked: propsChecked,
@@ -118,5 +118,3 @@ const Checkbox = forwardRef<HTMLLabelElement, CheckboxProps>(
         );
     }
 );
-
-export default Checkbox;

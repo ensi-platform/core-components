@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import type { ComponentProps } from 'react';
 
 import README from '../README.md';
-import Loader from './index';
+import { Loader } from './index';
 
 export default {
     title: 'Controls / Loader',

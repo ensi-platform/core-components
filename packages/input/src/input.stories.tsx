@@ -5,7 +5,7 @@ import { FormControlSize } from '@greensight/core-components-form-control';
 import { IconSmallUser as ProfileIcon } from '@greensight/core-components-common';
 
 import README from '../README.md';
-import Input from './index';
+import { Input } from './index';
 
 export default {
     title: 'Controls / Input',

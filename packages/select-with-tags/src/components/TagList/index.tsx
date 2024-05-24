@@ -10,13 +10,13 @@ import {
     useRef,
     useState,
 } from 'react';
-import DefaultTag from '@greensight/core-components-tags/src/components/Tag';
-import LoadingSkeleton from '@greensight/core-components-loading-skeleton';
+import { Tags } from '@greensight/core-components-tags';
+import { LoadingSkeleton } from '@greensight/core-components-loading-skeleton';
 
 import { scale } from '@greensight/core-components-common';
 
 import { FieldProps } from '@greensight/core-components-select';
-import FormControl, { FormControlProps } from '@greensight/core-components-form-control';
+import { FormControl, FormControlProps } from '@greensight/core-components-form-control';
 
 import { BASE_INPUT_CSS } from '@greensight/core-components-input';
 import { calculateTotalElementsPerRow } from '../../scripts/helpers';
@@ -48,7 +48,7 @@ export const TagList: FC<FieldProps & FormControlProps & TagListOwnProps> = ({
     transformTagText,
     isPopoverOpen,
     handleUpdatePopover,
-    Tag = DefaultTag,
+    Tag = Tags.Tag,
     overflow = 'grow-height',
     ...restProps
 }) => {

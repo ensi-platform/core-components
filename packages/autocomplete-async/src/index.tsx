@@ -5,5 +5,4 @@ import { Autocomplete } from './components';
 import AutocompleteField from './components/Field';
 
 export * from './types';
-export { Autocomplete, AutocompleteField };
-export default AutocompleteAsync;
+export { AutocompleteAsync, Autocomplete, AutocompleteField };

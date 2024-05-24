@@ -1,6 +1,6 @@
 import { useMemo } from 'react';
 
-import Popup, { PopupProps, Content } from '@greensight/core-components-popup';
+import { Popup, PopupProps, Content } from '@greensight/core-components-popup';
 
 import { Button, scale, defaultTheme } from '@greensight/core-components-common';
 
@@ -17,7 +17,7 @@ export interface ActionPopupProps extends Omit<PopupProps, 'title'> {
     onAction?: () => void;
 }
 
-const ActionPopup = ({ action, title, children, onClose, onAction, ...props }: ActionPopupProps) => {
+export const ActionPopup = ({ action, title, children, onClose, onAction, ...props }: ActionPopupProps) => {
     const btnParams = useMemo(() => {
         switch (action) {
             case ActionEnum.DELETE: {
@@ -72,5 +72,3 @@ const ActionPopup = ({ action, title, children, onClose, onAction, ...props }: A
 };
 
 ActionPopup.Content = Content;
-
-export default ActionPopup;

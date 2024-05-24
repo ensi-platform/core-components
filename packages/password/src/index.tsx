@@ -1,7 +1,12 @@
 import { HTMLProps, useState } from 'react';
 
-import { defaultTheme, FormFieldDescendantProps, IconSmallEye, IconSmallEyeOff } from '@greensight/core-components-common';
-import Input from '@greensight/core-components-input';
+import {
+    defaultTheme,
+    FormFieldDescendantProps,
+    IconSmallEye,
+    IconSmallEyeOff,
+} from '@greensight/core-components-common';
+import { Input } from '@greensight/core-components-input';
 
 const { colors } = defaultTheme;
 
@@ -10,7 +15,7 @@ export interface PasswordProps extends HTMLProps<HTMLInputElement>, FormFieldDes
     Icon?: () => JSX.Element;
 }
 
-const Password = ({ field, meta, autoComplete = 'off', ...props }: PasswordProps) => {
+export const Password = ({ field, meta, autoComplete = 'off', ...props }: PasswordProps) => {
     delete props.Icon;
     const [isVisible, setIsVisible] = useState(false);
 
@@ -48,5 +53,3 @@ const Password = ({ field, meta, autoComplete = 'off', ...props }: PasswordProps
         </>
     );
 };
-
-export default Password;

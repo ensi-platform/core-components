@@ -93,6 +93,4 @@ export const definePrice = <TTokens extends TokensInterface>(
     };
 };
 
-const Price = definePrice(defaultTheme, 'bodyMdBold', 'danger');
-
-export default Price;
+export const Price = definePrice(defaultTheme, 'bodyMdBold', 'danger');

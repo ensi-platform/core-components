@@ -1,10 +1,10 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { ComponentProps, useState } from 'react';
 
-import Checkbox from '@greensight/core-components-checkbox';
+import { Checkbox } from '@greensight/core-components-checkbox';
 
 import README from '../README.md';
-import CheckboxGroup from './index';
+import { CheckboxGroup } from './index';
 
 export default {
     title: 'Controls / Form / CheckboxGroup',
@@ -31,6 +31,7 @@ export const Basic: StoryObj<ComponentProps<typeof CheckboxGroup>> = {
                 field={{
                     value,
                     onChange: event => {
+                        // @ts-ignore
                         setValue([...event.target.value]);
                     },
                 }}

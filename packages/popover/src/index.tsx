@@ -466,5 +466,3 @@ export const Popover = forwardRef<HTMLDivElement, PopoverProps>(
         );
     }
 );
-
-export default Popover;

@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { useState, ComponentProps } from 'react';
 
 import README from '../README.md';
-import Checkbox from './index';
+import { Checkbox } from './index';
 
 export default {
     title: 'Controls / Form / Checkbox',
@@ -25,8 +25,8 @@ export const Basic: StoryObj<ComponentProps<typeof Checkbox>> = {
             <Checkbox
                 value="first"
                 checked={checked}
-                onChange={(_, { checked }) => {
-                    setChecked(checked);
+                onChange={event => {
+                    setChecked(event.target.checked);
                 }}
             >
                 Вариант 1
@@ -43,8 +43,8 @@ export const WithLink: StoryObj<ComponentProps<typeof Checkbox>> = {
             <Checkbox
                 name="checkboxLink"
                 checked={checked}
-                onChange={(_, { checked }) => {
-                    setChecked(checked);
+                onChange={event => {
+                    setChecked(event.target.checked);
                 }}
             >
                 Я прочитал и принимаю{' '}

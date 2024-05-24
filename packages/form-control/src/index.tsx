@@ -11,7 +11,7 @@ export * from './types';
 
 const EMPTY_OBJECT: any = {};
 
-const FormControl = forwardRef<HTMLDivElement, FormControlProps>(
+export const FormControl = forwardRef<HTMLDivElement, FormControlProps>(
     (
         {
             block = false,
@@ -150,5 +150,3 @@ const FormControl = forwardRef<HTMLDivElement, FormControlProps>(
 );
 
 FormControl.displayName = 'FormControl';
-
-export default FormControl;

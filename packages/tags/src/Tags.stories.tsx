@@ -3,7 +3,7 @@ import type { ComponentProps } from 'react';
 
 import { CSSObject } from '@emotion/react';
 import README from '../README.md';
-import Tags, { TagsProps } from '.';
+import { Tags, TagsProps } from '.';
 
 export default {
     title: 'Components / Tags',
@@ -37,11 +37,15 @@ export const Basic: StoryObj<ComponentProps<typeof Tags>> = {
         >
             <Tags.Tag css={tagStyles}>Tag #1</Tags.Tag>
             <Tags.Tag css={tagStyles}>Tag #2</Tags.Tag>
-            <Tags.Tag css={tagStyles} disabled>Tag #3</Tags.Tag>
+            <Tags.Tag css={tagStyles} disabled>
+                Tag #3
+            </Tags.Tag>
             {Array(20)
                 .fill('')
                 .map((_, e) => (
-                    <Tags.Tag key={e} css={tagStyles}>Tag #{4 + e}</Tags.Tag>
+                    <Tags.Tag key={e} css={tagStyles}>
+                        Tag #{4 + e}
+                    </Tags.Tag>
                 ))}
         </Tags>
     ),

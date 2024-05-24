@@ -5,7 +5,7 @@ import {
 } from 'react-accessible-accordion';
 import { CSSTransition as CSSTransitionTyped } from 'react-transition-group';
 
-import useAccordion from '../scripts/useAccordion';
+import { useAccordion } from '../scripts/useAccordion';
 
 const CSSTransition = CSSTransitionTyped as any;
 
@@ -93,5 +93,3 @@ export const AccordionPanel = ({ children, ...props }: AccordionPanelProps) => {
         </ReactAccordionItemPanel>
     );
 };
-
-export default AccordionPanel;

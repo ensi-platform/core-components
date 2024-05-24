@@ -15,7 +15,7 @@ import FocusLock from 'react-focus-lock';
 import mergeRefs from 'react-merge-refs';
 import { useTransition } from 'react-transition-state';
 
-import DefaultBackdrop from '@greensight/core-components-backdrop';
+import { Backdrop as DefaultBackdrop } from '@greensight/core-components-backdrop';
 import { Portal } from '@greensight/core-components-portal';
 import { Stack, stackingOrder } from '@greensight/core-components-stack';
 
@@ -45,7 +45,7 @@ export const BaseModalContext = createContext<BaseModalContextType>({
     onClose: () => null,
 });
 
-const BaseModal = forwardRef<HTMLDivElement, BaseModalProps>(
+export const BaseModal = forwardRef<HTMLDivElement, BaseModalProps>(
     (
         {
             open,
@@ -392,7 +392,7 @@ const BaseModal = forwardRef<HTMLDivElement, BaseModalProps>(
                                         onDestroy={() => setBackdropDestroyed(true)}
                                     />
                                 )}
-                                {isMounted  && (
+                                {isMounted && (
                                     <div
                                         role="dialog"
                                         css={{
@@ -460,5 +460,3 @@ const BaseModal = forwardRef<HTMLDivElement, BaseModalProps>(
         );
     }
 );
-
-export default BaseModal;

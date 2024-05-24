@@ -1,8 +1,9 @@
 /* eslint-disable no-use-before-define */
 import { MaskitoPreprocessor } from '@maskito/core';
-import { ElementState } from '@maskito/core/lib/types';
+
 import isValid from 'date-fns/isValid';
 
+import { ElementState } from '@maskito/core/src/lib/types/element-state';
 import { DATE_RANGE_SEPARATOR } from '../scripts/constants';
 import { DateTemplate } from '../types';
 import { parseDateString } from '../scripts/utils';
@@ -50,12 +51,10 @@ export function createValidationPreprocessor(
     fullStringTemplate: string,
     min: Date,
     max: Date,
-    onCorrection: () => void,
+    onCorrection: () => void
 ): MaskitoPreprocessor {
-    const rangeSeparator = template.separators.find((s) => s === DATE_RANGE_SEPARATOR) || '';
-    const dateTemplate = rangeSeparator
-        ? fullStringTemplate.split(rangeSeparator)[0]
-        : fullStringTemplate;
+    const rangeSeparator = template.separators.find(s => s === DATE_RANGE_SEPARATOR) || '';
+    const dateTemplate = rangeSeparator ? fullStringTemplate.split(rangeSeparator)[0] : fullStringTemplate;
 
     return (state, actionType) => {
         const { elementState, data } = state;
@@ -111,9 +110,7 @@ export function createValidationPreprocessor(
             [, toSelection] = validateResult.updatedSelection;
 
             validatedValue +=
-                hasRangeSeparator && validatedValue
-                    ? rangeSeparator + validatedDateString
-                    : validatedDateString;
+                hasRangeSeparator && validatedValue ? rangeSeparator + validatedDateString : validatedDateString;
         }
 
         if (!isValidation) {
@@ -161,7 +158,7 @@ function insertNewData({
     const selectedChars = to - from;
     const newData = validatedValue.slice(
         from + existSegmentSeparator,
-        toSelection - selectedChars + addedDateSegmentSeparators + existSegmentSeparator,
+        toSelection - selectedChars + addedDateSegmentSeparators + existSegmentSeparator
     );
 
     const newValue =

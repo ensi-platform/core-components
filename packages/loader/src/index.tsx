@@ -2,7 +2,7 @@ import { scale, defaultTheme } from '@greensight/core-components-common';
 
 const { colors, typography } = defaultTheme;
 
-const Loader = ({
+export const Loader = ({
     message,
     className,
     width = scale(8),
@@ -55,5 +55,3 @@ const Loader = ({
         </div>
     </div>
 );
-
-export default Loader;

@@ -1,7 +1,7 @@
 import { Dispatch } from 'react';
 
 import { ActionType, Action, usePopupState } from '@greensight/core-components-common';
-import ActionPopup, { ActionEnum, ActionState } from '../index';
+import { ActionPopup, ActionEnum, ActionState } from '../index';
 
 const ActionPopupComponent = ({
     popupState,

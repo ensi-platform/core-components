@@ -1,6 +1,6 @@
 import { MouseEvent, forwardRef, useCallback, useEffect, useMemo, useRef } from 'react';
 
-import Popover from '@greensight/core-components-popover';
+import { Popover } from '@greensight/core-components-popover';
 
 import { useMount } from '@greensight/core-components-common';
 

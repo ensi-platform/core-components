@@ -3,7 +3,7 @@ import { ru } from 'date-fns/locale';
 
 import { ParsedUrlQuery } from 'querystring';
 
-import { DEFAULT_TIMEZONE, KOPECKS_IN_ROUBLE,  } from './constants';
+import { DEFAULT_TIMEZONE, KOPECKS_IN_ROUBLE } from './constants';
 
 export const isTouch = () => 'ontouchstart' in window;
 
@@ -52,7 +52,10 @@ export const getCodeFromUrl = (url: string) => {
     return pathArr[pathArr.length - 1];
 };
 
-export const wait = (time = 1000) => new Promise(resolve => setTimeout(() => resolve(true), time));
+export const wait = (time = 1000) =>
+    new Promise(resolve => {
+        setTimeout(() => resolve(true), time);
+    });
 
 export const trimString = (s: string, count: number) => (s.length > count ? `${s.substr(0, count)}...` : s);
 

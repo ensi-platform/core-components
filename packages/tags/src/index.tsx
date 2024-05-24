@@ -10,7 +10,7 @@ export interface TagsCompositionProps {
     Tag: typeof Tag;
 }
 
-const Tags = ({
+export const Tags = ({
     className,
     disabled,
     wrap,
@@ -153,5 +153,3 @@ const Tags = ({
 };
 
 Tags.Tag = Tag;
-
-export default Tags;

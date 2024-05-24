@@ -6,7 +6,7 @@ import { MouseEvent, FocusEvent, useCallback, useMemo, useRef, useState } from '
 import { useThemeCSSPart, IconStar, useIsFocusVisible } from '@greensight/core-components-common';
 import mergeRefs from 'react-merge-refs';
 
-import FormControl from '@greensight/core-components-form-control';
+import { FormControl } from '@greensight/core-components-form-control';
 import { VISUALLY_HIDDEN_CSS, clamp, roundValueToPrecision } from './scripts/helpers';
 import { RatingStar } from './components/Star';
 import { ratingThemes } from './themes';
@@ -16,7 +16,7 @@ export * from './types';
 
 const emptyCSS: CSSObject = {};
 
-const Rating = ({
+export const Rating = ({
     value: propsValue,
     onChange,
     onHoverChange,
@@ -67,7 +67,6 @@ const Rating = ({
         ref: focusVisibleRef,
     } = useIsFocusVisible();
 
-    
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const [focusVisible, setFocusVisible] = useState(false);
     const ref = mergeRefs([rootRef, focusVisibleRef]);
@@ -335,5 +334,3 @@ const Rating = ({
         </FormControl>
     );
 };
-
-export default Rating;

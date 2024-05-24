@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { ComponentProps, useState } from 'react';
 
 import README from '../README.md';
-import Password from './index';
+import { Password } from './index';
 
 export default {
     title: 'Controls / Form / Password',

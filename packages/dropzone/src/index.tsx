@@ -10,8 +10,8 @@ import { FileRejection, DropzoneProps as UseDropzoneProps, useDropzone } from 'r
 
 import { useDeferredLoading, scale, FormFieldDescendantProps } from '@greensight/core-components-common';
 
-import LoadingSkeleton from '@greensight/core-components-loading-skeleton';
-import FormControl from '@greensight/core-components-form-control';
+import { LoadingSkeleton } from '@greensight/core-components-loading-skeleton';
+import { FormControl } from '@greensight/core-components-form-control';
 import DropzoneArea from './components/DropzoneArea';
 import { DraggableDropzoneFile, DropzoneFile, DropzoneFileProps, FileType } from './components/DropzoneFile';
 import { ErrorCodes, ImagePreview } from './scripts/constants';
@@ -20,31 +20,32 @@ import { canPreviewImages, getFileSize, makeMatrixArray, removeItemFromArray } f
 const DragDropContext = UntypedDragDropContext as never as FC<DragDropContextProps & { children: ReactNode }>;
 const Droppable = UntypedDroppable as never as FC<DroppableProps>;
 
-type DropzoneProps = UseDropzoneProps & FormFieldDescendantProps<FileType[]> & {
-    label?: string;
-    /** On files change callback */
-    onFilesChange?: (files: FileType[]) => void;
-    /** On file remove callback. You may need it for remove already uploaded file from Database */
-    onFileRemove?: DropzoneFileProps['onRemoveClick'];
-    /** On file click callback. You may need it for downloading file */
-    onFileClick?: DropzoneFileProps['onFileClick'];
-    /** Enable file click callback. */
-    enableFileClick?: DropzoneFileProps['enableFileClick'];
-    /** Disable dragging */
-    isDragDisabled?: boolean;
-    /** Disable delete button */
-    isDisableRemove?: boolean;
-    /** Button-like view */
-    simple?: boolean;
+type DropzoneProps = UseDropzoneProps &
+    FormFieldDescendantProps<FileType[]> & {
+        label?: string;
+        /** On files change callback */
+        onFilesChange?: (files: FileType[]) => void;
+        /** On file remove callback. You may need it for remove already uploaded file from Database */
+        onFileRemove?: DropzoneFileProps['onRemoveClick'];
+        /** On file click callback. You may need it for downloading file */
+        onFileClick?: DropzoneFileProps['onFileClick'];
+        /** Enable file click callback. */
+        enableFileClick?: DropzoneFileProps['enableFileClick'];
+        /** Disable dragging */
+        isDragDisabled?: boolean;
+        /** Disable delete button */
+        isDisableRemove?: boolean;
+        /** Button-like view */
+        simple?: boolean;
 
-    maxFileNameLength?: number;
+        maxFileNameLength?: number;
 
-    isLoading?: boolean;
+        isLoading?: boolean;
 
-    onBlur?: () => void;
-};
+        onBlur?: () => void;
+    };
 
-const Dropzone: FC<DropzoneProps> = ({
+export const Dropzone: FC<DropzoneProps> = ({
     meta,
     accept,
     maxFiles,
@@ -237,23 +238,25 @@ const Dropzone: FC<DropzoneProps> = ({
                                         ref={provided.innerRef}
                                         {...provided.droppableProps}
                                     >
-                                        <>
-                                            {filesArr?.map((file, index) => (
-                                                <DraggableDropzoneFile
-                                                    key={`${file?.name + file?.lastModified}`}
-                                                    file={file}
-                                                    index={index}
-                                                    onRemoveClick={onFileRemove}
-                                                    isDisableRemove={isDisableRemove}
-                                                    imagePreview={imagePreview}
-                                                    isDragDisabled={disabled || isDragDisabled}
-                                                    disabled={disabled}
-                                                    onFileClick={onFileClick}
-                                                    enableFileClick={enableFileClick}
-                                                />
-                                            ))}
-                                            {provided.placeholder}
-                                        </>
+                                        {filesArr?.map((file, index) => (
+                                            <DraggableDropzoneFile
+                                                key={
+                                                    file?.name && file?.lastModified
+                                                        ? `${file.name + file.lastModified}`
+                                                        : index
+                                                }
+                                                file={file}
+                                                index={index}
+                                                onRemoveClick={onFileRemove}
+                                                isDisableRemove={isDisableRemove}
+                                                imagePreview={imagePreview}
+                                                isDragDisabled={disabled || isDragDisabled}
+                                                disabled={disabled}
+                                                onFileClick={onFileClick}
+                                                enableFileClick={enableFileClick}
+                                            />
+                                        ))}
+                                        {provided.placeholder as string}
                                     </ul>
                                 )}
                             </Droppable>
@@ -278,5 +281,3 @@ const Dropzone: FC<DropzoneProps> = ({
         </FormControl>
     );
 };
-
-export default Dropzone;

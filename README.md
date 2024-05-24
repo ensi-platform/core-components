@@ -1,36 +1,41 @@
-# Admin-gui-frontend
 
-## Резюме
+# React Component Library
 
-Название: admin-gui-frontend
+This library facilitates the creation of interfaces, utilizing the Greensight Design system (GDS) framework.
 
-Назначение: Frontend часть административного интерфейса
+---
+## Getting Started 
 
-## Разработка сервиса
+This document outlines the process for working with this library (referred to as LIB) and testing it in another repository (referred to as REP).
 
-Инструкцию описывающую разворот, запуск и тестирование сервиса на локальной машине можно найти в отдельном документе в [Ensi Docs](https://docs.ensi.tech/installation/local/frontend)
+### Step 1: Setting up the Library
 
-## Среды
+To set up LIB for integration with REP, follow these steps:
 
-### Test
+#### Create a Symlink for LIB
 
-CI: https://jenkins-infra.ensi.tech/job/ensi-cloud/job/backoffice/job/gui-frontend/
+Navigate to the distribution directory and create a symlink:
 
-URL: https://gui-frontend-master-dev-cloud.ensi.tech/
+```bash
+cd dist && npm link
+```
 
-### Preprod
+#### Link LIB to REP
 
-Отсутствует
+Ensure that dependencies are already installed in REP and link LIB
 
-### Prod
+```bash
+npm link @ensi-platform/core-components
+```
 
-Отсутствует
+#### Resolving React Version Conflicts
 
-## Контакты
+If a React version conflict occurs, such as an "invalid react hook call" error, follow these step to resolve it:
 
-Команда поддерживающая данный сервис: https://gitlab.com/groups/greensight/ensi/-/group_members
-Email для связи: mail@greensight.ru
-
-## Лицензия
-
-[Открытая лицензия на право использования программы для ЭВМ Greensight Ecom Platform (GEP)](LICENSE.md).
+Link React from REP to LIB, from the root of LIB, execute
+```bash
+npm link (absolute path to node_modules/react in REP)
+```
+---
+## Lisence
+To view the license, please refer to `LICENCE.md` (MIT)

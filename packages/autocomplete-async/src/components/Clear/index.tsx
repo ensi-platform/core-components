@@ -1,6 +1,6 @@
 import { scale, IconSmallClosed as CloseIcon } from '@greensight/core-components-common';
 
-const Clear = ({
+export const Clear = ({
     clear,
     focus,
     visible,
@@ -35,5 +35,3 @@ const Clear = ({
             <CloseIcon />
         </button>
     ) : null;
-
-export default Clear;

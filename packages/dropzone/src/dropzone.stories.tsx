@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import type { ComponentProps } from 'react';
 
 import README from '../README.md';
-import Dropzone from './index';
+import { Dropzone } from './index';
 
 export default {
     title: 'Controls / Dropzone',

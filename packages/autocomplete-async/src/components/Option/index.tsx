@@ -3,8 +3,7 @@ import { FC, useMemo } from 'react';
 
 // eslint-disable-next-line import/named
 
-import { useSelectTheme } from '@greensight/core-components-select/src/context';
-import { OptionProps } from '@greensight/core-components-select/src/components/Option/types';
+import { useSelectTheme, OptionProps } from '@greensight/core-components-select';
 
 export const Option: FC<OptionProps> = ({
     className,

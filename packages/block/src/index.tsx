@@ -17,7 +17,7 @@ type BlockProps<P extends ElementType = 'section'> = {
     boxShadow?: string;
 };
 
-const Block = <T extends ElementType = 'section'>({
+export const Block = <T extends ElementType = 'section'>({
     as,
     background = defaultTokens.colors.white,
     boxShadow = defaultTokens.shadows.big,
@@ -32,5 +32,3 @@ Block.Header = BlockHeader;
 Block.Body = BlockBody;
 Block.MobileFluid = BlockMobileFluid;
 Block.Footer = BlockFooter;
-
-export default Block;

@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { ChangeEvent, ComponentProps, useState } from 'react';
 
 import README from '../README.md';
-import Switcher, { SwitcherProps } from './index';
+import { Switcher, SwitcherProps } from './index';
 
 export default {
     title: 'Controls / Form / Switcher',
@@ -30,7 +30,7 @@ export const Basic: StoryObj<ComponentProps<typeof Switcher>> = {
         return (
             <>
                 <p css={{ marginBottom: 8 }}>Включить оповещения</p>
-                <Switcher checked={checked} onChange={handleChange}  />
+                <Switcher checked={checked} onChange={handleChange} />
             </>
         );
     },

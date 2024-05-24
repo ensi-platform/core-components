@@ -40,24 +40,24 @@ export const Title = forwardRef<HTMLButtonElement, Props>(
                 type="button"
                 id={`${id}`}
                 css={{
-                    ...(getCSS('toggle', {
+                    ...getCSS('toggle', {
                         disabled,
                         isSelected: selected,
                         focused,
                         isOption,
                         isCollapsed: collapsed && !isOption,
                         hasErrors: countErrors > 0,
-                    }) as any),
+                    }),
                     ...toggleCSS,
                 }}
             >
-                {leftAddons && <span css={getCSS('toggleLeftAddons') as any}>{leftAddons}</span>}
+                {leftAddons && <span css={getCSS('toggleLeftAddons')}>{leftAddons}</span>}
 
                 <span className="toggle-title">{title}</span>
 
-                {rightAddons && <span css={getCSS('toggleRightAddons') as any}>{rightAddons}</span>}
+                {rightAddons && <span css={getCSS('toggleRightAddons')}>{rightAddons}</span>}
 
-                {countErrors > 0 && <span css={getCSS('errorAddon') as any}>{countErrors}</span>}
+                {countErrors > 0 && <span css={getCSS('errorAddon')}>{countErrors}</span>}
             </button>
         );
     }

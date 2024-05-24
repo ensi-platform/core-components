@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import type { ComponentProps } from 'react';
 
 import README from '../README.md';
-import FormControl from './index';
+import { FormControl } from './index';
 import { FormControlSize } from './types';
 
 export default {

@@ -10,9 +10,11 @@ const basicTheme: AccordionTheme = {
             borderTop: `1px solid ${colors.grey400}`,
         },
     },
+    // TODO need to update emotion/react in gds for correct type of css rule "accentColor"
+    // @ts-ignore
     button: {
         ...typography('bodyMdBold'),
-        positin: 'relative',
+        position: 'relative',
         color: colors.primary,
         backgroundColor: colors.grey100,
         padding: `${scale(1)}px ${scale(5)}px ${scale(1)}px ${scale(3, true)}px`,
