@@ -1,7 +1,6 @@
-
 # React Component Library
 
-This library makes it easy to create interfaces using the Greensight Design System (GDS) framework.
+This library makes it easy to create interfaces using the Greensight Design System (GDS) library.
 
 ---
 
