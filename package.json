@@ -36,6 +36,8 @@
     "@emotion/babel-preset-css-prop": "^11.11.0",
     "@emotion/react": "^11.11.1",
     "@emotion/styled": "^11.11.5",
+    "@maskito/core": "2.3.1",
+    "@maskito/react": "2.3.1",
     "@greensight/gds": "3.0.14",
     "@hookform/resolvers": "^3.3.4",
     "@juggle/resize-observer": "^3.4.0",
