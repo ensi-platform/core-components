@@ -139,6 +139,10 @@ export interface SelectHandlers {
      * Обработчик блюра поля
      */
     onFocus?: (event: FocusEvent<HTMLDivElement | HTMLInputElement>) => void;
+    /**
+     * Обработчик очищения поля
+     */
+    onClear?: () => void;
 }
 
 export interface SelectPopover {

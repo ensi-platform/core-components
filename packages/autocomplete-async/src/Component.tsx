@@ -8,17 +8,19 @@ import {
     scale,
     usePrevious,
 } from '@greensight/core-components-common';
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-import { SelectItem, OptionProps, useSelectTheme } from '@greensight/core-components-select';
 
+import { SelectItem, OptionProps } from '@greensight/core-components-select';
+
+import { SimpleSelectWithTags } from '@greensight/core-components-select-with-tags';
 import { AutocompleteAsyncPropsType } from './types';
 import { useLazyLoading } from './scripts/hooks';
-import { Autocomplete } from './components';
+import { BaseAutocomplete } from './components';
 import { DEBOUNCE_TIMEOUT } from './scripts/constants';
 
 export const AutocompleteAsync = forwardRef<HTMLInputElement, AutocompleteAsyncPropsType>(
     (
         {
+            collapseTagList = false,
             multiple = false,
             meta,
             field,
@@ -199,7 +201,7 @@ export const AutocompleteAsync = forwardRef<HTMLInputElement, AutocompleteAsyncP
 
         if (!multiple) {
             return (
-                <Autocomplete
+                <BaseAutocomplete
                     ref={ref}
                     {...props}
                     onInput={(e: ChangeEvent<HTMLInputElement>) => {
@@ -352,66 +354,63 @@ export const AutocompleteAsync = forwardRef<HTMLInputElement, AutocompleteAsyncP
         }
 
         return (
-            <>SimpleSelectWithTags</>
-            // <SimpleSelectWithTags
-            //     ref={ref}
-            //     onInput={e => {
-            //         optionsListProps.inputProps.onChange(e, { value: e.target.value });
-            //         onInput?.(e);
-            //     }}
-            //     selected={selectedOptions}
-            //     onChange={payload => {
-            //         onChange?.(payload);
-            //
-            //         payload.selectedMultiple.forEach(e => {
-            //             if (typeof e === 'string') return;
-            //             valuesMapRef.current.set(e.value, e);
-            //         });
-            //
-            //         setValuesMap(new Map(valuesMapRef.current));
-            //
-            //         if (clearOnSelect) reset();
-            //
-            //         if (!helpers) return;
-            //
-            //         helpers.setValue(payload.selectedMultiple.map(e => (typeof e === 'string' ? e : e.value)));
-            //     }}
-            //     collapseTagList={collapseTagList}
-            //     resetOnChange={false}
-            //     resetOnClose={false}
-            //     error={meta?.error}
-            //     fieldProps={{
-            //         ...fieldProps,
-            //         ...(isLoading && {
-            //             rightAddons: <PreloaderIcon css={{ width: scale(2) }} />,
-            //         }),
-            //     }}
-            //     optionsListProps={{
-            //         ...optionsListProps,
-            //         emptyPlaceholder: (
-            //             <div style={{ display: 'flex', justifyContent: 'center' }}>
-            //                 {isNotFound ? (
-            //                     <div>
-            //                         <p>Ничего не найдено</p>
-            //                         <Button
-            //                             onClick={() => {
-            //                                 reset();
-            //                             }}
-            //                         >
-            //                             Сбросить
-            //                         </Button>
-            //                     </div>
-            //                 ) : null}
-            //                 {isLoading ? 'Поиск...' : null}
-            //                 {!isLoading && !isNotFound ? 'Начинайте вводить' : null}
-            //             </div>
-            //         ),
-            //     }}
-            //     isLoading={isFetchingValues}
-            //     {...lazyProps}
-            //     {...props}
-            //     value={optionsListProps.inputProps.value}
-            // />
+            <SimpleSelectWithTags
+                ref={ref}
+                onInput={e => {
+                    optionsListProps.inputProps.onChange(e, { value: e.target.value });
+                    onInput?.(e);
+                }}
+                selected={selectedOptions}
+                onChange={(_, payload) => {
+                    onChange?.(payload);
+
+                    payload.selected?.forEach(e => {
+                        if (typeof e === 'string') return;
+                        valuesMapRef.current.set(e.value, e);
+                    });
+
+                    setValuesMap(new Map(valuesMapRef.current));
+
+                    if (!helpers) return;
+
+                    helpers.setValue(payload.selected?.map(e => (typeof e === 'string' ? e : e.value)));
+                }}
+                collapseTagList={collapseTagList}
+                resetOnChange={false}
+                resetOnClose={false}
+                error={meta?.error}
+                fieldProps={{
+                    ...fieldProps,
+                    ...(isLoading && {
+                        rightAddons: <PreloaderIcon css={{ width: scale(2) }} />,
+                    }),
+                }}
+                optionsListProps={{
+                    ...optionsListProps,
+                    emptyPlaceholder: (
+                        <div style={{ display: 'flex', justifyContent: 'center' }}>
+                            {isNotFound ? (
+                                <div>
+                                    <p>Ничего не найдено</p>
+                                    <Button
+                                        onClick={() => {
+                                            reset();
+                                        }}
+                                    >
+                                        Сбросить
+                                    </Button>
+                                </div>
+                            ) : null}
+                            {isLoading ? 'Поиск...' : null}
+                            {!isLoading && !isNotFound ? 'Начинайте вводить' : null}
+                        </div>
+                    ),
+                }}
+                isLoading={isFetchingValues}
+                {...lazyProps}
+                {...props}
+                value={optionsListProps.inputProps.value}
+            />
         );
     }
 );

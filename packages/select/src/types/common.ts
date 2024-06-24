@@ -1,4 +1,4 @@
-import { ReactNode, RefObject } from 'react';
+import { ReactNode } from 'react';
 
 export type SelectItem = {
     /**
@@ -19,7 +19,7 @@ export type SelectItem = {
     /**
      * Дополнительные данные
      */
-    value?: number | string | boolean;
+    value?: number | string | boolean | null | Record<string, any>;
 
     // Опция-прелоадер
     isPreloader?: boolean;
