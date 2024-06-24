@@ -112,6 +112,15 @@ export interface BaseCalendarInputProps extends Omit<InputProps, 'onChange' | 'w
     onChange?: (event: ChangeEvent<HTMLInputElement> | null, payload: { value: string }) => void;
 }
 
+export interface FieldHelperProps<Value> {
+    /** Set the field's value */
+    setValue: (value: Value, shouldValidate?: boolean) => void;
+    /** Set the field's touched value */
+    setTouched: (value: boolean, shouldValidate?: boolean) => void;
+    /** Set the field's error value */
+    setError: (value: string | undefined) => void;
+}
+
 export interface InnerDateInputProps extends Omit<BaseCalendarInputProps, 'view'> {
     closeOnClickOutside?: boolean;
 
@@ -144,7 +153,7 @@ export interface InnerDateInputProps extends Omit<BaseCalendarInputProps, 'view'
         onBlur: (e: FocusEvent<HTMLDivElement>) => void;
         onKeyDown?: (e: KeyboardEvent<HTMLDivElement>) => void;
     };
-
+    helpers?: FieldHelperProps<string | number | null>;
     /**
      * Обработчик окончания ввода
      */
@@ -197,14 +206,13 @@ type Never<T> = {
 
 type Prettify<T> = {
     [K in keyof T]: T[K];
-  } & {};
+} & {};
 
 type WithPickerRequiredProps = Prettify<Required<Pick<BaseCalendarInputProps, 'Calendar'>>>;
 
-type WithPickerNotRequiredProps = Prettify<Pick<
-    BaseCalendarInputProps,
-    'calendarProps' | 'popoverProps' | 'onCalendarOpen' | 'onCalendarClose'
->>;
+type WithPickerNotRequiredProps = Prettify<
+    Pick<BaseCalendarInputProps, 'calendarProps' | 'popoverProps' | 'onCalendarOpen' | 'onCalendarClose'>
+>;
 
 type WithPickerProps = Prettify<WithPickerRequiredProps & WithPickerNotRequiredProps>;
 type NoPickerProps = Prettify<Never<WithPickerRequiredProps> & Never<WithPickerProps>>;
@@ -215,10 +223,8 @@ export type CalendarInputConditionalProps =
     | ({ view: 'date'; picker?: false } & NoPickerProps & Pick<InnerDateInputProps, 'onComplete' | 'wrapperCSS'>)
 
     // date-time
-    | ({ view: 'date-time'; picker: true } & WithPickerProps &
-          Pick<InnerDateInputProps, 'onComplete' | 'wrapperCSS'>)
-    | ({ view: 'date-time'; picker?: false } & NoPickerProps &
-          Pick<InnerDateInputProps, 'onComplete' | 'wrapperCSS'>)
+    | ({ view: 'date-time'; picker: true } & WithPickerProps & Pick<InnerDateInputProps, 'onComplete' | 'wrapperCSS'>)
+    | ({ view: 'date-time'; picker?: false } & NoPickerProps & Pick<InnerDateInputProps, 'onComplete' | 'wrapperCSS'>)
 
     // date-range
     | ({

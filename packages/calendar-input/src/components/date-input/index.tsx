@@ -61,7 +61,7 @@ export const DateInput = forwardRef<HTMLInputElement, InnerDateInputProps>(
         const lastValidDate = useRef<string>('');
         const inputRef = useRef<HTMLInputElement>(null);
         const inputWrapperRef = useRef<HTMLDivElement>(null);
-        const uncontrolled = valueProp === undefined;
+        const controlled = valueProp !== undefined;
         const { offDays } = calendarProps;
         const inputValue = valueProp ?? value ?? '';
         const [inputDate, inputTime] = inputValue.split(DATE_TIME_SEPARATOR);
@@ -99,7 +99,10 @@ export const DateInput = forwardRef<HTMLInputElement, InnerDateInputProps>(
 
             const [date, time = ''] = val.split(DATE_TIME_SEPARATOR);
 
-            if (uncontrolled) setValue(val);
+            if (controlled && restProps?.helpers) {
+                restProps.helpers.setValue(val);
+                setValue(val);
+            }
             if (isCompleteDate(date) && isCompleteTime(time, withTime)) callOnComplete(val);
         };
 
