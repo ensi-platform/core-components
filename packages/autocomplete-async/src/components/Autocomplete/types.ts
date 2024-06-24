@@ -8,9 +8,11 @@ import type { SelectWithTagsProps } from '@greensight/core-components-select-wit
 export interface IAutocompleteProps
     extends SelectThemeProps,
         Omit<SelectProps, 'Field' | 'nativeSelect' | 'options'>,
-        Pick<
-            SelectWithTagsProps,
-            'collapseTagList' | 'moveInputToNewLine' | 'transformCollapsedTagText' | 'transformTagText'
+        Partial<
+            Pick<
+                SelectWithTagsProps,
+                'collapseTagList' | 'moveInputToNewLine' | 'transformCollapsedTagText' | 'transformTagText'
+            >
         >,
         Pick<InputProps, 'readOnly'> {
     /**

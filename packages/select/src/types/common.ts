@@ -19,7 +19,7 @@ export type SelectItem = {
     /**
      * Дополнительные данные
      */
-    value?: number | string | boolean;
+    value?: number | string | boolean | null | Record<string, any>;
 
     // Опция-прелоадер
     isPreloader?: boolean;
