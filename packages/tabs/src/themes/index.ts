@@ -5,7 +5,6 @@ import { TabsTheme } from '../types';
 
 export const TABS_THEMES = {
     basic: basicTheme,
-    secondary: basicTheme,
 };
 
 export const setTabsTheme = (name: keyof typeof TABS_THEMES, theme: TabsTheme) => {
