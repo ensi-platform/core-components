@@ -4,7 +4,7 @@ import type { ComponentProps } from 'react';
 import { IconPlus } from '@greensight/core-components-common';
 
 import README from '../README.md';
-import Accordion from './index';
+import { Accordion } from './index';
 
 export default {
     title: 'Controls / Accordion',

@@ -5,6 +5,7 @@ import { defaultTheme } from '@greensight/core-components-common';
 import { Tab } from './components/Tab';
 import { TabList as DefaultTabList } from './components/TabList';
 import { TabsComponent } from './components/Tabs';
+import { LinkTitle } from './components/Title/LinkTitle';
 import { TabsThemeProvider } from './context';
 import { useMedia } from './scripts/hooks/useMedia';
 import { TABS_THEMES } from './themes';
@@ -21,6 +22,7 @@ export type { TabsProps };
 
 interface TabsCompositionProps {
     Tab: typeof Tab;
+    LinkTitle: typeof LinkTitle;
 }
 
 type TabsComponentProps = Omit<TabsProps, 'TabList'> & {
@@ -89,4 +91,5 @@ export const Tabs: FC<TabsComponentProps> & TabsCompositionProps = ({
 };
 
 Tabs.Tab = Tab;
+Tabs.LinkTitle = LinkTitle;
 Tabs.displayName = 'Tabs';
