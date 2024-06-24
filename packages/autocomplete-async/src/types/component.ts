@@ -16,7 +16,7 @@ export interface IUseLazyLoadingProps {
     initialOffset?: number;
     skeleton?: ReactNode;
     Option?: FC<OptionProps>;
-    optionsFetcher(queryString: string, offset?: number, limit?: number): Promise<IOptionsFetcherResponse>;
+    optionsFetcher(queryString: string, offset: number, limit: number): Promise<IOptionsFetcherResponse>;
     onOptionsChange?: (options: SelectItem[]) => void;
 }
 

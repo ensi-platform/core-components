@@ -202,7 +202,7 @@ export const Basic: StoryObj<ComponentProps<typeof AutocompleteAsync>> = {
     },
 };
 
-export const BaseAutocomplete: StoryObj<ComponentProps<typeof Autocomplete>> = {
+export const ControlledAutocomplete: StoryObj<ComponentProps<typeof Autocomplete>> = {
     args: {
         closeOnSelect: false,
     },
@@ -255,4 +255,26 @@ export const BaseAutocomplete: StoryObj<ComponentProps<typeof Autocomplete>> = {
             />
         );
     },
+};
+
+export const BaseAutocomplete: StoryObj<ComponentProps<typeof Autocomplete>> = {
+    args: {
+        closeOnSelect: false,
+        multiple: true,
+    },
+    argTypes: {
+        closeOnSelect: Boolean,
+        multiple: Boolean,
+    },
+    parameters: {
+        docs: {
+            description: {
+                component: README,
+            },
+        },
+        backgrounds: {
+            default: 'grey100',
+        },
+    },
+    render: args => <Autocomplete {...args} options={optionItems} />,
 };
