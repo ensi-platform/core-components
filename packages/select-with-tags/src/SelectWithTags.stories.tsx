@@ -5,7 +5,7 @@ import { ComponentProps, SetStateAction, useCallback, useMemo, useState } from '
 import { Button, scale } from '@greensight/gds';
 import { SelectItem, SelectPayload } from '@greensight/core-components-select';
 
-import SelectWithTags, { SelectWithTagsProps } from '.';
+import { SelectWithTags, SelectWithTagsProps } from '.';
 import README from '../README.md';
 import { SimpleSelectWithTags } from './SelectWithTags';
 
@@ -91,8 +91,20 @@ export const Basic: StoryObj<Args> = {
     render: args => {
         const [open, setOpen] = useState(false);
         const [value, setValue] = useState('');
-        const [selected, setSelected] = useState<SelectWithTagsProps['selected']>([]);
+        const [selected, setSelected] = useState<SelectWithTagsProps['selected']>([
+            {
+                label: 'FakeKey',
+                content: 'Not Exist',
+                value: true,
+            },
+            {
+                label: 'false',
+                content: 'False value',
+                value: false,
+            },
+        ]);
         const selectedValues = useMemo(() => selected?.map((e: SelectItem) => e.value), [selected]);
+
         const handleInput = (event: { target: { value: SetStateAction<string> } }) => {
             setValue(event.target.value);
         };
@@ -100,6 +112,7 @@ export const Basic: StoryObj<Args> = {
         const handleChange: SelectWithTagsProps['onChange'] = useCallback((event: any, payload: SelectPayload) => {
             setSelected(payload.selected === null ? [] : payload.selected);
         }, []);
+
         const transformCollapsedTagText = (count: number) => `+${count} элементов`;
 
         return (

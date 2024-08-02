@@ -3,6 +3,7 @@ import { useMemo, useRef } from 'react';
 import { UseMultipleSelectionProps, UseMultipleSelectionState, useCombobox, useMultipleSelection } from 'downshift';
 
 import { SelectItem, SelectProps } from '../../../../types';
+import { processOptions } from './utils';
 
 const itemToString = (option: SelectItem | null) => (option ? option.label : '');
 
@@ -35,22 +36,10 @@ export const useSelect = ({
 }) => {
     const actionItemRef = useRef<SelectItem | null>(null);
 
-    const { selectedItems, unselectedItems } = useMemo(() => {
-        const selectedLabels = (Array.isArray(selected) ? selected : [selected])
-            .map(s => (typeof s === 'object' ? s?.label : s))
-            .filter(Boolean) as string[];
-
-        return items.reduce(
-            (acc, option) => {
-                acc[selectedLabels.includes(option.label) ? 'selectedItems' : 'unselectedItems'].push(option);
-                return acc;
-            },
-            { allItems: [], selectedItems: [], unselectedItems: [] } as {
-                selectedItems: SelectItem[];
-                unselectedItems: SelectItem[];
-            }
-        );
-    }, [items, selected]);
+    const { flatOptions, selectedItems, unselectedItems } = useMemo(
+        () => processOptions(items, selected),
+        [items, selected]
+    );
 
     const {
         selectedItems: selectedItemsCombobox,
@@ -88,7 +77,9 @@ export const useSelect = ({
 
             return changes as UseMultipleSelectionState<SelectItem>;
         },
-        selectedItems,
+        ...(selected !== undefined && {
+            selectedItems,
+        }),
     } as UseMultipleSelectionProps<SelectItem>);
 
     const visibleItems = useMemo(

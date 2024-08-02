@@ -35,7 +35,7 @@ const basicTheme: FormControlTheme = {
             background: colors.grey100,
             color: colors.black,
             transition: 'color,background-color .2s ease',
-            // border: `1px solid ${colors.grey400}`,
+            border: `1px solid ${colors.grey400}`,
 
             ...extractCSSOption(sized, size),
             ...(focused && {

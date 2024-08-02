@@ -49,7 +49,7 @@ This way the linked repository will always have your `dist` build in it
 
 #### Resolving React version conflicts
 
-If there is a React version conflict, for example if devtools has an error “invalid react hook call”, follow this step to fix it:
+If there is a React version conflict, for example if devtools has warning “invalid react hook call”, follow this step to fix it:
 
 Link React from REP to the LIB, from the root of the LIB execute:
 ```bash

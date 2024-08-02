@@ -126,7 +126,11 @@ export const SimpleSelectWithTags = forwardRef<HTMLDivElement, SelectWithTagsPro
         const selectedCount = selected ? selected.length : selectedTags.length;
         const isEverythingSelected = options && selectedCount >= options.length;
 
-        const clearableProps = useSelectClear({ Field: TagList, onClearClick: onReset, disabled: restProps.disabled });
+        const clearableProps = useSelectClear({
+            Field: TagList,
+            ...(onReset && { onClearClick: onReset }),
+            disabled: restProps.disabled,
+        });
 
         return (
             <BaseSelect
