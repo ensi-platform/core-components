@@ -36,10 +36,7 @@ export const useSelect = ({
 }) => {
     const actionItemRef = useRef<SelectItem | null>(null);
 
-    const { flatOptions, selectedItems, unselectedItems } = useMemo(
-        () => processOptions(items, selected),
-        [items, selected]
-    );
+    const { selectedItems, unselectedItems } = useMemo(() => processOptions(items, selected), [items, selected]);
 
     const {
         selectedItems: selectedItemsCombobox,

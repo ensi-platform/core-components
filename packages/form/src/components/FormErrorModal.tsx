@@ -1,9 +1,7 @@
-import { useFormContext } from 'react-hook-form';
-
-const FormError = () => {
-    const {
-        formState: { errors },
-    } = useFormContext();
+const FormError = () =>
+    // const {
+    //     formState: { errors },
+    // } = useFormContext();
 
     // useError({
     //     message: Object.keys(errors).length > 0 ? 'Форма заполнена некорректно' : '',
@@ -12,6 +10,5 @@ const FormError = () => {
     //     name: 'Ошибка формы',
     // });
 
-    return null;
-};
+    null;
 export default FormError;
