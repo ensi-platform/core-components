@@ -7,7 +7,7 @@ import { type IFormFieldProps } from './types';
 
 export const FormField = forwardRef<HTMLInputElement, IFormFieldProps>(
     ({ name, className, wrapperCSS, block = true, ...props }, ref) => {
-        const { fieldState, field, onChangeHandler, inputProps } = useFieldHook({
+        const { fieldState, field, setFieldValue, onChangeHandler, inputProps } = useFieldHook({
             name,
         });
 
@@ -29,7 +29,7 @@ export const FormField = forwardRef<HTMLInputElement, IFormFieldProps>(
                     }}
                     error={fieldState.error?.message}
                     onClear={() => {
-                        onChangeHandler(undefined, '');
+                        setFieldValue('');
                     }}
                     {...commonProps}
                 />
