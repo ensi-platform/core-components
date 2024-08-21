@@ -1,7 +1,7 @@
 import { yupResolver } from '@hookform/resolvers/yup';
 import { type SyntheticEvent, useCallback, useEffect, useMemo, useRef } from 'react';
 import deepEqual from 'react-fast-compare';
-import { type FieldValues, FormProvider, useForm } from 'react-hook-form';
+import { type FieldValues, FormProvider, useForm, type NativeFieldValue } from 'react-hook-form';
 import { usePrevious } from './hooks/usePrevious';
 import { FormContext } from './context/form';
 import { type IFormProps } from './types';
@@ -49,13 +49,13 @@ export const Form = <T extends FieldValues>({
     }, [enableReinitialize, initialValues, form, prevInitialValues]);
 
     const onChangeHandler = useCallback(
-        (key: string, value: any) => {
+        (key: string, value: NativeFieldValue) => {
             if (onChange) onChange(form.getValues(), form, { [key]: value });
         },
         [form, onChange]
     );
 
-    const formHandlerRef = useRef<any>();
+    const formHandlerRef = useRef<ReturnType<typeof form.handleSubmit>>();
     formHandlerRef.current = form.handleSubmit(v => onSubmit(v, form));
 
     const onSubmitHandler = useCallback((event: SyntheticEvent) => {
@@ -63,10 +63,7 @@ export const Form = <T extends FieldValues>({
         if (formHandlerRef.current) formHandlerRef.current(event);
     }, []);
 
-    const providerValue = useMemo(
-        () => ({ onChange: onChangeHandler, disabled, onSubmitHandler }),
-        [onChangeHandler, disabled, onSubmitHandler]
-    );
+    const providerValue = useMemo(() => ({ onChange: onChangeHandler, disabled }), [onChangeHandler, disabled]);
     return (
         <FormProvider {...form} reset={reset}>
             <FormContext.Provider value={providerValue}>

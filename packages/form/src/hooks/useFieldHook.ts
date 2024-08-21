@@ -1,6 +1,6 @@
-import { useCallback } from 'react';
+import { useCallback, type SyntheticEvent } from 'react';
 
-import { useController, useFormContext } from 'react-hook-form';
+import { useController, useFormContext, type NativeFieldValue } from 'react-hook-form';
 
 import { type IFormFieldWrapperProps } from '../components/FieldWrapper/types';
 import useForm from '../context/form';
@@ -25,7 +25,7 @@ export const useFieldHook = ({ name }: Pick<IFormFieldWrapperProps, 'name'>) => 
     };
 
     const setFieldValue = useCallback(
-        (value: any) => {
+        (value: NativeFieldValue) => {
             field.onChange();
             setValue(name, value);
             onChange(name, value);
@@ -35,13 +35,12 @@ export const useFieldHook = ({ name }: Pick<IFormFieldWrapperProps, 'name'>) => 
     );
 
     const onChangeHandler = useCallback(
-        (e: any, val?: any) => {
-            if (e) field.onChange(e);
-            else setFieldValue(val);
-            const value = e !== undefined ? e.target.value : val;
-            onChange(name, value);
+        <T extends HTMLInputElement, E extends Event>(e: SyntheticEvent<T, E>) => {
+            field.onChange(e);
+            onChange(name, (e.target as EventTarget & HTMLInputElement).value);
+            field.onBlur();
         },
-        [field, name, onChange, setFieldValue]
+        [field, name, onChange]
     );
 
     return { field, onChange, setValue, fieldState, inputProps, setFieldValue, onChangeHandler };

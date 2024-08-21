@@ -1,7 +1,8 @@
 import { Children, cloneElement, forwardRef, isValidElement } from 'react';
 
+import { type FieldValues } from 'react-hook-form';
+import { type IFieldWrapperProps } from '../../types';
 import { useFieldHook } from '../../hooks/useFieldHook';
-import { type IFieldProps } from '../../types';
 
 import { type IFormFieldWrapperProps } from './types';
 
@@ -24,8 +25,8 @@ export const FormFieldWrapper = forwardRef<HTMLInputElement, IFormFieldWrapperPr
                 }}
             >
                 {Children.map(children, child => {
-                    if (isValidElement<any>(child)) {
-                        const fieldProps: IFieldProps<any> = {
+                    if (isValidElement(child)) {
+                        const fieldProps: IFieldWrapperProps<FieldValues> = {
                             fieldState,
                             error: fieldState.error?.message,
                             field: {

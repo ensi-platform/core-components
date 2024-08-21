@@ -35,7 +35,7 @@ export interface IFormProps<T extends FieldValues>
     validateOnBlur?: boolean;
     /** Form content */
     children?: ReactNode | ((props: UseFormReturn<T, unknown>) => ReactNode);
-    /** ${props.isForm} */
+    /** Render form tag */
     isForm?: boolean;
     /** Disabled flag */
     disabled?: boolean;
@@ -43,10 +43,20 @@ export interface IFormProps<T extends FieldValues>
 
 /** Interface props passed by the field wrapper component */
 export interface IFieldWrapperProps<T extends FieldValues> {
-    /**  */
+    /**
+     * Return value of useController
+     * Contains a meta
+     * https://react-hook-form.com/docs/usecontroller
+     * */
     fieldState: ControllerFieldState;
+    /**
+     * Return value of useController.
+     * Contains a value and a value change handler
+     * https://react-hook-form.com/docs/usecontroller
+     * */
     field: ControllerRenderProps<T>;
+    /**
+     * Hanlder for changing field value
+     */
     setFieldValue: (value: T) => void;
 }
-
-export interface IFieldProps<T extends FieldValues> extends HTMLProps<HTMLInputElement>, IFieldWrapperProps<T> {}

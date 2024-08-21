@@ -4,9 +4,6 @@ export * from './types';
 export * from './components/Field';
 export * from './components/Field/types';
 
-export * from './components/FieldArray';
-export * from './components/FieldArray/types';
-
 export * from './components/FieldWrapper';
 export * from './components/FieldWrapper/types';
 

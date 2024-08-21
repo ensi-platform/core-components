@@ -1,6 +1,8 @@
-import { type IInputProps } from '@controls/Input';
+import { type ReactNode, type HTMLProps } from 'react';
 
-export interface IFormFieldWrapperProps extends Omit<IInputProps, 'success' | 'wrapperClassName' | 'block'> {
+export interface IFormFieldWrapperProps extends Omit<HTMLProps<HTMLDivElement>, 'children'> {
     /** Name of field */
     name: string;
+    /** Form component */
+    children: ReactNode;
 }

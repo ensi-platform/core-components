@@ -1,5 +1,4 @@
-import { type ChangeEvent, forwardRef, useCallback } from 'react';
-import { type FieldValues } from 'react-hook-form';
+import { forwardRef, useCallback, type FormEvent } from 'react';
 
 import { Input } from '@greensight/core-components-input';
 import { type ITypedFieldProps } from './types';
@@ -8,12 +7,12 @@ import { useFieldHook } from '../../hooks/useFieldHook';
 
 export const TypedField = forwardRef<HTMLInputElement, ITypedFieldProps>(
     ({ name, className, wrapperCSS, block = true, fieldType = 'positiveInt', dataType = 'number', ...props }, ref) => {
-        const { fieldState, field, onChange, inputProps } = useFieldHook({
+        const { fieldState, field, onChange, setFieldValue, inputProps } = useFieldHook({
             name,
         });
 
         const transformValue = useCallback(
-            (val: any) => {
+            (val: string) => {
                 if (fieldType === 'positiveInt') {
                     return val.replace(/[^\d]+/g, '');
                 }
@@ -28,27 +27,19 @@ export const TypedField = forwardRef<HTMLInputElement, ITypedFieldProps>(
             [fieldType]
         );
 
-        const onBlurHandler = useCallback(
-            (...args: [any]) => {
-                const parsedVal = getValueByDataType(field.value, dataType);
-                const safeVal = (Number.isNaN(parsedVal) ? '' : parsedVal) as never as FieldValues;
+        const onBlurHandler = useCallback(() => {
+            const parsedVal = getValueByDataType(field.value, dataType);
+            const safeVal = Number.isNaN(parsedVal) ? '' : parsedVal;
 
-                field.onChange(safeVal);
-                onChange(name, safeVal);
+            field.onChange(safeVal);
+            onChange(name, safeVal);
 
-                field.onBlur();
-
-                if (typeof props.onBlur === 'function') {
-                    props.onBlur(...args);
-                }
-            },
-            [dataType, field, name, onChange, props]
-        );
+            field.onBlur();
+        }, [dataType, field, name, onChange]);
 
         const onChangeHandler = useCallback(
-            (e?: ChangeEvent<any>, initialValue?: any) => {
-                const val = transformValue(initialValue || e?.target.value || '');
-                console.log('val=', val);
+            (e: FormEvent<HTMLInputElement>) => {
+                const val = transformValue((e.target as EventTarget & HTMLInputElement).value);
                 field.onChange(val);
                 onChange(name, val);
             },
@@ -76,8 +67,7 @@ export const TypedField = forwardRef<HTMLInputElement, ITypedFieldProps>(
                         onChangeHandler(e);
                     }}
                     onClear={() => {
-                        console.log('clear');
-                        onChangeHandler(undefined, '');
+                        setFieldValue('');
                     }}
                 />
             </div>

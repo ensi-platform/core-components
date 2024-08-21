@@ -2,12 +2,11 @@
 
 import { createContext, useContext } from 'react';
 
-import { type FieldValues } from 'react-hook-form';
+import { type NativeFieldValue } from 'react-hook-form';
 
 export interface IFormContextProps {
-    onChange: (key: string, value: FieldValues) => void;
+    onChange: (key: string, value?: NativeFieldValue) => void;
     disabled?: boolean;
-    onSubmitHandler: (value: any) => void;
 }
 
 export const FormContext = createContext<IFormContextProps | undefined>(undefined);
