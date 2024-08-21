@@ -1,4 +1,4 @@
-import { CSSObject } from '@emotion/react';
+import { type CSSObject } from '@emotion/react';
 
 import { forwardRef, useMemo, useRef } from 'react';
 import mergeRefs from 'react-merge-refs';
@@ -7,7 +7,7 @@ import deepmerge from 'deepmerge';
 import { IconCheck, useCheckboxLikeControlHookRHF, useThemeCSSPart } from '@greensight/core-components-common';
 
 import { useFocus } from './scripts/hooks';
-import { CheckboxProps, CheckboxSize, CheckboxThemeState, CheckboxVariant } from './types';
+import { type CheckboxProps, CheckboxSize, type CheckboxThemeState, CheckboxVariant } from './types';
 import { checkboxThemes } from './defaultTheme';
 
 export * from './types';
@@ -30,7 +30,6 @@ export const Checkbox = forwardRef<HTMLLabelElement, CheckboxProps>(
             className,
             name,
             disabled,
-            inactive,
             indeterminate = false,
             hiddenInput = false,
             meta,
@@ -57,12 +56,11 @@ export const Checkbox = forwardRef<HTMLLabelElement, CheckboxProps>(
                 disabled: disabled || restProps.readOnly,
                 error: !!meta?.error,
                 focused,
-                inactive,
                 indeterminate,
                 variant,
                 size,
             }),
-            [align, block, checked, disabled, meta, focused, inactive, indeterminate, restProps.readOnly, size, variant]
+            [align, block, checked, disabled, meta, focused, indeterminate, restProps.readOnly, size, variant]
         );
 
         const getCSS = useThemeCSSPart(theme, themeState);
@@ -70,7 +68,6 @@ export const Checkbox = forwardRef<HTMLLabelElement, CheckboxProps>(
         const errorMessage = typeof meta?.error === 'boolean' ? '' : meta?.error;
 
         return (
-            // eslint-disable-next-line jsx-a11y/label-has-associated-control
             <label
                 className={className}
                 css={deepmerge.all<CSSObject>([getCSS('container'), css || {}])}
@@ -80,7 +77,7 @@ export const Checkbox = forwardRef<HTMLLabelElement, CheckboxProps>(
                     <input
                         type="checkbox"
                         onChange={handleChange}
-                        disabled={disabled || inactive}
+                        disabled={disabled}
                         checked={checked}
                         {...restProps}
                         css={{ position: 'absolute', opacity: 0, zIndex: -1 }}

@@ -6,11 +6,7 @@ import path from 'path';
 import copy from 'rollup-plugin-copy';
 import multiInput from 'rollup-plugin-multi-input';
 import typescript from 'rollup-plugin-ts';
-import ts from 'typescript';
 import { babel } from '@rollup/plugin-babel';
-import postcss from 'rollup-plugin-postcss';
-import postcssPresetEnv from 'postcss-preset-env';
-import dts from 'rollup-plugin-dts';
 import {
     coreComponentsResolver,
     coreComponentsRootPackageResolver,
@@ -20,8 +16,6 @@ import coreComponentsTypingsResolver from './tools/rollup/core-components-typing
 import createPackageJson from './tools/rollup/create-package-json.mjs';
 
 const require = createRequire(import.meta.url);
-
-const { ScriptTarget } = ts;
 
 const currentPackageDir = process.cwd();
 

@@ -1,41 +1,21 @@
-import type { LayoutProps } from '@greensight/gds/types/src/components/Layout';
-import { LayoutItemProps } from '@greensight/gds/types/src/components/Layout/Item';
-import type { FC, ReactNode } from 'react';
 import { useFieldArray, useFormContext } from 'react-hook-form';
 
 import { Button, Layout, scale } from '@greensight/gds';
-import useForm from '../hooks/useForm';
+import { type FC } from 'react';
+import useForm from '../../context/form';
+import { type IButtonProps, type IFieldArrayProps } from './types';
 
-export interface FieldArrayAddProps {
-    onClick: () => void;
-    disabled?: boolean;
-}
+const DefaultAddButton: FC<IButtonProps> = props => (
+    <Button {...props} type="button">
+        Добавить
+    </Button>
+);
 
-export interface FieldArrayRemoveProps {
-    onClick: () => void;
-    disabled?: boolean;
-}
-
-const DefaultAddButton = (props: FieldArrayAddProps) => <Button {...props}>Добавить</Button>;
-
-const DefaultRemoveButton = (props: FieldArrayRemoveProps) => (
+const DefaultRemoveButton: FC<IButtonProps> = props => (
     <Button theme="outline" hidden {...props}>
         Удалить
     </Button>
 );
-
-type FieldArrayProps = Omit<LayoutProps, 'reverse' | 'wrap' | 'children'> & {
-    type?: 'grid';
-    AddButton?: FC<FieldArrayAddProps>;
-    RemoveButton?: FC<FieldArrayRemoveProps>;
-    name: string;
-    isAddedElement?: boolean;
-    maxCount?: number;
-    children: (args: { name: string; index: number }) => ReactNode | ReactNode[];
-    initialValue?: any;
-    className?: string;
-    childrenCol?: LayoutItemProps['col'];
-};
 
 const FormFieldArray = ({
     AddButton = DefaultAddButton,
@@ -48,7 +28,7 @@ const FormFieldArray = ({
     children,
     childrenCol,
     ...props
-}: FieldArrayProps) => {
+}: IFieldArrayProps) => {
     const { control } = useFormContext();
     const { disabled } = useForm()!;
     const { fields, append, remove } = useFieldArray({

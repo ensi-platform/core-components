@@ -1,7 +1,7 @@
-import { CSSObject } from '@emotion/react';
-import { HTMLAttributes, ReactNode } from 'react';
+import { type CSSObject } from '@emotion/react';
+import { type HTMLAttributes, type ReactNode } from 'react';
 
-import { BaseThemeState, StyleDefinition, ValueOrFunction } from '@greensight/core-components-common';
+import { type BaseThemeState, type StyleDefinition, type ValueOrFunction } from '@greensight/core-components-common';
 
 export enum FormControlSize {
     sm = 'sm',

@@ -1,13 +1,14 @@
-import { CSSObject } from '@emotion/react';
+import { type CSSObject } from '@emotion/react';
 import deepmerge from 'deepmerge';
 import {
-    AnimationEvent,
-    ChangeEvent,
-    FocusEvent,
-    MouseEvent,
+    type AnimationEvent,
+    type ChangeEvent,
+    type FocusEvent,
+    type MouseEvent,
     forwardRef,
     useCallback,
     useEffect,
+    useId,
     useMemo,
     useRef,
     useState,
@@ -15,7 +16,7 @@ import {
 import mergeRefs from 'react-merge-refs';
 
 import {
-    FormFieldDescendantProps,
+    type FormFieldDescendantProps,
     defaultTheme,
     scale,
     IconSmallClosed as CloseIcon,
@@ -23,7 +24,7 @@ import {
 
 import { FormControl } from '@greensight/core-components-form-control';
 
-import { InputProps } from './types';
+import { type InputProps } from './types';
 
 export * from './types';
 
@@ -236,8 +237,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps & FormFieldDescenda
 
         const css = useMemo(() => deepmerge.all<CSSObject>([BASE_INPUT_CSS, inputCSS]), [inputCSS]);
 
-        // TODO: react 18 useId()
-        const htmlFor = restProps.id;
+        const htmlFor = useId();
 
         return (
             <FormControl

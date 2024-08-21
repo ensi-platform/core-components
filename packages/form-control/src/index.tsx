@@ -1,11 +1,11 @@
-import { CSSObject } from '@emotion/react';
+import { type CSSObject } from '@emotion/react';
 import deepmerge from 'deepmerge';
 import { forwardRef, useMemo } from 'react';
 
 import { useThemeCSSPart } from '@greensight/core-components-common';
 
 import { formControlThemes } from './themes/defaultTheme';
-import { FormControlProps, FormControlThemeState } from './types';
+import { type FormControlProps, type FormControlThemeState } from './types';
 
 export * from './types';
 

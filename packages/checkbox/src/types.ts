@@ -1,12 +1,12 @@
-import { CSSObject } from '@emotion/react';
+import { type CSSObject } from '@emotion/react';
 import {
-    BaseThemeState,
-    FormFieldDescendantProps,
-    StyleDefinition,
-    ValueOrFunction,
-    useCheckboxLikeControlHookType,
+    type BaseThemeState,
+    type FormFieldDescendantProps,
+    type StyleDefinition,
+    type ValueOrFunction,
+    type useCheckboxLikeControlHookType,
 } from '@greensight/core-components-common';
-import { ChangeEvent, InputHTMLAttributes, ReactNode } from 'react';
+import { type ChangeEvent, type InputHTMLAttributes, type ReactNode } from 'react';
 
 export const CheckboxSize = {
     md: 'md',
@@ -19,7 +19,7 @@ export const CheckboxVariant = {
 type NativeProps = InputHTMLAttributes<HTMLInputElement>;
 type Align = 'start' | 'center';
 
-export interface CheckboxState {
+export interface ICheckboxState {
     // Отключен ли
     disabled?: boolean;
 
@@ -27,11 +27,6 @@ export interface CheckboxState {
      * Растягивать ли компонент на всю ширину
      */
     block?: boolean;
-
-    /**
-     * Управление состоянием активен / неактивен
-     */
-    inactive?: boolean;
 
     /**
      * Управление неопределенным состоянием чекбокса
@@ -59,7 +54,7 @@ export interface CheckboxState {
     error?: boolean;
 }
 
-export type CheckboxThemeState = BaseThemeState<typeof CheckboxVariant, typeof CheckboxSize> & CheckboxState;
+export type CheckboxThemeState = BaseThemeState<typeof CheckboxVariant, typeof CheckboxSize> & ICheckboxState;
 
 export type CheckboxTheme = ValueOrFunction<
     {
@@ -76,7 +71,7 @@ export type CheckboxTheme = ValueOrFunction<
     [CheckboxThemeState]
 >;
 
-export type CheckboxProps = Omit<CheckboxState, 'focused' | 'error'> &
+export type CheckboxProps = Omit<ICheckboxState, 'focused' | 'error'> &
     Partial<Omit<BaseThemeState<typeof CheckboxVariant, typeof CheckboxSize, CheckboxTheme>, 'theme'>> &
     Omit<NativeProps, 'size' | 'onChange' | 'enterKeyHint'> &
     FormFieldDescendantProps & {
