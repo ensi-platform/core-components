@@ -24,12 +24,14 @@ export const Select = forwardRef<
             onBlur,
             selected,
             hideClearButton = false,
+            closeOnClear,
             onClear,
             ...props
         },
         ref
     ) => {
         const clearProps = useSelectClear({
+            closeOnClear,
             onClearClick:
                 onClear ||
                 (() => {

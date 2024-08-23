@@ -4,12 +4,13 @@ import { ComponentProps, useMemo, useState } from 'react';
 
 import { Button, scale } from '@greensight/gds';
 
-import { Select, SelectItem } from '.';
+import Form from '@greensight/core-components-form';
+import { Select, SelectItem, SimpleSelect } from '.';
 import README from '../README.md';
 
 export default {
     title: 'Components / Select',
-    component: Select,
+    component: SimpleSelect,
     parameters: {
         docs: {
             description: {
@@ -37,12 +38,12 @@ export const Basic: StoryObj<ComponentProps<typeof Select>> = {
                 disabled: true,
             },
             {
-                label: 'true',
+                label: 'true label',
                 content: 'True value',
                 value: true,
             },
             {
-                label: 'false',
+                label: 'false false',
                 content: 'False value',
                 value: false,
             },
@@ -90,9 +91,9 @@ export const Basic: StoryObj<ComponentProps<typeof Select>> = {
                     .filter(e => {
                         if ('value' in e) {
                             if (!args.multiple) {
-                                return selectedValues?.includes(e.value?.toString());
+                                return selectedValues?.includes(e.value);
                             }
-                            return selectedValues?.includes(e.value?.toString());
+                            return selectedValues?.includes(e.value);
                         }
                         return false;
                     })
@@ -105,12 +106,12 @@ export const Basic: StoryObj<ComponentProps<typeof Select>> = {
                 <p>
                     Выбрано значение: <b>{value === undefined ? '(undefined)' : JSON.stringify(value)}</b>
                 </p>
-                <Select
+                <SimpleSelect
                     {...args}
                     name="name"
                     onChange={(e, payload) => {
-                        if (!args.multiple && payload.actionItem?.value) {
-                            setValue([payload.actionItem.value.toString()]);
+                        if (!args.multiple) {
+                            setValue(payload.selected[0].value);
                         } else {
                             setValue(prevValue =>
                                 (e.target?.value?.map((e: SelectItem) => e.value) || [])
@@ -133,4 +134,79 @@ export const Basic: StoryObj<ComponentProps<typeof Select>> = {
             </div>
         );
     },
+};
+
+export const WithForm: StoryObj<ComponentProps<typeof Select>> = {
+    args: {
+        multiple: false,
+        disabled: false,
+        wrap: true,
+        options: [
+            {
+                label: '1',
+                content: '1',
+                value: '1',
+            },
+            {
+                label: '2',
+                content: '2',
+                value: '2',
+                disabled: true,
+            },
+            {
+                label: '3',
+                content: '3',
+                value: '3',
+            },
+            {
+                label: '4',
+                content: '4',
+                value: '4',
+            },
+            {
+                label: '5',
+                content: '5',
+                value: '5',
+            },
+
+            {
+                label: '6',
+                content: '6',
+                value: '6',
+            },
+            {
+                label: '7',
+                content: '7',
+                value: '7',
+            },
+        ],
+    },
+    argTypes: {},
+    render: ({ ...args }) => (
+        <div style={{ width: 500, minHeight: 800 }}>
+            <Form initialValues={{ selectValue: '3', otherField: '' }}>
+                {({ getValues }) => (
+                    <>
+                        <p>
+                            Значение из формы: <b>{JSON.stringify(getValues())}</b>{' '}
+                        </p>
+                        <Form.Field name="selectValue" label="label селект">
+                            <Select {...args} css={{ minWidth: 200 }} />
+                        </Form.Field>
+                        <br />
+                        <Form.Field
+                            name="otherField"
+                            placeholder="При вводе в это поле нет лагов перерендера"
+                            size="md"
+                        />
+                        <br />
+                        <Button type="submit">Отправить</Button>
+                        <Button type="reset" theme="secondary">
+                            Сбросить
+                        </Button>
+                    </>
+                )}
+            </Form>
+        </div>
+    ),
 };

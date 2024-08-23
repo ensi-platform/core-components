@@ -38,6 +38,9 @@
     },
     {
       "path": "../stack/tsconfig.json"
+    },
+    {
+      "path": "../form/tsconfig.json"
     }
   ]
 }

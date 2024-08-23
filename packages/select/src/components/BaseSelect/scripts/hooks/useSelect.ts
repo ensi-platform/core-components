@@ -38,13 +38,7 @@ export const useSelect = ({
 
     const { selectedItems, unselectedItems } = useMemo(() => processOptions(items, selected), [items, selected]);
 
-    const {
-        selectedItems: selectedItemsCombobox,
-        addSelectedItem,
-        setSelectedItems,
-        removeSelectedItem,
-        getDropdownProps,
-    } = useMultipleSelection({
+    const MultipleSelectionProps = {
         itemToString,
         onSelectedItemsChange: changes => {
             if (onChange) {
@@ -77,7 +71,19 @@ export const useSelect = ({
         ...(selected !== undefined && {
             selectedItems,
         }),
-    } as UseMultipleSelectionProps<SelectItem>);
+    } as UseMultipleSelectionProps<SelectItem>;
+
+    if (selected !== undefined) {
+        MultipleSelectionProps.selectedItems = selectedItems;
+    }
+
+    const {
+        selectedItems: selectedItemsCombobox,
+        addSelectedItem,
+        setSelectedItems,
+        removeSelectedItem,
+        getDropdownProps,
+    } = useMultipleSelection(MultipleSelectionProps);
 
     const visibleItems = useMemo(
         () => (hideSelectedOptions && Array.isArray(selected) ? unselectedItems : items),
