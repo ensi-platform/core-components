@@ -1,6 +1,7 @@
 import type { StoryObj } from '@storybook/react';
 
 import { ComponentProps, useMemo, useState } from 'react';
+import * as Yup from 'yup';
 
 import { Button, scale } from '@greensight/gds';
 
@@ -141,42 +142,43 @@ export const WithForm: StoryObj<ComponentProps<typeof Select>> = {
         multiple: false,
         disabled: false,
         wrap: true,
+        allowUnselect: false,
         options: [
             {
-                label: '1',
-                content: '1',
+                label: '1 label',
+                content: '1 content',
                 value: '1',
             },
             {
-                label: '2',
-                content: '2',
+                label: '2 label',
+                content: '2 content',
                 value: '2',
                 disabled: true,
             },
             {
-                label: '3',
-                content: '3',
+                label: '3 label',
+                content: '3 content',
                 value: '3',
             },
             {
-                label: '4',
-                content: '4',
+                label: '4 label',
+                content: '4 content',
                 value: '4',
             },
             {
-                label: '5',
-                content: '5',
+                label: '5 label',
+                content: '5 content',
                 value: '5',
             },
 
             {
-                label: '6',
-                content: '6',
+                label: '6 label',
+                content: '6 content',
                 value: '6',
             },
             {
-                label: '7',
-                content: '7',
+                label: '7 label',
+                content: '7 content',
                 value: '7',
             },
         ],
@@ -184,28 +186,27 @@ export const WithForm: StoryObj<ComponentProps<typeof Select>> = {
     argTypes: {},
     render: ({ ...args }) => (
         <div style={{ width: 500, minHeight: 800 }}>
-            <Form initialValues={{ selectValue: '3', otherField: '' }}>
-                {({ getValues }) => (
-                    <>
-                        <p>
-                            Значение из формы: <b>{JSON.stringify(getValues())}</b>{' '}
-                        </p>
-                        <Form.Field name="selectValue" label="label селект">
-                            <Select {...args} css={{ minWidth: 200 }} />
-                        </Form.Field>
-                        <br />
-                        <Form.Field
-                            name="otherField"
-                            placeholder="При вводе в это поле нет лагов перерендера"
-                            size="md"
-                        />
-                        <br />
-                        <Button type="submit">Отправить</Button>
-                        <Button type="reset" theme="secondary">
-                            Сбросить
-                        </Button>
-                    </>
-                )}
+            <Form
+                initialValues={{ selectValue: null, otherField: '' }}
+                onSubmit={values => {
+                    console.log('SUBMIT FORM VALUES', values);
+                }}
+                validationSchema={Yup.object().shape({
+                    selectValue: Yup.number()
+                        .transform(val => (Number.isNaN(val) ? undefined : val))
+                        .required('Обязательное поле'),
+                })}
+            >
+                <Form.Field name="selectValue" label="label селект" required>
+                    <Select {...args} css={{ minWidth: 200 }} hideClearButton />
+                </Form.Field>
+                <br />
+                <Form.Field name="otherField" placeholder="При вводе в это поле нет лагов перерендера" size="md" />
+                <br />
+                <Button type="submit">Отправить</Button>
+                <Button type="reset" theme="secondary">
+                    Сбросить
+                </Button>
             </Form>
         </div>
     ),

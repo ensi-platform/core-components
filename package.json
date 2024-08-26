@@ -30,6 +30,7 @@
     "prepare": "husky install",
     "generate-icons-export": "cd packages/common && node tools/generateIconsExport.js && cd ../../",
     "build": "./bin/build.sh",
+    "build-component": "./bin/build-component.sh",
     "create-package": "node tools/create-package.js"
   },
   "dependencies": {

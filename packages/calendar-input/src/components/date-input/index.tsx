@@ -49,7 +49,7 @@ export const DateInput = forwardRef<HTMLInputElement, InnerDateInputProps>(
             error,
             popoverProps,
             wrapperHandlers,
-            block,
+            block = true,
             wrapperCSS,
             withTime,
             ...restProps

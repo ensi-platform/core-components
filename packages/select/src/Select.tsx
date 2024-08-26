@@ -4,7 +4,7 @@ import { useSelectClear } from './components';
 import { SimpleSelect } from './SimpleSelect';
 
 const getValue = (option: string | SelectItem) =>
-    typeof option === 'object' && 'key' in option && 'value' in option ? option.value : option;
+    typeof option === 'object' && 'label' in option && 'value' in option ? option.value : option;
 
 export const Select = forwardRef<
     HTMLDivElement,
@@ -38,7 +38,7 @@ export const Select = forwardRef<
                     setTimeout(() => {
                         field?.onChange({
                             target: {
-                                value: '',
+                                value: null,
                             },
                         });
                     }, 0);
