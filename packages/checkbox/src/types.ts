@@ -1,12 +1,9 @@
 import { type CSSObject } from '@emotion/react';
-import {
-    type BaseThemeState,
-    type FormFieldDescendantProps,
-    type StyleDefinition,
-    type ValueOrFunction,
-    type useCheckboxLikeControlHookType,
-} from '@greensight/core-components-common';
-import { type ChangeEvent, type InputHTMLAttributes, type ReactNode } from 'react';
+import { type BaseThemeState } from '@greensight/core-components-common';
+import { type ReactNode, type ChangeEventHandler, type HTMLProps, type FormEventHandler } from 'react';
+import { type IFieldWrapperProps } from '@greensight/core-components-form';
+
+export type CheckboxValueType = string[] | boolean;
 
 export const CheckboxSize = {
     md: 'md',
@@ -16,8 +13,20 @@ export const CheckboxVariant = {
     primary: 'primary',
 } as const;
 
-type NativeProps = InputHTMLAttributes<HTMLInputElement>;
+// type NativeProps = InputHTMLAttributes<HTMLInputElement>;
 type Align = 'start' | 'center';
+
+export interface ICheckboxWrapperReturn {
+    id: string;
+    checked: boolean;
+    onChange: FormEventHandler<HTMLInputElement>;
+    error?: string;
+}
+export interface ICheckboxWrapperProps extends Partial<IFieldWrapperProps<CheckboxValueType>> {
+    value?: string;
+    children: (params: ICheckboxWrapperReturn) => ReactNode;
+    onChange?: ChangeEventHandler;
+}
 
 export interface ICheckboxState {
     // Отключен ли
@@ -51,78 +60,43 @@ export interface ICheckboxState {
     /**
      * Отображение ошибки
      */
-    error?: boolean;
+    error?: string;
+}
+
+interface ICheckboxParts {
+    hint?: ReactNode;
+}
+interface ICheckboxCSS {
+    /**
+     * Доп. класс чекбокса
+     */
+    boxCSS?: CSSObject;
+
+    /**
+     * Доп. класс контента
+     */
+    contentCSS?: CSSObject;
+    hintCSS?: CSSObject;
+    css?: CSSObject;
+    errorCSS?: CSSObject;
+    labelCSS?: CSSObject;
+    iconCSS?: CSSObject;
+    indeterminateLineCSS?: CSSObject;
+}
+
+export interface ICheckboxTheme {
+    size?: keyof typeof CheckboxSize;
+    variant?: keyof typeof CheckboxVariant;
 }
 
 export type CheckboxThemeState = BaseThemeState<typeof CheckboxVariant, typeof CheckboxSize> & ICheckboxState;
+export interface ICheckboxProps
+    extends Omit<HTMLProps<HTMLInputElement>, 'size' | 'css'>,
+        ICheckboxState,
+        ICheckboxTheme,
+        ICheckboxCSS,
+        ICheckboxParts {}
 
-export type CheckboxTheme = ValueOrFunction<
-    {
-        container: StyleDefinition<CheckboxThemeState>;
-        content: StyleDefinition<CheckboxThemeState>;
-        box: StyleDefinition<CheckboxThemeState>;
-        icon: StyleDefinition<CheckboxThemeState>;
-        indeterminateLine: StyleDefinition<CheckboxThemeState>;
-
-        hint: StyleDefinition<CheckboxThemeState>;
-        error: StyleDefinition<CheckboxThemeState>;
-        addons: StyleDefinition<CheckboxThemeState>;
-    },
-    [CheckboxThemeState]
->;
-
-export type CheckboxProps = Omit<ICheckboxState, 'focused' | 'error'> &
-    Partial<Omit<BaseThemeState<typeof CheckboxVariant, typeof CheckboxSize, CheckboxTheme>, 'theme'>> &
-    Omit<NativeProps, 'size' | 'onChange' | 'enterKeyHint'> &
-    FormFieldDescendantProps & {
-        /**
-         * Обработчик переключения чекбокса
-         */
-        onChange?: (event: ChangeEvent<HTMLInputElement>) => void;
-
-        /**
-         * Текст подписи к чекбоксу
-         */
-        label?: ReactNode | ReactNode[];
-
-        /**
-         * Текст подсказки снизу
-         */
-        hint?: ReactNode;
-
-        /**
-         * Доп. класс чекбокса
-         */
-        boxCSS?: CSSObject;
-
-        /**
-         * Доп. класс контента
-         */
-        contentCSS?: CSSObject;
-
-        /**
-         * Дополнительный слот
-         */
-        addons?: ReactNode;
-
-        /**
-         * Флаг для скрытия нативного инпута.
-         * @default false
-         */
-        hiddenInput?: boolean;
-
-        /**
-         * Тема
-         */
-        theme?: CheckboxTheme;
-
-        /**
-         * Используйте label вместо children, это логичнее.
-         * @deprecated
-         */
-        children?: ReactNode | ReactNode[];
-
-        css?: CSSObject;
-
-        useControlHook?: useCheckboxLikeControlHookType;
-    };
+export interface IFormCheckboxProps
+    extends Omit<ICheckboxWrapperProps, 'children'>,
+        Omit<ICheckboxProps, keyof Omit<ICheckboxWrapperProps, 'children'> | keyof ICheckboxWrapperReturn | 'ref'> {}

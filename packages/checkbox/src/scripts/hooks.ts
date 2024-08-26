@@ -1,4 +1,4 @@
-import { MutableRefObject, RefObject, useCallback, useEffect, useState } from 'react';
+import { type MutableRefObject, type RefObject, useCallback, useEffect, useState } from 'react';
 
 export type InputMethod = 'keyboard' | 'mouse';
 

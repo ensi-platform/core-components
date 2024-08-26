@@ -8,7 +8,7 @@ CURRENT_PACKAGE_DIR=$(basename "$PWD")
 
 # Черный список пакетов, для исключения их из сборки
 # ex. BLACKLIST=("form" "accordion" "action-popup" "autocomplete-async" "backdrop")
-BLACKLIST=("form")
+BLACKLIST=("")
 
 # Проверяем, является ли текущий пакет из черного списка
 for PACKAGE in "${BLACKLIST[@]}"; do

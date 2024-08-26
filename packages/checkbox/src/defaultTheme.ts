@@ -1,5 +1,5 @@
 import { defaultTheme, scale } from '@greensight/core-components-common';
-import { CheckboxTheme } from './types';
+import { type CheckboxTheme } from './types';
 
 const outerSize = scale(5, true);
 
@@ -80,7 +80,6 @@ const basicTheme: CheckboxTheme = {
     error: {
         color: colors.danger,
     },
-    addons: {},
 };
 
 export const checkboxThemes = {

@@ -1,5 +1,6 @@
 import { type HTMLProps, type ReactNode } from 'react';
 import {
+    type NativeFieldValue,
     type ControllerFieldState,
     type ControllerRenderProps,
     type DefaultValues,
@@ -41,8 +42,15 @@ export interface IFormProps<T extends FieldValues>
     disabled?: boolean;
 }
 
+export type IFieldValueType = Exclude<NativeFieldValue, undefined | null>;
+
+export interface IControllerRenderProps<T extends IFieldValueType> extends Omit<ControllerRenderProps, 'value'> {
+    value: T;
+}
+
+// PathValue<TFieldValues, TFieldPath>
 /** Interface props passed by the field wrapper component */
-export interface IFieldWrapperProps<T extends FieldValues> {
+export interface IFieldWrapperProps<T extends IFieldValueType> {
     /**
      * Return value of useController
      * Contains a meta
@@ -54,9 +62,13 @@ export interface IFieldWrapperProps<T extends FieldValues> {
      * Contains a value and a value change handler
      * https://react-hook-form.com/docs/usecontroller
      * */
-    field: ControllerRenderProps<T>;
+    field: IControllerRenderProps<T>;
     /**
      * Hanlder for changing field value
      */
     setFieldValue: (value: T) => void;
+    /**
+     * Field error
+     */
+    error?: string;
 }
