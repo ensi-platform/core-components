@@ -6,9 +6,9 @@ import {
     typography as gdsTypography,
     useTheme as useGDSTheme,
 } from '@greensight/gds';
+import { Button } from './themes/button';
 
 export * from '@greensight/gds';
-
 type ColorsType<TColorName extends string = string> = Record<TColorName, string>;
 
 type TypographyType<TStyleName extends Exclude<string, symbol | number> = string> = {
@@ -36,7 +36,7 @@ export interface TokensInterface<
     TColorName extends string = string,
     TStyleName extends string = string,
     TShadowName extends string = string,
-    TSizeName extends string = string
+    TSizeName extends string = string,
 > {
     colors: ColorsType<TColorName>;
     typography: TypographyType<TStyleName>;
@@ -72,6 +72,9 @@ export const defineTheme = <T extends TokensInterface>(tokens: T, global: Theme[
 
     const settings: GdsTheme = {
         global,
+        components: {
+            Button,
+        },
     };
 
     const theme = createTheme({

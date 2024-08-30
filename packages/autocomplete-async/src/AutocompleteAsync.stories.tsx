@@ -1,6 +1,9 @@
 import type { StoryObj } from '@storybook/react';
 import { ChangeEvent, ComponentProps, useCallback, useState } from 'react';
-import { SelectHandlers, SelectItem } from '@greensight/core-components-select';
+import { Select, SelectHandlers, SelectItem } from '@greensight/core-components-select';
+import Form from '@greensight/core-components-form';
+import * as Yup from 'yup';
+import { Button } from '@greensight/gds';
 import { Autocomplete } from './components/Autocomplete';
 import { AutocompleteAsync } from './Component';
 import README from '../README.md';
@@ -198,6 +201,74 @@ export const Basic: StoryObj<ComponentProps<typeof AutocompleteAsync>> = {
                     placeholder="Начинайте вводить"
                 />
             </>
+        );
+    },
+};
+
+export const WithForm: StoryObj<ComponentProps<typeof Select>> = {
+    args: {},
+    argTypes: {},
+    render: ({ ...args }) => {
+        const asyncSearchFn = useCallback(
+            async (searchStr, offset, limit) =>
+                new Promise(resolve => {
+                    const total = optionItems.filter(e => e.label.includes(searchStr));
+                    const slice = total.slice(offset, offset + limit);
+                    const hasMore = offset + limit < total.length;
+                    console.log(
+                        '[loading] offset:',
+                        offset,
+                        'limit:',
+                        limit,
+                        'has more:',
+                        hasMore,
+                        'result=',
+                        slice,
+                        'total=',
+                        total
+                    );
+                    setTimeout(() => resolve({ options: slice, hasMore }), 1500);
+                }),
+            []
+        );
+        const asyncOptionsByValuesFn = useCallback(
+            async (vals: string[]): Promise<SelectItem[]> =>
+                new Promise(resolve => {
+                    const total = optionItems.filter(e => e.value && vals.includes(e.value.toString()));
+                    setTimeout(() => resolve(total), 1800);
+                }),
+            []
+        );
+        return (
+            <div style={{ width: 500, minHeight: 800 }}>
+                <Form
+                    initialValues={{ selectValue: null, otherField: '' }}
+                    onSubmit={values => {
+                        console.log('SUBMIT FORM VALUES', values);
+                    }}
+                    validationSchema={Yup.object().shape({
+                        selectValue: Yup.number()
+                            .transform(val => (Number.isNaN(val) ? undefined : val))
+                            .required('Обязательное поле'),
+                    })}
+                >
+                    <Form.Field name="selectValue" label="Выберите пункты" required>
+                        <AutocompleteAsync
+                            closeOnSelect={false}
+                            // block
+                            asyncSearchFn={asyncSearchFn}
+                            asyncOptionsByValuesFn={asyncOptionsByValuesFn}
+                            multiple
+                            collapseTagList
+                        />
+                    </Form.Field>
+                    <br />
+                    <Button type="submit">Отправить</Button>
+                    <Button type="reset" theme="secondary">
+                        Сбросить
+                    </Button>
+                </Form>
+            </div>
         );
     },
 };

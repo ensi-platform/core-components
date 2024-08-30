@@ -305,7 +305,6 @@ export const TagList: FC<FieldProps & FormControlProps & TagListOwnProps> = ({
                             placeholder={filled ? '' : placeholder}
                         />
                     )}
-
                     {placeholder && !filled && !autocomplete && <span>{placeholder}</span>}
                 </div>
             </FormControl>

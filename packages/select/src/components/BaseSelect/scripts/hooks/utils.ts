@@ -15,7 +15,7 @@ export function processOptions(options: SelectProps['options'], selected: Select
     const allSelectedKeys = selectedArray
         .map(option => {
             if (typeof option === 'string') return option;
-            if (typeof option === 'object' && option && 'key' in option) return option.key;
+            if (typeof option === 'object' && option && 'label' in option) return option.label;
 
             return undefined;
         })

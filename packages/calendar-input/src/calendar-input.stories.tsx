@@ -1,6 +1,8 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { ComponentProps, useState } from 'react';
 
+import Form from '@greensight/core-components-form';
+import { Button, scale } from '@greensight/gds';
 import README from '../README.md';
 import { CalendarInput } from './index';
 
@@ -42,7 +44,38 @@ export const Basic: StoryObj<ComponentProps<typeof CalendarInput> & { rangeBehav
                         setValue(newValue);
                     }}
                 />
+                <Button
+                    type="button"
+                    onClick={() => {
+                        console.log('value', value);
+                    }}
+                >
+                    Отправить
+                </Button>
             </div>
         );
     },
+};
+
+export const WithForm: StoryObj<ComponentProps<typeof CalendarInput> & { rangeBehavior: 'clarification' | 'reset' }> = {
+    render: () => (
+        <Form initialValues={{ calendar: '12.12.2024' }} onSubmit={vals => alert(JSON.stringify(vals))}>
+            <Form.Field name="calendar">
+                <CalendarInput
+                    picker
+                    placeholder="Дата"
+                    view="date"
+                    platform="desktop"
+                    label="Инпут выбора даты со значением по умолчанию"
+                />
+            </Form.Field>
+            <br />
+            <div style={{ display: 'flex' }}>
+                <Form.Reset style={{ marginRight: scale(2) }} theme="secondary">
+                    Сбросить
+                </Form.Reset>
+                <Button type="submit">Отправить</Button>
+            </div>
+        </Form>
+    ),
 };
