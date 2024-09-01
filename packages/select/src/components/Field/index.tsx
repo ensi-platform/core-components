@@ -72,7 +72,7 @@ export const Field = ({
     const controlVariant = getSameEnumValue(variant, FormControlVariant);
 
     const totalFieldCSS = useMemo(() => getCSS('field'), [getCSS]);
-    console.log('props', props);
+
     return (
         <div
             ref={wrapperRef}
@@ -89,6 +89,7 @@ export const Field = ({
                 size={controlSize}
                 variant={controlVariant}
                 focused={isOpen || focused}
+                filled={filled}
                 rightAddons={
                     (Arrow || rightAddons) && (
                         <>

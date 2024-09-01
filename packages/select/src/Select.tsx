@@ -87,7 +87,7 @@ export const Select = forwardRef<
 
                     if (typeof field?.onChange === 'function') {
                         const value =
-                            (multiple || isValueArray) && payload?.selected
+                            (multiple || isValueArray) && payload?.selected && payload?.selected?.length > 1
                                 ? payload?.selected.map(e => e.value)
                                 : payload?.actionItem?.value;
 

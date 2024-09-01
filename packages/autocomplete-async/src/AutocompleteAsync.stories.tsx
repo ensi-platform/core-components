@@ -4,7 +4,7 @@ import { Select, SelectHandlers, SelectItem } from '@greensight/core-components-
 import Form from '@greensight/core-components-form';
 import * as Yup from 'yup';
 import { Button } from '@greensight/gds';
-import { Autocomplete } from './components/Autocomplete';
+import { Autocomplete, BaseAutocomplete } from './components/Autocomplete';
 import { AutocompleteAsync } from './Component';
 import README from '../README.md';
 import { IOptionsFetcherResponse } from './types';
@@ -314,7 +314,7 @@ export const ControlledAutocomplete: StoryObj<ComponentProps<typeof Autocomplete
                   );
 
         return (
-            <Autocomplete
+            <BaseAutocomplete
                 options={filteredOptions}
                 selected={selectedOptions}
                 label="Элемент"
@@ -328,7 +328,7 @@ export const ControlledAutocomplete: StoryObj<ComponentProps<typeof Autocomplete
     },
 };
 
-export const BaseAutocomplete: StoryObj<ComponentProps<typeof Autocomplete>> = {
+export const regularAutocomplete: StoryObj<ComponentProps<typeof Autocomplete>> = {
     args: {
         closeOnSelect: false,
         multiple: true,

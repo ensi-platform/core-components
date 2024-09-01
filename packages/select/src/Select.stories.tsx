@@ -153,7 +153,6 @@ export const WithForm: StoryObj<ComponentProps<typeof Select>> = {
                 label: '2 label',
                 content: '2 content',
                 value: '2',
-                disabled: true,
             },
             {
                 label: '3 label',
@@ -164,6 +163,7 @@ export const WithForm: StoryObj<ComponentProps<typeof Select>> = {
                 label: '4 label',
                 content: '4 content',
                 value: '4',
+                disabled: true,
             },
             {
                 label: '5 label',
@@ -198,7 +198,7 @@ export const WithForm: StoryObj<ComponentProps<typeof Select>> = {
                 })}
             >
                 <Form.Field name="selectValue" label="label селект" required>
-                    <Select {...args} css={{ minWidth: 200 }} hideClearButton />
+                    <Select {...args} css={{ minWidth: 200 }} />
                 </Form.Field>
                 <br />
                 <Form.Field name="otherField" placeholder="При вводе в это поле нет лагов перерендера" size="md" />
