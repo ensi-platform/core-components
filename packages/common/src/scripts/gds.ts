@@ -8,6 +8,8 @@ import {
 } from '@greensight/gds';
 import { Button } from './themes/button';
 
+export { Layout } from '@greensight/gds';
+
 export * from '@greensight/gds';
 type ColorsType<TColorName extends string = string> = Record<TColorName, string>;
 

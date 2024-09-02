@@ -23,7 +23,6 @@ export default {
         },
     },
 };
-
 export const Basic: StoryObj<ComponentProps<typeof Select>> = {
     args: {
         options: [

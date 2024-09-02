@@ -262,8 +262,6 @@ export function useLazyLoading({
                 throw new Error(`Call of setValue with value ${JSON.stringify(value)}, expected type "string"`);
 
             if (revalidate) {
-                console.log('REVALIDATE IN HOOK USELAZY with value', value);
-
                 const fakeEvent = {
                     target: {
                         value,
