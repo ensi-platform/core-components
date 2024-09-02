@@ -421,5 +421,3 @@ export const AutocompleteAsync = forwardRef<HTMLInputElement, AutocompleteAsyncP
 );
 
 AutocompleteAsync.displayName = 'AutocompleteAsync';
-
-export default AutocompleteAsync;

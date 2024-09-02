@@ -4,7 +4,7 @@ import { Select, SelectHandlers, SelectItem } from '@greensight/core-components-
 import Form from '@greensight/core-components-form';
 import * as Yup from 'yup';
 import { Button } from '@greensight/gds';
-import { Autocomplete, BaseAutocomplete } from './components/Autocomplete';
+import { Autocomplete, BaseAutocomplete } from './components';
 import { AutocompleteAsync } from './Component';
 import README from '../README.md';
 import { IOptionsFetcherResponse } from './types';
