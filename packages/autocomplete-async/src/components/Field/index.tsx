@@ -6,7 +6,7 @@ import { AutocompleteFieldPropsType } from '../Autocomplete/types';
 
 const EMPTY_OBJ = {};
 
-const AutocompleteField = ({
+export const AutocompleteField = ({
     Arrow,
     name,
     error,
@@ -82,5 +82,3 @@ const AutocompleteField = ({
 };
 
 AutocompleteField.displayName = 'AutocompleteField';
-
-export default AutocompleteField;

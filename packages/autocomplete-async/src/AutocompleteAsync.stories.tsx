@@ -208,25 +208,13 @@ export const Basic: StoryObj<ComponentProps<typeof AutocompleteAsync>> = {
 export const WithForm: StoryObj<ComponentProps<typeof Select>> = {
     args: {},
     argTypes: {},
-    render: ({ ...args }) => {
+    render: () => {
         const asyncSearchFn = useCallback(
-            async (searchStr, offset, limit) =>
+            async (queryString: string, offset: number, limit: number): Promise<IOptionsFetcherResponse> =>
                 new Promise(resolve => {
-                    const total = optionItems.filter(e => e.label.includes(searchStr));
+                    const total = optionItems.filter(e => e.label.includes(queryString));
                     const slice = total.slice(offset, offset + limit);
                     const hasMore = offset + limit < total.length;
-                    console.log(
-                        '[loading] offset:',
-                        offset,
-                        'limit:',
-                        limit,
-                        'has more:',
-                        hasMore,
-                        'result=',
-                        slice,
-                        'total=',
-                        total
-                    );
                     setTimeout(() => resolve({ options: slice, hasMore }), 1500);
                 }),
             []
@@ -255,7 +243,6 @@ export const WithForm: StoryObj<ComponentProps<typeof Select>> = {
                     <Form.Field name="selectValue" label="Выберите пункты" required>
                         <AutocompleteAsync
                             closeOnSelect={false}
-                            // block
                             asyncSearchFn={asyncSearchFn}
                             asyncOptionsByValuesFn={asyncOptionsByValuesFn}
                             multiple
