@@ -1,11 +1,9 @@
-import { useEffect, useRef } from 'react';
+import { FC, useEffect, useRef } from 'react';
 import { useTransition } from 'react-transition-state';
 
 import type { BackdropProps } from './types';
 
-export * from './types';
-
-export const Backdrop = ({
+export const Backdrop: FC<BackdropProps> = ({
     className,
     open = false,
     invisible = false,
@@ -37,7 +35,7 @@ export const Backdrop = ({
         },
     },
     ...restProps
-}: BackdropProps) => {
+}) => {
     const [{ isMounted, status }, toggle] = useTransition({
         timeout,
         mountOnEnter: true,
@@ -55,7 +53,7 @@ export const Backdrop = ({
         if (!isMounted) onDestroyRef.current?.();
     }, [isMounted]);
 
-    if (!isMounted) return null;
+    if (!isMounted && !children) return null;
 
     return (
         <div
