@@ -45,4 +45,9 @@ export interface BackdropProps extends HTMLProps<HTMLDivElement> {
      * Набор стилей для разных состояний (открытие, закрытие)
      */
     styles?: Partial<Record<TransitionStatus, CSSObject>>;
+
+    /**
+     * z-index property for div::after inside Backdrop
+     */
+    zIndex?: number;
 }
