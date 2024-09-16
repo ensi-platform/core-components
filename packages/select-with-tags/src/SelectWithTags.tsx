@@ -227,10 +227,9 @@ export const SelectWithTags = forwardRef<
             collapseOnClose
             onChange={(event, payload) => {
                 onChange?.(event, payload);
+                if (!field?.onChange) return;
 
-                if (!field?.onChange || payload.selected === null) return;
-
-                const value = payload.selected.map(e => (typeof e === 'string' ? e : e.value));
+                const value = payload.selected?.map(e => (typeof e === 'string' ? e : e.value)) || null;
                 field.onChange({ target: { value } });
             }}
             onBlur={onBlur}
