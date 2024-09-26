@@ -1,13 +1,13 @@
-import { HTMLAttributes, useEffect, useState } from 'react';
-import { IconSmallCheck, IconSmallCopy, scale, Link, useLinkCSS } from '@greensight/core-components-common';
+import { FC, useEffect, useState } from 'react';
+import { IconSmallCheck, IconSmallCopy, scale, useLinkCSS } from '@greensight/core-components-common';
+import type { ICopyButtonProps } from './types';
 
-export interface CopyButtonProps extends Omit<HTMLAttributes<HTMLButtonElement>, 'children'> {
-    children: string;
-    timeout?: number;
-    linkStyle?: Link;
-}
+export * from './types';
 
-export const CopyButton = ({ children, timeout = 1000, linkStyle, ...props }: CopyButtonProps) => {
+/**
+ * A button for copying text content
+ */
+export const CopyButton: FC<ICopyButtonProps> = ({ children, timeout = 1000, linkStyle, ...props }) => {
     const linkStyles = useLinkCSS(linkStyle);
     const [isSuccess, setIsSuccess] = useState(false);
 

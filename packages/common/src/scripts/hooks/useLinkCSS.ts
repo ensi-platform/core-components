@@ -3,7 +3,7 @@ import { rgba } from 'emotion-rgba';
 
 import { useTheme } from '../gds';
 
-export type Link = 'blue' | 'black' | 'grey';
+export type LinkColorType = 'blue' | 'black' | 'grey' | 'red';
 
 const getLinkStyles = (
     color: string | undefined,
@@ -25,7 +25,7 @@ const getLinkStyles = (
     },
 });
 
-export const useLinkCSS = (type: Link = 'blue') => {
+export const useLinkCSS = (type: LinkColorType = 'blue') => {
     if (typeof window !== 'undefined') {
         // eslint-disable-next-line react-hooks/rules-of-hooks
         const { colors } = useTheme();
@@ -36,6 +36,10 @@ export const useLinkCSS = (type: Link = 'blue') => {
 
         if (type === 'grey') {
             return getLinkStyles(colors?.grey800, colors?.grey900, colors?.grey600);
+        }
+
+        if (type === 'red') {
+            return getLinkStyles(colors?.danger, colors?.danger, colors?.danger);
         }
 
         return getLinkStyles(colors?.link, colors?.primaryHover, colors?.grey600);
