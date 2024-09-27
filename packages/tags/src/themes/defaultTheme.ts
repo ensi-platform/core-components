@@ -4,20 +4,6 @@ import { TagsTheme } from '../types';
 const { colors, typography } = defaultTheme;
 
 const basicTheme: TagsTheme = {
-    gradientWrapper: ctx => ({
-        ...(ctx.wrap && {
-            ':after': {
-                background: 'linear-gradient(90deg, transparent 20%, rgb(247 249 251) 90%)',
-                content: '""',
-                width: 30,
-                height: '100%',
-                position: 'absolute',
-                right: 0,
-                top: 0,
-                bottom: 0,
-            },
-        }),
-    }),
     wrapper: ctx => ({
         display: 'flex',
         flexWrap: ctx.wrap ? 'wrap' : 'nowrap',

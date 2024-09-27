@@ -1,15 +1,15 @@
 import { Children, cloneElement, isValidElement, useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { IconBigClosed, useThemeCSSPart } from '@greensight/core-components-common';
-import Tag from './components/Tag';
-import { TagsProps, TagsThemeState } from './types';
+import TagItem from './components/TagItem';
+import { TagsCompositionProps, TagsProps, TagsThemeState } from './types';
 import { tagsThemes } from './themes/defaultTheme';
 
 export * from './types';
+export { TagItem };
 
-export interface TagsCompositionProps {
-    Tag: typeof Tag;
-}
-
+/**
+ * Wrapper for nameplates list
+ */
 export const Tags = ({
     className,
     disabled,
@@ -28,6 +28,7 @@ export const Tags = ({
 
     const isValidIndex = useCallback((idx: number) => idx >= 0 && idx <= itemsCount - 1, [itemsCount]);
 
+    /** Wrapper key down event handler */
     const onKeyPress = useCallback(
         (event: KeyboardEvent) => {
             setActiveIndex(oldValue => {
@@ -74,6 +75,7 @@ export const Tags = ({
         };
     }, [onKeyPress]);
 
+    /** Getting styles from theme */
     const themeState = useMemo<TagsThemeState>(
         () => ({
             size: 'md',
@@ -85,9 +87,9 @@ export const Tags = ({
 
     const getCSS = useThemeCSSPart(theme, themeState);
 
-    const gradientWrapperCSS = useMemo(() => getCSS('gradientWrapper'), [getCSS]);
     const wrapperCSS = useMemo(() => getCSS('wrapper'), [getCSS]);
 
+    /** Getting props for n-th child */
     const getPropsForIth = useCallback(
         (index: number) => ({
             getCSS,
@@ -117,7 +119,10 @@ export const Tags = ({
                 setTimeout(() => {
                     const flatItems = Object.values(itemsRef.current);
 
-                    if (!flatItems.includes(document.activeElement as any)) {
+                    if (
+                        document.activeElement instanceof HTMLButtonElement &&
+                        !flatItems.includes(document.activeElement as any)
+                    ) {
                         setActiveIndex(-1);
                     }
                 }, 0);
@@ -126,30 +131,26 @@ export const Tags = ({
         [CloseIcon, activeIndex, disabled, getCSS, isValidIndex, onDelete]
     );
 
-    return (
-        <div css={gradientWrapperCSS}>
-            {itemsCount > 0 ? (
-                <div
-                    className={className}
-                    css={wrapperCSS}
-                    tabIndex={disabled || !itemsCount || activeIndex === 0 ? -1 : 0}
-                    ref={wrapperRef}
-                >
-                    {Children.map(children, (child, index) => {
-                        if (!isValidElement(child)) {
-                            console.error('Tags require Tag elements to be its children');
-                            return;
-                        }
+    return itemsCount > 0 ? (
+        <div
+            className={className}
+            css={wrapperCSS}
+            tabIndex={disabled || !itemsCount || activeIndex === 0 ? -1 : 0}
+            ref={wrapperRef}
+        >
+            {Children.map(children, (child, index) => {
+                if (!isValidElement(child)) {
+                    console.error('Tags require TagItem elements to be its children');
+                    return;
+                }
 
-                        return cloneElement<any>(child, {
-                            ...getPropsForIth(index),
-                            ...child.props,
-                        });
-                    })}
-                </div>
-            ) : null}
+                return cloneElement<any>(child, {
+                    ...getPropsForIth(index),
+                    ...child.props,
+                });
+            })}
         </div>
-    );
+    ) : null;
 };
 
-Tags.Tag = Tag;
+Tags.Tag = TagItem;

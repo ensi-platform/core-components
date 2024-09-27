@@ -1,11 +1,16 @@
 import { forwardRef } from 'react';
-import { typography, defaultTheme, IconSmallClosed } from '@greensight/core-components-common';
-import { scale } from '@greensight/gds';
+import { typography, defaultTheme, IconSmallClosed, scale } from '@greensight/core-components-common';
 import { TagProps } from '../types';
 
 const { colors } = defaultTheme;
 
-const Tag = ({ children, onDelete, onClick, disabled, tabIndex = onClick ? 0 : -1, ...props }: TagProps, ref: any) => (
+/**
+ * Nameplate with close button
+ */
+const TagItem = (
+    { children, onDelete, onClick, disabled, tabIndex = onClick ? 0 : -1, ...props }: TagProps,
+    ref: any
+) => (
     <button
         {...props}
         tabIndex={tabIndex}
@@ -65,4 +70,4 @@ const Tag = ({ children, onDelete, onClick, disabled, tabIndex = onClick ? 0 : -
     </button>
 );
 
-export default forwardRef(Tag) as typeof Tag;
+export default forwardRef(TagItem) as typeof TagItem;
