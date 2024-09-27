@@ -24,7 +24,7 @@ export default {
                 defaultValue: { summary: '' },
                 type: { summary: 'string' },
             },
-            required: true,
+            type: { name: 'string', required: true },
         },
         timeout: {
             description: 'The duration of the success check mark display',
