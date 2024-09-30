@@ -18,9 +18,9 @@ export default {
 
     args: {
         children: [],
-        onDelete: () => {},
+        onDelete: num => console.log(`delete${num}`),
         className: '',
-        theme: undefined,
+        css: undefined,
         CloseIcon: undefined,
         wrap: true,
         disabled: false,
@@ -66,11 +66,10 @@ export default {
                 type: null,
             },
         },
-        theme: {
-            description: 'Theme object',
+        css: {
+            description: 'Wrapper additional styles',
             table: {
-                defaultValue: { summary: 'defaultTheme' },
-                type: { summary: 'object | function' },
+                type: { summary: 'CSSObject' },
             },
             control: {
                 type: null,
@@ -102,7 +101,7 @@ export const Basic: StoryObj<ComponentProps<typeof Tags>> = {
     render: args => (
         <Tags
             {...args}
-            onDelete={num => alert(`delete${num}`)}
+            onDelete={num => console.log(`delete${num}`)}
             css={{
                 overflowX: 'auto',
             }}

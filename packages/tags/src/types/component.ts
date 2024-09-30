@@ -1,7 +1,7 @@
 import { HTMLProps, ReactNode } from 'react';
 
+import { CSSObject } from '@emotion/react';
 import Tag from '../components/TagItem';
-import { TagsTheme, useThemePart } from './themes';
 
 export interface TagsProps {
     /**
@@ -21,9 +21,9 @@ export interface TagsProps {
      */
     className?: string;
     /**
-     * Theme object
+     * Wrapper additional styles
      */
-    theme?: TagsTheme;
+    css?: CSSObject;
     /**
      * Selection availability flag
      */
@@ -35,7 +35,15 @@ export interface TagsProps {
     wrap?: boolean;
 }
 
-export interface TagProps extends HTMLProps<Omit<HTMLButtonElement, 'type'>> {
+export interface TagProps extends HTMLProps<Omit<HTMLButtonElement, 'type' | 'css'>> {
+    /**
+     * Button style
+     */
+    css?: CSSObject;
+    /**
+     * Close button wrapper style
+     */
+    closerCss?: CSSObject;
     /**
      * Close button icon
      */
@@ -44,10 +52,6 @@ export interface TagProps extends HTMLProps<Omit<HTMLButtonElement, 'type'>> {
      * Delete event handler
      */
     onDelete?: () => void;
-    /**
-     * Function to get part of styles from theme
-     */
-    getCSS?: ReturnType<typeof useThemePart>;
 }
 
 export interface TagsCompositionProps {

@@ -1,8 +1,8 @@
 import { Children, cloneElement, isValidElement, useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import { IconBigClosed, useThemeCSSPart } from '@greensight/core-components-common';
+import { IconBigClosed, scale } from '@greensight/core-components-common';
+import { CSSObject } from '@emotion/react';
 import TagItem from './components/TagItem';
-import { TagsCompositionProps, TagsProps, TagsThemeState } from './types';
-import { tagsThemes } from './themes/defaultTheme';
+import { TagsCompositionProps, TagsProps } from './types';
 
 export * from './types';
 export { TagItem };
@@ -14,10 +14,10 @@ export const Tags = ({
     className,
     disabled,
     wrap,
-    theme = tagsThemes.basic,
     CloseIcon = IconBigClosed,
     children,
     onDelete,
+    css: wrapperCss,
 }: TagsProps & Partial<TagsCompositionProps>) => {
     const itemsRef = useRef<{ [key: number]: HTMLButtonElement }>({});
     const wrapperRef = useRef<HTMLDivElement>(null);
@@ -75,24 +75,20 @@ export const Tags = ({
         };
     }, [onKeyPress]);
 
-    /** Getting styles from theme */
-    const themeState = useMemo<TagsThemeState>(
+    const wrapperCSS: CSSObject = useMemo(
         () => ({
-            size: 'md',
-            variant: 'primary',
-            wrap,
+            display: 'flex',
+            flexWrap: wrap ? 'wrap' : 'nowrap',
+            flexDirection: 'row',
+            gap: `${scale(1)}px ${scale(1, true)}px`,
+            ...wrapperCss,
         }),
-        [wrap]
+        [wrap, wrapperCss]
     );
-
-    const getCSS = useThemeCSSPart(theme, themeState);
-
-    const wrapperCSS = useMemo(() => getCSS('wrapper'), [getCSS]);
 
     /** Getting props for n-th child */
     const getPropsForIth = useCallback(
         (index: number) => ({
-            getCSS,
             CloseIcon,
             tabIndex: -1,
             disabled,
@@ -128,7 +124,7 @@ export const Tags = ({
                 }, 0);
             },
         }),
-        [CloseIcon, activeIndex, disabled, getCSS, isValidIndex, onDelete]
+        [CloseIcon, activeIndex, disabled, isValidIndex, onDelete]
     );
 
     return itemsCount > 0 ? (

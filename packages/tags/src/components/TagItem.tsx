@@ -1,24 +1,28 @@
-import { forwardRef } from 'react';
-import { typography, defaultTheme, IconSmallClosed, scale } from '@greensight/core-components-common';
+import { forwardRef, useMemo } from 'react';
+import { defaultTheme, IconSmallClosed, scale } from '@greensight/core-components-common';
 import { TagProps } from '../types';
 
-const { colors } = defaultTheme;
+const { colors, typography } = defaultTheme;
 
 /**
  * Nameplate with close button
  */
 const TagItem = (
-    { children, onDelete, onClick, disabled, tabIndex = onClick ? 0 : -1, ...props }: TagProps,
+    {
+        disabled,
+        onDelete,
+        onClick,
+        CloseIcon = IconSmallClosed,
+        tabIndex = onClick ? 0 : -1,
+        children,
+        css: buttonCss,
+        closerCss,
+        ...props
+    }: TagProps,
     ref: any
-) => (
-    <button
-        {...props}
-        tabIndex={tabIndex}
-        type="button"
-        data-role="tag-button"
-        ref={ref}
-        onClick={onClick}
-        css={{
+) => {
+    const buttonCSS = useMemo(
+        () => ({
             cursor: onClick ? 'pointer' : 'default',
             padding: `2px ${scale(1)}px`,
             overflow: 'hidden',
@@ -37,37 +41,64 @@ const TagItem = (
                 background: colors.lightBlue,
             },
             ...typography('bodySm'),
-        }}
-    >
-        {children}
-        {onDelete && !disabled && (
-            <span
-                role="button"
-                tabIndex={0}
-                css={{ cursor: 'pointer', display: 'flex', flexShrink: 0, flexGrow: 1, ':hover': { opacity: 0.5 } }}
-                title="Удалить"
-                onClick={e => {
-                    e.stopPropagation();
-                    onDelete?.();
-                }}
-                onKeyDown={event => {
-                    if ([' ', 'Enter'].includes(event.key)) {
-                        event.stopPropagation();
+
+            ...buttonCss,
+        }),
+        [buttonCss, disabled, onClick]
+    );
+
+    const closeButtonCSS = useMemo(
+        () => ({
+            cursor: 'pointer',
+            display: 'flex',
+            flexShrink: 0,
+            flexGrow: 1,
+            ':hover': { opacity: 0.5 },
+            svg: {
+                fill: 'currentColor',
+                width: scale(2),
+                height: scale(2),
+                marginLeft: scale(1, true),
+            },
+            ...closerCss,
+        }),
+        [closerCss]
+    );
+
+    return (
+        <button
+            {...props}
+            type="button"
+            data-role="tag-button"
+            ref={ref}
+            css={buttonCSS}
+            tabIndex={tabIndex}
+            onClick={onClick}
+        >
+            {children}
+
+            {onDelete && !disabled && (
+                <span
+                    role="button"
+                    tabIndex={0}
+                    css={closeButtonCSS}
+                    title="Удалить"
+                    onClick={e => {
+                        e.stopPropagation();
                         onDelete?.();
-                    }
-                }}
-            >
-                <IconSmallClosed
-                    css={{
-                        fill: 'currentColor',
-                        width: scale(2),
-                        height: scale(2),
-                        marginLeft: scale(1, true),
                     }}
-                />
-            </span>
-        )}
-    </button>
-);
+                    onKeyDown={event => {
+                        if ([' ', 'Enter'].includes(event.key)) {
+                            event.stopPropagation();
+                            onDelete?.();
+                        }
+                    }}
+                >
+                    <CloseIcon />
+                </span>
+            )}
+        </button>
+    );
+};
 
 export default forwardRef(TagItem) as typeof TagItem;
