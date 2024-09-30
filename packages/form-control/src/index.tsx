@@ -2,10 +2,11 @@ import { CSSObject } from '@emotion/react';
 import deepmerge from 'deepmerge';
 import { forwardRef, useMemo } from 'react';
 
-import { useThemeCSSPart } from '@greensight/core-components-common';
+import { useThemeCSSPart, scale } from '@greensight/core-components-common';
 
 import { formControlThemes } from './themes/defaultTheme';
 import { FormControlProps, FormControlThemeState } from './types';
+import { FormMessage } from './message';
 
 export * from './types';
 
@@ -112,7 +113,7 @@ export const FormControl = forwardRef<HTMLDivElement, FormControlProps>(
                         {label}
                     </label>
                 )}
-                {errorMessage && errorPlacement === 'above' && <p css={getCSS('error')}>{errorMessage}</p>}
+                {errorMessage && <FormMessage message={errorMessage} css={{ marginBottom: scale(1) }} type="error" />}
                 <div {...restProps} css={{ ...innerCSS, '.clear': totalClearCSS }} ref={ref}>
                     {leftAddons && (
                         <div css={deepmerge.all<CSSObject>([getCSS('addons', { isLeft: true }), leftAddonsCSS])}>

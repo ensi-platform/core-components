@@ -3,6 +3,8 @@ import { useTransition } from 'react-transition-state';
 
 import type { BackdropProps } from './types';
 
+export * from './types';
+
 export const Backdrop: FC<BackdropProps> = ({
     className,
     open = false,

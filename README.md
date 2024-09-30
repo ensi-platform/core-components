@@ -23,7 +23,7 @@ Each parallel process takes about 0.5-1GB of RAM per node instance, so calculate
 To rebuild an individual component use
 `yarn build-component [COMPONENT_NAME]`, for ex. yarn build-component select
 
-P.s. build.bat on windows is up-to-date but not debugged, there may be problems.
+P.s. build.bat for Windows is up-to-date but not debugged, there may be problems.
 
 ---
 ## Start working on the task

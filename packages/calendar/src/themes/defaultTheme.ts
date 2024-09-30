@@ -94,6 +94,7 @@ const basicTheme: CalendarTheme = {
                 position: 'relative',
                 width: daySize,
                 height: daySize,
+                padding: `${scale(1, true)}px ${scale(1)}px`,
                 display: 'grid',
                 placeItems: 'center',
                 textAlign: 'center',
@@ -202,6 +203,7 @@ const basicTheme: CalendarTheme = {
         display: 'grid',
         placeItems: 'center',
         height: daySize,
+        padding: `${scale(1, true)}px ${scale(1)}px`,
         ':hover': {
             color: `${colors.black} !important`,
             background: `${colors.grey300} !important`,
