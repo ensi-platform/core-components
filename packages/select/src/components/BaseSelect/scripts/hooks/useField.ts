@@ -53,9 +53,10 @@ export const useField = ({
         const isNextFocusInsideList = listRef.current?.contains(
             (event.relatedTarget || document.activeElement) as HTMLElement
         );
-
         if (!isNextFocusInsideList) {
-            if (onBlur) onBlur(event);
+            // if (onBlur) { // TODO теряется реф поля ввода
+            //     onBlur(event);
+            // }
 
             fieldProps.onBlur?.(event);
         }

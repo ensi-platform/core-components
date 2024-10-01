@@ -314,7 +314,6 @@ export const AutocompleteAsync = forwardRef<HTMLInputElement, AutocompleteAsyncP
                                             onClick={() => {
                                                 reset();
                                             }}
-                                            theme="outline"
                                         >
                                             Сбросить
                                         </Button>

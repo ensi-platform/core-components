@@ -196,7 +196,6 @@ export const WithForm: StoryObj<ComponentProps<typeof Select>> = {
                         .required('Обязательное поле'),
                 })}
             >
-                <div css={{ height: '400px' }}>123</div>
                 <Form.Field name="selectValue" label="label селект" required>
                     <Select {...args} css={{ minWidth: 200 }} />
                 </Form.Field>
