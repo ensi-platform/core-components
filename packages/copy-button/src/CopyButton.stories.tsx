@@ -15,7 +15,14 @@ export default {
             },
         },
     },
-    args: {},
+} as Meta<typeof CopyButton>;
+
+export const Basic: StoryObj<ComponentProps<typeof CopyButton>> = {
+    args: {
+        children: 'Press me',
+        timeout: 1000,
+        linkStyle: 'blue' as LinkColorType,
+    },
 
     argTypes: {
         children: {
@@ -42,14 +49,6 @@ export default {
             options: ['blue', 'black', 'grey', 'red'],
             control: { type: 'radio' },
         },
-    },
-} as Meta<typeof CopyButton>;
-
-export const Basic: StoryObj<ComponentProps<typeof CopyButton>> = {
-    args: {
-        children: 'Текст',
-        timeout: 1000,
-        linkStyle: 'blue' as LinkColorType,
     },
     render: args => <CopyButton {...args} />,
 };
