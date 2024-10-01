@@ -14,6 +14,10 @@ interface IDescriptionListDefaultProps {
      * Item value "whiteSpace": "nowrap"
      */
     valueNoWrap?: boolean;
+    /**
+     * Class name
+     */
+    className?: string;
 }
 
 export interface IDescriptionListBooleanItem extends IDescriptionListDefaultProps {
