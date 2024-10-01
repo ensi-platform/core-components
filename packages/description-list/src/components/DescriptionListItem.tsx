@@ -1,11 +1,13 @@
-import { useGetInfoItemValue, useInfoListCSS } from '../scripts';
-import { InfoListItemCommonType } from '../types';
+import { useGetInfoItemValue, useDescriptionListCSS } from '../scripts';
+import { DescriptionListItemType } from '../types';
 
-const InfoListItem = (props: InfoListItemCommonType) => {
-    const { nameStyles, valueStyles, dashedItemStyles } = useInfoListCSS();
+/**
+ *  Description list item (li)
+ */
+const DescriptionListItem = ({ name, valueNoWrap, ...props }: DescriptionListItemType) => {
+    const { nameStyles, valueStyles, dashedItemStyles } = useDescriptionListCSS();
 
-    const { name, valueNoWrap, ...item } = props;
-    const value = useGetInfoItemValue(item);
+    const value = useGetInfoItemValue(props);
 
     return (
         <li>
@@ -29,4 +31,4 @@ const InfoListItem = (props: InfoListItemCommonType) => {
     );
 };
 
-export default InfoListItem;
+export default DescriptionListItem;
