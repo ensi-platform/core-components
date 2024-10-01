@@ -3,7 +3,7 @@ import { HTMLProps, ReactNode } from 'react';
 import { CSSObject } from '@emotion/react';
 import Tag from '../components/TagItem';
 
-export interface TagsProps {
+export interface ITagsProps {
     /**
      * Tag items
      */
@@ -35,7 +35,7 @@ export interface TagsProps {
     wrap?: boolean;
 }
 
-export interface TagProps extends HTMLProps<Omit<HTMLButtonElement, 'type' | 'css'>> {
+export interface ITagProps extends HTMLProps<Omit<HTMLButtonElement, 'type' | 'css'>> {
     /**
      * Button style
      */
@@ -47,13 +47,13 @@ export interface TagProps extends HTMLProps<Omit<HTMLButtonElement, 'type' | 'cs
     /**
      * Close button icon
      */
-    CloseIcon?: TagsProps['CloseIcon'];
+    CloseIcon?: ITagsProps['CloseIcon'];
     /**
      * Delete event handler
      */
     onDelete?: () => void;
 }
 
-export interface TagsCompositionProps {
+export interface ITagsCompositionProps {
     Tag: typeof Tag;
 }

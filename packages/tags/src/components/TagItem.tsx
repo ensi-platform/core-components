@@ -1,6 +1,6 @@
 import { forwardRef, useMemo } from 'react';
 import { defaultTheme, IconSmallClosed, scale } from '@greensight/core-components-common';
-import { TagProps } from '../types';
+import { ITagProps } from '../types';
 
 const { colors, typography } = defaultTheme;
 
@@ -18,7 +18,7 @@ const TagItem = (
         css: buttonCss,
         closerCss,
         ...props
-    }: TagProps,
+    }: ITagProps,
     ref: any
 ) => {
     const buttonCSS = useMemo(

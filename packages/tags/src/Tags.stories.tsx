@@ -3,7 +3,7 @@ import type { ComponentProps } from 'react';
 
 import { CSSObject } from '@emotion/react';
 import README from '../README.md';
-import { TagItem, Tags, TagsProps } from '.';
+import { TagItem, Tags, ITagsProps } from '.';
 
 export default {
     title: 'Components / Tags',
@@ -15,7 +15,13 @@ export default {
             },
         },
     },
+} as Meta<ITagsProps>;
 
+const tagStyles: CSSObject = {
+    flexShrink: 0,
+};
+
+export const Basic: StoryObj<ComponentProps<typeof Tags>> = {
     args: {
         children: [],
         onDelete: num => console.log(`delete${num}`),
@@ -90,18 +96,9 @@ export default {
             },
         },
     },
-} as Meta<TagsProps>;
-
-const tagStyles: CSSObject = {
-    flexShrink: 0,
-};
-
-export const Basic: StoryObj<ComponentProps<typeof Tags>> = {
-    args: {},
     render: args => (
         <Tags
             {...args}
-            onDelete={num => console.log(`delete${num}`)}
             css={{
                 overflowX: 'auto',
             }}
