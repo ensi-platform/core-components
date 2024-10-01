@@ -2,7 +2,7 @@ import { useGetInfoItemValue, useDescriptionListCSS } from '../scripts';
 import { DescriptionListItemType } from '../types';
 
 /**
- *  Description list item (li)
+ *  Description list item
  */
 const DescriptionListItem = ({ name, valueNoWrap, ...props }: DescriptionListItemType) => {
     const { nameStyles, valueStyles, dashedItemStyles } = useDescriptionListCSS();
