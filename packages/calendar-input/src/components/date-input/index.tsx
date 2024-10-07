@@ -5,7 +5,7 @@ import { Calendar as DefaultCalendar, CalendarProps } from '@greensight/core-com
 import { Input } from '@greensight/core-components-input';
 import { Popover } from '@greensight/core-components-popover';
 
-import { useOnClickOutside, IconCalendar } from '@greensight/core-components-common';
+import { useOnClickOutside, IconCalendar, defaultTheme, scale } from '@greensight/core-components-common';
 
 import {
     DATE_FORMAT,
@@ -23,6 +23,8 @@ import {
     parseDateString,
     preventDefault,
 } from '../../scripts/utils';
+
+const { colors } = defaultTheme;
 
 export const DateInput = forwardRef<HTMLInputElement, InnerDateInputProps>(
     (
@@ -49,7 +51,7 @@ export const DateInput = forwardRef<HTMLInputElement, InnerDateInputProps>(
             error,
             popoverProps,
             wrapperHandlers,
-            block,
+            block = true,
             wrapperCSS,
             withTime,
             ...restProps
@@ -199,9 +201,10 @@ export const DateInput = forwardRef<HTMLInputElement, InnerDateInputProps>(
                     rightAddons={
                         <>
                             {rightAddons}
-                            {picker && <IconCalendar onClick={onPickerClick} css={{}} onMouseDown={preventDefault} />}
+                            {picker && <IconCalendar onClick={onPickerClick} onMouseDown={preventDefault} />}
                         </>
                     }
+                    rightAddonsCSS={{ fill: colors?.grey800, paddingRight: scale(1) }}
                 />
                 {platform === 'desktop' ? (
                     <Popover

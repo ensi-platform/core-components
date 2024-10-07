@@ -138,6 +138,9 @@
       ],
       "@greensight/core-components-tags/*": [
         "packages/tags/src/*"
+      ],
+      "@greensight/core-components-form/*": [
+        "packages/form/src/*"
       ]
     }
   },

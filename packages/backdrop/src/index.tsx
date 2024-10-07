@@ -1,11 +1,11 @@
-import { useEffect, useRef } from 'react';
+import { FC, useEffect, useRef } from 'react';
 import { useTransition } from 'react-transition-state';
 
 import type { BackdropProps } from './types';
 
 export * from './types';
 
-export const Backdrop = ({
+export const Backdrop: FC<BackdropProps> = ({
     className,
     open = false,
     invisible = false,
@@ -14,6 +14,7 @@ export const Backdrop = ({
     onClose,
     dataTestId,
     onDestroy,
+    zIndex,
     styles = {
         preEnter: {
             backgroundColor: 'transparent',
@@ -36,7 +37,7 @@ export const Backdrop = ({
         },
     },
     ...restProps
-}: BackdropProps) => {
+}) => {
     const [{ isMounted, status }, toggle] = useTransition({
         timeout,
         mountOnEnter: true,
@@ -54,7 +55,7 @@ export const Backdrop = ({
         if (!isMounted) onDestroyRef.current?.();
     }, [isMounted]);
 
-    if (!isMounted) return null;
+    if (!isMounted && !children) return null;
 
     return (
         <div
@@ -63,15 +64,18 @@ export const Backdrop = ({
             data-test-id={dataTestId}
             className={className}
             css={{
-                zIndex: -1,
-                position: 'fixed',
-                top: 0,
-                right: 0,
-                left: 0,
-                bottom: 0,
-                WebkitTapHighlightColor: 'transparent',
-                ...(invisible && { opacity: 0 }),
-                ...styles[status],
+                '&::after': {
+                    content: '""',
+                    position: 'fixed',
+                    top: 0,
+                    right: 0,
+                    left: 0,
+                    bottom: 0,
+                    zIndex: open && children ? zIndex : -1,
+                    WebkitTapHighlightColor: 'transparent',
+                    ...(invisible && { opacity: 0 }),
+                    ...styles[status],
+                },
             }}
             {...restProps}
         >

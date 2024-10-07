@@ -126,7 +126,11 @@ export const SimpleSelectWithTags = forwardRef<HTMLDivElement, SelectWithTagsPro
         const selectedCount = selected ? selected.length : selectedTags.length;
         const isEverythingSelected = options && selectedCount >= options.length;
 
-        const clearableProps = useSelectClear({ Field: TagList, onClearClick: onReset, disabled: restProps.disabled });
+        const clearableProps = useSelectClear({
+            Field: TagList,
+            ...(onReset && { onClearClick: onReset }),
+            disabled: restProps.disabled,
+        });
 
         return (
             <BaseSelect
@@ -223,10 +227,9 @@ export const SelectWithTags = forwardRef<
             collapseOnClose
             onChange={(event, payload) => {
                 onChange?.(event, payload);
+                if (!field?.onChange) return;
 
-                if (!field?.onChange || payload.selected === null) return;
-
-                const value = payload.selected.map(e => (typeof e === 'string' ? e : e.value));
+                const value = payload.selected?.map(e => (typeof e === 'string' ? e : e.value)) || null;
                 field.onChange({ target: { value } });
             }}
             onBlur={onBlur}

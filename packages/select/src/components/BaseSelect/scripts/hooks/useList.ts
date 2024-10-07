@@ -35,6 +35,7 @@ export const useList = ({
             const optionsListMinWidth = wrapperRef.current ? wrapperRef.current.getBoundingClientRect().width : 0;
 
             listRef.current.setAttribute('style', '');
+
             listRef.current.style[widthAttr] = `${optionsListMinWidth}px`;
         }
     }, [listRef, optionsListWidth, wrapperRef]);

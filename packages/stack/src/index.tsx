@@ -11,7 +11,7 @@ export type StackProps = {
 
     /**
      * Исходное значение для z-index.
-     * @default 5
+     * @default 10
      */
     value?: number;
 };

@@ -19,7 +19,7 @@
   },
   "references": [
     {
-      "path": "../common/tsconfig.json"
+      "path": "../common/tsconfig.json",
     }
   ]
 }

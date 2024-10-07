@@ -6,6 +6,7 @@ import { usePopupState, ActionType, Button } from '@greensight/core-components-c
 
 import README from '../README.md';
 import { ActionPopup, ActionEnum, ActionState } from './index';
+import { useActionPopup } from './scripts/useActionPopup';
 
 export default {
     title: 'Components / ActionPopup',
@@ -73,4 +74,35 @@ const Popup = (args: Record<string, any>) => {
 export const Basic: StoryObj<ComponentProps<typeof ActionPopup>> = {
     args: {},
     render: Popup,
+};
+
+const useActionHook = () => {
+    const { popupState, popupDispatch, ActionPopup, ActionEnum, ActionType } = useActionPopup();
+
+    return (
+        <>
+            <Button
+                onClick={() => {
+                    popupDispatch({
+                        type: ActionType.Delete,
+                        payload: {
+                            title: 'Вы уверены, что хотите удалить атрибут?',
+                            popupAction: ActionEnum.DELETE,
+                            onAction: async () => {
+                                alert('onAction');
+                            },
+                        },
+                    });
+                }}
+            >
+                Открыть
+            </Button>
+            <ActionPopup popupState={popupState} popupDispatch={popupDispatch} />
+        </>
+    );
+};
+
+export const WithUseActionPopup: StoryObj<ComponentProps<typeof ActionPopup>> = {
+    args: {},
+    render: useActionHook,
 };

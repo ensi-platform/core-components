@@ -36,7 +36,7 @@ export interface BackdropProps extends HTMLProps<HTMLDivElement> {
     /**
      * Дочерние элементы.
      */
-    children?: ReactNode | ReactNode[];
+    children?: ReactNode;
 
     /** Время анимации */
     timeout?: number;
@@ -44,5 +44,10 @@ export interface BackdropProps extends HTMLProps<HTMLDivElement> {
     /**
      * Набор стилей для разных состояний (открытие, закрытие)
      */
-    styles?: Partial<Record<TransitionStatus, CSSObject>>;
+    styles?: Record<TransitionStatus, CSSObject>;
+
+    /**
+     * z-index property for div::after inside Backdrop
+     */
+    zIndex?: number;
 }

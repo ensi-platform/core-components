@@ -54,7 +54,7 @@ export const Field = ({
     toggleMenu,
     rightAddons,
     innerProps,
-    ...props
+    ...restProps
 }: FieldProps) => {
     const wrapperRef = useRef<HTMLDivElement>(null);
 
@@ -82,13 +82,13 @@ export const Field = ({
             }}
             onFocus={onFocus}
             onBlur={onBlur}
-            {...innerProps}
         >
             <FormControl
                 block
                 size={controlSize}
                 variant={controlVariant}
                 focused={isOpen || focused}
+                filled={filled}
                 rightAddons={
                     (Arrow || rightAddons) && (
                         <>
@@ -97,7 +97,8 @@ export const Field = ({
                         </>
                     )
                 }
-                {...props}
+                {...restProps}
+                {...innerProps}
             >
                 <div className="control" css={totalFieldCSS}>
                     {placeholder && !filled && (
