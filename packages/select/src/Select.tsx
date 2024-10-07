@@ -4,7 +4,7 @@ import { useSelectClear } from './components';
 import { SimpleSelect } from './SimpleSelect';
 
 const getValue = (option: string | SelectItem) =>
-    typeof option === 'object' && 'key' in option && 'value' in option ? option.value : option;
+    typeof option === 'object' && 'label' in option && 'value' in option ? option.value : option;
 
 export const Select = forwardRef<
     HTMLDivElement,
@@ -24,19 +24,21 @@ export const Select = forwardRef<
             onBlur,
             selected,
             hideClearButton = false,
+            closeOnClear,
             onClear,
             ...props
         },
         ref
     ) => {
         const clearProps = useSelectClear({
+            closeOnClear,
             onClearClick:
                 onClear ||
                 (() => {
                     setTimeout(() => {
                         field?.onChange({
                             target: {
-                                value: '',
+                                value: null,
                             },
                         });
                     }, 0);
@@ -85,15 +87,17 @@ export const Select = forwardRef<
 
                     if (typeof field?.onChange === 'function') {
                         const value =
-                            (multiple || isValueArray) && payload?.selected
+                            (multiple || isValueArray) && payload?.selected && payload?.selected?.length > 1
                                 ? payload?.selected.map(e => e.value)
                                 : payload?.actionItem?.value;
 
-                        field.onChange({
-                            target: {
-                                value,
-                            },
-                        });
+                        if (!hideClearButton || payload?.selected !== null) {
+                            field.onChange({
+                                target: {
+                                    value,
+                                },
+                            });
+                        }
                     }
                 }}
                 onBlur={onBlur}

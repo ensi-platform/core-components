@@ -14,7 +14,7 @@ import { TagList } from '@greensight/core-components-select-with-tags';
 import { InputProps } from '@greensight/core-components-input';
 import mergeRefs from 'react-merge-refs';
 import { IAutocompleteProps } from './types';
-import AutocompleteField from '../Field';
+import { AutocompleteField } from '../Field';
 import { Clear } from '../Clear';
 
 export const BaseAutocomplete = forwardRef<HTMLInputElement, IAutocompleteProps>(

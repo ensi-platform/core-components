@@ -1,4 +1,4 @@
-import { ChangeEvent, forwardRef, useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import { forwardRef, useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import deepEqual from 'react-fast-compare';
 
 import {
@@ -22,6 +22,7 @@ export const AutocompleteAsync = forwardRef<HTMLInputElement, AutocompleteAsyncP
         {
             collapseTagList = false,
             multiple = false,
+            clearOnSelect = true,
             meta,
             field,
             helpers,
@@ -41,7 +42,7 @@ export const AutocompleteAsync = forwardRef<HTMLInputElement, AutocompleteAsyncP
         const [valuesMap, setValuesMap] = useState(new Map<any, SelectItem>());
 
         const selectedValues = useMemo(() => {
-            if (Array.isArray(field?.value)) return field?.value.filter(v => v !== '') as any[];
+            if (Array.isArray(field?.value)) return field?.value.filter(v => v !== '');
 
             return field?.value !== null && field?.value !== undefined && field?.value !== '' ? [field?.value] : [];
         }, [field?.value]);
@@ -204,10 +205,8 @@ export const AutocompleteAsync = forwardRef<HTMLInputElement, AutocompleteAsyncP
                 <BaseAutocomplete
                     ref={ref}
                     {...props}
-                    onInput={(e: ChangeEvent<HTMLInputElement>) => {
-                        optionsListProps.inputProps.onChange(e, {
-                            value: e.currentTarget.value,
-                        });
+                    onInput={e => {
+                        optionsListProps.inputProps.onChange(e, { value: e.currentTarget.value });
                         onInput?.(e);
 
                         if (!e.currentTarget.value) {
@@ -315,7 +314,6 @@ export const AutocompleteAsync = forwardRef<HTMLInputElement, AutocompleteAsyncP
                                             onClick={() => {
                                                 reset();
                                             }}
-                                            theme="outline"
                                         >
                                             Сбросить
                                         </Button>
@@ -371,9 +369,15 @@ export const AutocompleteAsync = forwardRef<HTMLInputElement, AutocompleteAsyncP
 
                     setValuesMap(new Map(valuesMapRef.current));
 
+                    if (clearOnSelect) reset();
+
                     if (!helpers) return;
 
-                    helpers.setValue(payload.selected?.map(e => (typeof e === 'string' ? e : e.value)));
+                    if (payload.selected === null && multiple) {
+                        helpers.setValue([]);
+                    } else {
+                        helpers.setValue(payload.selected?.map(e => (typeof e === 'string' ? e : e.value)));
+                    }
                 }}
                 collapseTagList={collapseTagList}
                 resetOnChange={false}

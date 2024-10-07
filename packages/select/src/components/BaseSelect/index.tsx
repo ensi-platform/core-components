@@ -136,7 +136,7 @@ export const BaseSelect = forwardRef(
                 innerProps: getItemProps({
                     index,
                     item: option,
-                    disabled: option.disabled,
+                    isItemDisabled: option.disabled,
                     onMouseDown: (event: MouseEvent) => event.preventDefault(),
                 }),
                 multiple,

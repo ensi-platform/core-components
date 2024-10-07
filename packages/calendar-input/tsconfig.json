@@ -21,6 +21,9 @@
         },
         {
             "path": "../popover/tsconfig.json"
-        }
+        },
+        {
+            "path": "../form/tsconfig.json"
+        },
     ]
 }

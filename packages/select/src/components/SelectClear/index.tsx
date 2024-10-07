@@ -82,7 +82,7 @@ export const useSelectClear = ({
                 }
             />
         ),
-        [Field, closeOnClear, disabled]
+        [onClearClick, Field, closeOnClear, disabled]
     );
 
     return {

@@ -20,7 +20,10 @@ The build can be parallelized for this purpose by defining the `BUILD_CONCURRENC
 
 Each parallel process takes about 0.5-1GB of RAM per node instance, so calculate your capabilities
 
-P.s. build.bat on windows is up-to-date but not debugged, there may be problems.
+To rebuild an individual component use
+`yarn build-component [COMPONENT_NAME]`, for ex. yarn build-component select
+
+P.s. build.bat for Windows is up-to-date but not debugged, there may be problems.
 
 ---
 ## Start working on the task
@@ -49,7 +52,7 @@ This way the linked repository will always have your `dist` build in it
 
 #### Resolving React version conflicts
 
-If there is a React version conflict, for example if devtools has an error “invalid react hook call”, follow this step to fix it:
+If there is a React version conflict, for example if devtools has warning “invalid react hook call”, follow this step to fix it:
 
 Link React from REP to the LIB, from the root of the LIB execute:
 ```bash

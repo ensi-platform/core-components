@@ -1,9 +1,8 @@
 import { CSSObject } from '@emotion/react';
 import { useContext, useEffect } from 'react';
 
-import { Layout } from '@greensight/core-components-common';
-
 import { BaseModalContext } from '@greensight/core-components-base-modal';
+import { Layout } from '@greensight/gds';
 import { usePopupContext } from '../PopupContext';
 import { FooterProps } from '../types';
 

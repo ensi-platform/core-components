@@ -83,6 +83,11 @@ export interface SelectStates {
     emitChangeOnClick?: boolean;
 
     /**
+     * Сворачивать при очистке
+     */
+    closeOnClear?: boolean;
+
+    /**
      * Разрешить растягивать компонент по вертикали чтобы уместить field
      */
     wrap?: boolean;

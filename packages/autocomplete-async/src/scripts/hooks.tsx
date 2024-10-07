@@ -1,4 +1,4 @@
-import { Reducer, useCallback, useEffect, useMemo, useReducer, useRef } from 'react';
+import { ChangeEvent, Reducer, useCallback, useEffect, useMemo, useReducer, useRef } from 'react';
 import deepEqual from 'react-fast-compare';
 import { OptionProps, SelectItem } from '@greensight/core-components-select';
 import { scale } from '@greensight/core-components-common';
@@ -58,7 +58,7 @@ export function useLazyLoading({
                     optionsMap.set(option.value, option);
                 });
 
-                const options = Array.from(optionsMap.values()).filter((option, index, arr) => {
+                const options = [...optionsMap.values()].filter((option, index, arr) => {
                     const i = arr.findIndex(item => item.label === option.label);
                     if (i === index) return true;
                     return !deepEqual(option, arr[i]);
@@ -148,6 +148,11 @@ export function useLazyLoading({
                 }
             );
 
+            /*
+             * Обсервим пересечение последней опции с контейнером.
+             * Таким образом, загрузка следующей "страницы" начнется когда юзер доскроллит список
+             * до верхнего края последней опции, что обеспечивает плавность
+             */
             const options = listRef.current?.querySelectorAll('[role="option"]');
             const lastOption = options?.[options.length - 1];
 
@@ -190,15 +195,28 @@ export function useLazyLoading({
 
     const onQueryStringChange = useCallback<Exclude<InputProps['onChange'], undefined>>((_, payload) => {
         dispatch(actions.setQueryString(payload.value));
+        /* eslint-disable no-unused-expressions */
 
+        /*
+         * Если во время загрузки опций юзер ввел новый текст в инпут,
+         * нужно прервать текущую загрузку, чтобы неактуальные опции не попали в выдачу
+         */
         abortFetchingOptionsRef.current?.();
 
         listRef.current?.scrollTo({ top: 0 });
 
+        /* Дебаунсим ввод текста, чтобы не отправлять запрос к новым опциям на каждый чих */
         if (fetchNextOptionsTimerRef.current) {
             clearTimeout(fetchNextOptionsTimerRef.current);
         }
         fetchNextOptionsTimerRef.current = setTimeout(() => {
+            /*
+             * После дебаунса необходимо вызвать функцию-загрузчик,
+             * содержащую актуальные на данный момент данные оффсета и queryString.
+             * Поэтому мы не можем обратиться напрямую к функции fetchNextOptions,
+             * так как она будет замкнута на старые значения, актуальные на момент вызова хэндлера,
+             * так что берем ее из обновляемого рефа
+             */
             fetchNextOptionsRef.current?.();
         }, DEBOUNCE_TIMEOUT);
     }, []);
@@ -244,7 +262,12 @@ export function useLazyLoading({
                 throw new Error(`Call of setValue with value ${JSON.stringify(value)}, expected type "string"`);
 
             if (revalidate) {
-                onQueryStringChange({} as any, { value });
+                const fakeEvent = {
+                    target: {
+                        value,
+                    },
+                } as ChangeEvent<HTMLInputElement>;
+                onQueryStringChange(fakeEvent, { value });
                 return;
             }
 

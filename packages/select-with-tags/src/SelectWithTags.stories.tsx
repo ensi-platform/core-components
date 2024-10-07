@@ -5,7 +5,8 @@ import { ComponentProps, SetStateAction, useCallback, useMemo, useState } from '
 import { Button, scale } from '@greensight/gds';
 import { SelectItem, SelectPayload } from '@greensight/core-components-select';
 
-import SelectWithTags, { SelectWithTagsProps } from '.';
+import Form from '@greensight/core-components-form';
+import { SelectWithTags, SelectWithTagsProps } from '.';
 import README from '../README.md';
 import { SimpleSelectWithTags } from './SelectWithTags';
 
@@ -91,8 +92,20 @@ export const Basic: StoryObj<Args> = {
     render: args => {
         const [open, setOpen] = useState(false);
         const [value, setValue] = useState('');
-        const [selected, setSelected] = useState<SelectWithTagsProps['selected']>([]);
+        const [selected, setSelected] = useState<SelectWithTagsProps['selected']>([
+            {
+                label: 'FakeKey',
+                content: 'Not Exist',
+                value: true,
+            },
+            {
+                label: 'false',
+                content: 'False value',
+                value: false,
+            },
+        ]);
         const selectedValues = useMemo(() => selected?.map((e: SelectItem) => e.value), [selected]);
+
         const handleInput = (event: { target: { value: SetStateAction<string> } }) => {
             setValue(event.target.value);
         };
@@ -100,6 +113,7 @@ export const Basic: StoryObj<Args> = {
         const handleChange: SelectWithTagsProps['onChange'] = useCallback((event: any, payload: SelectPayload) => {
             setSelected(payload.selected === null ? [] : payload.selected);
         }, []);
+
         const transformCollapsedTagText = (count: number) => `+${count} элементов`;
 
         return (
@@ -127,4 +141,44 @@ export const Basic: StoryObj<Args> = {
             </div>
         );
     },
+};
+
+export const WithForm: StoryObj<ComponentProps<typeof SelectWithTags>> = {
+    args: {
+        disabled: false,
+        wrap: true,
+        allowUnselect: false,
+        options: [
+            {
+                label: 'Red',
+                value: 131,
+            },
+            {
+                label: 'blue',
+                value: 42,
+            },
+        ],
+    },
+    argTypes: {},
+    render: ({ ...args }) => (
+        <div style={{ width: 500, minHeight: 800 }}>
+            <Form
+                initialValues={{ selectValue: null, otherField: '' }}
+                onSubmit={values => {
+                    console.log('SUBMIT FORM VALUES', values);
+                }}
+            >
+                <Form.Field name="selectValue" label="SelectWithTags" required>
+                    <SelectWithTags options={args.options} />
+                </Form.Field>
+                <br />
+                <Form.Field name="otherField" placeholder="При вводе в это поле нет лагов перерендера" size="md" />
+                <br />
+                <Button type="submit">Отправить</Button>
+                <Button type="reset" theme="secondary">
+                    Сбросить
+                </Button>
+            </Form>
+        </div>
+    ),
 };
