@@ -1,6 +1,6 @@
 import { FC, ReactNode, MouseEvent, RefObject } from 'react';
 
-import { SelectItem } from '@greensight/core-components-select';
+import { SelectItem, SelectProps } from '@greensight/core-components-select';
 import { OptionProps } from '../Option/types';
 
 export type useVisibleOptionsArgs = {
@@ -65,6 +65,11 @@ export type OptionsListProps = {
      * Флаг, открыто ли меню
      */
     isOpen?: boolean;
+
+    /**
+     * Компонент группы
+     */
+    Optgroup?: SelectProps['Optgroup'];
 
     /**
      * Будет отображаться, если компонент пустой
