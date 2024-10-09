@@ -1,0 +1,37 @@
+{
+  "include": [
+    "src",
+    "../../typings",
+    "src/autocompleteAsync.stories.tsx"
+  ],
+  "extends": "../../tsconfig.json",
+  "compilerOptions": {
+    "outDir": "dist",
+    "rootDirs": [
+      "src"
+    ],
+    "baseUrl": ".",
+    "paths": {
+      "@greensight/core-components-*": [
+        "../*/src"
+      ]
+    }
+  },
+  "references": [
+    {
+      "path": "../common/tsconfig.json"
+    },
+    {
+      "path": "../select/tsconfig.json"
+    },
+    {
+      "path": "../tags/tsconfig.json"
+    },
+    {
+      "path": "../input/tsconfig.json"
+    },
+    {
+      "path": "../select-with-tags/tsconfig.json"
+    }
+  ]
+}

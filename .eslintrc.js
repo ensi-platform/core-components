@@ -6,12 +6,12 @@ module.exports = {
         jest: true,
     },
     extends: [
-        'next',
         'airbnb',
         'prettier',
         'plugin:mdx/recommended',
         'plugin:jsx-a11y/recommended',
         'plugin:storybook/recommended',
+        'plugin:react-hooks/recommended',
     ],
     parser: '@typescript-eslint/parser',
     parserOptions: {
@@ -41,6 +41,7 @@ module.exports = {
         camelcase: 0,
         'react/jsx-filename-extension': 0,
         'react/jsx-props-no-spreading': 0,
+        'react/function-component-definition': 0,
         'import/no-unresolved': [
             2,
             {
@@ -89,6 +90,12 @@ module.exports = {
         {
             files: ['*.mdx'],
             extends: ['plugin:mdx/overrides'],
+        },
+        {
+            files: ['*.stories.tsx'],
+            rules: {
+                'react-hooks/rules-of-hooks': 'off',
+            },
         },
     ],
     globals: {

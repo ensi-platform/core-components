@@ -1,0 +1,24 @@
+{
+    "include": ["src", "../../typings", "src/dropzone.stories.tsx"],
+    "extends": "../../tsconfig.json",
+    "compilerOptions": {
+        "outDir": "dist",
+        "rootDirs": ["src"],
+        "baseUrl": ".",
+        "paths": {
+            "react": ["node_modules/@types/react"],
+            "@greensight/core-components-*": ["../*/src"]
+        }
+    },
+    "references": [
+        {
+            "path": "../common/tsconfig.json"
+        },
+        {
+            "path": "../form-control/tsconfig.json"
+        },
+        {
+            "path": "../loading-skeleton/tsconfig.json"
+        }
+    ]
+}

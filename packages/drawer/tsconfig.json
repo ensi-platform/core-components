@@ -1,0 +1,31 @@
+{
+  "include": [
+    "src",
+    "../../typings",
+    "src/Drawer.stories.tsx"
+  ],
+  "extends": "../../tsconfig.json",
+  "compilerOptions": {
+    "outDir": "dist",
+    "rootDirs": [
+      "src"
+    ],
+    "baseUrl": ".",
+    "paths": {
+      "@greensight/core-components-*": [
+        "../*/src"
+      ]
+    }
+  },
+  "references": [
+    {
+      "path": "../base-modal/tsconfig.json"
+    },
+    {
+      "path": "../common/tsconfig.json"
+    },
+    {
+      "path": "../popup/tsconfig.json"
+    }
+  ]
+}

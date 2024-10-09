@@ -1,4 +1,4 @@
-import '@testing-library/jest-dom/extend-expect';
+// import '@testing-library/jest-dom/extend-expect';
 import * as MockDate from 'mockdate';
 
 // текущая дата для тестов

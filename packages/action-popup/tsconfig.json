@@ -1,0 +1,13 @@
+{
+    "include": ["src", "README.md", "src/**/*.ts", "src/**/*.tsx", "src/ActionPopup.stories.tsx", "../../typings"],
+    "extends": "../../tsconfig.json",
+    "compilerOptions": {
+        "outDir": "dist",
+        "rootDirs": ["src"],
+        "baseUrl": ".",
+        "paths": {
+            "@greensight/core-components-*": ["../*/src"]
+        }
+    },
+    "references": [{ "path": "../popup/tsconfig.json" }, { "path": "../common/tsconfig.json" }]
+}

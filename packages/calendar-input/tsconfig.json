@@ -1,0 +1,29 @@
+{
+    "include": ["src", "../../typings", "src/calendar-input.stories.tsx"],
+    "extends": "../../tsconfig.json",
+    "compilerOptions": {
+        "outDir": "dist",
+        "rootDirs": ["src"],
+        "baseUrl": ".",
+        "paths": {
+            "@greensight/core-components-*": ["../*/src"]
+        }
+    },
+    "references": [
+        {
+            "path": "../calendar/tsconfig.json"
+        },
+        {
+            "path": "../common/tsconfig.json"
+        },
+        {
+            "path": "../input/tsconfig.json"
+        },
+        {
+            "path": "../popover/tsconfig.json"
+        },
+        {
+            "path": "../form/tsconfig.json"
+        },
+    ]
+}

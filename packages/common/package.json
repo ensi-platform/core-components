@@ -1,0 +1,42 @@
+{
+    "name": "@greensight/core-components-common",
+    "version": "1.0.0",
+    "description": "Common resources and scripts",
+    "keywords": [],
+    "license": "MIT",
+    "main": "index.js",
+    "module": "./esm/index.js",
+    "publishConfig": {
+        "access": "public",
+        "directory": "dist"
+    },
+    "peerDependencies": {
+        "@emotion/react": "11.11.1",
+        "@emotion/styled": "11.11.5",
+        "@svgr/core": "^8.1.0",
+        "emotion-rgba": "^0.0.12",
+        "react": "^16.9.0 || ^17.0.1 || ^18.0.0",
+        "react-dom": "^16.9.0 || ^17.0.1 || ^18.0.0",
+        "react-hook-form": "^7.0.0"
+    },
+    "dependencies": {
+        "@greensight/gds": "^3.0.14",
+        "@loadable/component": "^5.16.3",
+        "case": "^1.6.3",
+        "tslib": "^2.6.2",
+        "@svgr/plugin-jsx": "8.1.0",
+        "date-fns": "^2.30.0"
+    },
+    "devDependencies": {
+        "@types/loadable__component": "5.13.9",
+        "babel-eslint": "10.0.3",
+        "babel-jest": "24.9.0",
+        "babel-loader": "8.3.0",
+        "babel-plugin-module-rewrite": "0.2.0",
+        "babel-plugin-react-intl": "5.1.1",
+        "babel-plugin-transform-dynamic-import": "2.1.0",
+        "babel-plugin-transform-react-remove-prop-types": "0.4.24",
+        "babel-plugin-transform-rename-import": "2.3.0",
+        "babel-preset-jest": "24.9.0"
+    }
+}
