@@ -1,7 +1,8 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { ComponentProps, useState } from 'react';
 
-import { Tooltip, TooltipProps } from './index';
+import Tooltip, { ITooltipProps } from './index';
+import { POSITION_OPTIONS } from './scripts';
 import README from '../README.md';
 
 export default {
@@ -16,22 +17,7 @@ export default {
     },
     args: {},
     argTypes: {},
-} as Meta<TooltipProps>;
-
-const POSITION_OPTIONS = [
-    'top',
-    'top-start',
-    'top-end',
-    'bottom',
-    'bottom-start',
-    'bottom-end',
-    'right',
-    'right-start',
-    'right-end',
-    'left',
-    'left-start',
-    'left-end',
-] as const;
+} as Meta<ITooltipProps>;
 
 export const Basic: StoryObj<ComponentProps<typeof Tooltip> & { offsetX: number; offsetY: number }> = {
     args: {
@@ -66,7 +52,7 @@ export const Basic: StoryObj<ComponentProps<typeof Tooltip> & { offsetX: number;
 
         return (
             <div
-                style={{
+                css={{
                     width: '100%',
                     height: '300px',
                     display: 'flex',
@@ -87,7 +73,7 @@ export const Basic: StoryObj<ComponentProps<typeof Tooltip> & { offsetX: number;
                     onClose={handleClose}
                     fallbackPlacements={['bottom', 'top']}
                 >
-                    <div style={{ padding: '16px', border: '1px dashed rgba(0, 0, 0, 0.1)' }}>Подробнее</div>
+                    <div css={{ padding: '16px', border: '1px dashed rgba(0, 0, 0, 0.1)' }}>Подробнее</div>
                 </Tooltip>
             </div>
         );

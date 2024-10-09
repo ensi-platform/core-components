@@ -1,174 +1,58 @@
-import React, { ClassAttributes, FC, HTMLAttributes, useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import React, { FC, useMemo, ClassAttributes, HTMLAttributes } from 'react';
+import { CSSObject } from '@emotion/react';
 import mergeRefs from 'react-merge-refs';
 import deepmerge from 'deepmerge';
 
 import { Popover } from '@greensight/core-components-popover';
-
-import { CSSObject } from '@emotion/react';
 import { useThemeCSSPart } from '@greensight/core-components-common';
-import { TooltipThemeState, type TooltipProps, Trigger } from './types';
+
 import { tooltipThemes } from './themes/defaultTheme';
+import { useTooltip, DEFAULT_OFFSET, EMPTY_OBJ } from './scripts';
+import { ITooltipProps, TooltipThemeStateType } from './types';
 
-export * from './types';
+const Tooltip: FC<ITooltipProps> = ({
+        children,
+        content,
+        trigger = 'hover',
+        onCloseDelay = 300,
+        onOpenDelay = 300,
+        dataTestId,
+        open: forcedOpen,
+        offset = DEFAULT_OFFSET,
+        position,
+        contentCSS = EMPTY_OBJ,
+        arrowCSS = EMPTY_OBJ,
+        className,
+        updatePopover,
+        targetCSS = EMPTY_OBJ,
+        targetTag: TargetTag = 'div',
+        zIndex,
+        onClose,
+        onOpen,
+        getPortalContainer,
+        view = 'tooltip',
+        targetRef = null,
+        fallbackPlacements,
+        preventOverflow = true,
+        availableHeight = false,
+        anchor = null,
+        useAnchorWidth,
+        theme = tooltipThemes.basic,
+    }) => {
+    const { target, visible, contentRef, handleOpen, handleClose, changeTarget } = useTooltip({
+        onOpenDelay,
+        onCloseDelay,
+        forcedOpen,
+        trigger,
+        onOpen,
+        onClose,
+    });
 
-const DEFAULT_OFFSET: [number, number] = [0, 16];
+    const eventHandlers = trigger === 'hover'
+        ? { onMouseEnter: handleOpen, onMouseLeave: handleClose }
+        : { onClick: visible ? handleClose : handleOpen };
 
-const EMPTY_OBJ: CSSObject = {};
-
-export const Tooltip: FC<TooltipProps> = ({
-    children,
-    content,
-    trigger: propsTrigger = 'hover',
-    onCloseDelay = 300,
-    onOpenDelay = 300,
-    dataTestId,
-    open: forcedOpen,
-    offset = DEFAULT_OFFSET,
-    position,
-    contentCSS = EMPTY_OBJ,
-    arrowCSS = EMPTY_OBJ,
-    className,
-    updatePopover,
-    targetCSS = EMPTY_OBJ,
-    targetTag: TargetTag = 'div',
-    zIndex,
-    onClose,
-    onOpen,
-    getPortalContainer,
-    view = 'tooltip',
-    targetRef = null,
-    fallbackPlacements,
-    preventOverflow = true,
-    availableHeight = false,
-    anchor = null,
-    useAnchorWidth,
-    theme = tooltipThemes.basic,
-}) => {
-    const [trigger, setTrigger] = useState<Trigger>('click');
-
-    useEffect(() => {
-        setTimeout(() => {
-            setTrigger(propsTrigger || 'hover');
-        }, 100);
-    }, [propsTrigger]);
-
-    const [visible, setVisible] = useState(!!forcedOpen);
-    const [target, setTarget] = useState<HTMLElement | null>(null);
-
-    const contentRef = useRef<HTMLDivElement | null>(null);
-    const timer = useRef(0);
-
-    const show = forcedOpen === undefined ? visible : forcedOpen;
-
-    const open = useCallback(() => {
-        if (!show) {
-            setVisible(true);
-
-            if (onOpen) {
-                onOpen();
-            }
-        }
-    }, [onOpen, show]);
-
-    const close = useCallback(() => {
-        if (show) {
-            setVisible(false);
-
-            if (onClose) {
-                onClose();
-            }
-        }
-    }, [onClose, show]);
-
-    const toggle = useCallback(() => {
-        if (show) {
-            close();
-        } else {
-            open();
-        }
-    }, [close, open, show]);
-
-    const clickedOutside = useCallback(
-        (node: Element): boolean => {
-            if (target && target.contains(node)) {
-                return false;
-            }
-
-            if (contentRef.current && contentRef.current.contains(node)) {
-                return false;
-            }
-
-            return true;
-        },
-        [target]
-    );
-
-    useEffect(() => {
-        const handleBodyClick = (event: MouseEvent | TouchEvent) => {
-            const eventTarget = event.target as Element;
-
-            if (clickedOutside(eventTarget)) {
-                close();
-            }
-        };
-
-        document.body.addEventListener('click', handleBodyClick);
-        document.body.addEventListener('touchstart', handleBodyClick);
-
-        return () => {
-            document.body.removeEventListener('click', handleBodyClick);
-            document.body.removeEventListener('touchstart', handleBodyClick);
-
-            clearTimeout(timer.current);
-        };
-    }, [clickedOutside, close]);
-
-    const handleTargetClick = useCallback(() => {
-        toggle();
-    }, [toggle]);
-
-    const handleMouseOver = useCallback(() => {
-        clearTimeout(timer.current);
-
-        timer.current = window.setTimeout(() => {
-            open();
-        }, onOpenDelay);
-    }, [onOpenDelay, open]);
-
-    const handleMouseOut = useCallback(() => {
-        clearTimeout(timer.current);
-
-        timer.current = window.setTimeout(() => {
-            close();
-        }, onCloseDelay);
-    }, [close, onCloseDelay]);
-
-    const handleTouchStart = useCallback(
-        (event: React.TouchEvent<HTMLElement>) => {
-            const eventTarget = event.target as Element;
-
-            clearTimeout(timer.current);
-
-            if (clickedOutside(eventTarget)) {
-                timer.current = window.setTimeout(() => {
-                    close();
-                }, onCloseDelay);
-            } else {
-                open();
-            }
-        },
-        [clickedOutside, close, onCloseDelay, open]
-    );
-
-    const onClickProps = { onClick: handleTargetClick };
-
-    const onHoverProps = {
-        onMouseOver: handleMouseOver,
-        onMouseOut: handleMouseOut,
-        onTouchStart: handleTouchStart,
-    };
-
-    const themeState = useMemo<TooltipThemeState>(
+    const themeState = useMemo<TooltipThemeStateType>(
         () => ({
             targetTag: TargetTag,
             view,
@@ -177,56 +61,29 @@ export const Tooltip: FC<TooltipProps> = ({
     );
 
     const getCSS = useThemeCSSPart(theme, themeState);
-
     const themeContentCSS = useMemo<CSSObject>(() => getCSS('content', themeState), [getCSS, themeState]);
     const themeTargetCSS = useMemo<CSSObject>(() => getCSS('target', themeState), [getCSS, themeState]);
 
-    const getTargetProps = (): HTMLAttributes<HTMLElement> => {
-        const props = {
-            css: deepmerge.all<CSSObject>([themeTargetCSS, targetCSS]),
-        };
-
-        switch (trigger) {
-            case 'click':
-                return {
-                    ...props,
-                    ...onClickProps,
-                };
-            case 'hover':
-                return {
-                    ...props,
-                    ...onHoverProps,
-                };
-            default:
-                return {};
-        }
-    };
-
-    const getContentProps = (): ClassAttributes<HTMLDivElement> => {
-        const props = {
+    const getContentProps = (): ClassAttributes<HTMLDivElement> =>
+         ({
             ref: contentRef,
             'data-test-id': dataTestId,
             css: deepmerge.all<CSSObject>([themeContentCSS, contentCSS]),
-        };
+            ...eventHandlers,
+        })
+    ;
 
-        switch (trigger) {
-            case 'hover':
-                return {
-                    ...props,
-                    ...onHoverProps,
-                };
-            default:
-                return props;
-        }
-    };
+    const getTargetProps = (): HTMLAttributes<HTMLElement> => ({
+            css: deepmerge.all<CSSObject>([themeTargetCSS, targetCSS]),
+            ...eventHandlers,
+        });
 
     return (
         <>
-            <TargetTag ref={mergeRefs([targetRef, setTarget])} {...getTargetProps()}>
+            <TargetTag ref={mergeRefs([targetRef, changeTarget])} {...getTargetProps()}>
                 {children.props.disabled && (
                     <div
                         css={{
-                            // overlap
                             cursor: 'not-allowed',
                             position: 'absolute',
                             height: '100%',
@@ -240,7 +97,7 @@ export const Tooltip: FC<TooltipProps> = ({
 
             <Popover
                 anchorElement={anchor || target}
-                open={show}
+                open={visible}
                 getPortalContainer={getPortalContainer}
                 arrowCSS={arrowCSS}
                 popperCSS={{}}
@@ -260,3 +117,5 @@ export const Tooltip: FC<TooltipProps> = ({
         </>
     );
 };
+
+export default Tooltip;

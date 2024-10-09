@@ -1,9 +1,10 @@
-# Компонент tooltip
+# Tooltip Component
 
-Если тултип не помещается в переданной позиции (position), то он отобразится с противоположной стороны (если там будет место).
+The Tooltip component displays a tooltip when hovering or clicking on a target element.
 
-Можно вручную указать, в каких позициях он будет отображаться, в случае нехватки места, через свойство fallbackPlacements.
+ - If the tooltip does not fit in the given position (```position``` prop), it will be displayed on the opposite side if there is space.
+ - You can manually specify fallback positions using the ```fallbackPlacements``` prop. This sets alternative positions where the tooltip can appear if there isn’t enough space.
+ - If the tooltip doesn't fit within the visible screen area, you can pass the ```availableHeight``` prop to adjust its height according to the screen edge.
+ - For ```left``` and ```right``` positions, if the tooltip overflows off-screen, you need to pass ```preventOverflow = false``` as an additional parameter.
 
-В случае если тултип не помещается в видимой области экрана, можно передать параметр availableHeight, чтобы компонент подстроил свою высоту под край экрана Для position left и right необходимо дополнительно передать параметр preventOverflow = false.
-
-Основан на  [alfalab/core-components](https://github.com/alfa-laboratory/core-components)
+This component is based on the [alfalab/core-components](https://github.com/alfa-laboratory/core-components) library.

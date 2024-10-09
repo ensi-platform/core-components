@@ -1,9 +1,9 @@
 import { scale, defaultTheme } from '@greensight/core-components-common';
-import { TooltipTheme } from '../types';
+import { TooltipThemeType } from '../types';
 
 const { colors, shadows } = defaultTheme;
 
-const basicTheme: TooltipTheme = {
+const basicTheme: TooltipThemeType = {
     content: {
         padding: scale(2),
         maxWidth: scale(46),
@@ -18,9 +18,9 @@ const basicTheme: TooltipTheme = {
 };
 
 export const tooltipThemes = {
-    basic: basicTheme as TooltipTheme,
+    basic: basicTheme as TooltipThemeType,
 };
 
-export const setBasicTooltipTheme = (theme: TooltipTheme) => {
+export const setBasicTooltipTheme = (theme: TooltipThemeType) => {
     tooltipThemes.basic = theme;
 };
