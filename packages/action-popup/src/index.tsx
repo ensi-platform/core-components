@@ -1,6 +1,6 @@
-import { KeyboardEvent, MouseEvent, ReactNode, useMemo } from 'react';
+import { ReactNode, useMemo } from 'react';
 
-import { Popup, PopupProps, Content } from '@greensight/core-components-popup';
+import { Popup, Content } from '@greensight/core-components-popup';
 import {
     scale,
     defaultTheme,
@@ -13,26 +13,13 @@ import {
 } from '@greensight/core-components-common';
 
 import { ActionEnum, ThemesEnum } from './scripts/enums';
+import { IActionPopupProps } from './types';
 
 const { colors, typography, theme } = defaultTheme;
 
 export * from './scripts/enums';
+export * from './scripts/hooks/useActionPopup';
 export * from './types';
-
-export interface IActionPopupProps extends Omit<PopupProps, 'title' | 'onBackdropClick'> {
-    action?: ActionEnum;
-    title?: string;
-    leftAddonIconTheme?: `${ThemesEnum}`;
-    onAction?: () => void;
-    disableAction?: boolean;
-    disableClose?: boolean;
-    disableFooter?: boolean;
-    blockButtons?: boolean;
-    onBackdropClick?: (
-        event: MouseEvent<HTMLElement> | KeyboardEvent<HTMLElement>,
-        reason?: 'backdropClick' | 'escapeKeyDown' | 'closerClick'
-    ) => void;
-}
 
 export const ActionPopup = ({
     action,

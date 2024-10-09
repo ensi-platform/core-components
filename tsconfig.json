@@ -28,7 +28,7 @@
             "@greensight/core-components-calendar/*": ["packages/calendar/src/*"],
             "@greensight/core-components-common/*": ["packages/common/src/*"],
             "@greensight/core-components-copy-button/*": ["packages/copy-button/src/*"],
-            "@greensight/core-components-description-list/*": ["packages/description-list/src/*"],
+            "@greensight/core-components-info-list/*": ["packages/info-list/src/*"],
             "@greensight/core-components-popup/*": ["packages/popup/src/*"],
             "@greensight/core-components-portal/*": ["packages/portal/src/*"],
             "@greensight/core-components-price/*": ["packages/price/src/*"],
