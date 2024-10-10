@@ -1,8 +1,7 @@
-import { CSSObject } from '@emotion/react';
 import { ResizeObserver as ResizeObserverPolyfill } from '@juggle/resize-observer';
-import { BasePlacement, ModifierArguments, Obj, VariationPlacement } from '@popperjs/core';
+import { ModifierArguments, Obj } from '@popperjs/core';
 import maxSize from 'popper-max-size-modifier';
-import { CSSProperties, MutableRefObject, ReactNode, forwardRef, useEffect, useMemo, useRef, useState } from 'react';
+import { CSSProperties, forwardRef, useEffect, useMemo, useRef, useState } from 'react';
 import mergeRefs from 'react-merge-refs';
 import { usePopper } from 'react-popper';
 import { useTransition, TransitionOptions, TransitionStatus } from 'react-transition-state';
@@ -12,16 +11,10 @@ import { Stack, stackingOrder } from '@greensight/core-components-stack';
 
 import { defaultTheme } from '@greensight/core-components-common';
 
+import { IPopoverProps, RefElement, IPopperModifier } from './types';
+import { DEFAULT_TRANSITION, MIN_ARROW_SHIFT_SIZE } from './scripts';
+
 const { colors } = defaultTheme;
-
-type RefElement = HTMLElement | null;
-
-export type Position = BasePlacement | VariationPlacement;
-
-type PopperModifier = {
-    name: string;
-    options: Obj;
-};
 
 const extractTransitionDuration = (status: TransitionStatus, options: TransitionOptions) => {
     if (status === 'unmounted') return 0;
@@ -32,126 +25,7 @@ const extractTransitionDuration = (status: TransitionStatus, options: Transition
     return options.timeout.enter || 0;
 };
 
-export type PopoverProps = {
-    tabFocusableWrapper?: boolean;
-
-    /**
-     * Управление состоянием поповера (открыт/закрыт)
-     */
-    open: boolean;
-
-    /**
-     * Элемент, относительного которого появляется поповер
-     */
-    anchorElement: RefElement;
-
-    /**
-     * Использовать ширину родительского элемента
-     */
-    useAnchorWidth?: boolean;
-
-    /**
-     * Позиционирование поповера
-     */
-    position?: Position;
-
-    /**
-     * Запрещает поповеру менять свою позицию.
-     * Например, если места снизу недостаточно,то он все равно будет показан снизу
-     */
-    preventFlip?: boolean;
-
-    /**
-     * Запрещает поповеру менять свою позицию, если он не влезает в видимую область.
-     */
-    preventOverflow?: boolean;
-
-    /**
-     *  Позволяет поповеру подствраивать свою высоту под границы экрана, если из-за величины контента он выходит за рамки видимой области экрана
-     */
-    availableHeight?: boolean;
-
-    /**
-     * Если `true`, будет отрисована стрелочка
-     */
-    withArrow?: boolean;
-
-    /**
-     * Смещение поповера.
-     * Если позиционирование top, bottom, то [x, y].
-     * Если позиционирование left, right то [y, x].
-     */
-    offset?: [number, number];
-
-    /**
-     * Дополнительный стилб для поповера
-     */
-    popperCSS?: CSSObject;
-
-    /**
-     * Дополнительный стиль для стрелочки
-     */
-    arrowCSS?: CSSObject;
-
-    /**
-     * Функция, возвращающая контейнер, в который будет рендериться поповер
-     */
-    getPortalContainer?: () => HTMLElement;
-
-    /**
-     * TransitionOptions, прокидываются в хук useTransition.
-     */
-    transitionOptions?: TransitionOptions;
-
-    /**
-     * Рендерит компонент, обернутый в Transition
-     */
-    withTransition?: boolean;
-
-    /**
-     * Идентификатор для систем автоматизированного тестирования
-     */
-    dataTestId?: string;
-
-    /**
-     * Хранит функцию, с помощью которой можно обновить положение компонента
-     */
-    update?: MutableRefObject<() => void>;
-
-    /**
-     * Дополнительный класс
-     */
-    className?: string;
-
-    /**
-     * z-index компонента
-     */
-    zIndex?: number;
-
-    /**
-     * Если поповер не помещается в переданной позиции (position), он попробует открыться в другой позиции,
-     * по очереди для каждой позиции из этого списка.
-     * Если не передавать, то поповер открывается в противоположном направлении от переданного position.
-     */
-    fallbackPlacements?: Position[];
-
-    /**
-     * Контент
-     */
-    children?: ReactNode;
-};
-
-const DEFAULT_TRANSITION: TransitionOptions = {
-    timeout: 150,
-};
-
-/**
- * Минимальный размер anchorElement,
- * при котором возможно смещение стрелочки относительно центра
- */
-const MIN_ARROW_SHIFT_SIZE = 75;
-
-export const Popover = forwardRef<HTMLDivElement, PopoverProps>(
+export const Popover = forwardRef<HTMLDivElement, IPopoverProps>(
     (
         {
             tabFocusableWrapper,
@@ -213,7 +87,7 @@ export const Popover = forwardRef<HTMLDivElement, PopoverProps>(
         );
 
         const modifiers = useMemo(() => {
-            const result: PopperModifier[] = [{ name: 'offset', options: { offset } }];
+            const result: IPopperModifier[] = [{ name: 'offset', options: { offset } }];
 
             if (withArrow) {
                 result.push({ name: 'arrow', options: { element: arrowElement } });
