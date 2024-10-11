@@ -7,7 +7,7 @@ import {
     IDescriptionListBaseItem,
     IDescriptionListBooleanItem,
     IDescriptionListDateItem,
-} from '../../types';
+} from '@greensight/core-components-description-list';
 
 /**
  * Get a value depending on the content type

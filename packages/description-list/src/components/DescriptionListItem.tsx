@@ -1,5 +1,5 @@
-import { useGetInfoItemValue, useDescriptionListCSS } from '../scripts';
-import { DescriptionListItemType } from '../types';
+import { DescriptionListItemType } from '@greensight/core-components-description-list';
+import { useGetInfoItemValue, useDescriptionListCSS } from '../scripts/hooks';
 
 /**
  *  Description list item

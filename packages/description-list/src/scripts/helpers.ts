@@ -1,4 +1,4 @@
-import { IDefaultDateParams, DescriptionListItemType } from '../types';
+import { IDefaultDateParams, DescriptionListItemType } from '@greensight/core-components-description-list';
 
 /**
  * Get params' objects for default dates
