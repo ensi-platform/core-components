@@ -3,7 +3,9 @@ import { CSSObject } from '@emotion/react';
 import { scale, defaultTheme } from '@greensight/core-components-common';
 
 const { colors } = defaultTheme;
+
 const nameStyles: CSSObject = { color: colors.grey800 };
+
 const dashedItemStyles: CSSObject = {
     position: 'relative',
     display: 'block',
@@ -21,4 +23,4 @@ const dashedItemStyles: CSSObject = {
 const valueStyles: CSSObject = { textAlign: 'right', flexShrink: 1, wordBreak: 'break-all' };
 const ulStyles: CSSObject = { li: { display: 'flex', marginBottom: scale(1) } };
 
-export const useInfoListCSS = () => ({ ulStyles, nameStyles, dashedItemStyles, valueStyles });
+export const useDescriptionListCSS = () => ({ ulStyles, nameStyles, dashedItemStyles, valueStyles });
