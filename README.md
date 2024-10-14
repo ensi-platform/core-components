@@ -75,13 +75,13 @@ To test integration in prod-build mode, you should publish LIB to npm (and unlin
 
 1. Once the task is finished, you should add new version to package json:
 
--   PATCH version when you make backward compatible bug fixes
--   MINOR version when you add functionality in a backward compatible manner
--   MAJOR version when you make incompatible API changes
+    - PATCH version when you make backward compatible bug fixes
+    - MINOR version when you add functionality in a backward compatible manner
+    - MAJOR version when you make incompatible API changes
 
 2. Build the LIB and go to the `dist/` build folder and from there run command `yarn publish --access=public`. Specify the same new version from package.json.
 
-New version of the package will include all the contents of the dist folder, but you can always adjust the whitelist in the `dist/package.json` parameter `files`.
+    New version of the package will include all the contents of the dist folder, but you can always adjust the whitelist in the `dist/package.json` parameter `files`.
 
 3. After you merge your task-branch into master-branch, add a new annotated git tag with new version identifier.
    Push it to gitlab-repository, release it and fill the release description changes.
