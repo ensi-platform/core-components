@@ -27,7 +27,18 @@ export const Basic: StoryObj<ComponentProps<typeof DescriptionList> & { items: D
             { name: 'Creation date', value: '05.05.2023', type: 'date' },
         ],
     },
-    argTypes: {},
+    argTypes: {
+        items: {
+            description: 'list items',
+            table: {
+                type: { summary: 'DescriptionListItemType[]' },
+            },
+            type: { name: 'array', value: { name: 'other', value: 'DescriptionListItemType' }, required: true },
+            control: {
+                type: 'object',
+            },
+        },
+    },
     render: ({ items }) => (
         <DescriptionList>
             {items.map(item => (
