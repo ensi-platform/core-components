@@ -3,10 +3,7 @@ import { IDefaultDateParams, DescriptionListItemType } from '@greensight/core-co
 /**
  * Get params' objects for default dates
  */
-export const getDefaultDateParams = ({
-    created_at,
-    updated_at,
-}: IDefaultDateParams): Array<DescriptionListItemType> => [
+export const getDefaultDates = ({ created_at, updated_at }: IDefaultDateParams): Array<DescriptionListItemType> => [
     {
         name: 'Дата создания',
         value: created_at,
