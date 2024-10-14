@@ -1,8 +1,9 @@
 import { CSSObject } from '@emotion/react';
-import { useTheme, scale, typography } from '../gds';
+import { scale, typography } from '../gds';
+import { defaultTheme } from '../../index';
 
 export const useListCSS = () => {
-    const { colors } = useTheme();
+    const { colors } = defaultTheme;
 
     const dlBaseStyles: CSSObject = { display: 'grid', gridTemplateColumns: "'1fr 1fr'" };
     const dtBaseStyles: CSSObject = {

@@ -120,7 +120,6 @@ export const DaysTable: FC<DaysTableProps> = ({
                     }
                 }}
                 type="button"
-                // theme="ghost"
                 size="sm"
                 disabled={day.disabled}
                 css={getCSS('daysTableButton', state)}
@@ -144,7 +143,12 @@ export const DaysTable: FC<DaysTableProps> = ({
                 <tr>{renderHeader()}</tr>
             </thead>
             <TransitionGroup component={null}>
-                <CSSTransition key={activeMonth.getTime()} timeout={300} classNames="fade" css={getCSS('keyframes', { direction })}>
+                <CSSTransition
+                    key={activeMonth.getTime()}
+                    timeout={300}
+                    classNames="fade"
+                    css={getCSS('keyframes', { direction })}
+                >
                     <tbody>{weeks.map(renderWeek)}</tbody>
                 </CSSTransition>
             </TransitionGroup>

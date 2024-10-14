@@ -8,16 +8,29 @@ export interface BadgeProps {
     type?: STATUSES;
 }
 
-const STATUS_COLORS: Record<STATUSES, string> = {
-    [STATUSES.CREATED]: colors?.primary,
-    [STATUSES.SUCCESS]: colors?.success,
-    [STATUSES.ERROR]: colors?.danger,
-    [STATUSES.WARNING]: colors?.warning,
-    [STATUSES.REGULAR]: colors?.secondaryHover,
-};
-
 export const Badge = ({ text, bgColor = colors.secondaryHover, type = STATUSES.REGULAR }: BadgeProps) => {
-    const backgroundColor = STATUS_COLORS[type] || bgColor;
+    let backgroundColor;
+    switch (type) {
+        case STATUSES.CREATED: {
+            backgroundColor = colors?.primary;
+            break;
+        }
+        case STATUSES.SUCCESS: {
+            backgroundColor = colors?.success;
+            break;
+        }
+        case STATUSES.ERROR: {
+            backgroundColor = colors?.danger;
+            break;
+        }
+        case STATUSES.WARNING: {
+            backgroundColor = colors?.warning;
+            break;
+        }
+        default: {
+            backgroundColor = bgColor;
+        }
+    }
 
     return (
         <div
@@ -25,6 +38,7 @@ export const Badge = ({ text, bgColor = colors.secondaryHover, type = STATUSES.R
                 display: 'inline-flex',
                 alignItems: 'center',
                 backgroundColor,
+                color: colors?.white,
                 borderRadius: 2,
                 padding: `1px ${scale(1, true)}px`,
                 whiteSpace: 'pre-line',

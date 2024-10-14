@@ -3,7 +3,7 @@ import { scale } from '@greensight/core-components-common';
 
 export interface BlockBodyProps {
     className?: string;
-    children?: ReactNode;
+    children?: ReactNode | ReactNode[];
 }
 
 const BlockBody = ({ className, children }: BlockBodyProps) => (

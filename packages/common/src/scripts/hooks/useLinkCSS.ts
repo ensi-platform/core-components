@@ -1,7 +1,6 @@
 import { CSSObject } from '@emotion/react';
 import { rgba } from 'emotion-rgba';
-
-import { useTheme } from '../gds';
+import { defaultTheme } from '../../index';
 
 export type LinkColorType = 'blue' | 'black' | 'grey' | 'red';
 
@@ -28,7 +27,7 @@ const getLinkStyles = (
 export const useLinkCSS = (type: LinkColorType = 'blue') => {
     if (typeof window !== 'undefined') {
         // eslint-disable-next-line react-hooks/rules-of-hooks
-        const { colors } = useTheme();
+        const { colors } = defaultTheme;
 
         if (type === 'black') {
             return getLinkStyles(colors?.grey900, colors?.link, colors?.grey600);
