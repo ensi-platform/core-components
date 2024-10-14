@@ -134,34 +134,3 @@ export const WithUseActionPopup: StoryObj<ComponentProps<typeof ActionPopup>> = 
     args: {},
     render: useActionHook,
 };
-
-const useActionHook = () => {
-    const { popupState, popupDispatch, ActionPopup, ActionEnum, ActionType } = useActionPopup();
-
-    return (
-        <>
-            <Button
-                onClick={() => {
-                    popupDispatch({
-                        type: ActionType.Delete,
-                        payload: {
-                            title: 'Вы уверены, что хотите удалить атрибут?',
-                            popupAction: ActionEnum.DELETE,
-                            onAction: async () => {
-                                alert('onAction');
-                            },
-                        },
-                    });
-                }}
-            >
-                Открыть
-            </Button>
-            <ActionPopup popupState={popupState} popupDispatch={popupDispatch} />
-        </>
-    );
-};
-
-export const WithUseActionPopup: StoryObj<ComponentProps<typeof ActionPopup>> = {
-    args: {},
-    render: useActionHook,
-};
