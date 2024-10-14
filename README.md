@@ -79,6 +79,8 @@ To test integration in prod-build mode, you should publish LIB to npm (and unlin
     - MINOR version when you add functionality in a backward compatible manner
     - MAJOR version when you make incompatible API changes
 
+    Check the latest version at [npmjs.com](https://www.npmjs.com/package/@ensi-platform/core-components?activeTab=versions)
+
 2. Build the LIB and go to the `dist/` build folder and from there run command `yarn publish --access=public`. Specify the same version as the step above in package.json
 
     New version of the package will include all the contents of the dist folder, but you can always adjust the whitelist in the `dist/package.json` parameter `files`.
