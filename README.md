@@ -75,7 +75,7 @@ To test integration in prod-build mode, you should publish LIB to npm (and unlin
 
 After review approval and merging task-branch to master, you should publish a new version.
 
-1. Firstly, rebuild the package in actual master:
+1. Firstly, actualize master and rebuild the package:
 
 ```bash
 git checkout master
@@ -83,7 +83,7 @@ git pull origin master
 yarn && yarn build
 ```
 
-2. Then check the latest version at [npmjs.com](https://www.npmjs.com/package/@ensi-platform/core-components?activeTab=versions) and choose a new version number:
+2. Then check the latest package version at [npmjs.com](https://www.npmjs.com/package/@ensi-platform/core-components?activeTab=versions) and choose a new version number:
 
     - PATCH version when you make backward compatible bug fixes
     - MINOR version when you add functionality in a backward compatible manner
