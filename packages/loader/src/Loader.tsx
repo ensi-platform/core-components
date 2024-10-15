@@ -1,5 +1,5 @@
 import { type FC, useMemo } from 'react';
-import { type EnumLike, useThemeCSS } from '@greensight/core-components-common/index';
+import { type EnumLike, useThemeCSS } from '@greensight/core-components-common';
 import { type ILoaderProps, type LoaderStateFullType, type ILoaderTheme } from './types';
 import { LOADER_THEMES } from './themes';
 import { LoaderSizes, LoaderVariants } from './scripts';

@@ -1,8 +1,8 @@
 import type { ComponentProps } from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
-import { scale } from '@greensight/core-components-common/index';
+import { scale } from '@greensight/core-components-common';
 import README from '../README.md';
-import Loader from './index';
+import { Loader } from './index';
 
 export default {
     title: 'Controls / Loader',

@@ -6,7 +6,7 @@
         "rootDirs": ["src"],
         "baseUrl": ".",
         "paths": {
-            "@greensight/core-components-common/*": ["../common/src/*"]
+            "@greensight/core-components-common": ["../common/src/index.ts"]
         }
     },
     "references": [

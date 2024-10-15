@@ -4,7 +4,7 @@ import {
     type OptionizedCSS,
     scale,
     typography,
-} from '@greensight/core-components-common/index';
+} from '@greensight/core-components-common';
 import { LoaderSizes, LoaderVariants, Opacities } from '../scripts/enums';
 import { type ILoaderTheme } from '../types';
 

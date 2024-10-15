@@ -1,4 +1,4 @@
-import { type BaseThemeState, type EnumLike, type StyleDefinition } from '@greensight/core-components-common/index';
+import { type BaseThemeState, type EnumLike, type StyleDefinition } from '@greensight/core-components-common';
 
 export interface ILoaderState {
     /**
