@@ -73,20 +73,43 @@ To test integration in prod-build mode, you should publish LIB to npm (and unlin
 
 ### Publish a new version
 
-1. Once the task is finished, you should add new version to package json:
+After review approval and merging task-branch to master, you should publish a new version.
+
+1. Firstly, rebuild the package in actual master:
+
+```bash
+git checkout master
+git pull origin master
+yarn && yarn build
+```
+
+2. Then check the latest version at [npmjs.com](https://www.npmjs.com/package/@ensi-platform/core-components?activeTab=versions) and choose a new version number:
 
     - PATCH version when you make backward compatible bug fixes
     - MINOR version when you add functionality in a backward compatible manner
     - MAJOR version when you make incompatible API changes
 
-    Check the latest version at [npmjs.com](https://www.npmjs.com/package/@ensi-platform/core-components?activeTab=versions)
+3. Go to `dist/` build folder and publish code to npmjs:
 
-2. Build the LIB and go to the `dist/` build folder and from there run command `yarn publish --access=public`. Specify the same version as the step above in package.json
+```bash
+cd dist
+yarn publish --access=public
+```
+
+    This command will override version number only in package.json in `dist/` folder.
 
     New version of the package will include all the contents of the dist folder, but you can always adjust the whitelist in the `dist/package.json` parameter `files`.
 
-3. After you merge your task-branch into master-branch, add a new annotated git tag with new version identifier.
-   Push it to gitlab-repository, release it and fill the release description changes.
+4. Next run command `yarn version` and specify the same version as in step 3. This command will override version number in package.json, commit changes and create new annotated tag.
+
+5. Now push changes to gitlab and additionally push tags:
+
+```bash
+git push origin master
+git push origin --tags
+```
+
+6. Finally go to gitlab-repository, check your tag, release it and fill the release description changes.
 
 ---
 
