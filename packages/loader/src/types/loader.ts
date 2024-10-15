@@ -1,5 +1,5 @@
-import { BaseThemeState, EnumLike } from '@greensight/core-components-common';
-import { ILoaderState, ILoaderTheme } from './themes';
+import { type BaseThemeState, type EnumLike } from '@greensight/core-components-common/index';
+import { type ILoaderState, type ILoaderTheme } from './themes';
 
 export interface ILoaderProps<V extends EnumLike, S extends EnumLike>
     extends Partial<BaseThemeState<V, S, ILoaderTheme<V, S>>>,

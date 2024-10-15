@@ -1,6 +1,12 @@
-import { defaultTheme, extractCSSOption, OptionizedCSS, scale, typography } from '@greensight/core-components-common';
+import {
+    defaultTheme,
+    extractCSSOption,
+    type OptionizedCSS,
+    scale,
+    typography,
+} from '@greensight/core-components-common/index';
 import { LoaderSizes, LoaderVariants, Opacities } from '../scripts/enums';
-import { ILoaderTheme } from '../types';
+import { type ILoaderTheme } from '../types';
 
 const { colors } = defaultTheme;
 

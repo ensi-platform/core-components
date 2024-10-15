@@ -1,6 +1,6 @@
 import type { ComponentProps } from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
-import { scale } from '@greensight/core-components-common';
+import { scale } from '@greensight/core-components-common/index';
 import README from '../README.md';
 import Loader from './index';
 
@@ -26,7 +26,6 @@ export default {
                 summary: '',
             },
             control: { type: 'text' },
-            // summary: 'string',
         },
         variant: {
             table: {
