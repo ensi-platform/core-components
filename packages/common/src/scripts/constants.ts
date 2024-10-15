@@ -59,7 +59,7 @@ export const FileTypes = {
 
 export const DEFAULT_TIMEZONE = 'Europe/Moscow';
 
-export const DateFormaters = {
+export const DateFormatters = {
     DEFAULT: 'dd.MM.yy',
     DATE_ISO: 'yyyy-MM-dd',
     DATE_AND_TIME: 'dd.MM.yyyy, HH:mm',
