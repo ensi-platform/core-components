@@ -1,6 +1,6 @@
 import { forwardRef, useMemo } from 'react';
 import { defaultTheme, IconSmallClosed, scale } from '@greensight/core-components-common';
-import { ITagProps } from '../types';
+import { ITagProps } from '@greensight/core-components-tags';
 
 const { colors, typography } = defaultTheme;
 

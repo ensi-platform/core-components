@@ -1,7 +1,7 @@
 import { HTMLProps, ReactNode } from 'react';
 
 import { CSSObject } from '@emotion/react';
-import Tag from '../components/TagItem';
+import { TagItem } from '@greensight/core-components-tags';
 
 export interface ITagsProps {
     /**
@@ -55,5 +55,5 @@ export interface ITagProps extends HTMLProps<Omit<HTMLButtonElement, 'type' | 'c
 }
 
 export interface ITagsCompositionProps {
-    Tag: typeof Tag;
+    Tag: typeof TagItem;
 }
