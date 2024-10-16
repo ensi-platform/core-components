@@ -41,16 +41,8 @@ export const ActionPopup = ({
                 return {
                     // TODO Разобраться почему в REP не работает тема button-a из core-components-common
                     theme: 'dangerous',
-                    // theme: 'secondary',
                     actionButtonText: 'Удалить',
                     closeButtonText: 'Не удалять',
-                };
-            }
-            case ActionEnum.CONFIRM: {
-                return {
-                    theme: 'primary',
-                    actionButtonText: 'Подтвердить',
-                    closeButtonText: 'Отмена',
                 };
             }
             case ActionEnum.COPY: {
