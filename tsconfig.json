@@ -1,155 +1,66 @@
 {
-  "compilerOptions": {
-    "skipLibCheck": true,
-    "target": "ES2015",
-    "module": "commonjs",
-    "rootDir": ".",
-    "outDir": "dist",
-    "allowJs": true,
-    "esModuleInterop": true,
-    "strict": true,
-    "forceConsistentCasingInFileNames": true,
-    "allowSyntheticDefaultImports": true,
-    "moduleResolution": "node",
-    "resolveJsonModule": true,
-    "typeRoots": [
-      "./typings",
-      "./node_modules/@types"
-    ],
-    "composite": true,
-    "declaration": true,
-    "baseUrl": ".",
-    "jsx": "react-jsx",
-    "jsxImportSource": "@emotion/react",
-    "paths": {
-      "@greensight/core-components-accordion/*": [
-        "packages/accordion/src/*"
-      ],
-      "@greensight/core-components-action-popup/*": [
-        "packages/action-popup/src/*"
-      ],
-      "@greensight/core-components-backdrop/*": [
-        "packages/backdrop/src/*"
-      ],
-      "@greensight/core-components-badge/*": [
-        "packages/badge/src/*"
-      ],
-      "@greensight/core-components-base-modal/*": [
-        "packages/base-modal/src/*"
-      ],
-      "@greensight/core-components-block/*": [
-        "packages/block/src/*"
-      ],
-      "@greensight/core-components-calendar/*": [
-        "packages/calendar/src/*"
-      ],
-      "@greensight/core-components-common/*": [
-        "packages/common/src/*"
-      ],
-      "@greensight/core-components-copy-button/*": [
-        "packages/copy-button/src/*"
-      ],
-      "@greensight/core-components-info-list/*": [
-        "packages/info-list/src/*"
-      ],
-      "@greensight/core-components-popup/*": [
-        "packages/popup/src/*"
-      ],
-      "@greensight/core-components-portal/*": [
-        "packages/portal/src/*"
-      ],
-      "@greensight/core-components-price/*": [
-        "packages/price/src/*"
-      ],
-      "@greensight/core-components-stack/*": [
-        "packages/stack/src/*"
-      ],
-      "@greensight/core-components-calendar-input/*": [
-        "packages/calendar-input/src/*"
-      ],
-      "@greensight/core-components-tooltip/*": [
-        "packages/tooltip/src/*"
-      ],
-      "@greensight/core-components-form-control/*": [
-        "packages/form-control/src/*"
-      ],
-      "@greensight/core-components-popover/*": [
-        "packages/popover/src/*"
-      ],
-      "@greensight/core-components-input/*": [
-        "packages/input/src/*"
-      ],
-      "@greensight/core-components-checkbox/*": [
-        "packages/checkbox/src/*"
-      ],
-      "@greensight/core-components-checkbox-group/*": [
-        "packages/checkbox-group/src/*"
-      ],
-      "@greensight/core-components-counter/*": [
-        "packages/counter/src/*"
-      ],
-      "@greensight/core-components-loading-skeleton/*": [
-        "packages/loading-skeleton/src/*"
-      ],
-      "@greensight/core-components-loader/*": [
-        "packages/loader/src/*"
-      ],
-      "@greensight/core-components-dropzone/*": [
-        "packages/dropzone/src/*"
-      ],
-      "@greensight/core-components-mask/*": [
-        "packages/mask/src/*"
-      ],
-      "@greensight/core-components-password/*": [
-        "packages/password/src/*"
-      ],
-      "@greensight/core-components-radio/*": [
-        "packages/radio/src/*"
-      ],
-      "@greensight/core-components-rating/*": [
-        "packages/rating/src/*"
-      ],
-      "@greensight/core-components-skip/*": [
-        "packages/skip/src/*"
-      ],
-      "@greensight/core-components-switcher/*": [
-        "packages/switcher/src/*"
-      ],
-      "@greensight/core-components-select/*": [
-        "packages/select/src/*"
-      ],
-      "@greensight/core-components-tabs/*": [
-        "packages/tabs/src/*"
-      ],
-      "@greensight/core-components-picture/*": [
-        "packages/picture/src/*"
-      ],
-      "@greensight/core-components-textarea/*": [
-        "packages/textarea/src/*"
-      ],
-      "@greensight/core-components-autocomplete-async/*": [
-        "packages/autocomplete-async/src/*"
-      ],
-      "@greensight/core-components-drawer/*": [
-        "packages/drawer/src/*"
-      ],
-      "@greensight/core-components-select-with-tags/*": [
-        "packages/select-with-tags/src/*"
-      ],
-      "@greensight/core-components-tags/*": [
-        "packages/tags/src/*"
-      ],
-      "@greensight/core-components-form/*": [
-        "packages/form/src/*"
-      ]
-    }
-  },
-  "exclude": [
-    "node_modules",
-    "dist",
-    "**/*.test*"
-  ],
-  "include": [
-    "./typings"
-  ]
+    "compilerOptions": {
+        "skipLibCheck": true,
+        "target": "ES2015",
+        "module": "commonjs",
+        "rootDir": ".",
+        "outDir": "dist",
+        "allowJs": true,
+        "esModuleInterop": true,
+        "strict": true,
+        "forceConsistentCasingInFileNames": true,
+        "allowSyntheticDefaultImports": true,
+        "moduleResolution": "node",
+        "resolveJsonModule": true,
+        "typeRoots": ["./typings", "./node_modules/@types"],
+        "composite": true,
+        "declaration": true,
+        "baseUrl": ".",
+        "jsx": "react-jsx",
+        "jsxImportSource": "@emotion/react",
+        "paths": {
+            "@greensight/core-components-accordion/*": ["packages/accordion/src/*"],
+            "@greensight/core-components-action-popup/*": ["packages/action-popup/src/*"],
+            "@greensight/core-components-backdrop/*": ["packages/backdrop/src/*"],
+            "@greensight/core-components-badge/*": ["packages/badge/src/*"],
+            "@greensight/core-components-base-modal/*": ["packages/base-modal/src/*"],
+            "@greensight/core-components-block/*": ["packages/block/src/*"],
+            "@greensight/core-components-calendar/*": ["packages/calendar/src/*"],
+            "@greensight/core-components-common/*": ["packages/common/src/*"],
+            "@greensight/core-components-copy-button/*": ["packages/copy-button/src/*"],
+            "@greensight/core-components-info-list/*": ["packages/info-list/src/*"],
+            "@greensight/core-components-popup/*": ["packages/popup/src/*"],
+            "@greensight/core-components-portal/*": ["packages/portal/src/*"],
+            "@greensight/core-components-price/*": ["packages/price/src/*"],
+            "@greensight/core-components-stack/*": ["packages/stack/src/*"],
+            "@greensight/core-components-calendar-input/*": ["packages/calendar-input/src/*"],
+            "@greensight/core-components-tooltip/*": ["packages/tooltip/src/*"],
+            "@greensight/core-components-form-control/*": ["packages/form-control/src/*"],
+            "@greensight/core-components-popover/*": ["packages/popover/src/*"],
+            "@greensight/core-components-input/*": ["packages/input/src/*"],
+            "@greensight/core-components-checkbox/*": ["packages/checkbox/src/*"],
+            "@greensight/core-components-checkbox-group/*": ["packages/checkbox-group/src/*"],
+            "@greensight/core-components-counter/*": ["packages/counter/src/*"],
+            "@greensight/core-components-loading-skeleton/*": ["packages/loading-skeleton/src/*"],
+            "@greensight/core-components-loader/*": ["packages/loader/src/*"],
+            "@greensight/core-components-dropzone/*": ["packages/dropzone/src/*"],
+            "@greensight/core-components-mask/*": ["packages/mask/src/*"],
+            "@greensight/core-components-password/*": ["packages/password/src/*"],
+            "@greensight/core-components-radio/*": ["packages/radio/src/*"],
+            "@greensight/core-components-rating/*": ["packages/rating/src/*"],
+            "@greensight/core-components-skip/*": ["packages/skip/src/*"],
+            "@greensight/core-components-switcher/*": ["packages/switcher/src/*"],
+            "@greensight/core-components-select/*": ["packages/select/src/*"],
+            "@greensight/core-components-tabs/*": ["packages/tabs/src/*"],
+            "@greensight/core-components-picture/*": ["packages/picture/src/*"],
+            "@greensight/core-components-textarea/*": ["packages/textarea/src/*"],
+            "@greensight/core-components-autocomplete-async/*": ["packages/autocomplete-async/src/*"],
+            "@greensight/core-components-drawer/*": ["packages/drawer/src/*"],
+            "@greensight/core-components-select-with-tags/*": ["packages/select-with-tags/src/*"],
+            "@greensight/core-components-tags/*": ["packages/tags/src/*"],
+            "@greensight/core-components-form/*": ["packages/form/src/*"]
+        }
+    },
+    "exclude": ["node_modules", "dist", "**/*.test*"],
+    "include": ["./typings"]
 }

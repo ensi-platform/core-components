@@ -2,11 +2,12 @@ import { action } from '@storybook/addon-actions';
 import type { Meta, StoryObj } from '@storybook/react';
 import type { ComponentProps } from 'react';
 
-import { usePopupState, ActionType, Button } from '@greensight/core-components-common';
+import { usePopupState, ActionType, Button, typography } from '@greensight/core-components-common';
 
 import README from '../README.md';
-import { ActionPopup, ActionEnum, ActionState } from './index';
-import { useActionPopup } from './scripts/useActionPopup';
+import { ActionPopup, ActionEnum, ThemesEnum } from './index';
+import { useActionPopup } from './scripts/hooks/useActionPopup';
+import { ActionState } from './types';
 
 export default {
     title: 'Components / ActionPopup',
@@ -19,61 +20,88 @@ export default {
         },
     },
     args: {
-        popupAction: ActionEnum.COPY,
         title: 'ActionPopup Title',
         onAction: action('onAction'),
+        disableAction: false,
+        disableClose: false,
+        disableFooter: false,
+        blockButtons: true,
     },
     argTypes: {
-        popupAction: {
-            control: {
-                type: 'radio',
-                options: ActionEnum,
-            },
+        action: {
+            control: { type: 'radio' },
+            options: [...Object.values(ActionEnum), undefined],
+        },
+        disableAction: {
+            control: 'boolean',
+        },
+        disableClose: {
+            control: 'boolean',
+        },
+        disableFooter: {
+            control: 'boolean',
+        },
+        blockButtons: {
+            control: 'boolean',
+        },
+        leftAddonIconTheme: {
+            control: { type: 'radio' },
+            options: [...Object.values(ThemesEnum), undefined],
         },
     },
 } as Meta<typeof ActionPopup>;
 
-const Popup = (args: Record<string, any>) => {
-    const [popupState, popupDispatch] = usePopupState<Partial<ActionState>>({ open: false });
+type Story = StoryObj<typeof ActionPopup>;
 
-    return (
-        <>
-            <Button
-                onClick={() => {
-                    popupDispatch({
-                        payload: args,
-                        type: ActionType.Edit,
-                    });
-                }}
-            >
-                Открыть
-            </Button>
-            <ActionPopup
-                open={!!popupState.open}
-                onClose={() => {
-                    popupDispatch({ type: ActionType.PreClose });
-                }}
-                onUnmount={() => {
-                    popupDispatch({ type: ActionType.Close });
-                }}
-                onAction={async () => {
-                    try {
+const Template: Story = {
+    render: args => {
+        // eslint-disable-next-line react-hooks/rules-of-hooks
+        const [popupState, popupDispatch] = usePopupState<Partial<ActionState>>({ open: args.open });
+
+        return (
+            <>
+                <Button
+                    onClick={() => {
+                        popupDispatch({ type: ActionType.Add });
+                    }}
+                >
+                    Открыть
+                </Button>
+                <ActionPopup
+                    {...popupState}
+                    {...args}
+                    onClose={() => {
+                        popupDispatch({ type: ActionType.PreClose });
+                    }}
+                    onUnmount={() => {
+                        popupDispatch({ type: ActionType.Close });
+                    }}
+                    onAction={async () => {
                         popupDispatch({ type: ActionType.PreClose });
                         if (popupState.onAction) await popupState.onAction();
-                    } catch (err) {
-                        console.error(err);
-                    }
-                }}
-                action={popupState.popupAction}
-                title={popupState.title}
-            />
-        </>
-    );
+                    }}
+                >
+                    {args.children && <ActionPopup.Content>{args.children}</ActionPopup.Content>}
+                </ActionPopup>
+            </>
+        );
+    },
 };
 
-export const Basic: StoryObj<ComponentProps<typeof ActionPopup>> = {
-    args: {},
-    render: Popup,
+export const WithChildren: Story = {
+    render: Template.render,
+    name: 'With children',
+    args: {
+        children: <p css={{ ...typography('bodySmBold') }}>This is ActionPopup Content Section</p>,
+    },
+};
+
+export const WithoutChildren: Story = {
+    render: Template.render,
+    name: 'Without children',
+    args: {
+        children: null,
+    },
 };
 
 const useActionHook = () => {

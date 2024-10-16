@@ -5,6 +5,7 @@ import { CSSObject } from '@emotion/react';
 import { FormControlProps } from '@greensight/core-components-form-control';
 import { PopoverProps } from '@greensight/core-components-popover';
 
+import { OptgroupProps } from '../components/Optgroup/types';
 import { ArrowProps } from '../components/Arrow/types';
 import { FieldProps } from '../components/Field/types';
 import { OptionProps } from '../components/Option/types';
@@ -26,6 +27,10 @@ export interface SelectParts {
      * Компонент выпадающего меню
      */
     OptionsList?: FC<OptionsListProps>;
+    /**
+     * Компонент группы
+     */
+    Optgroup?: FC<OptgroupProps>;
 
     /**
      * Компонент пункта меню

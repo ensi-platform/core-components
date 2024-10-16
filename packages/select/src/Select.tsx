@@ -91,11 +91,13 @@ export const Select = forwardRef<
                                 ? payload?.selected.map(e => e.value)
                                 : payload?.actionItem?.value;
 
-                        field.onChange({
-                            target: {
-                                value,
-                            },
-                        });
+                        if (!hideClearButton || payload?.selected !== null) {
+                            field.onChange({
+                                target: {
+                                    value,
+                                },
+                            });
+                        }
                     }
                 }}
                 onBlur={onBlur}

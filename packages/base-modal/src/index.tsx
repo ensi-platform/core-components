@@ -276,11 +276,13 @@ export const BaseModal = forwardRef<HTMLDivElement, BaseModalProps>(
                 handleScroll();
             }
 
-            if (onMount) onMount();
+            if (onMount) setTimeout(() => onMount(), timeout);
         }, [addResizeHandle, getScrollHandler, handleScroll, onMount]);
 
         const handleExited = useCallback(() => {
             removeResizeHandle();
+
+            setExited(true);
 
             if (scrollableNodeRef.current) {
                 scrollableNodeRef.current.removeEventListener('scroll', handleScroll);
@@ -289,26 +291,20 @@ export const BaseModal = forwardRef<HTMLDivElement, BaseModalProps>(
             if (restoreContainerStylesRef.current) {
                 restoreContainerStylesRef.current();
             }
-        }, [handleScroll, removeResizeHandle]);
 
-        const handleUnmount = useCallback(() => {
-            setExited(true);
-            if (onUnmount) onUnmount();
-        }, [onUnmount]);
+            if (onUnmount) setTimeout(() => onUnmount(), timeout);
+        }, [handleScroll, onUnmount, removeResizeHandle]);
 
         const handlersRef = useRef({
             entered: handleEntered,
             exited: handleExited,
-            unmount: handleUnmount,
         });
         handlersRef.current.entered = handleEntered;
         handlersRef.current.exited = handleExited;
-        handlersRef.current.unmount = handleUnmount;
 
         useEffect(() => {
             if (status === 'entering') handlersRef.current.entered();
             if (status === 'exiting') handlersRef.current.exited();
-            if (status === 'exited') handlersRef.current.unmount();
         }, [status]);
 
         useEffect(() => {
@@ -374,7 +370,7 @@ export const BaseModal = forwardRef<HTMLDivElement, BaseModalProps>(
         return (
             <Stack value={zIndex}>
                 {computedZIndex => (
-                    <Portal getPortalContainer={container} immediateMount>
+                    <Portal getPortalContainer={container}>
                         <BaseModalContext.Provider value={contextValue}>
                             <FocusLock
                                 autoFocus={!disableAutoFocus}
@@ -386,10 +382,13 @@ export const BaseModal = forwardRef<HTMLDivElement, BaseModalProps>(
                                         timeout={timeout}
                                         {...backdropProps}
                                         open={open && shouldRender}
+                                        onDestroy={() => setBackdropDestroyed(true)}
                                         style={{
+                                            width: '100%',
+                                            height: '100%',
+                                            position: 'fixed',
                                             zIndex: computedZIndex,
                                         }}
-                                        onDestroy={() => setBackdropDestroyed(true)}
                                     />
                                 )}
                                 {isMounted && (

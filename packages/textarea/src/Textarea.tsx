@@ -2,8 +2,7 @@ import { CSSObject } from '@emotion/react';
 import deepmerge from 'deepmerge';
 import React, { ChangeEvent, useMemo, useState } from 'react';
 
-import { scale } from '@greensight/core-components-common';
-import { useTheme } from '@greensight/gds';
+import { defaultTheme, scale } from '@greensight/core-components-common';
 
 import { FormControl } from '@greensight/core-components-form-control';
 import TextareaAutosize from 'react-textarea-autosize';
@@ -14,6 +13,8 @@ const emptyStyle = {};
 export const BASE_CSS: CSSObject = {
     border: `none`,
 };
+
+const { colors } = defaultTheme;
 
 export const Textarea = ({
     name,
@@ -51,7 +52,6 @@ export const Textarea = ({
     const [lenEnd, setLenEnd] = useState(maxLength);
     const [isExceed, setExceed] = useState(false);
     const isError = meta?.touched && meta?.error;
-    const { colors } = useTheme();
 
     const handlerInput = (e: ChangeEvent<HTMLTextAreaElement>) => {
         if (maxLength) {

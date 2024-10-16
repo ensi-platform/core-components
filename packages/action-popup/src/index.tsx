@@ -1,6 +1,6 @@
-import { KeyboardEvent, MouseEvent, ReactNode, useMemo } from 'react';
+import { ReactNode, useMemo } from 'react';
 
-import { Popup, PopupProps, Content } from '@greensight/core-components-popup';
+import { Popup, Content } from '@greensight/core-components-popup';
 import {
     scale,
     defaultTheme,
@@ -13,26 +13,13 @@ import {
 } from '@greensight/core-components-common';
 
 import { ActionEnum, ThemesEnum } from './scripts/enums';
+import { IActionPopupProps } from './types';
 
 const { colors, typography, theme } = defaultTheme;
 
 export * from './scripts/enums';
+export * from './scripts/hooks/useActionPopup';
 export * from './types';
-
-export interface IActionPopupProps extends Omit<PopupProps, 'title' | 'onBackdropClick'> {
-    action?: ActionEnum;
-    title?: string;
-    leftAddonIconTheme?: `${ThemesEnum}`;
-    onAction?: () => void;
-    disableAction?: boolean;
-    disableClose?: boolean;
-    disableFooter?: boolean;
-    blockButtons?: boolean;
-    onBackdropClick?: (
-        event: MouseEvent<HTMLElement> | KeyboardEvent<HTMLElement>,
-        reason?: 'backdropClick' | 'escapeKeyDown' | 'closerClick'
-    ) => void;
-}
 
 export const ActionPopup = ({
     action,
@@ -73,6 +60,13 @@ export const ActionPopup = ({
                     closeButtonText: 'Не дублировать',
                 };
             }
+            case ActionEnum.CONFIRM: {
+                return {
+                    theme: 'primary',
+                    actionButtonText: 'Подтвердить',
+                    closeButtonText: 'Отмена',
+                };
+            }
             case ActionEnum.UNTIE: {
                 return {
                     theme: 'primary',
@@ -84,7 +78,7 @@ export const ActionPopup = ({
                 return {
                     theme: 'primary',
                     actionButtonText: 'Сохранить',
-                    closeButtonText: 'Отмена',
+                    closeButtonText: 'Не сохранять',
                 };
             }
         }
@@ -128,7 +122,18 @@ export const ActionPopup = ({
             {children}
             {!disableFooter && (
                 <Popup.Footer css={{ display: 'flex', justifyContent: 'flex-end' }}>
-                    <Button onClick={onClose} theme="secondary" disabled={disableClose} block={blockButtons}>
+                    <Button
+                        onClick={onClose}
+                        theme="secondary"
+                        disabled={disableClose}
+                        __theme={theme.components.Button}
+                        block={blockButtons}
+                        css={{
+                            height: scale(4),
+                            padding: scale(1),
+                            ...typography('buttonBold'),
+                        }}
+                    >
                         {btnParams.closeButtonText}
                     </Button>
                     {onAction && (
@@ -136,9 +141,14 @@ export const ActionPopup = ({
                             onClick={() => onAction()}
                             theme={btnParams.theme}
                             disabled={disableAction}
-                            // FIXME при сборке тема не подтягивается из core-components-common а берется из @greensight/gds, поэтому пробрасываем тему компоненту напрямую
+                            // FIXME при сборке тема не подтягивается из core-components-common а берется из @greensight/gds, поэтому пока пробрасываем тему компоненту напрямую
                             __theme={theme.components.Button}
                             block={blockButtons}
+                            css={{
+                                height: scale(4),
+                                padding: scale(1),
+                                ...typography('buttonBold'),
+                            }}
                         >
                             {btnParams.actionButtonText}
                         </Button>
