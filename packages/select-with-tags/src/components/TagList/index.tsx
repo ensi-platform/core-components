@@ -10,7 +10,7 @@ import {
     useRef,
     useState,
 } from 'react';
-import { Tags } from '@greensight/core-components-tags';
+import { TagItem } from '@greensight/core-components-tags';
 import { LoadingSkeleton } from '@greensight/core-components-loading-skeleton';
 
 import { scale } from '@greensight/core-components-common';
@@ -48,7 +48,7 @@ export const TagList: FC<FieldProps & FormControlProps & TagListOwnProps> = ({
     transformTagText,
     isPopoverOpen,
     handleUpdatePopover,
-    Tag = Tags.Tag,
+    Tag = TagItem,
     overflow = 'grow-height',
     ...restProps
 }) => {
