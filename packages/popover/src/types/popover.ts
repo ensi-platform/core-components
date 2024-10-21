@@ -5,9 +5,9 @@ import { CSSObject } from '@emotion/react';
 
 import { RefElementType, PositionType } from './common';
 
-export interface IPopoverProps {
-    tabFocusableWrapper?: boolean;
+import { IStyledProps, IPositionModifiers } from '.'
 
+export interface IBasePopoverProps {
     /**
      * Control the popover state (open/closed)
      */
@@ -30,8 +30,6 @@ export interface IPopoverProps {
 
     /**
      * Prevent the popover from changing its position.
-     * For example, if there is not enough space at the bottom,
-     * it will still be shown below.
      */
     preventFlip?: boolean;
 
@@ -42,7 +40,6 @@ export interface IPopoverProps {
 
     /**
      * Allows the popover to adjust its height based on the screen boundaries
-     * if the content is too large for the visible area.
      */
     availableHeight?: boolean;
 
@@ -69,12 +66,19 @@ export interface IPopoverProps {
     arrowCSS?: CSSObject;
 
     /**
+     * Popover content
+     */
+    children?: ReactNode;
+}
+
+export interface IPopoverProps extends IBasePopoverProps, IStyledProps, IPositionModifiers {
+    /**
      * Function that returns the container where the popover will be rendered
      */
     getPortalContainer?: () => HTMLElement;
 
     /**
-     * TransitionOptions passed to the useTransition hook.
+     * Transition options for the popover
      */
     transitionOptions?: TransitionOptions;
 
@@ -84,35 +88,7 @@ export interface IPopoverProps {
     withTransition?: boolean;
 
     /**
-     * Identifier for automated testing systems
-     */
-    dataTestId?: string;
-
-    /**
      * Holds a function that allows updating the component's position
      */
     update?: MutableRefObject<() => void>;
-
-    /**
-     * Additional class name
-     */
-    className?: string;
-
-    /**
-     * Component z-index
-     */
-    zIndex?: number;
-
-    /**
-     * If the popover does not fit in the specified position,
-     * it will try to open in another position.
-     * The positions are tried in order from this list.
-     * If not provided, the popover opens in the opposite direction of the given position.
-     */
-    fallbackPlacements?: PositionType[];
-
-    /**
-     * Popover content
-     */
-    children?: ReactNode;
-};
+}

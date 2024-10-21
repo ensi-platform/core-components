@@ -1,8 +1,8 @@
+import { useEffect, useRef, useState } from 'react';
 import { usePopper } from 'react-popper';
 import { ResizeObserver as ResizeObserverPolyfill } from '@juggle/resize-observer';
-import { useEffect, useRef, useState } from 'react';
 
-import { RefElement } from '../../types';
+import { RefElement, IUsePopoverProps } from '../../types';
 import { MIN_ARROW_SHIFT_SIZE } from "..";
 
 export const usePopover = ({
@@ -15,7 +15,7 @@ export const usePopover = ({
     modifiers,
     children,
     toggle,
-}) => {
+}: IUsePopoverProps) => {
     const [referenceElement, setReferenceElement] = useState<RefElement>(anchorElement);
     const [arrowShift, setArrowShift] = useState(false);
 
@@ -73,9 +73,9 @@ export const usePopover = ({
     }, [anchorElement]);
 
     /**
-     * По дизайну, если у тултипа позиционирование -start/-end, то стрелочка немного сдвигается вбок.
-     * Но если anchorElement слишком маленький, то стрелочка сдвигаться не должна.
-     */
+    * According to the design, if the tooltip has -start/-end positioning, the arrow shifts slightly to the side.
+    * However, if the anchorElement is too small, the arrow should not shift.
+    */
     useEffect(() => {
         const shiftedPosition = position.includes('-start') || position.includes('-end');
 

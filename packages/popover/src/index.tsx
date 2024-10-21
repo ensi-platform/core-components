@@ -38,6 +38,13 @@ export const Popover = forwardRef<HTMLDivElement, IPopoverProps>(
         const [arrowElement, setArrowElement] = useState<RefElement>(null);
         const [popperElement, setPopperElement] = useState<RefElement>(null);
 
+        const setArrowElementFn = (elem: RefElement) => {
+            setArrowElement(elem);
+        }
+        const setPopperElementFn = (elem: RefElement) => {
+            setPopperElement(elem);
+        }
+
         const modifiers = useModifier({
             withArrow,
             preventFlip,
@@ -92,11 +99,19 @@ export const Popover = forwardRef<HTMLDivElement, IPopoverProps>(
                 withArrow={withArrow}
                 arrowShift={arrowShift}
                 arrowCSS={arrowCSS}
-                setArrowElement={setArrowElement}
-                setPopperElement={setPopperElement}
+                setArrowElement={setArrowElementFn}
+                setPopperElement={setPopperElementFn}
             >
                 {children}
             </PopoverContent>
+
+        const zeroOpacity = transitionStatus === 'unmounted' ||
+            transitionStatus === 'preEnter' ||
+            transitionStatus === 'entering' ||
+            transitionStatus === 'exited' ||
+            transitionStatus === 'exiting'
+
+        const noZeroOpacity = transitionStatus === 'preExit' || transitionStatus === 'entered'
 
         return (
             <Stack value={zIndex}>
@@ -107,14 +122,10 @@ export const Popover = forwardRef<HTMLDivElement, IPopoverProps>(
                                   <div
                                       css={{
                                           transition: `opacity ${transitionDuration}ms ease`,
-                                          ...((transitionStatus === 'unmounted' ||
-                                              transitionStatus === 'preEnter' ||
-                                              transitionStatus === 'entering' ||
-                                              transitionStatus === 'exited' ||
-                                              transitionStatus === 'exiting') && {
+                                          ...(zeroOpacity && {
                                               opacity: 0,
                                           }),
-                                          ...((transitionStatus === 'preExit' || transitionStatus === 'entered') && {
+                                          ...(noZeroOpacity && {
                                               opacity: 1,
                                           }),
                                       }}
