@@ -5,7 +5,7 @@ import {
     DropResult,
     Droppable as UntypedDroppable,
     DroppableProps,
-} from 'react-beautiful-dnd';
+} from '@hello-pangea/dnd';
 import { FileRejection, DropzoneProps as UseDropzoneProps, useDropzone } from 'react-dropzone';
 
 import { useDeferredLoading, scale, FormFieldDescendantProps } from '@greensight/core-components-common';

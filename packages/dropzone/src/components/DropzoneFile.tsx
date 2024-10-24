@@ -1,5 +1,5 @@
 import { forwardRef, FC } from 'react';
-import { Draggable as UntypedDraggable, DraggableProps } from 'react-beautiful-dnd';
+import { Draggable as UntypedDraggable, DraggableProps } from '@hello-pangea/dnd';
 
 import { useLinkCSS, IconSmallClosedCircle, scale, defaultTheme } from '@greensight/core-components-common';
 

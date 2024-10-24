@@ -1,4 +1,4 @@
-Компонент Dropzone написан на основе [react-dropzone](https://react-dropzone.js.org/?ref=blog.horizon-ui.com) и [react-beautiful-dnd](https://github.com/atlassian/react-beautiful-dnd).
+Компонент Dropzone написан на основе [react-dropzone](https://react-dropzone.js.org/?ref=blog.horizon-ui.com) и [@hello-pangea/dnd](https://github.com/hello-pangea/dnd).
 
 **Преимущества**:
 
