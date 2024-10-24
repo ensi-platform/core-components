@@ -2,7 +2,7 @@ import type { ComponentProps } from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
 import { scale } from '@greensight/core-components-common';
 import README from '../README.md';
-import { Loader } from './index';
+import { Loader, LoaderSizes, LoaderVariants } from './index';
 
 export default {
     title: 'Controls / Loader',
@@ -52,8 +52,14 @@ export default {
     },
 } as Meta<typeof Loader>;
 
+const defaultProps: ComponentProps<typeof Loader> = {
+    message: '',
+    variant: LoaderVariants.primary,
+    size: LoaderSizes.md,
+};
+
 export const Basic: StoryObj<ComponentProps<typeof Loader>> = {
-    args: {},
+    args: { ...defaultProps },
     render: args => (
         <div style={{ height: `${scale(12)}px` }}>
             <Loader {...args} />
@@ -63,7 +69,7 @@ export const Basic: StoryObj<ComponentProps<typeof Loader>> = {
 
 export const WithMessage: StoryObj<ComponentProps<typeof Loader>> = {
     name: 'With message',
-    args: { message: 'Loading . . .' },
+    args: { ...defaultProps, message: 'Loading . . .' },
     render: args => (
         <div style={{ height: `${scale(12)}px` }}>
             <Loader {...args} />
