@@ -9,7 +9,7 @@ import { isCompleteTime } from '../../scripts/utils';
 const defaultTime = `00${HOURS_MINUTES_SEPARATOR}00`;
 
 export const TimeInput = forwardRef<HTMLInputElement, InnerTimeInputProps>(
-    ({ autoCorrection, value: valueProp, defaultValue, onChange, onComplete, onBlur, ...restProps }, ref) => {
+    ({ autoCorrection, value: valueProp, defaultValue, field, onChange, onComplete, onBlur, ...restProps }, ref) => {
         const [value, setValue] = useState(defaultValue);
 
         const lastValidTime = useRef(defaultTime);
@@ -30,6 +30,7 @@ export const TimeInput = forwardRef<HTMLInputElement, InnerTimeInputProps>(
 
         const changeValue = (val: string, event: ChangeEvent<HTMLInputElement> | null) => {
             onChange?.(event, { value: val });
+            field?.onChange(val);
 
             if (uncontrolled) setValue(val);
             if (isCompleteTime(val, true)) callOnComplete(val);

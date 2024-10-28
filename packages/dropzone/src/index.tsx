@@ -67,7 +67,7 @@ export const Dropzone: FC<DropzoneProps> = ({
 }) => {
     const imagePreview = canPreviewImages(accept);
 
-    /** checks is our Dropzone controlled by Formik or not  */
+    /** checks is our Dropzone controlled by RHF or not  */
     const isControlled = typeof field?.value !== 'undefined';
     const [filesState, setFilesState] = useState<File[]>([]);
     const files = useMemo(

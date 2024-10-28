@@ -3,7 +3,8 @@ import { useController, useFormContext } from 'react-hook-form';
 
 import { FieldProps } from '@greensight/core-components-form';
 import { Input } from '@greensight/core-components-input';
-import { FormFieldProps, useFormikCompatibleFieldProps } from './Field';
+import { FormFieldHelperProps } from '@greensight/core-components-common';
+import { FormFieldProps } from './Field';
 import useForm from '../hooks/useForm';
 
 type DataType = 'string' | 'number';
@@ -38,7 +39,7 @@ export const TypedField = forwardRef<HTMLInputElement, TypedFieldProps>(
         ref
     ) => {
         const { onChange, disabled } = useForm()!;
-        const { control, setValue, trigger, setError } = useFormContext(); // retrieve all hook methods
+        const { control, setValue } = useFormContext(); // retrieve all hook methods
         const { field, fieldState: fieldStateForm } = useController({
             name,
             control,
@@ -112,16 +113,15 @@ export const TypedField = forwardRef<HTMLInputElement, TypedFieldProps>(
             [field, name, onChange, transformValue]
         );
 
-        const fieldProps = useFormikCompatibleFieldProps({
-            error: inputProps.error,
-            field,
-            isTouched: fieldState.isTouched,
-            name,
-            onChangeHandler,
-            setError,
-            setValue,
-            trigger,
-        });
+        const fieldProps = useMemo<FormFieldHelperProps>(
+            () => ({
+                field,
+                meta: {
+                    error: fieldState.error?.message,
+                },
+            }),
+            [field, fieldState.error?.message]
+        );
 
         return (
             <div css={{ width: '100%' }} className={className}>
@@ -129,13 +129,13 @@ export const TypedField = forwardRef<HTMLInputElement, TypedFieldProps>(
                     <>
                         {Children.map(children, child => {
                             if (isValidElement<any>(child)) {
-                                const formikProps: FieldProps<any> = {
+                                const formProps: FieldProps<any> = {
                                     ...fieldProps,
                                     id: (child?.type as FC)?.displayName !== 'Legend' ? name : '',
                                     ...inputProps,
                                     ...child.props,
                                 };
-                                return cloneElement(child, { ...formikProps });
+                                return cloneElement(child, { ...formProps });
                             }
                         })}
                     </>

@@ -51,7 +51,7 @@ export const Textarea = ({
 }: ITextareaProps) => {
     const [lenEnd, setLenEnd] = useState(maxLength);
     const [isExceed, setExceed] = useState(false);
-    const isError = meta?.touched && meta?.error;
+    const isError = !!meta?.error;
 
     const handlerInput = (e: ChangeEvent<HTMLTextAreaElement>) => {
         if (maxLength) {

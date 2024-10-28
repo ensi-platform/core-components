@@ -179,3 +179,23 @@ export const protectFieldName = (name: string) => (name.includes('.') ? `['${nam
 
 export const formatISOTimeFromDate = (date: Date | string) =>
     new Date(date).toLocaleTimeString('en-GB', { timeStyle: 'short', hour12: false, timeZone: 'UTC' });
+
+export const getValueFromObject = (keys: string, obj: Record<string, any>, emptyObject?: null | number) => {
+    const parts = keys.split('.');
+
+    return parts.reduce(
+        (acc, part) => {
+            if (!acc.isCorrectKey) return acc;
+
+            const temp = acc.obj[part];
+            if (temp) {
+                return { ...acc, obj: temp };
+            }
+            return {
+                obj: emptyObject,
+                isCorrectKey: false,
+            };
+        },
+        { obj, isCorrectKey: true }
+    ).obj;
+};

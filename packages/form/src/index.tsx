@@ -24,7 +24,7 @@ export interface FormCompositionProps {
 export interface FormProps<T extends FieldValues>
     extends Omit<UseFormProps<T>, 'children'>,
         Omit<HTMLProps<HTMLFormElement>, 'onSubmit' | 'ref' | 'onReset' | 'children' | 'onChange'> {
-    /** Initial formik values */
+    /** Initial form values */
     initialValues: DefaultValues<T>;
     /** Yup validation schema */
     validationSchema?: AnyObjectSchema;

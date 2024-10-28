@@ -1,7 +1,7 @@
 import { CSSObject } from '@emotion/react';
-import { FieldInputProps, FieldMetaProps } from 'formik';
 import { HTMLProps, ReactNode, Ref } from 'react';
 import { FormControlProps } from '@greensight/core-components-form-control';
+import { FormFieldHelperProps } from '@greensight/core-components-common';
 
 interface ITextareaInputProps {
     size?: FormControlProps['size'];
@@ -82,14 +82,11 @@ interface ITextareaFieldProps {
      * Значение поля ввода
      */
     value?: string;
-    /** field object (inner) */
-    field?: FieldInputProps<string>;
-    /** meta object (inner) */
-    meta?: FieldMetaProps<any>;
 }
 
 export interface ITextareaProps
     extends Omit<HTMLProps<HTMLDivElement>, 'ref' | 'size' | 'value' | 'label'>,
+        Partial<FormFieldHelperProps<string>>,
         ITextareaInputProps,
         ITextareaFieldProps {
     /** Minimum number of visible rows */

@@ -11,7 +11,6 @@ const basicTheme: FormControlTheme = {
         ...(block && { width: '100%' }),
     }),
     error: ({ errorPlacement }) => ({
-        color: colors.danger,
         [errorPlacement === 'above' ? 'marginBottom' : 'marginTop']: scale(1),
     }),
     inner: ({ size, focused, hasError, disabled }) => {

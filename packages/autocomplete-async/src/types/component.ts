@@ -1,8 +1,8 @@
+import { FormFieldHelperProps } from '@greensight/core-components-common';
 import { SelectItem, OptionProps } from '@greensight/core-components-select';
 import { SelectWithTagsProps } from '@greensight/core-components-select-with-tags';
 
 import { FC, ReactNode } from 'react';
-import { FormFieldDescendantProps } from '@greensight/core-components-common';
 
 export interface IOptionsFetcherResponse {
     options: SelectItem[];
@@ -44,11 +44,14 @@ export interface AutocompleteAsyncHandlers {
     onClear?: () => void;
 }
 
+type ValOrArr<T> = T | T[];
+type AutocompleteAsyncValue = ValOrArr<string | number | object | null>;
+
 export type AutocompleteAsyncPropsType = Omit<
     SelectWithTagsProps,
     'options' | 'selected' | 'value' | 'onInput' | 'onChange'
 > &
-    FormFieldDescendantProps &
+    Partial<FormFieldHelperProps<AutocompleteAsyncValue>> &
     AutocompleteAsyncHandlers &
     AutocompleteAsyncState & {
         asyncSearchFn: IUseLazyLoadingProps['optionsFetcher'];

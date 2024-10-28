@@ -27,7 +27,7 @@ export type InputProps = Omit<
      */
     clear?: boolean;
 
-    theme?: FormControlProps['theme'];
+    theme?: FormControlProps['theme'] | keyof FormControlProps['theme'];
     variant?: FormControlProps['variant'];
     size?: FormControlProps['size'];
     labelWrap?: FormControlProps['labelWrap'];
@@ -54,7 +54,7 @@ export type InputProps = Omit<
     /**
      * Атрибут type
      */
-    type?: 'number' | 'card' | 'email' | 'money' | 'password' | 'tel' | 'text' | 'time' | 'color' | 'url';
+    type?: 'number' | 'card' | 'email' | 'money' | 'password' | 'tel' | 'text' | 'time' | 'color' | 'url' | 'link';
 
     /**
      * Ref для обертки input
@@ -141,4 +141,6 @@ export type InputProps = Omit<
      * Обработчик MouseUp по полю
      */
     onMouseUp?: (event: MouseEvent<HTMLDivElement>) => void;
+
+    isLegend?: boolean;
 };

@@ -1,33 +1,10 @@
-import { ChangeEvent } from 'react';
+import { ControllerRenderProps } from 'react-hook-form';
 
-type OnChangeEvent<TValue> = ChangeEvent<HTMLInputElement> | { target: { value: TValue } };
+type FieldValue = boolean | number | File | string | Record<string, any> | null;
 
-export interface FormFieldDescendantProps<TValue = any, TPayload = never> {
-    field?: {
-        /**
-         * Универсальный обработчик изменения значения поля
-         */
-        onChange: never extends TPayload
-            ? (event: OnChangeEvent<TValue>) => void
-            : (event: OnChangeEvent<TValue>, payload: TPayload) => void;
-
-        /**
-         * Обработчик потери фокуса
-         */
-        onBlur?: () => void;
-
-        /**
-         * Значение хранимое в форме
-         */
-        value?: TValue;
-    };
-
-    helpers?: { setValue: (value: TValue) => void };
-
-    meta?: {
-        /**
-         * Ошибка в поле. Если нужна логика с touched, нужно в компоненте формы ее задавать.
-         */
+export interface FormFieldHelperProps<TValue extends FieldValue = FieldValue> {
+    field: ControllerRenderProps<Record<string, TValue>>;
+    meta: {
         error?: string;
     };
 }

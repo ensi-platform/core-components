@@ -1,4 +1,4 @@
-import { FC, HTMLProps } from 'react';
+import { FC, HTMLProps, SVGProps } from 'react';
 
 import {
     defaultTheme,
@@ -28,19 +28,17 @@ export const useMessageColor = (type: FormMessageProps['type']) => {
     }
 };
 
-interface MessageIconProps extends HTMLProps<HTMLDivElement> {
+interface MessageIconProps extends SVGProps<SVGSVGElement> {
     type: FormMessageProps['type'];
 }
 
 const MessageIcon: FC<MessageIconProps> = ({ type, ...props }) => {
     switch (type) {
         case 'warning': {
-            // @ts-ignore
             return <WarningIcon {...props} />;
         }
         case 'error':
         default: {
-            // @ts-ignore
             return <ErrorIcon {...props} />;
         }
     }

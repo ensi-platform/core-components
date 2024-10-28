@@ -43,6 +43,7 @@ export const DateInput = forwardRef<HTMLInputElement, InnerDateInputProps>(
             calendarProps = {},
             platform,
             calendarRef,
+            field,
             onComplete,
             onChange,
             onBlur,
@@ -63,7 +64,7 @@ export const DateInput = forwardRef<HTMLInputElement, InnerDateInputProps>(
         const lastValidDate = useRef<string>('');
         const inputRef = useRef<HTMLInputElement>(null);
         const inputWrapperRef = useRef<HTMLDivElement>(null);
-        const controlled = valueProp !== undefined;
+        const uncontrolled = valueProp === undefined;
         const { offDays } = calendarProps;
         const inputValue = valueProp ?? value ?? '';
         const [inputDate, inputTime] = inputValue.split(DATE_TIME_SEPARATOR);
@@ -98,13 +99,11 @@ export const DateInput = forwardRef<HTMLInputElement, InnerDateInputProps>(
 
         const changeValue = (val: string, event: ChangeEvent<HTMLInputElement> | null) => {
             onChange?.(event, { value: val });
+            field?.onChange(val);
 
             const [date, time = ''] = val.split(DATE_TIME_SEPARATOR);
 
-            if (controlled && restProps?.helpers) {
-                restProps.helpers.setValue(val);
-                setValue(val);
-            }
+            if (uncontrolled) setValue(val);
             if (isCompleteDate(date) && isCompleteTime(time, withTime)) callOnComplete(val);
         };
 

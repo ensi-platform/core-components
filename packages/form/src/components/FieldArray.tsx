@@ -1,9 +1,11 @@
-import type { LayoutProps } from '@greensight/gds/types/src/components/Layout';
-import { LayoutItemProps } from '@greensight/gds/types/src/components/Layout/Item';
 import type { FC, ReactNode } from 'react';
 import { useFieldArray, useFormContext } from 'react-hook-form';
 
 import { Button, Layout, scale } from '@greensight/gds';
+import type { LayoutProps } from '@greensight/gds/types/src/components/Layout';
+import { LayoutItemProps } from '@greensight/gds/types/src/components/Layout/Item';
+import { IconSmallPlus as IconPlus, IconSmallTrash as IconTrash } from '@greensight/core-components-common';
+
 import useForm from '../hooks/useForm';
 
 export interface FieldArrayAddProps {
@@ -16,10 +18,14 @@ export interface FieldArrayRemoveProps {
     disabled?: boolean;
 }
 
-const DefaultAddButton = (props: FieldArrayAddProps) => <Button {...props}>Добавить</Button>;
+const DefaultAddButton = (props: FieldArrayAddProps) => (
+    <Button Icon={IconPlus} {...props}>
+        Добавить
+    </Button>
+);
 
 const DefaultRemoveButton = (props: FieldArrayRemoveProps) => (
-    <Button theme="outline" hidden {...props}>
+    <Button Icon={IconTrash} theme="outline" hidden {...props}>
         Удалить
     </Button>
 );

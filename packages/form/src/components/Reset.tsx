@@ -7,7 +7,7 @@ export type FormResetProps<T> = ButtonProps & {
     children: ReactNode;
     /** simple onClick handler */
     onClick?: MouseEventHandler<HTMLButtonElement>;
-    /** initial values to reset formik statu to */
+    /** initial values to reset form status */
     initialValues?: DeepPartial<T>;
 };
 

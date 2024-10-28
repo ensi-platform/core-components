@@ -1,28 +1,14 @@
-import type { CSSObject } from '@emotion/react';
-import type {
-    FieldHelperProps as FormikFieldHelperProps,
-    FieldMetaProps as FormikFieldMetaProps,
-    FieldInputProps as FormikFieldProps,
-} from 'formik';
-
-import { Input, InputProps } from '@greensight/core-components-input';
-
-import {
-    ChangeEvent,
-    Children,
-    FC,
-    ReactNode,
-    cloneElement,
-    forwardRef,
-    isValidElement,
-    useCallback,
-    useMemo,
-} from 'react';
+import { Children, FC, ReactNode, cloneElement, forwardRef, isValidElement, useCallback, useMemo } from 'react';
 import { useController, useFormContext } from 'react-hook-form';
+import type { CSSObject } from '@emotion/react';
+
 import { FieldProps } from '@greensight/core-components-form';
+import { Input, InputProps } from '@greensight/core-components-input';
+import { FormFieldHelperProps, getValueFromObject } from '@greensight/core-components-common';
+
 import useForm from '../hooks/useForm';
 
-export interface FormFieldProps extends Omit<InputProps, 'size'> {
+export interface FormFieldProps extends Omit<InputProps, 'size' | 'label'> {
     size?: InputProps['size'];
     /** Name of field */
     name: string;
@@ -37,68 +23,6 @@ export interface FormFieldProps extends Omit<InputProps, 'size'> {
      */
     showError?: boolean;
 }
-
-export interface FormikCompatibleFieldProps {
-    helpers?: FormikFieldHelperProps<any>;
-    field?: FormikFieldProps<any>;
-    meta?: FormikFieldMetaProps<any>;
-}
-
-export const useFormikCompatibleFieldProps = ({
-    field,
-    error,
-    isTouched,
-    name,
-    onChangeHandler,
-    setError,
-    setValue,
-    trigger,
-}: {
-    field: FormikFieldProps<any>;
-    error: any;
-    isTouched: boolean;
-    name: string;
-    onChangeHandler: (e?: ChangeEvent<any>, val?: any) => void;
-    setError: (...args: any[]) => void;
-    setValue: (...args: any[]) => void;
-    trigger: (...args: any[]) => void;
-}) =>
-    useMemo<FormikCompatibleFieldProps>(
-        () => ({
-            field: {
-                name: field.name,
-                onBlur: field.onBlur,
-                onChange: onChangeHandler,
-                value: field.value,
-            },
-            helpers: {
-                setError(val) {
-                    setError(name, { message: val });
-                },
-                setTouched() {
-                    throw new Error('Unsupported function');
-                },
-                setValue(value, shouldValidate) {
-                    onChangeHandler(undefined, value);
-
-                    setValue(name, value);
-
-                    field.onBlur(undefined);
-
-                    if (shouldValidate) {
-                        trigger(name);
-                    }
-                },
-            },
-            meta: {
-                initialTouched: false,
-                touched: isTouched,
-                value: field.value,
-                error,
-            },
-        }),
-        [field, error, isTouched, name, onChangeHandler, setError, setValue, trigger]
-    );
 
 export const FormField = forwardRef<HTMLInputElement, FormFieldProps>(
     ({ name, children, size = 'md', className, wrapperCSS, block = true, ...props }, ref) => {
@@ -129,6 +53,40 @@ export const FormField = forwardRef<HTMLInputElement, FormFieldProps>(
             [field, name, onChange]
         );
 
+        const fieldProps = useMemo<FormFieldHelperProps>(
+            () => ({
+                field,
+                name,
+                trigger,
+                setError,
+                setValue,
+                helpers: {
+                    setError(value: any) {
+                        setError(name, { message: value });
+                    },
+                    setValue(value: any, shouldValidate: boolean) {
+                        onChangeHandler(undefined, value);
+
+                        setValue(name, value);
+
+                        field.onBlur();
+
+                        if (shouldValidate) {
+                            trigger(name);
+                        }
+                    },
+                },
+                meta: {
+                    isDirty: fieldState.isDirty,
+                    touched: fieldState.isTouched || formState.isSubmitted,
+                    error: fieldState.error?.message,
+                    value: field.value,
+                    initialValue: getValueFromObject(name, formState.defaultValues || {}, null),
+                },
+            }),
+            [field, fieldState.error?.message]
+        );
+
         const inputProps = {
             name,
             size,
@@ -148,30 +106,19 @@ export const FormField = forwardRef<HTMLInputElement, FormFieldProps>(
             },
         };
 
-        const fieldProps = useFormikCompatibleFieldProps({
-            error: inputProps.error,
-            field,
-            isTouched: fieldState.isTouched || formState.isSubmitted,
-            name,
-            onChangeHandler,
-            setError,
-            setValue,
-            trigger,
-        });
-
         return (
             <div css={{ width: '100%' }} className={className}>
                 {children ? (
                     <>
                         {Children.map(children, child => {
                             if (isValidElement<any>(child)) {
-                                const formikProps: FieldProps<any> = {
+                                const formProps: FieldProps<any> = {
                                     ...fieldProps,
                                     id: (child?.type as FC)?.displayName !== 'Legend' ? name : '',
                                     ...inputProps,
                                     ...child.props,
                                 };
-                                return cloneElement(child, { ...formikProps });
+                                return cloneElement(child, { ...formProps });
                             }
                         })}
                     </>

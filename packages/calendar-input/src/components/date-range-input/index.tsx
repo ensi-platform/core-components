@@ -29,6 +29,7 @@ export const DateRangeInput = forwardRef<HTMLInputElement, InnerDateRangeInputPr
             value: valueProp,
             defaultValue,
             inputWrapperRef: inputWrapperRefProp = null,
+            field,
             onComplete,
             onChange,
             onBlur,
@@ -100,6 +101,7 @@ export const DateRangeInput = forwardRef<HTMLInputElement, InnerDateRangeInputPr
 
         const changeValue = (val: string, event: ChangeEvent<HTMLInputElement> | null) => {
             onChange?.(event, { value: val });
+            field?.onChange(val);
 
             if (uncontrolled) setValue(val);
             if (isCompleteDateRange(val)) callOnComplete(val);

@@ -6,13 +6,11 @@ import type { InputProps } from '@greensight/core-components-input';
 import type { SelectWithTagsProps } from '@greensight/core-components-select-with-tags';
 
 export interface IAutocompleteProps
-    extends SelectThemeProps,
-        Omit<SelectProps, 'Field' | 'nativeSelect' | 'options'>,
-        Partial<
-            Pick<
-                SelectWithTagsProps,
-                'collapseTagList' | 'moveInputToNewLine' | 'transformCollapsedTagText' | 'transformTagText'
-            >
+    extends Omit<SelectThemeProps, 'options'>,
+        Omit<SelectProps, 'Field' | 'nativeSelect'>,
+        Pick<
+            SelectWithTagsProps,
+            'collapseTagList' | 'moveInputToNewLine' | 'transformCollapsedTagText' | 'transformTagText'
         >,
         Pick<InputProps, 'readOnly'> {
     /**
