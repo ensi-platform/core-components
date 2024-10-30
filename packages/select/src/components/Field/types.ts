@@ -1,6 +1,6 @@
 import type { AriaAttributes, FocusEvent, MouseEvent, ReactElement, ReactNode, RefAttributes } from 'react';
 
-import type { FormControlProps } from '@greensight/core-components-form-control';
+import type { FormControlProps } from '@ensi-platform/core-components-form-control';
 
 import type { SelectItem } from '../../types';
 

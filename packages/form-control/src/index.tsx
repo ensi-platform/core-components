@@ -2,7 +2,7 @@ import { CSSObject } from '@emotion/react';
 import deepmerge from 'deepmerge';
 import { forwardRef, useMemo } from 'react';
 
-import { useThemeCSSPart, scale } from '@greensight/core-components-common';
+import { useThemeCSSPart, scale } from '@ensi-platform/core-components-common';
 
 import { formControlThemes } from './themes/defaultTheme';
 import { FormControlProps, FormControlThemeState } from './types';

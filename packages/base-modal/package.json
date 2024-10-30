@@ -1,5 +1,5 @@
 {
-    "name": "@greensight/core-components-base-modal",
+    "name": "@ensi-platform/core-components-base-modal",
     "version": "1.0.0",
     "description": "BaseModal component",
     "keywords": [],
@@ -21,6 +21,10 @@
         "@juggle/resize-observer": "^3.4.0",
         "react-focus-lock": "^2.11.3",
         "react-merge-refs": "1.1.0",
-        "react-transition-state": "^2.1.1"
+        "react-transition-state": "^2.1.1",
+        "@ensi-platform/core-components-common": "^1.0.0",
+        "@ensi-platform/core-components-backdrop": "^1.0.0",
+        "@ensi-platform/core-components-portal": "^1.0.0",
+        "@ensi-platform/core-components-stack": "^1.0.0"
     }
 }

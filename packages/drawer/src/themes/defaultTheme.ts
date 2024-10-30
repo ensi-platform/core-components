@@ -1,4 +1,4 @@
-import { scale, defaultTheme } from '@greensight/core-components-common';
+import { scale, defaultTheme } from '@ensi-platform/core-components-common';
 import { DrawerTheme } from '../types';
 
 const { colors, typography } = defaultTheme;

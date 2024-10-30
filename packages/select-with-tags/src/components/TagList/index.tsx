@@ -10,15 +10,15 @@ import {
     useRef,
     useState,
 } from 'react';
-import { TagItem } from '@greensight/core-components-tags';
-import { LoadingSkeleton } from '@greensight/core-components-loading-skeleton';
+import { TagItem } from '@ensi-platform/core-components-tags';
+import { LoadingSkeleton } from '@ensi-platform/core-components-loading-skeleton';
 
-import { scale } from '@greensight/core-components-common';
+import { scale } from '@ensi-platform/core-components-common';
 
-import { FieldProps } from '@greensight/core-components-select';
-import { FormControl, FormControlProps } from '@greensight/core-components-form-control';
+import { FieldProps } from '@ensi-platform/core-components-select';
+import { FormControl, FormControlProps } from '@ensi-platform/core-components-form-control';
 
-import { BASE_INPUT_CSS } from '@greensight/core-components-input';
+import { BASE_INPUT_CSS } from '@ensi-platform/core-components-input';
 import { calculateTotalElementsPerRow } from '../../scripts/helpers';
 import { TagListOwnProps } from './types';
 

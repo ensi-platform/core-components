@@ -1,8 +1,8 @@
 import { MouseEvent, forwardRef, useCallback, useEffect, useMemo, useRef } from 'react';
 
-import { Popover } from '@greensight/core-components-popover';
+import { Popover } from '@ensi-platform/core-components-popover';
 
-import { useMount } from '@greensight/core-components-common';
+import { useMount } from '@ensi-platform/core-components-common';
 
 import { SelectThemeProvider } from '../../context';
 import { SELECT_THEMES } from '../../themes';

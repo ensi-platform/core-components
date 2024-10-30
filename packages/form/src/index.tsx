@@ -49,25 +49,6 @@ export interface FormProps<T extends FieldValues>
     disabled?: boolean;
 }
 
-export interface FieldProps<T> {
-    field?: {
-        value: T;
-        onChange: (
-            eventOrValue:
-                | {
-                      target: {
-                          value: T;
-                      };
-                  }
-                | T
-        ) => void;
-    };
-    meta?: {
-        error?: string;
-    };
-    helpers?: { setValue: (value: T) => void };
-}
-
 export const Form = <T extends FieldValues>({
     initialValues,
     validationSchema,
@@ -149,5 +130,3 @@ Form.TypedField = TypedField;
 Form.Message = FormMessage;
 Form.Reset = FormReset;
 Form.FieldArray = FormFieldArray;
-
-export default Form;

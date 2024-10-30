@@ -1,6 +1,6 @@
 import { CSSObject } from '@emotion/react';
-import type { BackdropProps } from '@greensight/core-components-backdrop';
-import type { PortalProps } from '@greensight/core-components-portal';
+import type { BackdropProps } from '@ensi-platform/core-components-backdrop';
+import type { PortalProps } from '@ensi-platform/core-components-portal';
 import type { FC, KeyboardEvent, MouseEvent, MutableRefObject, ReactNode, Ref } from 'react';
 import type { TransitionStatus } from 'react-transition-state';
 

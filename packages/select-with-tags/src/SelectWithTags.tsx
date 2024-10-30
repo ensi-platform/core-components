@@ -8,7 +8,7 @@ import {
     SelectProps,
     SelectItem,
     useSelectClear,
-} from '@greensight/core-components-select';
+} from '@ensi-platform/core-components-select';
 
 import { SelectWithTagsProps } from './types';
 import { filterOptions } from './scripts/helpers';

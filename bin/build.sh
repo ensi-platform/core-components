@@ -6,7 +6,7 @@ set -e
 yarn clean
 
 # устанавливаем ограничение на количество параллельных процессов при сборке (default - 10) Внимание 1 процесс сжирает ~1gb RAM
-CONCURRENCY=${BUILD_CONCURRENCY:=2}
+CONCURRENCY=${BUILD_CONCURRENCY:=5}
 LERNA_ROOT_PATH="$PWD"
 
 echo "start build on $CONCURRENCY parallel process"

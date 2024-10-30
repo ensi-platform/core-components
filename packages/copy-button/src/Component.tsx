@@ -1,5 +1,5 @@
 import { FC, useEffect, useState } from 'react';
-import { IconSmallCheck, IconSmallCopy, scale, useLinkCSS } from '@greensight/core-components-common';
+import { IconSmallCheck, IconSmallCopy, scale, useLinkCSS } from '@ensi-platform/core-components-common';
 import type { ICopyButtonProps } from './types';
 
 /**

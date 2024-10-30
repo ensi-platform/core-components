@@ -1,7 +1,7 @@
 import { forwardRef, FC } from 'react';
 import { Draggable as UntypedDraggable, DraggableProps } from 'react-beautiful-dnd';
 
-import { useLinkCSS, IconSmallClosedCircle, scale, defaultTheme } from '@greensight/core-components-common';
+import { useLinkCSS, IconSmallClosedCircle, scale, defaultTheme } from '@ensi-platform/core-components-common';
 
 import DropzoneImage from './DropzoneImage';
 import { ImagePreview } from '../scripts/constants';

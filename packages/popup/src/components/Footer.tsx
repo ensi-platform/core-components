@@ -1,8 +1,8 @@
 import { CSSObject } from '@emotion/react';
 import { useContext, useEffect } from 'react';
 
-import { BaseModalContext } from '@greensight/core-components-base-modal';
-import { Layout } from '@greensight/gds';
+import { BaseModalContext } from '@ensi-platform/core-components-base-modal';
+import { Layout } from '@ensi-platform/core-components-common';
 import { usePopupContext } from '../PopupContext';
 import { FooterProps } from '../types';
 

@@ -1,5 +1,5 @@
-import {ChangeEvent, MutableRefObject, ReactNode} from "react";
-import {TagComponent} from "@greensight/core-components-select-with-tags";
+import { ChangeEvent, MutableRefObject, ReactNode } from 'react';
+import { TagComponent } from '../../types';
 
 export type TagListOwnProps = {
     value?: string;

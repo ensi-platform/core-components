@@ -1,5 +1,5 @@
 import { CSSObject } from '@emotion/react';
-import { OptionizedCSS, extractCSSOption, defaultTheme, scale } from '@greensight/core-components-common';
+import { OptionizedCSS, extractCSSOption, defaultTheme, scale } from '@ensi-platform/core-components-common';
 import deepmerge from 'deepmerge';
 
 import { SwitcherSize, SwitcherVariant, SwitcherTheme } from '../types';

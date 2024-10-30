@@ -3,11 +3,12 @@ import path from 'path';
 
 import { checkOrCreateDir, readFile, writeFile } from './common.mjs';
 
-const importTypesRegexp = /((?:from |import\()['"])@greensight\/core-components-(.+?)(['"])/;
+const importTypesRegexp = /((?:from |require\( |import\()['"])@ensi-platform\/core-components-(.+?)(['"])/;
 
 async function transformTypings(source, rootDir) {
     const rootAbsDir = path.resolve(rootDir);
     const sourceAbs = path.resolve(source);
+    const sourceExtension = source.includes('/esm/') ? 'esm' : 'cjs';
 
     let fileContent = await readFile(source, 'utf-8');
 
@@ -18,7 +19,7 @@ async function transformTypings(source, rootDir) {
 
         const componentRelativePath = path.relative(path.dirname(sourceAbs), componentName);
 
-        fileContent = fileContent.replace(importTypesRegexp, `$1${componentRelativePath}$3`);
+        fileContent = fileContent.replace(importTypesRegexp, `$1${componentRelativePath}/${sourceExtension}$3`);
     }
 
     let dest = path.join(rootAbsDir, source.replace('dist/', ''));

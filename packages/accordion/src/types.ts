@@ -1,4 +1,9 @@
-import { BaseThemeState, StyleDefinition, useThemeCSSPart, ValueOrFunction } from '@greensight/core-components-common';
+import {
+    BaseThemeState,
+    StyleDefinition,
+    useThemeCSSPart,
+    ValueOrFunction,
+} from '@ensi-platform/core-components-common';
 import { HTMLProps, ReactNode, SVGProps } from 'react';
 
 export const AccordionSize = {

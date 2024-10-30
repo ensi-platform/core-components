@@ -5,7 +5,7 @@ import {
     StyleDefinition,
     ValueOrFunction,
     useCheckboxLikeControlHookType,
-} from '@greensight/core-components-common';
+} from '@ensi-platform/core-components-common';
 import { ChangeEvent, InputHTMLAttributes, ReactNode } from 'react';
 
 export const CheckboxSize = {

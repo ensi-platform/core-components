@@ -13,8 +13,8 @@ if [ -z "$COMPONENT_NAME" ]; then
   exit 1
 fi
 
-# Добавляем префикс @greensight/core-components- к имени компонента
-FULL_COMPONENT_NAME="@greensight/core-components-$COMPONENT_NAME"
+# Добавляем префикс @ensi-platform/core-components- к имени компонента
+FULL_COMPONENT_NAME="@ensi-platform/core-components-$COMPONENT_NAME"
 
 LERNA_ROOT_PATH="$PWD"
 
@@ -42,10 +42,10 @@ cp README.md dist/README.md
 # Делаем корневой пакет публичным (необходим npmjs.com/package.json)
 yarn json -f dist/package.json -I -e "delete this.private" -e "delete this.workspaces" -e "delete this.scripts.prepare"
 
-# Удаляем папку @greensight в dist
-if [ -d "dist/@greensight" ]; then
-  echo "Removing directory dist/@greensight"
-  rm -rf dist/@greensight
+# Удаляем папку @ensi-platform в dist
+if [ -d "dist/@ensi-platform" ]; then
+  echo "Removing directory dist/@ensi-platform"
+  rm -rf dist/@ensi-platform
 fi
 
 # Создаем входные точки cjs и esm
@@ -57,4 +57,3 @@ node bin/generate-types-index.js
 
 
 echo "Build complete for component: $FULL_COMPONENT_NAME"
-

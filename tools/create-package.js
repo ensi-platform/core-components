@@ -12,7 +12,7 @@ async function createPackage(packageName, deps) {
     await fs.mkdir(`packages/${packageName}/src`);
 
     const packageJson = {
-        name: `@greensight/core-components-${packageName}`,
+        name: `@ensi-platform/core-components-${packageName}`,
         version: '1.0.0',
         description: `${packageName} component`,
         keywords: [],
@@ -30,7 +30,7 @@ async function createPackage(packageName, deps) {
             '@emotion/styled': '11.3.0',
         },
         dependencies: {
-            tslib: '^2.4.0',
+            tslib: '^2.6.2',
         },
     };
 
@@ -42,14 +42,14 @@ async function createPackage(packageName, deps) {
             rootDirs: ['src'],
             baseUrl: '.',
             paths: {
-                '@greensight/core-components-*': ['../*/src'],
+                '@ensi-platform/core-components-*': ['../*/src'],
             },
         },
         references: deps.map(dep => ({ path: `../${dep}/tsconfig.json` })),
     };
 
     const rootTsConfigJson = JSON.parse(await fs.readFile('./tsconfig.json'));
-    rootTsConfigJson.compilerOptions.paths[`@greensight/core-components-${packageName}/*`] = [
+    rootTsConfigJson.compilerOptions.paths[`@ensi-platform/core-components-${packageName}/*`] = [
         `packages/${packageName}/src/*`,
     ];
 

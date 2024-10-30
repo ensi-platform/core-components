@@ -1,6 +1,6 @@
 import { forwardRef, useCallback, useMemo, useState } from 'react';
 import { startOfDay, startOfMonth, endOfDay } from 'date-fns';
-import { useDidUpdateEffect, useThemeCSSPart } from '@greensight/core-components-common';
+import { useDidUpdateEffect, useThemeCSSPart } from '@ensi-platform/core-components-common';
 
 import { Header } from './components/header';
 import { DaysTable } from './components/days-table';

@@ -1,6 +1,6 @@
 import { CSSObject } from '@emotion/react';
 
-import { scale, defaultTheme } from '@greensight/core-components-common';
+import { scale, defaultTheme } from '@ensi-platform/core-components-common';
 
 const { colors } = defaultTheme;
 

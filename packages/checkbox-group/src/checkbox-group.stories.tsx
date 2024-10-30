@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { ComponentProps, useState } from 'react';
 
-import { Checkbox } from '@greensight/core-components-checkbox';
+import { Checkbox } from '@ensi-platform/core-components-checkbox';
 
 import README from '../README.md';
 import { CheckboxGroup } from './index';

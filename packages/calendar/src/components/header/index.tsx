@@ -7,7 +7,7 @@ import {
     IconSmallChevronLeft,
     IconSmallChevronRight,
     defaultTheme,
-} from '@greensight/core-components-common';
+} from '@ensi-platform/core-components-common';
 import { SelectorView } from '../../types';
 
 const { colors } = defaultTheme;

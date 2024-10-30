@@ -1,8 +1,8 @@
-import { SelectItem, OptionProps } from '@greensight/core-components-select';
-import { SelectWithTagsProps } from '@greensight/core-components-select-with-tags';
+import { SelectItem, OptionProps } from '@ensi-platform/core-components-select';
+import { SelectWithTagsProps } from '@ensi-platform/core-components-select-with-tags';
 
 import { FC, ReactNode } from 'react';
-import { FormFieldDescendantProps } from '@greensight/core-components-common';
+import { FormFieldDescendantProps } from '@ensi-platform/core-components-common';
 
 export interface IOptionsFetcherResponse {
     options: SelectItem[];

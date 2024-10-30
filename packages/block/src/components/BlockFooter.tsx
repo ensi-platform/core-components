@@ -1,5 +1,5 @@
 import { ReactNode } from 'react';
-import { scale, defaultTheme } from '@greensight/core-components-common';
+import { scale, defaultTheme } from '@ensi-platform/core-components-common';
 
 export interface BlockFooterProps {
     className?: string;

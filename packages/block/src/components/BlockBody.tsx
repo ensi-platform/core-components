@@ -1,5 +1,5 @@
 import { ReactNode } from 'react';
-import { scale } from '@greensight/core-components-common';
+import { scale } from '@ensi-platform/core-components-common';
 
 export interface BlockBodyProps {
     className?: string;

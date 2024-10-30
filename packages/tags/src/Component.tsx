@@ -1,5 +1,5 @@
 import { Children, cloneElement, isValidElement, useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import { IconBigClosed, scale } from '@greensight/core-components-common';
+import { IconBigClosed, scale } from '@ensi-platform/core-components-common';
 import { CSSObject } from '@emotion/react';
 import TagItem from './components/TagItem';
 import { ITagsCompositionProps, ITagsProps } from './types';

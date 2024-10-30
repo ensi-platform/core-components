@@ -1,5 +1,5 @@
 import { useCallback, useState } from 'react';
-import { useDidUpdateEffect } from '@greensight/core-components-common';
+import { useDidUpdateEffect } from '@ensi-platform/core-components-common';
 
 type usePeriodProps = {
     /**

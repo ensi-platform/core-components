@@ -2,10 +2,9 @@ import { forwardRef, useCallback, useEffect, useRef } from 'react';
 
 import mergeRefs from 'react-merge-refs';
 
-import { defaultTheme } from '@greensight/core-components-common';
-import { scale } from '@greensight/gds';
+import { defaultTheme, scale } from '@ensi-platform/core-components-common';
 
-import { SelectItem } from '@greensight/core-components-select';
+import { SelectItem } from '../../types';
 
 import { useSelectTheme } from '../../context';
 import { OptionsListProps, useVisibleOptionsArgs } from './types';

@@ -2,8 +2,8 @@ import { FC, FocusEvent } from 'react';
 
 import { CSSObject } from '@emotion/react';
 
-import { FormControlProps } from '@greensight/core-components-form-control';
-import { PopoverProps } from '@greensight/core-components-popover';
+import { FormControlProps } from '@ensi-platform/core-components-form-control';
+import { PopoverProps } from '@ensi-platform/core-components-popover';
 
 import { OptgroupProps } from '../components/Optgroup/types';
 import { ArrowProps } from '../components/Arrow/types';

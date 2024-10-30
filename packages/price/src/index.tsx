@@ -11,7 +11,7 @@ import {
     scale,
     TokensInterface,
     useMedia,
-} from '@greensight/core-components-common';
+} from '@ensi-platform/core-components-common';
 
 export type AllowMedia<Breakpoint extends string | number | symbol, T> = T | Partial<Record<Breakpoint, T>>;
 

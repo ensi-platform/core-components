@@ -2,8 +2,8 @@
 import type { CSSObject } from '@emotion/react';
 import type { FC, MouseEvent, ReactElement, ReactNode } from 'react';
 
-import type { SelectProps } from '@greensight/core-components-select';
-import type { BaseThemeState, StyleDefinition } from '@greensight/core-components-common';
+import type { SelectProps } from '@ensi-platform/core-components-select';
+import type { BaseThemeState, StyleDefinition } from '@ensi-platform/core-components-common';
 
 import { TABS_THEMES } from './themes';
 

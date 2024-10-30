@@ -1,9 +1,8 @@
-import type { LayoutProps } from '@greensight/gds/types/src/components/Layout';
-import { LayoutItemProps } from '@greensight/gds/types/src/components/Layout/Item';
 import type { FC, ReactNode } from 'react';
 import { useFieldArray, useFormContext } from 'react-hook-form';
 
-import { Button, Layout, scale } from '@greensight/gds';
+import { LayoutProps, Button, Layout, scale } from '@ensi-platform/core-components-common';
+import { LayoutItemProps } from '@greensight/gds/types/src/components/Layout/Item';
 import useForm from '../hooks/useForm';
 
 export interface FieldArrayAddProps {

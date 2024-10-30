@@ -1,9 +1,9 @@
 import type { StoryObj } from '@storybook/react';
 import { ChangeEvent, ComponentProps, useCallback, useState } from 'react';
-import { Select, SelectHandlers, SelectItem } from '@greensight/core-components-select';
-import Form from '@greensight/core-components-form';
+import { Select, SelectHandlers, SelectItem } from '@ensi-platform/core-components-select';
+import Form from '@ensi-platform/core-components-form';
 import * as Yup from 'yup';
-import { Button } from '@greensight/gds';
+import { Button } from '@ensi-platform/core-components-common';
 import { Autocomplete, BaseAutocomplete } from './components';
 import { AutocompleteAsync } from './Component';
 import README from '../README.md';
