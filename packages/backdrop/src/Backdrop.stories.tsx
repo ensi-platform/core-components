@@ -5,7 +5,7 @@ import { action } from '@storybook/addon-actions';
 import type { Meta, StoryObj } from '@storybook/react';
 
 import README from '../README.md';
-import Backdrop from './index';
+import { Backdrop } from './index';
 
 export default {
     title: 'Components / Backdrop',

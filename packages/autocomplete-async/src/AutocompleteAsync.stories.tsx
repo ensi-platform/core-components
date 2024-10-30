@@ -1,7 +1,7 @@
 import type { StoryObj } from '@storybook/react';
 import { ChangeEvent, ComponentProps, useCallback, useState } from 'react';
 import { Select, SelectHandlers, SelectItem } from '@ensi-platform/core-components-select';
-import Form from '@ensi-platform/core-components-form';
+import { Form } from '@ensi-platform/core-components-form';
 import * as Yup from 'yup';
 import { Button } from '@ensi-platform/core-components-common';
 import { Autocomplete, BaseAutocomplete } from './components';

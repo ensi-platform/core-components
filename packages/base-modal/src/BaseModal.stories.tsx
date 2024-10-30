@@ -4,7 +4,7 @@ import { ComponentProps, useState } from 'react';
 import { Button } from '@ensi-platform/core-components-common';
 
 import README from '../README.md';
-import BaseModal from './index';
+import { BaseModal } from './index';
 
 export default {
     title: 'Components / BaseModal',

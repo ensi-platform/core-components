@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { ComponentProps, useState } from 'react';
 
-import Form from '@ensi-platform/core-components-form';
+import { Form } from '@ensi-platform/core-components-form';
 import { Button, scale } from '@ensi-platform/core-components-common';
 import README from '../README.md';
 import { CalendarInput } from './index';

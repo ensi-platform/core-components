@@ -5,7 +5,7 @@ import * as Yup from 'yup';
 
 import { Button, scale } from '@ensi-platform/core-components-common';
 
-import Form from '@ensi-platform/core-components-form';
+import { Form } from '@ensi-platform/core-components-form';
 import { Select, SelectItem, SimpleSelect } from '.';
 import README from '../README.md';
 
