@@ -100,7 +100,7 @@ This command will override version number only in package.json in `dist/` folder
 
 New version of the package will include all the contents of the dist folder, but you can always adjust the whitelist in the `dist/package.json` parameter `files`.
 
-4. Next run command `yarn version` and specify the same version as in step 3.  
+4. Next run command `yarn version` and specify the same version as in step 3.
    This command will override version number in package.json, commit changes and create new annotated tag.
 
 5. Now push changes to gitlab and additionally push tags:
@@ -113,6 +113,12 @@ git push origin --tags
 6. Finally go to gitlab-repository, check your tag, release it and fill the release description changes.
 
 ---
+
+### Creating a new package
+
+It is **recommended** to use create-package.js script to create a new package
+
+Run `yarn create-package` from the root
 
 ## License
 
