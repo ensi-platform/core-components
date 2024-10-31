@@ -1,9 +1,54 @@
 const fs = require('fs/promises');
 const inquirerAsync = import('inquirer');
+const path = require('path');
 
-const ucfirst = str => {
-    return str.slice(0, 1).toUpperCase() + str.slice(1);
-};
+const prefix = '@ensi-platform/core-components-';
+
+const isKebabCase = str => /^[a-z]+(-[a-z]+)*$/.test(str);
+
+const ucfirst = str => str.slice(0, 1).toUpperCase() + str.slice(1);
+
+async function getPeerDependencies() {
+    const packageJsonPath = path.join(__dirname, '../package.json');
+    const packageJsonData = await fs.readFile(packageJsonPath, 'utf-8');
+    const packageJson = JSON.parse(packageJsonData);
+
+    return {
+        react: '^16.9.0 || ^17.0.1 || ^18.0.0',
+        'react-dom': '^16.9.0 || ^17.0.1 || ^18.0.0',
+        '@emotion/react': packageJson.dependencies['@emotion/react'],
+        '@emotion/styled': packageJson.dependencies['@emotion/styled'],
+    };
+}
+
+async function getRootDependencies(deps) {
+    const resultDeps = {};
+
+    const packageJsonPath = path.join(__dirname, '../package.json');
+    const packageJsonData = await fs.readFile(packageJsonPath, 'utf-8');
+    const packageJson = JSON.parse(packageJsonData);
+
+    for (const dep of deps) {
+        resultDeps[dep] = packageJson.dependencies.tslib;
+    }
+
+    return resultDeps;
+}
+
+async function getPackageDependencies(packageNames) {
+    const result = {};
+
+    for (const packageName of packageNames) {
+        const packageJsonPath = path.join(__dirname, '../packages', packageName, 'package.json');
+
+        const packageJsonData = await fs.readFile(packageJsonPath, 'utf-8');
+        const packageJson = JSON.parse(packageJsonData);
+
+        result[packageJson.name] = `^${packageJson.version}`;
+    }
+
+    return result;
+}
 
 // Function to create a package
 async function createPackage(packageName, deps) {
@@ -12,7 +57,7 @@ async function createPackage(packageName, deps) {
     await fs.mkdir(`packages/${packageName}/src`);
 
     const packageJson = {
-        name: `@ensi-platform/core-components-${packageName}`,
+        name: `${prefix}${packageName}`,
         version: '1.0.0',
         description: `${packageName} component`,
         keywords: [],
@@ -23,14 +68,10 @@ async function createPackage(packageName, deps) {
             access: 'public',
             directory: 'dist',
         },
-        peerDependencies: {
-            react: '^16.9.0 || ^17.0.1 || ^18.0.0',
-            'react-dom': '^16.9.0 || ^17.0.1 || ^18.0.0',
-            '@emotion/react': '^11.11.1',
-            '@emotion/styled': '11.3.0',
-        },
+        peerDependencies: await getPeerDependencies(),
         dependencies: {
-            tslib: '^2.6.2',
+            ...(await getRootDependencies(['tslib'])),
+            ...(await getPackageDependencies(deps)),
         },
     };
 
@@ -42,32 +83,27 @@ async function createPackage(packageName, deps) {
             rootDirs: ['src'],
             baseUrl: '.',
             paths: {
-                '@ensi-platform/core-components-*': ['../*/src'],
+                [`${prefix}*`]: ['../*/src'],
             },
         },
-        references: deps.map(dep => ({ path: `../${dep}/tsconfig.json` })),
+        references: deps.map(dep => ({ path: `../${dep}` })),
     };
 
     const rootTsConfigJson = JSON.parse(await fs.readFile('./tsconfig.json'));
-    rootTsConfigJson.compilerOptions.paths[`@ensi-platform/core-components-${packageName}/*`] = [
-        `packages/${packageName}/src/*`,
-    ];
+    rootTsConfigJson.compilerOptions.paths[`${prefix}${packageName}/*`] = [`packages/${packageName}/src/*`];
 
     await fs.writeFile('./tsconfig.json', JSON.stringify(rootTsConfigJson, null, 2));
-
     await fs.writeFile(`packages/${packageName}/package.json`, JSON.stringify(packageJson, null, 2));
     await fs.writeFile(`packages/${packageName}/tsconfig.json`, JSON.stringify(tsConfigJson, null, 2));
-
     await fs.writeFile(`packages/${packageName}/README.md`, `# Компонент ${packageName}`);
     await fs.writeFile(`packages/${packageName}/src/index.tsx`, `/// `);
+    await fs.writeFile(`packages/${packageName}/src/${ucfirst(packageName)}.stories.tsx`, `/// `);
+
     await fs.mkdir(`packages/${packageName}/src/components`);
     await fs.mkdir(`packages/${packageName}/src/scripts`);
     await fs.mkdir(`packages/${packageName}/src/themes`);
-    await fs.writeFile(`packages/${packageName}/src/${ucfirst(packageName)}.stories.tsx`, `/// `);
-}
 
-function isKebabCase(str) {
-    return /^[a-z]+(-[a-z]+)*$/.test(str);
+    await fs.copyFile(path.join(__dirname, '../LICENSE.md'), `packages/${packageName}/LICENSE.md`);
 }
 
 async function main() {
@@ -97,7 +133,6 @@ async function main() {
     ]);
 
     const { packageName, deps } = answers;
-
     await createPackage(packageName, deps);
 
     console.log('Successfully created!');
