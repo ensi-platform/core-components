@@ -1,7 +1,7 @@
 import { CSSObject } from '@emotion/react';
 import {
     BaseThemeState,
-    FormFieldDescendantProps,
+    FormFieldHelperProps,
     StyleDefinition,
     ValueOrFunction,
     useCheckboxLikeControlHookType,
@@ -79,7 +79,7 @@ export type CheckboxTheme = ValueOrFunction<
 export type CheckboxProps = Omit<CheckboxState, 'focused' | 'error'> &
     Partial<Omit<BaseThemeState<typeof CheckboxVariant, typeof CheckboxSize, CheckboxTheme>, 'theme'>> &
     Omit<NativeProps, 'size' | 'onChange' | 'enterKeyHint'> &
-    FormFieldDescendantProps & {
+    Partial<FormFieldHelperProps<boolean>> & {
         /**
          * Обработчик переключения чекбокса
          */

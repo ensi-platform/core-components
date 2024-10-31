@@ -60,22 +60,6 @@ export const FormField = forwardRef<HTMLInputElement, FormFieldProps>(
                 trigger,
                 setError,
                 setValue,
-                helpers: {
-                    setError(value: any) {
-                        setError(name, { message: value });
-                    },
-                    setValue(value: any, shouldValidate: boolean) {
-                        onChangeHandler(undefined, value);
-
-                        setValue(name, value);
-
-                        field.onBlur();
-
-                        if (shouldValidate) {
-                            trigger(name);
-                        }
-                    },
-                },
                 meta: {
                     isDirty: fieldState.isDirty,
                     touched: fieldState.isTouched || formState.isSubmitted,

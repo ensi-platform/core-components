@@ -1,8 +1,9 @@
 import { HTMLAttributes, forwardRef } from 'react';
 
-import { FormFieldDescendantProps, IconSmallImport, scale, defaultTheme, Button } from '@greensight/core-components-common';
+import { FormFieldHelperProps, IconSmallImport, scale, defaultTheme, Button } from '@greensight/core-components-common';
+import { FileType } from './DropzoneFile';
 
-interface DropzoneAreaProps extends HTMLAttributes<HTMLDivElement>, FormFieldDescendantProps {
+interface DropzoneAreaProps extends HTMLAttributes<HTMLDivElement>, Partial<FormFieldHelperProps<FileType[]>> {
     inputFieldProps: HTMLAttributes<HTMLInputElement>;
     disabled?: boolean;
     /** Button-like view */
@@ -41,8 +42,7 @@ const DropzoneArea = forwardRef<HTMLDivElement, DropzoneAreaProps>(
                 css={{
                     display: 'grid',
                     placeItems: 'center',
-                    border:
-                        meta?.error ? `1px solid ${colors?.danger}` : `1px dashed ${colors.grey300}`,
+                    border: meta?.error ? `1px solid ${colors?.danger}` : `1px dashed ${colors.grey300}`,
                     // borderRadius: IT?.borderRadius,
                     // background: IT?.bg,
                     padding: scale(2),

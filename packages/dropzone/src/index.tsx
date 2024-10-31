@@ -8,7 +8,7 @@ import {
 } from '@hello-pangea/dnd';
 import { FileRejection, DropzoneProps as UseDropzoneProps, useDropzone } from 'react-dropzone';
 
-import { useDeferredLoading, scale, FormFieldDescendantProps } from '@greensight/core-components-common';
+import { useDeferredLoading, scale, FormFieldHelperProps } from '@greensight/core-components-common';
 
 import { LoadingSkeleton } from '@greensight/core-components-loading-skeleton';
 import { FormControl } from '@greensight/core-components-form-control';
@@ -21,7 +21,7 @@ const DragDropContext = UntypedDragDropContext as never as FC<DragDropContextPro
 const Droppable = UntypedDroppable as never as FC<DroppableProps>;
 
 type DropzoneProps = UseDropzoneProps &
-    FormFieldDescendantProps<FileType[]> & {
+    Partial<FormFieldHelperProps<FileType[]>> & {
         label?: string;
         /** On files change callback */
         onFilesChange?: (files: FileType[]) => void;

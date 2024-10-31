@@ -65,7 +65,6 @@ export interface FieldProps<T> {
     meta?: {
         error?: string;
     };
-    helpers?: { setValue: (value: T) => void };
 }
 
 export const Form = <T extends FieldValues>({

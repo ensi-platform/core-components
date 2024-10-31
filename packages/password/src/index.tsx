@@ -1,16 +1,11 @@
 import { HTMLProps, useState } from 'react';
 
-import {
-    defaultTheme,
-    FormFieldDescendantProps,
-    IconSmallEye,
-    IconSmallEyeOff,
-} from '@greensight/core-components-common';
+import { defaultTheme, FormFieldHelperProps, IconSmallEye, IconSmallEyeOff } from '@greensight/core-components-common';
 import { Input } from '@greensight/core-components-input';
 
 const { colors } = defaultTheme;
 
-export interface PasswordProps extends HTMLProps<HTMLInputElement>, FormFieldDescendantProps {
+export interface PasswordProps extends HTMLProps<HTMLInputElement>, Partial<FormFieldHelperProps<string>> {
     /** Custom icon */
     Icon?: () => JSX.Element;
 }

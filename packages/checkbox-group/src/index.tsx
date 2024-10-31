@@ -18,9 +18,9 @@ import {
     CheckboxThemeState,
 } from '@greensight/core-components-checkbox';
 
-import { scale, useThemeCSSPart, FormFieldDescendantProps } from '@greensight/core-components-common';
+import { scale, useThemeCSSPart, FormFieldHelperProps } from '@greensight/core-components-common';
 
-export interface CheckboxGroupProps extends FormFieldDescendantProps<string[]> {
+export interface CheckboxGroupProps extends Partial<FormFieldHelperProps<string[]>> {
     /** Заголовок группы */
     label?: string;
 
