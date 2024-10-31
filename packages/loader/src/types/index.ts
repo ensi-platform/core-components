@@ -1,2 +1,2 @@
-export * from './loader';
+export * from './component';
 export * from './themes';

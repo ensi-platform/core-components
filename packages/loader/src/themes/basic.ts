@@ -6,13 +6,13 @@ import {
     typography,
 } from '@greensight/core-components-common';
 import { LoaderSizes, LoaderVariants, Opacities } from '../scripts/enums';
-import { type ILoaderTheme } from '../types';
+import type { LoaderThemeType } from '../types';
 
 const { colors } = defaultTheme;
 
-export const basicTheme: ILoaderTheme<typeof LoaderVariants, typeof LoaderSizes> = {
+export const basicTheme: LoaderThemeType<typeof LoaderVariants, typeof LoaderSizes> = {
     wrapper: state => {
-        const opacity = state.message ? Opacities.message : Opacities.default;
+        const opacity = state.message ? Opacities.withMessage : Opacities.default;
 
         const variants: OptionizedCSS<typeof LoaderVariants> = {
             primary: {

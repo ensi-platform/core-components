@@ -7,6 +7,6 @@ export enum LoaderSizes {
 }
 
 export enum Opacities {
-    message = 'cc',
+    withMessage = 'cc',
     default = '90',
 }
