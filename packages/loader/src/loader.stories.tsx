@@ -26,33 +26,40 @@ export default {
             },
             control: { type: 'text' },
         },
-        wrapperStyles: {
+        wrapperCSS: {
             table: {
                 type: { summary: 'object' },
             },
             description: 'Additional wrapper styles.',
             summary: 'object',
         },
-        containerStyles: {
+        containerCSS: {
             table: {
                 type: { summary: 'object' },
             },
             description: 'Additional container styles.',
             summary: 'object',
         },
-        spinnerStyles: {
+        spinnerCSS: {
             table: {
                 type: { summary: 'object' },
             },
             description: 'Additional spinner styles.<br />Use `::after` to style the spinner.',
             summary: 'object',
         },
-        messageStyles: {
+        messageCSS: {
             table: {
                 type: { summary: 'object' },
             },
             description: 'Additional message styles.',
             summary: 'object',
+        },
+        className: {
+            table: {
+                type: { summary: 'string' },
+            },
+            description: 'Additional wrapper styles.<br />Has a higher priority than `wrapperCSS` prop.',
+            summary: 'string',
         },
         variant: {
             table: {
@@ -81,10 +88,11 @@ export default {
 
 const defaultProps: ComponentProps<typeof Loader> = {
     message: '',
-    wrapperStyles: emptyCSS,
-    containerStyles: emptyCSS,
-    spinnerStyles: emptyCSS,
-    messageStyles: emptyCSS,
+    wrapperCSS: emptyCSS,
+    containerCSS: emptyCSS,
+    spinnerCSS: emptyCSS,
+    messageCSS: emptyCSS,
+    className: '',
     variant: LoaderVariants.primary,
     size: LoaderSizes.md,
 };

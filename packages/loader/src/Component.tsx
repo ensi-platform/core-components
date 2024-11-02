@@ -6,10 +6,11 @@ import { emptyCSS, LoaderSizes, LoaderVariants, useMergeCSS } from './scripts';
 
 export const BaseLoader = <V extends EnumLike, S extends EnumLike>({
     message = '',
-    wrapperStyles = emptyCSS,
-    containerStyles = emptyCSS,
-    spinnerStyles = emptyCSS,
-    messageStyles = emptyCSS,
+    wrapperCSS: wrapperCSSProp = emptyCSS,
+    containerCSS: containerCSSProp = emptyCSS,
+    spinnerCSS: spinnerCSSProp = emptyCSS,
+    messageCSS: messageCSSProp = emptyCSS,
+    className,
     theme,
     variant,
     size,
@@ -18,13 +19,13 @@ export const BaseLoader = <V extends EnumLike, S extends EnumLike>({
 
     const getCSS = useThemeCSSPart(theme!, state);
 
-    const wrapperCSS = useMergeCSS(getCSS('wrapper'), wrapperStyles);
-    const containerCSS = useMergeCSS(getCSS('container'), containerStyles);
-    const spinnerCSS = useMergeCSS(getCSS('spinner'), spinnerStyles);
-    const messageCSS = useMergeCSS(getCSS('message'), messageStyles);
+    const wrapperCSS = useMergeCSS(getCSS('wrapper'), wrapperCSSProp);
+    const containerCSS = useMergeCSS(getCSS('container'), containerCSSProp);
+    const spinnerCSS = useMergeCSS(getCSS('spinner'), spinnerCSSProp);
+    const messageCSS = useMergeCSS(getCSS('message'), messageCSSProp);
 
     return (
-        <div css={wrapperCSS}>
+        <div css={wrapperCSS} className={className}>
             <div css={containerCSS}>
                 <div css={spinnerCSS} />
                 {message && <h4 css={messageCSS}>{message}</h4>}

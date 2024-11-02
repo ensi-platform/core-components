@@ -21,22 +21,29 @@ export interface ILoaderProps<V extends EnumLike, S extends EnumLike>
     /**
      * Additional wrapper styles
      */
-    wrapperStyles?: CSSObject;
+    wrapperCSS?: CSSObject;
 
     /**
      * Additional container styles
      */
-    containerStyles?: CSSObject;
+    containerCSS?: CSSObject;
 
     /**
      * Additional spinner styles
      *
      * Use `::after` to style the spinner
      */
-    spinnerStyles?: CSSObject;
+    spinnerCSS?: CSSObject;
 
     /**
      * Additional message styles
      */
-    messageStyles?: CSSObject;
+    messageCSS?: CSSObject;
+
+    /**
+     * Additional wrapper styles
+     *
+     * Has a higher priority than `wrapperCSS`
+     */
+    className?: string;
 }

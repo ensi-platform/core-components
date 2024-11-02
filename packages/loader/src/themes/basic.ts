@@ -11,8 +11,8 @@ import type { LoaderThemeType } from '../types';
 const { colors } = defaultTheme;
 
 export const basicTheme: LoaderThemeType<typeof LoaderVariants, typeof LoaderSizes> = {
-    wrapper: state => {
-        const opacity = state.message ? Opacities.withMessage : Opacities.default;
+    wrapper: ({ variant, message }) => {
+        const opacity = message ? Opacities.withMessage : Opacities.default;
 
         const variants: OptionizedCSS<typeof LoaderVariants> = {
             primary: {
@@ -30,10 +30,10 @@ export const basicTheme: LoaderThemeType<typeof LoaderVariants, typeof LoaderSiz
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
-            ...extractCSSOption(variants, state.variant),
+            ...extractCSSOption(variants, variant),
         };
     },
-    container: state => {
+    container: ({ size }) => {
         const sized: OptionizedCSS<typeof LoaderSizes> = {
             md: {
                 padding: scale(4),
@@ -46,10 +46,10 @@ export const basicTheme: LoaderThemeType<typeof LoaderVariants, typeof LoaderSiz
             alignItems: 'center',
             justifyContent: 'center',
             flexDirection: 'column',
-            ...extractCSSOption(sized, state.size),
+            ...extractCSSOption(sized, size),
         };
     },
-    spinner: state => {
+    spinner: ({ size }) => {
         const sized: OptionizedCSS<typeof LoaderSizes> = {
             md: {
                 height: scale(8),
@@ -58,7 +58,7 @@ export const basicTheme: LoaderThemeType<typeof LoaderVariants, typeof LoaderSiz
         };
 
         return {
-            ...extractCSSOption(sized, state.size),
+            ...extractCSSOption(sized, size),
             '::after': {
                 content: '""',
                 display: 'block',
@@ -75,11 +75,11 @@ export const basicTheme: LoaderThemeType<typeof LoaderVariants, typeof LoaderSiz
             },
         };
     },
-    message: state => {
+    message: ({ size }) => {
         const sized: OptionizedCSS<typeof LoaderSizes> = {
             md: { ...typography('h4') },
         };
 
-        return { ...extractCSSOption(sized, state.size), textAlign: 'center' };
+        return { ...extractCSSOption(sized, size), textAlign: 'center' };
     },
 };
