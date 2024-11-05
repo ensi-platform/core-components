@@ -1,6 +1,6 @@
 {
     "name": "@ensi-platform/core-components",
-    "version": "1.0.0-beta.1.5.0",
+    "version": "1.0.0-beta.1.6.0",
     "prepublishOnly": "yarn build",
     "description": "Библиотека React компонентов для создания интерфейсов",
     "private": true,
