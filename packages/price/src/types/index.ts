@@ -1,2 +1,2 @@
-export * from './price';
+export * from './component';
 export * from './theme';

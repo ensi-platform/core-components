@@ -1,48 +1,49 @@
 import { formatPrice, useThemeCSSPart, type EnumLike } from '@greensight/core-components-common';
 import { type FC, useMemo } from 'react';
-import { type IPriceTheme, type IPriceProps, type PriceStateFullType } from './types';
 import { PRICE_THEMES } from './themes';
+import type { PriceThemeType, IPriceProps, PriceStateFullType } from './types';
 import { emptyCSS, PriceSizes, PriceVariants, useMergeCSS } from './scripts';
 
 const BasePrice = <V extends EnumLike, S extends EnumLike>({
+    preText,
+    value,
+    unit = '₽',
     typography = 'bodyMd',
-    isCrossed = false,
+    unitTypography = 'bodyMd',
     variant,
     size,
     theme,
-    value,
-    unit = '₽',
-    preText,
-    disableUnit = false,
-    valueStyles = emptyCSS,
-    preTextStyles = emptyCSS,
-    unitStyles = emptyCSS,
-    ...props
+    containerCSS: containerCSSProp = emptyCSS,
+    valueCSS: valueCSSProp = emptyCSS,
+    preTextCSS: preTextCSSProp = emptyCSS,
+    unitCSS: unitCSSProp = emptyCSS,
+    className,
+    hideUnit = false,
+    isCrossed = false,
 }: IPriceProps<V, S>) => {
     const state = useMemo<PriceStateFullType<V, S>>(
-        () => ({ typography, isCrossed, variant, size }),
-        [typography, isCrossed, size, variant]
+        () => ({ typography, isCrossed, variant, size, unitTypography }),
+        [typography, isCrossed, size, variant, unitTypography]
     );
 
     const getCSS = useThemeCSSPart(theme!, state);
 
-    const containerCSS = getCSS('container');
-
-    const preTextCSS = useMergeCSS(getCSS('preText'), preTextStyles);
-    const valueCSS = useMergeCSS(getCSS('value'), valueStyles);
-    const unitCSS = useMergeCSS(getCSS('unit'), unitStyles);
+    const containerCSS = useMergeCSS(getCSS('container'), containerCSSProp);
+    const preTextCSS = useMergeCSS(getCSS('preText'), valueCSSProp);
+    const valueCSS = useMergeCSS(getCSS('value'), preTextCSSProp);
+    const unitCSS = useMergeCSS(getCSS('unit'), unitCSSProp);
 
     return (
-        <div css={containerCSS} {...props}>
+        <div css={containerCSS} className={className}>
             {preText && <span css={preTextCSS}>{preText} </span>}
             <span css={valueCSS}>{formatPrice(value, 'ru')}</span>
-            {!disableUnit && <span css={unitCSS}> {unit}</span>}
+            {!hideUnit && <span css={unitCSS}> {unit}</span>}
         </div>
     );
 };
 
 const createPriceWithTheme = <V extends EnumLike, S extends EnumLike>(
-    defaultTheme: IPriceTheme<V, S>,
+    defaultTheme: PriceThemeType<V, S>,
     defaultVariant: V | keyof V,
     defaultSize: S | keyof S
 ): FC<IPriceProps<V, S>> => {

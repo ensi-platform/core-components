@@ -1,29 +1,9 @@
-import {
-    type EnumLike,
-    type BaseThemeState,
-    type StyleDefinition,
-    type ExtractTypography,
-    defaultTokens,
-    ValueOrFunction,
-} from '@greensight/core-components-common';
-
-export interface IPriceState {
-    /**
-     * Cross all price component
-     * @default false
-     */
-    isCrossed: boolean;
-
-    /**
-     * Typography for price component
-     * @default 'bodyMd'
-     */
-    typography: ExtractTypography<typeof defaultTokens>;
-}
+import type { EnumLike, BaseThemeState, StyleDefinition, ValueOrFunction } from '@greensight/core-components-common';
+import type { IPriceState } from './component';
 
 export type PriceStateFullType<V extends EnumLike, S extends EnumLike> = BaseThemeState<V, S> & IPriceState;
 
-export type IPriceTheme<V extends EnumLike, S extends EnumLike> = ValueOrFunction<
+export type PriceThemeType<V extends EnumLike, S extends EnumLike> = ValueOrFunction<
     {
         container: StyleDefinition<PriceStateFullType<V, S>>;
         preText?: StyleDefinition<PriceStateFullType<V, S>>;

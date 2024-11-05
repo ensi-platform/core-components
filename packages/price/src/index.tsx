@@ -1,4 +1,4 @@
-import Price from './Price';
+import Price from './Component';
 
 export { Price };
 export * from './types';

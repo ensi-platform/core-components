@@ -1,10 +1,10 @@
 import { defaultTheme, typography } from '@greensight/core-components-common';
 import { PriceSizes, PriceVariants } from '../scripts';
-import { type IPriceTheme } from '../types';
+import type { PriceThemeType } from '../types';
 
 const { colors } = defaultTheme;
 
-export const basicTheme: IPriceTheme<typeof PriceVariants, typeof PriceSizes> = {
+export const basicTheme: PriceThemeType<typeof PriceVariants, typeof PriceSizes> = {
     container: state => ({
         display: 'inline-block',
         position: 'relative',
@@ -21,5 +21,8 @@ export const basicTheme: IPriceTheme<typeof PriceVariants, typeof PriceSizes> = 
                 width: '100%',
             },
         }),
+    }),
+    unit: ({ unitTypography }) => ({
+        ...(unitTypography && typeof unitTypography === 'string' ? typography(unitTypography) : unitTypography),
     }),
 };

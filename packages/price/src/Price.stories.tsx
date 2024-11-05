@@ -1,7 +1,7 @@
 import { defaultTokens } from '@greensight/core-components-common';
-import { type Meta, type StoryObj } from '@storybook/react';
-import { type ComponentProps } from 'react';
-import { Price, PriceSizes, PriceVariants, type IPriceProps } from './index';
+import type { Meta, StoryObj } from '@storybook/react';
+import type { ComponentProps } from 'react';
+import { emptyCSS, Price, PriceSizes, PriceVariants, type IPriceProps } from './index';
 import README from '../README.md';
 
 export default {
@@ -33,9 +33,9 @@ export default {
             },
             summary: 'string',
         },
-        disableUnit: {
+        hideUnit: {
             table: { summary: 'boolean' },
-            description: 'Disable text before price value.',
+            description: 'Hide unit glyph after price value.',
             defaultValue: {
                 summary: false,
             },
@@ -48,26 +48,41 @@ export default {
             description: 'Text before price value',
             summary: 'string',
         },
-        valueStyles: {
+        containerCSS: {
+            table: {
+                type: { summary: 'object' },
+            },
+            description: 'Additional container styles.',
+            summary: 'object',
+        },
+        valueCSS: {
             table: {
                 type: { summary: 'object' },
             },
             description: 'Additional value styles.',
             summary: 'object',
         },
-        preTextStyles: {
+        preTextCSS: {
             table: {
                 type: { summary: 'object' },
             },
             description: 'Additional preText styles.',
             summary: 'object',
         },
-        unitStyles: {
+        unitCSS: {
             table: {
                 type: { summary: 'object' },
             },
             description: 'Additional unit styles.',
             summary: 'object',
+        },
+        className: {
+            table: {
+                type: { summary: 'string' },
+            },
+            description: 'Additional container styles.<br />Has a higher priority than `containerCSS`.',
+            control: { type: 'text' },
+            summary: 'string',
         },
         isCrossed: {
             table: {
@@ -82,6 +97,18 @@ export default {
         typography: {
             table: {
                 type: { summary: 'string' },
+            },
+            description: 'Typography for price component.',
+            options: Object.keys(defaultTokens.typography.styles),
+            control: { type: 'select' },
+            defaultValue: {
+                summary: 'bodyMd',
+            },
+            summary: 'string',
+        },
+        unitTypography: {
+            table: {
+                type: { summary: 'string | CSSObject' },
             },
             description: 'Typography for price component.',
             options: Object.keys(defaultTokens.typography.styles),
@@ -116,29 +143,36 @@ export default {
     },
 } as Meta<IPriceProps<any, any>>;
 
+const defaultProps: ComponentProps<typeof Price> = {
+    typography: 'bodyMd',
+    unitTypography: 'bodyMd',
+    variant: 'primary',
+    size: 'md',
+    preText: undefined,
+    unit: undefined,
+    value: 100,
+    containerCSS: emptyCSS,
+    valueCSS: emptyCSS,
+    preTextCSS: emptyCSS,
+    unitCSS: emptyCSS,
+    className: undefined,
+    hideUnit: false,
+    isCrossed: false,
+};
+
 export const Basic: StoryObj<ComponentProps<typeof Price>> = {
     args: {
+        ...defaultProps,
         value: 1010,
-        unit: '₽',
         preText: 'от',
-        disableUnit: false,
-        variant: 'primary',
-        size: 'md',
-        typography: 'bodyMd',
-        isCrossed: false,
     },
     render: args => <Price {...args} />,
 };
 
 export const Crossed: StoryObj<ComponentProps<typeof Price>> = {
     args: {
+        ...defaultProps,
         value: 12500,
-        unit: '₽',
-        preText: undefined,
-        disableUnit: false,
-        variant: 'primary',
-        size: 'md',
-        typography: 'bodyMd',
         isCrossed: true,
     },
     render: args => <Price {...args} />,
