@@ -6,19 +6,18 @@
         "rootDirs": ["src"],
         "baseUrl": ".",
         "paths": {
-            "react": ["node_modules/@types/react"],
-            "@greensight/core-components-*": ["../*/src"]
+            "@ensi-platform/core-components-*": ["../*/src"]
         }
     },
     "references": [
         {
-            "path": "../common/tsconfig.json"
+            "path": "../common"
         },
         {
-            "path": "../form-control/tsconfig.json"
+            "path": "../form-control"
         },
         {
-            "path": "../loading-skeleton/tsconfig.json"
+            "path": "../loading-skeleton"
         }
     ]
 }

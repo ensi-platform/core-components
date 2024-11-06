@@ -7,11 +7,11 @@ import {
     Arrow as DefaultArrow,
     SelectItem,
     SelectPayload,
-} from '@greensight/core-components-select';
+} from '@ensi-platform/core-components-select';
 
-import { TagList } from '@greensight/core-components-select-with-tags';
+import { TagList } from '@ensi-platform/core-components-select-with-tags';
 
-import { InputProps } from '@greensight/core-components-input';
+import { InputProps } from '@ensi-platform/core-components-input';
 import mergeRefs from 'react-merge-refs';
 import { IAutocompleteProps } from './types';
 import { AutocompleteField } from '../Field';

@@ -1,8 +1,8 @@
 import { ComponentProps } from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
 
-import { LinkColorType } from '@greensight/core-components-common';
-import { CopyButton } from '@greensight/core-components-copy-button';
+import { LinkColorType } from '@ensi-platform/core-components-common';
+import CopyButton from './Component.tsx';
 import README from '../README.md';
 
 export default {

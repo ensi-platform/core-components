@@ -2,10 +2,10 @@ import React, { ClassAttributes, FC, HTMLAttributes, useCallback, useEffect, use
 import mergeRefs from 'react-merge-refs';
 import deepmerge from 'deepmerge';
 
-import { Popover } from '@greensight/core-components-popover';
+import { Popover } from '@ensi-platform/core-components-popover';
 
 import { CSSObject } from '@emotion/react';
-import { useThemeCSSPart } from '@greensight/core-components-common';
+import { useThemeCSSPart } from '@ensi-platform/core-components-common';
 import { TooltipThemeState, type TooltipProps, Trigger } from './types';
 import { tooltipThemes } from './themes/defaultTheme';
 

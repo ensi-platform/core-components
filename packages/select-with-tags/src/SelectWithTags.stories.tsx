@@ -2,11 +2,11 @@ import { StoryObj } from '@storybook/react';
 
 import { ComponentProps, SetStateAction, useCallback, useMemo, useState } from 'react';
 
-import { Button, scale } from '@greensight/gds';
-import { SelectItem, SelectPayload } from '@greensight/core-components-select';
+import { Button, scale } from '@ensi-platform/core-components-common';
+import { SelectItem, SelectPayload } from '@ensi-platform/core-components-select';
 
-import Form from '@greensight/core-components-form';
-import { SelectWithTags, SelectWithTagsProps } from '.';
+import { Form } from '@ensi-platform/core-components-form';
+import { SelectWithTags, SelectWithTagsProps } from './index';
 import README from '../README.md';
 import { SimpleSelectWithTags } from './SelectWithTags';
 

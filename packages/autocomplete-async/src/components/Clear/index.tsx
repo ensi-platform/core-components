@@ -1,4 +1,4 @@
-import { scale, IconSmallClosed as CloseIcon } from '@greensight/core-components-common';
+import { scale, IconSmallClosed as CloseIcon } from '@ensi-platform/core-components-common';
 
 export const Clear = ({
     clear,

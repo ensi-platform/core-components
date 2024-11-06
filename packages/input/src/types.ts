@@ -1,7 +1,7 @@
 import { CSSObject } from '@emotion/react';
 import { ChangeEvent, InputHTMLAttributes, MouseEvent, ReactNode, Ref } from 'react';
 
-import { FormControlProps } from '@greensight/core-components-form-control';
+import { FormControlProps } from '@ensi-platform/core-components-form-control';
 
 export type InputProps = Omit<
     InputHTMLAttributes<HTMLInputElement>,

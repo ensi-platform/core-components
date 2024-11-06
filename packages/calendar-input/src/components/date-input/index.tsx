@@ -1,11 +1,11 @@
 import { ChangeEvent, FocusEvent, forwardRef, useEffect, useRef, useState } from 'react';
 import mergeRefs from 'react-merge-refs';
 
-import { Calendar as DefaultCalendar, CalendarProps } from '@greensight/core-components-calendar';
-import { Input } from '@greensight/core-components-input';
-import { Popover } from '@greensight/core-components-popover';
+import { Calendar as DefaultCalendar, CalendarProps } from '@ensi-platform/core-components-calendar';
+import { Input } from '@ensi-platform/core-components-input';
+import { Popover } from '@ensi-platform/core-components-popover';
 
-import { useOnClickOutside, IconCalendar, defaultTheme, scale } from '@greensight/core-components-common';
+import { useOnClickOutside, IconCalendar, defaultTheme, scale } from '@ensi-platform/core-components-common';
 
 import {
     DATE_FORMAT,

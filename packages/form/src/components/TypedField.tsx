@@ -1,9 +1,8 @@
 import { ChangeEvent, Children, FC, cloneElement, forwardRef, isValidElement, useCallback, useMemo } from 'react';
 import { useController, useFormContext } from 'react-hook-form';
 
-import { FieldProps } from '@greensight/core-components-form';
-import { Input } from '@greensight/core-components-input';
-import { FormFieldProps, useFormikCompatibleFieldProps } from './Field';
+import { Input } from '@ensi-platform/core-components-input';
+import { FormFieldProps, useFormikCompatibleFieldProps, FieldProps } from './Field';
 import useForm from '../hooks/useForm';
 
 type DataType = 'string' | 'number';

@@ -1,4 +1,4 @@
-import { type EnumLike, useThemeCSSPart } from '@greensight/core-components-common';
+import { type EnumLike, useThemeCSSPart } from '@ensi-platform/core-components-common';
 import { type FC, useMemo } from 'react';
 import Skeleton from 'react-loading-skeleton';
 import type { ILoadingSkeletonProps, LoadingSkeletonThemeType, LoadingSkeletonStateFullType } from './types';

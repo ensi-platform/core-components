@@ -1,9 +1,9 @@
 import { FC, useCallback, useRef } from 'react';
 import mergeRefs from 'react-merge-refs';
 
-import { FieldProps, Field as DefaultField } from '@greensight/core-components-select';
-import { scale } from '@greensight/gds';
-import { IconSmallClosed, defaultTheme } from '@greensight/core-components-common';
+import { IconSmallClosed, defaultTheme, scale } from '@ensi-platform/core-components-common';
+import { Field as DefaultField } from '../Field';
+import { FieldProps } from '../../types';
 
 const { colors } = defaultTheme;
 

@@ -1,5 +1,5 @@
 import { CSSObject } from '@emotion/react';
-import { OptionizedCSS, defaultTheme, extractCSSOption, scale } from '@greensight/core-components-common';
+import { OptionizedCSS, defaultTheme, extractCSSOption, scale } from '@ensi-platform/core-components-common';
 
 // eslint-disable-next-line import/no-cycle
 import { Align, PopupSize, PopupTheme } from '../types';

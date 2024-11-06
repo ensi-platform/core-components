@@ -1,4 +1,4 @@
-import type { EnumLike, BaseThemeState, StyleDefinition, ValueOrFunction } from '@greensight/core-components-common';
+import type { EnumLike, BaseThemeState, StyleDefinition, ValueOrFunction } from '@ensi-platform/core-components-common';
 import type { IPriceState } from './component';
 
 export type PriceStateFullType<V extends EnumLike, S extends EnumLike> = BaseThemeState<V, S> & IPriceState;

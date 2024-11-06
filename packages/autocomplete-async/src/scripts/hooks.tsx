@@ -1,10 +1,10 @@
 import { ChangeEvent, Reducer, useCallback, useEffect, useMemo, useReducer, useRef } from 'react';
 import deepEqual from 'react-fast-compare';
-import { OptionProps, SelectItem } from '@greensight/core-components-select';
-import { scale } from '@greensight/core-components-common';
-import { InputProps } from '@greensight/core-components-input';
+import { OptionProps, SelectItem } from '@ensi-platform/core-components-select';
+import { scale } from '@ensi-platform/core-components-common';
+import { InputProps } from '@ensi-platform/core-components-input';
 
-import { LoadingSkeleton } from '@greensight/core-components-loading-skeleton';
+import { LoadingSkeleton } from '@ensi-platform/core-components-loading-skeleton';
 import { Actions, IOptionsFetcherResponse, IUseLazyLoadingProps } from '../types';
 import { Option as DefaultOption } from '../components/Option';
 import { actions, DEBOUNCE_TIMEOUT } from './constants';

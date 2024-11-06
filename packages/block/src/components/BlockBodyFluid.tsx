@@ -1,6 +1,6 @@
 import { ReactNode } from 'react';
 
-import { scale, defaultTokens, useMedia } from '@greensight/core-components-common';
+import { scale, defaultTokens, useMedia } from '@ensi-platform/core-components-common';
 
 export interface BlockBodyFluidProps {
     className?: string;

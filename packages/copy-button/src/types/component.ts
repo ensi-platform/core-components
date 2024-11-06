@@ -1,5 +1,5 @@
 import { HTMLAttributes } from 'react';
-import { LinkColorType } from '@greensight/core-components-common';
+import { LinkColorType } from '@ensi-platform/core-components-common';
 
 export interface ICopyButtonProps extends Omit<HTMLAttributes<HTMLButtonElement>, 'children'> {
     /**

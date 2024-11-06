@@ -1,4 +1,4 @@
-import { OptionizedCSS, extractCSSOption, scale, defaultTheme } from '@greensight/core-components-common';
+import { OptionizedCSS, extractCSSOption, scale, defaultTheme } from '@ensi-platform/core-components-common';
 
 // eslint-disable-next-line import/no-cycle
 import { TabsSize, TabsTheme } from '../../types';

@@ -1,4 +1,4 @@
-import { defaultTheme, extractCSSOption, scale, type OptionizedCSS } from '@greensight/core-components-common';
+import { defaultTheme, extractCSSOption, scale, type OptionizedCSS } from '@ensi-platform/core-components-common';
 import { LoadingSkeletonVariants, LoadingSkeletonSizes, prepareSize } from '../scripts';
 import type { LoadingSkeletonThemeType } from '../types';
 

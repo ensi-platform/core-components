@@ -1,9 +1,6 @@
-import type { LayoutProps } from '@greensight/gds/types/src/components/Layout';
-import { LayoutItemProps } from '@greensight/gds/types/src/components/Layout/Item';
 import type { FC, ReactNode } from 'react';
 import { useFieldArray, useFormContext } from 'react-hook-form';
-
-import { Button, Layout, scale } from '@greensight/gds';
+import { TokensInterface, LayoutProps, Button, Layout, scale } from '@ensi-platform/core-components-common';
 import useForm from '../hooks/useForm';
 
 export interface FieldArrayAddProps {
@@ -34,7 +31,7 @@ type FieldArrayProps = Omit<LayoutProps, 'reverse' | 'wrap' | 'children'> & {
     children: (args: { name: string; index: number }) => ReactNode | ReactNode[];
     initialValue?: any;
     className?: string;
-    childrenCol?: LayoutItemProps['col'];
+    childrenCol?: TokensInterface['layout']['cols'];
 };
 
 const FormFieldArray = ({

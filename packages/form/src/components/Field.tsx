@@ -5,7 +5,7 @@ import type {
     FieldInputProps as FormikFieldProps,
 } from 'formik';
 
-import { Input, InputProps } from '@greensight/core-components-input';
+import { Input, InputProps } from '@ensi-platform/core-components-input';
 
 import {
     ChangeEvent,
@@ -19,8 +19,26 @@ import {
     useMemo,
 } from 'react';
 import { useController, useFormContext } from 'react-hook-form';
-import { FieldProps } from '@greensight/core-components-form';
 import useForm from '../hooks/useForm';
+
+export interface FieldProps<T> {
+    field?: {
+        value: T;
+        onChange: (
+            eventOrValue:
+                | {
+                      target: {
+                          value: T;
+                      };
+                  }
+                | T
+        ) => void;
+    };
+    meta?: {
+        error?: string;
+    };
+    helpers?: { setValue: (value: T) => void };
+}
 
 export interface FormFieldProps extends Omit<InputProps, 'size'> {
     size?: InputProps['size'];

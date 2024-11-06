@@ -3,7 +3,7 @@ import {
     type ExtractTypography,
     type BaseThemeState,
     type EnumLike,
-} from '@greensight/core-components-common';
+} from '@ensi-platform/core-components-common';
 import type { CSSObject } from '@emotion/react';
 import type { PriceThemeType } from './theme';
 

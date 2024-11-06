@@ -1,7 +1,7 @@
 import { jsx } from '@emotion/react';
 import { ElementType } from 'react';
 
-import { scale, defaultTokens } from '@greensight/core-components-common';
+import { scale, defaultTokens } from '@ensi-platform/core-components-common';
 
 import BlockBody from './components/BlockBody';
 import BlockMobileFluid from './components/BlockBodyFluid';

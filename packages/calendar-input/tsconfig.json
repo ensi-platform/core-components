@@ -6,24 +6,24 @@
         "rootDirs": ["src"],
         "baseUrl": ".",
         "paths": {
-            "@greensight/core-components-*": ["../*/src"]
+            "@ensi-platform/core-components-*": ["../*/src"]
         }
     },
     "references": [
         {
-            "path": "../calendar/tsconfig.json"
+            "path": "../calendar"
         },
         {
-            "path": "../common/tsconfig.json"
+            "path": "../common"
         },
         {
-            "path": "../input/tsconfig.json"
+            "path": "../input"
         },
         {
-            "path": "../popover/tsconfig.json"
+            "path": "../popover"
         },
         {
-            "path": "../form/tsconfig.json"
-        },
+            "path": "../form"
+        }
     ]
 }

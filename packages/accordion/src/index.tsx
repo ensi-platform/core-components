@@ -1,7 +1,7 @@
 import { useMemo } from 'react';
 
 import { Accordion as ReactAccordion } from 'react-accessible-accordion';
-import { IconArrowDown, useThemeCSSPart } from '@greensight/core-components-common';
+import { IconArrowDown, useThemeCSSPart } from '@ensi-platform/core-components-common';
 import { AccordionContext } from './scripts/useAccordion';
 import { AccordionItem as Item } from './components/Item';
 import { AccordionHeading as Heading } from './components/Heading';

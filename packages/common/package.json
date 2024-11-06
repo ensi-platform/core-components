@@ -1,5 +1,5 @@
 {
-    "name": "@greensight/core-components-common",
+    "name": "@ensi-platform/core-components-common",
     "version": "1.0.0",
     "description": "Common resources and scripts",
     "keywords": [],
@@ -11,16 +11,16 @@
         "directory": "dist"
     },
     "peerDependencies": {
-        "@emotion/react": "11.11.1",
-        "@emotion/styled": "11.11.5",
-        "@svgr/core": "^8.1.0",
-        "emotion-rgba": "^0.0.12",
         "react": "^16.9.0 || ^17.0.1 || ^18.0.0",
         "react-dom": "^16.9.0 || ^17.0.1 || ^18.0.0",
-        "react-hook-form": "^7.0.0"
+        "@emotion/react": "^11.11.1",
+        "@emotion/styled": "^11.11.5"
     },
     "dependencies": {
-        "@greensight/gds": "^3.0.14",
+        "react-hook-form": "^7.51.3",
+        "emotion-rgba": "^0.0.12",
+        "@svgr/core": "^8.1.0",
+        "@greensight/gds": "3.0.14",
         "@loadable/component": "^5.16.3",
         "case": "^1.6.3",
         "tslib": "^2.6.2",

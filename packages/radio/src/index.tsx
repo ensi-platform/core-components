@@ -3,7 +3,7 @@ import deepmerge from 'deepmerge';
 import { useMemo, useRef } from 'react';
 import mergeRefs from 'react-merge-refs';
 
-import { useCheckboxLikeControlHookRHF, useThemeCSSPart } from '@greensight/core-components-common';
+import { useCheckboxLikeControlHookRHF, useThemeCSSPart } from '@ensi-platform/core-components-common';
 
 import { radioThemes } from './themes';
 import { RadioProps, RadioThemeState } from './types';

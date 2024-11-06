@@ -4,7 +4,7 @@ import { forwardRef, useMemo, useRef } from 'react';
 import mergeRefs from 'react-merge-refs';
 import deepmerge from 'deepmerge';
 
-import { IconCheck, useCheckboxLikeControlHookRHF, useThemeCSSPart } from '@greensight/core-components-common';
+import { IconCheck, useCheckboxLikeControlHookRHF, useThemeCSSPart } from '@ensi-platform/core-components-common';
 
 import { useFocus } from './scripts/hooks';
 import { CheckboxProps, CheckboxSize, CheckboxThemeState, CheckboxVariant } from './types';

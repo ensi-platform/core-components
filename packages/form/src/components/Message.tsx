@@ -5,7 +5,7 @@ import {
     scale,
     IconSmallClosedCircle as ErrorIcon,
     IconSmallWarningCircle as WarningIcon,
-} from '@greensight/core-components-common';
+} from '@ensi-platform/core-components-common';
 
 export interface FormMessageProps extends HTMLProps<HTMLDivElement> {
     /** Error text */

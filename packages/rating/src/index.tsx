@@ -3,10 +3,10 @@ import deepmerge from 'deepmerge';
 import { nanoid } from 'nanoid';
 import { MouseEvent, FocusEvent, useCallback, useMemo, useRef, useState } from 'react';
 
-import { useThemeCSSPart, IconStar, useIsFocusVisible } from '@greensight/core-components-common';
+import { useThemeCSSPart, IconStar, useIsFocusVisible } from '@ensi-platform/core-components-common';
 import mergeRefs from 'react-merge-refs';
 
-import { FormControl } from '@greensight/core-components-form-control';
+import { FormControl } from '@ensi-platform/core-components-form-control';
 import { VISUALLY_HIDDEN_CSS, clamp, roundValueToPrecision } from './scripts/helpers';
 import { RatingStar } from './components/Star';
 import { ratingThemes } from './themes';

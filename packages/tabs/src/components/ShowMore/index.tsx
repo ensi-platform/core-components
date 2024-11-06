@@ -7,7 +7,7 @@ import {
     Optgroup as DefaultOptgroup,
     FieldProps,
     Option,
-} from '@greensight/core-components-select';
+} from '@ensi-platform/core-components-select';
 
 import { useTabsTheme } from '../../context';
 import { ShowMoreButtonProps } from '../../types';

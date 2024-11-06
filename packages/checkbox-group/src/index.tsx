@@ -16,9 +16,9 @@ import {
     CheckboxTheme,
     checkboxThemes,
     CheckboxThemeState,
-} from '@greensight/core-components-checkbox';
+} from '@ensi-platform/core-components-checkbox';
 
-import { scale, useThemeCSSPart, FormFieldDescendantProps } from '@greensight/core-components-common';
+import { scale, useThemeCSSPart, FormFieldDescendantProps } from '@ensi-platform/core-components-common';
 
 export interface CheckboxGroupProps extends FormFieldDescendantProps<string[]> {
     /** Заголовок группы */

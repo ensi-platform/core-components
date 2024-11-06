@@ -19,7 +19,6 @@ export const useField = ({
     toggleMenu,
 
     onFocus,
-    onBlur,
     autocomplete,
     isOpen,
 }: {

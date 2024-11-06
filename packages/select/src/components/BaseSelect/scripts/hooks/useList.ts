@@ -2,7 +2,7 @@ import { RefObject, useCallback, useEffect } from 'react';
 
 import { ResizeObserver as ResizeObserverPolyfill } from '@juggle/resize-observer';
 
-import { useIsomorphicLayoutEffect } from '@greensight/core-components-common';
+import { useIsomorphicLayoutEffect } from '@ensi-platform/core-components-common';
 
 import { SelectProps } from '../../../../types';
 import { useSelect } from './useSelect';

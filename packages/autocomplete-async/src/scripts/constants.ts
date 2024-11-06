@@ -1,4 +1,4 @@
-import { SelectItem } from '@greensight/core-components-select';
+import { SelectItem } from '@ensi-platform/core-components-select';
 
 export const DEBOUNCE_TIMEOUT = 300;
 

@@ -1,6 +1,6 @@
 import type { ComponentProps } from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
-import { scale } from '@greensight/core-components-common';
+import { scale } from '@ensi-platform/core-components-common';
 import { emptyCSS, LoadingSkeleton, LoadingSkeletonSizes, LoadingSkeletonVariants } from './index';
 import README from '../README.md';
 

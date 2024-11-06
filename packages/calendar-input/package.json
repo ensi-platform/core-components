@@ -1,27 +1,32 @@
 {
-  "name": "@greensight/core-components-calendar-input",
-  "version": "1.0.0",
-  "description": "calendar-input component",
-  "keywords": [],
-  "license": "MIT",
-  "main": "index.js",
-  "module": "./esm/index.js",
-  "publishConfig": {
-    "access": "public",
-    "directory": "dist"
-  },
-  "peerDependencies": {
-    "react": "^16.9.0 || ^17.0.1 || ^18.0.0",
-    "react-dom": "^16.9.0 || ^17.0.1 || ^18.0.0",
-    "@emotion/react": "11.11.1",
-    "@emotion/styled": "^11.3.0",
-    "react-hook-form": "^7.0.0"
-  },
-  "dependencies": {
-    "date-fns": "^2.30.0",
-    "tslib": "^2.6.2",
-    "@maskito/core": "2.3.1",
-    "@maskito/react": "2.3.1",
-    "react-merge-refs": "1.1.0"
-  }
+    "name": "@ensi-platform/core-components-calendar-input",
+    "version": "1.0.0",
+    "description": "calendar-input component",
+    "keywords": [],
+    "license": "MIT",
+    "main": "index.js",
+    "module": "./esm/index.js",
+    "publishConfig": {
+        "access": "public",
+        "directory": "dist"
+    },
+    "peerDependencies": {
+        "react": "^16.9.0 || ^17.0.1 || ^18.0.0",
+        "react-dom": "^16.9.0 || ^17.0.1 || ^18.0.0",
+        "@emotion/react": "^11.11.1",
+        "@emotion/styled": "^11.11.5"
+    },
+    "dependencies": {
+        "date-fns": "^2.30.0",
+        "tslib": "^2.6.2",
+        "@maskito/core": "2.3.1",
+        "@maskito/react": "2.3.1",
+        "react-hook-form": "^7.51.3",
+        "react-merge-refs": "1.1.0",
+        "@ensi-platform/core-components-common": "^1.0.0",
+        "@ensi-platform/core-components-input": "^1.0.0",
+        "@ensi-platform/core-components-popover": "^1.0.0",
+        "@ensi-platform/core-components-calendar": "^1.0.0",
+        "@ensi-platform/core-components-form": "^1.0.0"
+    }
 }

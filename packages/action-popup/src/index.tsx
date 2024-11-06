@@ -1,6 +1,6 @@
 import { ReactNode, useMemo } from 'react';
 
-import { Popup, Content } from '@greensight/core-components-popup';
+import { Popup, Content } from '@ensi-platform/core-components-popup';
 import {
     scale,
     defaultTheme,
@@ -10,7 +10,7 @@ import {
     Icon20ClosedCircle,
     Icon20CheckCircle,
     Button,
-} from '@greensight/core-components-common';
+} from '@ensi-platform/core-components-common';
 
 import { ActionEnum, ThemesEnum } from './scripts/enums';
 import { IActionPopupProps } from './types';

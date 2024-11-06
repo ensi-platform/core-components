@@ -1,5 +1,5 @@
 import { type FC, useMemo } from 'react';
-import { type EnumLike, useThemeCSSPart } from '@greensight/core-components-common';
+import { type EnumLike, useThemeCSSPart } from '@ensi-platform/core-components-common';
 import type { ILoaderProps, LoaderStateFullType, LoaderThemeType } from './types';
 import { LOADER_THEMES } from './themes';
 import { emptyCSS, LoaderSizes, LoaderVariants, useMergeCSS } from './scripts';

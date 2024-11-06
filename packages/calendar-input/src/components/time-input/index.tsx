@@ -1,6 +1,6 @@
 import { ChangeEvent, FocusEvent, forwardRef, useEffect, useRef, useState } from 'react';
 
-import { Input } from '@greensight/core-components-input';
+import { Input } from '@ensi-platform/core-components-input';
 
 import { HOURS_MINUTES_SEPARATOR } from '../../scripts/constants';
 import type { InnerTimeInputProps } from '../../types';

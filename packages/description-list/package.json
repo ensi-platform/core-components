@@ -1,5 +1,5 @@
 {
-    "name": "@greensight/core-components-description-list",
+    "name": "@ensi-platform/core-components-description-list",
     "version": "1.0.0",
     "description": "description-list component",
     "keywords": [],
@@ -11,12 +11,13 @@
         "directory": "dist"
     },
     "peerDependencies": {
-        "@emotion/styled": "^11.3.0"
+        "react": "^16.9.0 || ^17.0.1 || ^18.0.0",
+        "react-dom": "^16.9.0 || ^17.0.1 || ^18.0.0",
+        "@emotion/react": "^11.11.1",
+        "@emotion/styled": "^11.11.5"
     },
     "dependencies": {
-        "@emotion/react": "11.11.1",
-        "react": "18.2.0",
-        "react-dom": "18.2.0",
-        "tslib": "^2.6.2"
+        "tslib": "^2.6.2",
+        "@ensi-platform/core-components-common": "^1.0.0"
     }
 }

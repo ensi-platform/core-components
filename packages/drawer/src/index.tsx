@@ -1,8 +1,8 @@
 import { forwardRef, useMemo } from 'react';
 import deepmerge from 'deepmerge';
 
-import { useThemeCSSPart } from '@greensight/core-components-common';
-import { BaseModal } from '@greensight/core-components-base-modal';
+import { useThemeCSSPart } from '@ensi-platform/core-components-common';
+import { BaseModal } from '@ensi-platform/core-components-base-modal';
 
 import { Content } from './components/Content';
 import { Footer } from './components/Footer';

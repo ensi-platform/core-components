@@ -15,5 +15,5 @@ export async function checkOrCreateDir(dir) {
 }
 
 export const requireRegExp = new RegExp(
-    /(\b(?:require\(|import |from )['"])@greensight\/core-components-(.*?)(['"])/,
+    /(\b(?:require\(|import |from )['"])@ensi-platform\/core-components-(.*?)(['"])/
 );

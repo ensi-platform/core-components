@@ -1,4 +1,4 @@
-import { defaultTokens } from '@greensight/core-components-common';
+import { defaultTheme } from '@ensi-platform/core-components-common';
 import type { Meta, StoryObj } from '@storybook/react';
 import type { ComponentProps } from 'react';
 import { emptyCSS, Price, PriceSizes, PriceVariants, type IPriceProps } from './index';
