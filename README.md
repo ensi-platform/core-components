@@ -53,21 +53,21 @@ This way the linked repository will always have your `dist` build in it
 
 #### Resolving React version conflicts
 
-Next, during REP dev-build, you may have an error, related with some react hook. For example devtools will have warning “invalid react hook call”. This happens because of the presence of multiple react entities. To fix it, link react from REP to the LIB, following this steps:
+Next, during REP build, you may have an error, related with some react hook. For example devtools will have warning “invalid react hook call”. This happens because of the presence of multiple react entities. To fix it, link **react** and **@types/react** from REP to the LIB, following this steps:
 
-1. Go to REP/node_modules/react and create link
+1. Navigate to the **REP/node_modules** and create links:
 
 ```bash
-yarn link
+yarn link --cwd react
+yarn link --cwd @types/react
 ```
 
-2. Navigate to the root of the LIB and link react
+2. Navigate to the root of the LIB and link react and @types/react
 
 ```bash
 yarn link react
+yarn link @types/react
 ```
-
-To test integration in prod-build mode, you should publish LIB to npm (and unlink local LIB from REP)
 
 ---
 
