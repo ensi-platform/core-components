@@ -7,7 +7,7 @@ module.exports = {
     trailingComma: 'es5',
     useTabs: false,
     endOfLine: 'lf',
-    importOrder: ['^@ensi-platform/(.*)$', '^@(?!greensight)(.*)$', '^[a-zA-Z]', '^[./]', '^[../]'],
+    importOrder: ['^@ensi-platform/(.*)$', '^@(?!ensi-platform)(.*)$', '^[a-zA-Z]', '^[./]', '^[../]'],
     importOrderGroupNamespaceSpecifiers: true,
     importOrderSortSpecifiers: true,
     importOrderSeparation: true,
