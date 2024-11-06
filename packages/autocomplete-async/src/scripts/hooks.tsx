@@ -14,7 +14,7 @@ export function useLazyLoading({
     initialOffset = 0,
     optionsFetcher,
     onOptionsChange,
-    skeleton = <LoadingSkeleton css={{}} height={scale(3)} />,
+    skeleton = <LoadingSkeleton height={scale(3)} />,
     Option = DefaultOption,
     isValuesLoading = false,
     clearOnClose = true,

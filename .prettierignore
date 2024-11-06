@@ -1,3 +1,9 @@
-package-lock.json
-.helm/*
 .husky/*
+.yarn/*
+.yarnrc
+
+**/*.md
+**/dist
+**/node_modules
+
+yarn.lock
