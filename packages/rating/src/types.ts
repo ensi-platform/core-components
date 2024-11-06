@@ -1,7 +1,7 @@
 import { type CSSObject } from '@emotion/react';
 import { type FC, type FocusEvent, type MouseEvent, type MouseEventHandler, type HTMLProps } from 'react';
 
-import { type BaseThemeState, type StyleDefinition, type ValueOrFunction } from '@greensight/core-components-common';
+import { type BaseThemeState, type StyleDefinition, type ValueOrFunction } from '@ensi-platform/core-components-common';
 
 import { type ratingThemes } from './themes';
 

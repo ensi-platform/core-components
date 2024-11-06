@@ -1,4 +1,4 @@
-import { useSelectClear } from '@greensight/core-components-select';
+import { useSelectClear } from '@ensi-platform/core-components-select';
 import { SimpleSelectWithTags, SelectWithTags } from './SelectWithTags';
 import { TagList } from './components/index';
 

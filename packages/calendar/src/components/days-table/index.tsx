@@ -2,7 +2,7 @@ import { FC, RefCallback, useCallback, useMemo, useRef } from 'react';
 import { isEqual, isLastDayOfMonth, isSameDay, isToday, isWithinInterval, startOfMonth } from 'date-fns';
 import { TransitionGroup as TransitionGroupTyped, CSSTransition as CSSTransitionTyped } from 'react-transition-group';
 
-import { usePrevious, Button } from '@greensight/core-components-common';
+import { usePrevious, Button } from '@ensi-platform/core-components-common';
 import useCalendarTheme from '../../scripts/useCalendarTheme';
 
 import { WEEKDAYS, getSelectionRange } from '../../scripts/utils';

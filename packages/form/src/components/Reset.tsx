@@ -1,7 +1,7 @@
 import type { MouseEvent, MouseEventHandler, ReactNode } from 'react';
 import { DeepPartial, useFormContext } from 'react-hook-form';
 
-import { Button, ButtonProps } from '@greensight/gds';
+import { Button, ButtonProps } from '@ensi-platform/core-components-common';
 
 export type FormResetProps<T> = ButtonProps & {
     children: ReactNode;

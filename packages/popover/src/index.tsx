@@ -7,10 +7,10 @@ import mergeRefs from 'react-merge-refs';
 import { usePopper } from 'react-popper';
 import { useTransition, TransitionOptions, TransitionStatus } from 'react-transition-state';
 
-import { Portal } from '@greensight/core-components-portal';
-import { Stack, stackingOrder } from '@greensight/core-components-stack';
+import { Portal } from '@ensi-platform/core-components-portal';
+import { Stack, stackingOrder } from '@ensi-platform/core-components-stack';
 
-import { defaultTheme } from '@greensight/core-components-common';
+import { defaultTheme } from '@ensi-platform/core-components-common';
 
 const { colors } = defaultTheme;
 

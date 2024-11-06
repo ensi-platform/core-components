@@ -1,4 +1,4 @@
-import { defaultTheme, scale } from '@greensight/core-components-common';
+import { defaultTheme, scale } from '@ensi-platform/core-components-common';
 
 import { AccordionTheme } from '../types';
 

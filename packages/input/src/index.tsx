@@ -19,9 +19,9 @@ import {
     defaultTheme,
     scale,
     IconSmallClosed as CloseIcon,
-} from '@greensight/core-components-common';
+} from '@ensi-platform/core-components-common';
 
-import { FormControl } from '@greensight/core-components-form-control';
+import { FormControl } from '@ensi-platform/core-components-form-control';
 
 import { InputProps } from './types';
 

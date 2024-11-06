@@ -10,9 +10,9 @@ import type {
     Ref,
 } from 'react';
 
-import type { CalendarProps } from '@greensight/core-components-calendar';
-import type { InputProps } from '@greensight/core-components-input';
-import type { PopoverProps } from '@greensight/core-components-popover';
+import type { CalendarProps } from '@ensi-platform/core-components-calendar';
+import type { InputProps } from '@ensi-platform/core-components-input';
+import type { PopoverProps } from '@ensi-platform/core-components-popover';
 import { CSSObject } from '@emotion/react';
 
 export type View = 'date' | 'date-time' | 'date-range' | 'time';

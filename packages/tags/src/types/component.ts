@@ -1,7 +1,7 @@
 import { HTMLProps, ReactNode } from 'react';
 
 import { CSSObject } from '@emotion/react';
-import { TagItem } from '@greensight/core-components-tags';
+import TagItem from '../components/TagItem';
 
 export interface ITagsProps {
     /**

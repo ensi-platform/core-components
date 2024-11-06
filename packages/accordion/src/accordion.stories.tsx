@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import type { ComponentProps } from 'react';
 
-import { IconPlus } from '@greensight/core-components-common';
+import { IconPlus } from '@ensi-platform/core-components-common';
 
 import README from '../README.md';
 import { Accordion } from './index';

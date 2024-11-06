@@ -1,4 +1,4 @@
-import { formatPrice, useThemeCSSPart, type EnumLike } from '@greensight/core-components-common';
+import { formatPrice, useThemeCSSPart, type EnumLike } from '@ensi-platform/core-components-common';
 import { type FC, useMemo } from 'react';
 import { PRICE_THEMES } from './themes';
 import type { PriceThemeType, IPriceProps, PriceStateFullType } from './types';

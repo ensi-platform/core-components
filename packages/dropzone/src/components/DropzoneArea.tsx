@@ -1,6 +1,12 @@
 import { HTMLAttributes, forwardRef } from 'react';
 
-import { FormFieldDescendantProps, IconSmallImport, scale, defaultTheme, Button } from '@greensight/core-components-common';
+import {
+    FormFieldDescendantProps,
+    IconSmallImport,
+    scale,
+    defaultTheme,
+    Button,
+} from '@ensi-platform/core-components-common';
 
 interface DropzoneAreaProps extends HTMLAttributes<HTMLDivElement>, FormFieldDescendantProps {
     inputFieldProps: HTMLAttributes<HTMLInputElement>;
@@ -41,8 +47,7 @@ const DropzoneArea = forwardRef<HTMLDivElement, DropzoneAreaProps>(
                 css={{
                     display: 'grid',
                     placeItems: 'center',
-                    border:
-                        meta?.error ? `1px solid ${colors?.danger}` : `1px dashed ${colors.grey300}`,
+                    border: meta?.error ? `1px solid ${colors?.danger}` : `1px dashed ${colors.grey300}`,
                     // borderRadius: IT?.borderRadius,
                     // background: IT?.bg,
                     padding: scale(2),

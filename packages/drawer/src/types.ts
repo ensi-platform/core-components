@@ -1,7 +1,7 @@
 import { CSSObject } from '@emotion/react';
 
-import { BaseModalProps } from '@greensight/core-components-base-modal';
-import { BaseThemeState, StyleDefinition, ValueOrFunction } from '@greensight/core-components-common';
+import { BaseModalProps } from '@ensi-platform/core-components-base-modal';
+import { BaseThemeState, StyleDefinition, ValueOrFunction } from '@ensi-platform/core-components-common';
 
 export interface DrawerState {
     /**

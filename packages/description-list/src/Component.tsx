@@ -1,4 +1,5 @@
-import { IDescriptionListProps, DescriptionListItem } from '@greensight/core-components-description-list';
+import { IDescriptionListProps } from './types';
+import DescriptionListItem from './components/DescriptionListItem';
 import { useDescriptionListCSS } from './scripts/hooks';
 
 /**

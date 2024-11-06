@@ -7,11 +7,11 @@ import {
     Button,
     scale,
     usePrevious,
-} from '@greensight/core-components-common';
+} from '@ensi-platform/core-components-common';
 
-import { SelectItem, OptionProps } from '@greensight/core-components-select';
+import { SelectItem, OptionProps } from '@ensi-platform/core-components-select';
 
-import { SimpleSelectWithTags } from '@greensight/core-components-select-with-tags';
+import { SimpleSelectWithTags } from '@ensi-platform/core-components-select-with-tags';
 import { AutocompleteAsyncPropsType } from './types';
 import { useLazyLoading } from './scripts/hooks';
 import { BaseAutocomplete } from './components';

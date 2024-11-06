@@ -53,21 +53,21 @@ This way the linked repository will always have your `dist` build in it
 
 #### Resolving React version conflicts
 
-Next, during REP dev-build, you may have an error, related with some react hook. For example devtools will have warning “invalid react hook call”. This happens because of the presence of multiple react entities. To fix it, link react from REP to the LIB, following this steps:
+Next, during REP build, you may have an error, related with some react hook. For example devtools will have warning “invalid react hook call”. This happens because of the presence of multiple react entities. To fix it, link **react** and **@types/react** from REP to the LIB, following this steps:
 
-1. Go to REP/node_modules/react and create link
+1. Navigate to the **REP/node_modules** and create links:
 
 ```bash
-yarn link
+yarn link --cwd react
+yarn link --cwd @types/react
 ```
 
-2. Navigate to the root of the LIB and link react
+2. Navigate to the root of the LIB and link react and @types/react
 
 ```bash
 yarn link react
+yarn link @types/react
 ```
-
-To test integration in prod-build mode, you should publish LIB to npm (and unlink local LIB from REP)
 
 ---
 
@@ -100,7 +100,7 @@ This command will override version number only in package.json in `dist/` folder
 
 New version of the package will include all the contents of the dist folder, but you can always adjust the whitelist in the `dist/package.json` parameter `files`.
 
-4. Next run command `yarn version` and specify the same version as in step 3.  
+4. Next run command `yarn version` and specify the same version as in step 3.
    This command will override version number in package.json, commit changes and create new annotated tag.
 
 5. Now push changes to gitlab and additionally push tags:
@@ -113,6 +113,12 @@ git push origin --tags
 6. Finally go to gitlab-repository, check your tag, release it and fill the release description changes.
 
 ---
+
+### Creating a new package
+
+It is **recommended** to use create-package.js script to create a new package
+
+Run `yarn create-package` from the root
 
 ## License
 

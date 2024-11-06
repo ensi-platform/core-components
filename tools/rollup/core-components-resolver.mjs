@@ -9,7 +9,7 @@ import { requireRegExp } from './common.mjs';
 export const coreComponentsRootPackageResolver = ({ currentPackageDir }) => ({
     name: 'core-components-root-package-resolver',
     generateBundle: (_, bundles) => {
-        Object.keys(bundles).forEach((bundleName) => {
+        Object.keys(bundles).forEach(bundleName => {
             let code = bundles[bundleName].code;
 
             let matches;
@@ -19,9 +19,7 @@ export const coreComponentsRootPackageResolver = ({ currentPackageDir }) => ({
                 const distDir = path.resolve(currentPackageDir, 'dist');
                 const bundleAbsPath = path.join(distDir, bundleName);
                 const bundleDir = path.dirname(bundleAbsPath);
-                const componentRelativePath = path
-                    .relative(bundleDir, componentName)
-                    .replace('/dist', ''); // удаляем dist из пути, так как в рут-пакете его нет
+                const componentRelativePath = path.relative(bundleDir, componentName).replace('/dist', ''); // удаляем dist из пути, так как в рут-пакете его нет
 
                 code = code.replace(requireRegExp, `$1${componentRelativePath}$3`);
             }
@@ -39,13 +37,13 @@ export const coreComponentsRootPackageResolver = ({ currentPackageDir }) => ({
 export const coreComponentsResolver = ({ importFrom }) => ({
     name: 'core-components-resolver',
     generateBundle: (_, bundles) => {
-        Object.keys(bundles).forEach((bundleName) => {
+        Object.keys(bundles).forEach(bundleName => {
             let code = bundles[bundleName].code;
 
             if (code) {
                 const requireRegExp = new RegExp(
-                    /(\b(?:require\(|import |from )['"])(@greensight\/core-components-[^\/\n]+)(\/.*)?(['"])/,
-                    'g',
+                    /(\b(?:require\(|import |from )['"])(@ensi-platform\/core-components-[^\/\n]+)(\/.*)?(['"])/,
+                    'g'
                 );
 
                 bundles[bundleName].code = code.replaceAll(requireRegExp, `$1$2/${importFrom}$3$4`);
@@ -57,12 +55,12 @@ export const coreComponentsResolver = ({ importFrom }) => ({
 });
 
 /**
- * Заменяет импорты типов в d.ts с packages/{packageName}/src/* на @greensight/core-components-{packageName}/*
+ * Заменяет импорты типов в d.ts с packages/{packageName}/src/* на @ensi-platform/core-components-{packageName}/*
  */
 export const packagesTypingResolver = () => ({
     name: 'packages-typings-resolver',
     generateBundle: (_, bundles) => {
-        Object.keys(bundles).forEach((bundleName) => {
+        Object.keys(bundles).forEach(bundleName => {
             if (bundleName.endsWith('.d.ts')) {
                 let source = bundles[bundleName].source;
                 if (source) {
@@ -70,7 +68,7 @@ export const packagesTypingResolver = () => ({
 
                     bundles[bundleName].source = source.replaceAll(
                         re,
-                        'import($1@greensight/core-components-$2$3$4)',
+                        'import($1@ensi-platform/core-components-$2$3$4)'
                     );
                 }
             }

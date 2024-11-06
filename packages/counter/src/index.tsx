@@ -1,7 +1,7 @@
 import { useMemo, useState, useEffect, ChangeEvent } from 'react';
-import { Layout, IconMinus, IconPlus, useThemeCSSPart } from '@greensight/core-components-common';
+import { Layout, IconMinus, IconPlus, useThemeCSSPart } from '@ensi-platform/core-components-common';
 
-import { FormControl } from '@greensight/core-components-form-control';
+import { FormControl } from '@ensi-platform/core-components-form-control';
 import { CounterProps, CounterThemeState } from './types';
 import { counterThemes } from './themes/defaultTheme';
 

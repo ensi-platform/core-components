@@ -1,4 +1,4 @@
-import type { BaseThemeState, EnumLike } from '@greensight/core-components-common';
+import type { BaseThemeState, EnumLike } from '@ensi-platform/core-components-common';
 import type { CSSObject } from '@emotion/react';
 import type { LoaderThemeType } from './themes';
 

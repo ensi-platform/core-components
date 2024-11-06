@@ -1,5 +1,5 @@
 import { CSSObject } from '@emotion/react';
-import { defaultTheme, scale } from '@greensight/core-components-common';
+import { defaultTheme, scale } from '@ensi-platform/core-components-common';
 import deepmerge from 'deepmerge';
 import { CalendarTheme } from '../types';
 

@@ -1,46 +1,26 @@
 {
-  "include": [
-    "src",
-    "../../typings",
-    "src/Select.stories.tsx"
-  ],
-  "extends": "../../tsconfig.json",
-  "compilerOptions": {
-    "outDir": "dist",
-    "rootDirs": [
-      "src"
-    ],
-    "baseUrl": ".",
-    "paths": {
-      "@greensight/core-components-*": [
-        "../*/src"
-      ]
-    }
-  },
-  "references": [
-    {
-      "path": "../base-modal/tsconfig.json"
+    "include": ["src", "../../typings", "src/Select.stories.tsx"],
+    "extends": "../../tsconfig.json",
+    "compilerOptions": {
+        "outDir": "dist",
+        "rootDirs": ["src"],
+        "baseUrl": ".",
+        "paths": {
+            "@ensi-platform/core-components-*": ["../*/src"]
+        }
     },
-    {
-      "path": "../common/tsconfig.json"
-    },
-    {
-      "path": "../form-control/tsconfig.json"
-    },
-    {
-      "path": "../loading-skeleton/tsconfig.json"
-    },
-    {
-      "path": "../popover/tsconfig.json"
-    },
-    {
-      "path": "../portal/tsconfig.json"
-    },
-    {
-      "path": "../stack/tsconfig.json"
-    },
-    {
-      "path": "../form/tsconfig.json"
-    }
-  ]
+    "references": [
+        {
+            "path": "../common"
+        },
+        {
+            "path": "../form-control"
+        },
+        {
+            "path": "../popover"
+        },
+        {
+            "path": "../form"
+        }
+    ]
 }

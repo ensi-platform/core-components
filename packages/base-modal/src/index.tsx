@@ -15,9 +15,9 @@ import FocusLock from 'react-focus-lock';
 import mergeRefs from 'react-merge-refs';
 import { useTransition } from 'react-transition-state';
 
-import { Backdrop as DefaultBackdrop } from '@greensight/core-components-backdrop';
-import { Portal } from '@greensight/core-components-portal';
-import { Stack, stackingOrder } from '@greensight/core-components-stack';
+import { Backdrop as DefaultBackdrop } from '@ensi-platform/core-components-backdrop';
+import { Portal } from '@ensi-platform/core-components-portal';
+import { Stack, stackingOrder } from '@ensi-platform/core-components-stack';
 
 import type { BaseModalContextType, BaseModalProps } from './types';
 import {

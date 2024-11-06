@@ -4,7 +4,7 @@ import {
     StyleDefinition,
     ValueOrFunction,
     useCheckboxLikeControlHookType,
-} from '@greensight/core-components-common';
+} from '@ensi-platform/core-components-common';
 
 import { CSSObject } from '@emotion/react';
 import { radioThemes } from './themes';

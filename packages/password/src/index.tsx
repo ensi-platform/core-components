@@ -5,8 +5,8 @@ import {
     FormFieldDescendantProps,
     IconSmallEye,
     IconSmallEyeOff,
-} from '@greensight/core-components-common';
-import { Input } from '@greensight/core-components-input';
+} from '@ensi-platform/core-components-common';
+import { Input } from '@ensi-platform/core-components-input';
 
 const { colors } = defaultTheme;
 
