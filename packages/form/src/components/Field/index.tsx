@@ -1,8 +1,8 @@
+import { Input } from '@ensi-platform/core-components-input';
+
 import { forwardRef } from 'react';
 
-import { Input } from '@greensight/core-components-input';
 import { useFieldHook } from '../../hooks/useFieldHook';
-
 import { type IFormFieldProps } from './types';
 
 export const FormField = forwardRef<HTMLInputElement, IFormFieldProps>(

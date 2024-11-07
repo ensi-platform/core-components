@@ -1,2 +1,1 @@
-
-Кнопка для копирования текстового содержимого.
+A button for copying text content

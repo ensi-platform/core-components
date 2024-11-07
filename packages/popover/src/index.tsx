@@ -1,16 +1,25 @@
-import { CSSObject } from '@emotion/react';
+import { defaultTheme } from '@ensi-platform/core-components-common';
+import { Portal } from '@ensi-platform/core-components-portal';
+import { Stack, stackingOrder } from '@ensi-platform/core-components-stack';
+
+import { type CSSObject } from '@emotion/react';
 import { ResizeObserver as ResizeObserverPolyfill } from '@juggle/resize-observer';
-import { BasePlacement, ModifierArguments, Obj, VariationPlacement } from '@popperjs/core';
+import { type BasePlacement, type ModifierArguments, type Obj, type VariationPlacement } from '@popperjs/core';
+
 import maxSize from 'popper-max-size-modifier';
-import { CSSProperties, MutableRefObject, ReactNode, forwardRef, useEffect, useMemo, useRef, useState } from 'react';
+import {
+    type CSSProperties,
+    type MutableRefObject,
+    type ReactNode,
+    forwardRef,
+    useEffect,
+    useMemo,
+    useRef,
+    useState,
+} from 'react';
 import mergeRefs from 'react-merge-refs';
 import { usePopper } from 'react-popper';
-import { useTransition, TransitionOptions, TransitionStatus } from 'react-transition-state';
-
-import { Portal } from '@greensight/core-components-portal';
-import { Stack, stackingOrder } from '@greensight/core-components-stack';
-
-import { defaultTheme } from '@greensight/core-components-common';
+import { type TransitionOptions, type TransitionStatus, useTransition } from 'react-transition-state';
 
 const { colors } = defaultTheme;
 

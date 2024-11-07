@@ -1,8 +1,9 @@
+import { type FormFieldDescendantProps } from '@ensi-platform/core-components-common';
+import { Input } from '@ensi-platform/core-components-input';
+
+import { type Ref, forwardRef, useEffect, useRef } from 'react';
 import { useIMask } from 'react-imask';
-import { forwardRef, Ref, useEffect, useRef } from 'react';
-import { Input } from '@greensight/core-components-input';
 import mergeRefs from 'react-merge-refs';
-import { FormFieldDescendantProps } from '@greensight/core-components-common';
 
 type MaskType = Exclude<Parameters<typeof useIMask>[0]['mask'], undefined>;
 

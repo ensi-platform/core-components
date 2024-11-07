@@ -1,5 +1,5 @@
 {
-    "name": "@greensight/core-components-form",
+    "name": "@ensi-platform/core-components-form",
     "version": "1.0.0",
     "description": "form component",
     "keywords": [],
@@ -14,13 +14,15 @@
         "react": "^16.9.0 || ^17.0.1 || ^18.0.0",
         "react-dom": "^16.9.0 || ^17.0.1 || ^18.0.0",
         "@emotion/react": "^11.11.1",
-        "@emotion/styled": "11.3.0"
+        "@emotion/styled": "^11.11.5"
     },
     "dependencies": {
+        "react-hook-form": "^7.51.3",
+        "react-fast-compare": "^3.2.2",
         "@greensight/gds": "3.0.14",
         "@hookform/resolvers": "^3.3.4",
-        "react-fast-compare": "^3.2.2",
-        "react-hook-form": "^7.51.3",
+        "@ensi-platform/core-components-common": "^1.0.0",
+        "@ensi-platform/core-components-input": "^1.0.0",
         "tslib": "^2.4.0"
     }
 }

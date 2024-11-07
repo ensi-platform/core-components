@@ -1,13 +1,23 @@
-import React, { ClassAttributes, FC, HTMLAttributes, useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import mergeRefs from 'react-merge-refs';
+import { useThemeCSSPart } from '@ensi-platform/core-components-common';
+import { Popover } from '@ensi-platform/core-components-popover';
+
+import { type CSSObject } from '@emotion/react';
+
 import deepmerge from 'deepmerge';
+import React, {
+    type ClassAttributes,
+    type FC,
+    type HTMLAttributes,
+    useCallback,
+    useEffect,
+    useMemo,
+    useRef,
+    useState,
+} from 'react';
+import mergeRefs from 'react-merge-refs';
 
-import { Popover } from '@greensight/core-components-popover';
-
-import { CSSObject } from '@emotion/react';
-import { useThemeCSSPart } from '@greensight/core-components-common';
-import { TooltipThemeState, type TooltipProps, Trigger } from './types';
 import { tooltipThemes } from './themes/defaultTheme';
+import { type TooltipProps, type TooltipThemeState, type Trigger } from './types';
 
 export * from './types';
 

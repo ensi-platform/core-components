@@ -1,14 +1,14 @@
+import { IconCheck, useThemeCSSPart } from '@ensi-platform/core-components-common';
+
 import { type CSSObject } from '@emotion/react';
 
+import deepmerge from 'deepmerge';
 import { forwardRef, useMemo, useRef } from 'react';
 import mergeRefs from 'react-merge-refs';
-import deepmerge from 'deepmerge';
 
-import { IconCheck, useThemeCSSPart } from '@greensight/core-components-common';
-
+import { checkboxThemes } from './defaultTheme';
 import { useFocus } from './scripts/hooks';
 import { CheckboxSize, type CheckboxThemeState, CheckboxVariant, type ICheckboxProps } from './types';
-import { checkboxThemes } from './defaultTheme';
 
 export * from './types';
 

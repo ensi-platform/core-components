@@ -1,7 +1,10 @@
-import { CSSObject } from '@emotion/react';
-import { defaultTheme, scale } from '@greensight/core-components-common';
+import { defaultTheme, scale } from '@ensi-platform/core-components-common';
+
+import { type CSSObject } from '@emotion/react';
+
 import deepmerge from 'deepmerge';
-import { CalendarTheme } from '../types';
+
+import { type CalendarTheme } from '../types';
 
 const mergeStyles = (styles: (CSSObject | false)[]) => {
     const nonNullStyles = styles.filter(Boolean) as CSSObject[];
@@ -94,6 +97,7 @@ const basicTheme: CalendarTheme = {
                 position: 'relative',
                 width: daySize,
                 height: daySize,
+                padding: `${scale(1, true)}px ${scale(1)}px`,
                 display: 'grid',
                 placeItems: 'center',
                 textAlign: 'center',
@@ -202,6 +206,7 @@ const basicTheme: CalendarTheme = {
         display: 'grid',
         placeItems: 'center',
         height: daySize,
+        padding: `${scale(1, true)}px ${scale(1)}px`,
         ':hover': {
             color: `${colors.black} !important`,
             background: `${colors.grey300} !important`,

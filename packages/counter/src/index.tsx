@@ -1,9 +1,10 @@
-import { useMemo, useState, useEffect, type ChangeEvent } from 'react';
-import { Layout, IconMinus, IconPlus, useThemeCSSPart } from '@greensight/core-components-common';
+import { IconMinus, IconPlus, Layout, useThemeCSSPart } from '@ensi-platform/core-components-common';
+import { FormControl } from '@ensi-platform/core-components-form-control';
 
-import { FormControl } from '@greensight/core-components-form-control';
-import { type CounterProps, type CounterThemeState } from './types';
+import { type ChangeEvent, useEffect, useMemo, useState } from 'react';
+
 import { counterThemes } from './themes/defaultTheme';
+import { type CounterProps, type CounterThemeState } from './types';
 
 export const Counter = ({
     name,

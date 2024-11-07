@@ -1,9 +1,11 @@
+import { scale, useThemeCSSPart } from '@ensi-platform/core-components-common';
+
 import { type CSSObject } from '@emotion/react';
+
 import deepmerge from 'deepmerge';
 import { forwardRef, useMemo } from 'react';
 
-import { useThemeCSSPart } from '@greensight/core-components-common';
-
+import { FormMessage } from './message';
 import { formControlThemes } from './themes/defaultTheme';
 import { type FormControlProps, type FormControlThemeState } from './types';
 
@@ -112,7 +114,7 @@ export const FormControl = forwardRef<HTMLDivElement, FormControlProps>(
                         {label}
                     </label>
                 )}
-                {errorMessage && errorPlacement === 'above' && <p css={getCSS('error')}>{errorMessage}</p>}
+                {errorMessage && <FormMessage message={errorMessage} css={{ marginBottom: scale(1) }} type="error" />}
                 <div {...restProps} css={{ ...innerCSS, '.clear': totalClearCSS }} ref={ref}>
                     {leftAddons && (
                         <div css={deepmerge.all<CSSObject>([getCSS('addons', { isLeft: true }), leftAddonsCSS])}>

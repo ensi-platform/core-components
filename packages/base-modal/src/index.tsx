@@ -1,8 +1,13 @@
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
+import { Backdrop as DefaultBackdrop } from '@ensi-platform/core-components-backdrop';
+import { Portal } from '@ensi-platform/core-components-portal';
+import { Stack, stackingOrder } from '@ensi-platform/core-components-stack';
+
 import { ResizeObserver as ResizeObserverPolyfill } from '@juggle/resize-observer';
+
 import {
-    KeyboardEvent,
-    MouseEvent,
+    type KeyboardEvent,
+    type MouseEvent,
     createContext,
     forwardRef,
     useCallback,
@@ -15,11 +20,6 @@ import FocusLock from 'react-focus-lock';
 import mergeRefs from 'react-merge-refs';
 import { useTransition } from 'react-transition-state';
 
-import { Backdrop as DefaultBackdrop } from '@greensight/core-components-backdrop';
-import { Portal } from '@greensight/core-components-portal';
-import { Stack, stackingOrder } from '@greensight/core-components-stack';
-
-import type { BaseModalContextType, BaseModalProps } from './types';
 import {
     getScrollbarSize,
     handleContainer,
@@ -28,6 +28,7 @@ import {
     isScrolledToTop,
     restoreContainerStyles,
 } from './scripts/utils';
+import type { BaseModalContextType, BaseModalProps } from './types';
 
 export * from './types';
 
@@ -276,11 +277,13 @@ export const BaseModal = forwardRef<HTMLDivElement, BaseModalProps>(
                 handleScroll();
             }
 
-            if (onMount) onMount();
+            if (onMount) setTimeout(() => onMount(), timeout);
         }, [addResizeHandle, getScrollHandler, handleScroll, onMount]);
 
         const handleExited = useCallback(() => {
             removeResizeHandle();
+
+            setExited(true);
 
             if (scrollableNodeRef.current) {
                 scrollableNodeRef.current.removeEventListener('scroll', handleScroll);
@@ -289,26 +292,20 @@ export const BaseModal = forwardRef<HTMLDivElement, BaseModalProps>(
             if (restoreContainerStylesRef.current) {
                 restoreContainerStylesRef.current();
             }
-        }, [handleScroll, removeResizeHandle]);
 
-        const handleUnmount = useCallback(() => {
-            setExited(true);
-            if (onUnmount) onUnmount();
-        }, [onUnmount]);
+            if (onUnmount) setTimeout(() => onUnmount(), timeout);
+        }, [handleScroll, onUnmount, removeResizeHandle]);
 
         const handlersRef = useRef({
             entered: handleEntered,
             exited: handleExited,
-            unmount: handleUnmount,
         });
         handlersRef.current.entered = handleEntered;
         handlersRef.current.exited = handleExited;
-        handlersRef.current.unmount = handleUnmount;
 
         useEffect(() => {
             if (status === 'entering') handlersRef.current.entered();
             if (status === 'exiting') handlersRef.current.exited();
-            if (status === 'exited') handlersRef.current.unmount();
         }, [status]);
 
         useEffect(() => {
@@ -374,7 +371,7 @@ export const BaseModal = forwardRef<HTMLDivElement, BaseModalProps>(
         return (
             <Stack value={zIndex}>
                 {computedZIndex => (
-                    <Portal getPortalContainer={container} immediateMount>
+                    <Portal getPortalContainer={container}>
                         <BaseModalContext.Provider value={contextValue}>
                             <FocusLock
                                 autoFocus={!disableAutoFocus}
@@ -386,10 +383,13 @@ export const BaseModal = forwardRef<HTMLDivElement, BaseModalProps>(
                                         timeout={timeout}
                                         {...backdropProps}
                                         open={open && shouldRender}
+                                        onDestroy={() => setBackdropDestroyed(true)}
                                         style={{
+                                            width: '100%',
+                                            height: '100%',
+                                            position: 'fixed',
                                             zIndex: computedZIndex,
                                         }}
-                                        onDestroy={() => setBackdropDestroyed(true)}
                                     />
                                 )}
                                 {isMounted && (

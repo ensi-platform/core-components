@@ -6,12 +6,12 @@
         "rootDirs": ["src"],
         "baseUrl": ".",
         "paths": {
-            "@greensight/core-components-*": ["../*/src"]
+            "@ensi-platform/core-components-*": ["../*/src"]
         }
     },
     "references": [
         {
-            "path": "../common/tsconfig.json"
+            "path": "../common"
         }
     ]
 }

@@ -1,25 +1,9 @@
 {
-  "include": [
-    "src",
-    "../../typings",
-    "src/Picture.stories.tsx"
-  ],
-  "extends": "../../tsconfig.json",
-  "compilerOptions": {
-    "outDir": "dist",
-    "rootDirs": [
-      "src"
-    ],
-    "baseUrl": ".",
-    "paths": {
-      "@greensight/core-components-*": [
-        "../*/src"
-      ]
+    "include": ["src", "../../typings", "src/Picture.stories.tsx"],
+    "extends": "../../tsconfig.json",
+    "compilerOptions": {
+        "outDir": "dist",
+        "rootDirs": ["src"],
+        "baseUrl": "."
     }
-  },
-  "references": [
-    {
-      "path": "../common/tsconfig.json"
-    }
-  ]
 }

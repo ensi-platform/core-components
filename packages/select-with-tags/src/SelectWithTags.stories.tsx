@@ -1,13 +1,14 @@
-import { StoryObj } from '@storybook/react';
+import { Button, scale } from '@ensi-platform/core-components-common';
+import { Form } from '@ensi-platform/core-components-form';
+import { type SelectItem, type SelectPayload } from '@ensi-platform/core-components-select';
 
-import { ComponentProps, SetStateAction, useCallback, useMemo, useState } from 'react';
+import { type StoryObj } from '@storybook/react';
 
-import { Button, scale } from '@greensight/gds';
-import { SelectItem, SelectPayload } from '@greensight/core-components-select';
+import { type ComponentProps, type SetStateAction, useCallback, useMemo, useState } from 'react';
 
-import { SelectWithTags, SelectWithTagsProps } from '.';
 import README from '../README.md';
-import { SimpleSelectWithTags } from './SelectWithTags';
+import { SelectWithTags, SimpleSelectWithTags } from './SelectWithTags';
+import { type SelectWithTagsProps } from './types';
 
 const optionItems: SelectItem[] = [
     {
@@ -140,4 +141,44 @@ export const Basic: StoryObj<Args> = {
             </div>
         );
     },
+};
+
+export const WithForm: StoryObj<ComponentProps<typeof SelectWithTags>> = {
+    args: {
+        disabled: false,
+        wrap: true,
+        allowUnselect: false,
+        options: [
+            {
+                label: 'Red',
+                value: 131,
+            },
+            {
+                label: 'blue',
+                value: 42,
+            },
+        ],
+    },
+    argTypes: {},
+    render: ({ ...args }) => (
+        <div style={{ width: 500, minHeight: 800 }}>
+            <Form
+                initialValues={{ selectValue: null, otherField: '' }}
+                onSubmit={values => {
+                    console.log('SUBMIT FORM VALUES', values);
+                }}
+            >
+                <Form.Field name="selectValue" label="SelectWithTags" required>
+                    <SelectWithTags options={args.options} />
+                </Form.Field>
+                <br />
+                <Form.Field name="otherField" placeholder="При вводе в это поле нет лагов перерендера" size="md" />
+                <br />
+                <Button type="submit">Отправить</Button>
+                <Button type="reset" theme="secondary">
+                    Сбросить
+                </Button>
+            </Form>
+        </div>
+    ),
 };

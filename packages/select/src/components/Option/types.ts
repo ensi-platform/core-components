@@ -1,6 +1,7 @@
-import { AriaAttributes, ReactNode, RefAttributes } from 'react';
+import { type AriaAttributes, type FC, type ReactNode, type RefAttributes } from 'react';
 
-import { SelectItem } from '../../types';
+import { type SelectItem } from '../../types';
+import { type CheckmarkProps } from '../Checkmark/types';
 
 export interface OptionProps {
     /**
@@ -42,4 +43,9 @@ export interface OptionProps {
      * Внутренние свойства, которые должны быть установлены компоненту.
      */
     innerProps: RefAttributes<HTMLLIElement> & AriaAttributes;
+
+    /**
+     * Компонент пункта меню
+     */
+    Checkmark?: FC<CheckmarkProps> | null;
 }

@@ -1,7 +1,9 @@
-import { CSSObject } from '@emotion/react';
-import { FieldInputProps, FieldMetaProps } from 'formik';
-import { HTMLProps, ReactNode, Ref } from 'react';
-import { FormControlProps } from '@greensight/core-components-form-control';
+import { type FormControlProps } from '@ensi-platform/core-components-form-control';
+
+import { type CSSObject } from '@emotion/react';
+
+import { type FieldInputProps, type FieldMetaProps } from 'formik';
+import { type HTMLProps, type ReactNode, type Ref } from 'react';
 
 interface ITextareaInputProps {
     size?: FormControlProps['size'];

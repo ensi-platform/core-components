@@ -1,14 +1,17 @@
-import { MouseEvent } from 'react';
-
 import {
-    useLinkCSS,
     Button,
-    scale,
     IconSmallChevronLeft,
     IconSmallChevronRight,
-} from '@greensight/core-components-common';
+    defaultTheme,
+    scale,
+    useLinkCSS,
+} from '@ensi-platform/core-components-common';
 
-import { SelectorView } from '../../types';
+import { type MouseEvent } from 'react';
+
+import { type SelectorView } from '../../types';
+
+const { colors } = defaultTheme;
 
 export type HeaderProps = {
     /**
@@ -94,8 +97,12 @@ export const Header = ({
                                 padding: `${scale(0)}px!important`,
                                 marginLeft: scale(1),
                                 marginTop: scale(1),
+                                fill: colors.grey900,
+                                width: scale(2),
+                                height: scale(2),
                                 ':hover': {
                                     background: 'none!important',
+                                    fill: `${colors.grey900}!important`,
                                 },
                             }}
                         >
@@ -133,8 +140,12 @@ export const Header = ({
                                 padding: `${scale(0)}px!important`,
                                 marginRight: scale(1),
                                 marginTop: scale(1),
+                                width: scale(2),
+                                height: scale(2),
+                                fill: colors.grey900,
                                 ':hover': {
                                     background: 'none!important',
+                                    fill: `${colors.grey900}!important`,
                                 },
                             }}
                         >

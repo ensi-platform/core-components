@@ -1,4 +1,4 @@
-import { type InputProps } from '@greensight/core-components-input';
+import { type InputProps } from '@ensi-platform/core-components-input';
 
 export interface IFormFieldProps extends Omit<InputProps, 'children'> {
     /** Name of field */

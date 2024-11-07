@@ -1,4 +1,4 @@
-import { type OptionizedCSS, defaultTheme, extractCSSOption, scale } from '@greensight/core-components-common';
+import { type OptionizedCSS, defaultTheme, extractCSSOption, scale } from '@ensi-platform/core-components-common';
 
 import type { RatingSize, RatingTheme } from '../types';
 
@@ -69,7 +69,7 @@ export const basicTheme: RatingTheme = {
             }),
         },
         // eslint-disable-next-line no-nested-ternary
-        ...((isFilled || isActive)
+        ...(isFilled || isActive
             ? {
                   fill: colors.primary,
                   color: colors.primary,

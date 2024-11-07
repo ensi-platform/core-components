@@ -1,0 +1,13 @@
+{
+    "include": ["src/**/DescriptionList.stories.tsx", "../../typings", "src/**/*.ts", "src/**/*.tsx"],
+    "extends": "../../tsconfig.json",
+    "compilerOptions": {
+        "outDir": "dist",
+        "rootDirs": ["src"],
+        "baseUrl": ".",
+        "paths": {
+            "@ensi-platform/core-components-*": ["../*/src"]
+        }
+    },
+    "references": [{ "path": "../common" }]
+}

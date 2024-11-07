@@ -1,19 +1,19 @@
-import { FC, ReactNode, useCallback, useMemo, useState } from 'react';
+import { type FormFieldDescendantProps, scale, useDeferredLoading } from '@ensi-platform/core-components-common';
+import { FormControl } from '@ensi-platform/core-components-form-control';
+import { LoadingSkeleton } from '@ensi-platform/core-components-loading-skeleton';
+
+import { type FC, type ReactNode, useCallback, useMemo, useState } from 'react';
 import {
+    type DragDropContextProps,
+    type DropResult,
+    type DroppableProps,
     DragDropContext as UntypedDragDropContext,
-    DragDropContextProps,
-    DropResult,
     Droppable as UntypedDroppable,
-    DroppableProps,
 } from 'react-beautiful-dnd';
-import { FileRejection, DropzoneProps as UseDropzoneProps, useDropzone } from 'react-dropzone';
+import { type FileRejection, type DropzoneProps as UseDropzoneProps, useDropzone } from 'react-dropzone';
 
-import { useDeferredLoading, scale, FormFieldDescendantProps } from '@greensight/core-components-common';
-
-import { LoadingSkeleton } from '@greensight/core-components-loading-skeleton';
-import { FormControl } from '@greensight/core-components-form-control';
 import DropzoneArea from './components/DropzoneArea';
-import { DraggableDropzoneFile, DropzoneFile, DropzoneFileProps, FileType } from './components/DropzoneFile';
+import { DraggableDropzoneFile, DropzoneFile, type DropzoneFileProps, type FileType } from './components/DropzoneFile';
 import { ErrorCodes, ImagePreview } from './scripts/constants';
 import { canPreviewImages, getFileSize, makeMatrixArray, removeItemFromArray } from './scripts/utils';
 

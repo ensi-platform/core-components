@@ -1,8 +1,8 @@
-import { FC, ReactNode, createContext, useContext, useMemo } from 'react';
+import { type BaseThemeState, useThemeCSSPart } from '@ensi-platform/core-components-common';
 
-import { BaseThemeState, useThemeCSSPart } from '@greensight/core-components-common';
+import { type FC, type ReactNode, createContext, useContext, useMemo } from 'react';
 
-import { TabsSize, TabsState, TabsTheme, TabsThemeState, TabsVariant } from './types';
+import { type TabsSize, type TabsState, type TabsTheme, type TabsThemeState, type TabsVariant } from './types';
 
 const useFoo = () => useThemeCSSPart<Omit<TabsThemeState, 'theme'>, TabsTheme>(...([] as never as [any, any]));
 

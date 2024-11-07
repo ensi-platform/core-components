@@ -1,10 +1,10 @@
-import { Children, ReactElement, cloneElement } from 'react';
+import { Children, type ReactElement, cloneElement } from 'react';
 
 import { useTabsTheme } from '../../context';
-import { TabProps, TabsProps } from '../../types';
+import { type TabProps, type TabsProps } from '../../types';
 import { ShowMoreButton as DefaultTooltipButton } from '../ShowMore';
 
-const makesureStringHasPrefix = (str: string, prefix: string) => {
+const makeSureStringHasPrefix = (str: string, prefix: string) => {
     if (str.startsWith(`${prefix}_`)) return str;
 
     return `${prefix}_${str}`;
@@ -63,7 +63,7 @@ export const TabsComponent = ({
     const selectedId =
         typeof propsSelectedId === 'undefined'
             ? titles?.[0]?.id || undefined
-            : makesureStringHasPrefix(`${propsSelectedId}`, idPrefix);
+            : makeSureStringHasPrefix(`${propsSelectedId}`, idPrefix);
 
     const tabs = tabsArray
         .map(e => ({ ...e, id: `${idPrefix}_${e.props.id}` }))

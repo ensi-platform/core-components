@@ -1,5 +1,11 @@
-import { BaseThemeState, StyleDefinition, useThemeCSSPart, ValueOrFunction } from '@greensight/core-components-common';
-import { ReactNode } from 'react';
+import {
+    type BaseThemeState,
+    type StyleDefinition,
+    type ValueOrFunction,
+    useThemeCSSPart,
+} from '@ensi-platform/core-components-common';
+
+import { type ReactNode } from 'react';
 
 export const CalendarSize = {
     md: 'md',

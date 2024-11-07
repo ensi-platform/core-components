@@ -1,4 +1,4 @@
-import { SelectItem, SelectProps } from '@greensight/core-components-select';
+import { type SelectItem, type SelectProps } from '@ensi-platform/core-components-select';
 
 export const isOptionShape = (item: SelectItem | string | null): item is SelectItem =>
     !!item && Object.prototype.hasOwnProperty.call(item, 'label');
@@ -15,7 +15,7 @@ export function processOptions(options: SelectProps['options'], selected: Select
     const allSelectedKeys = selectedArray
         .map(option => {
             if (typeof option === 'string') return option;
-            if (typeof option === 'object' && option && 'key' in option) return option.key;
+            if (typeof option === 'object' && option && 'label' in option) return option.label;
 
             return undefined;
         })

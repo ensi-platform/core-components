@@ -12,7 +12,7 @@ function getValue<T>(list: QueryList<T>): T[] {
             // eslint-disable-next-line no-confusing-arrow
             ([value, query]) => (query.matches ? value : null)
         )
-        .filter(Boolean) as any;
+        .filter(Boolean) as T[];
 }
 
 export function useMedia<T>(list: Params<T>, defaultValue: T): T[] {

@@ -1,5 +1,5 @@
 {
-    "name": "@greensight/core-components-backdrop",
+    "name": "@ensi-platform/core-components-backdrop",
     "version": "1.0.0",
     "description": "Backdrop component",
     "keywords": [],
@@ -16,6 +16,7 @@
     },
     "dependencies": {
         "react-transition-state": "^2.1.1",
-        "tslib": "^2.6.2"
+        "tslib": "^2.6.2",
+        "@ensi-platform/core-components-common": "^1.0.0"
     }
 }

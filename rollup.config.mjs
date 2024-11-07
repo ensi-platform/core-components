@@ -23,7 +23,7 @@ const currentPkg = path.join(currentPackageDir, 'package.json');
 
 const pkg = require(currentPkg);
 
-const prefix = '@greensight/core-components-';
+const prefix = '@ensi-platform/core-components-';
 const currentComponentName = pkg.name.replace(prefix, '');
 
 const babelPlugin = babel({
@@ -76,11 +76,11 @@ const es5 = {
     output: [
         {
             esModule: true,
-            dir: `../../dist/${currentComponentName}/cjs`,
+            dir: 'dist/cjs',
             format: 'cjs',
             interop: 'compat',
             dynamicImportInCjs: false,
-            plugins: [packagesTypingResolver()],
+            plugins: [coreComponentsResolver({ importFrom: 'cjs' }), packagesTypingResolver()],
         },
     ],
     plugins: [

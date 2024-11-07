@@ -1,9 +1,10 @@
-import { ReactNode } from 'react';
-import { scale } from '@greensight/core-components-common';
+import { scale } from '@ensi-platform/core-components-common';
+
+import { type ReactNode } from 'react';
 
 export interface BlockBodyProps {
     className?: string;
-    children?: ReactNode;
+    children?: ReactNode | ReactNode[];
 }
 
 const BlockBody = ({ className, children }: BlockBodyProps) => (

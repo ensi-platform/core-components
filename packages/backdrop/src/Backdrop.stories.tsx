@@ -1,8 +1,10 @@
 /* eslint-disable import/no-extraneous-dependencies */
-import { ComponentProps, useState } from 'react';
-import { Button } from '@greensight/core-components-common';
+import { Button } from '@ensi-platform/core-components-common';
+
 import { action } from '@storybook/addon-actions';
 import type { Meta, StoryObj } from '@storybook/react';
+
+import { type ComponentProps, useState } from 'react';
 
 import README from '../README.md';
 import { Backdrop } from './index';

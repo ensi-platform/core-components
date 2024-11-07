@@ -1,37 +1,20 @@
 {
-  "include": [
-    "src",
-    "../../typings",
-    "src/autocompleteAsync.stories.tsx"
-  ],
-  "extends": "../../tsconfig.json",
-  "compilerOptions": {
-    "outDir": "dist",
-    "rootDirs": [
-      "src"
-    ],
-    "baseUrl": ".",
-    "paths": {
-      "@greensight/core-components-*": [
-        "../*/src"
-      ]
-    }
-  },
-  "references": [
-    {
-      "path": "../common/tsconfig.json"
+    "include": ["src", "../../typings", "src/autocompleteAsync.stories.tsx"],
+    "extends": "../../tsconfig.json",
+    "compilerOptions": {
+        "outDir": "dist",
+        "rootDirs": ["src"],
+        "baseUrl": ".",
+        "paths": {
+            "@ensi-platform/core-components-*": ["../*/src"]
+        }
     },
-    {
-      "path": "../select/tsconfig.json"
-    },
-    {
-      "path": "../tags/tsconfig.json"
-    },
-    {
-      "path": "../input/tsconfig.json"
-    },
-    {
-      "path": "../select-with-tags/tsconfig.json"
-    }
-  ]
+    "references": [
+        { "path": "../common" },
+        { "path": "../select-with-tags" },
+        { "path": "../input" },
+        { "path": "../select" },
+        { "path": "../form-control" },
+        { "path": "../loading-skeleton" }
+    ]
 }

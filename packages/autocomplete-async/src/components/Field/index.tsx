@@ -1,12 +1,13 @@
-import { MouseEvent, Ref, useCallback, useMemo, useRef } from 'react';
+import { Input as DefaultInput } from '@ensi-platform/core-components-input';
+
+import { type MouseEvent, type Ref, useCallback, useMemo, useRef } from 'react';
 import mergeRefs from 'react-merge-refs';
 
-import { Input as DefaultInput } from '@greensight/core-components-input';
-import { AutocompleteFieldPropsType } from '../Autocomplete/types';
+import { type AutocompleteFieldPropsType } from '../Autocomplete/types';
 
 const EMPTY_OBJ = {};
 
-const AutocompleteField = ({
+export const AutocompleteField = ({
     Arrow,
     name,
     error,
@@ -82,5 +83,3 @@ const AutocompleteField = ({
 };
 
 AutocompleteField.displayName = 'AutocompleteField';
-
-export default AutocompleteField;

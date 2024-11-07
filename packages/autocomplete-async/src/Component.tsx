@@ -1,27 +1,27 @@
-import { ChangeEvent, forwardRef, useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import deepEqual from 'react-fast-compare';
-
 import {
-    IconPreloader as PreloaderIcon,
-    IconSmallClosed as CloseIcon,
     Button,
+    IconSmallClosed as CloseIcon,
+    IconPreloader as PreloaderIcon,
     scale,
     usePrevious,
-} from '@greensight/core-components-common';
+} from '@ensi-platform/core-components-common';
+import { type OptionProps, type SelectItem } from '@ensi-platform/core-components-select';
+import { SimpleSelectWithTags } from '@ensi-platform/core-components-select-with-tags';
 
-import { SelectItem, OptionProps } from '@greensight/core-components-select';
+import { forwardRef, useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import deepEqual from 'react-fast-compare';
 
-import { SimpleSelectWithTags } from '@greensight/core-components-select-with-tags';
-import { AutocompleteAsyncPropsType } from './types';
-import { useLazyLoading } from './scripts/hooks';
 import { BaseAutocomplete } from './components';
 import { DEBOUNCE_TIMEOUT } from './scripts/constants';
+import { useLazyLoading } from './scripts/hooks';
+import { type AutocompleteAsyncPropsType } from './types';
 
 export const AutocompleteAsync = forwardRef<HTMLInputElement, AutocompleteAsyncPropsType>(
     (
         {
             collapseTagList = false,
             multiple = false,
+            clearOnSelect = true,
             meta,
             field,
             helpers,
@@ -41,7 +41,7 @@ export const AutocompleteAsync = forwardRef<HTMLInputElement, AutocompleteAsyncP
         const [valuesMap, setValuesMap] = useState(new Map<any, SelectItem>());
 
         const selectedValues = useMemo(() => {
-            if (Array.isArray(field?.value)) return field?.value.filter(v => v !== '') as any[];
+            if (Array.isArray(field?.value)) return field?.value.filter(v => v !== '');
 
             return field?.value !== null && field?.value !== undefined && field?.value !== '' ? [field?.value] : [];
         }, [field?.value]);
@@ -204,10 +204,8 @@ export const AutocompleteAsync = forwardRef<HTMLInputElement, AutocompleteAsyncP
                 <BaseAutocomplete
                     ref={ref}
                     {...props}
-                    onInput={(e: ChangeEvent<HTMLInputElement>) => {
-                        optionsListProps.inputProps.onChange(e, {
-                            value: e.currentTarget.value,
-                        });
+                    onInput={e => {
+                        optionsListProps.inputProps.onChange(e, { value: e.currentTarget.value });
                         onInput?.(e);
 
                         if (!e.currentTarget.value) {
@@ -315,7 +313,6 @@ export const AutocompleteAsync = forwardRef<HTMLInputElement, AutocompleteAsyncP
                                             onClick={() => {
                                                 reset();
                                             }}
-                                            theme="outline"
                                         >
                                             Сбросить
                                         </Button>
@@ -371,9 +368,15 @@ export const AutocompleteAsync = forwardRef<HTMLInputElement, AutocompleteAsyncP
 
                     setValuesMap(new Map(valuesMapRef.current));
 
+                    if (clearOnSelect) reset();
+
                     if (!helpers) return;
 
-                    helpers.setValue(payload.selected?.map(e => (typeof e === 'string' ? e : e.value)));
+                    if (payload.selected === null && multiple) {
+                        helpers.setValue([]);
+                    } else {
+                        helpers.setValue(payload.selected?.map(e => (typeof e === 'string' ? e : e.value)));
+                    }
                 }}
                 collapseTagList={collapseTagList}
                 resetOnChange={false}

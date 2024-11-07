@@ -1,7 +1,9 @@
+import { type BaseThemeState, type StyleDefinition, type ValueOrFunction } from '@ensi-platform/core-components-common';
+import { type IFieldWrapperProps } from '@ensi-platform/core-components-form';
+
 import { type CSSObject } from '@emotion/react';
-import { type BaseThemeState } from '@greensight/core-components-common';
-import { type ReactNode, type ChangeEventHandler, type HTMLProps, type FormEventHandler } from 'react';
-import { type IFieldWrapperProps } from '@greensight/core-components-form';
+
+import { type ChangeEventHandler, type FormEventHandler, type HTMLProps, type ReactNode } from 'react';
 
 export type CheckboxValueType = string[] | boolean;
 
@@ -84,16 +86,26 @@ interface ICheckboxCSS {
     indeterminateLineCSS?: CSSObject;
 }
 
-export interface ICheckboxTheme {
-    size?: keyof typeof CheckboxSize;
-    variant?: keyof typeof CheckboxVariant;
-}
-
 export type CheckboxThemeState = BaseThemeState<typeof CheckboxVariant, typeof CheckboxSize> & ICheckboxState;
+
+export type CheckboxTheme = ValueOrFunction<
+    {
+        container: StyleDefinition<CheckboxThemeState>;
+        content: StyleDefinition<CheckboxThemeState>;
+        box: StyleDefinition<CheckboxThemeState>;
+        icon: StyleDefinition<CheckboxThemeState>;
+        indeterminateLine: StyleDefinition<CheckboxThemeState>;
+
+        hint: StyleDefinition<CheckboxThemeState>;
+        error: StyleDefinition<CheckboxThemeState>;
+    },
+    [CheckboxThemeState]
+>;
+
 export interface ICheckboxProps
     extends Omit<HTMLProps<HTMLInputElement>, 'size' | 'css'>,
+        Partial<Omit<BaseThemeState<typeof CheckboxVariant, typeof CheckboxSize, CheckboxTheme>, 'theme'>>,
         ICheckboxState,
-        ICheckboxTheme,
         ICheckboxCSS,
         ICheckboxParts {}
 

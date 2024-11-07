@@ -1,4 +1,13 @@
+import {
+    IconSmallClosed as CloseIcon,
+    type FormFieldDescendantProps,
+    defaultTheme,
+    scale,
+} from '@ensi-platform/core-components-common';
+import { FormControl } from '@ensi-platform/core-components-form-control';
+
 import { type CSSObject } from '@emotion/react';
+
 import deepmerge from 'deepmerge';
 import {
     type AnimationEvent,
@@ -14,15 +23,6 @@ import {
     useState,
 } from 'react';
 import mergeRefs from 'react-merge-refs';
-
-import {
-    type FormFieldDescendantProps,
-    defaultTheme,
-    scale,
-    IconSmallClosed as CloseIcon,
-} from '@greensight/core-components-common';
-
-import { FormControl } from '@greensight/core-components-form-control';
 
 import { type InputProps } from './types';
 

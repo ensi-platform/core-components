@@ -1,10 +1,16 @@
+import { Button } from '@ensi-platform/core-components-common';
+import { Form } from '@ensi-platform/core-components-form';
+import { type Select, type SelectHandlers, type SelectItem } from '@ensi-platform/core-components-select';
+
 import type { StoryObj } from '@storybook/react';
-import { ChangeEvent, ComponentProps, useCallback, useState } from 'react';
-import { SelectHandlers, SelectItem } from '@greensight/core-components-select';
-import { Autocomplete } from './components/Autocomplete';
-import { AutocompleteAsync } from './Component';
+
+import * as Yup from 'yup';
+import { type ChangeEvent, type ComponentProps, useCallback, useState } from 'react';
+
 import README from '../README.md';
-import { IOptionsFetcherResponse } from './types';
+import { AutocompleteAsync } from './Component';
+import { Autocomplete, BaseAutocomplete } from './components';
+import { type IOptionsFetcherResponse } from './types';
 
 export default {
     title: 'Components / AutocompleteAsync',
@@ -202,6 +208,61 @@ export const Basic: StoryObj<ComponentProps<typeof AutocompleteAsync>> = {
     },
 };
 
+export const WithForm: StoryObj<ComponentProps<typeof Select>> = {
+    args: {},
+    argTypes: {},
+    render: () => {
+        const asyncSearchFn = useCallback(
+            async (queryString: string, offset: number, limit: number): Promise<IOptionsFetcherResponse> =>
+                new Promise(resolve => {
+                    const total = optionItems.filter(e => e.label.includes(queryString));
+                    const slice = total.slice(offset, offset + limit);
+                    const hasMore = offset + limit < total.length;
+                    setTimeout(() => resolve({ options: slice, hasMore }), 1500);
+                }),
+            []
+        );
+        const asyncOptionsByValuesFn = useCallback(
+            async (vals: string[]): Promise<SelectItem[]> =>
+                new Promise(resolve => {
+                    const total = optionItems.filter(e => e.value && vals.includes(e.value.toString()));
+                    setTimeout(() => resolve(total), 1800);
+                }),
+            []
+        );
+        return (
+            <div style={{ width: 500, minHeight: 800 }}>
+                <Form
+                    initialValues={{ selectValue: null, otherField: '' }}
+                    onSubmit={values => {
+                        console.log('SUBMIT FORM VALUES', values);
+                    }}
+                    validationSchema={Yup.object().shape({
+                        selectValue: Yup.number()
+                            .transform(val => (Number.isNaN(val) ? undefined : val))
+                            .required('Обязательное поле'),
+                    })}
+                >
+                    <Form.Field name="selectValue" label="Выберите пункты" required>
+                        <AutocompleteAsync
+                            closeOnSelect={false}
+                            asyncSearchFn={asyncSearchFn}
+                            asyncOptionsByValuesFn={asyncOptionsByValuesFn}
+                            multiple
+                            collapseTagList
+                        />
+                    </Form.Field>
+                    <br />
+                    <Button type="submit">Отправить</Button>
+                    <Button type="reset" theme="secondary">
+                        Сбросить
+                    </Button>
+                </Form>
+            </div>
+        );
+    },
+};
+
 export const ControlledAutocomplete: StoryObj<ComponentProps<typeof Autocomplete>> = {
     args: {
         closeOnSelect: false,
@@ -243,7 +304,7 @@ export const ControlledAutocomplete: StoryObj<ComponentProps<typeof Autocomplete
                   );
 
         return (
-            <Autocomplete
+            <BaseAutocomplete
                 options={filteredOptions}
                 selected={selectedOptions}
                 label="Элемент"
@@ -257,7 +318,7 @@ export const ControlledAutocomplete: StoryObj<ComponentProps<typeof Autocomplete
     },
 };
 
-export const BaseAutocomplete: StoryObj<ComponentProps<typeof Autocomplete>> = {
+export const regularAutocomplete: StoryObj<ComponentProps<typeof Autocomplete>> = {
     args: {
         closeOnSelect: false,
         multiple: true,

@@ -1,5 +1,6 @@
-import { scale, defaultTheme } from '@greensight/core-components-common';
-import { TooltipTheme } from '../types';
+import { defaultTheme, scale } from '@ensi-platform/core-components-common';
+
+import { type TooltipTheme } from '../types';
 
 const { colors, shadows } = defaultTheme;
 

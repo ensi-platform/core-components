@@ -1,8 +1,11 @@
-import type { Meta, StoryObj } from '@storybook/react';
-import { useState, type ComponentProps } from 'react';
-import { Form, FormFieldWrapper } from '@greensight/core-components-form';
-import { action } from '@storybook/addon-actions';
+import { Form, FormFieldWrapper } from '@ensi-platform/core-components-form';
+
 import { Button } from '@greensight/gds';
+import { action } from '@storybook/addon-actions';
+import type { Meta, StoryObj } from '@storybook/react';
+
+import { type ComponentProps, useState } from 'react';
+
 import README from '../README.md';
 import { Checkbox, FormCheckbox } from './index';
 

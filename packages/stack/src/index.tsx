@@ -1,4 +1,4 @@
-import { ReactNode, useContext } from 'react';
+import { type ReactNode, useContext } from 'react';
 
 import { StackingContext, stackingOrder } from './context';
 
@@ -11,7 +11,7 @@ export type StackProps = {
 
     /**
      * Исходное значение для z-index.
-     * @default 5
+     * @default 10
      */
     value?: number;
 };

@@ -1,28 +1,20 @@
 {
-  "include": [
-    "src",
-    "../../typings",
-    "src/Tooltip.stories.tsx"
-  ],
-  "extends": "../../tsconfig.json",
-  "compilerOptions": {
-    "outDir": "dist",
-    "rootDirs": [
-      "src"
-    ],
-    "baseUrl": ".",
-    "paths": {
-      "@greensight/core-components-*": [
-        "../*/src"
-      ]
-    }
-  },
-  "references": [
-    {
-      "path": "../common/tsconfig.json"
+    "include": ["src", "../../typings", "src/Tooltip.stories.tsx"],
+    "extends": "../../tsconfig.json",
+    "compilerOptions": {
+        "outDir": "dist",
+        "rootDirs": ["src"],
+        "baseUrl": ".",
+        "paths": {
+            "@ensi-platform/core-components-*": ["../*/src"]
+        }
     },
-    {
-      "path": "../popover/tsconfig.json"
-    }
-  ]
+    "references": [
+        {
+            "path": "../common"
+        },
+        {
+            "path": "../popover"
+        }
+    ]
 }

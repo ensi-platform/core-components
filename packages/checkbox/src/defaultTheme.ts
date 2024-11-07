@@ -1,4 +1,5 @@
-import { defaultTheme, scale } from '@greensight/core-components-common';
+import { defaultTheme, scale } from '@ensi-platform/core-components-common';
+
 import { type CheckboxTheme } from './types';
 
 const outerSize = scale(5, true);

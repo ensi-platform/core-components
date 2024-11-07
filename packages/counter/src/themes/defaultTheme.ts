@@ -1,5 +1,6 @@
-import { defaultTheme, scale, OptionizedCSS, extractCSSOption } from '@greensight/core-components-common';
-import { CounterTheme, CounterSize, CounterThemeState } from '../types';
+import { type OptionizedCSS, defaultTheme, extractCSSOption, scale } from '@ensi-platform/core-components-common';
+
+import { type CounterSize, type CounterTheme, type CounterThemeState } from '../types';
 
 const { colors, typography } = defaultTheme;
 

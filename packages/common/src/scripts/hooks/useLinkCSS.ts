@@ -1,9 +1,10 @@
-import { CSSObject } from '@emotion/react';
+import { type CSSObject } from '@emotion/react';
+
 import { rgba } from 'emotion-rgba';
 
-import { useTheme } from '../gds';
+import { defaultTheme } from '../../index';
 
-export type Link = 'blue' | 'black' | 'grey';
+export type LinkColorType = 'blue' | 'black' | 'grey' | 'red';
 
 const getLinkStyles = (
     color: string | undefined,
@@ -25,10 +26,10 @@ const getLinkStyles = (
     },
 });
 
-export const useLinkCSS = (type: Link = 'blue') => {
+export const useLinkCSS = (type: LinkColorType = 'blue') => {
     if (typeof window !== 'undefined') {
         // eslint-disable-next-line react-hooks/rules-of-hooks
-        const { colors } = useTheme();
+        const { colors } = defaultTheme;
 
         if (type === 'black') {
             return getLinkStyles(colors?.grey900, colors?.link, colors?.grey600);
@@ -36,6 +37,10 @@ export const useLinkCSS = (type: Link = 'blue') => {
 
         if (type === 'grey') {
             return getLinkStyles(colors?.grey800, colors?.grey900, colors?.grey600);
+        }
+
+        if (type === 'red') {
+            return getLinkStyles(colors?.danger, colors?.danger, colors?.danger);
         }
 
         return getLinkStyles(colors?.link, colors?.primaryHover, colors?.grey600);
