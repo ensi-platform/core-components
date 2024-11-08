@@ -1,7 +1,5 @@
 /* THIS FILE IS AUTO-GENERATED, DO NOT MODIFY IT */
 
-
-
 export { IconArrowDown } from './iconsComponents/IconArrowDown';
 export { IconArrowLeft } from './iconsComponents/IconArrowLeft';
 export { IconArrowRight } from './iconsComponents/IconArrowRight';

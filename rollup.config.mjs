@@ -1,12 +1,14 @@
 import wildcardExternal from '@oat-sa/rollup-plugin-wildcard-external';
+import { babel } from '@rollup/plugin-babel';
 import json from '@rollup/plugin-json';
 import svgr from '@svgr/rollup';
+
 import { createRequire } from 'module';
 import path from 'path';
 import copy from 'rollup-plugin-copy';
 import multiInput from 'rollup-plugin-multi-input';
 import typescript from 'rollup-plugin-ts';
-import { babel } from '@rollup/plugin-babel';
+
 import {
     coreComponentsResolver,
     coreComponentsRootPackageResolver,

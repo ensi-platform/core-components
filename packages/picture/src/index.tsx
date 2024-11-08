@@ -1,9 +1,10 @@
-import { CSSObject } from '@emotion/react';
+import { type CSSObject } from '@emotion/react';
+
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 
 import getImageBlurSvg from './scripts/getImageBlurSvg';
 import handleLoading from './scripts/handleLoading';
-import { ImgElementWithDataProp, PictureProps } from './types';
+import { type ImgElementWithDataProp, type PictureProps } from './types';
 
 function getInt(x: unknown): number | undefined {
     if (typeof x === 'number' || typeof x === 'undefined') {

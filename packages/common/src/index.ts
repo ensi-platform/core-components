@@ -1,5 +1,5 @@
-import { defineTheme } from './scripts/gds';
 import defaultTokens from './defaultTokens.json';
+import { defineTheme } from './scripts/gds';
 
 export { defaultTokens };
 

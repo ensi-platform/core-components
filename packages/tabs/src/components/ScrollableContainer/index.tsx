@@ -1,9 +1,9 @@
-import { CSSObject } from '@emotion/react';
-import { ReactNode, useEffect, useRef } from 'react';
+import { type CSSObject } from '@emotion/react';
 
 import { compute } from 'compute-scroll-into-view';
-import { useTabsTheme } from '../../context';
+import { type ReactNode, useEffect, useRef } from 'react';
 
+import { useTabsTheme } from '../../context';
 
 /**
  * Дополнительная прокрутка при клике на не поместившийся таб

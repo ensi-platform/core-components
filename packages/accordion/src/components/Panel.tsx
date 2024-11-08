@@ -1,4 +1,4 @@
-import { HTMLProps, ReactNode, useCallback, useMemo } from 'react';
+import { type HTMLProps, type ReactNode, useCallback, useMemo } from 'react';
 import {
     AccordionItemPanel as ReactAccordionItemPanel,
     AccordionItemState as ReactAccordionItemState,

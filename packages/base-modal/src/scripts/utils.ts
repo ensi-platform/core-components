@@ -1,4 +1,4 @@
-import { SavedStyle, getModalStore } from './store';
+import { type SavedStyle, getModalStore } from './store';
 
 export function isScrolledToTop(target: HTMLElement) {
     return target.scrollTop <= 0;
