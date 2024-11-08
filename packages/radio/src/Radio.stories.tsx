@@ -1,9 +1,9 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
-import { ChangeEvent, ComponentProps, useState } from 'react';
+import { type ChangeEvent, type ComponentProps, useState } from 'react';
 
 import README from '../README.md';
-import { Radio, RadioProps } from './index';
+import { Radio, type RadioProps } from './index';
 
 export default {
     title: 'Controls / Form / Radio',

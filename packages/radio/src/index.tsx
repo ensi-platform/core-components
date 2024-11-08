@@ -1,13 +1,13 @@
 import { useCheckboxLikeControlHookRHF, useThemeCSSPart } from '@ensi-platform/core-components-common';
 
-import { CSSObject } from '@emotion/react';
+import { type CSSObject } from '@emotion/react';
 
 import deepmerge from 'deepmerge';
 import { useMemo, useRef } from 'react';
 import mergeRefs from 'react-merge-refs';
 
 import { radioThemes } from './themes';
-import { RadioProps, RadioThemeState } from './types';
+import { type RadioProps, type RadioThemeState } from './types';
 
 export * from './types';
 

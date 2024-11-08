@@ -1,6 +1,6 @@
-import { KeyboardEvent, MouseEvent, MutableRefObject, useCallback, useRef, useState } from 'react';
+import { type KeyboardEvent, type MouseEvent, type MutableRefObject, useCallback, useRef, useState } from 'react';
 
-import { TabListTitle, UseTabsProps } from '../../types';
+import { type TabListTitle, type UseTabsProps } from '../../types';
 
 export function useTabs({ titles = [], selectedId, onChange }: UseTabsProps) {
     const [selectedTab, setSelectedTab] = useState<HTMLButtonElement | null>(null);

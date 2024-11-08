@@ -1,4 +1,4 @@
-import { ReactNode, forwardRef, useEffect, useState } from 'react';
+import { type ReactNode, forwardRef, useEffect, useState } from 'react';
 import { createPortal } from 'react-dom';
 
 import { getDefaultPortalContainer, setRef } from './scripts/utils';

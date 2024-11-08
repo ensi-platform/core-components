@@ -1,18 +1,18 @@
 import {
-    CheckboxSize,
-    CheckboxTheme,
-    CheckboxThemeState,
-    CheckboxVariant,
+    type CheckboxSize,
+    type CheckboxTheme,
+    type CheckboxThemeState,
+    type CheckboxVariant,
     checkboxThemes,
 } from '@ensi-platform/core-components-checkbox';
-import { FormFieldDescendantProps, scale, useThemeCSSPart } from '@ensi-platform/core-components-common';
+import { type FormFieldDescendantProps, scale, useThemeCSSPart } from '@ensi-platform/core-components-common';
 
 import {
-    CSSProperties,
-    ChangeEvent,
+    type CSSProperties,
+    type ChangeEvent,
     Children,
-    FocusEvent,
-    ReactNode,
+    type FocusEvent,
+    type ReactNode,
     cloneElement,
     isValidElement,
     useMemo,

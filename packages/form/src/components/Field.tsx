@@ -1,4 +1,4 @@
-import { Input, InputProps } from '@ensi-platform/core-components-input';
+import { Input, type InputProps } from '@ensi-platform/core-components-input';
 
 import type { CSSObject } from '@emotion/react';
 
@@ -8,10 +8,10 @@ import type {
     FieldInputProps as FormikFieldProps,
 } from 'formik';
 import {
-    ChangeEvent,
+    type ChangeEvent,
     Children,
-    FC,
-    ReactNode,
+    type FC,
+    type ReactNode,
     cloneElement,
     forwardRef,
     isValidElement,

@@ -1,7 +1,7 @@
-import { Button, ButtonProps } from '@ensi-platform/core-components-common';
+import { Button, type ButtonProps } from '@ensi-platform/core-components-common';
 
 import type { MouseEvent, MouseEventHandler, ReactNode } from 'react';
-import { DeepPartial, useFormContext } from 'react-hook-form';
+import { type DeepPartial, useFormContext } from 'react-hook-form';
 
 export type FormResetProps<T> = ButtonProps & {
     children: ReactNode;

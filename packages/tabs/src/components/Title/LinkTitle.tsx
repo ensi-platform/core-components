@@ -1,8 +1,8 @@
-import Link, { LinkProps } from 'next/link';
-import { HTMLProps, forwardRef } from 'react';
+import Link, { type LinkProps } from 'next/link';
+import { type HTMLProps, forwardRef } from 'react';
 
 import { useTabsTheme } from '../../context';
-import { TabListTitle } from '../../types';
+import { type TabListTitle } from '../../types';
 
 type Props = TabListTitle & Omit<LinkProps, 'passHref'> & HTMLProps<HTMLAnchorElement>;
 

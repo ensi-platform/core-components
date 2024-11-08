@@ -1,6 +1,6 @@
-import { CSSObject } from '@emotion/react';
+import { type CSSObject } from '@emotion/react';
 import {
-    Theme,
+    type Theme,
     createMediaQueries,
     createTheme,
     typography as gdsTypography,

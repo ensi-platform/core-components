@@ -3,16 +3,16 @@ import {
     Arrow as DefaultArrow,
     Option as DefaultOption,
     OptionsList as DefaultOptionsList,
-    SelectItem,
-    SelectProps,
+    type SelectItem,
+    type SelectProps,
     useSelectClear,
 } from '@ensi-platform/core-components-select';
 
-import { ChangeEvent, forwardRef, useCallback, useMemo, useRef, useState } from 'react';
+import { type ChangeEvent, forwardRef, useCallback, useMemo, useRef, useState } from 'react';
 
 import { TagList } from './components';
 import { filterOptions } from './scripts/helpers';
-import { SelectWithTagsProps } from './types';
+import { type SelectWithTagsProps } from './types';
 
 export const SimpleSelectWithTags = forwardRef<HTMLDivElement, SelectWithTagsProps>(
     (

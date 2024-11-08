@@ -2,8 +2,8 @@ import { isSameMonth, isThisMonth } from 'date-fns';
 import { useCallback } from 'react';
 
 import { monthName } from '../../scripts/utils';
-import { Month } from '../../types';
-import { SelectButton, SelectButtonProps } from '../select-button';
+import { type Month } from '../../types';
+import { SelectButton, type SelectButtonProps } from '../select-button';
 
 export type MonthsTableProps = {
     /**

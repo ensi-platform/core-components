@@ -1,11 +1,11 @@
 import {
-    BaseThemeState,
-    StyleDefinition,
-    ValueOrFunction,
+    type BaseThemeState,
+    type StyleDefinition,
+    type ValueOrFunction,
     useThemeCSSPart,
 } from '@ensi-platform/core-components-common';
 
-import { ReactNode } from 'react';
+import { type ReactNode } from 'react';
 
 export const CalendarSize = {
     md: 'md',

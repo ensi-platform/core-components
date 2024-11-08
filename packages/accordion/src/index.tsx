@@ -9,7 +9,7 @@ import { AccordionItem as Item } from './components/Item';
 import { AccordionPanel as Panel } from './components/Panel';
 import { AccordionContext } from './scripts/useAccordion';
 import { accordionThemes } from './themes/defaultTheme';
-import { AccordionProps, AccordionState, AccordionThemeState } from './types';
+import { type AccordionProps, type AccordionState, type AccordionThemeState } from './types';
 
 const BasicAccordion = ({
     children,

@@ -2,7 +2,7 @@ import { useIsomorphicLayoutEffect } from '@ensi-platform/core-components-common
 
 import { ResizeObserver as ResizeObserverPolyfill } from '@juggle/resize-observer';
 
-import { DependencyList, useRef, useState } from 'react';
+import { type DependencyList, useRef, useState } from 'react';
 
 export const useCollapsibleElements = <ContainerType extends HTMLElement, AddonType extends HTMLElement>(
     selectors: string,

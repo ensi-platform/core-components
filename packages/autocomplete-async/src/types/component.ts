@@ -1,8 +1,8 @@
-import { FormFieldDescendantProps } from '@ensi-platform/core-components-common';
-import { OptionProps, SelectItem } from '@ensi-platform/core-components-select';
-import { SelectWithTagsProps } from '@ensi-platform/core-components-select-with-tags';
+import { type FormFieldDescendantProps } from '@ensi-platform/core-components-common';
+import { type OptionProps, type SelectItem } from '@ensi-platform/core-components-select';
+import { type SelectWithTagsProps } from '@ensi-platform/core-components-select-with-tags';
 
-import { FC, ReactNode } from 'react';
+import { type FC, type ReactNode } from 'react';
 
 export interface IOptionsFetcherResponse {
     options: SelectItem[];

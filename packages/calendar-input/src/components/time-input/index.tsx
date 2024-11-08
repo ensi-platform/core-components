@@ -1,6 +1,6 @@
 import { Input } from '@ensi-platform/core-components-input';
 
-import { ChangeEvent, FocusEvent, forwardRef, useEffect, useRef, useState } from 'react';
+import { type ChangeEvent, type FocusEvent, forwardRef, useEffect, useRef, useState } from 'react';
 
 import { HOURS_MINUTES_SEPARATOR } from '../../scripts/constants';
 import { isCompleteTime } from '../../scripts/utils';

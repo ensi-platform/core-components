@@ -1,4 +1,4 @@
-import { DescriptionListItemType, IDefaultDateParams } from '../types';
+import { type DescriptionListItemType, type IDefaultDateParams } from '../types';
 
 /**
  * Get params' objects for default dates

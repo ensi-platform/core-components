@@ -3,10 +3,10 @@ import { DateFormatters, formatDate } from '@ensi-platform/core-components-commo
 import { useMemo } from 'react';
 
 import {
-    DescriptionListItemType,
-    IDescriptionListBaseItem,
-    IDescriptionListBooleanItem,
-    IDescriptionListDateItem,
+    type DescriptionListItemType,
+    type IDescriptionListBaseItem,
+    type IDescriptionListBooleanItem,
+    type IDescriptionListDateItem,
 } from '../../types';
 
 /**

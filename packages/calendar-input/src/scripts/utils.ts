@@ -3,7 +3,7 @@ import differenceInDays from 'date-fns/differenceInDays';
 import dateFnsFormat from 'date-fns/format';
 import isSameDay from 'date-fns/isSameDay';
 import parse from 'date-fns/parse';
-import { SyntheticEvent } from 'react';
+import { type SyntheticEvent } from 'react';
 
 import { DATE_FORMAT, DATE_RANGE_SEPARATOR } from './constants';
 

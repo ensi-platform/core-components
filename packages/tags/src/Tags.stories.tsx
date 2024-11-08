@@ -1,10 +1,10 @@
-import { CSSObject } from '@emotion/react';
+import { type CSSObject } from '@emotion/react';
 import type { Meta, StoryObj } from '@storybook/react';
 
 import type { ComponentProps } from 'react';
 
 import README from '../README.md';
-import { ITagsProps, TagItem, Tags } from './index';
+import { type ITagsProps, TagItem, Tags } from './index';
 
 export default {
     title: 'Components / Tags',

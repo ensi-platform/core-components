@@ -1,6 +1,6 @@
 import { IconCross } from '@ensi-platform/core-components-common';
 
-import { FC, HTMLProps, useMemo } from 'react';
+import { type FC, type HTMLProps, useMemo } from 'react';
 
 import { useDrawerTheme } from '../context';
 

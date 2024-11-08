@@ -1,4 +1,4 @@
-import { SVGProps } from 'react';
+import { type SVGProps } from 'react';
 
 export const IconTableImgPreview = ({ title, ...props }: SVGProps<SVGSVGElement> & { title?: string }) => (
     <svg width={61} height={40} viewBox="0 0 61 40" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}>

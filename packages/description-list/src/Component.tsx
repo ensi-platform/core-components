@@ -1,6 +1,6 @@
 import DescriptionListItem from './components/DescriptionListItem';
 import { useDescriptionListCSS } from './scripts/hooks';
-import { IDescriptionListProps } from './types';
+import { type IDescriptionListProps } from './types';
 
 /**
  * List of term-definition pairs with leader dots between them

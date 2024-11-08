@@ -1,5 +1,5 @@
 // eslint-disable-next-line import/no-cycle
-import { TabsTheme } from '../types';
+import { type TabsTheme } from '../types';
 import { basicTheme } from './basic';
 
 export const TABS_THEMES = {

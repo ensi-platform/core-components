@@ -1,4 +1,4 @@
-import { ChangeEvent } from 'react';
+import { type ChangeEvent } from 'react';
 
 type OnChangeEvent<TValue> = ChangeEvent<HTMLInputElement> | { target: { value: TValue } };
 

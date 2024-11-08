@@ -3,7 +3,7 @@ import { Form } from '@ensi-platform/core-components-form';
 
 import type { Meta, StoryObj } from '@storybook/react';
 
-import { ComponentProps, useState } from 'react';
+import { type ComponentProps, useState } from 'react';
 
 import README from '../README.md';
 import { CalendarInput } from './index';

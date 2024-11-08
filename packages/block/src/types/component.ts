@@ -1,4 +1,4 @@
-import { ElementType, ReactNode } from 'react';
+import { type ElementType, type ReactNode } from 'react';
 
 export interface IBlockProps<P extends ElementType = 'section'> {
     /** Use your own React component for render. */
