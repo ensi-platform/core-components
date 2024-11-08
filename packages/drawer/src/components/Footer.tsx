@@ -1,4 +1,5 @@
 import { FC, HTMLProps } from 'react';
+
 import { useDrawerTheme } from '../context';
 
 export type FooterProps = HTMLProps<HTMLDivElement>;

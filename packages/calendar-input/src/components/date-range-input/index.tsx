@@ -1,14 +1,13 @@
-import { ChangeEvent, FocusEvent, forwardRef, useEffect, useMemo, useRef, useState } from 'react';
-import mergeRefs from 'react-merge-refs';
-import startOfMonth from 'date-fns/startOfMonth';
-
-import { Calendar as DefaultCalendar, CalendarProps } from '@ensi-platform/core-components-calendar';
+import { CalendarProps, Calendar as DefaultCalendar } from '@ensi-platform/core-components-calendar';
+import { IconCalendar, useOnClickOutside } from '@ensi-platform/core-components-common';
 import { Input } from '@ensi-platform/core-components-input';
 import { Popover } from '@ensi-platform/core-components-popover';
-import { IconCalendar, useOnClickOutside } from '@ensi-platform/core-components-common';
+
+import startOfMonth from 'date-fns/startOfMonth';
+import { ChangeEvent, FocusEvent, forwardRef, useEffect, useMemo, useRef, useState } from 'react';
+import mergeRefs from 'react-merge-refs';
 
 import { DATE_RANGE_SEPARATOR, DEFAULT_MAX_DATE, DEFAULT_MIN_DATE } from '../../scripts/constants';
-import { InnerDateRangeInputProps } from '../../types';
 import {
     formatDate,
     getValidRange,
@@ -18,6 +17,7 @@ import {
     preventDefault,
     updateRange,
 } from '../../scripts/utils';
+import { InnerDateRangeInputProps } from '../../types';
 
 export const DateRangeInput = forwardRef<HTMLInputElement, InnerDateRangeInputProps>(
     (

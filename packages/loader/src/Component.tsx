@@ -1,8 +1,10 @@
-import { type FC, useMemo } from 'react';
 import { type EnumLike, useThemeCSSPart } from '@ensi-platform/core-components-common';
-import type { ILoaderProps, LoaderStateFullType, LoaderThemeType } from './types';
+
+import { type FC, useMemo } from 'react';
+
+import { LoaderSizes, LoaderVariants, emptyCSS, useMergeCSS } from './scripts';
 import { LOADER_THEMES } from './themes';
-import { emptyCSS, LoaderSizes, LoaderVariants, useMergeCSS } from './scripts';
+import type { ILoaderProps, LoaderStateFullType, LoaderThemeType } from './types';
 
 export const BaseLoader = <V extends EnumLike, S extends EnumLike>({
     message = '',

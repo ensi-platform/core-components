@@ -1,5 +1,4 @@
 import { FocusEvent, ForwardedRef, KeyboardEvent, MouseEvent, RefObject } from 'react';
-
 import mergeRefs from 'react-merge-refs';
 
 import { SelectProps } from '../../../../types';

@@ -1,8 +1,8 @@
-import { FC, ReactNode, createContext, useContext, useMemo } from 'react';
-
 import { BaseThemeState, useThemeCSSPart } from '@ensi-platform/core-components-common';
 
-import { SelectState, SelectTheme, SelectThemeState, SelectSize, SelectVariant } from './types';
+import { FC, ReactNode, createContext, useContext, useMemo } from 'react';
+
+import { SelectSize, SelectState, SelectTheme, SelectThemeState, SelectVariant } from './types';
 
 const useFoo = () => useThemeCSSPart<Omit<SelectThemeState, 'theme'>, SelectTheme>(...([] as never as [any, any]));
 

@@ -1,15 +1,16 @@
-import { FocusEvent, forwardRef, KeyboardEvent, MouseEvent, useEffect, useMemo, useRef, useState } from 'react';
-import mergeRefs from 'react-merge-refs';
 import { useMaskito } from '@maskito/react';
+
 import endOfDay from 'date-fns/endOfDay';
 import startOfDay from 'date-fns/startOfDay';
+import { FocusEvent, KeyboardEvent, MouseEvent, forwardRef, useEffect, useMemo, useRef, useState } from 'react';
+import mergeRefs from 'react-merge-refs';
 
-import { DATE_RANGE_SEPARATOR, DEFAULT_MAX_DATE, DEFAULT_MIN_DATE, HOURS_MINUTES_SEPARATOR } from './scripts/constants';
-import { createMaskOptions } from './mask';
-import { BaseCalendarInputProps } from './types';
 import { DateInput } from './components/date-input';
 import { DateRangeInput } from './components/date-range-input';
 import { TimeInput } from './components/time-input';
+import { createMaskOptions } from './mask';
+import { DATE_RANGE_SEPARATOR, DEFAULT_MAX_DATE, DEFAULT_MIN_DATE, HOURS_MINUTES_SEPARATOR } from './scripts/constants';
+import { BaseCalendarInputProps } from './types';
 
 export const CalendarInput = forwardRef<HTMLInputElement, BaseCalendarInputProps>(
     (

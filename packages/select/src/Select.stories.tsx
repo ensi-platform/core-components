@@ -1,11 +1,11 @@
+import { Button, scale } from '@ensi-platform/core-components-common';
+import { Form } from '@ensi-platform/core-components-form';
+
 import type { StoryObj } from '@storybook/react';
 
-import { ComponentProps, useMemo, useState } from 'react';
 import * as Yup from 'yup';
+import { ComponentProps, useMemo, useState } from 'react';
 
-import { Button, scale } from '@ensi-platform/core-components-common';
-
-import { Form } from '@ensi-platform/core-components-form';
 import { Select, SelectItem, SimpleSelect } from '.';
 import README from '../README.md';
 

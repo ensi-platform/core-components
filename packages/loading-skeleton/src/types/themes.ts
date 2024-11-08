@@ -1,4 +1,5 @@
-import type { EnumLike, BaseThemeState, StyleDefinition, ValueOrFunction } from '@ensi-platform/core-components-common';
+import type { BaseThemeState, EnumLike, StyleDefinition, ValueOrFunction } from '@ensi-platform/core-components-common';
+
 import type { ILoadingSkeletonState } from './component';
 
 export type LoadingSkeletonStateFullType<V extends EnumLike, S extends EnumLike> = BaseThemeState<V, S> &

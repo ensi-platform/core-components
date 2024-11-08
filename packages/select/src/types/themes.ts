@@ -1,7 +1,7 @@
 import { BaseThemeState, StyleDefinition, ValueOrFunction } from '@ensi-platform/core-components-common';
 
-import { SelectItem } from './common';
 import { SELECT_THEMES } from '../themes';
+import { SelectItem } from './common';
 
 export enum SelectSize {
     sm = 'sm',

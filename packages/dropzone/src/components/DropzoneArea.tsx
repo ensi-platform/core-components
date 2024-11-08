@@ -1,12 +1,12 @@
-import { HTMLAttributes, forwardRef } from 'react';
-
 import {
+    Button,
     FormFieldDescendantProps,
     IconSmallImport,
-    scale,
     defaultTheme,
-    Button,
+    scale,
 } from '@ensi-platform/core-components-common';
+
+import { HTMLAttributes, forwardRef } from 'react';
 
 interface DropzoneAreaProps extends HTMLAttributes<HTMLDivElement>, FormFieldDescendantProps {
     inputFieldProps: HTMLAttributes<HTMLInputElement>;

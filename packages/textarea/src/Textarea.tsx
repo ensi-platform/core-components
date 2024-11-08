@@ -1,11 +1,12 @@
+import { defaultTheme, scale } from '@ensi-platform/core-components-common';
+import { FormControl } from '@ensi-platform/core-components-form-control';
+
 import { CSSObject } from '@emotion/react';
+
 import deepmerge from 'deepmerge';
 import { ChangeEvent, useMemo, useState } from 'react';
-
-import { defaultTheme, scale } from '@ensi-platform/core-components-common';
-
-import { FormControl } from '@ensi-platform/core-components-form-control';
 import TextareaAutosize from 'react-textarea-autosize';
+
 import { ITextareaProps } from './types';
 
 const emptyStyle = {};

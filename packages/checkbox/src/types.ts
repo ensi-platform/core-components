@@ -1,4 +1,3 @@
-import { CSSObject } from '@emotion/react';
 import {
     BaseThemeState,
     FormFieldDescendantProps,
@@ -6,6 +5,9 @@ import {
     ValueOrFunction,
     useCheckboxLikeControlHookType,
 } from '@ensi-platform/core-components-common';
+
+import { CSSObject } from '@emotion/react';
+
 import { ChangeEvent, InputHTMLAttributes, ReactNode } from 'react';
 
 export const CheckboxSize = {

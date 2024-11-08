@@ -1,16 +1,18 @@
 import wildcardExternal from '@oat-sa/rollup-plugin-wildcard-external';
+import { babel } from '@rollup/plugin-babel';
 import json from '@rollup/plugin-json';
 import svgr from '@svgr/rollup';
+
 import { createRequire } from 'module';
 import path from 'path';
+import postcssPresetEnv from 'postcss-preset-env';
 import copy from 'rollup-plugin-copy';
+import dts from 'rollup-plugin-dts';
 import multiInput from 'rollup-plugin-multi-input';
+import postcss from 'rollup-plugin-postcss';
 import typescript from 'rollup-plugin-ts';
 import ts from 'typescript';
-import { babel } from '@rollup/plugin-babel';
-import postcss from 'rollup-plugin-postcss';
-import postcssPresetEnv from 'postcss-preset-env';
-import dts from 'rollup-plugin-dts';
+
 import {
     coreComponentsResolver,
     coreComponentsRootPackageResolver,

@@ -1,10 +1,10 @@
-import { ChangeEvent, FocusEvent, forwardRef, useEffect, useRef, useState } from 'react';
-
 import { Input } from '@ensi-platform/core-components-input';
 
+import { ChangeEvent, FocusEvent, forwardRef, useEffect, useRef, useState } from 'react';
+
 import { HOURS_MINUTES_SEPARATOR } from '../../scripts/constants';
-import type { InnerTimeInputProps } from '../../types';
 import { isCompleteTime } from '../../scripts/utils';
+import type { InnerTimeInputProps } from '../../types';
 
 const defaultTime = `00${HOURS_MINUTES_SEPARATOR}00`;
 

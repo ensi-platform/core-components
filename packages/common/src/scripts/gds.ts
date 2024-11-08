@@ -6,6 +6,7 @@ import {
     typography as gdsTypography,
     useTheme as useGDSTheme,
 } from '@greensight/gds';
+
 import { Button } from './themes/button';
 
 export { Layout } from '@greensight/gds';

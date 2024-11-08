@@ -1,4 +1,5 @@
-import { scale, defaultTheme } from '@ensi-platform/core-components-common';
+import { defaultTheme, scale } from '@ensi-platform/core-components-common';
+
 import { DrawerTheme } from '../types';
 
 const { colors, typography } = defaultTheme;

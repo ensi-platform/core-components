@@ -1,7 +1,9 @@
+import { FormControlProps } from '@ensi-platform/core-components-form-control';
+
 import { CSSObject } from '@emotion/react';
+
 import { FieldInputProps, FieldMetaProps } from 'formik';
 import { HTMLProps, ReactNode, Ref } from 'react';
-import { FormControlProps } from '@ensi-platform/core-components-form-control';
 
 interface ITextareaInputProps {
     size?: FormControlProps['size'];

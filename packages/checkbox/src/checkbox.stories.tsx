@@ -1,6 +1,7 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 import type { Meta, StoryObj } from '@storybook/react';
-import { useState, ComponentProps } from 'react';
+
+import { ComponentProps, useState } from 'react';
 
 import README from '../README.md';
 import { Checkbox } from './index';

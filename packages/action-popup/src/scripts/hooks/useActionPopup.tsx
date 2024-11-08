@@ -1,8 +1,9 @@
+import { Action, ActionType, usePopupState } from '@ensi-platform/core-components-common';
+
 import { Dispatch } from 'react';
 
-import { ActionType, Action, usePopupState } from '@ensi-platform/core-components-common';
+import { ActionEnum, ActionPopup } from '../../index';
 import { ActionState } from '../../types';
-import { ActionPopup, ActionEnum } from '../../index';
 
 const ActionPopupComponent = ({
     popupState,

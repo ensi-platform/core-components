@@ -1,4 +1,5 @@
 import { SelectItem } from '@ensi-platform/core-components-select';
+
 import { OptionMatcher, SelectWithTagsProps } from '../types';
 
 const getElementSize = (element: HTMLElement, property: string): number => {

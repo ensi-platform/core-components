@@ -1,13 +1,13 @@
 /* eslint-disable no-use-before-define */
-import { KeyboardEvent } from 'react';
 import { MaskitoPlugin } from '@maskito/core';
 
-import { DateTemplate } from '../types';
+import { KeyboardEvent } from 'react';
 
+import { DateTemplate } from '../types';
 import { findCursorPlace, getValueSegments } from './utils';
 
 export function createCaretPosPlugin(template: DateTemplate): MaskitoPlugin {
-    return (element) => {
+    return element => {
         const handleKeyDown = (evt: unknown) => {
             const event = evt as KeyboardEvent<HTMLInputElement>;
             const { selectionStart, selectionEnd, value } = element;
@@ -29,12 +29,7 @@ function findNextSegmentPos(value: string, template: DateTemplate, cursorPos: nu
     const segments = getValueSegments(value, template.separators);
     const selection = [cursorPos, cursorPos] as const;
 
-    const currCursorPlace = findCursorPlace(
-        segments,
-        template.segments,
-        template.separators,
-        selection,
-    );
+    const currCursorPlace = findCursorPlace(segments, template.segments, template.separators, selection);
 
     if (currCursorPlace) {
         let nextCursorPos = 0;

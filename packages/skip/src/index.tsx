@@ -1,5 +1,7 @@
-import { scale, defaultTheme } from '@ensi-platform/core-components-common';
+import { defaultTheme, scale } from '@ensi-platform/core-components-common';
+
 import { CSSObject } from '@emotion/react';
+
 import { SkipProps } from './types';
 
 export * from './types';

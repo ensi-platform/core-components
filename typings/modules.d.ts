@@ -12,7 +12,6 @@ declare module '*.md' {
     export default content;
 }
 
-
 declare module 'react-loading-skeleton';
 declare module 'react-tabs';
 

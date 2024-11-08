@@ -1,8 +1,7 @@
-import { ReactNode, cloneElement, isValidElement, useCallback, useMemo, useRef, useState } from 'react';
-
+import { EnumLike, defaultTheme } from '@ensi-platform/core-components-common';
 import { FormControl, FormControlSize, FormControlVariant } from '@ensi-platform/core-components-form-control';
 
-import { EnumLike, defaultTheme } from '@ensi-platform/core-components-common';
+import { ReactNode, cloneElement, isValidElement, useCallback, useMemo, useRef, useState } from 'react';
 
 import { useSelectTheme } from '../../context';
 import { SelectItem } from '../../types';

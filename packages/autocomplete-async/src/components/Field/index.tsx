@@ -1,7 +1,8 @@
+import { Input as DefaultInput } from '@ensi-platform/core-components-input';
+
 import { MouseEvent, Ref, useCallback, useMemo, useRef } from 'react';
 import mergeRefs from 'react-merge-refs';
 
-import { Input as DefaultInput } from '@ensi-platform/core-components-input';
 import { AutocompleteFieldPropsType } from '../Autocomplete/types';
 
 const EMPTY_OBJ = {};

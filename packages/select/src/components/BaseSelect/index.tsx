@@ -1,8 +1,7 @@
-import { MouseEvent, forwardRef, useCallback, useEffect, useMemo, useRef } from 'react';
-
+import { useMount } from '@ensi-platform/core-components-common';
 import { Popover } from '@ensi-platform/core-components-popover';
 
-import { useMount } from '@ensi-platform/core-components-common';
+import { MouseEvent, forwardRef, useCallback, useEffect, useMemo, useRef } from 'react';
 
 import { SelectThemeProvider } from '../../context';
 import { SELECT_THEMES } from '../../themes';

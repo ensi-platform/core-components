@@ -1,4 +1,5 @@
 import { CSSObject } from '@emotion/react';
+
 import { FC, SVGProps } from 'react';
 
 export type CheckmarkProps = {

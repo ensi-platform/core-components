@@ -1,4 +1,4 @@
-import { defaultTheme, scale, OptionizedCSS, extractCSSOption } from '@ensi-platform/core-components-common';
+import { OptionizedCSS, defaultTheme, extractCSSOption, scale } from '@ensi-platform/core-components-common';
 
 import { FormControlSize, FormControlTheme, FormControlVariant } from '../types';
 

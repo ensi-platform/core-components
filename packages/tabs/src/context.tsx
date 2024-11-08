@@ -1,6 +1,6 @@
-import { FC, ReactNode, createContext, useContext, useMemo } from 'react';
-
 import { BaseThemeState, useThemeCSSPart } from '@ensi-platform/core-components-common';
+
+import { FC, ReactNode, createContext, useContext, useMemo } from 'react';
 
 import { TabsSize, TabsState, TabsTheme, TabsThemeState, TabsVariant } from './types';
 

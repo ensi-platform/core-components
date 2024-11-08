@@ -1,12 +1,12 @@
+import { Input, InputProps } from '@ensi-platform/core-components-input';
+
 import type { CSSObject } from '@emotion/react';
+
 import type {
     FieldHelperProps as FormikFieldHelperProps,
     FieldMetaProps as FormikFieldMetaProps,
     FieldInputProps as FormikFieldProps,
 } from 'formik';
-
-import { Input, InputProps } from '@ensi-platform/core-components-input';
-
 import {
     ChangeEvent,
     Children,
@@ -19,6 +19,7 @@ import {
     useMemo,
 } from 'react';
 import { useController, useFormContext } from 'react-hook-form';
+
 import useForm from '../hooks/useForm';
 
 export interface FieldProps<T> {

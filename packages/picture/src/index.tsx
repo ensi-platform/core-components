@@ -1,4 +1,5 @@
 import { CSSObject } from '@emotion/react';
+
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 
 import getImageBlurSvg from './scripts/getImageBlurSvg';

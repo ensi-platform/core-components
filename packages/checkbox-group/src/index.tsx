@@ -1,24 +1,23 @@
 import {
-    ChangeEvent,
-    Children,
-    cloneElement,
-    isValidElement,
-    useRef,
-    FocusEvent,
-    ReactNode,
-    CSSProperties,
-    useMemo,
-} from 'react';
+    CheckboxSize,
+    CheckboxTheme,
+    CheckboxThemeState,
+    CheckboxVariant,
+    checkboxThemes,
+} from '@ensi-platform/core-components-checkbox';
+import { FormFieldDescendantProps, scale, useThemeCSSPart } from '@ensi-platform/core-components-common';
 
 import {
-    CheckboxSize,
-    CheckboxVariant,
-    CheckboxTheme,
-    checkboxThemes,
-    CheckboxThemeState,
-} from '@ensi-platform/core-components-checkbox';
-
-import { scale, useThemeCSSPart, FormFieldDescendantProps } from '@ensi-platform/core-components-common';
+    CSSProperties,
+    ChangeEvent,
+    Children,
+    FocusEvent,
+    ReactNode,
+    cloneElement,
+    isValidElement,
+    useMemo,
+    useRef,
+} from 'react';
 
 export interface CheckboxGroupProps extends FormFieldDescendantProps<string[]> {
     /** Заголовок группы */
