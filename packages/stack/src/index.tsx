@@ -1,4 +1,4 @@
-import { ReactNode, useContext } from 'react';
+import { type ReactNode, useContext } from 'react';
 
 import { StackingContext, stackingOrder } from './context';
 

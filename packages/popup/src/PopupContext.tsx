@@ -1,6 +1,6 @@
-import { BaseThemeState, useThemeCSSPart } from '@ensi-platform/core-components-common';
+import { type BaseThemeState, useThemeCSSPart } from '@ensi-platform/core-components-common';
 
-import { ReactNode, createContext, useContext, useMemo } from 'react';
+import { type ReactNode, createContext, useContext, useMemo } from 'react';
 
 import type { PopupSize, PopupState, PopupTheme, PopupThemeState, PopupVariant } from './types';
 

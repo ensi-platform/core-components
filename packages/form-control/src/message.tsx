@@ -5,7 +5,7 @@ import {
     scale,
 } from '@ensi-platform/core-components-common';
 
-import { FC, HTMLProps } from 'react';
+import { type FC, type HTMLProps } from 'react';
 
 export interface FormMessageProps extends HTMLProps<HTMLDivElement> {
     /** Error text */

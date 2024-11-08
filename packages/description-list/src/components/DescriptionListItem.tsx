@@ -1,5 +1,5 @@
 import { useDescriptionListCSS, useGetInfoItemValue } from '../scripts/hooks';
-import { DescriptionListItemType } from '../types';
+import { type DescriptionListItemType } from '../types';
 
 /**
  *  Description list item

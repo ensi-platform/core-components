@@ -1,6 +1,6 @@
 import { type OptionizedCSS, defaultTheme, extractCSSOption, scale } from '@ensi-platform/core-components-common';
 
-import { LoadingSkeletonSizes, LoadingSkeletonVariants, prepareSize } from '../scripts';
+import { type LoadingSkeletonSizes, type LoadingSkeletonVariants, prepareSize } from '../scripts';
 import type { LoadingSkeletonThemeType } from '../types';
 
 const { colors } = defaultTheme;

@@ -1,6 +1,6 @@
-import { LinkColorType } from '@ensi-platform/core-components-common';
+import { type LinkColorType } from '@ensi-platform/core-components-common';
 
-import { HTMLAttributes } from 'react';
+import { type HTMLAttributes } from 'react';
 
 export interface ICopyButtonProps extends Omit<HTMLAttributes<HTMLButtonElement>, 'children'> {
     /**

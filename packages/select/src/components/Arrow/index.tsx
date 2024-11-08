@@ -3,7 +3,7 @@ import { IconSmallChevronUp } from '@ensi-platform/core-components-common';
 import { useMemo } from 'react';
 
 import { useSelectTheme } from '../../context';
-import { ArrowProps } from './types';
+import { type ArrowProps } from './types';
 
 export const Arrow = ({ disabled, className }: ArrowProps) => {
     const {

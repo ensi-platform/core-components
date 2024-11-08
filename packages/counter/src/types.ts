@@ -1,11 +1,11 @@
 import {
-    BaseThemeState,
-    FormFieldDescendantProps,
-    StyleDefinition,
-    ValueOrFunction,
+    type BaseThemeState,
+    type FormFieldDescendantProps,
+    type StyleDefinition,
+    type ValueOrFunction,
 } from '@ensi-platform/core-components-common';
 
-import { HTMLProps } from 'react';
+import { type HTMLProps } from 'react';
 
 export type View = 'vertical' | 'horizontal';
 

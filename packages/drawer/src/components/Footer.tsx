@@ -1,4 +1,4 @@
-import { FC, HTMLProps } from 'react';
+import { type FC, type HTMLProps } from 'react';
 
 import { useDrawerTheme } from '../context';
 

@@ -1,12 +1,17 @@
 import type { BaseModalProps } from '@ensi-platform/core-components-base-modal';
-import { BaseThemeState, LayoutProps, StyleDefinition, ValueOrFunction } from '@ensi-platform/core-components-common';
+import {
+    type BaseThemeState,
+    type LayoutProps,
+    type StyleDefinition,
+    type ValueOrFunction,
+} from '@ensi-platform/core-components-common';
 
-import { CSSObject } from '@emotion/react';
+import { type CSSObject } from '@emotion/react';
 
-import { ReactNode } from 'react';
+import { type ReactNode } from 'react';
 
 // eslint-disable-next-line import/no-cycle
-import { popupThemes } from './themes';
+import { type popupThemes } from './themes';
 
 export enum PopupSize {
     sm = 'sm',

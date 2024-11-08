@@ -1,6 +1,6 @@
 import { scale } from '@ensi-platform/core-components-common';
 
-import { ReactNode } from 'react';
+import { type ReactNode } from 'react';
 
 export interface BlockBodyProps {
     className?: string;

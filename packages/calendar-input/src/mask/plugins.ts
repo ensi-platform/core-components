@@ -1,9 +1,9 @@
 /* eslint-disable no-use-before-define */
-import { MaskitoPlugin } from '@maskito/core';
+import { type MaskitoPlugin } from '@maskito/core';
 
-import { KeyboardEvent } from 'react';
+import { type KeyboardEvent } from 'react';
 
-import { DateTemplate } from '../types';
+import { type DateTemplate } from '../types';
 import { findCursorPlace, getValueSegments } from './utils';
 
 export function createCaretPosPlugin(template: DateTemplate): MaskitoPlugin {

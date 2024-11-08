@@ -1,11 +1,11 @@
 import { useMount } from '@ensi-platform/core-components-common';
 import { Popover } from '@ensi-platform/core-components-popover';
 
-import { MouseEvent, forwardRef, useCallback, useEffect, useMemo, useRef } from 'react';
+import { type MouseEvent, forwardRef, useCallback, useEffect, useMemo, useRef } from 'react';
 
 import { SelectThemeProvider } from '../../context';
 import { SELECT_THEMES } from '../../themes';
-import { SelectItem, SelectProps, SelectThemeState } from '../../types';
+import { type SelectItem, type SelectProps, type SelectThemeState } from '../../types';
 import { useField, useList, useSelect } from './scripts/hooks';
 
 export const BaseSelect = forwardRef(

@@ -3,7 +3,7 @@ import { Button } from '@ensi-platform/core-components-common';
 
 import type { Meta, StoryObj } from '@storybook/react';
 
-import { ComponentProps, useRef, useState } from 'react';
+import { type ComponentProps, useRef, useState } from 'react';
 
 import { Popup } from '.';
 import README from '../README.md';

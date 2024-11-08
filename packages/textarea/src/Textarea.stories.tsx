@@ -1,6 +1,6 @@
-import { StoryObj } from '@storybook/react';
+import { type StoryObj } from '@storybook/react';
 
-import { ComponentProps } from 'react';
+import { type ComponentProps } from 'react';
 
 import README from '../README.md';
 import { Textarea } from './index';

@@ -3,7 +3,7 @@ import { IconSmallCard as TicketIcon } from '@ensi-platform/core-components-comm
 
 import type { Meta, StoryObj } from '@storybook/react';
 
-import { ComponentProps, useEffect, useState } from 'react';
+import { type ComponentProps, useEffect, useState } from 'react';
 
 import { Tabs } from '.';
 import README from '../README.md';

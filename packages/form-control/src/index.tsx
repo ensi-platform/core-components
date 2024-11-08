@@ -1,13 +1,13 @@
 import { scale, useThemeCSSPart } from '@ensi-platform/core-components-common';
 
-import { CSSObject } from '@emotion/react';
+import { type CSSObject } from '@emotion/react';
 
 import deepmerge from 'deepmerge';
 import { forwardRef, useMemo } from 'react';
 
 import { FormMessage } from './message';
 import { formControlThemes } from './themes/defaultTheme';
-import { FormControlProps, FormControlThemeState } from './types';
+import { type FormControlProps, type FormControlThemeState } from './types';
 
 export * from './types';
 

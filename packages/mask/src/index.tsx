@@ -1,7 +1,7 @@
-import { FormFieldDescendantProps } from '@ensi-platform/core-components-common';
+import { type FormFieldDescendantProps } from '@ensi-platform/core-components-common';
 import { Input } from '@ensi-platform/core-components-input';
 
-import { Ref, forwardRef, useEffect, useRef } from 'react';
+import { type Ref, forwardRef, useEffect, useRef } from 'react';
 import { useIMask } from 'react-imask';
 import mergeRefs from 'react-merge-refs';
 

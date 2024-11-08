@@ -1,7 +1,7 @@
 import type { BackdropProps } from '@ensi-platform/core-components-backdrop';
 import type { PortalProps } from '@ensi-platform/core-components-portal';
 
-import { CSSObject } from '@emotion/react';
+import { type CSSObject } from '@emotion/react';
 
 import type { FC, KeyboardEvent, MouseEvent, MutableRefObject, ReactNode, Ref } from 'react';
 import type { TransitionStatus } from 'react-transition-state';

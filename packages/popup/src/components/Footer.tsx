@@ -1,12 +1,12 @@
 import { BaseModalContext } from '@ensi-platform/core-components-base-modal';
 import { Layout } from '@ensi-platform/core-components-common';
 
-import { CSSObject } from '@emotion/react';
+import { type CSSObject } from '@emotion/react';
 
 import { useContext, useEffect } from 'react';
 
 import { usePopupContext } from '../PopupContext';
-import { FooterProps } from '../types';
+import { type FooterProps } from '../types';
 
 export const Footer = ({ children, className, ...props }: FooterProps) => {
     const { footerHighlighted, setHasFooter } = useContext(BaseModalContext);

@@ -1,19 +1,19 @@
-import { FormFieldDescendantProps, scale, useDeferredLoading } from '@ensi-platform/core-components-common';
+import { type FormFieldDescendantProps, scale, useDeferredLoading } from '@ensi-platform/core-components-common';
 import { FormControl } from '@ensi-platform/core-components-form-control';
 import { LoadingSkeleton } from '@ensi-platform/core-components-loading-skeleton';
 
-import { FC, ReactNode, useCallback, useMemo, useState } from 'react';
+import { type FC, type ReactNode, useCallback, useMemo, useState } from 'react';
 import {
-    DragDropContextProps,
-    DropResult,
-    DroppableProps,
+    type DragDropContextProps,
+    type DropResult,
+    type DroppableProps,
     DragDropContext as UntypedDragDropContext,
     Droppable as UntypedDroppable,
 } from 'react-beautiful-dnd';
-import { FileRejection, DropzoneProps as UseDropzoneProps, useDropzone } from 'react-dropzone';
+import { type FileRejection, type DropzoneProps as UseDropzoneProps, useDropzone } from 'react-dropzone';
 
 import DropzoneArea from './components/DropzoneArea';
-import { DraggableDropzoneFile, DropzoneFile, DropzoneFileProps, FileType } from './components/DropzoneFile';
+import { DraggableDropzoneFile, DropzoneFile, type DropzoneFileProps, type FileType } from './components/DropzoneFile';
 import { ErrorCodes, ImagePreview } from './scripts/constants';
 import { canPreviewImages, getFileSize, makeMatrixArray, removeItemFromArray } from './scripts/utils';
 

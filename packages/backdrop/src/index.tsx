@@ -1,4 +1,4 @@
-import { FC, useEffect, useRef } from 'react';
+import { type FC, useEffect, useRef } from 'react';
 import { useTransition } from 'react-transition-state';
 
 import type { BackdropProps } from './types';

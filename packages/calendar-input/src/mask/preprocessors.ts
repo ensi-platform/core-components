@@ -1,12 +1,12 @@
 /* eslint-disable no-use-before-define */
-import { MaskitoPreprocessor } from '@maskito/core';
-import { ElementState } from '@maskito/core/src/lib/types/element-state';
+import { type MaskitoPreprocessor } from '@maskito/core';
+import { type ElementState } from '@maskito/core/src/lib/types/element-state';
 
 import isValid from 'date-fns/isValid';
 
 import { DATE_RANGE_SEPARATOR } from '../scripts/constants';
 import { parseDateString } from '../scripts/utils';
-import { DateTemplate } from '../types';
+import { type DateTemplate } from '../types';
 import {
     countSeparatorsFromHead,
     getValueSegments,
