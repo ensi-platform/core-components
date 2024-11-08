@@ -1,10 +1,12 @@
 import {
-    defaultTokens,
-    type ExtractTypography,
     type BaseThemeState,
     type EnumLike,
+    type ExtractTypography,
+    defaultTokens,
 } from '@ensi-platform/core-components-common';
+
 import type { CSSObject } from '@emotion/react';
+
 import type { PriceThemeType } from './theme';
 
 export interface IPriceState {

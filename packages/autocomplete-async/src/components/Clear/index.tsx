@@ -1,4 +1,4 @@
-import { scale, IconSmallClosed as CloseIcon } from '@ensi-platform/core-components-common';
+import { IconSmallClosed as CloseIcon, scale } from '@ensi-platform/core-components-common';
 
 export const Clear = ({
     clear,

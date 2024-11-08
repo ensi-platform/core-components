@@ -1,12 +1,10 @@
-import { forwardRef, useCallback, useEffect, useRef } from 'react';
-
-import mergeRefs from 'react-merge-refs';
-
 import { defaultTheme, scale } from '@ensi-platform/core-components-common';
 
-import { SelectItem } from '../../types';
+import { forwardRef, useCallback, useEffect, useRef } from 'react';
+import mergeRefs from 'react-merge-refs';
 
 import { useSelectTheme } from '../../context';
+import { SelectItem } from '../../types';
 import { OptionsListProps, useVisibleOptionsArgs } from './types';
 
 const createCounter = () => {

@@ -1,4 +1,4 @@
-import { FC, ReactNode, MouseEvent, RefObject } from 'react';
+import { FC, MouseEvent, ReactNode, RefObject } from 'react';
 
 import { SelectItem, SelectProps } from '../../types';
 import { OptionProps } from '../Option/types';

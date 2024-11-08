@@ -1,8 +1,11 @@
-import type { ComponentProps } from 'react';
-import type { Meta, StoryObj } from '@storybook/react';
 import { scale } from '@ensi-platform/core-components-common';
-import { emptyCSS, LoadingSkeleton, LoadingSkeletonSizes, LoadingSkeletonVariants } from './index';
+
+import type { Meta, StoryObj } from '@storybook/react';
+
+import type { ComponentProps } from 'react';
+
 import README from '../README.md';
+import { LoadingSkeleton, LoadingSkeletonSizes, LoadingSkeletonVariants, emptyCSS } from './index';
 
 export default {
     title: 'Controls / LoadingSkeleton',

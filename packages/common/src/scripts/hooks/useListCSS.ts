@@ -1,6 +1,7 @@
 import { CSSObject } from '@emotion/react';
-import { scale, typography } from '../gds';
+
 import { defaultTheme } from '../../index';
+import { scale, typography } from '../gds';
 
 export const useListCSS = () => {
     const { colors } = defaultTheme;

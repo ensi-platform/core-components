@@ -4,6 +4,7 @@ import {
     StyleDefinition,
     ValueOrFunction,
 } from '@ensi-platform/core-components-common';
+
 import { HTMLProps } from 'react';
 
 export type View = 'vertical' | 'horizontal';

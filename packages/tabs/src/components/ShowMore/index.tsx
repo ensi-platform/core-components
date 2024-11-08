@@ -1,13 +1,13 @@
-import { FC, FocusEvent, MouseEvent } from 'react';
-
 import {
     Arrow,
     BaseSelect,
-    OptionsList as DefaultOptionsList,
     Optgroup as DefaultOptgroup,
+    OptionsList as DefaultOptionsList,
     FieldProps,
     Option,
 } from '@ensi-platform/core-components-select';
+
+import { FC, FocusEvent, MouseEvent } from 'react';
 
 import { useTabsTheme } from '../../context';
 import { ShowMoreButtonProps } from '../../types';

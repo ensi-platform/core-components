@@ -1,4 +1,5 @@
 import type { CSSObject } from '@emotion/react';
+
 import type { CSSProperties } from 'react';
 
 export const emptyCSS: CSSObject = {};

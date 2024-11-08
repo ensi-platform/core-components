@@ -1,5 +1,7 @@
 import { DropzoneProps } from 'react-dropzone';
+
 import { DELIMITER } from './constants';
+
 /**
  * Check if accept is not provided or one of accepted types is not image,
  * do not allow image preview mode

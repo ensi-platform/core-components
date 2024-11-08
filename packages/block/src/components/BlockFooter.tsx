@@ -1,5 +1,6 @@
+import { defaultTheme, scale } from '@ensi-platform/core-components-common';
+
 import { ReactNode } from 'react';
-import { scale, defaultTheme } from '@ensi-platform/core-components-common';
 
 export interface BlockFooterProps {
     className?: string;

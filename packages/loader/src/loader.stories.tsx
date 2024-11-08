@@ -1,8 +1,11 @@
-import type { ComponentProps } from 'react';
-import type { Meta, StoryObj } from '@storybook/react';
 import { scale } from '@ensi-platform/core-components-common';
+
+import type { Meta, StoryObj } from '@storybook/react';
+
+import type { ComponentProps } from 'react';
+
 import README from '../README.md';
-import { emptyCSS, Loader, LoaderSizes, LoaderVariants } from './index';
+import { Loader, LoaderSizes, LoaderVariants, emptyCSS } from './index';
 
 export default {
     title: 'Controls / Loader',

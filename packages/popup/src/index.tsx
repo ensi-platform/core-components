@@ -1,4 +1,5 @@
 import { useMediaQuery } from '@ensi-platform/core-components-common';
+
 import { forwardRef } from 'react';
 
 import Modal from './Component';

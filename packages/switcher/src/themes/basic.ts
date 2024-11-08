@@ -1,8 +1,10 @@
+import { OptionizedCSS, defaultTheme, extractCSSOption, scale } from '@ensi-platform/core-components-common';
+
 import { CSSObject } from '@emotion/react';
-import { OptionizedCSS, extractCSSOption, defaultTheme, scale } from '@ensi-platform/core-components-common';
+
 import deepmerge from 'deepmerge';
 
-import { SwitcherSize, SwitcherVariant, SwitcherTheme } from '../types';
+import { SwitcherSize, SwitcherTheme, SwitcherVariant } from '../types';
 
 const { colors, typography } = defaultTheme;
 

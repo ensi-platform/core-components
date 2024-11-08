@@ -1,7 +1,7 @@
-import { CSSObject } from '@emotion/react';
-
 import { BaseModalProps } from '@ensi-platform/core-components-base-modal';
 import { BaseThemeState, StyleDefinition, ValueOrFunction } from '@ensi-platform/core-components-common';
+
+import { CSSObject } from '@emotion/react';
 
 export interface DrawerState {
     /**

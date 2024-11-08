@@ -1,13 +1,14 @@
-import { MouseEvent } from 'react';
-
 import {
-    useLinkCSS,
     Button,
-    scale,
     IconSmallChevronLeft,
     IconSmallChevronRight,
     defaultTheme,
+    scale,
+    useLinkCSS,
 } from '@ensi-platform/core-components-common';
+
+import { MouseEvent } from 'react';
+
 import { SelectorView } from '../../types';
 
 const { colors } = defaultTheme;

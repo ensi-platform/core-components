@@ -1,9 +1,10 @@
 import {
     BaseThemeState,
     StyleDefinition,
-    useThemeCSSPart,
     ValueOrFunction,
+    useThemeCSSPart,
 } from '@ensi-platform/core-components-common';
+
 import { HTMLProps, ReactNode, SVGProps } from 'react';
 
 export const AccordionSize = {

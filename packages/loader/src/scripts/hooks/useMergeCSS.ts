@@ -1,6 +1,8 @@
 import { type CSSObject } from '@emotion/react';
-import { useMemo } from 'react';
+
 import deepmerge from 'deepmerge';
+import { useMemo } from 'react';
+
 import { emptyCSS } from '../helpers';
 
 export const useMergeCSS = (...CSSToMerge: CSSObject[]) => {

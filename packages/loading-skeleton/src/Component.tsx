@@ -1,9 +1,11 @@
 import { type EnumLike, useThemeCSSPart } from '@ensi-platform/core-components-common';
+
 import { type FC, useMemo } from 'react';
 import Skeleton from 'react-loading-skeleton';
-import type { ILoadingSkeletonProps, LoadingSkeletonThemeType, LoadingSkeletonStateFullType } from './types';
-import { emptyCSS, LoadingSkeletonSizes, LoadingSkeletonVariants, useMergeCSS, useValidateSizes } from './scripts';
+
+import { LoadingSkeletonSizes, LoadingSkeletonVariants, emptyCSS, useMergeCSS, useValidateSizes } from './scripts';
 import { LOADING_SKELETON_THEMES } from './themes';
+import type { ILoadingSkeletonProps, LoadingSkeletonStateFullType, LoadingSkeletonThemeType } from './types';
 
 export const BaseLoadingSkeleton = <V extends EnumLike, S extends EnumLike>({
     theme,

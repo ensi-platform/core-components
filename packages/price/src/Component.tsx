@@ -1,8 +1,10 @@
-import { formatPrice, useThemeCSSPart, type EnumLike } from '@ensi-platform/core-components-common';
+import { type EnumLike, formatPrice, useThemeCSSPart } from '@ensi-platform/core-components-common';
+
 import { type FC, useMemo } from 'react';
+
+import { PriceSizes, PriceVariants, emptyCSS, useMergeCSS } from './scripts';
 import { PRICE_THEMES } from './themes';
-import type { PriceThemeType, IPriceProps, PriceStateFullType } from './types';
-import { emptyCSS, PriceSizes, PriceVariants, useMergeCSS } from './scripts';
+import type { IPriceProps, PriceStateFullType, PriceThemeType } from './types';
 
 const BasePrice = <V extends EnumLike, S extends EnumLike>({
     preText,

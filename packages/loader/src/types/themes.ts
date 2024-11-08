@@ -1,4 +1,5 @@
 import type { BaseThemeState, EnumLike, StyleDefinition, ValueOrFunction } from '@ensi-platform/core-components-common';
+
 import type { ILoaderState } from './component';
 
 export type LoaderStateFullType<V extends EnumLike, S extends EnumLike> = BaseThemeState<V, S> & ILoaderState;

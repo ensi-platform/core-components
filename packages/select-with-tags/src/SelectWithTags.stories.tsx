@@ -1,14 +1,14 @@
+import { Button, scale } from '@ensi-platform/core-components-common';
+import { Form } from '@ensi-platform/core-components-form';
+import { SelectItem, SelectPayload } from '@ensi-platform/core-components-select';
+
 import { StoryObj } from '@storybook/react';
 
 import { ComponentProps, SetStateAction, useCallback, useMemo, useState } from 'react';
 
-import { Button, scale } from '@ensi-platform/core-components-common';
-import { SelectItem, SelectPayload } from '@ensi-platform/core-components-select';
-
-import { Form } from '@ensi-platform/core-components-form';
-import { SelectWithTags, SelectWithTagsProps } from './index';
 import README from '../README.md';
 import { SimpleSelectWithTags } from './SelectWithTags';
+import { SelectWithTags, SelectWithTagsProps } from './index';
 
 const optionItems: SelectItem[] = [
     {

@@ -1,4 +1,5 @@
 import { ComponentsTheme, scale } from '@greensight/gds';
+
 import defaultTokens from '../../defaultTokens.json';
 
 const { colors } = defaultTokens;

@@ -1,4 +1,5 @@
 import { defaultTheme, typography } from '@ensi-platform/core-components-common';
+
 import { PriceSizes, PriceVariants } from '../scripts';
 import type { PriceThemeType } from '../types';
 

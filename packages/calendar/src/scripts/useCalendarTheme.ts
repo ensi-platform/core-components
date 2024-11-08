@@ -1,4 +1,5 @@
 import { createContext, useContext } from 'react';
+
 import { CalendarThemeContextProps } from '../types';
 
 export const CalendarThemeContext = createContext<CalendarThemeContextProps | undefined>(undefined);

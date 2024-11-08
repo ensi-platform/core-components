@@ -33,10 +33,7 @@
         "infoDivider": "#a6cef1"
     },
     "typography": {
-        "breakpoints": [
-            1440,
-            768
-        ],
+        "breakpoints": [1440, 768],
         "styles": {
             "button": {
                 "desktop": {
@@ -218,4 +215,3 @@
         }
     }
 }
-

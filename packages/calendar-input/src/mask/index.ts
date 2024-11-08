@@ -2,7 +2,6 @@ import { MaskitoMask, MaskitoMaskExpression, MaskitoOptions } from '@maskito/cor
 
 import { TEMPLATES } from '../scripts/constants';
 import { DateTemplate, View } from '../types';
-
 import { createCaretPosPlugin } from './plugins';
 import { createPreventCaretJumpPostprocessor } from './postprocessors';
 import { createDisallowInputPreprocessor, createValidationPreprocessor } from './preprocessors';

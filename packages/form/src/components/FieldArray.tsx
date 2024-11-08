@@ -1,6 +1,8 @@
+import { Button, Layout, LayoutProps, TokensInterface, scale } from '@ensi-platform/core-components-common';
+
 import type { FC, ReactNode } from 'react';
 import { useFieldArray, useFormContext } from 'react-hook-form';
-import { TokensInterface, LayoutProps, Button, Layout, scale } from '@ensi-platform/core-components-common';
+
 import useForm from '../hooks/useForm';
 
 export interface FieldArrayAddProps {

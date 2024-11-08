@@ -1,4 +1,5 @@
 import { scale, typography } from '@ensi-platform/core-components-common';
+
 import { OptgroupProps } from './types';
 
 export const Optgroup = ({ children, className, label }: OptgroupProps) => (
