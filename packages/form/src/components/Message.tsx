@@ -1,11 +1,11 @@
-import { FC, HTMLProps } from 'react';
-
 import {
-    defaultTheme,
-    scale,
     IconSmallClosedCircle as ErrorIcon,
     IconSmallWarningCircle as WarningIcon,
+    defaultTheme,
+    scale,
 } from '@ensi-platform/core-components-common';
+
+import { FC, HTMLProps } from 'react';
 
 export interface FormMessageProps extends HTMLProps<HTMLDivElement> {
     /** Error text */

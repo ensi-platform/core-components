@@ -1,6 +1,7 @@
 import { SelectItem } from '@ensi-platform/core-components-select';
-import type { FC } from 'react';
 import { ITagProps } from '@ensi-platform/core-components-tags';
+
+import type { FC } from 'react';
 
 export type OptionMatcher = (option: SelectItem, inputValue: string) => boolean;
 

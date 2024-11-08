@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from 'react';
  * Хук для отложенного изменения состояния флага из true в false.
  * Используется для предотвращения рваных анимаций когда
  * запрос иногда выполняется слишком быстро
- * @param isLoading Управляемое извне состояние 
+ * @param isLoading Управляемое извне состояние
  * @param deferringTime Минимальное время в течение которого
  * isLoading остается true, прежде чем стать false
  * @returns
@@ -28,4 +28,3 @@ export const useDeferredLoading = (isLoading: boolean, deferringTime = 150) => {
 
     return deferredIsLoading;
 };
-

@@ -1,6 +1,6 @@
-import type { AriaAttributes, FocusEvent, MouseEvent, ReactElement, ReactNode, RefAttributes } from 'react';
-
 import type { FormControlProps } from '@ensi-platform/core-components-form-control';
+
+import type { AriaAttributes, FocusEvent, MouseEvent, ReactElement, ReactNode, RefAttributes } from 'react';
 
 import type { SelectItem } from '../../types';
 

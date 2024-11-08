@@ -1,6 +1,7 @@
-import { INITIAL_VIEWPORTS } from '@storybook/addon-viewport';
-import { ThemeProvider, defaultTheme } from '../packages/common/src';
 import { Global } from '@emotion/react';
+import { INITIAL_VIEWPORTS } from '@storybook/addon-viewport';
+
+import { ThemeProvider, defaultTheme } from '../packages/common/src';
 
 export const parameters = {
     viewMode: 'docs',
@@ -76,8 +77,8 @@ export const decorators = [
                                 listStyle: 'outside!important',
                             },
                             'ol li': {
-                                listStyleType: 'decimal'
-                            }
+                                listStyleType: 'decimal',
+                            },
                         },
                     ]}
                 />

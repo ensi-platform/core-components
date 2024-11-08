@@ -1,5 +1,7 @@
-import { FC, useEffect, useState } from 'react';
 import { IconSmallCheck, IconSmallCopy, scale, useLinkCSS } from '@ensi-platform/core-components-common';
+
+import { FC, useEffect, useState } from 'react';
+
 import type { ICopyButtonProps } from './types';
 
 /**

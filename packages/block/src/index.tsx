@@ -1,13 +1,13 @@
-import { jsx } from '@emotion/react';
-import { ElementType } from 'react';
+import { defaultTokens, scale } from '@ensi-platform/core-components-common';
 
-import { scale, defaultTokens } from '@ensi-platform/core-components-common';
+import { jsx } from '@emotion/react';
+
+import { ElementType } from 'react';
 
 import BlockBody from './components/BlockBody';
 import BlockMobileFluid from './components/BlockBodyFluid';
 import BlockFooter from './components/BlockFooter';
 import BlockHeader from './components/BlockHeader';
-
 import { IBlockProps } from './types';
 
 export { BlockHeader };

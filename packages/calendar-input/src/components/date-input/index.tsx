@@ -1,11 +1,10 @@
-import { ChangeEvent, FocusEvent, forwardRef, useEffect, useRef, useState } from 'react';
-import mergeRefs from 'react-merge-refs';
-
-import { Calendar as DefaultCalendar, CalendarProps } from '@ensi-platform/core-components-calendar';
+import { CalendarProps, Calendar as DefaultCalendar } from '@ensi-platform/core-components-calendar';
+import { IconCalendar, defaultTheme, scale, useOnClickOutside } from '@ensi-platform/core-components-common';
 import { Input } from '@ensi-platform/core-components-input';
 import { Popover } from '@ensi-platform/core-components-popover';
 
-import { useOnClickOutside, IconCalendar, defaultTheme, scale } from '@ensi-platform/core-components-common';
+import { ChangeEvent, FocusEvent, forwardRef, useEffect, useRef, useState } from 'react';
+import mergeRefs from 'react-merge-refs';
 
 import {
     DATE_FORMAT,
@@ -14,7 +13,6 @@ import {
     DEFAULT_MAX_DATE,
     DEFAULT_MIN_DATE,
 } from '../../scripts/constants';
-import type { InnerDateInputProps } from '../../types';
 import {
     formatDate,
     isCompleteDate,
@@ -23,6 +21,7 @@ import {
     parseDateString,
     preventDefault,
 } from '../../scripts/utils';
+import type { InnerDateInputProps } from '../../types';
 
 const { colors } = defaultTheme;
 

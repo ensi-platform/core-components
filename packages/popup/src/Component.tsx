@@ -1,10 +1,10 @@
+import { BaseModal } from '@ensi-platform/core-components-base-modal';
+import { useThemeCSSPart } from '@ensi-platform/core-components-common';
+
 import { CSSObject } from '@emotion/react';
+
 import { forwardRef, useMemo, useRef } from 'react';
 import mergeRefs from 'react-merge-refs';
-
-import { BaseModal } from '@ensi-platform/core-components-base-modal';
-
-import { useThemeCSSPart } from '@ensi-platform/core-components-common';
 
 import { PopupContextProvider } from './PopupContext';
 import { popupThemes } from './themes';

@@ -1,13 +1,13 @@
-import { FC, FocusEvent } from 'react';
-
-import { CSSObject } from '@emotion/react';
-
 import { FormControlProps } from '@ensi-platform/core-components-form-control';
 import { PopoverProps } from '@ensi-platform/core-components-popover';
 
-import { OptgroupProps } from '../components/Optgroup/types';
+import { CSSObject } from '@emotion/react';
+
+import { FC, FocusEvent } from 'react';
+
 import { ArrowProps } from '../components/Arrow/types';
 import { FieldProps } from '../components/Field/types';
+import { OptgroupProps } from '../components/Optgroup/types';
 import { OptionProps } from '../components/Option/types';
 import { OptionsListProps } from '../components/OptionsList/types';
 import { SelectItem, SelectPayload } from './common';

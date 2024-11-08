@@ -1,7 +1,8 @@
-import { CSSObject } from '@emotion/react';
-import { ChangeEvent, InputHTMLAttributes, MouseEvent, ReactNode, Ref } from 'react';
-
 import { FormControlProps } from '@ensi-platform/core-components-form-control';
+
+import { CSSObject } from '@emotion/react';
+
+import { ChangeEvent, InputHTMLAttributes, MouseEvent, ReactNode, Ref } from 'react';
 
 export type InputProps = Omit<
     InputHTMLAttributes<HTMLInputElement>,

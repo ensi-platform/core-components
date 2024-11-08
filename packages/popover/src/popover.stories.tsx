@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { useState, ComponentProps, useRef } from 'react';
+
+import { ComponentProps, useRef, useState } from 'react';
 
 import README from '../README.md';
 import { Popover } from './index';

@@ -1,4 +1,3 @@
-import { HTMLProps, Ref } from 'react';
 import {
     BaseThemeState,
     StyleDefinition,
@@ -7,6 +6,8 @@ import {
 } from '@ensi-platform/core-components-common';
 
 import { CSSObject } from '@emotion/react';
+
+import { HTMLProps, Ref } from 'react';
 
 import { switcherThemes } from './themes';
 

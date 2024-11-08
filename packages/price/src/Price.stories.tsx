@@ -1,8 +1,11 @@
-import { defaultTheme } from '@ensi-platform/core-components-common';
+import { defaultTokens } from '@ensi-platform/core-components-common';
+
 import type { Meta, StoryObj } from '@storybook/react';
+
 import type { ComponentProps } from 'react';
-import { emptyCSS, Price, PriceSizes, PriceVariants, type IPriceProps } from './index';
+
 import README from '../README.md';
+import { type IPriceProps, Price, PriceSizes, PriceVariants, emptyCSS } from './index';
 
 export default {
     title: 'Components / Price',

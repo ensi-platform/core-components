@@ -1,5 +1,6 @@
 import { useSelectClear } from '@ensi-platform/core-components-select';
-import { SimpleSelectWithTags, SelectWithTags } from './SelectWithTags';
+
+import { SelectWithTags, SimpleSelectWithTags } from './SelectWithTags';
 import { TagList } from './components/index';
 
 export * from './types';

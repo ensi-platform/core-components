@@ -1,8 +1,10 @@
+import { BaseModalContext } from '@ensi-platform/core-components-base-modal';
+
 import type { CSSObject } from '@emotion/react';
+
 import { Ref, forwardRef, useContext } from 'react';
 import mergeRefs from 'react-merge-refs';
 
-import { BaseModalContext } from '@ensi-platform/core-components-base-modal';
 import { usePopupContext } from '../PopupContext';
 import type { ContentProps } from '../types';
 

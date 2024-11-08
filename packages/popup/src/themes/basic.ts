@@ -1,5 +1,6 @@
-import { CSSObject } from '@emotion/react';
 import { OptionizedCSS, defaultTheme, extractCSSOption, scale } from '@ensi-platform/core-components-common';
+
+import { CSSObject } from '@emotion/react';
 
 // eslint-disable-next-line import/no-cycle
 import { Align, PopupSize, PopupTheme } from '../types';

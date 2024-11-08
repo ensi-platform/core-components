@@ -1,4 +1,4 @@
-import { useMemo, memo, useEffect } from 'react';
+import { memo, useEffect, useMemo } from 'react';
 
 import { ImagePreview } from '../scripts/constants';
 

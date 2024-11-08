@@ -1,4 +1,5 @@
-import { useReducer, useCallback, Dispatch } from 'react';
+import { Dispatch, useCallback, useReducer } from 'react';
+
 import { ActionType } from '../enums';
 
 export type Action<T> = {

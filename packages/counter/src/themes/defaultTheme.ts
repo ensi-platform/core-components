@@ -1,5 +1,6 @@
-import { defaultTheme, scale, OptionizedCSS, extractCSSOption } from '@ensi-platform/core-components-common';
-import { CounterTheme, CounterSize, CounterThemeState } from '../types';
+import { OptionizedCSS, defaultTheme, extractCSSOption, scale } from '@ensi-platform/core-components-common';
+
+import { CounterSize, CounterTheme, CounterThemeState } from '../types';
 
 const { colors, typography } = defaultTheme;
 

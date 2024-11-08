@@ -1,6 +1,7 @@
+import { IconCross } from '@ensi-platform/core-components-common';
+
 import { FC, HTMLProps, useMemo } from 'react';
 
-import { IconCross } from '@ensi-platform/core-components-common';
 import { useDrawerTheme } from '../context';
 
 const CloseButton: FC<HTMLProps<HTMLButtonElement>> = props => {

@@ -1,21 +1,20 @@
-import { forwardRef, useCallback, useEffect, useMemo, useRef, useState } from 'react';
-
+import { InputProps } from '@ensi-platform/core-components-input';
 import {
     BaseSelect,
+    Arrow as DefaultArrow,
     Option as DefaultOption,
     OptionsList as DefaultOptionsList,
-    Arrow as DefaultArrow,
     SelectItem,
     SelectPayload,
 } from '@ensi-platform/core-components-select';
-
 import { TagList } from '@ensi-platform/core-components-select-with-tags';
 
-import { InputProps } from '@ensi-platform/core-components-input';
+import { forwardRef, useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import mergeRefs from 'react-merge-refs';
-import { IAutocompleteProps } from './types';
-import { AutocompleteField } from '../Field';
+
 import { Clear } from '../Clear';
+import { AutocompleteField } from '../Field';
+import { IAutocompleteProps } from './types';
 
 export const BaseAutocomplete = forwardRef<HTMLInputElement, IAutocompleteProps>(
     (

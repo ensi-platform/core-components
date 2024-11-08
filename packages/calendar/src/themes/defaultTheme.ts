@@ -1,6 +1,9 @@
-import { CSSObject } from '@emotion/react';
 import { defaultTheme, scale } from '@ensi-platform/core-components-common';
+
+import { CSSObject } from '@emotion/react';
+
 import deepmerge from 'deepmerge';
+
 import { CalendarTheme } from '../types';
 
 const mergeStyles = (styles: (CSSObject | false)[]) => {

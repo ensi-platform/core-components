@@ -1,9 +1,10 @@
+import { Input } from '@ensi-platform/core-components-input';
+
 import { ChangeEvent, Children, FC, cloneElement, forwardRef, isValidElement, useCallback, useMemo } from 'react';
 import { useController, useFormContext } from 'react-hook-form';
 
-import { Input } from '@ensi-platform/core-components-input';
-import { FormFieldProps, useFormikCompatibleFieldProps, FieldProps } from './Field';
 import useForm from '../hooks/useForm';
+import { FieldProps, FormFieldProps, useFormikCompatibleFieldProps } from './Field';
 
 type DataType = 'string' | 'number';
 

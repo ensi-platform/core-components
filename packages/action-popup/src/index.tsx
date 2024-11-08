@@ -1,16 +1,16 @@
-import { ReactNode, useMemo } from 'react';
-
-import { Popup, Content } from '@ensi-platform/core-components-popup';
 import {
-    scale,
-    defaultTheme,
-    Icon20Warning,
+    Button,
+    Icon20CheckCircle,
+    Icon20ClosedCircle,
     Icon20Delete,
     Icon20Info,
-    Icon20ClosedCircle,
-    Icon20CheckCircle,
-    Button,
+    Icon20Warning,
+    defaultTheme,
+    scale,
 } from '@ensi-platform/core-components-common';
+import { Content, Popup } from '@ensi-platform/core-components-popup';
+
+import { ReactNode, useMemo } from 'react';
 
 import { ActionEnum, ThemesEnum } from './scripts/enums';
 import { IActionPopupProps } from './types';

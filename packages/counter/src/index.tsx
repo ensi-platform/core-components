@@ -1,9 +1,10 @@
-import { useMemo, useState, useEffect, ChangeEvent } from 'react';
-import { Layout, IconMinus, IconPlus, useThemeCSSPart } from '@ensi-platform/core-components-common';
-
+import { IconMinus, IconPlus, Layout, useThemeCSSPart } from '@ensi-platform/core-components-common';
 import { FormControl } from '@ensi-platform/core-components-form-control';
-import { CounterProps, CounterThemeState } from './types';
+
+import { ChangeEvent, useEffect, useMemo, useState } from 'react';
+
 import { counterThemes } from './themes/defaultTheme';
+import { CounterProps, CounterThemeState } from './types';
 
 export const Counter = ({
     name,

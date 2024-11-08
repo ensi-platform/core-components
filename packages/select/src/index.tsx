@@ -1,7 +1,7 @@
 import { Select } from './Select';
 import { SimpleSelect } from './SimpleSelect';
+import { Arrow, BaseSelect, Field, Optgroup, Option, OptionsList } from './components';
 import { useSelectClear } from './components/SelectClear';
-import { Arrow, BaseSelect, Optgroup, OptionsList, Field, Option } from './components';
 import { useSelectTheme } from './context';
 
 export * from './types';

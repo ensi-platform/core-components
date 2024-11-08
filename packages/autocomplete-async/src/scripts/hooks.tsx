@@ -1,13 +1,14 @@
-import { ChangeEvent, Reducer, useCallback, useEffect, useMemo, useReducer, useRef } from 'react';
-import deepEqual from 'react-fast-compare';
-import { OptionProps, SelectItem } from '@ensi-platform/core-components-select';
 import { scale } from '@ensi-platform/core-components-common';
 import { InputProps } from '@ensi-platform/core-components-input';
-
 import { LoadingSkeleton } from '@ensi-platform/core-components-loading-skeleton';
-import { Actions, IOptionsFetcherResponse, IUseLazyLoadingProps } from '../types';
+import { OptionProps, SelectItem } from '@ensi-platform/core-components-select';
+
+import { ChangeEvent, Reducer, useCallback, useEffect, useMemo, useReducer, useRef } from 'react';
+import deepEqual from 'react-fast-compare';
+
 import { Option as DefaultOption } from '../components/Option';
-import { actions, DEBOUNCE_TIMEOUT } from './constants';
+import { Actions, IOptionsFetcherResponse, IUseLazyLoadingProps } from '../types';
+import { DEBOUNCE_TIMEOUT, actions } from './constants';
 
 export function useLazyLoading({
     limit = 10,

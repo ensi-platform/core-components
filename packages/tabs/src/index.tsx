@@ -1,6 +1,6 @@
-import { FC, MouseEvent, useId, useMemo, useState } from 'react';
-
 import { defaultTheme } from '@ensi-platform/core-components-common';
+
+import { FC, MouseEvent, useId, useMemo, useState } from 'react';
 
 import { Tab } from './components/Tab';
 import { TabList as DefaultTabList } from './components/TabList';

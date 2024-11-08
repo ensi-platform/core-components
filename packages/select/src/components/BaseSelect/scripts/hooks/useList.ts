@@ -1,8 +1,8 @@
-import { RefObject, useCallback, useEffect } from 'react';
+import { useIsomorphicLayoutEffect } from '@ensi-platform/core-components-common';
 
 import { ResizeObserver as ResizeObserverPolyfill } from '@juggle/resize-observer';
 
-import { useIsomorphicLayoutEffect } from '@ensi-platform/core-components-common';
+import { RefObject, useCallback, useEffect } from 'react';
 
 import { SelectProps } from '../../../../types';
 import { useSelect } from './useSelect';

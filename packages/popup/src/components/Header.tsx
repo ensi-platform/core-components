@@ -1,8 +1,10 @@
-import type { CSSObject } from '@emotion/react';
+import { BaseModalContext } from '@ensi-platform/core-components-base-modal';
 import { IconCross, scale } from '@ensi-platform/core-components-common';
+
+import type { CSSObject } from '@emotion/react';
+
 import { useContext, useEffect } from 'react';
 
-import { BaseModalContext } from '@ensi-platform/core-components-base-modal';
 import { usePopupContext } from '../PopupContext';
 import type { HeaderProps } from '../types';
 

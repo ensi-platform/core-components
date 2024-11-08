@@ -1,4 +1,5 @@
 import type { CSSProperties } from 'react';
+
 import { isValidSize } from '../helpers';
 
 export const useValidateSizes = (sizes: Record<string, CSSProperties['width']>) => {

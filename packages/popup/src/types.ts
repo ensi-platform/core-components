@@ -1,9 +1,9 @@
-import { CSSObject } from '@emotion/react';
-import { ReactNode } from 'react';
-
 import type { BaseModalProps } from '@ensi-platform/core-components-base-modal';
+import { BaseThemeState, LayoutProps, StyleDefinition, ValueOrFunction } from '@ensi-platform/core-components-common';
 
-import { BaseThemeState, StyleDefinition, ValueOrFunction, LayoutProps } from '@ensi-platform/core-components-common';
+import { CSSObject } from '@emotion/react';
+
+import { ReactNode } from 'react';
 
 // eslint-disable-next-line import/no-cycle
 import { popupThemes } from './themes';

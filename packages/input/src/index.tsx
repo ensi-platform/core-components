@@ -1,4 +1,13 @@
+import {
+    IconSmallClosed as CloseIcon,
+    FormFieldDescendantProps,
+    defaultTheme,
+    scale,
+} from '@ensi-platform/core-components-common';
+import { FormControl } from '@ensi-platform/core-components-form-control';
+
 import { CSSObject } from '@emotion/react';
+
 import deepmerge from 'deepmerge';
 import {
     AnimationEvent,
@@ -13,15 +22,6 @@ import {
     useState,
 } from 'react';
 import mergeRefs from 'react-merge-refs';
-
-import {
-    FormFieldDescendantProps,
-    defaultTheme,
-    scale,
-    IconSmallClosed as CloseIcon,
-} from '@ensi-platform/core-components-common';
-
-import { FormControl } from '@ensi-platform/core-components-form-control';
 
 import { InputProps } from './types';
 

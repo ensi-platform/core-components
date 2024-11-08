@@ -1,14 +1,15 @@
-import { useMemo } from 'react';
-
-import { Accordion as ReactAccordion } from 'react-accessible-accordion';
 import { IconArrowDown, useThemeCSSPart } from '@ensi-platform/core-components-common';
-import { AccordionContext } from './scripts/useAccordion';
-import { AccordionItem as Item } from './components/Item';
-import { AccordionHeading as Heading } from './components/Heading';
-import { AccordionPanel as Panel } from './components/Panel';
+
+import { useMemo } from 'react';
+import { Accordion as ReactAccordion } from 'react-accessible-accordion';
+
 import { AccordionButton as Button } from './components/Button';
-import { AccordionProps, AccordionState, AccordionThemeState } from './types';
+import { AccordionHeading as Heading } from './components/Heading';
+import { AccordionItem as Item } from './components/Item';
+import { AccordionPanel as Panel } from './components/Panel';
+import { AccordionContext } from './scripts/useAccordion';
 import { accordionThemes } from './themes/defaultTheme';
+import { AccordionProps, AccordionState, AccordionThemeState } from './types';
 
 const BasicAccordion = ({
     children,

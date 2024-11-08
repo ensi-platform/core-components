@@ -35,13 +35,13 @@ while (queue.length) {
                 { componentName: importName }
             );
 
+            reactCode = reactCode.replace('import * as React from "react";\n', 'import { SVGProps } from "react";\n\n');
             reactCode = reactCode.replace(
-                'import * as React from "react";\n',
-                'import { SVGProps } from "react";\n\n'
+                'props => ',
+                '({ title, ...props}: SVGProps<SVGSVGElement> & { title?: string }) => '
             );
-            reactCode = reactCode.replace('props => ', '({ title, ...props}: SVGProps<SVGSVGElement> & { title?: string }) => ');
             reactCode = reactCode.replace('const ', 'export const ');
-            reactCode = reactCode.replace('{...props}>', '{...props}>{title && <title>{title}</title>}')
+            reactCode = reactCode.replace('{...props}>', '{...props}>{title && <title>{title}</title>}');
             reactCode = reactCode.replace(`export default ${importName};`, '');
 
             return fs.writeFile(`src/iconsComponents/${importName}.tsx`, reactCode, 'utf8');

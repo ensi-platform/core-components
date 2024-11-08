@@ -1,6 +1,7 @@
+import { IconSmallChevronUp } from '@ensi-platform/core-components-common';
+
 import { useMemo } from 'react';
 
-import { IconSmallChevronUp } from '@ensi-platform/core-components-common';
 import { useSelectTheme } from '../../context';
 import { ArrowProps } from './types';
 

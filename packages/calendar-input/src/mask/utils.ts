@@ -1,4 +1,5 @@
 /* eslint-disable no-use-before-define */
+
 /* eslint-disable no-param-reassign */
 import clamp from 'date-fns/clamp';
 import getDaysInMonth from 'date-fns/getDaysInMonth';
@@ -174,18 +175,21 @@ export function findCursorPlace(
  * segments: ['00', '12'], separators: ['.', '.'] -> [/\d/, /\d/, '.', /\d/, /\d/]
  */
 export function segmentsToPattern(segments: string[], separators: string[]) {
-    return segments.reduce((mask, segment, idx) => {
-        const hasNextSegment = segments[idx + 1] !== undefined;
-        const segmentsLen = segment.length;
+    return segments.reduce(
+        (mask, segment, idx) => {
+            const hasNextSegment = segments[idx + 1] !== undefined;
+            const segmentsLen = segment.length;
 
-        if (idx > 0 && (segment.length || hasNextSegment)) {
-            mask.push(...separators[idx - 1].split(''));
-        }
+            if (idx > 0 && (segment.length || hasNextSegment)) {
+                mask.push(...separators[idx - 1].split(''));
+            }
 
-        mask.push(...fillMask(segmentsLen));
+            mask.push(...fillMask(segmentsLen));
 
-        return mask;
-    }, [] as Array<RegExp | string>);
+            return mask;
+        },
+        [] as Array<RegExp | string>
+    );
 }
 
 /**
