@@ -6,8 +6,8 @@ import { Stack, stackingOrder } from '@ensi-platform/core-components-stack';
 import { ResizeObserver as ResizeObserverPolyfill } from '@juggle/resize-observer';
 
 import {
-    KeyboardEvent,
-    MouseEvent,
+    type KeyboardEvent,
+    type MouseEvent,
     createContext,
     forwardRef,
     useCallback,

@@ -4,8 +4,8 @@ import { forwardRef, useCallback, useEffect, useRef } from 'react';
 import mergeRefs from 'react-merge-refs';
 
 import { useSelectTheme } from '../../context';
-import { SelectItem } from '../../types';
-import { OptionsListProps, useVisibleOptionsArgs } from './types';
+import { type SelectItem } from '../../types';
+import { type OptionsListProps, type useVisibleOptionsArgs } from './types';
 
 const createCounter = () => {
     let count = 0;

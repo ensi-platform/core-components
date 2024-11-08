@@ -4,9 +4,9 @@ import { Form } from '@ensi-platform/core-components-form';
 import type { StoryObj } from '@storybook/react';
 
 import * as Yup from 'yup';
-import { ComponentProps, useMemo, useState } from 'react';
+import { type ComponentProps, useMemo, useState } from 'react';
 
-import { Select, SelectItem, SimpleSelect } from '.';
+import { Select, type SelectItem, SimpleSelect } from '.';
 import README from '../README.md';
 
 export default {

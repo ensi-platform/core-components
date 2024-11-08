@@ -30,6 +30,7 @@ module.exports = {
     },
     plugins: ['react', '@typescript-eslint'],
     rules: {
+        '@typescript-eslint/consistent-type-imports': [1, { fixStyle: 'inline-type-imports' }],
         'import/no-cycle': 0,
         'react/react-in-jsx-scope': 0,
         'react/no-unknown-property': [

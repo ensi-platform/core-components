@@ -6,7 +6,7 @@ import type { CSSObject } from '@emotion/react';
 
 import type { FC, MouseEvent, ReactElement, ReactNode } from 'react';
 
-import { TABS_THEMES } from './themes';
+import { type TABS_THEMES } from './themes';
 
 export type SelectedId = any;
 

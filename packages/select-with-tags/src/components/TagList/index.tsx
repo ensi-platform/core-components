@@ -1,15 +1,15 @@
 import { scale } from '@ensi-platform/core-components-common';
-import { FormControl, FormControlProps } from '@ensi-platform/core-components-form-control';
+import { FormControl, type FormControlProps } from '@ensi-platform/core-components-form-control';
 import { BASE_INPUT_CSS } from '@ensi-platform/core-components-input';
 import { LoadingSkeleton } from '@ensi-platform/core-components-loading-skeleton';
-import { FieldProps } from '@ensi-platform/core-components-select';
+import { type FieldProps } from '@ensi-platform/core-components-select';
 import { TagItem } from '@ensi-platform/core-components-tags';
 
 import {
-    FC,
-    KeyboardEventHandler,
-    MouseEvent,
-    MouseEventHandler,
+    type FC,
+    type KeyboardEventHandler,
+    type MouseEvent,
+    type MouseEventHandler,
     useCallback,
     useEffect,
     useLayoutEffect,
@@ -19,7 +19,7 @@ import {
 } from 'react';
 
 import { calculateTotalElementsPerRow } from '../../scripts/helpers';
-import { TagListOwnProps } from './types';
+import { type TagListOwnProps } from './types';
 
 export const TagList: FC<FieldProps & FormControlProps & TagListOwnProps> = ({
     size = 'md',

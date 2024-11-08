@@ -1,9 +1,9 @@
-import { CalendarProps, Calendar as DefaultCalendar } from '@ensi-platform/core-components-calendar';
+import { type CalendarProps, Calendar as DefaultCalendar } from '@ensi-platform/core-components-calendar';
 import { IconCalendar, defaultTheme, scale, useOnClickOutside } from '@ensi-platform/core-components-common';
 import { Input } from '@ensi-platform/core-components-input';
 import { Popover } from '@ensi-platform/core-components-popover';
 
-import { ChangeEvent, FocusEvent, forwardRef, useEffect, useRef, useState } from 'react';
+import { type ChangeEvent, type FocusEvent, forwardRef, useEffect, useRef, useState } from 'react';
 import mergeRefs from 'react-merge-refs';
 
 import {

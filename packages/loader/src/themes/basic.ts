@@ -6,7 +6,7 @@ import {
     typography,
 } from '@ensi-platform/core-components-common';
 
-import { LoaderSizes, LoaderVariants, Opacities } from '../scripts/enums';
+import { type LoaderSizes, type LoaderVariants, Opacities } from '../scripts/enums';
 import type { LoaderThemeType } from '../types';
 
 const { colors } = defaultTheme;

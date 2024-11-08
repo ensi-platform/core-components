@@ -1,14 +1,14 @@
 import {
-    BaseThemeState,
-    FormFieldDescendantProps,
-    StyleDefinition,
-    ValueOrFunction,
-    useCheckboxLikeControlHookType,
+    type BaseThemeState,
+    type FormFieldDescendantProps,
+    type StyleDefinition,
+    type ValueOrFunction,
+    type useCheckboxLikeControlHookType,
 } from '@ensi-platform/core-components-common';
 
-import { CSSObject } from '@emotion/react';
+import { type CSSObject } from '@emotion/react';
 
-import { ChangeEvent, InputHTMLAttributes, ReactNode } from 'react';
+import { type ChangeEvent, type InputHTMLAttributes, type ReactNode } from 'react';
 
 export const CheckboxSize = {
     md: 'md',

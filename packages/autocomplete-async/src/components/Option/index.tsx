@@ -1,9 +1,9 @@
 // eslint-disable-next-line import/named
-import { OptionProps, useSelectTheme } from '@ensi-platform/core-components-select';
+import { type OptionProps, useSelectTheme } from '@ensi-platform/core-components-select';
 
-import { CSSObject } from '@emotion/react';
+import { type CSSObject } from '@emotion/react';
 
-import { FC, useMemo } from 'react';
+import { type FC, useMemo } from 'react';
 
 export const Option: FC<OptionProps> = ({
     className,

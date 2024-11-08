@@ -2,7 +2,7 @@ import { Checkbox } from '@ensi-platform/core-components-checkbox';
 
 import type { Meta, StoryObj } from '@storybook/react';
 
-import { ComponentProps, useState } from 'react';
+import { type ComponentProps, useState } from 'react';
 
 import README from '../README.md';
 import { CheckboxGroup } from './index';

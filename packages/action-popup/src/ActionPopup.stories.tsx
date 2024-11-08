@@ -8,7 +8,7 @@ import type { ComponentProps } from 'react';
 import README from '../README.md';
 import { ActionEnum, ActionPopup, ThemesEnum } from './index';
 import { useActionPopup } from './scripts/hooks/useActionPopup';
-import { ActionState } from './types';
+import { type ActionState } from './types';
 
 export default {
     title: 'Components / ActionPopup',

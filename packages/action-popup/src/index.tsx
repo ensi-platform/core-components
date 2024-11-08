@@ -10,10 +10,10 @@ import {
 } from '@ensi-platform/core-components-common';
 import { Content, Popup } from '@ensi-platform/core-components-popup';
 
-import { ReactNode, useMemo } from 'react';
+import { type ReactNode, useMemo } from 'react';
 
 import { ActionEnum, ThemesEnum } from './scripts/enums';
-import { IActionPopupProps } from './types';
+import { type IActionPopupProps } from './types';
 
 const { colors, typography, theme } = defaultTheme;
 

@@ -1,12 +1,12 @@
 import {
-    FormFieldDescendantProps,
+    type FormFieldDescendantProps,
     IconSmallEye,
     IconSmallEyeOff,
     defaultTheme,
 } from '@ensi-platform/core-components-common';
 import { Input } from '@ensi-platform/core-components-input';
 
-import { HTMLProps, useState } from 'react';
+import { type HTMLProps, useState } from 'react';
 
 const { colors } = defaultTheme;
 

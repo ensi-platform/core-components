@@ -1,6 +1,6 @@
 import type { BaseThemeState, EnumLike } from '@ensi-platform/core-components-common';
 
-import { CSSObject } from '@emotion/react';
+import { type CSSObject } from '@emotion/react';
 
 import type { CSSProperties } from 'react';
 

@@ -1,6 +1,6 @@
-import { CSSObject } from '@emotion/react';
+import { type CSSObject } from '@emotion/react';
 
-import { HTMLProps, ReactEventHandler, ReactNode } from 'react';
+import { type HTMLProps, type ReactEventHandler, type ReactNode } from 'react';
 
 export interface PictureSource {
     media: string;

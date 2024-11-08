@@ -1,6 +1,6 @@
 import { defaultTheme, scale } from '@ensi-platform/core-components-common';
 
-import { AccordionTheme } from '../types';
+import { type AccordionTheme } from '../types';
 
 const { colors, typography } = defaultTheme;
 

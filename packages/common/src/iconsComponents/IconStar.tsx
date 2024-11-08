@@ -1,4 +1,4 @@
-import { SVGProps } from 'react';
+import { type SVGProps } from 'react';
 
 export const IconStar = ({ title, ...props }: SVGProps<SVGSVGElement> & { title?: string }) => (
     <svg xmlns="http://www.w3.org/2000/svg" width={16} height={15} viewBox="0 0 16 15" {...props}>

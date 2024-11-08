@@ -1,6 +1,6 @@
-import { OptionizedCSS, defaultTheme, extractCSSOption, scale } from '@ensi-platform/core-components-common';
+import { type OptionizedCSS, defaultTheme, extractCSSOption, scale } from '@ensi-platform/core-components-common';
 
-import { FormControlSize, FormControlTheme, FormControlVariant } from '../types';
+import { type FormControlSize, type FormControlTheme, type FormControlVariant } from '../types';
 
 const { colors, typography } = defaultTheme;
 

@@ -1,4 +1,4 @@
-import { ComponentsTheme, scale } from '@greensight/gds';
+import { type ComponentsTheme, scale } from '@greensight/gds';
 
 import defaultTokens from '../../defaultTokens.json';
 
