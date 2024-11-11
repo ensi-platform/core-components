@@ -1,7 +1,8 @@
+import { Button } from '@greensight/gds';
+
 import type { MouseEvent } from 'react';
 import { useFormContext } from 'react-hook-form';
 
-import { Button } from '@greensight/gds';
 import { type IFormResetProps } from './types';
 
 export const FormReset = <T,>({ children, onClick, initialValues, ...props }: IFormResetProps<T>) => {

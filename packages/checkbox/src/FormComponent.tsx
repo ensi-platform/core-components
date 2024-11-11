@@ -1,7 +1,8 @@
 import { forwardRef } from 'react';
-import { type IFormCheckboxProps } from './types';
+
 import { Checkbox } from './Component';
 import { CheckboxFormWrapper } from './FormCheckboxWrapper';
+import { type IFormCheckboxProps } from './types';
 
 export const FormCheckbox = forwardRef<HTMLLabelElement, IFormCheckboxProps>(
     ({ value, onChange: onChangeProp, setFieldValue, field, fieldState, ...props }, ref) => (

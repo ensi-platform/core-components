@@ -1,10 +1,10 @@
 import { type HTMLProps, type ReactNode } from 'react';
 import {
-    type NativeFieldValue,
     type ControllerFieldState,
     type ControllerRenderProps,
     type DefaultValues,
     type FieldValues,
+    type NativeFieldValue,
     type UseFormProps,
     type UseFormReturn,
 } from 'react-hook-form';
@@ -48,7 +48,6 @@ export interface IControllerRenderProps<T extends IFieldValueType> extends Omit<
     value: T;
 }
 
-// PathValue<TFieldValues, TFieldPath>
 /** Interface props passed by the field wrapper component */
 export interface IFieldWrapperProps<T extends IFieldValueType> {
     /**
