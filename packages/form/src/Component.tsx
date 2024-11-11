@@ -1,8 +1,11 @@
+import { usePrevious } from '@ensi-platform/core-components-common';
+
 import { yupResolver } from '@hookform/resolvers/yup';
+
 import { type SyntheticEvent, useCallback, useEffect, useMemo, useRef } from 'react';
 import deepEqual from 'react-fast-compare';
-import { type FieldValues, FormProvider, useForm, type NativeFieldValue } from 'react-hook-form';
-import { usePrevious } from './hooks/usePrevious';
+import { type FieldValues, FormProvider, type NativeFieldValue, useForm } from 'react-hook-form';
+
 import { FormContext } from './context/form';
 import { type IFormProps } from './types';
 

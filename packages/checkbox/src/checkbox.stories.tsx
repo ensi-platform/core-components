@@ -4,6 +4,7 @@ import { Button } from '@greensight/gds';
 import { action } from '@storybook/addon-actions';
 import type { Meta, StoryObj } from '@storybook/react';
 
+import * as Yup from 'yup';
 import { type ComponentProps, useState } from 'react';
 
 import README from '../README.md';
@@ -69,6 +70,10 @@ export const WithForm: StoryObj<ComponentProps<typeof Checkbox>> = {
                 checkbox: false,
                 checkboxGroup: ['2'],
             }}
+            validationSchema={Yup.object().shape({
+                checkbox: Yup.boolean().required('Обязательное поле'),
+                checkboxGroup: Yup.array().min(1, 'Обязательное поле').required('Обязательное поле'),
+            })}
             onSubmit={action('submit')}
         >
             <FormFieldWrapper name="checkbox">
