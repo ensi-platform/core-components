@@ -13,15 +13,9 @@ import {
 } from 'react';
 import { useController, useFormContext } from 'react-hook-form';
 
-import useForm from '../hooks/useForm';
-import { type FieldProps, type FormFieldProps } from './Field';
-
-type DataType = 'string' | 'number';
-
-export interface TypedFieldProps extends FormFieldProps {
-    fieldType?: 'positiveInt' | 'positiveFloat';
-    dataType?: DataType;
-}
+import useForm from '../../hooks/useForm';
+import { type FieldProps } from '../Field/types';
+import { type DataType, type TypedFieldProps } from './types';
 
 const transformFloatValue = (input: string): string => {
     let sanitizedString: string = input.trim();
@@ -42,7 +36,7 @@ const getValueByDataType = (value: string, dataType?: DataType) => {
     return dataType === 'number' ? Number(value) : value;
 };
 
-export const TypedField = forwardRef<HTMLInputElement, TypedFieldProps>(
+const TypedField = forwardRef<HTMLInputElement, TypedFieldProps>(
     (
         { name, children, size = 'md', className, wrapperCSS, block = true, fieldType, dataType = 'number', ...props },
         ref
@@ -167,7 +161,5 @@ export const TypedField = forwardRef<HTMLInputElement, TypedFieldProps>(
         );
     }
 );
-
-TypedField.displayName = 'TypedField';
 
 export default TypedField;

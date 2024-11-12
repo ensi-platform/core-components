@@ -5,14 +5,9 @@ import {
     scale,
 } from '@ensi-platform/core-components-common';
 
-import { type FC, type HTMLProps, type SVGProps } from 'react';
+import { type FC } from 'react';
 
-export interface FormMessageProps extends HTMLProps<HTMLDivElement> {
-    /** Error text */
-    message: string;
-    type?: 'error' | 'warning';
-    className?: string;
-}
+import { type FormMessageProps, type MessageIconProps } from './types';
 
 export const useMessageColor = (type: FormMessageProps['type']) => {
     const { colors } = defaultTheme;
@@ -28,10 +23,6 @@ export const useMessageColor = (type: FormMessageProps['type']) => {
     }
 };
 
-interface MessageIconProps extends SVGProps<SVGSVGElement> {
-    type: FormMessageProps['type'];
-}
-
 const MessageIcon: FC<MessageIconProps> = ({ type, ...props }) => {
     switch (type) {
         case 'warning': {
@@ -44,7 +35,7 @@ const MessageIcon: FC<MessageIconProps> = ({ type, ...props }) => {
     }
 };
 
-export const FormMessage: FC<FormMessageProps> = ({ message, type = 'error', className, ...props }) => {
+const FormMessage = ({ message, type = 'error', className, ...props }: FormMessageProps) => {
     const color = useMessageColor(type);
     const { typography } = defaultTheme;
 
@@ -58,3 +49,5 @@ export const FormMessage: FC<FormMessageProps> = ({ message, type = 'error', cla
         </div>
     );
 };
+
+export default FormMessage;

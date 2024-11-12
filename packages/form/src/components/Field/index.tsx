@@ -1,58 +1,13 @@
 import { type FormFieldHelperProps, getValueFromObject } from '@ensi-platform/core-components-common';
-import { Input, type InputProps } from '@ensi-platform/core-components-input';
+import { Input } from '@ensi-platform/core-components-input';
 
-import type { CSSObject } from '@emotion/react';
-
-import {
-    Children,
-    type FC,
-    type ReactNode,
-    cloneElement,
-    forwardRef,
-    isValidElement,
-    useCallback,
-    useMemo,
-} from 'react';
+import { Children, type FC, cloneElement, forwardRef, isValidElement, useCallback, useMemo } from 'react';
 import { useController, useFormContext } from 'react-hook-form';
 
-import useForm from '../hooks/useForm';
+import useForm from '../../hooks/useForm';
+import { type FieldProps, type FormFieldProps } from './types';
 
-export interface FieldProps<T> {
-    field?: {
-        value: T;
-        onChange: (
-            eventOrValue:
-                | {
-                      target: {
-                          value: T;
-                      };
-                  }
-                | T
-        ) => void;
-    };
-    meta?: {
-        error?: string;
-    };
-    helpers?: { setValue: (value: T) => void };
-}
-
-export interface FormFieldProps extends Omit<InputProps, 'size' | 'label'> {
-    size?: InputProps['size'];
-    /** Name of field */
-    name: string;
-    /** Label for FormControl */
-    label?: string | ReactNode;
-    /** class name */
-    className?: string;
-
-    wrapperCSS?: CSSObject;
-    /**
-     * Флаг отображения ошибки
-     */
-    showError?: boolean;
-}
-
-export const FormField = forwardRef<HTMLInputElement, FormFieldProps>(
+const FormField = forwardRef<HTMLInputElement, FormFieldProps>(
     ({ name, children, size = 'md', className, wrapperCSS, block = true, ...props }, ref) => {
         const { onChange, disabled } = useForm()!;
         const { control, setValue, trigger, setError, formState } = useFormContext(); // retrieve all hook methods
@@ -153,7 +108,5 @@ export const FormField = forwardRef<HTMLInputElement, FormFieldProps>(
         );
     }
 );
-
-FormField.displayName = 'FormField';
 
 export default FormField;
