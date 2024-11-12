@@ -1,10 +1,10 @@
 import {
     IconSmallClosed as CloseIcon,
-    type FormFieldDescendantProps,
+    type FormFieldHelperProps,
     defaultTheme,
     scale,
 } from '@ensi-platform/core-components-common';
-import { FormControl } from '@ensi-platform/core-components-form-control';
+import { FormControl, formControlThemes } from '@ensi-platform/core-components-form-control';
 
 import { type CSSObject } from '@emotion/react';
 
@@ -68,14 +68,14 @@ export const BASE_INPUT_CSS: CSSObject = {
 
 const emptyStyle = {};
 
-export const Input = forwardRef<HTMLInputElement, InputProps & FormFieldDescendantProps<string>>(
+export const Input = forwardRef<HTMLInputElement, InputProps & Partial<FormFieldHelperProps<string>>>(
     (
         {
             type = 'text',
             block = true,
             size = 'md',
             variant = 'primary',
-            theme,
+            theme: themeProp = formControlThemes.basic,
             bottomAddons,
             clear = false,
             disabled,
@@ -114,7 +114,10 @@ export const Input = forwardRef<HTMLInputElement, InputProps & FormFieldDescenda
         },
         ref
     ) => {
+        delete restProps.isLegend;
+
         const readOnly = readOnlyProp || disableUserInput;
+        const theme = typeof themeProp === 'string' ? formControlThemes[themeProp] : themeProp;
         const uncontrolled = value === undefined;
         const inputRef = useRef<HTMLInputElement>(null);
 

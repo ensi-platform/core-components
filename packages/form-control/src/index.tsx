@@ -1,4 +1,4 @@
-import { scale, useThemeCSSPart } from '@ensi-platform/core-components-common';
+import { useThemeCSSPart } from '@ensi-platform/core-components-common';
 
 import { type CSSObject } from '@emotion/react';
 
@@ -10,6 +10,7 @@ import { formControlThemes } from './themes/defaultTheme';
 import { type FormControlProps, type FormControlThemeState } from './types';
 
 export * from './types';
+export { formControlThemes };
 
 const EMPTY_OBJECT: any = {};
 
@@ -17,7 +18,7 @@ export const FormControl = forwardRef<HTMLDivElement, FormControlProps>(
     (
         {
             block = false,
-            theme = formControlThemes.basic,
+            theme: themeProp = 'basic',
             errorPlacement = 'above',
             size = 'md',
             variant = 'primary',
@@ -46,6 +47,8 @@ export const FormControl = forwardRef<HTMLDivElement, FormControlProps>(
         },
         ref
     ) => {
+        const theme = typeof themeProp === 'string' ? formControlThemes[themeProp] : themeProp;
+
         // eslint-disable-next-line no-nested-ternary
         const errorMessage = (showError ? (typeof error === 'boolean' ? '' : error) : '') as string;
 
@@ -67,7 +70,6 @@ export const FormControl = forwardRef<HTMLDivElement, FormControlProps>(
                 hasRightAddons,
                 labelWrap,
                 variant,
-                errorPlacement,
             }),
             [
                 block,
@@ -81,7 +83,6 @@ export const FormControl = forwardRef<HTMLDivElement, FormControlProps>(
                 hasRightAddons,
                 labelWrap,
                 variant,
-                errorPlacement,
             ]
         );
 
@@ -114,7 +115,11 @@ export const FormControl = forwardRef<HTMLDivElement, FormControlProps>(
                         {label}
                     </label>
                 )}
-                {errorMessage && <FormMessage message={errorMessage} css={{ marginBottom: scale(1) }} type="error" />}
+
+                {errorMessage && errorPlacement === 'above' && (
+                    <FormMessage message={errorMessage} css={getCSS('error')} type="error" />
+                )}
+
                 <div {...restProps} css={{ ...innerCSS, '.clear': totalClearCSS }} ref={ref}>
                     {leftAddons && (
                         <div css={deepmerge.all<CSSObject>([getCSS('addons', { isLeft: true }), leftAddonsCSS])}>
@@ -141,7 +146,9 @@ export const FormControl = forwardRef<HTMLDivElement, FormControlProps>(
                     )}
                 </div>
 
-                {errorMessage && errorPlacement === 'under' && <p css={getCSS('error')}>{errorMessage}</p>}
+                {errorMessage && errorPlacement === 'under' && (
+                    <FormMessage message={errorMessage} css={getCSS('error')} type="error" />
+                )}
 
                 {bottomAddons}
 

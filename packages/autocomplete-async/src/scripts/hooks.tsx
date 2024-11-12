@@ -2,11 +2,11 @@ import { scale } from '@ensi-platform/core-components-common';
 import { type InputProps } from '@ensi-platform/core-components-input';
 import { LoadingSkeleton } from '@ensi-platform/core-components-loading-skeleton';
 import { type OptionProps, type SelectItem } from '@ensi-platform/core-components-select';
+import { Option as DefaultOption } from '@ensi-platform/core-components-select';
 
 import { type ChangeEvent, type Reducer, useCallback, useEffect, useMemo, useReducer, useRef } from 'react';
 import deepEqual from 'react-fast-compare';
 
-import { Option as DefaultOption } from '../components/Option';
 import { type Actions, type IOptionsFetcherResponse, type IUseLazyLoadingProps } from '../types';
 import { DEBOUNCE_TIMEOUT, actions } from './constants';
 

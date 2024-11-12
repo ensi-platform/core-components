@@ -1,4 +1,4 @@
-import { type FormFieldDescendantProps } from '@ensi-platform/core-components-common';
+import { type FormFieldHelperProps } from '@ensi-platform/core-components-common';
 import { Input } from '@ensi-platform/core-components-input';
 
 import { type Ref, forwardRef, useEffect, useRef } from 'react';
@@ -7,7 +7,7 @@ import mergeRefs from 'react-merge-refs';
 
 type MaskType = Exclude<Parameters<typeof useIMask>[0]['mask'], undefined>;
 
-export interface MaskProps extends FormFieldDescendantProps<string> {
+export interface MaskProps extends Partial<FormFieldHelperProps<string>> {
     /** Mask for input */
     mask: MaskType;
     /** Placeholder for mask */

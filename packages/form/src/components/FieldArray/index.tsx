@@ -1,40 +1,27 @@
-import { Button, Layout, type LayoutProps, type TokensInterface, scale } from '@ensi-platform/core-components-common';
+import {
+    Button,
+    IconSmallPlus as IconPlus,
+    IconSmallTrash as IconTrash,
+    Layout,
+    scale,
+} from '@ensi-platform/core-components-common';
 
-import type { FC, ReactNode } from 'react';
 import { useFieldArray, useFormContext } from 'react-hook-form';
 
-import useForm from '../hooks/useForm';
+import useForm from '../../context/form';
+import { type FieldArrayAddProps, type FieldArrayProps, type FieldArrayRemoveProps } from './types';
 
-export interface FieldArrayAddProps {
-    onClick: () => void;
-    disabled?: boolean;
-}
-
-export interface FieldArrayRemoveProps {
-    onClick: () => void;
-    disabled?: boolean;
-}
-
-const DefaultAddButton = (props: FieldArrayAddProps) => <Button {...props}>Добавить</Button>;
-
-const DefaultRemoveButton = (props: FieldArrayRemoveProps) => (
-    <Button theme="outline" hidden {...props}>
-        Удалить
+const DefaultAddButton = (props: FieldArrayAddProps) => (
+    <Button Icon={IconPlus} {...props}>
+        Добавить
     </Button>
 );
 
-type FieldArrayProps = Omit<LayoutProps, 'reverse' | 'wrap' | 'children'> & {
-    type?: 'grid';
-    AddButton?: FC<FieldArrayAddProps>;
-    RemoveButton?: FC<FieldArrayRemoveProps>;
-    name: string;
-    isAddedElement?: boolean;
-    maxCount?: number;
-    children: (args: { name: string; index: number }) => ReactNode | ReactNode[];
-    initialValue?: any;
-    className?: string;
-    childrenCol?: TokensInterface['layout']['cols'];
-};
+const DefaultRemoveButton = (props: FieldArrayRemoveProps) => (
+    <Button Icon={IconTrash} theme="outline" hidden {...props}>
+        Удалить
+    </Button>
+);
 
 const FormFieldArray = ({
     AddButton = DefaultAddButton,

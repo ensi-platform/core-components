@@ -1,4 +1,4 @@
-import { Button } from '@greensight/gds';
+import { Button } from '@ensi-platform/core-components-common';
 
 import type { MouseEvent } from 'react';
 import { useFormContext } from 'react-hook-form';
