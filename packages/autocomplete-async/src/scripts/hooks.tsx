@@ -1,19 +1,21 @@
-import { ChangeEvent, Reducer, useCallback, useEffect, useMemo, useReducer, useRef } from 'react';
-import deepEqual from 'react-fast-compare';
-import { type OptionProps, type SelectItem, Option as DefaultOption } from '@greensight/core-components-select';
-import { scale } from '@greensight/core-components-common';
-import { InputProps } from '@greensight/core-components-input';
+import { scale } from '@ensi-platform/core-components-common';
+import { type InputProps } from '@ensi-platform/core-components-input';
+import { LoadingSkeleton } from '@ensi-platform/core-components-loading-skeleton';
+import { type OptionProps, type SelectItem } from '@ensi-platform/core-components-select';
+import { Option as DefaultOption } from '@ensi-platform/core-components-select';
 
-import { LoadingSkeleton } from '@greensight/core-components-loading-skeleton';
-import { Actions, IOptionsFetcherResponse, IUseLazyLoadingProps } from '../types';
-import { actions, DEBOUNCE_TIMEOUT } from './constants';
+import { type ChangeEvent, type Reducer, useCallback, useEffect, useMemo, useReducer, useRef } from 'react';
+import deepEqual from 'react-fast-compare';
+
+import { type Actions, type IOptionsFetcherResponse, type IUseLazyLoadingProps } from '../types';
+import { DEBOUNCE_TIMEOUT, actions } from './constants';
 
 export function useLazyLoading({
     limit = 10,
     initialOffset = 0,
     optionsFetcher,
     onOptionsChange,
-    skeleton = <LoadingSkeleton css={{}} height={scale(3)} />,
+    skeleton = <LoadingSkeleton height={scale(3)} />,
     Option = DefaultOption,
     isValuesLoading = false,
     clearOnClose = true,

@@ -1,10 +1,11 @@
 import {
-    BaseThemeState,
-    FormFieldHelperProps,
-    StyleDefinition,
-    ValueOrFunction,
-} from '@greensight/core-components-common';
-import { HTMLProps } from 'react';
+    type BaseThemeState,
+    type FormFieldHelperProps,
+    type StyleDefinition,
+    type ValueOrFunction,
+} from '@ensi-platform/core-components-common';
+
+import { type HTMLProps } from 'react';
 
 export type View = 'vertical' | 'horizontal';
 

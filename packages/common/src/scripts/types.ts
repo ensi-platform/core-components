@@ -1,4 +1,4 @@
-import { ControllerRenderProps } from 'react-hook-form';
+import { type ControllerRenderProps } from 'react-hook-form';
 
 type FieldValue = boolean | number | File | string | Record<string, any> | null;
 

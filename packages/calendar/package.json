@@ -1,25 +1,26 @@
 {
-  "name": "@greensight/core-components-calendar",
-  "version": "1.0.0",
-  "description": "calendar component",
-  "keywords": [],
-  "license": "MIT",
-  "main": "index.js",
-  "module": "./esm/index.js",
-  "publishConfig": {
-    "access": "public",
-    "directory": "dist"
-  },
-  "peerDependencies": {
-    "react": "^16.9.0 || ^17.0.1 || ^18.0.0",
-    "react-dom": "^16.9.0 || ^17.0.1 || ^18.0.0",
-    "@emotion/react": "11.11.1",
-    "@emotion/styled": "^11.3.0",
-    "date-fns": "^2.30.0"
-  },
-  "dependencies": {
-    "react-transition-group": "^4.4.5",
-    "tslib": "^2.6.2",
-    "deepmerge": "4.3.1"
-  }
+    "name": "@ensi-platform/core-components-calendar",
+    "version": "1.0.0",
+    "description": "calendar component",
+    "keywords": [],
+    "license": "MIT",
+    "main": "index.js",
+    "module": "./esm/index.js",
+    "publishConfig": {
+        "access": "public",
+        "directory": "dist"
+    },
+    "peerDependencies": {
+        "react": "^16.9.0 || ^17.0.1 || ^18.0.0",
+        "react-dom": "^16.9.0 || ^17.0.1 || ^18.0.0",
+        "@emotion/react": "^11.11.1",
+        "@emotion/styled": "^11.11.5"
+    },
+    "dependencies": {
+        "react-transition-group": "^4.4.5",
+        "tslib": "^2.6.2",
+        "deepmerge": "4.3.1",
+        "date-fns": "^2.30.0",
+        "@ensi-platform/core-components-common": "^1.0.0"
+    }
 }

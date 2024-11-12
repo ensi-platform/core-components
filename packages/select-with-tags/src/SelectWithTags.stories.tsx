@@ -1,14 +1,14 @@
-import { StoryObj } from '@storybook/react';
+import { Button, scale } from '@ensi-platform/core-components-common';
+import { Form } from '@ensi-platform/core-components-form';
+import { type SelectItem, type SelectPayload } from '@ensi-platform/core-components-select';
 
-import { ComponentProps, SetStateAction, useCallback, useMemo, useState } from 'react';
+import { type StoryObj } from '@storybook/react';
 
-import { Button, scale } from '@greensight/gds';
-import { SelectItem, SelectPayload } from '@greensight/core-components-select';
+import { type ComponentProps, type SetStateAction, useCallback, useMemo, useState } from 'react';
 
-import Form from '@greensight/core-components-form';
-import { SelectWithTags, SelectWithTagsProps } from '.';
 import README from '../README.md';
 import { SimpleSelectWithTags } from './SelectWithTags';
+import { SelectWithTags, type SelectWithTagsProps } from './index';
 
 const optionItems: SelectItem[] = [
     {

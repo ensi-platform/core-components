@@ -1,7 +1,8 @@
-import { ComponentProps, useState } from 'react';
+import { Button } from '@ensi-platform/core-components-common';
+
 import type { Meta, StoryObj } from '@storybook/react';
 
-import { Button } from '@greensight/core-components-common';
+import { type ComponentProps, useState } from 'react';
 
 import README from '../README.md';
 import { Drawer } from './index';

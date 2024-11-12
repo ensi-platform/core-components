@@ -1,5 +1,6 @@
-import { useMemo, HTMLProps, ReactNode } from 'react';
+import { type HTMLProps, type ReactNode, useMemo } from 'react';
 import { AccordionItemButton as ReactAccordionItemButton } from 'react-accessible-accordion';
+
 import { useAccordion } from '../scripts/useAccordion';
 
 export interface AccordionButtonProps extends HTMLProps<HTMLDivElement> {

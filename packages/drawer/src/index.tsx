@@ -1,15 +1,15 @@
-import { forwardRef, useMemo } from 'react';
-import deepmerge from 'deepmerge';
+import { BaseModal } from '@ensi-platform/core-components-base-modal';
+import { useThemeCSSPart } from '@ensi-platform/core-components-common';
 
-import { useThemeCSSPart } from '@greensight/core-components-common';
-import { BaseModal } from '@greensight/core-components-base-modal';
+import deepmerge from 'deepmerge';
+import { forwardRef, useMemo } from 'react';
 
 import { Content } from './components/Content';
 import { Footer } from './components/Footer';
 import { Header } from './components/Header';
-import { DrawerProps, DrawerThemeState } from './types';
-import { drawerThemes } from './themes/defaultTheme';
 import { DrawerThemeProvider } from './context';
+import { drawerThemes } from './themes/defaultTheme';
+import { type DrawerProps, type DrawerThemeState } from './types';
 
 const DrawerComponent = forwardRef<HTMLDivElement, DrawerProps>(
     (

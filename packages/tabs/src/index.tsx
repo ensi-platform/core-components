@@ -1,6 +1,6 @@
-import { FC, MouseEvent, useId, useMemo, useState } from 'react';
+import { defaultTheme } from '@ensi-platform/core-components-common';
 
-import { defaultTheme } from '@greensight/core-components-common';
+import { type FC, type MouseEvent, useId, useMemo, useState } from 'react';
 
 import { Tab } from './components/Tab';
 import { TabList as DefaultTabList } from './components/TabList';
@@ -9,7 +9,7 @@ import { LinkTitle } from './components/Title/LinkTitle';
 import { TabsThemeProvider } from './context';
 import { useMedia } from './scripts/hooks/useMedia';
 import { TABS_THEMES } from './themes';
-import { SelectedId, TabsMatchMedia, TabsProps, TabsState } from './types';
+import { type SelectedId, type TabsMatchMedia, type TabsProps, type TabsState } from './types';
 
 const {
     mediaQueries: MEDIA_QUERIES,

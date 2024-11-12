@@ -1,4 +1,4 @@
-import { scale } from '@greensight/core-components-common';
+import { scale } from '@ensi-platform/core-components-common';
 
 export const ErrorCodes = {
     TOO_MANY_FILES: 'too-many-files',

@@ -1,7 +1,14 @@
-import { HTMLAttributes, forwardRef } from 'react';
+import {
+    Button,
+    type FormFieldHelperProps,
+    IconSmallImport,
+    defaultTheme,
+    scale,
+} from '@ensi-platform/core-components-common';
 
-import { FormFieldHelperProps, IconSmallImport, scale, defaultTheme, Button } from '@greensight/core-components-common';
-import { FileType } from './DropzoneFile';
+import { type HTMLAttributes, forwardRef } from 'react';
+
+import { type FileType } from './DropzoneFile';
 
 interface DropzoneAreaProps extends HTMLAttributes<HTMLDivElement>, Partial<FormFieldHelperProps<FileType[]>> {
     inputFieldProps: HTMLAttributes<HTMLInputElement>;

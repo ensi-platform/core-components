@@ -1,9 +1,13 @@
+import {
+    type UseMultipleSelectionProps,
+    type UseMultipleSelectionState,
+    useCombobox,
+    useMultipleSelection,
+} from 'downshift';
 import { useMemo, useRef } from 'react';
 
-import { UseMultipleSelectionProps, UseMultipleSelectionState, useCombobox, useMultipleSelection } from 'downshift';
-
+import { type SelectItem, type SelectProps } from '../../../../types';
 import { processOptions } from './utils';
-import { SelectItem, SelectProps } from '../../../../types';
 
 const itemToString = (option: SelectItem | null) => (option ? option.label : '');
 

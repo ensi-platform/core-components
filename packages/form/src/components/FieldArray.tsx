@@ -1,10 +1,15 @@
+import {
+    Button,
+    IconSmallPlus as IconPlus,
+    IconSmallTrash as IconTrash,
+    Layout,
+    type LayoutProps,
+    type TokensInterface,
+    scale,
+} from '@ensi-platform/core-components-common';
+
 import type { FC, ReactNode } from 'react';
 import { useFieldArray, useFormContext } from 'react-hook-form';
-
-import { Button, Layout, scale } from '@greensight/gds';
-import type { LayoutProps } from '@greensight/gds/types/src/components/Layout';
-import { LayoutItemProps } from '@greensight/gds/types/src/components/Layout/Item';
-import { IconSmallPlus as IconPlus, IconSmallTrash as IconTrash } from '@greensight/core-components-common';
 
 import useForm from '../hooks/useForm';
 
@@ -40,7 +45,7 @@ type FieldArrayProps = Omit<LayoutProps, 'reverse' | 'wrap' | 'children'> & {
     children: (args: { name: string; index: number }) => ReactNode | ReactNode[];
     initialValue?: any;
     className?: string;
-    childrenCol?: LayoutItemProps['col'];
+    childrenCol?: TokensInterface['layout']['cols'];
 };
 
 const FormFieldArray = ({

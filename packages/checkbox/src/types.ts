@@ -1,12 +1,14 @@
-import { CSSObject } from '@emotion/react';
 import {
-    BaseThemeState,
-    FormFieldHelperProps,
-    StyleDefinition,
-    ValueOrFunction,
-    useCheckboxLikeControlHookType,
-} from '@greensight/core-components-common';
-import { ChangeEvent, InputHTMLAttributes, ReactNode } from 'react';
+    type BaseThemeState,
+    type FormFieldHelperProps,
+    type StyleDefinition,
+    type ValueOrFunction,
+    type useCheckboxLikeControlHookType,
+} from '@ensi-platform/core-components-common';
+
+import { type CSSObject } from '@emotion/react';
+
+import { type ChangeEvent, type InputHTMLAttributes, type ReactNode } from 'react';
 
 export const CheckboxSize = {
     md: 'md',

@@ -1,5 +1,5 @@
 {
-    "name": "@greensight/core-components-dropzone",
+    "name": "@ensi-platform/core-components-dropzone",
     "version": "1.0.0",
     "description": "dropzone component",
     "keywords": [],
@@ -13,16 +13,15 @@
     "peerDependencies": {
         "react": "^16.9.0 || ^17.0.1 || ^18.0.0",
         "react-dom": "^16.9.0 || ^17.0.1 || ^18.0.0",
-        "@emotion/react": "11.11.1",
-        "@emotion/styled": "^11.3.0"
+        "@emotion/react": "^11.11.1",
+        "@emotion/styled": "^11.11.5"
     },
     "dependencies": {
         "tslib": "^2.6.2",
         "react-dropzone": "11.7.1",
-        "@hello-pangea/dnd": "^16.6.0"
-    },
-    "devDependencies": {},
-    "overrides": {
-        "@types/react": "^18.0.0"
+        "@hello-pangea/dnd": "^16.6.0",
+        "@ensi-platform/core-components-common": "^1.0.0",
+        "@ensi-platform/core-components-loading-skeleton": "^1.0.0",
+        "@ensi-platform/core-components-form-control": "^1.0.0"
     }
 }

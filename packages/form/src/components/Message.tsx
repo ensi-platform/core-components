@@ -1,11 +1,11 @@
-import { FC, HTMLProps, SVGProps } from 'react';
-
 import {
-    defaultTheme,
-    scale,
     IconSmallClosedCircle as ErrorIcon,
     IconSmallWarningCircle as WarningIcon,
-} from '@greensight/core-components-common';
+    defaultTheme,
+    scale,
+} from '@ensi-platform/core-components-common';
+
+import { type FC, type HTMLProps, type SVGProps } from 'react';
 
 export interface FormMessageProps extends HTMLProps<HTMLDivElement> {
     /** Error text */

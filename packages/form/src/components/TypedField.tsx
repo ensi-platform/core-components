@@ -1,11 +1,20 @@
-import { ChangeEvent, Children, FC, cloneElement, forwardRef, isValidElement, useCallback, useMemo } from 'react';
+import { type FormFieldHelperProps } from '@ensi-platform/core-components-common';
+import { Input } from '@ensi-platform/core-components-input';
+
+import {
+    type ChangeEvent,
+    Children,
+    type FC,
+    cloneElement,
+    forwardRef,
+    isValidElement,
+    useCallback,
+    useMemo,
+} from 'react';
 import { useController, useFormContext } from 'react-hook-form';
 
-import { FieldProps } from '@greensight/core-components-form';
-import { Input } from '@greensight/core-components-input';
-import { FormFieldHelperProps } from '@greensight/core-components-common';
-import { FormFieldProps } from './Field';
 import useForm from '../hooks/useForm';
+import { type FieldProps, type FormFieldProps } from './Field';
 
 type DataType = 'string' | 'number';
 

@@ -4,11 +4,11 @@ import {
     BaseSelect,
     Arrow as DefaultArrow,
     Field as DefaultField,
-    Option as DefaultOption,
     Optgroup as DefaultOptgroup,
+    Option as DefaultOption,
     OptionsList as DefaultOptionsList,
 } from './components';
-import { SelectProps } from './types';
+import { type SelectProps } from './types';
 
 export const SimpleSelect = forwardRef<HTMLDivElement, SelectProps>(
     (

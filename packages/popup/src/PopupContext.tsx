@@ -1,6 +1,6 @@
-import { ReactNode, createContext, useContext, useMemo } from 'react';
+import { type BaseThemeState, useThemeCSSPart } from '@ensi-platform/core-components-common';
 
-import { BaseThemeState, useThemeCSSPart } from '@greensight/core-components-common';
+import { type ReactNode, createContext, useContext, useMemo } from 'react';
 
 import type { PopupSize, PopupState, PopupTheme, PopupThemeState, PopupVariant } from './types';
 
@@ -19,13 +19,7 @@ type ContextProps = Required<BaseThemeState<typeof PopupVariant, typeof PopupSiz
 const PopupContext = createContext<Context | null>(null);
 PopupContext.displayName = 'PopupContext';
 
-export const PopupContextProvider = ({
-    children,
-    size,
-    theme,
-    variant,
-    state,
-}: ContextProps) => {
+export const PopupContextProvider = ({ children, size, theme, variant, state }: ContextProps) => {
     const getCSS = useThemeCSSPart(theme, {
         ...state,
         size,

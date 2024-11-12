@@ -1,23 +1,22 @@
-import { forwardRef, useCallback, useEffect, useMemo, useRef, useState } from 'react';
-
+import { type FormFieldHelperProps, defaultTheme } from '@ensi-platform/core-components-common';
+import { type InputProps } from '@ensi-platform/core-components-input';
 import {
     BaseSelect,
+    Arrow as DefaultArrow,
+    Optgroup as DefaultOptgroup,
     Option as DefaultOption,
     OptionsList as DefaultOptionsList,
-    Optgroup as DefaultOptgroup,
-    Arrow as DefaultArrow,
-    SelectItem,
-    SelectPayload,
-} from '@greensight/core-components-select';
+    type SelectItem,
+    type SelectPayload,
+} from '@ensi-platform/core-components-select';
+import { TagList } from '@ensi-platform/core-components-select-with-tags';
 
-import { TagList } from '@greensight/core-components-select-with-tags';
-
-import { InputProps } from '@greensight/core-components-input';
+import { forwardRef, useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import mergeRefs from 'react-merge-refs';
-import { defaultTheme, FormFieldHelperProps } from '@greensight/core-components-common';
-import { IAutocompleteProps } from './types';
-import { AutocompleteField } from '../Field';
+
 import { Clear } from '../Clear';
+import { AutocompleteField } from '../Field';
+import { type IAutocompleteProps } from './types';
 
 const { colors } = defaultTheme;
 

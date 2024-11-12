@@ -1,12 +1,12 @@
-import { FC, RefCallback, useCallback, useMemo, useRef } from 'react';
+import { Button, usePrevious } from '@ensi-platform/core-components-common';
+
 import { isEqual, isLastDayOfMonth, isSameDay, isToday, isWithinInterval, startOfMonth } from 'date-fns';
-import { TransitionGroup as TransitionGroupTyped, CSSTransition as CSSTransitionTyped } from 'react-transition-group';
+import { type FC, type RefCallback, useCallback, useMemo, useRef } from 'react';
+import { CSSTransition as CSSTransitionTyped, TransitionGroup as TransitionGroupTyped } from 'react-transition-group';
 
-import { usePrevious, Button } from '@greensight/core-components-common';
 import useCalendarTheme from '../../scripts/useCalendarTheme';
-
 import { WEEKDAYS, getSelectionRange } from '../../scripts/utils';
-import { Day } from '../../types';
+import { type Day } from '../../types';
 
 const TransitionGroup = TransitionGroupTyped as never as (props: any) => JSX.Element;
 const CSSTransition = CSSTransitionTyped as never as (props: any) => JSX.Element;

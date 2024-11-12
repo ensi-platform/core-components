@@ -1,4 +1,4 @@
-import { STATUSES, defaultTheme, scale } from '@greensight/core-components-common';
+import { STATUSES, defaultTheme, scale } from '@ensi-platform/core-components-common';
 
 const { colors, typography } = defaultTheme;
 

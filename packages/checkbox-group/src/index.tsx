@@ -1,24 +1,23 @@
 import {
-    ChangeEvent,
-    Children,
-    cloneElement,
-    isValidElement,
-    useRef,
-    FocusEvent,
-    ReactNode,
-    CSSProperties,
-    useMemo,
-} from 'react';
+    type CheckboxSize,
+    type CheckboxTheme,
+    type CheckboxThemeState,
+    type CheckboxVariant,
+    checkboxThemes,
+} from '@ensi-platform/core-components-checkbox';
+import { type FormFieldHelperProps, scale, useThemeCSSPart } from '@ensi-platform/core-components-common';
 
 import {
-    CheckboxSize,
-    CheckboxVariant,
-    CheckboxTheme,
-    checkboxThemes,
-    CheckboxThemeState,
-} from '@greensight/core-components-checkbox';
-
-import { scale, useThemeCSSPart, FormFieldHelperProps } from '@greensight/core-components-common';
+    type CSSProperties,
+    type ChangeEvent,
+    Children,
+    type FocusEvent,
+    type ReactNode,
+    cloneElement,
+    isValidElement,
+    useMemo,
+    useRef,
+} from 'react';
 
 export interface CheckboxGroupProps extends Partial<FormFieldHelperProps<string[]>> {
     /** Заголовок группы */

@@ -1,5 +1,6 @@
-import { IDescriptionListProps, DescriptionListItem } from '@greensight/core-components-description-list';
+import DescriptionListItem from './components/DescriptionListItem';
 import { useDescriptionListCSS } from './scripts/hooks';
+import { type IDescriptionListProps } from './types';
 
 /**
  * List of term-definition pairs with leader dots between them

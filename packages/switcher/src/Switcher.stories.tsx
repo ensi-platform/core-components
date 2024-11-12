@@ -1,8 +1,9 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { ChangeEvent, ComponentProps, useState } from 'react';
+
+import { type ChangeEvent, type ComponentProps, useState } from 'react';
 
 import README from '../README.md';
-import { Switcher, SwitcherProps } from './index';
+import { Switcher, type SwitcherProps } from './index';
 
 export default {
     title: 'Controls / Form / Switcher',

@@ -1,6 +1,7 @@
-import { MouseEvent, useCallback, useLayoutEffect, useRef } from 'react';
 import { isSameYear, isThisYear } from 'date-fns';
-import { SelectButton, SelectButtonProps } from '../select-button';
+import { type MouseEvent, useCallback, useLayoutEffect, useRef } from 'react';
+
+import { SelectButton, type SelectButtonProps } from '../select-button';
 
 export type YearsTableProps = {
     /**

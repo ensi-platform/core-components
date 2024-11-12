@@ -1,12 +1,13 @@
-import { CSSObject } from '@emotion/react';
+import { defaultTheme, scale } from '@ensi-platform/core-components-common';
+import { FormControl } from '@ensi-platform/core-components-form-control';
+
+import { type CSSObject } from '@emotion/react';
+
 import deepmerge from 'deepmerge';
-import React, { ChangeEvent, useMemo, useState } from 'react';
-
-import { defaultTheme, scale } from '@greensight/core-components-common';
-
-import { FormControl } from '@greensight/core-components-form-control';
+import { type ChangeEvent, useMemo, useState } from 'react';
 import TextareaAutosize from 'react-textarea-autosize';
-import { ITextareaProps } from './types';
+
+import { type ITextareaProps } from './types';
 
 const emptyStyle = {};
 

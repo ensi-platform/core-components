@@ -1,21 +1,20 @@
+import {
+    Button,
+    IconSmallClosed as CloseIcon,
+    IconPreloader as PreloaderIcon,
+    scale,
+    usePrevious,
+} from '@ensi-platform/core-components-common';
+import { type OptionProps, type SelectItem } from '@ensi-platform/core-components-select';
+import { SimpleSelectWithTags } from '@ensi-platform/core-components-select-with-tags';
+
 import { forwardRef, useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import deepEqual from 'react-fast-compare';
 
-import {
-    IconPreloader as PreloaderIcon,
-    IconSmallClosed as CloseIcon,
-    Button,
-    scale,
-    usePrevious,
-} from '@greensight/core-components-common';
-
-import { SelectItem, OptionProps } from '@greensight/core-components-select';
-
-import { SimpleSelectWithTags } from '@greensight/core-components-select-with-tags';
-import { AutocompleteAsyncPropsType } from './types';
-import { useLazyLoading } from './scripts/hooks';
 import { BaseAutocomplete } from './components';
 import { DEBOUNCE_TIMEOUT } from './scripts/constants';
+import { useLazyLoading } from './scripts/hooks';
+import { type AutocompleteAsyncPropsType } from './types';
 
 export const AutocompleteAsync = forwardRef<HTMLInputElement, AutocompleteAsyncPropsType>(
     (

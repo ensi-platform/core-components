@@ -1,5 +1,7 @@
-import { CSSObject } from '@emotion/react';
+import { type CSSObject } from '@emotion/react';
+
 import { rgba } from 'emotion-rgba';
+
 import { defaultTheme } from '../../index';
 
 export type LinkColorType = 'blue' | 'black' | 'grey' | 'red';

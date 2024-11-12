@@ -1,15 +1,33 @@
 import { yupResolver } from '@hookform/resolvers/yup';
-import { FC, HTMLProps, ReactNode, SyntheticEvent, useCallback, useEffect, useMemo, useRef } from 'react';
+
+import {
+    type FC,
+    type HTMLProps,
+    type ReactNode,
+    type SyntheticEvent,
+    useCallback,
+    useEffect,
+    useMemo,
+    useRef,
+} from 'react';
 import deepEqual from 'react-fast-compare';
-import { DefaultValues, FieldValues, FormProvider, UseFormProps, UseFormReturn, useForm } from 'react-hook-form';
+import {
+    type DefaultValues,
+    type FieldValues,
+    FormProvider,
+    type UseFormProps,
+    type UseFormReturn,
+    useForm,
+} from 'react-hook-form';
 import type { AnyObjectSchema } from 'yup';
-import { FormField, FormFieldProps } from './components/Field';
-import { TypedField, TypedFieldProps } from './components/TypedField';
-import { FormMessage, FormMessageProps } from './components/Message';
+
+import { FormField, type FormFieldProps } from './components/Field';
 import FormFieldArray from './components/FieldArray';
+import { FormMessage, type FormMessageProps } from './components/Message';
 import FormReset from './components/Reset';
-import { usePrevious } from './hooks/usePrevious';
+import { TypedField, type TypedFieldProps } from './components/TypedField';
 import { FormContext } from './hooks/useForm';
+import { usePrevious } from './hooks/usePrevious';
 
 export type NumberFieldValue = number | '';
 
@@ -47,24 +65,6 @@ export interface FormProps<T extends FieldValues>
     isForm?: boolean;
     className?: string;
     disabled?: boolean;
-}
-
-export interface FieldProps<T> {
-    field?: {
-        value: T;
-        onChange: (
-            eventOrValue:
-                | {
-                      target: {
-                          value: T;
-                      };
-                  }
-                | T
-        ) => void;
-    };
-    meta?: {
-        error?: string;
-    };
 }
 
 export const Form = <T extends FieldValues>({
@@ -148,5 +148,3 @@ Form.TypedField = TypedField;
 Form.Message = FormMessage;
 Form.Reset = FormReset;
 Form.FieldArray = FormFieldArray;
-
-export default Form;

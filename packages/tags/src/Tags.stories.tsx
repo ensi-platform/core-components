@@ -1,9 +1,10 @@
+import { type CSSObject } from '@emotion/react';
 import type { Meta, StoryObj } from '@storybook/react';
+
 import type { ComponentProps } from 'react';
 
-import { CSSObject } from '@emotion/react';
-import { TagItem, Tags, ITagsProps } from '@greensight/core-components-tags';
 import README from '../README.md';
+import { type ITagsProps, TagItem, Tags } from './index';
 
 export default {
     title: 'Components / Tags',

@@ -1,12 +1,40 @@
-import { Children, FC, ReactNode, cloneElement, forwardRef, isValidElement, useCallback, useMemo } from 'react';
-import { useController, useFormContext } from 'react-hook-form';
+import { type FormFieldHelperProps, getValueFromObject } from '@ensi-platform/core-components-common';
+import { Input, type InputProps } from '@ensi-platform/core-components-input';
+
 import type { CSSObject } from '@emotion/react';
 
-import { FieldProps } from '@greensight/core-components-form';
-import { Input, InputProps } from '@greensight/core-components-input';
-import { FormFieldHelperProps, getValueFromObject } from '@greensight/core-components-common';
+import {
+    Children,
+    type FC,
+    type ReactNode,
+    cloneElement,
+    forwardRef,
+    isValidElement,
+    useCallback,
+    useMemo,
+} from 'react';
+import { useController, useFormContext } from 'react-hook-form';
 
 import useForm from '../hooks/useForm';
+
+export interface FieldProps<T> {
+    field?: {
+        value: T;
+        onChange: (
+            eventOrValue:
+                | {
+                      target: {
+                          value: T;
+                      };
+                  }
+                | T
+        ) => void;
+    };
+    meta?: {
+        error?: string;
+    };
+    helpers?: { setValue: (value: T) => void };
+}
 
 export interface FormFieldProps extends Omit<InputProps, 'size' | 'label'> {
     size?: InputProps['size'];

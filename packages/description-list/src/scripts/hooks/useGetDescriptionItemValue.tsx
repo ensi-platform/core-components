@@ -1,13 +1,13 @@
+import { DateFormatters, formatDate } from '@ensi-platform/core-components-common';
+
 import { useMemo } from 'react';
 
-import { formatDate, DateFormatters } from '@greensight/core-components-common';
-
 import {
-    DescriptionListItemType,
-    IDescriptionListBaseItem,
-    IDescriptionListBooleanItem,
-    IDescriptionListDateItem,
-} from '@greensight/core-components-description-list';
+    type DescriptionListItemType,
+    type IDescriptionListBaseItem,
+    type IDescriptionListBooleanItem,
+    type IDescriptionListDateItem,
+} from '../../types';
 
 /**
  * Get a value depending on the content type

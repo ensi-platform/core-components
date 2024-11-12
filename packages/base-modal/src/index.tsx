@@ -1,8 +1,13 @@
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
+import { Backdrop as DefaultBackdrop } from '@ensi-platform/core-components-backdrop';
+import { Portal } from '@ensi-platform/core-components-portal';
+import { Stack, stackingOrder } from '@ensi-platform/core-components-stack';
+
 import { ResizeObserver as ResizeObserverPolyfill } from '@juggle/resize-observer';
+
 import {
-    KeyboardEvent,
-    MouseEvent,
+    type KeyboardEvent,
+    type MouseEvent,
     createContext,
     forwardRef,
     useCallback,
@@ -15,11 +20,6 @@ import FocusLock from 'react-focus-lock';
 import mergeRefs from 'react-merge-refs';
 import { useTransition } from 'react-transition-state';
 
-import { Backdrop as DefaultBackdrop } from '@greensight/core-components-backdrop';
-import { Portal } from '@greensight/core-components-portal';
-import { Stack, stackingOrder } from '@greensight/core-components-stack';
-
-import type { BaseModalContextType, BaseModalProps } from './types';
 import {
     getScrollbarSize,
     handleContainer,
@@ -28,6 +28,7 @@ import {
     isScrolledToTop,
     restoreContainerStyles,
 } from './scripts/utils';
+import type { BaseModalContextType, BaseModalProps } from './types';
 
 export * from './types';
 

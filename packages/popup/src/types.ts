@@ -1,13 +1,17 @@
-import { CSSObject } from '@emotion/react';
-import { LayoutProps } from '@greensight/gds/types/src/components/Layout';
-import { ReactNode } from 'react';
+import type { BaseModalProps } from '@ensi-platform/core-components-base-modal';
+import {
+    type BaseThemeState,
+    type LayoutProps,
+    type StyleDefinition,
+    type ValueOrFunction,
+} from '@ensi-platform/core-components-common';
 
-import type { BaseModalProps } from '@greensight/core-components-base-modal';
+import { type CSSObject } from '@emotion/react';
 
-import { BaseThemeState, StyleDefinition, ValueOrFunction } from '@greensight/core-components-common';
+import { type ReactNode } from 'react';
 
 // eslint-disable-next-line import/no-cycle
-import { popupThemes } from './themes';
+import { type popupThemes } from './themes';
 
 export enum PopupSize {
     sm = 'sm',

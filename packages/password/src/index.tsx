@@ -1,7 +1,12 @@
-import { HTMLProps, useState } from 'react';
+import {
+    type FormFieldHelperProps,
+    IconSmallEye,
+    IconSmallEyeOff,
+    defaultTheme,
+} from '@ensi-platform/core-components-common';
+import { Input } from '@ensi-platform/core-components-input';
 
-import { defaultTheme, FormFieldHelperProps, IconSmallEye, IconSmallEyeOff } from '@greensight/core-components-common';
-import { Input } from '@greensight/core-components-input';
+import { type HTMLProps, useState } from 'react';
 
 const { colors } = defaultTheme;
 

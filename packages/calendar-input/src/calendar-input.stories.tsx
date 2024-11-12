@@ -1,8 +1,10 @@
-import type { Meta, StoryObj } from '@storybook/react';
-import { ComponentProps, useState } from 'react';
+import { Button, scale } from '@ensi-platform/core-components-common';
+import { Form } from '@ensi-platform/core-components-form';
 
-import Form from '@greensight/core-components-form';
-import { Button, scale } from '@greensight/gds';
+import type { Meta, StoryObj } from '@storybook/react';
+
+import { type ComponentProps, useState } from 'react';
+
 import README from '../README.md';
 import { CalendarInput } from './index';
 

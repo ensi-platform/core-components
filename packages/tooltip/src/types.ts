@@ -1,8 +1,9 @@
-import type { MutableRefObject, ReactElement, ReactNode } from 'react';
+import type { BaseThemeState, StyleDefinition, ValueOrFunction } from '@ensi-platform/core-components-common';
+import type { PopoverProps, Position } from '@ensi-platform/core-components-popover';
 
-import type { PopoverProps, Position } from '@greensight/core-components-popover';
 import type { CSSObject } from '@emotion/react';
-import type { BaseThemeState, StyleDefinition, ValueOrFunction } from '@greensight/core-components-common';
+
+import type { MutableRefObject, ReactElement, ReactNode } from 'react';
 
 export type Trigger = 'click' | 'hover';
 

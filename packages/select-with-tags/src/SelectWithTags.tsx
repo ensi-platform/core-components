@@ -1,18 +1,18 @@
-import { ChangeEvent, forwardRef, useCallback, useMemo, useRef, useState } from 'react';
-
 import {
     BaseSelect,
     Arrow as DefaultArrow,
     Option as DefaultOption,
     OptionsList as DefaultOptionsList,
-    SelectProps,
-    SelectItem,
+    type SelectItem,
+    type SelectProps,
     useSelectClear,
-} from '@greensight/core-components-select';
+} from '@ensi-platform/core-components-select';
 
-import { SelectWithTagsProps } from './types';
-import { filterOptions } from './scripts/helpers';
+import { type ChangeEvent, forwardRef, useCallback, useMemo, useRef, useState } from 'react';
+
 import { TagList } from './components';
+import { filterOptions } from './scripts/helpers';
+import { type SelectWithTagsProps } from './types';
 
 export const SimpleSelectWithTags = forwardRef<HTMLDivElement, SelectWithTagsProps>(
     (

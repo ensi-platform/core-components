@@ -1,10 +1,19 @@
-import { CSSObject } from '@emotion/react';
+import {
+    IconSmallClosed as CloseIcon,
+    type FormFieldHelperProps,
+    defaultTheme,
+    scale,
+} from '@ensi-platform/core-components-common';
+import { FormControl, formControlThemes } from '@ensi-platform/core-components-form-control';
+
+import { type CSSObject } from '@emotion/react';
+
 import deepmerge from 'deepmerge';
 import {
-    AnimationEvent,
-    ChangeEvent,
-    FocusEvent,
-    MouseEvent,
+    type AnimationEvent,
+    type ChangeEvent,
+    type FocusEvent,
+    type MouseEvent,
     forwardRef,
     useCallback,
     useEffect,
@@ -14,16 +23,7 @@ import {
 } from 'react';
 import mergeRefs from 'react-merge-refs';
 
-import {
-    defaultTheme,
-    scale,
-    IconSmallClosed as CloseIcon,
-    FormFieldHelperProps,
-} from '@greensight/core-components-common';
-
-import { FormControl, formControlThemes } from '@greensight/core-components-form-control';
-
-import { InputProps } from './types';
+import { type InputProps } from './types';
 
 export * from './types';
 

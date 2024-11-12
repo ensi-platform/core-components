@@ -1,6 +1,8 @@
-import { scale, defaultTheme } from '@greensight/core-components-common';
-import { CSSObject } from '@emotion/react';
-import { SkipProps } from './types';
+import { defaultTheme, scale } from '@ensi-platform/core-components-common';
+
+import { type CSSObject } from '@emotion/react';
+
+import { type SkipProps } from './types';
 
 export * from './types';
 

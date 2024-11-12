@@ -1,34 +1,20 @@
 {
-  "include": [
-    "src",
-    "../../typings",
-    "src/SelectWithTags.stories.tsx"
-  ],
-  "extends": "../../tsconfig.json",
-  "compilerOptions": {
-    "outDir": "dist",
-    "rootDirs": [
-      "src"
-    ],
-    "baseUrl": ".",
-    "paths": {
-      "@greensight/core-components-*": [
-        "../*/src"
-      ]
-    }
-  },
-  "references": [
-    {
-      "path": "../select/tsconfig.json"
+    "include": ["src", "../../typings", "src/SelectWithTags.stories.tsx"],
+    "extends": "../../tsconfig.json",
+    "compilerOptions": {
+        "outDir": "dist",
+        "rootDirs": ["src"],
+        "baseUrl": ".",
+        "paths": {
+            "@ensi-platform/core-components-*": ["../*/src"]
+        }
     },
-    {
-      "path": "../input/tsconfig.json"
-    },
-    {
-      "path": "../select-with-tags/tsconfig.json"
-    },
-    {
-      "path": "../tags/tsconfig.json"
-    }
-  ]
+    "references": [
+        { "path": "../common" },
+        { "path": "../loading-skeleton" },
+        { "path": "../tags" },
+        { "path": "../select" },
+        { "path": "../form-control" },
+        { "path": "../input" }
+    ]
 }

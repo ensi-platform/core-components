@@ -1,6 +1,7 @@
-import { SelectItem } from '@greensight/core-components-select';
+import { type SelectItem } from '@ensi-platform/core-components-select';
+import { type ITagProps } from '@ensi-platform/core-components-tags';
+
 import type { FC } from 'react';
-import { ITagProps } from '@greensight/core-components-tags';
 
 export type OptionMatcher = (option: SelectItem, inputValue: string) => boolean;
 

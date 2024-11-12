@@ -1,8 +1,9 @@
-import { ComponentProps } from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
 
-import { DescriptionList, DescriptionListItemType } from '@greensight/core-components-description-list';
+import { type ComponentProps } from 'react';
+
 import README from '../README.md';
+import { DescriptionList, type DescriptionListItemType } from './index';
 
 export default {
     title: 'Components / DescriptionList',
