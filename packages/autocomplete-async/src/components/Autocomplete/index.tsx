@@ -1,7 +1,9 @@
+import { type FormFieldHelperProps, defaultTheme } from '@ensi-platform/core-components-common';
 import { type InputProps } from '@ensi-platform/core-components-input';
 import {
     BaseSelect,
     Arrow as DefaultArrow,
+    Optgroup as DefaultOptgroup,
     Option as DefaultOption,
     OptionsList as DefaultOptionsList,
     type SelectItem,
@@ -16,11 +18,14 @@ import { Clear } from '../Clear';
 import { AutocompleteField } from '../Field';
 import { type IAutocompleteProps } from './types';
 
+const { colors } = defaultTheme;
+
 export const BaseAutocomplete = forwardRef<HTMLInputElement, IAutocompleteProps>(
     (
         {
             Arrow = DefaultArrow,
             OptionsList = DefaultOptionsList,
+            Optgroup = DefaultOptgroup,
             Option = DefaultOption,
             Input,
             inputProps = {},
@@ -53,7 +58,7 @@ export const BaseAutocomplete = forwardRef<HTMLInputElement, IAutocompleteProps>
                     readOnly,
                     ...fieldProps,
                 },
-
+                Optgroup,
                 OptionsList,
                 ...restProps,
             }),
@@ -61,7 +66,7 @@ export const BaseAutocomplete = forwardRef<HTMLInputElement, IAutocompleteProps>
                 multiple,
                 Arrow,
                 Input,
-
+                Optgroup,
                 Option,
                 OptionsList,
                 closeOnSelect,
@@ -85,8 +90,8 @@ BaseAutocomplete.displayName = 'BaseAutocomplete';
 /**
  * Фичи:
  * 1) если кликнуть на опцию, она выберется. при этом текстовый инпут примет значение опции
- * 2) если извне изменится значение, то текстовый инпут примет значение value соответствующего value
- * 3) если пользователь закроет выпадающий список, при этом не выбрав значение, то инпут примет последнее value
+ * 2) если извне изменится значение, то текстовый инпут примет значение label соответствующего value
+ * 3) если пользователь закроет выпадающий список, при этом не выбрав значение, то инпут примет последнее label
  */
 
 export const useAutocomplete = (
@@ -99,7 +104,7 @@ export const useAutocomplete = (
     const [selectedValues, setSelectedValues] = useState(initialSelectedValues);
     const selectedOptions = useMemo(
         () =>
-            options?.filter(e => {
+            options.filter(e => {
                 if ('value' in e) return selectedValues.includes(e.value);
                 return false;
             }) as SelectItem[],
@@ -113,7 +118,7 @@ export const useAutocomplete = (
 
     const getKeyByValue = useCallback(
         (value: any) => {
-            const result = options?.find(e => {
+            const result = options.find(e => {
                 if ('value' in e) return e.value === value;
                 return false;
             });
@@ -181,7 +186,7 @@ export const useAutocomplete = (
         () =>
             !isDirtySearch
                 ? options
-                : options?.filter(option => {
+                : options.filter(option => {
                       if (!('value' in option)) return false;
                       const isSelected = selectedValues.includes(option.value);
                       const isMatched = matchOption(option, search);
@@ -217,20 +222,12 @@ export const useAutocomplete = (
     };
 };
 
-export const Autocomplete = forwardRef<
-    HTMLInputElement,
-    IAutocompleteProps & {
-        field?: { value: any; onChange: (val: any) => void };
-        meta?: any;
-        helpers?: { setValue: (value: any) => void };
-    }
->(
+export const Autocomplete = forwardRef<HTMLInputElement, IAutocompleteProps & Partial<FormFieldHelperProps<any>> & {}>(
     (
         {
             multiple = false,
             meta,
             field,
-            helpers,
             onOpen,
             onChange,
             onInput,
@@ -297,15 +294,20 @@ export const Autocomplete = forwardRef<
 
                     return deletedKey !== key;
                 });
+
                 const newValues = tags.map(e => e.value);
                 if (onChange) {
                     onChange({ target: { value: deletedKey } }, { selected: tags });
                 }
 
                 setSelectedValues(newValues);
-                helpers?.setValue(newValues);
+                field?.onChange({
+                    target: {
+                        value: newValues,
+                    },
+                });
             },
-            [onChange, selectedOptions, helpers]
+            [onChange, selectedOptions, field]
         );
 
         return (
@@ -349,36 +351,22 @@ export const Autocomplete = forwardRef<
                 onChange={(event, payload) => {
                     handleChange(payload);
 
-                    if (typeof field?.onChange === 'function') {
-                        const value =
-                            payload?.selected && multiple
-                                ? payload?.selected.map(e => e.value)
-                                : payload?.actionItem?.value;
+                    const value =
+                        payload?.selected && multiple
+                            ? payload?.selected.map(e => e.value)
+                            : payload?.actionItem?.value;
 
-                        field.onChange({
-                            target: {
-                                value,
-                            },
-                        });
-
-                        onChange?.(event, payload);
-
-                        if (!multiple) {
-                            onClose();
-                        }
-                    }
-
-                    if (helpers) {
-                        setTimeout(() => {
-                            if (!multiple) {
-                                helpers.setValue(payload?.actionItem?.value);
-                            } else if (payload?.selected) {
-                                helpers.setValue(payload.selected.map(e => e.value));
-                            }
-                        }, 1);
-                    }
+                    field?.onChange({
+                        target: {
+                            value,
+                        },
+                    });
 
                     onChange?.(event, payload);
+
+                    if (!multiple) {
+                        onClose();
+                    }
                 }}
                 allowUnselect={multiple}
                 multiple={multiple}
@@ -395,6 +383,9 @@ export const Autocomplete = forwardRef<
                         'input::placeholder': {
                             transition: 'color .2s ease',
                             willChange: 'color',
+                        },
+                        'input:not(:focus)::placeholder': {
+                            color: colors.black,
                         },
                     }),
                 }}
@@ -422,13 +413,12 @@ export const Autocomplete = forwardRef<
                                     }, 10);
                                     return;
                                 }
-                                if (!helpers) return;
 
-                                if (!multiple) {
-                                    helpers.setValue(null);
-                                } else {
-                                    helpers.setValue([]);
-                                }
+                                field?.onChange({
+                                    target: {
+                                        value: multiple ? [] : null,
+                                    },
+                                });
                             }}
                             focus={() => {
                                 if (isOpenRef.current) {

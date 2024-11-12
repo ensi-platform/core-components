@@ -1,6 +1,6 @@
 import {
     type BaseThemeState,
-    type FormFieldDescendantProps,
+    type FormFieldHelperProps,
     type StyleDefinition,
     type ValueOrFunction,
     type useCheckboxLikeControlHookType,
@@ -81,7 +81,7 @@ export type CheckboxTheme = ValueOrFunction<
 export type CheckboxProps = Omit<CheckboxState, 'focused' | 'error'> &
     Partial<Omit<BaseThemeState<typeof CheckboxVariant, typeof CheckboxSize, CheckboxTheme>, 'theme'>> &
     Omit<NativeProps, 'size' | 'onChange' | 'enterKeyHint'> &
-    FormFieldDescendantProps & {
+    Partial<FormFieldHelperProps<boolean>> & {
         /**
          * Обработчик переключения чекбокса
          */

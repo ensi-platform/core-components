@@ -1,6 +1,6 @@
 import {
     type BaseThemeState,
-    type FormFieldDescendantProps,
+    type FormFieldHelperProps,
     type StyleDefinition,
     type ValueOrFunction,
 } from '@ensi-platform/core-components-common';
@@ -41,7 +41,7 @@ export type CounterTheme = ValueOrFunction<
 export type CounterProps = Partial<Omit<CounterState, 'hasLabel' | 'view'>> &
     Partial<Omit<BaseThemeState<typeof CounterVariant, typeof CounterSize, CounterTheme>, 'theme'>> &
     Omit<HTMLProps<HTMLInputElement>, 'onChange' | 'size'> &
-    FormFieldDescendantProps & {
+    Partial<FormFieldHelperProps<number>> & {
         /** Input unique name. Used for name and id properties */
         name: string;
 

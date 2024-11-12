@@ -1,6 +1,6 @@
 import {
     Button,
-    type FormFieldDescendantProps,
+    type FormFieldHelperProps,
     IconSmallImport,
     defaultTheme,
     scale,
@@ -8,7 +8,9 @@ import {
 
 import { type HTMLAttributes, forwardRef } from 'react';
 
-interface DropzoneAreaProps extends HTMLAttributes<HTMLDivElement>, FormFieldDescendantProps {
+import { type FileType } from './DropzoneFile';
+
+interface DropzoneAreaProps extends HTMLAttributes<HTMLDivElement>, Partial<FormFieldHelperProps<FileType[]>> {
     inputFieldProps: HTMLAttributes<HTMLInputElement>;
     disabled?: boolean;
     /** Button-like view */

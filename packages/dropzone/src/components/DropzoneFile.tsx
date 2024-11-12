@@ -1,7 +1,8 @@
 import { IconSmallClosedCircle, defaultTheme, scale, useLinkCSS } from '@ensi-platform/core-components-common';
 
+import { type DraggableProps, Draggable as UntypedDraggable } from '@hello-pangea/dnd';
+
 import { type FC, forwardRef } from 'react';
-import { type DraggableProps, Draggable as UntypedDraggable } from 'react-beautiful-dnd';
 
 import { ImagePreview } from '../scripts/constants';
 import { getFileSize } from '../scripts/utils';

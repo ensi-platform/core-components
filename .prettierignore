@@ -1,6 +1,7 @@
 .husky/*
 .yarn/*
 .yarnrc
+.storybook/*
 
 **/*.md
 **/dist

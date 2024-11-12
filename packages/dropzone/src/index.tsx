@@ -1,15 +1,16 @@
-import { type FormFieldDescendantProps, scale, useDeferredLoading } from '@ensi-platform/core-components-common';
+import { type FormFieldHelperProps, scale, useDeferredLoading } from '@ensi-platform/core-components-common';
 import { FormControl } from '@ensi-platform/core-components-form-control';
 import { LoadingSkeleton } from '@ensi-platform/core-components-loading-skeleton';
 
-import { type FC, type ReactNode, useCallback, useMemo, useState } from 'react';
 import {
     type DragDropContextProps,
     type DropResult,
     type DroppableProps,
     DragDropContext as UntypedDragDropContext,
     Droppable as UntypedDroppable,
-} from 'react-beautiful-dnd';
+} from '@hello-pangea/dnd';
+
+import { type FC, type ReactNode, useCallback, useMemo, useState } from 'react';
 import { type FileRejection, type DropzoneProps as UseDropzoneProps, useDropzone } from 'react-dropzone';
 
 import DropzoneArea from './components/DropzoneArea';
@@ -21,7 +22,7 @@ const DragDropContext = UntypedDragDropContext as never as FC<DragDropContextPro
 const Droppable = UntypedDroppable as never as FC<DroppableProps>;
 
 type DropzoneProps = UseDropzoneProps &
-    FormFieldDescendantProps<FileType[]> & {
+    Partial<FormFieldHelperProps<FileType[]>> & {
         label?: string;
         /** On files change callback */
         onFilesChange?: (files: FileType[]) => void;
@@ -67,7 +68,7 @@ export const Dropzone: FC<DropzoneProps> = ({
 }) => {
     const imagePreview = canPreviewImages(accept);
 
-    /** checks is our Dropzone controlled by Formik or not  */
+    /** checks is our Dropzone controlled by RHF or not  */
     const isControlled = typeof field?.value !== 'undefined';
     const [filesState, setFilesState] = useState<File[]>([]);
     const files = useMemo(

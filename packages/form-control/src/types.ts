@@ -4,6 +4,8 @@ import { type CSSObject } from '@emotion/react';
 
 import { type HTMLAttributes, type ReactNode } from 'react';
 
+import { type formControlThemes } from './themes/defaultTheme';
+
 export enum FormControlSize {
     sm = 'sm',
     md = 'md',
@@ -75,10 +77,18 @@ export interface FormControlState {
 export type FormControlThemeState = BaseThemeState<typeof FormControlVariant, typeof FormControlSize, never> &
     FormControlState;
 
-type FormControlParts = 'wrapper' | 'inner' | 'label' | 'sub' | 'error' | 'controlWrapper' | 'clear';
+enum FormControlParts {
+    wrapper,
+    inner,
+    label,
+    sub,
+    controlWrapper,
+    error,
+    clear,
+}
 
 export type FormControlTheme = ValueOrFunction<
-    Record<FormControlParts, StyleDefinition<FormControlThemeState>> & {
+    Record<keyof typeof FormControlParts, StyleDefinition<FormControlThemeState>> & {
         addons: StyleDefinition<FormControlThemeState & { isLeft: boolean }>;
     },
     [FormControlThemeState]
@@ -168,5 +178,5 @@ export type FormControlProps = Partial<
          */
         children?: ReactNode;
 
-        theme?: FormControlTheme;
+        theme?: FormControlTheme | keyof typeof formControlThemes;
     };

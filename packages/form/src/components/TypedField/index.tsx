@@ -1,3 +1,4 @@
+import { type FormFieldHelperProps } from '@ensi-platform/core-components-common';
 import { Input } from '@ensi-platform/core-components-input';
 
 import {
@@ -12,15 +13,9 @@ import {
 } from 'react';
 import { useController, useFormContext } from 'react-hook-form';
 
-import useForm from '../hooks/useForm';
-import { type FieldProps, type FormFieldProps, useFormikCompatibleFieldProps } from './Field';
-
-type DataType = 'string' | 'number';
-
-export interface TypedFieldProps extends FormFieldProps {
-    fieldType?: 'positiveInt' | 'positiveFloat';
-    dataType?: DataType;
-}
+import useForm from '../../hooks/useForm';
+import { type FieldProps } from '../Field/types';
+import { type DataType, type TypedFieldProps } from './types';
 
 const transformFloatValue = (input: string): string => {
     let sanitizedString: string = input.trim();
@@ -41,13 +36,13 @@ const getValueByDataType = (value: string, dataType?: DataType) => {
     return dataType === 'number' ? Number(value) : value;
 };
 
-export const TypedField = forwardRef<HTMLInputElement, TypedFieldProps>(
+const TypedField = forwardRef<HTMLInputElement, TypedFieldProps>(
     (
         { name, children, size = 'md', className, wrapperCSS, block = true, fieldType, dataType = 'number', ...props },
         ref
     ) => {
         const { onChange, disabled } = useForm()!;
-        const { control, setValue, trigger, setError } = useFormContext(); // retrieve all hook methods
+        const { control, setValue } = useFormContext(); // retrieve all hook methods
         const { field, fieldState: fieldStateForm } = useController({
             name,
             control,
@@ -121,16 +116,15 @@ export const TypedField = forwardRef<HTMLInputElement, TypedFieldProps>(
             [field, name, onChange, transformValue]
         );
 
-        const fieldProps = useFormikCompatibleFieldProps({
-            error: inputProps.error,
-            field,
-            isTouched: fieldState.isTouched,
-            name,
-            onChangeHandler,
-            setError,
-            setValue,
-            trigger,
-        });
+        const fieldProps = useMemo<FormFieldHelperProps>(
+            () => ({
+                field,
+                meta: {
+                    error: fieldState.error?.message,
+                },
+            }),
+            [field, fieldState.error?.message]
+        );
 
         return (
             <div css={{ width: '100%' }} className={className}>
@@ -138,13 +132,13 @@ export const TypedField = forwardRef<HTMLInputElement, TypedFieldProps>(
                     <>
                         {Children.map(children, child => {
                             if (isValidElement<any>(child)) {
-                                const formikProps: FieldProps<any> = {
+                                const formProps: FieldProps<any> = {
                                     ...fieldProps,
                                     id: (child?.type as FC)?.displayName !== 'Legend' ? name : '',
                                     ...inputProps,
                                     ...child.props,
                                 };
-                                return cloneElement(child, { ...formikProps });
+                                return cloneElement(child, { ...formProps });
                             }
                         })}
                     </>
@@ -167,7 +161,5 @@ export const TypedField = forwardRef<HTMLInputElement, TypedFieldProps>(
         );
     }
 );
-
-TypedField.displayName = 'TypedField';
 
 export default TypedField;
