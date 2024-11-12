@@ -1,8 +1,8 @@
+import { type FormFieldHelperProps } from '@ensi-platform/core-components-common';
 import { type FormControlProps } from '@ensi-platform/core-components-form-control';
 
 import { type CSSObject } from '@emotion/react';
 
-import { type FieldInputProps, type FieldMetaProps } from 'formik';
 import { type HTMLProps, type ReactNode, type Ref } from 'react';
 
 interface ITextareaInputProps {
@@ -84,14 +84,11 @@ interface ITextareaFieldProps {
      * Значение поля ввода
      */
     value?: string;
-    /** field object (inner) */
-    field?: FieldInputProps<string>;
-    /** meta object (inner) */
-    meta?: FieldMetaProps<any>;
 }
 
 export interface ITextareaProps
     extends Omit<HTMLProps<HTMLDivElement>, 'ref' | 'size' | 'value' | 'label'>,
+        Partial<FormFieldHelperProps<string>>,
         ITextareaInputProps,
         ITextareaFieldProps {
     /** Minimum number of visible rows */

@@ -1,5 +1,5 @@
 import {
-    type FormFieldDescendantProps,
+    type FormFieldHelperProps,
     IconSmallEye,
     IconSmallEyeOff,
     defaultTheme,
@@ -10,7 +10,7 @@ import { type HTMLProps, useState } from 'react';
 
 const { colors } = defaultTheme;
 
-export interface PasswordProps extends HTMLProps<HTMLInputElement>, FormFieldDescendantProps {
+export interface PasswordProps extends HTMLProps<HTMLInputElement>, Partial<FormFieldHelperProps<string>> {
     /** Custom icon */
     Icon?: () => JSX.Element;
 }

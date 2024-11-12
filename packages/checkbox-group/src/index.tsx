@@ -5,7 +5,7 @@ import {
     type CheckboxVariant,
     checkboxThemes,
 } from '@ensi-platform/core-components-checkbox';
-import { type FormFieldDescendantProps, scale, useThemeCSSPart } from '@ensi-platform/core-components-common';
+import { type FormFieldHelperProps, scale, useThemeCSSPart } from '@ensi-platform/core-components-common';
 
 import {
     type CSSProperties,
@@ -19,7 +19,7 @@ import {
     useRef,
 } from 'react';
 
-export interface CheckboxGroupProps extends FormFieldDescendantProps<string[]> {
+export interface CheckboxGroupProps extends Partial<FormFieldHelperProps<string[]>> {
     /** Заголовок группы */
     label?: string;
 

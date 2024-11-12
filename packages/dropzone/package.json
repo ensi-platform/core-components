@@ -19,12 +19,9 @@
     "dependencies": {
         "tslib": "^2.6.2",
         "react-dropzone": "11.7.1",
-        "react-beautiful-dnd": "^13.1.1",
+        "@hello-pangea/dnd": "^16.6.0",
         "@ensi-platform/core-components-common": "^1.0.0",
         "@ensi-platform/core-components-loading-skeleton": "^1.0.0",
         "@ensi-platform/core-components-form-control": "^1.0.0"
-    },
-    "devDependencies": {
-        "@types/react-beautiful-dnd": "^13.1.8"
     }
 }

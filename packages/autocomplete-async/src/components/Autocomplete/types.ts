@@ -6,8 +6,8 @@ import type { SelectWithTagsProps } from '@ensi-platform/core-components-select-
 import { type ChangeEvent, type FC, type ReactNode, type RefAttributes } from 'react';
 
 export interface IAutocompleteProps
-    extends SelectThemeProps,
-        Omit<SelectProps, 'Field' | 'nativeSelect' | 'options'>,
+    extends Omit<SelectThemeProps, 'options'>,
+        Omit<SelectProps, 'Field' | 'nativeSelect'>,
         Partial<
             Pick<
                 SelectWithTagsProps,
