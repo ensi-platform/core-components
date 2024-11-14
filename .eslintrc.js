@@ -31,7 +31,6 @@ module.exports = {
     plugins: ['react', '@typescript-eslint'],
     rules: {
         '@typescript-eslint/consistent-type-imports': [1, { fixStyle: 'separate-type-imports' }],
-        // 'import/consistent-type-specifier-style': ['error', 'prefer-top-level'],
         'import/no-duplicates': ['error', { 'prefer-inline': true }],
         'import/no-cycle': 0,
         'react/react-in-jsx-scope': 0,
