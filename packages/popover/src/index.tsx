@@ -2,9 +2,9 @@ import { defaultTheme } from '@ensi-platform/core-components-common';
 import { Portal } from '@ensi-platform/core-components-portal';
 import { Stack, stackingOrder } from '@ensi-platform/core-components-stack';
 
-import { type CSSObject } from '@emotion/react';
+import type { CSSObject } from '@emotion/react';
 import { ResizeObserver as ResizeObserverPolyfill } from '@juggle/resize-observer';
-import { type BasePlacement, type ModifierArguments, type Obj, type VariationPlacement } from '@popperjs/core';
+import type { BasePlacement, ModifierArguments, Obj, VariationPlacement } from '@popperjs/core';
 
 import maxSize from 'popper-max-size-modifier';
 import {

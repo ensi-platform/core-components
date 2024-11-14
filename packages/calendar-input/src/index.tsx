@@ -19,7 +19,7 @@ import { DateRangeInput } from './components/date-range-input';
 import { TimeInput } from './components/time-input';
 import { createMaskOptions } from './mask';
 import { DATE_RANGE_SEPARATOR, DEFAULT_MAX_DATE, DEFAULT_MIN_DATE, HOURS_MINUTES_SEPARATOR } from './scripts/constants';
-import { type BaseCalendarInputProps } from './types';
+import type { BaseCalendarInputProps } from './types';
 
 export const CalendarInput = forwardRef<HTMLInputElement, BaseCalendarInputProps>(
     (

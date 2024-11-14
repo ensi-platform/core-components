@@ -1,4 +1,4 @@
-import { type SVGProps } from 'react';
+import type { SVGProps } from 'react';
 
 export const IconSpinner = ({ title, ...props }: SVGProps<SVGSVGElement> & { title?: string }) => (
     <svg

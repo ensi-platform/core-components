@@ -1,6 +1,6 @@
 import { defaultTokens, scale, useMedia } from '@ensi-platform/core-components-common';
 
-import { type ReactNode } from 'react';
+import type { ReactNode } from 'react';
 
 export interface BlockBodyFluidProps {
     className?: string;

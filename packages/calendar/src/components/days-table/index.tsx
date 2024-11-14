@@ -6,7 +6,7 @@ import { CSSTransition as CSSTransitionTyped, TransitionGroup as TransitionGroup
 
 import useCalendarTheme from '../../scripts/useCalendarTheme';
 import { WEEKDAYS, getSelectionRange } from '../../scripts/utils';
-import { type Day } from '../../types';
+import type { Day } from '../../types';
 
 const TransitionGroup = TransitionGroupTyped as never as (props: any) => JSX.Element;
 const CSSTransition = CSSTransitionTyped as never as (props: any) => JSX.Element;

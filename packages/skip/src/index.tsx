@@ -1,8 +1,8 @@
 import { defaultTheme, scale } from '@ensi-platform/core-components-common';
 
-import { type CSSObject } from '@emotion/react';
+import type { CSSObject } from '@emotion/react';
 
-import { type SkipProps } from './types';
+import type { SkipProps } from './types';
 
 export * from './types';
 

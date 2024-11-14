@@ -1,7 +1,7 @@
 import { type OptionizedCSS, defaultTheme, extractCSSOption, scale } from '@ensi-platform/core-components-common';
 
 // eslint-disable-next-line import/no-cycle
-import { type TabsSize, type TabsTheme } from '../../types';
+import type { TabsSize, TabsTheme } from '../../types';
 
 const { colors, typography } = defaultTheme;
 

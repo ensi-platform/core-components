@@ -1,4 +1,4 @@
-import { type CSSObject } from '@emotion/react';
+import type { CSSObject } from '@emotion/react';
 import type { Meta, StoryObj } from '@storybook/react';
 
 import type { ComponentProps } from 'react';

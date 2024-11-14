@@ -1,13 +1,13 @@
 import { useCheckboxLikeControlHookRHF, useThemeCSSPart } from '@ensi-platform/core-components-common';
 
-import { type CSSObject } from '@emotion/react';
+import type { CSSObject } from '@emotion/react';
 
 import deepmerge from 'deepmerge';
 import { useMemo, useRef } from 'react';
 import mergeRefs from 'react-merge-refs';
 
 import { switcherThemes } from './themes';
-import { type SwitcherProps, type SwitcherThemeState } from './types';
+import type { SwitcherProps, SwitcherThemeState } from './types';
 
 export * from './types';
 

@@ -1,4 +1,4 @@
-import { type HTMLProps, type SVGProps } from 'react';
+import type { HTMLProps, SVGProps } from 'react';
 
 export interface FormMessageProps extends HTMLProps<HTMLDivElement> {
     /** Error text */

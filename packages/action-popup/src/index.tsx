@@ -13,7 +13,7 @@ import { Content, Popup } from '@ensi-platform/core-components-popup';
 import { type ReactNode, useMemo } from 'react';
 
 import { ActionEnum, ThemesEnum } from './scripts/enums';
-import { type IActionPopupProps } from './types';
+import type { IActionPopupProps } from './types';
 
 const { colors, typography, theme } = defaultTheme;
 

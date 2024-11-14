@@ -1,6 +1,6 @@
 import { defaultTheme, typography } from '@ensi-platform/core-components-common';
 
-import { type PriceSizes, type PriceVariants } from '../scripts';
+import type { PriceSizes, PriceVariants } from '../scripts';
 import type { PriceThemeType } from '../types';
 
 const { colors } = defaultTheme;

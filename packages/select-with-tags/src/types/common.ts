@@ -1,5 +1,5 @@
-import { type SelectItem } from '@ensi-platform/core-components-select';
-import { type ITagProps } from '@ensi-platform/core-components-tags';
+import type { SelectItem } from '@ensi-platform/core-components-select';
+import type { ITagProps } from '@ensi-platform/core-components-tags';
 
 import type { FC } from 'react';
 

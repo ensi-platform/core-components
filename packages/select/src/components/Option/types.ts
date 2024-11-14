@@ -1,7 +1,7 @@
-import { type AriaAttributes, type FC, type ReactNode, type RefAttributes } from 'react';
+import type { AriaAttributes, FC, ReactNode, RefAttributes } from 'react';
 
-import { type SelectItem } from '../../types';
-import { type CheckmarkProps } from '../Checkmark/types';
+import type { SelectItem } from '../../types';
+import type { CheckmarkProps } from '../Checkmark/types';
 
 export interface OptionProps {
     /**

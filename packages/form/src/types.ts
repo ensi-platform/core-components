@@ -1,12 +1,12 @@
-import { type FC, type HTMLProps, type ReactNode } from 'react';
-import { type DefaultValues, type FieldValues, type UseFormProps, type UseFormReturn } from 'react-hook-form';
+import type { FC, HTMLProps, ReactNode } from 'react';
+import type { DefaultValues, FieldValues, UseFormProps, UseFormReturn } from 'react-hook-form';
 import type { AnyObjectSchema } from 'yup';
 
-import { type FormFieldProps } from './components/Field/types';
+import type { FormFieldProps } from './components/Field/types';
 import type FormFieldArray from './components/FieldArray';
-import { type FormMessageProps } from './components/Message/types';
+import type { FormMessageProps } from './components/Message/types';
 import type FormReset from './components/Reset';
-import { type TypedFieldProps } from './components/TypedField/types';
+import type { TypedFieldProps } from './components/TypedField/types';
 
 export type NumberFieldValue = number | '';
 

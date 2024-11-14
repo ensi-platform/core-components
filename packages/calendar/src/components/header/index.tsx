@@ -7,9 +7,9 @@ import {
     useLinkCSS,
 } from '@ensi-platform/core-components-common';
 
-import { type MouseEvent } from 'react';
+import type { MouseEvent } from 'react';
 
-import { type SelectorView } from '../../types';
+import type { SelectorView } from '../../types';
 
 const { colors } = defaultTheme;
 

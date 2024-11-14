@@ -1,6 +1,6 @@
 import { IconCheck, useCheckboxLikeControlHookRHF, useThemeCSSPart } from '@ensi-platform/core-components-common';
 
-import { type CSSObject } from '@emotion/react';
+import type { CSSObject } from '@emotion/react';
 
 import deepmerge from 'deepmerge';
 import { forwardRef, useMemo, useRef } from 'react';

@@ -5,7 +5,7 @@ import { type MouseEvent, forwardRef, useCallback, useEffect, useMemo, useRef } 
 
 import { SelectThemeProvider } from '../../context';
 import { SELECT_THEMES } from '../../themes';
-import { type SelectItem, type SelectProps, type SelectThemeState } from '../../types';
+import type { SelectItem, SelectProps, SelectThemeState } from '../../types';
 import { useField, useList, useSelect } from './scripts/hooks';
 
 export const BaseSelect = forwardRef(

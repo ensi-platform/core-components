@@ -1,15 +1,15 @@
-import {
-    type BaseThemeState,
-    type StyleDefinition,
-    type ValueOrFunction,
-    type useCheckboxLikeControlHookType,
+import type {
+    BaseThemeState,
+    StyleDefinition,
+    ValueOrFunction,
+    useCheckboxLikeControlHookType,
 } from '@ensi-platform/core-components-common';
 
-import { type CSSObject } from '@emotion/react';
+import type { CSSObject } from '@emotion/react';
 
-import { type HTMLProps, type Ref } from 'react';
+import type { HTMLProps, Ref } from 'react';
 
-import { type switcherThemes } from './themes';
+import type { switcherThemes } from './themes';
 
 /**
  * Размеры переключателя

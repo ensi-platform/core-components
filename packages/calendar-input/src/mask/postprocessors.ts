@@ -1,4 +1,4 @@
-import { type MaskitoPostprocessor } from '@maskito/core';
+import type { MaskitoPostprocessor } from '@maskito/core';
 
 import { isDigit } from './utils';
 

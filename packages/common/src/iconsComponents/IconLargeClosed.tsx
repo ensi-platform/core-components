@@ -1,4 +1,4 @@
-import { type SVGProps } from 'react';
+import type { SVGProps } from 'react';
 
 export const IconLargeClosed = ({ title, ...props }: SVGProps<SVGSVGElement> & { title?: string }) => (
     <svg width={32} height={32} viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" {...props}>
