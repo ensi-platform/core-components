@@ -8,7 +8,7 @@ import {
     Option as DefaultOption,
     OptionsList as DefaultOptionsList,
 } from './components';
-import { type SelectProps } from './types';
+import type { SelectProps } from './types';
 
 export const SimpleSelect = forwardRef<HTMLDivElement, SelectProps>(
     (

@@ -1,4 +1,4 @@
-import { type CSSObject } from '@emotion/react';
+import type { CSSObject } from '@emotion/react';
 
 export const getDecimalPrecision = (num: number) => {
     const decimalPart = num.toString().split('.')[1];

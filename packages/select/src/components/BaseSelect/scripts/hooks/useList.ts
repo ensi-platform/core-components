@@ -4,8 +4,8 @@ import { ResizeObserver as ResizeObserverPolyfill } from '@juggle/resize-observe
 
 import { type RefObject, useCallback, useEffect } from 'react';
 
-import { type SelectProps } from '../../../../types';
-import { type useSelect } from './useSelect';
+import type { SelectProps } from '../../../../types';
+import type { useSelect } from './useSelect';
 
 type useSelectReturnType = ReturnType<typeof useSelect>;
 

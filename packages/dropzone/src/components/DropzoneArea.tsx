@@ -8,7 +8,7 @@ import {
 
 import { type HTMLAttributes, forwardRef } from 'react';
 
-import { type FileType } from './DropzoneFile';
+import type { FileType } from './DropzoneFile';
 
 interface DropzoneAreaProps extends HTMLAttributes<HTMLDivElement>, Partial<FormFieldHelperProps<FileType[]>> {
     inputFieldProps: HTMLAttributes<HTMLInputElement>;

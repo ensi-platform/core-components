@@ -1,6 +1,6 @@
 import { defaultTheme, scale } from '@ensi-platform/core-components-common';
 
-import { type CheckboxTheme } from './types';
+import type { CheckboxTheme } from './types';
 
 const outerSize = scale(5, true);
 

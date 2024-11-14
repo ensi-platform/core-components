@@ -6,7 +6,7 @@ import {
 } from 'downshift';
 import { useMemo, useRef } from 'react';
 
-import { type SelectItem, type SelectProps } from '../../../../types';
+import type { SelectItem, SelectProps } from '../../../../types';
 import { processOptions } from './utils';
 
 const itemToString = (option: SelectItem | null) => (option ? option.label : '');

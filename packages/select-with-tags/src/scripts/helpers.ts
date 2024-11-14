@@ -1,6 +1,6 @@
-import { type SelectItem } from '@ensi-platform/core-components-select';
+import type { SelectItem } from '@ensi-platform/core-components-select';
 
-import { type OptionMatcher, type SelectWithTagsProps } from '../types';
+import type { OptionMatcher, SelectWithTagsProps } from '../types';
 
 const getElementSize = (element: HTMLElement, property: string): number => {
     const size = +window.getComputedStyle(element).getPropertyValue(property).replace('px', '');

@@ -9,7 +9,7 @@ import { Footer } from './components/Footer';
 import { Header } from './components/Header';
 import { DrawerThemeProvider } from './context';
 import { drawerThemes } from './themes/defaultTheme';
-import { type DrawerProps, type DrawerThemeState } from './types';
+import type { DrawerProps, DrawerThemeState } from './types';
 
 const DrawerComponent = forwardRef<HTMLDivElement, DrawerProps>(
     (

@@ -1,5 +1,5 @@
 import { GlobalStore } from './GlobalStore';
-import { type ModalStore, type SavedStyle } from './ModalStore';
+import type { ModalStore, SavedStyle } from './ModalStore';
 
 export type { SavedStyle };
 

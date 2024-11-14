@@ -1,4 +1,4 @@
-import { type FormFieldProps } from '@ensi-platform/core-components-form';
+import type { FormFieldProps } from '@ensi-platform/core-components-form';
 
 export type DataType = 'string' | 'number';
 

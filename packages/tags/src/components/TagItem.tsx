@@ -2,7 +2,7 @@ import { IconSmallClosed, defaultTheme, scale } from '@ensi-platform/core-compon
 
 import { forwardRef, useMemo } from 'react';
 
-import { type ITagProps } from '../types';
+import type { ITagProps } from '../types';
 
 const { colors, typography } = defaultTheme;
 

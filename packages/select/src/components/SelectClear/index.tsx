@@ -3,7 +3,7 @@ import { IconSmallClosed, defaultTheme, scale } from '@ensi-platform/core-compon
 import { type FC, useCallback, useRef } from 'react';
 import mergeRefs from 'react-merge-refs';
 
-import { type FieldProps } from '../../types';
+import type { FieldProps } from '../../types';
 import { Field as DefaultField } from '../Field';
 
 const { colors } = defaultTheme;

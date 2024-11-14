@@ -1,5 +1,5 @@
 import { type FormFieldHelperProps, defaultTheme } from '@ensi-platform/core-components-common';
-import { type InputProps } from '@ensi-platform/core-components-input';
+import type { InputProps } from '@ensi-platform/core-components-input';
 import {
     BaseSelect,
     Arrow as DefaultArrow,
@@ -16,7 +16,7 @@ import mergeRefs from 'react-merge-refs';
 
 import { Clear } from '../Clear';
 import { AutocompleteField } from '../Field';
-import { type IAutocompleteProps } from './types';
+import type { IAutocompleteProps } from './types';
 
 const { colors } = defaultTheme;
 

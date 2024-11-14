@@ -1,8 +1,8 @@
-import { type FocusEvent, type ForwardedRef, type KeyboardEvent, type MouseEvent, type RefObject } from 'react';
+import type { FocusEvent, ForwardedRef, KeyboardEvent, MouseEvent, RefObject } from 'react';
 import mergeRefs from 'react-merge-refs';
 
-import { type SelectProps } from '../../../../types';
-import { type useSelect } from './useSelect';
+import type { SelectProps } from '../../../../types';
+import type { useSelect } from './useSelect';
 
 type useSelectReturnType = ReturnType<typeof useSelect>;
 

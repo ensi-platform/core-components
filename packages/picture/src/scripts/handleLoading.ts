@@ -1,6 +1,6 @@
-import { type MutableRefObject } from 'react';
+import type { MutableRefObject } from 'react';
 
-import { type ImgElementWithDataProp, type OnLoad, type OnLoadingComplete, type PlaceholderValue } from '../types';
+import type { ImgElementWithDataProp, OnLoad, OnLoadingComplete, PlaceholderValue } from '../types';
 
 const warnings = new Set();
 const warnOnce =

@@ -1,11 +1,11 @@
 import { IconBigClosed, scale } from '@ensi-platform/core-components-common';
 
-import { type CSSObject } from '@emotion/react';
+import type { CSSObject } from '@emotion/react';
 
 import { Children, cloneElement, isValidElement, useCallback, useEffect, useMemo, useRef, useState } from 'react';
 
 import TagItem from './components/TagItem';
-import { type ITagsCompositionProps, type ITagsProps } from './types';
+import type { ITagsCompositionProps, ITagsProps } from './types';
 
 /**
  * Wrapper for nameplates list

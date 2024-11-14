@@ -5,7 +5,7 @@ import { Children, type FC, cloneElement, forwardRef, isValidElement, useCallbac
 import { useController, useFormContext } from 'react-hook-form';
 
 import useForm from '../../hooks/useForm';
-import { type FieldProps, type FormFieldProps } from './types';
+import type { FieldProps, FormFieldProps } from './types';
 
 const FormField = forwardRef<HTMLInputElement, FormFieldProps>(
     ({ name, children, size = 'md', className, wrapperCSS, block = true, ...props }, ref) => {

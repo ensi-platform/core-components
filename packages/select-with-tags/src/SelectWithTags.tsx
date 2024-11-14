@@ -12,7 +12,7 @@ import { type ChangeEvent, forwardRef, useCallback, useMemo, useRef, useState } 
 
 import { TagList } from './components';
 import { filterOptions } from './scripts/helpers';
-import { type SelectWithTagsProps } from './types';
+import type { SelectWithTagsProps } from './types';
 
 export const SimpleSelectWithTags = forwardRef<HTMLDivElement, SelectWithTagsProps>(
     (

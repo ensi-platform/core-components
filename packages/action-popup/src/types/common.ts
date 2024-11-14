@@ -1,6 +1,6 @@
-import { type ReactNode } from 'react';
+import type { ReactNode } from 'react';
 
-import { type ActionEnum, type ThemesEnum } from '../scripts/enums';
+import type { ActionEnum, ThemesEnum } from '../scripts/enums';
 
 export type ActionState = {
     onAction: () => Promise<any> | void;

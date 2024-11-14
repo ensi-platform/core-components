@@ -1,4 +1,4 @@
-import { type SelectItem, type SelectProps } from '../../../../types';
+import type { SelectItem, SelectProps } from '../../../../types';
 
 export const isOptionShape = (item: SelectItem | string | null): item is SelectItem =>
     !!item && Object.prototype.hasOwnProperty.call(item, 'label');

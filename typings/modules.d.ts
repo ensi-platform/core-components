@@ -1,7 +1,7 @@
 /// <reference types="@emotion/react/types/css-prop" />
 
 declare module '*.svg' {
-    import { type SVGRIcon } from '@customTypes/index';
+    import type { SVGRIcon } from '@customTypes/index';
 
     const SVG: SVGRIcon;
     export default SVG;

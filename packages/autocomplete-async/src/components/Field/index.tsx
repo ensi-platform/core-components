@@ -3,7 +3,7 @@ import { Input as DefaultInput } from '@ensi-platform/core-components-input';
 import { type MouseEvent, type Ref, useCallback, useMemo, useRef } from 'react';
 import mergeRefs from 'react-merge-refs';
 
-import { type AutocompleteFieldPropsType } from '../Autocomplete/types';
+import type { AutocompleteFieldPropsType } from '../Autocomplete/types';
 
 const EMPTY_OBJ = {};
 

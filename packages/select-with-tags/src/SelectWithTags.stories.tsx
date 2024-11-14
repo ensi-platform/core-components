@@ -1,8 +1,8 @@
 import { Button, scale } from '@ensi-platform/core-components-common';
 import { Form } from '@ensi-platform/core-components-form';
-import { type SelectItem, type SelectPayload } from '@ensi-platform/core-components-select';
+import type { SelectItem, SelectPayload } from '@ensi-platform/core-components-select';
 
-import { type StoryObj } from '@storybook/react';
+import type { StoryObj } from '@storybook/react';
 
 import { type ComponentProps, type SetStateAction, useCallback, useMemo, useState } from 'react';
 
