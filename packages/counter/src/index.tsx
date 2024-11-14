@@ -4,7 +4,7 @@ import { FormControl } from '@ensi-platform/core-components-form-control';
 import { type ChangeEvent, useEffect, useMemo, useState } from 'react';
 
 import { counterThemes } from './themes/defaultTheme';
-import { type CounterProps, type CounterThemeState } from './types';
+import type { CounterProps, CounterThemeState } from './types';
 
 export const Counter = ({
     name,

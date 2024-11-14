@@ -1,7 +1,7 @@
 import { useThemeCSSPart } from '@ensi-platform/core-components-common';
 import { Popover } from '@ensi-platform/core-components-popover';
 
-import { type CSSObject } from '@emotion/react';
+import type { CSSObject } from '@emotion/react';
 
 import deepmerge from 'deepmerge';
 import React, {
@@ -17,7 +17,7 @@ import React, {
 import mergeRefs from 'react-merge-refs';
 
 import { tooltipThemes } from './themes/defaultTheme';
-import { type TooltipProps, type TooltipThemeState, type Trigger } from './types';
+import type { TooltipProps, TooltipThemeState, Trigger } from './types';
 
 export * from './types';
 

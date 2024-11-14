@@ -1,14 +1,14 @@
 import { BaseModal } from '@ensi-platform/core-components-base-modal';
 import { useThemeCSSPart } from '@ensi-platform/core-components-common';
 
-import { type CSSObject } from '@emotion/react';
+import type { CSSObject } from '@emotion/react';
 
 import { forwardRef, useMemo, useRef } from 'react';
 import mergeRefs from 'react-merge-refs';
 
 import { PopupContextProvider } from './PopupContext';
 import { popupThemes } from './themes';
-import { type ModalDesktopProps, type PopupState, type View } from './types';
+import type { ModalDesktopProps, PopupState, View } from './types';
 
 const Popup = forwardRef<HTMLDivElement, ModalDesktopProps & { view: View }>(
     (

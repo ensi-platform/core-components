@@ -1,7 +1,7 @@
 import { IconStar, useIsFocusVisible, useThemeCSSPart } from '@ensi-platform/core-components-common';
 import { FormControl } from '@ensi-platform/core-components-form-control';
 
-import { type CSSObject } from '@emotion/react';
+import type { CSSObject } from '@emotion/react';
 
 import deepmerge from 'deepmerge';
 import { nanoid } from 'nanoid';
@@ -11,7 +11,7 @@ import mergeRefs from 'react-merge-refs';
 import { RatingStar } from './components/Star';
 import { VISUALLY_HIDDEN_CSS, clamp, roundValueToPrecision } from './scripts/helpers';
 import { ratingThemes } from './themes';
-import { type RatingProps, type RatingThemeState } from './types';
+import type { RatingProps, RatingThemeState } from './types';
 
 export * from './types';
 

@@ -1,8 +1,8 @@
-import { type SelectItem, type SelectPayload, type SelectProps } from '@ensi-platform/core-components-select';
+import type { SelectItem, SelectPayload, SelectProps } from '@ensi-platform/core-components-select';
 
 import type { ChangeEvent, ReactNode } from 'react';
 
-import { type TagComponent } from './common';
+import type { TagComponent } from './common';
 
 interface SelectWithTagsStates {
     /**

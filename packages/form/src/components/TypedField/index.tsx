@@ -1,4 +1,4 @@
-import { type FormFieldHelperProps } from '@ensi-platform/core-components-common';
+import type { FormFieldHelperProps } from '@ensi-platform/core-components-common';
 import { Input } from '@ensi-platform/core-components-input';
 
 import {
@@ -14,8 +14,8 @@ import {
 import { useController, useFormContext } from 'react-hook-form';
 
 import useForm from '../../hooks/useForm';
-import { type FieldProps } from '../Field/types';
-import { type DataType, type TypedFieldProps } from './types';
+import type { FieldProps } from '../Field/types';
+import type { DataType, TypedFieldProps } from './types';
 
 const transformFloatValue = (input: string): string => {
     let sanitizedString: string = input.trim();

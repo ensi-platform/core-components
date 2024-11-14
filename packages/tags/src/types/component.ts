@@ -1,6 +1,6 @@
-import { type CSSObject } from '@emotion/react';
+import type { CSSObject } from '@emotion/react';
 
-import { type HTMLProps, type ReactNode } from 'react';
+import type { HTMLProps, ReactNode } from 'react';
 
 import type TagItem from '../components/TagItem';
 

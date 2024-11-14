@@ -12,7 +12,7 @@ import FormMessage from './components/Message';
 import FormReset from './components/Reset';
 import TypedField from './components/TypedField';
 import { FormContext } from './hooks/useForm';
-import { type FormCompositionProps, type FormProps } from './types';
+import type { FormCompositionProps, FormProps } from './types';
 
 export const Form = <T extends FieldValues>({
     initialValues,

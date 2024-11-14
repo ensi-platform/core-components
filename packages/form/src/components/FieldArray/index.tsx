@@ -9,7 +9,7 @@ import {
 import { useFieldArray, useFormContext } from 'react-hook-form';
 
 import useForm from '../../hooks/useForm';
-import { type FieldArrayAddProps, type FieldArrayProps, type FieldArrayRemoveProps } from './types';
+import type { FieldArrayAddProps, FieldArrayProps, FieldArrayRemoveProps } from './types';
 
 const DefaultAddButton = (props: FieldArrayAddProps) => (
     <Button Icon={IconPlus} {...props}>

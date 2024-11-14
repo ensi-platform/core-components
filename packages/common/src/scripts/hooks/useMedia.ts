@@ -1,4 +1,4 @@
-import { type TokensInterface } from '../gds';
+import type { TokensInterface } from '../gds';
 
 type Breakpoint =
     | 'xxxl'

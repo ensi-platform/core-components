@@ -2,7 +2,7 @@ import { forwardRef, useMemo } from 'react';
 
 import { SimpleSelect } from './SimpleSelect';
 import { useSelectClear } from './components';
-import { type SelectItem, type SelectProps } from './types';
+import type { SelectItem, SelectProps } from './types';
 
 const getValue = (option: string | SelectItem) =>
     typeof option === 'object' && 'label' in option && 'value' in option ? option.value : option;

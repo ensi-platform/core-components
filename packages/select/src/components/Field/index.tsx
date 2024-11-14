@@ -4,8 +4,8 @@ import { FormControl, FormControlSize, FormControlVariant } from '@ensi-platform
 import { type ReactNode, cloneElement, isValidElement, useCallback, useMemo, useRef, useState } from 'react';
 
 import { useSelectTheme } from '../../context';
-import { type SelectItem } from '../../types';
-import { type FieldProps } from './types';
+import type { SelectItem } from '../../types';
+import type { FieldProps } from './types';
 
 const { colors } = defaultTheme;
 

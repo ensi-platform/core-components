@@ -1,7 +1,7 @@
-import { type FC, type MouseEvent, type ReactNode, type RefObject } from 'react';
+import type { FC, MouseEvent, ReactNode, RefObject } from 'react';
 
-import { type SelectItem, type SelectProps } from '../../types';
-import { type OptionProps } from '../Option/types';
+import type { SelectItem, SelectProps } from '../../types';
+import type { OptionProps } from '../Option/types';
 
 export type useVisibleOptionsArgs = {
     /**

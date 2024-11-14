@@ -1,9 +1,9 @@
-import { type FormFieldHelperProps } from '@ensi-platform/core-components-common';
-import { type FormControlProps } from '@ensi-platform/core-components-form-control';
+import type { FormFieldHelperProps } from '@ensi-platform/core-components-common';
+import type { FormControlProps } from '@ensi-platform/core-components-form-control';
 
-import { type CSSObject } from '@emotion/react';
+import type { CSSObject } from '@emotion/react';
 
-import { type HTMLProps, type ReactNode, type Ref } from 'react';
+import type { HTMLProps, ReactNode, Ref } from 'react';
 
 interface ITextareaInputProps {
     size?: FormControlProps['size'];

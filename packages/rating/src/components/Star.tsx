@@ -1,7 +1,7 @@
 import { forwardRef } from 'react';
 
 import { VISUALLY_HIDDEN_CSS } from '../scripts/helpers';
-import { type RatingStarProps } from '../types';
+import type { RatingStarProps } from '../types';
 
 export const RatingStar = forwardRef(
     (

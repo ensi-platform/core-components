@@ -1,4 +1,4 @@
-import { type CSSObject } from '@emotion/react';
+import type { CSSObject } from '@emotion/react';
 
 import deepmerge from 'deepmerge';
 import { useMemo } from 'react';

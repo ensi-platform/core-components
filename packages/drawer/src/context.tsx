@@ -2,13 +2,7 @@ import { type BaseThemeState, useThemeCSSPart } from '@ensi-platform/core-compon
 
 import { type FC, type ReactNode, createContext, useContext, useMemo } from 'react';
 
-import {
-    type DrawerSize,
-    type DrawerState,
-    type DrawerTheme,
-    type DrawerThemeState,
-    type DrawerVariant,
-} from './types';
+import type { DrawerSize, DrawerState, DrawerTheme, DrawerThemeState, DrawerVariant } from './types';
 
 const useFoo = () => useThemeCSSPart<Omit<DrawerThemeState, 'theme'>, DrawerTheme>(...([] as never as [any, any]));
 

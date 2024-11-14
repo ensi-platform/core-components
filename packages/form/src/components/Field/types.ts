@@ -1,8 +1,8 @@
-import { type InputProps } from '@ensi-platform/core-components-input';
+import type { InputProps } from '@ensi-platform/core-components-input';
 
-import { type CSSObject } from '@emotion/react';
+import type { CSSObject } from '@emotion/react';
 
-import { type ReactNode } from 'react';
+import type { ReactNode } from 'react';
 
 export interface FieldProps<T> {
     field?: {

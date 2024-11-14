@@ -5,7 +5,7 @@ import clamp from 'date-fns/clamp';
 import getDaysInMonth from 'date-fns/getDaysInMonth';
 
 import { DATE_MAX_VALUES, DATE_RANGE_SEPARATOR, DATE_TIME_SEPARATOR } from '../scripts/constants';
-import { type DateSegments, type DateTemplate } from '../types';
+import type { DateSegments, DateTemplate } from '../types';
 
 function fillMask(len: number) {
     return Array(len).fill(/\d/);

@@ -11,13 +11,7 @@ import { useCalendar } from './scripts/useCalendar';
 import { CalendarThemeContext } from './scripts/useCalendarTheme';
 import { limitDate, monthName } from './scripts/utils';
 import { сalendarThemes } from './themes/defaultTheme';
-import {
-    type CalendarProps,
-    type CalendarState,
-    type CalendarThemeContextProps,
-    type CalendarThemeState,
-    type View,
-} from './types';
+import type { CalendarProps, CalendarState, CalendarThemeContextProps, CalendarThemeState, View } from './types';
 
 export * from './types';
 export * from './scripts/utils';
