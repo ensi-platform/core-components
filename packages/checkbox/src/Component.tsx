@@ -1,4 +1,5 @@
 import { IconCheck, useThemeCSSPart } from '@ensi-platform/core-components-common';
+import { FormMessage } from '@ensi-platform/core-components-form-control';
 
 import { type CSSObject } from '@emotion/react';
 
@@ -22,13 +23,14 @@ export const Checkbox = forwardRef<HTMLLabelElement, ICheckboxProps>(
             checked,
             children,
             hint,
+            error,
 
-            align = 'start',
             block,
-            onChange,
-            className,
             disabled,
             indeterminate = false,
+
+            className,
+            align = 'start',
             variant = CheckboxVariant.primary,
             size = CheckboxSize.md,
 
@@ -37,11 +39,10 @@ export const Checkbox = forwardRef<HTMLLabelElement, ICheckboxProps>(
             boxCSS: boxCSSProp = DEFAULT_CSS,
             contentCSS: contentCSSProp = DEFAULT_CSS,
             hintCSS: hintCSSProp = DEFAULT_CSS,
-            errorCSS: errorCSSProp = DEFAULT_CSS,
             iconCSS: iconCSSProp = DEFAULT_CSS,
             indeterminateLineCSS: indeterminateLineCSSProp = DEFAULT_CSS,
 
-            error,
+            onChange,
             ...restProps
         },
         ref
@@ -85,10 +86,6 @@ export const Checkbox = forwardRef<HTMLLabelElement, ICheckboxProps>(
             [contentCSSProp, getCSS]
         );
         const hintCSS = useMemo(() => deepmerge.all<CSSObject>([getCSS('hint'), hintCSSProp]), [hintCSSProp, getCSS]);
-        const errorCSS = useMemo(
-            () => deepmerge.all<CSSObject>([getCSS('error'), errorCSSProp]),
-            [errorCSSProp, getCSS]
-        );
 
         const iconCSS = useMemo(() => deepmerge.all<CSSObject>([getCSS('icon'), iconCSSProp]), [iconCSSProp, getCSS]);
         const indeterminateLineCSS = useMemo(
@@ -116,11 +113,7 @@ export const Checkbox = forwardRef<HTMLLabelElement, ICheckboxProps>(
 
                         {hint && !error && <span css={hintCSS}>{hint}</span>}
 
-                        {error && (
-                            <span css={errorCSS} role="alert">
-                                {error}
-                            </span>
-                        )}
+                        {error && <FormMessage message={error} type="error" />}
                     </span>
                 )}
             </label>

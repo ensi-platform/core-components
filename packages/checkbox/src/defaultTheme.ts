@@ -78,9 +78,6 @@ const basicTheme: CheckboxTheme = {
     hint: {
         color: colors.grey400,
     },
-    error: {
-        color: colors.danger,
-    },
 };
 
 export const checkboxThemes = {

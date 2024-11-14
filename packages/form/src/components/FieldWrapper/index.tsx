@@ -1,8 +1,7 @@
 import { Children, cloneElement, forwardRef, isValidElement } from 'react';
 
 import { useFieldHook } from '../../hooks/useFieldHook';
-import { type IFieldValueType, type IFieldWrapperProps } from '../../types';
-import { type IFormFieldWrapperProps } from './types';
+import { type IFieldValueType, type IFieldWrapperProps, type IFormFieldWrapperProps } from './types';
 
 export const FormFieldWrapper = forwardRef<HTMLInputElement, IFormFieldWrapperProps>(
     ({ name, children, className, ...props }, ref) => {

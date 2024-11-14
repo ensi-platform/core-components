@@ -12,15 +12,15 @@ import { type IFormProps } from './types';
 export const Form = <T extends FieldValues>({
     initialValues,
     validationSchema,
-    onSubmit,
-    onReset,
     children: childrenProp,
-    enableReinitialize = false,
-    onChange,
-    isForm = true,
     mode = 'all',
     className,
-    disabled,
+    isForm = true,
+    enableReinitialize = false,
+    disabled = false,
+    onSubmit,
+    onReset,
+    onChange,
     ...props
 }: IFormProps<T>) => {
     const form = useForm<T>({
@@ -67,11 +67,12 @@ export const Form = <T extends FieldValues>({
     }, []);
 
     const providerValue = useMemo(() => ({ onChange: onChangeHandler, disabled }), [onChangeHandler, disabled]);
+
     return (
         <FormProvider {...form} reset={reset}>
             <FormContext.Provider value={providerValue}>
                 {isForm ? (
-                    <form onSubmit={onSubmitHandler} noValidate className={className}>
+                    <form className={className} onSubmit={onSubmitHandler} noValidate>
                         {children}
                     </form>
                 ) : (

@@ -15,6 +15,3 @@ export * from './components/FieldArray/types';
 
 export * from './components/Reset';
 export * from './components/Reset/types';
-
-export * from './components/Message';
-export * from './components/Message/types';

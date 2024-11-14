@@ -6,24 +6,25 @@ import {
     scale,
 } from '@ensi-platform/core-components-common';
 
+import { type FC } from 'react';
 import { useFieldArray, useFormContext } from 'react-hook-form';
 
 import useForm from '../../context/form';
-import { type FieldArrayAddProps, type FieldArrayProps, type FieldArrayRemoveProps } from './types';
+import { type IButtonProps, type IFieldArrayProps } from './types';
 
-const DefaultAddButton = (props: FieldArrayAddProps) => (
+const DefaultAddButton: FC<IButtonProps> = props => (
     <Button Icon={IconPlus} {...props}>
         Добавить
     </Button>
 );
 
-const DefaultRemoveButton = (props: FieldArrayRemoveProps) => (
+const DefaultRemoveButton: FC<IButtonProps> = props => (
     <Button Icon={IconTrash} theme="outline" hidden {...props}>
         Удалить
     </Button>
 );
 
-const FormFieldArray = ({
+export const FormFieldArray = ({
     AddButton = DefaultAddButton,
     RemoveButton = DefaultRemoveButton,
     name,
@@ -34,7 +35,7 @@ const FormFieldArray = ({
     children,
     childrenCol,
     ...props
-}: FieldArrayProps) => {
+}: IFieldArrayProps) => {
     const { control } = useFormContext();
     const { disabled } = useForm()!;
     const { fields, append, remove } = useFieldArray({

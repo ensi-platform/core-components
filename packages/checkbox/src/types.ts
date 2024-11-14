@@ -80,7 +80,6 @@ interface ICheckboxCSS {
     contentCSS?: CSSObject;
     hintCSS?: CSSObject;
     css?: CSSObject;
-    errorCSS?: CSSObject;
     labelCSS?: CSSObject;
     iconCSS?: CSSObject;
     indeterminateLineCSS?: CSSObject;

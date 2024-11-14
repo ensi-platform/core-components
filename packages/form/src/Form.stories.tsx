@@ -7,7 +7,7 @@ import { Form, FormField, FormReset, TypedField } from '.';
 import README from '../README.md';
 
 export default {
-    title: 'Controls / Form / index',
+    title: 'Controls / Form / Form',
     component: Form,
     parameters: {
         docs: {
@@ -16,19 +16,18 @@ export default {
             },
         },
     },
-
-    args: {
-        isForm: true,
-    },
-    argTypes: {
-        isForm: {
-            control: 'boolean',
-        },
-    },
+    argTypes: {},
 } as Meta<typeof Form>;
 
+const defaultProps: ComponentProps<typeof Form> = {
+    initialValues: {
+        field: '',
+        typedField: '',
+    },
+};
+
 export const Basic: StoryObj<ComponentProps<typeof Form> & { withIcon: boolean }> = {
-    args: {},
+    args: { ...defaultProps },
     render: ({ ...args }) => (
         <Form
             {...args}

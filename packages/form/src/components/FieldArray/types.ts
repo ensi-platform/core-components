@@ -2,20 +2,15 @@ import { type LayoutProps, type TokensInterface } from '@ensi-platform/core-comp
 
 import { type FC, type ReactNode } from 'react';
 
-export interface FieldArrayAddProps {
+export interface IButtonProps {
     onClick: () => void;
     disabled?: boolean;
 }
 
-export interface FieldArrayRemoveProps {
-    onClick: () => void;
-    disabled?: boolean;
-}
-
-export type FieldArrayProps = Omit<LayoutProps, 'reverse' | 'wrap' | 'children'> & {
+export type IFieldArrayProps = Omit<LayoutProps, 'reverse' | 'wrap' | 'children'> & {
     type?: 'grid';
-    AddButton?: FC<FieldArrayAddProps>;
-    RemoveButton?: FC<FieldArrayRemoveProps>;
+    AddButton?: FC<IButtonProps>;
+    RemoveButton?: FC<IButtonProps>;
     name: string;
     isAddedElement?: boolean;
     maxCount?: number;

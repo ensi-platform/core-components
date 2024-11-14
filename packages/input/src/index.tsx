@@ -244,34 +244,34 @@ export const Input = forwardRef<HTMLInputElement, InputProps & Partial<FormField
 
         return (
             <FormControl
-                htmlFor={htmlFor}
                 ref={wrapperRef}
+                label={label}
+                hint={hint}
+                error={error || meta?.error}
+                htmlFor={htmlFor}
+                labelWrap={labelWrap}
+                leftAddons={leftAddons}
+                rightAddons={renderRightAddons()}
+                filled={filled || autofilled || focused || !!placeholder?.length}
+                focused={focused}
+                block={block}
+                readOnly={readOnly}
+                disabled={disabled}
                 className={className}
                 css={{ cursor: disabled ? 'not-allowed' : 'text' }}
-                labelCSS={labelCSS}
                 theme={theme}
                 size={size}
                 variant={variant}
-                block={block}
-                disabled={disabled}
-                labelWrap={labelWrap}
-                readOnly={readOnly}
-                filled={filled || autofilled || focused || !!placeholder?.length}
-                focused={focused}
-                error={error || meta?.error}
-                label={label}
-                hint={hint}
-                leftAddons={leftAddons}
-                rightAddons={renderRightAddons()}
+                labelCSS={labelCSS}
                 bottomAddons={bottomAddons}
                 leftAddonsCSS={leftAddonsCSS}
                 rightAddonsCSS={rightAddonsCSS}
-                onClick={onClick}
-                onMouseDown={onMouseDown}
-                onMouseUp={onMouseUp}
                 showError={showError}
                 fieldCSS={fieldCSS}
                 wrapperCSS={wrapperCSS}
+                onClick={onClick}
+                onMouseDown={onMouseDown}
+                onMouseUp={onMouseUp}
             >
                 {innerLeftAddons}
                 <input
