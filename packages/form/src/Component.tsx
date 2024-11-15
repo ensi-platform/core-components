@@ -7,7 +7,7 @@ import deepEqual from 'react-fast-compare';
 import { type FieldValues, FormProvider, type NativeFieldValue, useForm } from 'react-hook-form';
 
 import { FormContext } from './context/form';
-import { type IFormProps } from './types';
+import type { IFormProps } from './types';
 
 export const Form = <T extends FieldValues>({
     initialValues,

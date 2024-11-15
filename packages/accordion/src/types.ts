@@ -5,7 +5,7 @@ import {
     useThemeCSSPart,
 } from '@ensi-platform/core-components-common';
 
-import { type HTMLProps, type ReactNode, type SVGProps } from 'react';
+import type { HTMLProps, ReactNode, SVGProps } from 'react';
 
 export const AccordionSize = {
     md: 'md',

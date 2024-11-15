@@ -1,9 +1,9 @@
 import type { FormControlProps } from '@ensi-platform/core-components-form-control';
 import type { InputProps } from '@ensi-platform/core-components-input';
-import { type FieldProps, type SelectProps, type SelectThemeProps } from '@ensi-platform/core-components-select';
+import type { FieldProps, SelectProps, SelectThemeProps } from '@ensi-platform/core-components-select';
 import type { SelectWithTagsProps } from '@ensi-platform/core-components-select-with-tags';
 
-import { type ChangeEvent, type FC, type ReactNode, type RefAttributes } from 'react';
+import type { ChangeEvent, FC, ReactNode, RefAttributes } from 'react';
 
 export interface IAutocompleteProps
     extends Omit<SelectThemeProps, 'options'>,

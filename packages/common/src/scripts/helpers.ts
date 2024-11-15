@@ -1,6 +1,6 @@
 import { format } from 'date-fns';
 import { ru } from 'date-fns/locale';
-import { type ParsedUrlQuery } from 'querystring';
+import type { ParsedUrlQuery } from 'querystring';
 
 import { DEFAULT_TIMEZONE, KOPECKS_IN_ROUBLE } from './constants';
 

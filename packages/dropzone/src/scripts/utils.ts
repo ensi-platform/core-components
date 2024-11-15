@@ -1,4 +1,4 @@
-import { type DropzoneProps } from 'react-dropzone';
+import type { DropzoneProps } from 'react-dropzone';
 
 import { DELIMITER } from './constants';
 

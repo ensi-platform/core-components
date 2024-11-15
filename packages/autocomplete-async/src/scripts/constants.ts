@@ -1,4 +1,4 @@
-import { type SelectItem } from '@ensi-platform/core-components-select';
+import type { SelectItem } from '@ensi-platform/core-components-select';
 
 export const DEBOUNCE_TIMEOUT = 300;
 

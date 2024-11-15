@@ -1,6 +1,6 @@
-import { type ChangeEvent, type MutableRefObject, type ReactNode } from 'react';
+import type { ChangeEvent, MutableRefObject, ReactNode } from 'react';
 
-import { type TagComponent } from '../../types';
+import type { TagComponent } from '../../types';
 
 export type TagListOwnProps = {
     value?: string;

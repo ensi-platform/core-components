@@ -1,4 +1,4 @@
-import { type FormFieldHelperProps } from '@ensi-platform/core-components-common';
+import type { FormFieldHelperProps } from '@ensi-platform/core-components-common';
 import { Input } from '@ensi-platform/core-components-input';
 
 import { type Ref, forwardRef, useEffect, useRef } from 'react';

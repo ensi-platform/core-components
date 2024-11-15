@@ -1,9 +1,9 @@
-import { type BaseThemeState, type StyleDefinition, type ValueOrFunction } from '@ensi-platform/core-components-common';
+import type { BaseThemeState, StyleDefinition, ValueOrFunction } from '@ensi-platform/core-components-common';
 import { type IFieldWrapperProps } from '@ensi-platform/core-components-form';
 
-import { type CSSObject } from '@emotion/react';
+import type { CSSObject } from '@emotion/react';
 
-import { type ChangeEventHandler, type FormEventHandler, type HTMLProps, type ReactNode } from 'react';
+import type { ChangeEventHandler, FormEventHandler, HTMLProps, ReactNode } from 'react';
 
 export type CheckboxValueType = string[] | boolean;
 

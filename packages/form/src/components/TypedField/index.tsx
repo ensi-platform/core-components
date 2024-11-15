@@ -4,7 +4,7 @@ import { type FormEvent, forwardRef, useCallback } from 'react';
 
 import { useFieldHook } from '../../hooks/useFieldHook';
 import { getValueByDataType, transformFloatValue } from './helpers';
-import { type ITypedFieldProps } from './types';
+import type { ITypedFieldProps } from './types';
 
 export const TypedField = forwardRef<HTMLInputElement, ITypedFieldProps>(
     ({ name, className, wrapperCSS, block = true, fieldType = 'positiveInt', dataType = 'number', ...props }, ref) => {

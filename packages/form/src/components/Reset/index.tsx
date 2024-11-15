@@ -3,7 +3,7 @@ import { Button } from '@ensi-platform/core-components-common';
 import type { MouseEvent } from 'react';
 import { useFormContext } from 'react-hook-form';
 
-import { type IFormResetProps } from './types';
+import type { IFormResetProps } from './types';
 
 export const FormReset = <T,>({ children, onClick, initialValues, ...props }: IFormResetProps<T>) => {
     const { reset } = useFormContext();

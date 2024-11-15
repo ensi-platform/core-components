@@ -5,7 +5,7 @@ import {
     useThemeCSSPart,
 } from '@ensi-platform/core-components-common';
 
-import { type ReactNode } from 'react';
+import type { ReactNode } from 'react';
 
 export const CalendarSize = {
     md: 'md',

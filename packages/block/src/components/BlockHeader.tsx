@@ -1,6 +1,6 @@
 import { defaultTheme, scale } from '@ensi-platform/core-components-common';
 
-import { type ReactNode } from 'react';
+import type { ReactNode } from 'react';
 
 export interface BlockHeaderProps {
     className?: string;

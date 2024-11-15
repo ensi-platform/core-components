@@ -1,4 +1,4 @@
-import { type InputProps } from '@ensi-platform/core-components-input';
+import type { InputProps } from '@ensi-platform/core-components-input';
 
 export type DataType = 'string' | 'number';
 export type FieldType = 'positiveInt' | 'positiveFloat';

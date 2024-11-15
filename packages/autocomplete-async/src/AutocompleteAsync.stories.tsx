@@ -1,6 +1,6 @@
 import { Button } from '@ensi-platform/core-components-common';
 import { Form } from '@ensi-platform/core-components-form';
-import { type Select, type SelectHandlers, type SelectItem } from '@ensi-platform/core-components-select';
+import type { Select, SelectHandlers, SelectItem } from '@ensi-platform/core-components-select';
 
 import type { StoryObj } from '@storybook/react';
 
@@ -10,7 +10,7 @@ import { type ChangeEvent, type ComponentProps, useCallback, useState } from 're
 import README from '../README.md';
 import { AutocompleteAsync } from './Component';
 import { Autocomplete, BaseAutocomplete } from './components';
-import { type IOptionsFetcherResponse } from './types';
+import type { IOptionsFetcherResponse } from './types';
 
 export default {
     title: 'Components / AutocompleteAsync',

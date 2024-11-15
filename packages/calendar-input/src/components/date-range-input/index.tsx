@@ -17,7 +17,7 @@ import {
     preventDefault,
     updateRange,
 } from '../../scripts/utils';
-import { type InnerDateRangeInputProps } from '../../types';
+import type { InnerDateRangeInputProps } from '../../types';
 
 export const DateRangeInput = forwardRef<HTMLInputElement, InnerDateRangeInputProps>(
     (

@@ -1,4 +1,4 @@
-import { type CheckmarkProps } from './types';
+import type { CheckmarkProps } from './types';
 
 // Если понадобится с реализацией чекбокса у выделенных элементов (вместо тегов)
 

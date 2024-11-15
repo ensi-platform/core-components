@@ -5,9 +5,9 @@ import {
     scale,
 } from '@ensi-platform/core-components-common';
 
-import { type FC } from 'react';
+import type { FC } from 'react';
 
-import { type FormMessageProps, type MessageIconProps } from './types';
+import type { FormMessageProps, MessageIconProps } from './types';
 
 const useMessageColor = (type: FormMessageProps['type']) => {
     const { colors } = defaultTheme;

@@ -10,7 +10,7 @@ import { type FC } from 'react';
 import { useFieldArray, useFormContext } from 'react-hook-form';
 
 import useForm from '../../context/form';
-import { type IButtonProps, type IFieldArrayProps } from './types';
+import type { IButtonProps, IFieldArrayProps } from './types';
 
 const DefaultAddButton: FC<IButtonProps> = props => (
     <Button Icon={IconPlus} {...props}>

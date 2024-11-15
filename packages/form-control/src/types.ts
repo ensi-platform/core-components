@@ -1,10 +1,10 @@
-import { type BaseThemeState, type StyleDefinition, type ValueOrFunction } from '@ensi-platform/core-components-common';
+import type { BaseThemeState, StyleDefinition, ValueOrFunction } from '@ensi-platform/core-components-common';
 
-import { type CSSObject } from '@emotion/react';
+import type { CSSObject } from '@emotion/react';
 
-import { type HTMLAttributes, type ReactNode } from 'react';
+import type { HTMLAttributes, ReactNode } from 'react';
 
-import { type formControlThemes } from './themes/defaultTheme';
+import type { formControlThemes } from './themes/defaultTheme';
 
 export enum FormControlSize {
     sm = 'sm',

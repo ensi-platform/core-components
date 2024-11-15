@@ -1,5 +1,5 @@
-import { type HTMLProps, type ReactNode } from 'react';
-import { type DefaultValues, type FieldValues, type UseFormProps, type UseFormReturn } from 'react-hook-form';
+import type { HTMLProps, ReactNode } from 'react';
+import type { DefaultValues, FieldValues, UseFormProps, UseFormReturn } from 'react-hook-form';
 import type { AnyObjectSchema } from 'yup';
 
 /**

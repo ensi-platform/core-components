@@ -1,4 +1,4 @@
-import { type HTMLProps } from 'react';
+import type { HTMLProps } from 'react';
 
 export interface FormMessageProps extends HTMLProps<HTMLDivElement> {
     /** Error text */

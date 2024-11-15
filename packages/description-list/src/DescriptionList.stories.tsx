@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
-import { type ComponentProps } from 'react';
+import type { ComponentProps } from 'react';
 
 import README from '../README.md';
 import { DescriptionList, type DescriptionListItemType } from './index';

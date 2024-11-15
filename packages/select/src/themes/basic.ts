@@ -1,6 +1,6 @@
 import { type OptionizedCSS, defaultTheme, extractCSSOption, scale } from '@ensi-platform/core-components-common';
 
-import { type SelectSize, type SelectTheme } from '../types';
+import type { SelectSize, SelectTheme } from '../types';
 
 const { colors, shadows, typography } = defaultTheme;
 

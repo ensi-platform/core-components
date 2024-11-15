@@ -9,7 +9,7 @@ import subYears from 'date-fns/subYears';
 import { type KeyboardEvent, type MouseEvent, type Ref, useCallback, useMemo, useRef, useState } from 'react';
 import mergeRefs from 'react-merge-refs';
 
-import { type DateShift, type Day, type DayAddons, type Month, type View } from '../types';
+import type { DateShift, Day, DayAddons, Month, View } from '../types';
 import {
     MONTHS_IN_YEAR,
     addonArrayToHashTable,

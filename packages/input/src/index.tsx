@@ -6,7 +6,7 @@ import {
 } from '@ensi-platform/core-components-common';
 import { FormControl, formControlThemes } from '@ensi-platform/core-components-form-control';
 
-import { type CSSObject } from '@emotion/react';
+import type { CSSObject } from '@emotion/react';
 
 import deepmerge from 'deepmerge';
 import {
@@ -24,7 +24,7 @@ import {
 } from 'react';
 import mergeRefs from 'react-merge-refs';
 
-import { type InputProps } from './types';
+import type { InputProps } from './types';
 
 export * from './types';
 

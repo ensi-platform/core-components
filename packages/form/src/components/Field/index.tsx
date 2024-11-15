@@ -3,7 +3,7 @@ import { Input } from '@ensi-platform/core-components-input';
 import { forwardRef } from 'react';
 
 import { useFieldHook } from '../../hooks/useFieldHook';
-import { type IFormFieldProps } from './types';
+import type { IFormFieldProps } from './types';
 
 export const FormField = forwardRef<HTMLInputElement, IFormFieldProps>(
     ({ name, className, wrapperCSS, block = true, ...props }, ref) => {
