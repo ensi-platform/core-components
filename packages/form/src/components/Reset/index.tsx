@@ -5,6 +5,9 @@ import { useFormContext } from 'react-hook-form';
 
 import type { IFormResetProps } from './types';
 
+/**
+ * Button with RHF's reset logic on click.
+ */
 export const FormReset = <T,>({ children, onClick, initialValues, ...props }: IFormResetProps<T>) => {
     const { reset } = useFormContext();
 

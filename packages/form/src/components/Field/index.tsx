@@ -5,6 +5,9 @@ import { forwardRef } from 'react';
 import { useFieldHook } from '../../hooks/useFieldHook';
 import type { IFormFieldProps } from './types';
 
+/**
+ * Field - is just Input, controlled with RHF
+ */
 export const FormField = forwardRef<HTMLInputElement, IFormFieldProps>(
     ({ name, className, wrapperCSS, block = true, ...props }, ref) => {
         const { fieldState, field, setFieldValue, onChangeHandler, inputProps } = useFieldHook({

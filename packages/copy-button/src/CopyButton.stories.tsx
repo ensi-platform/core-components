@@ -5,7 +5,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import type { ComponentProps } from 'react';
 
 import README from '../README.md';
-import CopyButton from './Component.tsx';
+import CopyButton from './Component';
 
 export default {
     title: 'Components / CopyButton',

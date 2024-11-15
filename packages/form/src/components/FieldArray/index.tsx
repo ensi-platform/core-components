@@ -24,16 +24,19 @@ const DefaultRemoveButton: FC<IButtonProps> = props => (
     </Button>
 );
 
+/**
+ * FieldArray - is a wrapper for an array of similar fields, controlled with RHF
+ */
 export const FormFieldArray = ({
-    AddButton = DefaultAddButton,
-    RemoveButton = DefaultRemoveButton,
     name,
     maxCount,
-    isAddedElement = true,
     initialValue,
     className,
     children,
     childrenCol,
+    AddButton = DefaultAddButton,
+    RemoveButton = DefaultRemoveButton,
+    canAddElement = true,
     ...props
 }: IFieldArrayProps) => {
     const { control } = useFormContext();
@@ -53,7 +56,7 @@ export const FormFieldArray = ({
                 return (
                     <Layout
                         key={el.id}
-                        cols={isAddedElement && !isOneField ? [1, `${scale(5)}px`] : 1}
+                        cols={canAddElement && !isOneField ? [1, `${scale(5)}px`] : 1}
                         css={{
                             alignItems: 'center',
                             marginBottom: scale(2),
@@ -63,7 +66,7 @@ export const FormFieldArray = ({
                         {...props}
                     >
                         <Layout.Item col={childrenCol}>{children({ name: `${name}[${index}]`, index })}</Layout.Item>
-                        {isAddedElement && !isOneField && (
+                        {canAddElement && !isOneField && (
                             <Layout.Item>
                                 <RemoveButton onClick={() => remove(index)} disabled={disabled} />
                             </Layout.Item>
@@ -71,7 +74,7 @@ export const FormFieldArray = ({
                     </Layout>
                 );
             })}
-            {isAddedElement && isInLimits && <AddButton onClick={() => append(initialValue)} disabled={disabled} />}
+            {canAddElement && isInLimits && <AddButton onClick={() => append(initialValue)} disabled={disabled} />}
         </div>
     );
 };

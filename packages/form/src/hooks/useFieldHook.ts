@@ -1,10 +1,12 @@
-import { useCallback, type SyntheticEvent } from 'react';
-
-import { useController, useFormContext, type NativeFieldValue } from 'react-hook-form';
+import { type SyntheticEvent, useCallback } from 'react';
+import { type NativeFieldValue, useController, useFormContext } from 'react-hook-form';
 
 import { type IFormFieldWrapperProps } from '../components/FieldWrapper/types';
 import useForm from '../context/form';
 
+/**
+ * Prepare props for controlled field by its name
+ */
 export const useFieldHook = ({ name }: Pick<IFormFieldWrapperProps, 'name'>) => {
     const { onChange, disabled } = useForm();
     const { control, setValue } = useFormContext();

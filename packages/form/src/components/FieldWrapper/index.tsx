@@ -3,6 +3,9 @@ import { Children, cloneElement, forwardRef, isValidElement } from 'react';
 import { useFieldHook } from '../../hooks/useFieldHook';
 import { type IFieldValueType, type IFieldWrapperProps, type IFormFieldWrapperProps } from './types';
 
+/**
+ * FieldWrapper - is a wrapper for any field, controlled with RHF
+ */
 export const FormFieldWrapper = forwardRef<HTMLInputElement, IFormFieldWrapperProps>(
     ({ name, children, className, ...props }, ref) => {
         const { fieldState, setFieldValue, field, onChangeHandler, inputProps } = useFieldHook({

@@ -9,6 +9,9 @@ import { type FieldValues, FormProvider, type NativeFieldValue, useForm } from '
 import { FormContext } from './context/form';
 import type { IFormProps } from './types';
 
+/**
+ * Form - is a wrapper for RHF's form initialization logic
+ */
 export const Form = <T extends FieldValues>({
     initialValues,
     validationSchema,

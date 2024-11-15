@@ -2,24 +2,22 @@ To simplify working with forms, we use the library [react-hook-form](https://rea
 To validate fields we use [Yup](https://github.com/jquense/yup)
 
 ### Form component
-**Form** - is a wrapper for [RHF's](https://react-hook-form.com/) [`FormProvider`](https://react-hook-form.com/docs/formprovider), to which we pass all props, received from [`useForm`](https://react-hook-form.com/docs/useform) hook.   
+**Form** - is a wrapper for [RHF's](https://react-hook-form.com/) form initialization logic.  
+It contains <a href="https://react-hook-form.com/docs/formprovider" target="_blank">`FormProvider`</a>, to which we pass all props, received from called right here <a href="https://react-hook-form.com/docs/useform" target="_blank">`useForm`</a> hook.   
 
 There are several special components for use inside the form:
-- FieldWrapper
-- Field
-- TypedField
-- FieldArray
-- Reset
 
-### FieldWrapper
+**FieldWrapper** − is a wrapper for any field, controlled with RHF. It pass necessary field props from <a href="https://react-hook-form.com/docs/usecontroller" target="_blank">`useController`</a> hook, important prop to change field value - `setFieldValue`, and some common props from the form context like `onChange` and `disabled`.
 
-### Field
+**Field** − is just `FieldWrapper` around `Input`, so it is commonly used 'field'.
 
-### TypedField
+**TypedField** − is just `Field` with onBlur-transformations according to special `fieldType` prop.
 
-### FieldArray
+**FieldArray** − is a wrapper for an array of similar fields, controlled with RHF. It implements special logic for an array from <a href="https://react-hook-form.com/docs/usefieldarray" target="_blank">`useFieldArray`</a> hook.
 
-### Reset
+**Reset** − is button with RHF's reset logic on click.
 
-### Example of using other components inside forms
+### Common questions
+
+### Example of using other components inside form
 

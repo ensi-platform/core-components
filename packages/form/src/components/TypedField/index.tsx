@@ -6,6 +6,9 @@ import { useFieldHook } from '../../hooks/useFieldHook';
 import { getValueByDataType, transformFloatValue } from './helpers';
 import type { ITypedFieldProps } from './types';
 
+/**
+ * TypedField - is just Input, controlled with RHF, with onBlur-transformations according to fieldType prop
+ */
 export const TypedField = forwardRef<HTMLInputElement, ITypedFieldProps>(
     ({ name, className, wrapperCSS, block = true, fieldType = 'positiveInt', dataType = 'number', ...props }, ref) => {
         const { fieldState, field, onChange, setFieldValue, inputProps } = useFieldHook({

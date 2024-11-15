@@ -2,20 +2,53 @@ import type { LayoutProps, TokensInterface } from '@ensi-platform/core-component
 
 import type { FC, ReactNode } from 'react';
 
+/**
+ * Interface for append and remove buttons
+ */
 export interface IButtonProps {
     onClick: () => void;
     disabled?: boolean;
 }
 
 export type IFieldArrayProps = Omit<LayoutProps, 'reverse' | 'wrap' | 'children'> & {
-    type?: 'grid';
-    AddButton?: FC<IButtonProps>;
-    RemoveButton?: FC<IButtonProps>;
+    /**
+     * Array entity name
+     */
     name: string;
-    isAddedElement?: boolean;
-    maxCount?: number;
+    /**
+     * Array item content
+     */
     children: (args: { name: string; index: number }) => ReactNode | ReactNode[];
+    /**
+     * Max number of items in array
+     */
+    maxCount?: number;
+    /**
+     * Ability to add and remove items
+     */
+    canAddElement?: boolean;
+    /**
+     * Value for new added element
+     */
     initialValue?: any;
+    /**
+     * Root layout class name
+     */
     className?: string;
+    /**
+     * Col prop for layout item with children
+     */
     childrenCol?: TokensInterface['layout']['cols'];
+    /**
+     * Layout type
+     */
+    type?: 'grid';
+    /**
+     * Add button element
+     */
+    AddButton?: FC<IButtonProps>;
+    /**
+     * Remove button element
+     */
+    RemoveButton?: FC<IButtonProps>;
 };
