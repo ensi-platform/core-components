@@ -20,6 +20,28 @@ export default {
             },
         },
     },
+    argTypes: {
+        align: {
+            table: {
+                defaultValue: { summary: 'start' },
+                type: { summary: 'start | center' },
+            },
+            description: '',
+            control: 'radio',
+            options: ['start', 'center'],
+        },
+
+        disabled: {
+            table: {
+                type: { summary: 'boolean' },
+                defaultValue: { summary: false },
+            },
+            description: 'Flag responsible for disabling form',
+            control: {
+                type: 'boolean',
+            },
+        },
+    },
 } as Meta<typeof Checkbox>;
 
 export const Basic: StoryObj<ComponentProps<typeof Checkbox>> = {

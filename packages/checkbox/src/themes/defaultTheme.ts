@@ -1,6 +1,6 @@
 import { defaultTheme, scale } from '@ensi-platform/core-components-common';
 
-import type { CheckboxTheme } from './types';
+import type { CheckboxTheme } from '../types';
 
 const outerSize = scale(5, true);
 
@@ -13,6 +13,7 @@ const basicTheme: CheckboxTheme = {
         cursor: 'pointer',
         position: 'relative',
     }),
+
     icon: {
         position: 'absolute',
         top: outerSize / 2 - 1,
@@ -29,6 +30,7 @@ const basicTheme: CheckboxTheme = {
             fill: colors.grey600,
         },
     },
+
     box: ({ disabled, error, focused, checked }) => ({
         width: outerSize,
         height: outerSize,
@@ -55,6 +57,7 @@ const basicTheme: CheckboxTheme = {
                   },
               }),
     }),
+
     content: ({ disabled }) => ({
         minHeight: 19,
         display: 'block',
@@ -68,6 +71,7 @@ const basicTheme: CheckboxTheme = {
             cursor: 'not-allowed',
         }),
     }),
+
     indeterminateLine: {
         position: 'absolute',
         width: 10,

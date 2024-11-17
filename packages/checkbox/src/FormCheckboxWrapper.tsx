@@ -1,6 +1,6 @@
 import { type ChangeEvent, forwardRef, useCallback, useId, useRef } from 'react';
 
-import { checkboxThemes } from './defaultTheme';
+import { checkboxThemes } from './themes/defaultTheme';
 import { CheckboxSize, type CheckboxValueType, CheckboxVariant, type ICheckboxWrapperProps } from './types';
 
 export * from './types';

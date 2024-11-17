@@ -60,7 +60,6 @@ export default {
             },
             description:
                 "[RHF's prop](https://react-hook-form.com/docs/useform#mode) responsible for validation strategy",
-            summary: 'object',
             control: 'select',
             options: ['all', 'onSubmit', 'onBlur', 'onChange', 'onTouched'],
         },
@@ -125,7 +124,6 @@ export default {
                 type: { summary: 'function' },
             },
             description: 'Form submit handler',
-            type: { name: 'other', value: 'function', required: true },
         },
 
         onReset: {

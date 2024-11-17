@@ -7,8 +7,8 @@ import deepmerge from 'deepmerge';
 import { forwardRef, useMemo, useRef } from 'react';
 import mergeRefs from 'react-merge-refs';
 
-import { checkboxThemes } from './defaultTheme';
 import { useFocus } from './scripts/hooks';
+import { checkboxThemes } from './themes/defaultTheme';
 import { CheckboxSize, type CheckboxThemeState, CheckboxVariant, type ICheckboxProps } from './types';
 
 export * from './types';
