@@ -6,7 +6,7 @@ import README from '../README.md';
 import { Rating, type RatingProps } from './index';
 
 export default {
-    title: 'Controls / Form / Rating',
+    title: 'Components / Rating',
     component: Rating,
     parameters: {
         docs: {

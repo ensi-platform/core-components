@@ -8,7 +8,7 @@ import { FormControl } from './index';
 import { FormControlSize } from './types';
 
 export default {
-    title: 'Controls / FormControl',
+    title: 'Components / FormControl',
     component: FormControl,
     parameters: {
         docs: {

@@ -4,6 +4,9 @@ import { Checkbox } from './Component';
 import { CheckboxFormWrapper } from './FormCheckboxWrapper';
 import { type IFormCheckboxProps } from './types';
 
+/**
+ * Controlled by RHF checkbox component
+ */
 export const FormCheckbox = forwardRef<HTMLLabelElement, IFormCheckboxProps>(
     ({ value, onChange: onChangeProp, setFieldValue, field, fieldState, ...props }, ref) => (
         <CheckboxFormWrapper

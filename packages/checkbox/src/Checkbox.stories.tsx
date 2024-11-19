@@ -11,7 +11,7 @@ import README from '../README.md';
 import { Checkbox, FormCheckbox } from './index';
 
 export default {
-    title: 'Controls / Form / Checkbox',
+    title: 'Components / Checkbox',
     component: Checkbox,
     parameters: {
         docs: {

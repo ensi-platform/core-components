@@ -9,6 +9,9 @@ export { checkboxThemes, CheckboxSize, CheckboxVariant };
 
 const parseValue = (value?: CheckboxValueType) => (typeof value === 'undefined' ? false : value);
 
+/**
+ * Wrapper for controlling checkbox by RHF
+ */
 export const CheckboxFormWrapper = forwardRef<HTMLInputElement, ICheckboxWrapperProps>(
     ({ field, setFieldValue, error, value = '', children: childrenProp, onChange: onChangeProp }) => {
         const inputId = useId();

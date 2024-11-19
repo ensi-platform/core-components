@@ -7,7 +7,7 @@ import README from '../README.md';
 import { Dropzone } from './index';
 
 export default {
-    title: 'Controls / Dropzone',
+    title: 'Components / Dropzone',
     component: Dropzone,
     args: {
         onFilesChange: action('change'),

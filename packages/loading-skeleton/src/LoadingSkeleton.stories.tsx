@@ -8,7 +8,7 @@ import README from '../README.md';
 import { LoadingSkeleton, LoadingSkeletonSizes, LoadingSkeletonVariants, emptyCSS } from './index';
 
 export default {
-    title: 'Controls / LoadingSkeleton',
+    title: 'Components / LoadingSkeleton',
     component: LoadingSkeleton,
     parameters: {
         docs: {

@@ -1,9 +1,8 @@
-import { IconCheck, useThemeCSSPart } from '@ensi-platform/core-components-common';
+import { IconCheck, useMergeCSS, useThemeCSSPart } from '@ensi-platform/core-components-common';
 import { FormMessage } from '@ensi-platform/core-components-form-control';
 
 import { type CSSObject } from '@emotion/react';
 
-import deepmerge from 'deepmerge';
 import { forwardRef, useMemo, useRef } from 'react';
 import mergeRefs from 'react-merge-refs';
 
@@ -17,6 +16,9 @@ export { checkboxThemes, CheckboxSize, CheckboxVariant };
 
 const DEFAULT_CSS = {};
 
+/**
+ * Basic checkbox component
+ */
 export const Checkbox = forwardRef<HTMLLabelElement, ICheckboxProps>(
     (
         {
@@ -68,30 +70,20 @@ export const Checkbox = forwardRef<HTMLLabelElement, ICheckboxProps>(
 
         const getCSS = useThemeCSSPart(checkboxThemes.basic, themeState);
 
-        const containerCSS = useMemo(() => deepmerge.all<CSSObject>([getCSS('container'), css]), [css, getCSS]);
-        const labelCSS = useMemo(
-            () =>
-                deepmerge.all<CSSObject>([
-                    {
-                        display: 'block',
-                    },
-                    labelCSSProp,
-                ]),
-            [labelCSSProp]
+        const containerCSS = useMergeCSS(getCSS('container'), css);
+        const labelCSS = useMergeCSS(
+            {
+                display: 'block',
+            },
+            labelCSSProp
         );
 
-        const boxCSS = useMemo(() => deepmerge.all<CSSObject>([getCSS('box'), boxCSSProp]), [boxCSSProp, getCSS]);
-        const contentCSS = useMemo(
-            () => deepmerge.all<CSSObject>([getCSS('content'), contentCSSProp]),
-            [contentCSSProp, getCSS]
-        );
-        const hintCSS = useMemo(() => deepmerge.all<CSSObject>([getCSS('hint'), hintCSSProp]), [hintCSSProp, getCSS]);
+        const boxCSS = useMergeCSS(getCSS('box'), boxCSSProp);
+        const contentCSS = useMergeCSS(getCSS('content'), contentCSSProp);
+        const hintCSS = useMergeCSS(getCSS('hint'), hintCSSProp);
 
-        const iconCSS = useMemo(() => deepmerge.all<CSSObject>([getCSS('icon'), iconCSSProp]), [iconCSSProp, getCSS]);
-        const indeterminateLineCSS = useMemo(
-            () => deepmerge.all<CSSObject>([getCSS('indeterminateLine'), indeterminateLineCSSProp]),
-            [indeterminateLineCSSProp, getCSS]
-        );
+        const iconCSS = useMergeCSS(getCSS('icon'), iconCSSProp);
+        const indeterminateLineCSS = useMergeCSS(getCSS('indeterminateLine'), indeterminateLineCSSProp);
 
         const inputCSS = useMemo<CSSObject>(
             () => ({

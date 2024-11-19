@@ -6,7 +6,7 @@ import README from '../README.md';
 import { Switcher, type SwitcherProps } from './index';
 
 export default {
-    title: 'Controls / Form / Switcher',
+    title: 'Components / Switcher',
     component: Switcher,
     parameters: {
         docs: {

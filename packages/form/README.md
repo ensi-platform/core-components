@@ -19,5 +19,4 @@ There are several special components for use inside the form:
 
 ### Common questions
 
-### Example of using other components inside form
 

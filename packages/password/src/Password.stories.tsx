@@ -6,7 +6,7 @@ import README from '../README.md';
 import { Password } from './index';
 
 export default {
-    title: 'Controls / Form / Password',
+    title: 'Components / Password',
     component: Password,
     parameters: {
         docs: {

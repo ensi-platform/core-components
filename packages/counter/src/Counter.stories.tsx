@@ -8,7 +8,7 @@ import README from '../README.md';
 import { Counter } from './index';
 
 export default {
-    title: 'Controls / Form / Counter',
+    title: 'Components / Counter',
     component: Counter,
     args: {
         name: 'counter-knobs',

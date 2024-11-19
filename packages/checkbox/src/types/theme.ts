@@ -12,21 +12,38 @@ export const CheckboxVariant = {
     primary: 'primary',
 } as const;
 
+/**
+ * Interface of additional classes for checkbox
+ */
 export interface ICheckboxCSS {
     /**
-     * Доп. класс чекбокса
+     * Root container
+     */
+    css?: CSSObject;
+    /**
+     * Container with check icon
      */
     boxCSS?: CSSObject;
-
     /**
-     * Доп. класс контента
+     * Icon
+     */
+    iconCSS?: CSSObject;
+    /**
+     * Container for indeterminate state style
+     */
+    indeterminateLineCSS?: CSSObject;
+    /**
+     * Container with label, error message and hint
      */
     contentCSS?: CSSObject;
-    hintCSS?: CSSObject;
-    css?: CSSObject;
+    /**
+     * Container with label
+     */
     labelCSS?: CSSObject;
-    iconCSS?: CSSObject;
-    indeterminateLineCSS?: CSSObject;
+    /**
+     * Container with hint message
+     */
+    hintCSS?: CSSObject;
 }
 
 export type CheckboxThemeState = BaseThemeState<typeof CheckboxVariant, typeof CheckboxSize> & ICheckboxState;

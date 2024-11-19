@@ -9,7 +9,7 @@ import { Mask } from './index';
 const maskPhone = '+7(000) 000-00-00';
 
 export default {
-    title: 'Controls/ Form / Mask',
+    title: 'Components / Mask',
     component: Mask,
     args: { placeholderChar: '_', lazy: false, mask: maskPhone },
     argTypes: { placeholderChar: { control: 'text' }, lazy: { control: 'boolean' } },

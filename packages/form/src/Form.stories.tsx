@@ -18,7 +18,7 @@ const defaultProps: ComponentProps<typeof Form> = {
 };
 
 export default {
-    title: 'Controls / Form / Form',
+    title: 'Components / Form',
     component: Form,
     parameters: {
         docs: {

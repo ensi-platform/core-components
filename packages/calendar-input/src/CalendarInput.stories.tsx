@@ -9,7 +9,7 @@ import README from '../README.md';
 import { CalendarInput } from './index';
 
 export default {
-    title: 'Controls / CalendarInput',
+    title: 'Components / CalendarInput',
     component: CalendarInput,
     parameters: {
         docs: {

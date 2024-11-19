@@ -1,2 +1,2 @@
-# Компонент checkbox
-Основан на  [alfalab/core-components](https://github.com/alfa-laboratory/core-components)
+# Component checkbox
+Based on  [alfalab/core-components](https://github.com/alfa-laboratory/core-components)

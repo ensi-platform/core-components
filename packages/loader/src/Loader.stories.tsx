@@ -8,7 +8,7 @@ import README from '../README.md';
 import { Loader, LoaderSizes, LoaderVariants, emptyCSS } from './index';
 
 export default {
-    title: 'Controls / Loader',
+    title: 'Components / Loader',
     component: Loader,
     parameters: {
         docs: {

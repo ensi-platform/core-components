@@ -9,7 +9,7 @@ import README from '../README.md';
 import { Input } from './index';
 
 export default {
-    title: 'Controls / Input',
+    title: 'Components / Input',
     component: Input,
     parameters: {
         docs: {

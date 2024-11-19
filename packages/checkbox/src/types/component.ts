@@ -9,6 +9,9 @@ export type CheckboxValueType = string[] | boolean;
 
 type Align = 'start' | 'center';
 
+/**
+ * Interface for basic checkbox component to control it by form wrapper
+ */
 export interface ICheckboxWrapperReturn {
     id: string;
     error?: string;
@@ -16,6 +19,9 @@ export interface ICheckboxWrapperReturn {
     onChange: FormEventHandler<HTMLInputElement>;
 }
 
+/**
+ * Interface of wrapper for controlling checkbox by RHF
+ */
 export interface ICheckboxWrapperProps extends Partial<IFieldWrapperProps<CheckboxValueType>> {
     value?: string;
     children: (params: ICheckboxWrapperReturn) => ReactNode;
@@ -77,8 +83,7 @@ export interface ICheckboxProps
         ICheckboxParts {}
 
 /**
- * Interface for checkbox form component
- * controlled component, using with RHF
+ * Interface for checkbox, controlled by Form
  */
 export interface IFormCheckboxProps
     extends Omit<ICheckboxWrapperProps, 'children'>,
