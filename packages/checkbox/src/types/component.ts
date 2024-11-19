@@ -11,9 +11,9 @@ type Align = 'start' | 'center';
 
 export interface ICheckboxWrapperReturn {
     id: string;
+    error?: string;
     checked: boolean;
     onChange: FormEventHandler<HTMLInputElement>;
-    error?: string;
 }
 
 export interface ICheckboxWrapperProps extends Partial<IFieldWrapperProps<CheckboxValueType>> {
@@ -24,29 +24,35 @@ export interface ICheckboxWrapperProps extends Partial<IFieldWrapperProps<Checkb
 
 export interface ICheckboxState {
     /**
-     * Control indeterminate checkbox state
-     */
-    indeterminate?: boolean;
-    /**
-     * Control checkbox on/off state (native prop)
+     * Manage checkbox checked state (native prop)
      */
     checked?: boolean;
+
     /**
-     * Stretch component to it's full width
+     * Manage checkbox indeterminate state
      */
-    block?: boolean;
+    indeterminate?: boolean;
+
     /**
-     * Выравнивание
-     */
-    align?: Align;
-    /**
-     * Is input focused
+     * Manage focus(element select) state
      */
     focused?: boolean;
+
+    /**
+     * Checkbox horizontal alignment
+     */
+    align?: Align;
+
+    /**
+     * Use 100% of parent width
+     */
+    block?: boolean;
+
     /**
      * Is input disabled
      */
     disabled?: boolean;
+
     /**
      * Field error
      */
@@ -55,11 +61,14 @@ export interface ICheckboxState {
 
 interface ICheckboxParts {
     /**
-     *
+     * Text of the hint at the bottom of field
      */
     hint?: ReactNode;
 }
 
+/**
+ * Interface for common checkbox props
+ */
 export interface ICheckboxProps
     extends Omit<HTMLProps<HTMLInputElement>, 'size' | 'css'>,
         Partial<Omit<BaseThemeState<typeof CheckboxVariant, typeof CheckboxSize, CheckboxTheme>, 'theme'>>,
@@ -67,6 +76,10 @@ export interface ICheckboxProps
         ICheckboxCSS,
         ICheckboxParts {}
 
+/**
+ * Interface for checkbox form component
+ * controlled component, using with RHF
+ */
 export interface IFormCheckboxProps
     extends Omit<ICheckboxWrapperProps, 'children'>,
         Omit<ICheckboxProps, keyof Omit<ICheckboxWrapperProps, 'children'> | keyof ICheckboxWrapperReturn | 'ref'> {}

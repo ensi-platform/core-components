@@ -92,16 +92,27 @@ export const Checkbox = forwardRef<HTMLLabelElement, ICheckboxProps>(
             () => deepmerge.all<CSSObject>([getCSS('indeterminateLine'), indeterminateLineCSSProp]),
             [indeterminateLineCSSProp, getCSS]
         );
+
+        const inputCSS = useMemo<CSSObject>(
+            () => ({
+                position: 'absolute',
+                opacity: 0,
+                zIndex: -1,
+            }),
+            []
+        );
+
         return (
             <label className={className} css={containerCSS} ref={mergeRefs([labelRef, ref])}>
                 <input
                     type="checkbox"
-                    onChange={onChange}
-                    disabled={disabled}
+                    css={inputCSS}
                     checked={checked}
+                    disabled={disabled}
+                    onChange={onChange}
                     {...restProps}
-                    css={{ position: 'absolute', opacity: 0, zIndex: -1 }}
                 />
+
                 <span css={boxCSS}>
                     <IconCheck css={iconCSS} />
                     {indeterminate && !checked && <span css={indeterminateLineCSS} />}
