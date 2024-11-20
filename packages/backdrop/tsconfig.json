@@ -1,5 +1,5 @@
 {
-    "include": ["src", "../../typings", "README.md", "src/Backdrop.stories.tsx"],
+    "include": ["src", "../../typings", "src/Backdrop.stories.tsx", "../portal/src"],
     "extends": "../../tsconfig.json",
     "compilerOptions": {
         "outDir": "dist",

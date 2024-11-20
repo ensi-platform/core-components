@@ -18,5 +18,8 @@
         "react-transition-state": "^2.1.1",
         "tslib": "^2.6.2",
         "@ensi-platform/core-components-common": "^1.0.0"
+    },
+    "devDependencies": {
+        "@ensi-platform/core-components-portal": "^1.0.0"
     }
 }
