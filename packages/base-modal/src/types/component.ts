@@ -1,33 +1,37 @@
-import type { BackdropProps } from '@ensi-platform/core-components-backdrop';
-import type { PortalProps } from '@ensi-platform/core-components-portal';
+import type { IBackdropProps } from '@ensi-platform/core-components-backdrop';
+import type { IPortalProps } from '@ensi-platform/core-components-portal';
 
 import type { CSSObject } from '@emotion/react';
 
-import type { FC, KeyboardEvent, MouseEvent, MutableRefObject, ReactNode, Ref } from 'react';
+import type { FC, KeyboardEvent, MouseEvent, MutableRefObject, ReactNode } from 'react';
 import type { TransitionStatus } from 'react-transition-state';
 
-export type BaseModalProps = {
+import type { ClosureReasonsEmum } from '../scripts';
+
+export type ClosureReasonsType = `${ClosureReasonsEmum}`;
+
+export interface IBaseModalProps {
     /**
-     * Контент
+     * BaseModal content
      */
     children?: ReactNode;
 
     /**
-     * Компонент бэкдропа
+     * BaseModal backdrop
      */
-    Backdrop?: FC<BackdropProps>;
+    Backdrop?: FC<IBackdropProps>;
 
     /**
-     * Свойства для Бэкдропа
+     * Props for BaseModal backdrop
      */
-    backdropProps?: Partial<BackdropProps> & Record<string, unknown>;
+    backdropProps?: Partial<IBackdropProps> & Record<string, unknown>;
 
     /**
      * Нода, компонент или функция возвращающая их
      *
      * Контейнер к которому будут добавляться порталы
      */
-    container?: PortalProps['getPortalContainer'];
+    container?: IPortalProps['container'];
 
     /**
      * Отключает автоматический перевод фокуса на модалку при открытии
@@ -111,10 +115,7 @@ export type BaseModalProps = {
     /**
      * Обработчик закрытия
      */
-    onClose?: (
-        event: MouseEvent<HTMLElement> | KeyboardEvent<HTMLElement>,
-        reason?: 'backdropClick' | 'escapeKeyDown' | 'closerClick'
-    ) => void;
+    onClose?: (event: MouseEvent<HTMLElement> | KeyboardEvent<HTMLElement>, reason?: ClosureReasonsType) => void;
 
     /**
      * Обработчик события onEntered компонента Transition
@@ -141,29 +142,19 @@ export type BaseModalProps = {
      */
     componentRef?: MutableRefObject<HTMLDivElement | null>;
 
+    /**
+     * Animation time
+     * @default 200
+     */
     timeout?: number;
 
     /**
      * Набор стилей для разных состояний (открытие, закрытие)
      */
-    styles?: Partial<Record<TransitionStatus, CSSObject>>;
+    transitionStyles?: Partial<Record<TransitionStatus, CSSObject>>;
 
     /**
      * ID для родительского элемента
      */
     id?: string;
-};
-
-export type BaseModalContextType = {
-    hasFooter?: boolean;
-    hasHeader?: boolean;
-    hasScroll?: boolean;
-    headerHighlighted?: boolean;
-    footerHighlighted?: boolean;
-    headerOffset?: number;
-    setHeaderOffset: (offset: number) => void;
-    contentRef: Ref<HTMLElement>;
-    setHasHeader: (exists: boolean) => void;
-    setHasFooter: (exists: boolean) => void;
-    onClose: Required<BaseModalProps>['onClose'];
-};
+}

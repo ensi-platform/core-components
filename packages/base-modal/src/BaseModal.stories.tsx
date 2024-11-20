@@ -1,4 +1,4 @@
-import { Button } from '@ensi-platform/core-components-common';
+import { Button, scale } from '@ensi-platform/core-components-common';
 
 import type { Meta, StoryObj } from '@storybook/react';
 
@@ -24,7 +24,8 @@ export const Basic: StoryObj<ComponentProps<typeof BaseModal>> = {
         backdropProps: {
             invisible: false,
         },
-        timeout: 2000,
+
+        timeout: 200,
     },
     parameters: {
         docs: {
@@ -39,8 +40,10 @@ export const Basic: StoryObj<ComponentProps<typeof BaseModal>> = {
         return (
             <div style={{ zIndex: 1, position: 'relative' }}>
                 <Button onClick={handleModalOpen}>{isOpen ? 'Close' : 'Open'} me</Button>
-                <BaseModal {...args} open={isOpen} onClose={() => setOpen(false)}>
-                    <div style={{ padding: '100px', background: '#fafafa' }}>BaseModal content!</div>
+                <BaseModal {...args} open={isOpen} onClose={() => setOpen(false)} css={{ height: scale(50) }}>
+                    <div style={{ padding: '100px', background: '#fafafa' }}>
+                        <span css={{ display: 'block' }}>BaseModal content!</span>
+                    </div>
                 </BaseModal>
             </div>
         );

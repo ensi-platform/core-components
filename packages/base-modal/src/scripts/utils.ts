@@ -1,17 +1,13 @@
 import { type SavedStyle, getModalStore } from './store';
 
-export function isScrolledToTop(target: HTMLElement) {
-    return target.scrollTop <= 0;
-}
+export const isScrolledToTop = (target: HTMLElement) => target.scrollTop <= 0;
 
-export function isScrolledToBottom(target: HTMLElement) {
+export const isScrolledToBottom = (target: HTMLElement) => {
     const scroll = target.scrollHeight - target.offsetHeight;
     return scroll - 0.5 <= target.scrollTop;
-}
+};
 
-export function hasScrollbar(target: HTMLElement) {
-    return target.scrollHeight > target.clientHeight;
-}
+export const hasScrollbar = (target: HTMLElement) => target.scrollHeight > target.clientHeight;
 
 export const getScrollbarSize = (() => {
     let cachedSize: number;
