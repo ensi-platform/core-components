@@ -1,11 +1,11 @@
 import { defaultTheme, scale } from '@ensi-platform/core-components-common';
 
-import type { DrawerTheme } from '../types';
+import type { DrawerThemeType } from '../types';
 
 const { colors, typography } = defaultTheme;
 
-const basicTheme: DrawerTheme = {
-    component: ctx => ({
+export const basicTheme: DrawerThemeType = {
+    component: ({ placement }) => ({
         display: 'flex',
         flexDirection: 'column',
         position: 'fixed',
@@ -16,11 +16,12 @@ const basicTheme: DrawerTheme = {
         overflow: 'auto',
         willChange: 'transform',
         backgroundColor: '#fff',
-        ...(ctx.placement === 'left' && { left: 0, right: 'auto', alignSelf: 'flex-start' }),
-        ...(ctx.placement === 'right' && { right: 0, left: 'auto', alignSelf: 'flex-end' }),
+        ...(placement === 'left' && { left: 0, right: 'auto', alignSelf: 'flex-start' }),
+        ...(placement === 'right' && { right: 0, left: 'auto', alignSelf: 'flex-end' }),
     }),
 
     content: { padding: scale(3), flexGrow: 1, flexShrink: 0 },
+
     footer: {
         padding: `${scale(2)}px ${scale(3)}px`,
         borderTop: `1px solid ${colors.grey200}`,
@@ -36,14 +37,14 @@ const basicTheme: DrawerTheme = {
         bottom: 0,
     },
 
-    header: ctx => ({
+    header: ({ hasCloser }) => ({
         padding: `${scale(2)}px ${scale(3)}px`,
         borderBottom: `1px solid ${colors?.grey200}`,
         background: colors?.white,
         marginTop: 'auto',
-        ...(ctx.hasCloser && { paddingRight: scale(8) + scale(1, true) }),
+        ...(hasCloser && { paddingRight: scale(8) + scale(1, true) }),
 
-        '>p': typography('h3'),
+        '& > p': typography('h3'),
     }),
 
     closer: {
@@ -53,14 +54,6 @@ const basicTheme: DrawerTheme = {
         width: scale(8) + scale(1, true),
         height: scale(6) + scale(1, true),
         transition: 'opacity ease-in 300ms',
-        ':hover': { opacity: 0.8 },
+        '&:hover': { opacity: 0.8 },
     },
-};
-
-export const drawerThemes = {
-    basic: basicTheme as DrawerTheme,
-};
-
-export const setBasicDrawerTheme = (theme: DrawerTheme) => {
-    drawerThemes.basic = theme;
 };

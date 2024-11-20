@@ -1,4 +1,5 @@
-# Компонент drawer
-Компонент, представляющим собой заготовку для реализации сайд-панелей. В основе компонента лежит BaseModal.
+A component that represents a blank for the implementation of side panels.
 
-Основан на  [alfalab/core-components](https://github.com/alfa-laboratory/core-components)
+The component is based on the BaseModal. Accepts the required `open` property, like BaseModal.
+
+Based on [alfalab/core-components](https://github.com/alfa-laboratory/core-components)

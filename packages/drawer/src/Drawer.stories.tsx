@@ -1,4 +1,4 @@
-import { Button } from '@ensi-platform/core-components-common';
+import { Button, emptyCSS } from '@ensi-platform/core-components-common';
 
 import type { Meta, StoryObj } from '@storybook/react';
 
@@ -8,7 +8,7 @@ import README from '../README.md';
 import { Drawer } from './index';
 
 export default {
-    title: 'Components / Drawer',
+    title: 'Controls / Drawer',
     component: Drawer,
     parameters: {
         docs: {
@@ -17,15 +17,55 @@ export default {
             },
         },
     },
-    args: {},
-    argTypes: {},
+    argTypes: {
+        open: {
+            table: {
+                type: { summary: 'boolean' },
+            },
+            description: 'Is Drawer open',
+            required: true,
+            control: { type: 'text' },
+        },
+        timeout: {
+            table: {
+                type: { summary: 'number' },
+            },
+            description: 'Animation time',
+            defaultValue: {
+                summary: 200,
+            },
+            control: { type: 'number' },
+        },
+        placement: {
+            table: {
+                type: { summary: 'string' },
+            },
+            options: ['right', 'left'],
+            defaultValue: {
+                summary: 'right',
+            },
+            control: { type: 'select' },
+            summary: 'string',
+        },
+        contentCSS: {
+            table: {
+                type: { summary: 'CSSObject' },
+            },
+            description: 'Styles for Drawer content.',
+            summary: 'object',
+        },
+    },
 } as Meta<typeof Drawer>;
 
+const defaultProps: ComponentProps<typeof Drawer> = {
+    open: false,
+    placement: 'right',
+    timeout: 200,
+    contentCSS: emptyCSS,
+};
+
 export const Basic: StoryObj<ComponentProps<typeof Drawer>> = {
-    args: {
-        placement: 'right',
-        timeout: 300,
-    },
+    args: { ...defaultProps },
     argTypes: {
         placement: {
             options: ['right', 'left'],
