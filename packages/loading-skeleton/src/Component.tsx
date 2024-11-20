@@ -1,9 +1,9 @@
-import { type EnumLike, useThemeCSSPart } from '@ensi-platform/core-components-common';
+import { type EnumLike, emptyCSS, useMergeCSS, useThemeCSSPart } from '@ensi-platform/core-components-common';
 
 import { type FC, useMemo } from 'react';
 import Skeleton from 'react-loading-skeleton';
 
-import { LoadingSkeletonSizes, LoadingSkeletonVariants, emptyCSS, useMergeCSS, useValidateSizes } from './scripts';
+import { LoadingSkeletonSizes, LoadingSkeletonVariants, useValidateSizes } from './scripts';
 import { LOADING_SKELETON_THEMES } from './themes';
 import type { ILoadingSkeletonProps, LoadingSkeletonStateFullType, LoadingSkeletonThemeType } from './types';
 
