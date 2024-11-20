@@ -5,10 +5,10 @@ import type { CSSObject } from '@emotion/react';
 
 import { useContext, useEffect } from 'react';
 
-import { usePopupContext } from '../PopupContext';
-import type { HeaderProps } from '../types';
+import { usePopupContext } from '../../scripts';
+import type { IHeaderProps } from '../../types';
 
-export const Header = ({ className, addonCSS, contentCSS, leftAddons, children, title }: HeaderProps) => {
+const Header = ({ className, addonCSS, contentCSS, leftAddons, children, title }: IHeaderProps) => {
     const { headerOffset, headerHighlighted, setHasHeader, onClose } = useContext(BaseModalContext);
 
     const {
@@ -63,3 +63,5 @@ export const Header = ({ className, addonCSS, contentCSS, leftAddons, children, 
         </div>
     );
 };
+
+export default Header;

@@ -5,10 +5,10 @@ import type { CSSObject } from '@emotion/react';
 
 import { useContext, useEffect } from 'react';
 
-import { usePopupContext } from '../PopupContext';
-import type { FooterProps } from '../types';
+import { usePopupContext } from '../../scripts';
+import type { IFooterProps } from '../../types';
 
-export const Footer = ({ children, className, ...props }: FooterProps) => {
+const Footer = ({ children, className, ...props }: IFooterProps) => {
     const { footerHighlighted, setHasFooter } = useContext(BaseModalContext);
     const { getCSS } = usePopupContext();
 
@@ -31,3 +31,5 @@ export const Footer = ({ children, className, ...props }: FooterProps) => {
         </Layout>
     );
 };
+
+export default Footer;

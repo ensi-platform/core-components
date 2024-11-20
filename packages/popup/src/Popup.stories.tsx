@@ -7,7 +7,7 @@ import { type ComponentProps, useRef, useState } from 'react';
 
 import { Popup } from '.';
 import README from '../README.md';
-import { PopupSize } from './types';
+import { PopupSizesEnum } from './scripts';
 
 export default {
     title: 'Components / Popup',
@@ -55,7 +55,7 @@ export const Basic: StoryObj<Args> = {
             control: { type: 'radio' },
         },
         size: {
-            options: Object.keys(PopupSize),
+            options: Object.keys(PopupSizesEnum),
             control: { type: 'radio' },
         },
     },

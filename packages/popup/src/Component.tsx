@@ -1,21 +1,20 @@
 import { BaseModal } from '@ensi-platform/core-components-base-modal';
 import { useThemeCSSPart } from '@ensi-platform/core-components-common';
 
-import type { CSSObject } from '@emotion/react';
-
-import { forwardRef, useMemo, useRef } from 'react';
+import { type ForwardedRef, forwardRef, useMemo, useRef } from 'react';
 import mergeRefs from 'react-merge-refs';
 
-import { PopupContextProvider } from './PopupContext';
-import { popupThemes } from './themes';
-import type { ModalDesktopProps, PopupState, View } from './types';
+import { PopupContextProvider } from './context';
+import { PopupSizesEnum, PopupVariantsEnum } from './scripts';
+import { POPUP_THEMES } from './themes';
+import type { IPopupProps, PopupStateFullType } from './types';
 
-const Popup = forwardRef<HTMLDivElement, ModalDesktopProps & { view: View }>(
+const Popup = forwardRef<HTMLDivElement, IPopupProps>(
     (
         {
-            theme: themeName = 'basic',
-            size = 'md',
-            variant = 'primary',
+            theme = POPUP_THEMES.basic,
+            size = PopupSizesEnum.md,
+            variant = PopupVariantsEnum.primary,
             fixedPosition,
             children,
             className,
@@ -29,12 +28,14 @@ const Popup = forwardRef<HTMLDivElement, ModalDesktopProps & { view: View }>(
             innerScroll,
             ...restProps
         },
-        ref
+        ref: ForwardedRef<HTMLDivElement>
     ) => {
-        const theme = typeof themeName === 'string' ? popupThemes[themeName] : themeName;
-        const state = useMemo<PopupState>(
+        const modalRef = useRef<HTMLElement>(null);
+
+        const state = useMemo<PopupStateFullType>(
             () => ({
                 size,
+                variant,
                 view,
                 align,
                 fixedPosition,
@@ -45,10 +46,8 @@ const Popup = forwardRef<HTMLDivElement, ModalDesktopProps & { view: View }>(
                 trim,
                 innerScroll,
             }),
-            [align, fixedPosition, flex, hasCloser, size, stickyFooter, stickyHeader, trim, view, innerScroll]
+            [align, fixedPosition, flex, hasCloser, size, stickyFooter, stickyHeader, trim, view, innerScroll, variant]
         );
-
-        const modalRef = useRef<HTMLElement>(null);
 
         const handleEntered = () => {
             if (fixedPosition && modalRef.current) {
@@ -77,19 +76,19 @@ const Popup = forwardRef<HTMLDivElement, ModalDesktopProps & { view: View }>(
                       className,
                   };
 
-        const getCSS = useThemeCSSPart(theme, {
+        const getCSS = useThemeCSSPart(theme!, {
             ...state,
             size,
             variant,
         });
 
         return (
-            <PopupContextProvider size={size} theme={theme} variant={variant} state={state}>
+            <PopupContextProvider size={size} variant={variant} state={state} getCSS={getCSS}>
                 <BaseModal
                     {...restProps}
-                    css={getCSS('component') as CSSObject}
+                    css={getCSS('component')}
                     wrapperCSS={{
-                        ...(getCSS('wrapper') as CSSObject),
+                        ...getCSS('wrapper'),
                         ...restProps.wrapperCSS,
                     }}
                     {...baseModalProps}

@@ -5,10 +5,10 @@ import type { CSSObject } from '@emotion/react';
 import { type Ref, forwardRef, useContext } from 'react';
 import mergeRefs from 'react-merge-refs';
 
-import { usePopupContext } from '../PopupContext';
-import type { ContentProps } from '../types';
+import { usePopupContext } from '../../scripts';
+import type { IContentProps } from '../../types';
 
-export const Content = forwardRef<HTMLDivElement, ContentProps>(({ children, className }, ref) => {
+const Content = forwardRef<HTMLDivElement, IContentProps>(({ children, className }, ref) => {
     const { contentRef } = useContext(BaseModalContext);
 
     const { getCSS } = usePopupContext();
@@ -23,3 +23,5 @@ export const Content = forwardRef<HTMLDivElement, ContentProps>(({ children, cla
         </div>
     );
 });
+
+export default Content;

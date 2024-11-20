@@ -8,7 +8,7 @@ import {
     defaultTheme,
     scale,
 } from '@ensi-platform/core-components-common';
-import { Content, Popup } from '@ensi-platform/core-components-popup';
+import { Popup } from '@ensi-platform/core-components-popup';
 
 import { type ReactNode, useMemo } from 'react';
 
@@ -151,4 +151,4 @@ export const ActionPopup = ({
     );
 };
 
-ActionPopup.Content = Content;
+ActionPopup.Content = Popup.Content;
