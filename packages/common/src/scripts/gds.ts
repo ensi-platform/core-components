@@ -1,11 +1,12 @@
-import { CSSObject } from '@emotion/react';
+import type { CSSObject } from '@emotion/react';
 import {
-    Theme,
+    type Theme,
     createMediaQueries,
     createTheme,
     typography as gdsTypography,
     useTheme as useGDSTheme,
 } from '@greensight/gds';
+
 import { Button } from './themes/button';
 
 export { Layout } from '@greensight/gds';

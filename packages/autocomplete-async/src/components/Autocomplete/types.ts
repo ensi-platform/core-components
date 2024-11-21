@@ -1,13 +1,13 @@
-import { ChangeEvent, FC, ReactNode, RefAttributes } from 'react';
+import type { FormControlProps } from '@ensi-platform/core-components-form-control';
+import type { InputProps } from '@ensi-platform/core-components-input';
+import type { FieldProps, SelectProps, SelectThemeProps } from '@ensi-platform/core-components-select';
+import type { SelectWithTagsProps } from '@ensi-platform/core-components-select-with-tags';
 
-import { SelectProps, FieldProps, SelectThemeProps } from '@greensight/core-components-select';
-import type { FormControlProps } from '@greensight/core-components-form-control';
-import type { InputProps } from '@greensight/core-components-input';
-import type { SelectWithTagsProps } from '@greensight/core-components-select-with-tags';
+import type { ChangeEvent, FC, ReactNode, RefAttributes } from 'react';
 
 export interface IAutocompleteProps
-    extends SelectThemeProps,
-        Omit<SelectProps, 'Field' | 'nativeSelect' | 'options'>,
+    extends Omit<SelectThemeProps, 'options'>,
+        Omit<SelectProps, 'Field' | 'nativeSelect'>,
         Partial<
             Pick<
                 SelectWithTagsProps,

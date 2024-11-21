@@ -1,13 +1,16 @@
+import { Button } from '@ensi-platform/core-components-common';
+import { Form } from '@ensi-platform/core-components-form';
+import type { Select, SelectHandlers, SelectItem } from '@ensi-platform/core-components-select';
+
 import type { StoryObj } from '@storybook/react';
-import { ChangeEvent, ComponentProps, useCallback, useState } from 'react';
-import { Select, SelectHandlers, SelectItem } from '@greensight/core-components-select';
-import Form from '@greensight/core-components-form';
+
 import * as Yup from 'yup';
-import { Button } from '@greensight/gds';
-import { Autocomplete, BaseAutocomplete } from './components';
-import { AutocompleteAsync } from './Component';
+import { type ChangeEvent, type ComponentProps, useCallback, useState } from 'react';
+
 import README from '../README.md';
-import { IOptionsFetcherResponse } from './types';
+import { AutocompleteAsync } from './Component';
+import { Autocomplete, BaseAutocomplete } from './components';
+import type { IOptionsFetcherResponse } from './types';
 
 export default {
     title: 'Components / AutocompleteAsync',

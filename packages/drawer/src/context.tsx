@@ -1,8 +1,8 @@
-import { FC, ReactNode, createContext, useContext, useMemo } from 'react';
+import { type BaseThemeState, useThemeCSSPart } from '@ensi-platform/core-components-common';
 
-import { BaseThemeState, useThemeCSSPart } from '@greensight/core-components-common';
+import { type FC, type ReactNode, createContext, useContext, useMemo } from 'react';
 
-import { DrawerSize, DrawerState, DrawerTheme, DrawerThemeState, DrawerVariant } from './types';
+import type { DrawerSize, DrawerState, DrawerTheme, DrawerThemeState, DrawerVariant } from './types';
 
 const useFoo = () => useThemeCSSPart<Omit<DrawerThemeState, 'theme'>, DrawerTheme>(...([] as never as [any, any]));
 

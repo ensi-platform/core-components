@@ -1,4 +1,4 @@
-import { MutableRefObject, RefObject, useCallback, useEffect, useRef, useState } from 'react';
+import { type MutableRefObject, type RefObject, useCallback, useEffect, useRef, useState } from 'react';
 
 type KeyboardFocusableProps = {
     /**

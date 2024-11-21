@@ -1,7 +1,7 @@
-import { FC, useMemo } from 'react';
+import { type FC, useMemo } from 'react';
 
 import { useSelectTheme } from '../../context';
-import { OptionProps } from './types';
+import type { OptionProps } from './types';
 
 export const Option: FC<OptionProps> = ({
     className,

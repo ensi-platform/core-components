@@ -1,14 +1,11 @@
-import { forwardRef, useCallback, useEffect, useRef } from 'react';
+import { defaultTheme, scale } from '@ensi-platform/core-components-common';
 
+import { forwardRef, useCallback, useEffect, useRef } from 'react';
 import mergeRefs from 'react-merge-refs';
 
-import { defaultTheme } from '@greensight/core-components-common';
-import { scale } from '@greensight/gds';
-
-import { SelectItem } from '@greensight/core-components-select';
-
 import { useSelectTheme } from '../../context';
-import { OptionsListProps, useVisibleOptionsArgs } from './types';
+import type { SelectItem } from '../../types';
+import type { OptionsListProps, useVisibleOptionsArgs } from './types';
 
 const createCounter = () => {
     let count = 0;

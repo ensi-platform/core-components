@@ -1,10 +1,12 @@
 /* eslint-disable react-hooks/rules-of-hooks */
-import type { Meta, StoryObj } from '@storybook/react';
-import { ComponentProps, useRef, useState } from 'react';
+import { Button } from '@ensi-platform/core-components-common';
 
-import { Button } from '@greensight/core-components-common';
-import README from '../README.md';
+import type { Meta, StoryObj } from '@storybook/react';
+
+import { type ComponentProps, useRef, useState } from 'react';
+
 import { Popup } from '.';
+import README from '../README.md';
 import { PopupSize } from './types';
 
 export default {

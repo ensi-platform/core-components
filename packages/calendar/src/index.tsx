@@ -1,17 +1,17 @@
+import { useDidUpdateEffect, useThemeCSSPart } from '@ensi-platform/core-components-common';
+
+import { endOfDay, startOfDay, startOfMonth } from 'date-fns';
 import { forwardRef, useCallback, useMemo, useState } from 'react';
-import { startOfDay, startOfMonth, endOfDay } from 'date-fns';
-import { useDidUpdateEffect, useThemeCSSPart } from '@greensight/core-components-common';
 
-import { Header } from './components/header';
 import { DaysTable } from './components/days-table';
-import { YearsTable } from './components/years-table';
+import { Header } from './components/header';
 import { MonthsTable } from './components/months-table/index';
-
+import { YearsTable } from './components/years-table';
 import { useCalendar } from './scripts/useCalendar';
-import { limitDate, monthName } from './scripts/utils';
-import { View, CalendarProps, CalendarState, CalendarThemeState, CalendarThemeContextProps } from './types';
-import { сalendarThemes } from './themes/defaultTheme';
 import { CalendarThemeContext } from './scripts/useCalendarTheme';
+import { limitDate, monthName } from './scripts/utils';
+import { сalendarThemes } from './themes/defaultTheme';
+import type { CalendarProps, CalendarState, CalendarThemeContextProps, CalendarThemeState, View } from './types';
 
 export * from './types';
 export * from './scripts/utils';

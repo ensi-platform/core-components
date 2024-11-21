@@ -1,4 +1,3 @@
-import { ReactNode, MouseEvent } from 'react';
 import addDays from 'date-fns/addDays';
 import addMonths from 'date-fns/addMonths';
 import eachDayOfInterval from 'date-fns/eachDayOfInterval';
@@ -21,7 +20,9 @@ import startOfWeek from 'date-fns/startOfWeek';
 import startOfYear from 'date-fns/startOfYear';
 import subDays from 'date-fns/subDays';
 import subMonths from 'date-fns/subMonths';
-import { DateShift, Day, DayAddons, Month, SpecialDays, SpecialDaysAddon } from '../types';
+import type { MouseEvent, ReactNode } from 'react';
+
+import type { DateShift, Day, DayAddons, Month, SpecialDays, SpecialDaysAddon } from '../types';
 
 export const DAYS_IN_WEEK = 7;
 export const MONTHS_IN_YEAR = 12;

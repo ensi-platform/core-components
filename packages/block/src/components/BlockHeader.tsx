@@ -1,5 +1,6 @@
-import { ReactNode } from 'react';
-import { scale, defaultTheme } from '@greensight/core-components-common';
+import { defaultTheme, scale } from '@ensi-platform/core-components-common';
+
+import type { ReactNode } from 'react';
 
 export interface BlockHeaderProps {
     className?: string;

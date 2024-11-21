@@ -1,5 +1,5 @@
 /* eslint-disable no-void */
-import { useCallback, useRef, useReducer, useLayoutEffect, Dispatch } from 'react';
+import { type Dispatch, useCallback, useLayoutEffect, useReducer, useRef } from 'react';
 
 function useSafeDispatch<T>(dispatch: Dispatch<T>) {
     const mounted = useRef<any>(null);

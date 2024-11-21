@@ -1,11 +1,12 @@
-import { forwardRef, FC } from 'react';
-import { Draggable as UntypedDraggable, DraggableProps } from 'react-beautiful-dnd';
+import { IconSmallClosedCircle, defaultTheme, scale, useLinkCSS } from '@ensi-platform/core-components-common';
 
-import { useLinkCSS, IconSmallClosedCircle, scale, defaultTheme } from '@greensight/core-components-common';
+import { type DraggableProps, Draggable as UntypedDraggable } from '@hello-pangea/dnd';
 
-import DropzoneImage from './DropzoneImage';
+import { type FC, forwardRef } from 'react';
+
 import { ImagePreview } from '../scripts/constants';
 import { getFileSize } from '../scripts/utils';
+import DropzoneImage from './DropzoneImage';
 
 const Draggable = UntypedDraggable as never as FC<DraggableProps>;
 

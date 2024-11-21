@@ -1,7 +1,10 @@
-import { CSSObject } from '@emotion/react';
-import { defaultTheme, scale } from '@greensight/core-components-common';
+import { defaultTheme, scale } from '@ensi-platform/core-components-common';
+
+import type { CSSObject } from '@emotion/react';
+
 import deepmerge from 'deepmerge';
-import { CalendarTheme } from '../types';
+
+import type { CalendarTheme } from '../types';
 
 const mergeStyles = (styles: (CSSObject | false)[]) => {
     const nonNullStyles = styles.filter(Boolean) as CSSObject[];

@@ -1,8 +1,9 @@
-import { Dispatch } from 'react';
+import { type Action, ActionType, usePopupState } from '@ensi-platform/core-components-common';
 
-import { ActionType, Action, usePopupState } from '@greensight/core-components-common';
-import { ActionState } from '../../types';
-import { ActionPopup, ActionEnum } from '../../index';
+import type { Dispatch } from 'react';
+
+import { ActionEnum, ActionPopup } from '../../index';
+import type { ActionState } from '../../types';
 
 const ActionPopupComponent = ({
     popupState,

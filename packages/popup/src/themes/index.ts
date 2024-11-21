@@ -1,5 +1,5 @@
 // eslint-disable-next-line import/no-cycle
-import { PopupTheme } from '../types';
+import type { PopupTheme } from '../types';
 import { basicTheme } from './basic';
 
 export const popupThemes = {

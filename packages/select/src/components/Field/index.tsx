@@ -1,12 +1,11 @@
-import { ReactNode, cloneElement, isValidElement, useCallback, useMemo, useRef, useState } from 'react';
+import { type EnumLike, defaultTheme } from '@ensi-platform/core-components-common';
+import { FormControl, FormControlSize, FormControlVariant } from '@ensi-platform/core-components-form-control';
 
-import { FormControl, FormControlSize, FormControlVariant } from '@greensight/core-components-form-control';
-
-import { EnumLike, defaultTheme } from '@greensight/core-components-common';
+import { type ReactNode, cloneElement, isValidElement, useCallback, useMemo, useRef, useState } from 'react';
 
 import { useSelectTheme } from '../../context';
-import { SelectItem } from '../../types';
-import { FieldProps } from './types';
+import type { SelectItem } from '../../types';
+import type { FieldProps } from './types';
 
 const { colors } = defaultTheme;
 

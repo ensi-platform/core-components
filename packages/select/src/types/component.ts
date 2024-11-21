@@ -1,17 +1,17 @@
-import { FC, FocusEvent } from 'react';
+import type { FormControlProps } from '@ensi-platform/core-components-form-control';
+import type { PopoverProps } from '@ensi-platform/core-components-popover';
 
-import { CSSObject } from '@emotion/react';
+import type { CSSObject } from '@emotion/react';
 
-import { FormControlProps } from '@greensight/core-components-form-control';
-import { PopoverProps } from '@greensight/core-components-popover';
+import type { FC, FocusEvent } from 'react';
 
-import { OptgroupProps } from '../components/Optgroup/types';
-import { ArrowProps } from '../components/Arrow/types';
-import { FieldProps } from '../components/Field/types';
-import { OptionProps } from '../components/Option/types';
-import { OptionsListProps } from '../components/OptionsList/types';
-import { SelectItem, SelectPayload } from './common';
-import { SelectThemeProps } from './themes';
+import type { ArrowProps } from '../components/Arrow/types';
+import type { FieldProps } from '../components/Field/types';
+import type { OptgroupProps } from '../components/Optgroup/types';
+import type { OptionProps } from '../components/Option/types';
+import type { OptionsListProps } from '../components/OptionsList/types';
+import type { SelectItem, SelectPayload } from './common';
+import type { SelectThemeProps } from './themes';
 
 export interface SelectParts {
     /**

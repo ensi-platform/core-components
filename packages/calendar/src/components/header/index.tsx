@@ -1,14 +1,15 @@
-import { MouseEvent } from 'react';
-
 import {
-    useLinkCSS,
     Button,
-    scale,
     IconSmallChevronLeft,
     IconSmallChevronRight,
     defaultTheme,
-} from '@greensight/core-components-common';
-import { SelectorView } from '../../types';
+    scale,
+    useLinkCSS,
+} from '@ensi-platform/core-components-common';
+
+import type { MouseEvent } from 'react';
+
+import type { SelectorView } from '../../types';
 
 const { colors } = defaultTheme;
 

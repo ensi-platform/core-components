@@ -1,12 +1,14 @@
-import { CSSObject } from '@emotion/react';
-import {
+import type {
     BaseThemeState,
-    FormFieldDescendantProps,
+    FormFieldHelperProps,
     StyleDefinition,
     ValueOrFunction,
     useCheckboxLikeControlHookType,
-} from '@greensight/core-components-common';
-import { ChangeEvent, InputHTMLAttributes, ReactNode } from 'react';
+} from '@ensi-platform/core-components-common';
+
+import type { CSSObject } from '@emotion/react';
+
+import type { ChangeEvent, InputHTMLAttributes, ReactNode } from 'react';
 
 export const CheckboxSize = {
     md: 'md',
@@ -79,7 +81,7 @@ export type CheckboxTheme = ValueOrFunction<
 export type CheckboxProps = Omit<CheckboxState, 'focused' | 'error'> &
     Partial<Omit<BaseThemeState<typeof CheckboxVariant, typeof CheckboxSize, CheckboxTheme>, 'theme'>> &
     Omit<NativeProps, 'size' | 'onChange' | 'enterKeyHint'> &
-    FormFieldDescendantProps & {
+    Partial<FormFieldHelperProps<boolean>> & {
         /**
          * Обработчик переключения чекбокса
          */

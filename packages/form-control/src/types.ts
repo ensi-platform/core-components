@@ -1,7 +1,10 @@
-import { CSSObject } from '@emotion/react';
-import { HTMLAttributes, ReactNode } from 'react';
+import type { BaseThemeState, StyleDefinition, ValueOrFunction } from '@ensi-platform/core-components-common';
 
-import { BaseThemeState, StyleDefinition, ValueOrFunction } from '@greensight/core-components-common';
+import type { CSSObject } from '@emotion/react';
+
+import type { HTMLAttributes, ReactNode } from 'react';
+
+import type { formControlThemes } from './themes/defaultTheme';
 
 export enum FormControlSize {
     sm = 'sm',
@@ -74,10 +77,18 @@ export interface FormControlState {
 export type FormControlThemeState = BaseThemeState<typeof FormControlVariant, typeof FormControlSize, never> &
     FormControlState;
 
-type FormControlParts = 'wrapper' | 'inner' | 'label' | 'sub' | 'error' | 'controlWrapper' | 'clear';
+enum FormControlParts {
+    wrapper,
+    inner,
+    label,
+    sub,
+    controlWrapper,
+    error,
+    clear,
+}
 
 export type FormControlTheme = ValueOrFunction<
-    Record<FormControlParts, StyleDefinition<FormControlThemeState>> & {
+    Record<keyof typeof FormControlParts, StyleDefinition<FormControlThemeState>> & {
         addons: StyleDefinition<FormControlThemeState & { isLeft: boolean }>;
     },
     [FormControlThemeState]
@@ -167,5 +178,5 @@ export type FormControlProps = Partial<
          */
         children?: ReactNode;
 
-        theme?: FormControlTheme;
+        theme?: FormControlTheme | keyof typeof formControlThemes;
     };

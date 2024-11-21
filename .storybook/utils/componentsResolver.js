@@ -6,8 +6,8 @@ module.exports = {
     name: 'componentsResolver',
     transform(code, id) {
         if (id.endsWith('.ts') || id.endsWith('.tsx')) {
-            code = code.replace(/from ['"](@greensight\/core-components-.*?)['"]/g, (match, importPath) => {
-                const package = importPath.replace('@greensight/core-components-', '');
+            code = code.replace(/from ['"](@ensi-platform\/core-components-.*?)['"]/g, (match, importPath) => {
+                const package = importPath.replace('@ensi-platform/core-components-', '');
                 const [packageName, ...paths] = package.split('/');
                 if (paths.at(0) === 'src') paths.splice(0, 1);
 

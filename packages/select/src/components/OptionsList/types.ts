@@ -1,7 +1,7 @@
-import { FC, ReactNode, MouseEvent, RefObject } from 'react';
+import type { FC, MouseEvent, ReactNode, RefObject } from 'react';
 
-import { SelectItem, SelectProps } from '@greensight/core-components-select';
-import { OptionProps } from '../Option/types';
+import type { SelectItem, SelectProps } from '../../types';
+import type { OptionProps } from '../Option/types';
 
 export type useVisibleOptionsArgs = {
     /**

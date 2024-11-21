@@ -1,4 +1,3 @@
-import { KeyboardEvent, MouseEvent, Ref, useCallback, useMemo, useRef, useState } from 'react';
 import addMonths from 'date-fns/addMonths';
 import addYears from 'date-fns/addYears';
 import isSameDay from 'date-fns/isSameDay';
@@ -7,9 +6,12 @@ import isSameYear from 'date-fns/isSameYear';
 import setYear from 'date-fns/setYear';
 import startOfMonth from 'date-fns/startOfMonth';
 import subYears from 'date-fns/subYears';
-
+import { type KeyboardEvent, type MouseEvent, type Ref, useCallback, useMemo, useRef, useState } from 'react';
 import mergeRefs from 'react-merge-refs';
+
+import type { DateShift, Day, DayAddons, Month, View } from '../types';
 import {
+    MONTHS_IN_YEAR,
     addonArrayToHashTable,
     dateArrayToHashTable,
     generateMonths,
@@ -18,10 +20,8 @@ import {
     isKeyboardEvent,
     limitDate,
     modifyDateByShift,
-    MONTHS_IN_YEAR,
     simulateTab,
 } from './utils';
-import { DateShift, Day, Month, View, DayAddons } from '../types';
 
 export type UseCalendarProps = {
     /**

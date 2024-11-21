@@ -1,13 +1,14 @@
+import { ActionType, Button, typography, usePopupState } from '@ensi-platform/core-components-common';
+
 import { action } from '@storybook/addon-actions';
 import type { Meta, StoryObj } from '@storybook/react';
+
 import type { ComponentProps } from 'react';
 
-import { usePopupState, ActionType, Button, typography } from '@greensight/core-components-common';
-
 import README from '../README.md';
-import { ActionPopup, ActionEnum, ThemesEnum } from './index';
+import { ActionEnum, ActionPopup, ThemesEnum } from './index';
 import { useActionPopup } from './scripts/hooks/useActionPopup';
-import { ActionState } from './types';
+import type { ActionState } from './types';
 
 export default {
     title: 'Components / ActionPopup',

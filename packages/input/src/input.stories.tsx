@@ -1,8 +1,9 @@
-import type { Meta, StoryObj } from '@storybook/react';
-import type { ComponentProps } from 'react';
+import { IconSmallUser as ProfileIcon } from '@ensi-platform/core-components-common';
+import { FormControlSize } from '@ensi-platform/core-components-form-control';
 
-import { FormControlSize } from '@greensight/core-components-form-control';
-import { IconSmallUser as ProfileIcon } from '@greensight/core-components-common';
+import type { Meta, StoryObj } from '@storybook/react';
+
+import type { ComponentProps } from 'react';
 
 import README from '../README.md';
 import { Input } from './index';

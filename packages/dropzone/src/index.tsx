@@ -1,19 +1,20 @@
-import { FC, ReactNode, useCallback, useMemo, useState } from 'react';
+import { type FormFieldHelperProps, scale, useDeferredLoading } from '@ensi-platform/core-components-common';
+import { FormControl } from '@ensi-platform/core-components-form-control';
+import { LoadingSkeleton } from '@ensi-platform/core-components-loading-skeleton';
+
 import {
+    type DragDropContextProps,
+    type DropResult,
+    type DroppableProps,
     DragDropContext as UntypedDragDropContext,
-    DragDropContextProps,
-    DropResult,
     Droppable as UntypedDroppable,
-    DroppableProps,
-} from 'react-beautiful-dnd';
-import { FileRejection, DropzoneProps as UseDropzoneProps, useDropzone } from 'react-dropzone';
+} from '@hello-pangea/dnd';
 
-import { useDeferredLoading, scale, FormFieldDescendantProps } from '@greensight/core-components-common';
+import { type FC, type ReactNode, useCallback, useMemo, useState } from 'react';
+import { type FileRejection, type DropzoneProps as UseDropzoneProps, useDropzone } from 'react-dropzone';
 
-import { LoadingSkeleton } from '@greensight/core-components-loading-skeleton';
-import { FormControl } from '@greensight/core-components-form-control';
 import DropzoneArea from './components/DropzoneArea';
-import { DraggableDropzoneFile, DropzoneFile, DropzoneFileProps, FileType } from './components/DropzoneFile';
+import { DraggableDropzoneFile, DropzoneFile, type DropzoneFileProps, type FileType } from './components/DropzoneFile';
 import { ErrorCodes, ImagePreview } from './scripts/constants';
 import { canPreviewImages, getFileSize, makeMatrixArray, removeItemFromArray } from './scripts/utils';
 
@@ -21,7 +22,7 @@ const DragDropContext = UntypedDragDropContext as never as FC<DragDropContextPro
 const Droppable = UntypedDroppable as never as FC<DroppableProps>;
 
 type DropzoneProps = UseDropzoneProps &
-    FormFieldDescendantProps<FileType[]> & {
+    Partial<FormFieldHelperProps<FileType[]>> & {
         label?: string;
         /** On files change callback */
         onFilesChange?: (files: FileType[]) => void;
@@ -67,7 +68,7 @@ export const Dropzone: FC<DropzoneProps> = ({
 }) => {
     const imagePreview = canPreviewImages(accept);
 
-    /** checks is our Dropzone controlled by Formik or not  */
+    /** checks is our Dropzone controlled by RHF or not  */
     const isControlled = typeof field?.value !== 'undefined';
     const [filesState, setFilesState] = useState<File[]>([]);
     const files = useMemo(

@@ -1,16 +1,18 @@
 import wildcardExternal from '@oat-sa/rollup-plugin-wildcard-external';
+import { babel } from '@rollup/plugin-babel';
 import json from '@rollup/plugin-json';
 import svgr from '@svgr/rollup';
+
 import { createRequire } from 'module';
 import path from 'path';
+import postcssPresetEnv from 'postcss-preset-env';
 import copy from 'rollup-plugin-copy';
+import dts from 'rollup-plugin-dts';
 import multiInput from 'rollup-plugin-multi-input';
+import postcss from 'rollup-plugin-postcss';
 import typescript from 'rollup-plugin-ts';
 import ts from 'typescript';
-import { babel } from '@rollup/plugin-babel';
-import postcss from 'rollup-plugin-postcss';
-import postcssPresetEnv from 'postcss-preset-env';
-import dts from 'rollup-plugin-dts';
+
 import {
     coreComponentsResolver,
     coreComponentsRootPackageResolver,
@@ -29,7 +31,7 @@ const currentPkg = path.join(currentPackageDir, 'package.json');
 
 const pkg = require(currentPkg);
 
-const prefix = '@greensight/core-components-';
+const prefix = '@ensi-platform/core-components-';
 const currentComponentName = pkg.name.replace(prefix, '');
 
 const babelPlugin = babel({
@@ -82,11 +84,11 @@ const es5 = {
     output: [
         {
             esModule: true,
-            dir: `../../dist/${currentComponentName}/cjs`,
+            dir: 'dist/cjs',
             format: 'cjs',
             interop: 'compat',
             dynamicImportInCjs: false,
-            plugins: [packagesTypingResolver()],
+            plugins: [coreComponentsResolver({ importFrom: 'cjs' }), packagesTypingResolver()],
         },
     ],
     plugins: [

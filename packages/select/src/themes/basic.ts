@@ -1,6 +1,6 @@
-import { OptionizedCSS, extractCSSOption, scale, defaultTheme } from '@greensight/core-components-common';
+import { type OptionizedCSS, defaultTheme, extractCSSOption, scale } from '@ensi-platform/core-components-common';
 
-import { SelectTheme, SelectSize } from '../types';
+import type { SelectSize, SelectTheme } from '../types';
 
 const { colors, shadows, typography } = defaultTheme;
 

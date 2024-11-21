@@ -12,20 +12,20 @@
     ],
     "baseUrl": ".",
     "paths": {
-      "@greensight/core-components-*": [
+      "@ensi-platform/core-components-*": [
         "../*/src"
       ]
     }
   },
   "references": [
     {
-      "path": "../common/tsconfig.json"
+      "path": "../common"
     },
     {
-      "path": "../stack/tsconfig.json",
+      "path": "../stack"
     },
     {
-      "path": "../portal/tsconfig.json",
+      "path": "../portal"
     }
   ]
 }

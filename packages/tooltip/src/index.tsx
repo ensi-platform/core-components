@@ -1,44 +1,49 @@
-import React, { FC, useMemo, ClassAttributes, HTMLAttributes } from 'react';
-import { CSSObject } from '@emotion/react';
+import {
+    type HTMLAttributes,
+    type ClassAttributes,
+    type FC,
+    useMemo
+} from 'react';
 import mergeRefs from 'react-merge-refs';
 import deepmerge from 'deepmerge';
 
-import { Popover } from '@greensight/core-components-popover';
-import { useThemeCSSPart } from '@greensight/core-components-common';
+import { Popover } from '@ensi-platform/core-components-popover';
 
+import type { CSSObject } from '@emotion/react';
+import { useThemeCSSPart } from '@ensi-platform/core-components-common'
+import { type ITooltipProps, type TooltipThemeStateType, TooltipThemeState, type TooltipProps, Trigger } from './types';
 import { tooltipThemes } from './themes/defaultTheme';
 import { useTooltip, DEFAULT_OFFSET, EMPTY_OBJ } from './scripts';
-import { ITooltipProps, TooltipThemeStateType } from './types';
 
 const Tooltip: FC<ITooltipProps> = ({
-        children,
-        content,
-        trigger = 'hover',
-        onCloseDelay = 300,
-        onOpenDelay = 300,
-        dataTestId,
-        open: forcedOpen,
-        offset = DEFAULT_OFFSET,
-        position,
-        contentCSS = EMPTY_OBJ,
-        arrowCSS = EMPTY_OBJ,
-        className,
-        updatePopover,
-        targetCSS = EMPTY_OBJ,
-        targetTag: TargetTag = 'div',
-        zIndex,
-        onClose,
-        onOpen,
-        getPortalContainer,
-        view = 'tooltip',
-        targetRef = null,
-        fallbackPlacements,
-        preventOverflow = true,
-        availableHeight = false,
-        anchor = null,
-        useAnchorWidth,
-        theme = tooltipThemes.basic,
-    }) => {
+    children,
+    content,
+    trigger = 'hover',
+    onCloseDelay = 300,
+    onOpenDelay = 300,
+    dataTestId,
+    open: forcedOpen,
+    offset = DEFAULT_OFFSET,
+    position,
+    contentCSS = EMPTY_OBJ,
+    arrowCSS = EMPTY_OBJ,
+    className,
+    updatePopover,
+    targetCSS = EMPTY_OBJ,
+    targetTag: TargetTag = 'div',
+    zIndex,
+    onClose,
+    onOpen,
+    getPortalContainer,
+    view = 'tooltip',
+    targetRef = null,
+    fallbackPlacements,
+    preventOverflow = true,
+    availableHeight = false,
+    anchor = null,
+    useAnchorWidth,
+    theme = tooltipThemes.basic,
+}) => {
     const { target, visible, contentRef, handleOpen, handleClose, changeTarget } = useTooltip({
         onOpenDelay,
         onCloseDelay,
@@ -65,18 +70,18 @@ const Tooltip: FC<ITooltipProps> = ({
     const themeTargetCSS = useMemo<CSSObject>(() => getCSS('target', themeState), [getCSS, themeState]);
 
     const getContentProps = (): ClassAttributes<HTMLDivElement> =>
-         ({
-            ref: contentRef,
-            'data-test-id': dataTestId,
-            css: deepmerge.all<CSSObject>([themeContentCSS, contentCSS]),
-            ...eventHandlers,
-        })
-    ;
+    ({
+        ref: contentRef,
+        'data-test-id': dataTestId,
+        css: deepmerge.all<CSSObject>([themeContentCSS, contentCSS]),
+        ...eventHandlers,
+    })
+        ;
 
     const getTargetProps = (): HTMLAttributes<HTMLElement> => ({
-            css: deepmerge.all<CSSObject>([themeTargetCSS, targetCSS]),
-            ...eventHandlers,
-        });
+        css: deepmerge.all<CSSObject>([themeTargetCSS, targetCSS]),
+        ...eventHandlers,
+    });
 
     return (
         <>

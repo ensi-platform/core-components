@@ -1,14 +1,14 @@
-import { CSSObject } from '@emotion/react';
+import { BaseModal } from '@ensi-platform/core-components-base-modal';
+import { useThemeCSSPart } from '@ensi-platform/core-components-common';
+
+import type { CSSObject } from '@emotion/react';
+
 import { forwardRef, useMemo, useRef } from 'react';
 import mergeRefs from 'react-merge-refs';
 
-import { BaseModal } from '@greensight/core-components-base-modal';
-
-import { useThemeCSSPart } from '@greensight/core-components-common';
-
 import { PopupContextProvider } from './PopupContext';
 import { popupThemes } from './themes';
-import { ModalDesktopProps, PopupState, View } from './types';
+import type { ModalDesktopProps, PopupState, View } from './types';
 
 const Popup = forwardRef<HTMLDivElement, ModalDesktopProps & { view: View }>(
     (

@@ -1,15 +1,15 @@
-import { ChangeEvent, FocusEvent, forwardRef, useEffect, useRef, useState } from 'react';
+import { Input } from '@ensi-platform/core-components-input';
 
-import { Input } from '@greensight/core-components-input';
+import { type ChangeEvent, type FocusEvent, forwardRef, useEffect, useRef, useState } from 'react';
 
 import { HOURS_MINUTES_SEPARATOR } from '../../scripts/constants';
-import type { InnerTimeInputProps } from '../../types';
 import { isCompleteTime } from '../../scripts/utils';
+import type { InnerTimeInputProps } from '../../types';
 
 const defaultTime = `00${HOURS_MINUTES_SEPARATOR}00`;
 
 export const TimeInput = forwardRef<HTMLInputElement, InnerTimeInputProps>(
-    ({ autoCorrection, value: valueProp, defaultValue, onChange, onComplete, onBlur, ...restProps }, ref) => {
+    ({ autoCorrection, value: valueProp, defaultValue, field, onChange, onComplete, onBlur, ...restProps }, ref) => {
         const [value, setValue] = useState(defaultValue);
 
         const lastValidTime = useRef(defaultTime);
@@ -30,6 +30,7 @@ export const TimeInput = forwardRef<HTMLInputElement, InnerTimeInputProps>(
 
         const changeValue = (val: string, event: ChangeEvent<HTMLInputElement> | null) => {
             onChange?.(event, { value: val });
+            field?.onChange(val);
 
             if (uncontrolled) setValue(val);
             if (isCompleteTime(val, true)) callOnComplete(val);

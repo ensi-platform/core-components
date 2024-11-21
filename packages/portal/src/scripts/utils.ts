@@ -1,4 +1,4 @@
-import { MutableRefObject, RefObject } from 'react';
+import type { MutableRefObject, RefObject } from 'react';
 
 export const PORTAL_CONTAINER_ATTRIBUTE = 'react-portal-container';
 

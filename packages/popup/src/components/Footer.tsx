@@ -1,10 +1,12 @@
-import { CSSObject } from '@emotion/react';
+import { BaseModalContext } from '@ensi-platform/core-components-base-modal';
+import { Layout } from '@ensi-platform/core-components-common';
+
+import type { CSSObject } from '@emotion/react';
+
 import { useContext, useEffect } from 'react';
 
-import { BaseModalContext } from '@greensight/core-components-base-modal';
-import { Layout } from '@greensight/gds';
 import { usePopupContext } from '../PopupContext';
-import { FooterProps } from '../types';
+import type { FooterProps } from '../types';
 
 export const Footer = ({ children, className, ...props }: FooterProps) => {
     const { footerHighlighted, setHasFooter } = useContext(BaseModalContext);

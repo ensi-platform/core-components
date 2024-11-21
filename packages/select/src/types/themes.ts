@@ -1,7 +1,7 @@
-import { BaseThemeState, StyleDefinition, ValueOrFunction } from '@greensight/core-components-common';
+import type { BaseThemeState, StyleDefinition, ValueOrFunction } from '@ensi-platform/core-components-common';
 
-import { SelectItem } from '@greensight/core-components-select';
-import { SELECT_THEMES } from '../themes';
+import type { SELECT_THEMES } from '../themes';
+import type { SelectItem } from './common';
 
 export enum SelectSize {
     sm = 'sm',

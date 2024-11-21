@@ -1,8 +1,15 @@
+import { scale } from '@ensi-platform/core-components-common';
+import { FormControl, type FormControlProps } from '@ensi-platform/core-components-form-control';
+import { BASE_INPUT_CSS } from '@ensi-platform/core-components-input';
+import { LoadingSkeleton } from '@ensi-platform/core-components-loading-skeleton';
+import type { FieldProps } from '@ensi-platform/core-components-select';
+import { TagItem } from '@ensi-platform/core-components-tags';
+
 import {
-    FC,
-    KeyboardEventHandler,
-    MouseEvent,
-    MouseEventHandler,
+    type FC,
+    type KeyboardEventHandler,
+    type MouseEvent,
+    type MouseEventHandler,
     useCallback,
     useEffect,
     useLayoutEffect,
@@ -10,17 +17,9 @@ import {
     useRef,
     useState,
 } from 'react';
-import { Tags } from '@greensight/core-components-tags';
-import { LoadingSkeleton } from '@greensight/core-components-loading-skeleton';
 
-import { scale } from '@greensight/core-components-common';
-
-import { FieldProps } from '@greensight/core-components-select';
-import { FormControl, FormControlProps } from '@greensight/core-components-form-control';
-
-import { BASE_INPUT_CSS } from '@greensight/core-components-input';
 import { calculateTotalElementsPerRow } from '../../scripts/helpers';
-import { TagListOwnProps } from './types';
+import type { TagListOwnProps } from './types';
 
 export const TagList: FC<FieldProps & FormControlProps & TagListOwnProps> = ({
     size = 'md',
@@ -48,7 +47,7 @@ export const TagList: FC<FieldProps & FormControlProps & TagListOwnProps> = ({
     transformTagText,
     isPopoverOpen,
     handleUpdatePopover,
-    Tag = Tags.Tag,
+    Tag = TagItem,
     overflow = 'grow-height',
     ...restProps
 }) => {

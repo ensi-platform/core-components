@@ -1,8 +1,16 @@
-import { HTMLAttributes, forwardRef } from 'react';
+import {
+    Button,
+    type FormFieldHelperProps,
+    IconSmallImport,
+    defaultTheme,
+    scale,
+} from '@ensi-platform/core-components-common';
 
-import { FormFieldDescendantProps, IconSmallImport, scale, defaultTheme, Button } from '@greensight/core-components-common';
+import { type HTMLAttributes, forwardRef } from 'react';
 
-interface DropzoneAreaProps extends HTMLAttributes<HTMLDivElement>, FormFieldDescendantProps {
+import type { FileType } from './DropzoneFile';
+
+interface DropzoneAreaProps extends HTMLAttributes<HTMLDivElement>, Partial<FormFieldHelperProps<FileType[]>> {
     inputFieldProps: HTMLAttributes<HTMLInputElement>;
     disabled?: boolean;
     /** Button-like view */
@@ -41,8 +49,7 @@ const DropzoneArea = forwardRef<HTMLDivElement, DropzoneAreaProps>(
                 css={{
                     display: 'grid',
                     placeItems: 'center',
-                    border:
-                        meta?.error ? `1px solid ${colors?.danger}` : `1px dashed ${colors.grey300}`,
+                    border: meta?.error ? `1px solid ${colors?.danger}` : `1px dashed ${colors.grey300}`,
                     // borderRadius: IT?.borderRadius,
                     // background: IT?.bg,
                     padding: scale(2),

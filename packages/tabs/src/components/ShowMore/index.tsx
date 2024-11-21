@@ -1,16 +1,16 @@
-import { FC, FocusEvent, MouseEvent } from 'react';
-
 import {
     Arrow,
     BaseSelect,
-    OptionsList as DefaultOptionsList,
     Optgroup as DefaultOptgroup,
-    FieldProps,
+    OptionsList as DefaultOptionsList,
+    type FieldProps,
     Option,
-} from '@greensight/core-components-select';
+} from '@ensi-platform/core-components-select';
+
+import type { FC, FocusEvent, MouseEvent } from 'react';
 
 import { useTabsTheme } from '../../context';
-import { ShowMoreButtonProps } from '../../types';
+import type { ShowMoreButtonProps } from '../../types';
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 const ButtonField = ({

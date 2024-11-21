@@ -1,11 +1,11 @@
-import { RefObject, useCallback, useEffect } from 'react';
+import { useIsomorphicLayoutEffect } from '@ensi-platform/core-components-common';
 
 import { ResizeObserver as ResizeObserverPolyfill } from '@juggle/resize-observer';
 
-import { useIsomorphicLayoutEffect } from '@greensight/core-components-common';
+import { type RefObject, useCallback, useEffect } from 'react';
 
-import { SelectProps } from '../../../../types';
-import { useSelect } from './useSelect';
+import type { SelectProps } from '../../../../types';
+import type { useSelect } from './useSelect';
 
 type useSelectReturnType = ReturnType<typeof useSelect>;
 

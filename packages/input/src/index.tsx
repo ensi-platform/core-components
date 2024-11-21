@@ -1,10 +1,19 @@
-import { CSSObject } from '@emotion/react';
+import {
+    IconSmallClosed as CloseIcon,
+    type FormFieldHelperProps,
+    defaultTheme,
+    scale,
+} from '@ensi-platform/core-components-common';
+import { FormControl, formControlThemes } from '@ensi-platform/core-components-form-control';
+
+import type { CSSObject } from '@emotion/react';
+
 import deepmerge from 'deepmerge';
 import {
-    AnimationEvent,
-    ChangeEvent,
-    FocusEvent,
-    MouseEvent,
+    type AnimationEvent,
+    type ChangeEvent,
+    type FocusEvent,
+    type MouseEvent,
     forwardRef,
     useCallback,
     useEffect,
@@ -14,16 +23,7 @@ import {
 } from 'react';
 import mergeRefs from 'react-merge-refs';
 
-import {
-    FormFieldDescendantProps,
-    defaultTheme,
-    scale,
-    IconSmallClosed as CloseIcon,
-} from '@greensight/core-components-common';
-
-import { FormControl } from '@greensight/core-components-form-control';
-
-import { InputProps } from './types';
+import type { InputProps } from './types';
 
 export * from './types';
 
@@ -67,14 +67,14 @@ export const BASE_INPUT_CSS: CSSObject = {
 
 const emptyStyle = {};
 
-export const Input = forwardRef<HTMLInputElement, InputProps & FormFieldDescendantProps<string>>(
+export const Input = forwardRef<HTMLInputElement, InputProps & Partial<FormFieldHelperProps<string>>>(
     (
         {
             type = 'text',
             block = true,
             size = 'md',
             variant = 'primary',
-            theme,
+            theme: themeProp = formControlThemes.basic,
             bottomAddons,
             clear = false,
             disabled,
@@ -113,7 +113,10 @@ export const Input = forwardRef<HTMLInputElement, InputProps & FormFieldDescenda
         },
         ref
     ) => {
+        delete restProps.isLegend;
+
         const readOnly = readOnlyProp || disableUserInput;
+        const theme = typeof themeProp === 'string' ? formControlThemes[themeProp] : themeProp;
         const uncontrolled = value === undefined;
         const inputRef = useRef<HTMLInputElement>(null);
 

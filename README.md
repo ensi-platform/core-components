@@ -1,6 +1,6 @@
 # React Component Library
 
-This library makes it easy to create interfaces using the Greensight Design System (GDS) library.
+This React component library is designed for use in Ensi frontend services. It makes it easier to create interfaces using the Greensight Design System (GDS) library.
 
 ---
 
@@ -23,21 +23,22 @@ Each parallel process takes about 0.5-1GB of RAM per node instance, so calculate
 To rebuild an individual component use
 `yarn build-component [COMPONENT_NAME]`, for ex. yarn build-component select
 
-P.s. build.bat for Windows is up-to-date but not debugged, there may be problems.
+P.s. build.bat for Windows is outdated and not debugged, there may be problems.
 
 ---
+
 ## Start working on the task
 
 Next, let's describe the process of working with this library (hereinafter LIB) and testing it in another repository/project (hereinafter REP).
 
-To customize the LIB for integration with REP, follow these steps:
+To customize the LIB for local integration with REP, follow these steps:
 
 #### Step 1: Create a symbolic link for the LIB
 
 Navigate to the dist build directory and create a symbolic link
 
 ```bash
-cd dist && npm link
+cd dist && yarn link
 ```
 
 #### Step 2: Linking the LIB to the REP
@@ -45,27 +46,80 @@ cd dist && npm link
 Make sure the dependencies are already installed in REP and link the LIBs
 
 ```bash
-npm link @ensi-platform/core-components
+yarn link @ensi-platform/core-components
 ```
 
 This way the linked repository will always have your `dist` build in it
 
 #### Resolving React version conflicts
 
-If there is a React version conflict, for example if devtools has warning “invalid react hook call”, follow this step to fix it:
+Next, during REP build, you may have an error, related with some react hook. For example devtools will have warning “invalid react hook call”. This happens because of the presence of multiple react entities. To fix it, link **react** and **@types/react** from REP to the LIB, following this steps:
 
-Link React from REP to the LIB, from the root of the LIB execute:
+1. Navigate to the **REP/node_modules** and create links:
+
 ```bash
-npm link (absolute path to node_modules/react in REP)
+yarn link --cwd react
+yarn link --cwd @types/react
+```
+
+2. Navigate to the root of the LIB and link react and @types/react
+
+```bash
+yarn link react
+yarn link @types/react
 ```
 
 ---
+
 ### Publish a new version
 
-Once the task is finished, you should go to the `cd dist/` build folder and publish the new version with the `yarn publish --access=public` command
+After review approval and merging task-branch to master, you should publish a new version.
 
-The new version will include all the contents of the dist folder, but you can always adjust the whitelist in the `dist/package.json` parameter `files`
+1. Firstly, actualize master and rebuild the package:
+
+```bash
+git checkout master
+git pull origin master
+yarn && yarn build
+```
+
+2. Then check the latest package version at [npmjs.com](https://www.npmjs.com/package/@ensi-platform/core-components?activeTab=versions) and choose a new version number:
+
+    - PATCH version when you make backward compatible bug fixes
+    - MINOR version when you add functionality in a backward compatible manner
+    - MAJOR version when you make incompatible API changes
+
+3. Go to `dist/` build folder and publish code to npmjs:
+
+```bash
+cd dist
+yarn publish --access=public
+```
+
+This command will override version number only in package.json in `dist/` folder.
+
+New version of the package will include all the contents of the dist folder, but you can always adjust the whitelist in the `dist/package.json` parameter `files`.
+
+4. Next run command `yarn version` and specify the same version as in step 3.
+   This command will override version number in package.json, commit changes and create new annotated tag.
+
+5. Now push changes to gitlab and additionally push tags:
+
+```bash
+git push origin master
+git push origin --tags
+```
+
+6. Finally go to gitlab-repository, check your tag, release it and fill the release description changes.
 
 ---
+
+### Creating a new package
+
+It is **recommended** to use create-package.js script to create a new package
+
+Run `yarn create-package` from the root
+
 ## License
+
 Refer to the LICENSE.md (MIT) file to view the license.

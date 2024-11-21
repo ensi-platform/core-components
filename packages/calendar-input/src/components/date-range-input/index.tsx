@@ -1,14 +1,13 @@
-import { ChangeEvent, FocusEvent, forwardRef, useEffect, useMemo, useRef, useState } from 'react';
-import mergeRefs from 'react-merge-refs';
-import startOfMonth from 'date-fns/startOfMonth';
+import { type CalendarProps, Calendar as DefaultCalendar } from '@ensi-platform/core-components-calendar';
+import { IconCalendar, useOnClickOutside } from '@ensi-platform/core-components-common';
+import { Input } from '@ensi-platform/core-components-input';
+import { Popover } from '@ensi-platform/core-components-popover';
 
-import { Calendar as DefaultCalendar, CalendarProps } from '@greensight/core-components-calendar';
-import { Input } from '@greensight/core-components-input';
-import { Popover } from '@greensight/core-components-popover';
-import { IconCalendar, useOnClickOutside } from '@greensight/core-components-common';
+import startOfMonth from 'date-fns/startOfMonth';
+import { type ChangeEvent, type FocusEvent, forwardRef, useEffect, useMemo, useRef, useState } from 'react';
+import mergeRefs from 'react-merge-refs';
 
 import { DATE_RANGE_SEPARATOR, DEFAULT_MAX_DATE, DEFAULT_MIN_DATE } from '../../scripts/constants';
-import { InnerDateRangeInputProps } from '../../types';
 import {
     formatDate,
     getValidRange,
@@ -18,6 +17,7 @@ import {
     preventDefault,
     updateRange,
 } from '../../scripts/utils';
+import type { InnerDateRangeInputProps } from '../../types';
 
 export const DateRangeInput = forwardRef<HTMLInputElement, InnerDateRangeInputProps>(
     (
@@ -29,6 +29,7 @@ export const DateRangeInput = forwardRef<HTMLInputElement, InnerDateRangeInputPr
             value: valueProp,
             defaultValue,
             inputWrapperRef: inputWrapperRefProp = null,
+            field,
             onComplete,
             onChange,
             onBlur,
@@ -100,6 +101,7 @@ export const DateRangeInput = forwardRef<HTMLInputElement, InnerDateRangeInputPr
 
         const changeValue = (val: string, event: ChangeEvent<HTMLInputElement> | null) => {
             onChange?.(event, { value: val });
+            field?.onChange(val);
 
             if (uncontrolled) setValue(val);
             if (isCompleteDateRange(val)) callOnComplete(val);

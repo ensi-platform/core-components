@@ -1,9 +1,10 @@
-import { CSSObject } from '@emotion/react';
+import { type OptionizedCSS, defaultTheme, extractCSSOption, scale } from '@ensi-platform/core-components-common';
+
+import type { CSSObject } from '@emotion/react';
+
 import deepmerge from 'deepmerge';
 
-import { scale, OptionizedCSS, defaultTheme, extractCSSOption } from '@greensight/core-components-common';
-
-import { RadioSize, RadioVariant, RadioTheme } from '../types';
+import type { RadioSize, RadioTheme, RadioVariant } from '../types';
 
 const { colors, typography } = defaultTheme;
 

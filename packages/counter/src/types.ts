@@ -1,5 +1,11 @@
-import { BaseThemeState, FormFieldDescendantProps, StyleDefinition, ValueOrFunction } from '@greensight/core-components-common';
-import { HTMLProps } from 'react';
+import type {
+    BaseThemeState,
+    FormFieldHelperProps,
+    StyleDefinition,
+    ValueOrFunction,
+} from '@ensi-platform/core-components-common';
+
+import type { HTMLProps } from 'react';
 
 export type View = 'vertical' | 'horizontal';
 
@@ -34,7 +40,8 @@ export type CounterTheme = ValueOrFunction<
 
 export type CounterProps = Partial<Omit<CounterState, 'hasLabel' | 'view'>> &
     Partial<Omit<BaseThemeState<typeof CounterVariant, typeof CounterSize, CounterTheme>, 'theme'>> &
-    Omit<HTMLProps<HTMLInputElement>, 'onChange' | 'size'> & FormFieldDescendantProps & {
+    Omit<HTMLProps<HTMLInputElement>, 'onChange' | 'size'> &
+    Partial<FormFieldHelperProps<number>> & {
         /** Input unique name. Used for name and id properties */
         name: string;
 

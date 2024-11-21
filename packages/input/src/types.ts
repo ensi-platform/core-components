@@ -1,7 +1,8 @@
-import { CSSObject } from '@emotion/react';
-import { ChangeEvent, InputHTMLAttributes, MouseEvent, ReactNode, Ref } from 'react';
+import type { FormControlProps } from '@ensi-platform/core-components-form-control';
 
-import { FormControlProps } from '@greensight/core-components-form-control';
+import type { CSSObject } from '@emotion/react';
+
+import type { ChangeEvent, InputHTMLAttributes, MouseEvent, ReactNode, Ref } from 'react';
 
 export type InputProps = Omit<
     InputHTMLAttributes<HTMLInputElement>,
@@ -27,7 +28,7 @@ export type InputProps = Omit<
      */
     clear?: boolean;
 
-    theme?: FormControlProps['theme'];
+    theme?: FormControlProps['theme'] | keyof FormControlProps['theme'];
     variant?: FormControlProps['variant'];
     size?: FormControlProps['size'];
     labelWrap?: FormControlProps['labelWrap'];
@@ -54,7 +55,7 @@ export type InputProps = Omit<
     /**
      * Атрибут type
      */
-    type?: 'number' | 'card' | 'email' | 'money' | 'password' | 'tel' | 'text' | 'time' | 'color' | 'url';
+    type?: 'number' | 'card' | 'email' | 'money' | 'password' | 'tel' | 'text' | 'time' | 'color' | 'url' | 'link';
 
     /**
      * Ref для обертки input
@@ -141,4 +142,6 @@ export type InputProps = Omit<
      * Обработчик MouseUp по полю
      */
     onMouseUp?: (event: MouseEvent<HTMLDivElement>) => void;
+
+    isLegend?: boolean;
 };

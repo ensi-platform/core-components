@@ -1,7 +1,8 @@
-import { KeyboardEvent, MouseEvent } from 'react';
+import type { PopupProps } from '@ensi-platform/core-components-popup';
 
-import { PopupProps } from '@greensight/core-components-popup';
-import { ActionEnum, ThemesEnum } from '../scripts/enums';
+import type { KeyboardEvent, MouseEvent } from 'react';
+
+import type { ActionEnum, ThemesEnum } from '../scripts/enums';
 
 export interface IActionPopupProps extends Omit<PopupProps, 'title' | 'onBackdropClick'> {
     action?: ActionEnum;

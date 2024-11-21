@@ -1,13 +1,15 @@
-import { HTMLProps, Ref } from 'react';
-import {
+import type {
     BaseThemeState,
     StyleDefinition,
     ValueOrFunction,
     useCheckboxLikeControlHookType,
-} from '@greensight/core-components-common';
+} from '@ensi-platform/core-components-common';
 
-import { CSSObject } from '@emotion/react';
-import { radioThemes } from './themes';
+import type { CSSObject } from '@emotion/react';
+
+import type { HTMLProps, Ref } from 'react';
+
+import type { radioThemes } from './themes';
 
 /**
  * Размеры радио-кнопки

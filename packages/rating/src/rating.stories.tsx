@@ -1,8 +1,9 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { ComponentProps, useState } from 'react';
+
+import { type ComponentProps, useState } from 'react';
 
 import README from '../README.md';
-import { Rating, RatingProps } from './index';
+import { Rating, type RatingProps } from './index';
 
 export default {
     title: 'Controls / Form / Rating',

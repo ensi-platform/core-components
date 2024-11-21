@@ -1,5 +1,7 @@
-import { ButtonHTMLAttributes, forwardRef } from 'react';
-import { Button } from '@greensight/core-components-common';
+import { Button } from '@ensi-platform/core-components-common';
+
+import { type ButtonHTMLAttributes, forwardRef } from 'react';
+
 import useCalendarTheme from '../../scripts/useCalendarTheme';
 
 export type SelectButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {

@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
+
 import type { CSSProperties, ComponentProps } from 'react';
 
 import README from '../README.md';

@@ -1,6 +1,6 @@
-import { defaultTheme, scale, OptionizedCSS, extractCSSOption } from '@greensight/core-components-common';
+import { type OptionizedCSS, defaultTheme, extractCSSOption, scale } from '@ensi-platform/core-components-common';
 
-import { FormControlSize, FormControlTheme, FormControlVariant } from '../types';
+import type { FormControlSize, FormControlTheme, FormControlVariant } from '../types';
 
 const { colors, typography } = defaultTheme;
 
@@ -11,7 +11,6 @@ const basicTheme: FormControlTheme = {
         ...(block && { width: '100%' }),
     }),
     error: ({ errorPlacement }) => ({
-        color: colors.danger,
         [errorPlacement === 'above' ? 'marginBottom' : 'marginTop']: scale(1),
     }),
     inner: ({ size, focused, hasError, disabled }) => {

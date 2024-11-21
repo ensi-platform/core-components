@@ -62,4 +62,3 @@ export const createSyntheticMouseEvent = <T extends Element>(event: MouseEvent):
     screenY: event.screenY,
     shiftKey: event.shiftKey,
 });
-

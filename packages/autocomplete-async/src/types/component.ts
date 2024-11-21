@@ -1,8 +1,8 @@
-import { SelectItem, OptionProps } from '@greensight/core-components-select';
-import { SelectWithTagsProps } from '@greensight/core-components-select-with-tags';
+import type { FormFieldHelperProps } from '@ensi-platform/core-components-common';
+import type { OptionProps, SelectItem } from '@ensi-platform/core-components-select';
+import type { SelectWithTagsProps } from '@ensi-platform/core-components-select-with-tags';
 
-import { FC, ReactNode } from 'react';
-import { FormFieldDescendantProps } from '@greensight/core-components-common';
+import type { FC, ReactNode } from 'react';
 
 export interface IOptionsFetcherResponse {
     options: SelectItem[];
@@ -44,11 +44,14 @@ export interface AutocompleteAsyncHandlers {
     onClear?: () => void;
 }
 
+type ValOrArr<T> = T | T[];
+type AutocompleteAsyncValue = ValOrArr<string | number | object | null>;
+
 export type AutocompleteAsyncPropsType = Omit<
     SelectWithTagsProps,
     'options' | 'selected' | 'value' | 'onInput' | 'onChange'
 > &
-    FormFieldDescendantProps &
+    Partial<FormFieldHelperProps<AutocompleteAsyncValue>> &
     AutocompleteAsyncHandlers &
     AutocompleteAsyncState & {
         asyncSearchFn: IUseLazyLoadingProps['optionsFetcher'];

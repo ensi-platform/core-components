@@ -1,11 +1,10 @@
-import { ChangeEvent, FocusEvent, forwardRef, useEffect, useRef, useState } from 'react';
+import { type CalendarProps, Calendar as DefaultCalendar } from '@ensi-platform/core-components-calendar';
+import { IconCalendar, defaultTheme, scale, useOnClickOutside } from '@ensi-platform/core-components-common';
+import { Input } from '@ensi-platform/core-components-input';
+import { Popover } from '@ensi-platform/core-components-popover';
+
+import { type ChangeEvent, type FocusEvent, forwardRef, useEffect, useRef, useState } from 'react';
 import mergeRefs from 'react-merge-refs';
-
-import { Calendar as DefaultCalendar, CalendarProps } from '@greensight/core-components-calendar';
-import { Input } from '@greensight/core-components-input';
-import { Popover } from '@greensight/core-components-popover';
-
-import { useOnClickOutside, IconCalendar, defaultTheme, scale } from '@greensight/core-components-common';
 
 import {
     DATE_FORMAT,
@@ -14,7 +13,6 @@ import {
     DEFAULT_MAX_DATE,
     DEFAULT_MIN_DATE,
 } from '../../scripts/constants';
-import type { InnerDateInputProps } from '../../types';
 import {
     formatDate,
     isCompleteDate,
@@ -23,6 +21,7 @@ import {
     parseDateString,
     preventDefault,
 } from '../../scripts/utils';
+import type { InnerDateInputProps } from '../../types';
 
 const { colors } = defaultTheme;
 
@@ -43,6 +42,7 @@ export const DateInput = forwardRef<HTMLInputElement, InnerDateInputProps>(
             calendarProps = {},
             platform,
             calendarRef,
+            field,
             onComplete,
             onChange,
             onBlur,
@@ -63,7 +63,7 @@ export const DateInput = forwardRef<HTMLInputElement, InnerDateInputProps>(
         const lastValidDate = useRef<string>('');
         const inputRef = useRef<HTMLInputElement>(null);
         const inputWrapperRef = useRef<HTMLDivElement>(null);
-        const controlled = valueProp !== undefined;
+        const uncontrolled = valueProp === undefined;
         const { offDays } = calendarProps;
         const inputValue = valueProp ?? value ?? '';
         const [inputDate, inputTime] = inputValue.split(DATE_TIME_SEPARATOR);
@@ -98,13 +98,11 @@ export const DateInput = forwardRef<HTMLInputElement, InnerDateInputProps>(
 
         const changeValue = (val: string, event: ChangeEvent<HTMLInputElement> | null) => {
             onChange?.(event, { value: val });
+            field?.onChange(val);
 
             const [date, time = ''] = val.split(DATE_TIME_SEPARATOR);
 
-            if (controlled && restProps?.helpers) {
-                restProps.helpers.setValue(val);
-                setValue(val);
-            }
+            if (uncontrolled) setValue(val);
             if (isCompleteDate(date) && isCompleteTime(time, withTime)) callOnComplete(val);
         };
 

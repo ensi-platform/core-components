@@ -1,2 +1,9 @@
-# Price
-Компонент для отображения цены с различными приставками (знак минуса, от и т.д.) и единицами измерения (%, Р, Р/чел, Р/ночь и т.д.) и различной типографикой. Также можно перечеркнуть флагом isCrossed. Автоматически форматирует цену, если значение передано числом а не строкой.
+A component for displaying prices using various typography
+
+It has a prefix - the `preText` prop
+
+It has a unit of measurement - the `unit` prop
+
+You can cross out the price - the `isCrossed` prop
+
+You can style preText, value, and unit separately

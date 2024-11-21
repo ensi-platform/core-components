@@ -1,7 +1,9 @@
 /* eslint-disable react-hooks/rules-of-hooks */
+import { IconSmallCard as TicketIcon } from '@ensi-platform/core-components-common';
+
 import type { Meta, StoryObj } from '@storybook/react';
-import { ComponentProps, useEffect, useState } from 'react';
-import { IconSmallCard as TicketIcon } from '@greensight/core-components-common';
+
+import { type ComponentProps, useEffect, useState } from 'react';
 
 import { Tabs } from '.';
 import README from '../README.md';

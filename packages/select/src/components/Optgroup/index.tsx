@@ -1,5 +1,6 @@
-import { scale, typography } from '@greensight/core-components-common';
-import { OptgroupProps } from './types';
+import { scale, typography } from '@ensi-platform/core-components-common';
+
+import type { OptgroupProps } from './types';
 
 export const Optgroup = ({ children, className, label }: OptgroupProps) => (
     <>
