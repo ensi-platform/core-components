@@ -2,7 +2,7 @@
   "include": [
     "src",
     "../../typings",
-    "src/popover.stories.tsx"
+    "src/Popover.stories.tsx"
   ],
   "extends": "../../tsconfig.json",
   "compilerOptions": {

@@ -1,5 +1,6 @@
 import { ReactNode, MutableRefObject } from 'react';
 import { TransitionOptions } from 'react-transition-state';
+import { type IPortalProps } from '@ensi-platform/core-components-portal';
 
 import { CSSObject } from '@emotion/react';
 
@@ -75,7 +76,7 @@ export interface IPopoverProps extends IBasePopoverProps, IStyledProps, IPositio
     /**
      * Function that returns the container where the popover will be rendered
      */
-    getPortalContainer?: () => HTMLElement;
+    container?: IPortalProps['container'];
 
     /**
      * Transition options for the popover

@@ -1,8 +1,8 @@
 import { forwardRef, useState } from 'react';
 import { useTransition } from 'react-transition-state';
 
-import { Portal } from '@greensight/core-components-portal';
-import { Stack, stackingOrder } from '@greensight/core-components-stack';
+import { Portal } from '@ensi-platform/core-components-portal';
+import { Stack, StackingOrderEnum } from '@ensi-platform/core-components-stack';
 
 import { IPopoverProps, RefElement } from './types';
 import { DEFAULT_TRANSITION, extractTransitionDuration, useModifier, usePopover } from './scripts';
@@ -13,7 +13,7 @@ export const Popover = forwardRef<HTMLDivElement, IPopoverProps>(
         {
             tabFocusableWrapper,
             children,
-            getPortalContainer,
+            container,
             transitionOptions = DEFAULT_TRANSITION,
             anchorElement,
             useAnchorWidth,
@@ -28,7 +28,7 @@ export const Popover = forwardRef<HTMLDivElement, IPopoverProps>(
             open,
             dataTestId,
             update,
-            zIndex = stackingOrder.POPOVER,
+            zIndex = StackingOrderEnum.POPOVER,
             fallbackPlacements,
             preventOverflow = true,
             availableHeight = false,
@@ -116,7 +116,7 @@ export const Popover = forwardRef<HTMLDivElement, IPopoverProps>(
         return (
             <Stack value={zIndex}>
                 {computedZIndex => (
-                    <Portal getPortalContainer={getPortalContainer}>
+                    <Portal container={container}>
                         {withTransition
                             ? isMounted && (
                                   <div

@@ -1,4 +1,4 @@
 export * from './common';
-export * from './popover';
+export * from './component';
 export * from './popoverArrow';
 export * from './popoverContent';
