@@ -10,7 +10,7 @@ export type CheckboxValueType = string[] | boolean;
 type Align = 'start' | 'center';
 
 /**
- * Interface for basic checkbox component to control it by form wrapper
+ * Interface for basic checkbox component to control it by FormWrapper
  */
 export interface ICheckboxWrapperReturn {
     id: string;
@@ -40,12 +40,7 @@ export interface ICheckboxState {
     indeterminate?: boolean;
 
     /**
-     * Manage focus(element select) state
-     */
-    focused?: boolean;
-
-    /**
-     * Checkbox horizontal alignment
+     * Checkbox vertical alignment relative to its label
      */
     align?: Align;
 
@@ -53,6 +48,11 @@ export interface ICheckboxState {
      * Use 100% of parent width
      */
     block?: boolean;
+
+    /**
+     * Manage focus(element select) state
+     */
+    focused?: boolean;
 
     /**
      * Is input disabled

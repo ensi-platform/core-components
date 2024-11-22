@@ -1,7 +1,10 @@
+import { ErrorMessages } from '@ensi-platform/core-components-common';
+
 import { Button, Layout } from '@greensight/gds';
 import { action } from '@storybook/addon-actions';
 import type { Meta, StoryObj } from '@storybook/react';
 
+import * as Yup from 'yup';
 import type { ComponentProps } from 'react';
 
 import { Form, FormField, FormReset, TypedField } from '.';
@@ -12,6 +15,10 @@ const defaultProps: ComponentProps<typeof Form> = {
         field: '',
         typedField: '',
     },
+    validationSchema: Yup.object({
+        field: Yup.string().required(ErrorMessages.REQUIRED),
+        typedField: Yup.string().required(ErrorMessages.REQUIRED),
+    }),
     onSubmit: action('onSubmit'),
     onReset: action('onReset'),
     onChange: action('onChange'),
@@ -140,7 +147,7 @@ export default {
             description: 'Form change handler',
         },
     },
-    args: { ...defaultProps },
+    args: defaultProps,
 } as Meta<typeof Form>;
 
 export const Basic: StoryObj<ComponentProps<typeof Form> & { withIcon: boolean }> = {

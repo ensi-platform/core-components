@@ -1,7 +1,9 @@
+import type { IFieldValueType, IFieldWrapperProps } from '@ensi-platform/core-components-form';
+
 import { Children, cloneElement, forwardRef, isValidElement } from 'react';
 
 import { useFieldHook } from '../../hooks/useFieldHook';
-import { type IFieldValueType, type IFieldWrapperProps, type IFormFieldWrapperProps } from './types';
+import type { IFormFieldWrapperProps } from './types';
 
 /**
  * FieldWrapper - is a wrapper for any field, controlled with RHF

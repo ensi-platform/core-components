@@ -17,7 +17,7 @@ const basicTheme: CheckboxTheme = {
     icon: {
         position: 'absolute',
         top: outerSize / 2 - 1,
-        left: outerSize / 2,
+        left: outerSize / 2 - 1,
         zIndex: 2,
         fill: colors.white,
         transform: 'translate(-50%, -50%) scale(0)',
@@ -31,16 +31,29 @@ const basicTheme: CheckboxTheme = {
         },
     },
 
-    box: ({ disabled, error, focused, checked }) => ({
+    indeterminateLine: {
+        position: 'absolute',
+        top: outerSize / 2 - 2,
+        left: outerSize / 4 - 1,
+        zIndex: 2,
+        width: 10,
+        height: 2,
+        background: colors.white,
+    },
+
+    box: ({ disabled, error, focused, checked, indeterminate }) => ({
+        position: 'relative',
         width: outerSize,
         height: outerSize,
+        flexShrink: 0,
         border: `1px solid ${error ? colors.danger : colors.grey600}`,
         borderRadius: '2px',
         ...(focused && {
-            border: `1px solid ${colors.primary}`,
+            borderColor: colors.primary,
         }),
-        ...(checked && {
+        ...((checked || indeterminate) && {
             background: colors?.primary,
+            borderColor: colors.primary,
         }),
         '.focus-visible + & ': {
             outline: `2px solid ${colors.primary}`,
@@ -71,13 +84,6 @@ const basicTheme: CheckboxTheme = {
             cursor: 'not-allowed',
         }),
     }),
-
-    indeterminateLine: {
-        position: 'absolute',
-        width: 10,
-        height: 2,
-        background: colors.grey400,
-    },
 
     hint: {
         color: colors.grey400,

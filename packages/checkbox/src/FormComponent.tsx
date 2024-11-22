@@ -1,7 +1,7 @@
 import { forwardRef } from 'react';
 
 import { Checkbox } from './Component';
-import { CheckboxFormWrapper } from './FormCheckboxWrapper';
+import { CheckboxFormWrapper } from './FormComponentWrapper';
 import { type IFormCheckboxProps } from './types';
 
 /**

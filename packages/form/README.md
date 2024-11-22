@@ -1,7 +1,6 @@
 To simplify working with forms, we use the library [react-hook-form](https://react-hook-form.com/) (hereinafter RHF)    
 To validate fields we use [Yup](https://github.com/jquense/yup)
 
-### Form component
 **Form** - is a wrapper for [RHF's](https://react-hook-form.com/) form initialization logic.  
 It contains <a href="https://react-hook-form.com/docs/formprovider" target="_blank">`FormProvider`</a>, to which we pass all props, received from called right here <a href="https://react-hook-form.com/docs/useform" target="_blank">`useForm`</a> hook.   
 

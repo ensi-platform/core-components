@@ -10,6 +10,10 @@ import { type ComponentProps, useState } from 'react';
 import README from '../README.md';
 import { Checkbox, FormCheckbox } from './index';
 
+const defaultProps: ComponentProps<typeof Checkbox> = {
+    onChange: action('onChange'),
+};
+
 export default {
     title: 'Components / Checkbox',
     component: Checkbox,
@@ -21,14 +25,55 @@ export default {
         },
     },
     argTypes: {
+        checked: {
+            table: {
+                type: { summary: 'boolean' },
+            },
+            description: 'Manage checkbox checked state (native prop)',
+            control: {
+                type: 'boolean',
+            },
+        },
+
+        indeterminate: {
+            table: {
+                type: { summary: 'boolean' },
+                defaultValue: { summary: false },
+            },
+            description: 'Manage checkbox indeterminate state',
+            control: {
+                type: 'boolean',
+            },
+        },
+
         align: {
             table: {
                 defaultValue: { summary: 'start' },
                 type: { summary: 'start | center' },
             },
-            description: '',
+            description: 'Checkbox vertical alignment relative to its label',
             control: 'radio',
             options: ['start', 'center'],
+        },
+
+        block: {
+            table: {
+                type: { summary: 'boolean' },
+            },
+            description: 'Use 100% of parent width',
+            control: {
+                type: 'boolean',
+            },
+        },
+
+        focused: {
+            table: {
+                type: { summary: 'boolean' },
+            },
+            description: 'Manage focus(element select) state',
+            control: {
+                type: 'boolean',
+            },
         },
 
         disabled: {
@@ -41,18 +86,31 @@ export default {
                 type: 'boolean',
             },
         },
+
+        error: {
+            table: {
+                type: { summary: 'string' },
+            },
+            description: 'Field error',
+            control: {
+                type: 'string',
+            },
+        },
     },
 } as Meta<typeof Checkbox>;
 
 export const Basic: StoryObj<ComponentProps<typeof Checkbox>> = {
-    render: () => {
-        const [checked, setChecked] = useState(false);
+    args: defaultProps,
+    render: ({ checked: initialChecked, onChange, ...args }) => {
+        const [checked, setChecked] = useState(initialChecked);
 
         return (
             <Checkbox
+                {...args}
                 checked={checked}
                 onChange={event => {
                     setChecked(event.currentTarget.checked);
+                    onChange?.(event);
                 }}
             >
                 Вариант 1
@@ -62,25 +120,30 @@ export const Basic: StoryObj<ComponentProps<typeof Checkbox>> = {
 };
 
 export const WithLink: StoryObj<ComponentProps<typeof Checkbox>> = {
-    render: () => {
-        const [checked, setChecked] = useState(false);
+    args: defaultProps,
+    render: ({ checked: initialChecked, onChange, ...args }) => {
+        const [checked, setChecked] = useState(initialChecked);
 
         return (
-            <Checkbox
-                checked={checked}
-                onChange={event => {
-                    setChecked(event.currentTarget.checked);
-                }}
-            >
-                Я прочитал и принимаю{' '}
-                <a href="/" style={{ textDecoration: 'underline' }}>
-                    Пользовательское соглашение
-                </a>{' '}
-                и{' '}
-                <a href="/" style={{ textDecoration: 'underline' }}>
-                    Согласие на обработку персональных данных
-                </a>
-            </Checkbox>
+            <div css={{ width: '300px' }}>
+                <Checkbox
+                    {...args}
+                    checked={checked}
+                    onChange={event => {
+                        setChecked(event.currentTarget.checked);
+                        onChange?.(event);
+                    }}
+                >
+                    Я прочитал и принимаю{' '}
+                    <a href="/" style={{ textDecoration: 'underline' }}>
+                        Пользовательское соглашение
+                    </a>{' '}
+                    и{' '}
+                    <a href="/" style={{ textDecoration: 'underline' }}>
+                        Согласие на обработку персональных данных
+                    </a>
+                </Checkbox>
+            </div>
         );
     },
 };
