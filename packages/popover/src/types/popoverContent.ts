@@ -1,10 +1,10 @@
 
-import { Ref } from 'react';
+import type { Ref, LegacyRef, ReactNode, CSSProperties } from 'react';
+import type { CSSObject } from '@emotion/react';
 
-import { RefElementType } from './common';
-import { IBasePopoverProps, IStyledProps } from '.'
+import type { RefElementType } from './common';
 
-export interface IPopoverContentProps extends IBasePopoverProps, IStyledProps {
+export interface IPopoverContentProps {
     /**
      * Computed z-index for the popover
      */
@@ -21,6 +21,11 @@ export interface IPopoverContentProps extends IBasePopoverProps, IStyledProps {
     ref?: Ref<HTMLDivElement>;
 
     /**
+     * Use the width of the parent element
+     */
+    useAnchorWidth?: boolean;
+
+    /**
      * The element relative to which the popover appears
      */
     referenceElement?: RefElementType;
@@ -31,17 +36,42 @@ export interface IPopoverContentProps extends IBasePopoverProps, IStyledProps {
     tabFocusableWrapper?: boolean;
 
     /**
-     * Shift for the arrow positioning
+     * Identifier for automated testing systems
      */
-    arrowShift?: number;
+    dataTestId?: string;
 
     /**
-     * Function to set the arrow element
+     * Additional class name
      */
-    setArrowElement?: (element: HTMLElement) => void;
+    className?: string;
+
+    /**
+     * Additional popover style
+     */
+    popperStyles?: { [key: string]: CSSProperties },
+
+    /**
+     * Additional popover style
+     */
+    popperCSS?: CSSObject;
+
+    /**
+     * Allows the popover to adjust its height based on the screen boundaries
+     */
+    availableHeight?: boolean;
 
     /**
      * Function to set the popper element
      */
-    setPopperElement?: (element: HTMLElement) => void;
+    setPopperElement?: LegacyRef<HTMLDivElement>;
+
+    /**
+     * Popover content
+     */
+    children?: ReactNode;
+
+    /**
+     * Arrow element
+     */
+    arrow: ReactNode | null;
 }

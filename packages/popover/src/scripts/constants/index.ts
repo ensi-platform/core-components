@@ -1,4 +1,4 @@
-import { TransitionOptions } from 'react-transition-state';
+import type { TransitionOptions } from 'react-transition-state';
 
 export const DEFAULT_TRANSITION: TransitionOptions = {
     timeout: 150,

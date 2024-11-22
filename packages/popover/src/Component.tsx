@@ -2,18 +2,19 @@ import { forwardRef, useState } from 'react';
 import { useTransition } from 'react-transition-state';
 
 import { Portal } from '@ensi-platform/core-components-portal';
-import { Stack, StackingOrderEnum } from '@ensi-platform/core-components-stack';
+import { Stack, stackingOrder } from '@ensi-platform/core-components-stack';
 
-import { IPopoverProps, RefElement } from './types';
+import type { IPopoverProps } from './types';
 import { DEFAULT_TRANSITION, extractTransitionDuration, useModifier, usePopover } from './scripts';
-import { PopoverContent} from './components/popover-content'
+import { PopoverArrow } from './components/popover-arrow';
+import { PopoverContent } from './components/popover-content';
 
-export const Popover = forwardRef<HTMLDivElement, IPopoverProps>(
+const Popover = forwardRef<HTMLDivElement, IPopoverProps>(
     (
         {
             tabFocusableWrapper,
             children,
-            container,
+            getPortalContainer,
             transitionOptions = DEFAULT_TRANSITION,
             anchorElement,
             useAnchorWidth,
@@ -28,22 +29,22 @@ export const Popover = forwardRef<HTMLDivElement, IPopoverProps>(
             open,
             dataTestId,
             update,
-            zIndex = StackingOrderEnum.POPOVER,
+            zIndex = stackingOrder.POPOVER,
             fallbackPlacements,
             preventOverflow = true,
             availableHeight = false,
         },
         ref
     ) => {
-        const [arrowElement, setArrowElement] = useState<RefElement>(null);
-        const [popperElement, setPopperElement] = useState<RefElement>(null);
+        const [arrowElement, setArrowElement] = useState<HTMLDivElement>();
+        const [popperElement, setPopperElement] = useState<HTMLDivElement>();
 
-        const setArrowElementFn = (elem: RefElement) => {
+        const setArrowElementFn = (elem: any) => {
             setArrowElement(elem);
-        }
-        const setPopperElementFn = (elem: RefElement) => {
+        };
+        const setPopperElementFn = (elem: HTMLDivElement | undefined) => {
             setPopperElement(elem);
-        }
+        };
 
         const modifiers = useModifier({
             withArrow,
@@ -53,7 +54,7 @@ export const Popover = forwardRef<HTMLDivElement, IPopoverProps>(
             availableHeight,
             offset,
             arrowElement,
-        })
+        });
 
         const [{ status: transitionStatus, isMounted }, toggle] = useTransition({
             ...transitionOptions,
@@ -76,17 +77,28 @@ export const Popover = forwardRef<HTMLDivElement, IPopoverProps>(
             modifiers,
             children,
             toggle,
-        })
+        });
 
         const transitionDuration = extractTransitionDuration(transitionStatus, transitionOptions);
 
-        const renderContent = (computedZIndex) =>
+        const renderArrow = () => (
+            withArrow ? (
+                <PopoverArrow
+                    popperStyles={popperStyles}
+                    arrowShift={arrowShift}
+                    arrowCSS={arrowCSS}
+                    setArrowElement={setArrowElementFn}
+                />
+            ) : null
+        )
+
+        const renderContent = (computedZIndex: number) => (
             <PopoverContent
                 computedZIndex={computedZIndex}
                 popperStyles={{
                     ...popperStyles,
                     transitionDuration: `${transitionDuration}ms`,
-                }}
+                } as typeof popperStyles}
                 attributes={attributes}
                 ref={ref}
                 useAnchorWidth={useAnchorWidth}
@@ -96,43 +108,42 @@ export const Popover = forwardRef<HTMLDivElement, IPopoverProps>(
                 className={className}
                 popperCSS={popperCSS}
                 availableHeight={availableHeight}
-                withArrow={withArrow}
-                arrowShift={arrowShift}
-                arrowCSS={arrowCSS}
-                setArrowElement={setArrowElementFn}
-                setPopperElement={setPopperElementFn}
+                setPopperElement={setPopperElementFn as (elem: HTMLElement | null) => void}
+                arrow={renderArrow()}
             >
                 {children}
             </PopoverContent>
+        );
 
-        const zeroOpacity = transitionStatus === 'unmounted' ||
+        const zeroOpacity =
+            transitionStatus === 'unmounted' ||
             transitionStatus === 'preEnter' ||
             transitionStatus === 'entering' ||
             transitionStatus === 'exited' ||
-            transitionStatus === 'exiting'
+            transitionStatus === 'exiting';
 
-        const noZeroOpacity = transitionStatus === 'preExit' || transitionStatus === 'entered'
+        const noZeroOpacity = transitionStatus === 'preExit' || transitionStatus === 'entered';
 
         return (
             <Stack value={zIndex}>
-                {computedZIndex => (
-                    <Portal container={container}>
+                {(computedZIndex) => (
+                    <Portal getPortalContainer={getPortalContainer}>
                         {withTransition
                             ? isMounted && (
-                                  <div
-                                      css={{
-                                          transition: `opacity ${transitionDuration}ms ease`,
-                                          ...(zeroOpacity && {
-                                              opacity: 0,
-                                          }),
-                                          ...(noZeroOpacity && {
-                                              opacity: 1,
-                                          }),
-                                      }}
-                                  >
-                                      {renderContent(computedZIndex)}
-                                  </div>
-                              )
+                                <div
+                                    css={{
+                                        transition: `opacity ${transitionDuration}ms ease`,
+                                        ...(zeroOpacity && {
+                                            opacity: 0,
+                                        }),
+                                        ...(noZeroOpacity && {
+                                            opacity: 1,
+                                        }),
+                                    }}
+                                >
+                                    {renderContent(computedZIndex)}
+                                </div>
+                            )
                             : open && renderContent(computedZIndex)}
                     </Portal>
                 )}
@@ -140,3 +151,5 @@ export const Popover = forwardRef<HTMLDivElement, IPopoverProps>(
         );
     }
 );
+
+export default Popover;

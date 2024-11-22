@@ -1,8 +1,8 @@
 import { useMemo } from 'react';
 import maxSize from 'popper-max-size-modifier';
-import { ModifierArguments, Obj } from '@popperjs/core';
+import type { ModifierArguments, Obj, Modifier } from '@popperjs/core';
 
-import { IPopperModifier, IUseModifierProps } from '../../types';
+import type { IPopperModifier, IUseModifierProps } from '../../types';
 
 export const useModifier = (
     {
@@ -13,7 +13,7 @@ export const useModifier = (
         availableHeight,
         offset,
         arrowElement,
-    } : IUseModifierProps
+    }: IUseModifierProps
 ) => {
     const availableHeightModifier = useMemo(
         () => ({
@@ -65,5 +65,5 @@ export const useModifier = (
         result.push({ ...availableHeightModifier, options: {} });
     }
 
-    return result;
+    return result as Array<Partial<Modifier<unknown, object>>>;
 };

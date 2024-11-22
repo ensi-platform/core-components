@@ -1,20 +1,24 @@
-import { CSSObject } from '@emotion/react';
+import type { LegacyRef, CSSProperties } from 'react';
+import type { CSSObject } from '@emotion/react';
 
-import { IStyledProps } from '.';
-
-export interface IPopoverArrowProps extends IStyledProps {
-    /**
-     * Additional popover style
-     */
-    popperStyles?: CSSObject;
-
+export interface IPopoverArrowProps {
     /**
      * Shift for the arrow positioning
      */
-    arrowShift?: number;
+    arrowShift?: boolean;
+
+    /**
+     * Additional arrow style
+     */
+    arrowCSS?: CSSObject;
+
+    /**
+     * Additional popover style
+     */
+    popperStyles?: { [key: string]: CSSProperties },
 
     /**
      * Function to set the arrow element
      */
-    setArrowElement?: (element: HTMLElement) => void;
+    setArrowElement?: LegacyRef<HTMLDivElement>;
 }

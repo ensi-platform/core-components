@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import { usePopper } from 'react-popper';
 import { ResizeObserver as ResizeObserverPolyfill } from '@juggle/resize-observer';
 
-import { RefElement, IUsePopoverProps } from '../../types';
+import type { IUsePopoverProps, RefElementType } from '../../types';
 import { MIN_ARROW_SHIFT_SIZE } from "..";
 
 export const usePopover = ({
@@ -16,7 +16,7 @@ export const usePopover = ({
     children,
     toggle,
 }: IUsePopoverProps) => {
-    const [referenceElement, setReferenceElement] = useState<RefElement>(anchorElement);
+    const [referenceElement, setReferenceElement] = useState<RefElementType>(anchorElement);
     const [arrowShift, setArrowShift] = useState(false);
 
     const updatePopperRef = useRef<() => void>();
@@ -77,12 +77,12 @@ export const usePopover = ({
     * However, if the anchorElement is too small, the arrow should not shift.
     */
     useEffect(() => {
-        const shiftedPosition = position.includes('-start') || position.includes('-end');
+        const shiftedPosition = position?.includes('-start') || position?.includes('-end');
 
         if (shiftedPosition && referenceElement) {
             const { width, height } = referenceElement.getBoundingClientRect();
 
-            const size = position.includes('left') || position.includes('right') ? height : width;
+            const size = position?.includes('left') || position?.includes('right') ? height : width;
 
             if (size >= MIN_ARROW_SHIFT_SIZE) {
                 setArrowShift(true);
@@ -91,8 +91,8 @@ export const usePopover = ({
     }, [referenceElement, position]);
 
     useEffect(() => {
-        toggle(open);
-    }, [open]);
+        toggle?.(open);
+    }, [open, toggle]);
 
     return {
         referenceElement,

@@ -1,4 +1,4 @@
-import { TransitionOptions, TransitionStatus } from 'react-transition-state';
+import type { TransitionOptions, TransitionStatus } from 'react-transition-state';
 
 export const extractTransitionDuration = (status: TransitionStatus, options: TransitionOptions) => {
     if (status === 'unmounted') return 0;

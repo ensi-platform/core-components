@@ -1,9 +1,6 @@
-import { MutableRefObject } from 'react';
-import { CSSObject } from '@emotion/react';
+import type { MutableRefObject, ReactNode } from 'react';
 
-import { BasePlacement, Obj, VariationPlacement } from '@popperjs/core';
-
-import { IBasePopoverProps } from '.';
+import type { BasePlacement, Obj, VariationPlacement, Modifier } from '@popperjs/core';
 
 export type RefElementType = HTMLElement | null;
 
@@ -14,52 +11,7 @@ export interface IPopperModifier {
     options: Obj;
 };
 
-export interface IPositionModifiers {
-    /**
-     * If the popover does not fit in the specified position,
-     * it will try to open in another position.
-     */
-    fallbackPlacements?: PositionType[];
-
-    /**
-     * Allows the popover to adjust its height based on the screen boundaries
-     */
-    availableHeight?: boolean;
-
-    /**
-     * Popover offset.
-     */
-    offset?: [number, number];
-}
-
-export interface IStyledProps {
-    /**
-     * Additional popover style
-     */
-    popperCSS?: CSSObject;
-
-    /**
-     * Additional arrow style
-     */
-    arrowCSS?: CSSObject;
-
-    /**
-     * Additional class name
-     */
-    className?: string;
-
-    /**
-     * Identifier for automated testing systems
-     */
-    dataTestId?: string;
-
-    /**
-     * Component z-index
-     */
-    zIndex?: number;
-}
-
-export interface IUseModifierProps extends IPositionModifiers {
+export interface IUseModifierProps {
     /**
      * If `true`, an arrow will be drawn
      */
@@ -76,21 +28,52 @@ export interface IUseModifierProps extends IPositionModifiers {
     preventOverflow?: boolean;
 
     /**
-     * The arrow element
+     * If the popover does not fit in the specified position,
+     * it will try to open in another position.
      */
-    arrowElement?: HTMLElement;
-}
+    fallbackPlacements?: PositionType[];
 
-export interface IUsePopoverProps extends IBasePopoverProps, IPositionModifiers {
     /**
      * The arrow element
      */
     arrowElement?: HTMLElement;
+
+    /**
+     * Allows the popover to adjust its height based on the screen boundaries
+     */
+    availableHeight?: boolean;
+
+    /**
+     * Popover offset.
+     */
+    offset?: [number, number];
+}
+
+export interface IUsePopoverProps {
+    /**
+     * The arrow element
+     */
+    arrowElement?: HTMLElement;
+
+    /**
+     * The element relative to which the popover appears
+     */
+    anchorElement: RefElementType;
 
     /**
      * The popover element
      */
     popperElement?: HTMLElement;
+
+    /**
+     * Control the popover state (open/closed)
+     */
+    open: boolean;
+
+    /**
+     * Popover positioning
+     */
+    position?: PositionType;
 
     /**
      * Holds a function that allows updating the component's position
@@ -100,10 +83,15 @@ export interface IUsePopoverProps extends IBasePopoverProps, IPositionModifiers 
     /**
      * Modifiers for the popover positioning
      */
-    modifiers?: IUseModifierProps;
+    modifiers?: Array<Partial<Modifier<unknown, object>>>;
 
     /**
      * Function to toggle the popover state
      */
-    toggle?: () => void;
+    toggle?: (toEnter?: boolean) => void
+
+    /**
+     * Popover content
+     */
+    children?: ReactNode;
 }
