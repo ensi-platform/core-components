@@ -1,12 +1,12 @@
 import { defaultTheme, scale } from '@ensi-platform/core-components-common';
 
-import type { CheckboxTheme } from '../types';
+import type { CheckboxThemeType } from '../types';
 
 const outerSize = scale(5, true);
 
 const { colors, typography } = defaultTheme;
 
-const basicTheme: CheckboxTheme = {
+const basicTheme: CheckboxThemeType = {
     container: ({ align }) => ({
         display: 'inline-flex',
         alignItems: align === 'center' ? 'center' : 'flex-start',
@@ -91,9 +91,9 @@ const basicTheme: CheckboxTheme = {
 };
 
 export const checkboxThemes = {
-    basic: basicTheme as CheckboxTheme,
+    basic: basicTheme as CheckboxThemeType,
 };
 
-export const setBasicCheckboxTheme = (popupTheme: CheckboxTheme) => {
+export const setBasicCheckboxTheme = (popupTheme: CheckboxThemeType) => {
     checkboxThemes.basic = popupTheme;
 };

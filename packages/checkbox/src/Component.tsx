@@ -8,7 +8,7 @@ import mergeRefs from 'react-merge-refs';
 
 import { useFocus } from './scripts/hooks';
 import { checkboxThemes } from './themes/defaultTheme';
-import { CheckboxSize, type CheckboxThemeState, CheckboxVariant, type ICheckboxProps } from './types';
+import { CheckboxSize, type CheckboxThemeStateType, CheckboxVariant, type ICheckboxProps } from './types';
 
 export * from './types';
 
@@ -53,7 +53,7 @@ export const Checkbox = forwardRef<HTMLLabelElement, ICheckboxProps>(
 
         const [focused] = useFocus(labelRef, 'keyboard');
 
-        const themeState = useMemo<CheckboxThemeState>(
+        const themeState = useMemo<CheckboxThemeStateType>(
             () => ({
                 align,
                 block,
