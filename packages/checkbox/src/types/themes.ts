@@ -46,16 +46,18 @@ export interface ICheckboxCSS {
     hintCSS?: CSSObject;
 }
 
-export type CheckboxThemeState = BaseThemeState<typeof CheckboxVariant, typeof CheckboxSize> & ICheckboxState;
+export type CheckboxThemeStateType = BaseThemeState<typeof CheckboxVariant, typeof CheckboxSize> & ICheckboxState;
 
-export type CheckboxTheme = ValueOrFunction<
-    {
-        container: StyleDefinition<CheckboxThemeState>;
-        content: StyleDefinition<CheckboxThemeState>;
-        box: StyleDefinition<CheckboxThemeState>;
-        icon: StyleDefinition<CheckboxThemeState>;
-        indeterminateLine: StyleDefinition<CheckboxThemeState>;
-        hint: StyleDefinition<CheckboxThemeState>;
-    },
-    [CheckboxThemeState]
+enum CheckboxThemeParts {
+    container,
+    content,
+    box,
+    icon,
+    indeterminateLine,
+    hint,
+}
+
+export type CheckboxThemeType = ValueOrFunction<
+    Record<keyof typeof CheckboxThemeParts, StyleDefinition<CheckboxThemeStateType>>,
+    [CheckboxThemeStateType]
 >;

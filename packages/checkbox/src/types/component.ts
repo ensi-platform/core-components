@@ -3,7 +3,7 @@ import { type IFieldWrapperProps } from '@ensi-platform/core-components-form';
 
 import type { ChangeEventHandler, FormEventHandler, HTMLProps, ReactNode } from 'react';
 
-import type { CheckboxSize, CheckboxTheme, CheckboxVariant, ICheckboxCSS } from './theme';
+import type { CheckboxSize, CheckboxThemeType, CheckboxVariant, ICheckboxCSS } from './themes';
 
 export type CheckboxValueType = string[] | boolean;
 
@@ -77,7 +77,7 @@ interface ICheckboxParts {
  */
 export interface ICheckboxProps
     extends Omit<HTMLProps<HTMLInputElement>, 'size' | 'css'>,
-        Partial<Omit<BaseThemeState<typeof CheckboxVariant, typeof CheckboxSize, CheckboxTheme>, 'theme'>>,
+        Partial<Omit<BaseThemeState<typeof CheckboxVariant, typeof CheckboxSize, CheckboxThemeType>, 'theme'>>,
         ICheckboxState,
         ICheckboxCSS,
         ICheckboxParts {}
