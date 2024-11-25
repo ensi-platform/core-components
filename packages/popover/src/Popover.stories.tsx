@@ -22,6 +22,7 @@ export default {
 export const Basic: StoryObj<Omit<ComponentProps<typeof Popover>, 'anchorElement' | 'open'>> = {
     args: {
         withTransition: true,
+        transitionOptions: { timeout: 150 },
         withArrow: false,
         position: "right",
         preventFlip: false,
@@ -38,12 +39,16 @@ export const Basic: StoryObj<Omit<ComponentProps<typeof Popover>, 'anchorElement
             description: "Enables or disables the animation when opening or closing the popover. If set to true, an animation will be applied during the popover's appearance and disappearance.",
             control: { type: 'boolean' },
         },
+        transitionOptions: {
+            description: "Transition options. The default value is { timeout: 150 }.",
+            control: { type: 'object' },
+        },
         withArrow: {
             description: "Determines whether an arrow should be displayed on the popover, pointing to the anchor element. When set to true, the arrow will be shown.",
             control: { type: 'boolean' },
         },
         position: {
-            description: "Controls the position of the popover relative to the anchor element (anchorElement). The available values include \"top\", \"right\", \"bottom\", and \"left\". In this example, the default is \"right\".",
+            description: "Controls the position of the popover relative to the anchor element (anchorElement). In this example, the default is \"right\".",
             options: POSITION_OPTIONS,
             control: { type: 'select' },
         },
@@ -64,7 +69,7 @@ export const Basic: StoryObj<Omit<ComponentProps<typeof Popover>, 'anchorElement
             control: { type: 'boolean' },
         },
         offset: {
-            description: "Sets the offset of the popover relative to the anchor element. For example, if the position is \"right\", the offset could shift the popover horizontally or vertically.",
+            description: "Sets the offset of the popover relative to the anchor element.",
             control: { type: 'object' },
         },
         zIndex: {

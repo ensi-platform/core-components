@@ -2,7 +2,7 @@ import type { TransitionOptions } from 'react-transition-state';
 
 import type { IUsePopoverProps, IUseModifierProps, IPopoverArrowProps, IPopoverContentProps } from '.'
 
-export interface IPopoverProps extends IUsePopoverProps, IUseModifierProps, IPopoverArrowProps, IPopoverContentProps {
+export interface IPopoverProps extends IUsePopoverProps, IUseModifierProps, IPopoverArrowProps, Omit<IPopoverContentProps, "arrow"> {
     /**
      * Function that returns the container where the popover will be rendered
      */
