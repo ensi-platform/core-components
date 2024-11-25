@@ -85,7 +85,7 @@ export const TabsComponent = ({
                 breakpoint={breakpoint}
             />
 
-            {tabs.map(tab => cloneElement(tab, { hidden: tab.id !== selectedId }))}
+            {tabs.map(tab => cloneElement(tab, { hidden: tab.id !== selectedId || tab.props.hidden }))}
         </div>
     );
 };
