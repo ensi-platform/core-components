@@ -11,10 +11,13 @@ Each item of list can have one of these three types:
 
 Specify an array with the following structure of each element:
 
--   name - param name / term
--   value - param value / definition
--   type - value type (if the type is omitted, the default type "base" will be used)
--   valueNoWrap - prop, responsible for text wrapping (default -false)
+| Parameter | Type     | Description                |
+| :-------- | :------- | :------------------------- |
+| `name` | `string` |  param name / term |
+| `value` | `ReactNode | string | boolean` |  param value / definition |
+| `type` | `'base' | 'date' | 'boolean'` |  value type (if the type is omitted, the default type "base" will be used) |
+| `valueNoWrap` | `boolean` |  prop, responsible for text wrapping (default -false) |
+
 
 ```tsx
 <DescriptionList>

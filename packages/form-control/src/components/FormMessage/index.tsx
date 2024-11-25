@@ -42,7 +42,7 @@ export const FormMessage: FC<FormMessageProps> = ({ message, type = 'error', cla
     const { typography } = defaultTheme;
 
     return (
-        <div css={{ color, ...typography('bodySm') }} className={className} {...props}>
+        <div css={{ color, ...typography('bodySm') }} className={className} role="alert" {...props}>
             <MessageIcon
                 type={type}
                 css={{ marginRight: scale(1, true), verticalAlign: 'text-bottom', fill: 'currentColor' }}

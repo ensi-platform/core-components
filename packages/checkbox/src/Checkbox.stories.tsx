@@ -87,13 +87,23 @@ export default {
             },
         },
 
+        hint: {
+            table: {
+                type: { summary: 'string' },
+            },
+            description: 'Field hint',
+            control: {
+                type: 'text',
+            },
+        },
+
         error: {
             table: {
                 type: { summary: 'string' },
             },
             description: 'Field error',
             control: {
-                type: 'string',
+                type: 'text',
             },
         },
     },
@@ -166,15 +176,13 @@ export const WithForm: StoryObj<ComponentProps<typeof Checkbox>> = {
             </FormFieldWrapper>
             <br />
 
-            <FormFieldWrapper name="checkboxGroup">
-                <FormCheckbox value="1">Checkbox group 1</FormCheckbox>
-            </FormFieldWrapper>
-            <FormFieldWrapper name="checkboxGroup">
-                <FormCheckbox value="2">Checkbox group 2</FormCheckbox>
-            </FormFieldWrapper>
-            <FormFieldWrapper name="checkboxGroup">
-                <FormCheckbox value="3">Checkbox group 3</FormCheckbox>
-            </FormFieldWrapper>
+            {/* <FormFieldWrapper name="checkboxGroup">
+                <FormControlGroup>
+                    <FormCheckbox value="1">Checkbox group 1</FormCheckbox>
+                    <FormCheckbox value="2">Checkbox group 2</FormCheckbox>
+                    <FormCheckbox value="3">Checkbox group 3</FormCheckbox>
+                </FormControlGroup>
+            </FormFieldWrapper> */}
             <br />
             <Button type="submit" size="sm">
                 Submit

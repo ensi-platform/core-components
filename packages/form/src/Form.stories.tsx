@@ -82,28 +82,6 @@ export default {
             },
         },
 
-        validateOnChange: {
-            table: {
-                type: { summary: 'boolean' },
-                defaultValue: { summary: false },
-            },
-            description: 'Enable validate on change.',
-            control: {
-                type: 'boolean',
-            },
-        },
-
-        validateOnBlur: {
-            table: {
-                type: { summary: 'boolean' },
-                defaultValue: { summary: false },
-            },
-            description: 'Enable validate on blur.',
-            control: {
-                type: 'boolean',
-            },
-        },
-
         isForm: {
             table: {
                 type: { summary: 'boolean' },

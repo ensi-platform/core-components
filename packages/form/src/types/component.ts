@@ -25,14 +25,6 @@ export interface IFormProps<T extends FieldValues>
      */
     enableReinitialize?: boolean;
     /**
-     * Enable validate on change
-     */
-    validateOnChange?: boolean;
-    /**
-     * Enable validate on blur
-     */
-    validateOnBlur?: boolean;
-    /**
      * Render form tag
      */
     isForm?: boolean;
