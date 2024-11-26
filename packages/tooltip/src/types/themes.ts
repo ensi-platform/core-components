@@ -1,5 +1,6 @@
-import type { BaseThemeState, StyleDefinition, ValueOrFunction } from '@greensight/core-components-common';
-import { ITooltipState } from './common';
+import type { BaseThemeState, StyleDefinition, ValueOrFunction } from '@ensi-platform/core-components-common';
+
+import type { ITooltipState } from './common';
 
 /**
  * Tooltip variants

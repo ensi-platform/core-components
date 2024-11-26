@@ -1,18 +1,12 @@
-import { useState, useEffect, useRef, useCallback } from 'react';
-import { ITooltipProps } from '../../types';
+import { useCallback, useEffect, useRef, useState } from 'react';
 
-export const useTooltip = ({
-    onOpenDelay,
-    onCloseDelay,
-    trigger,
-    forcedOpen,
-    onOpen,
-    onClose,
-}: ITooltipProps) => {
+import type { IUseTooltipProps } from '../../types';
+
+export const useTooltip = ({ onOpenDelay, onCloseDelay, trigger, forcedOpen, onOpen, onClose }: IUseTooltipProps) => {
     const [visible, setVisible] = useState(!!forcedOpen);
     const [target, setTarget] = useState<HTMLElement | null>(null);
     const contentRef = useRef<HTMLDivElement | null>(null);
-    const timer = useRef<number | null>(null);
+    const timer = useRef<number | undefined>(undefined);
 
     const open = useCallback(() => {
         if (!visible) {
@@ -30,7 +24,7 @@ export const useTooltip = ({
 
     const handleOpen = useCallback(() => {
         if (trigger === 'hover') {
-            if (timer.current) clearTimeout(timer.current);
+            if (timer.current !== undefined) clearTimeout(timer.current);
             timer.current = window.setTimeout(open, onOpenDelay);
             return;
         }
@@ -40,7 +34,7 @@ export const useTooltip = ({
 
     const handleClose = useCallback(() => {
         if (trigger === 'hover') {
-            if (timer.current) clearTimeout(timer.current);
+            if (timer.current !== undefined) clearTimeout(timer.current);
             timer.current = window.setTimeout(close, onCloseDelay);
             return;
         }
@@ -75,13 +69,13 @@ export const useTooltip = ({
             document.body.removeEventListener('click', handleBodyClick);
             document.body.removeEventListener('touchstart', handleBodyClick);
 
-            clearTimeout(timer.current);
+            if (timer.current !== undefined) clearTimeout(timer.current);
         };
     }, [clickedOutside, handleClose]);
 
-    const changeTarget= (newTarget) => {
-        setTarget(newTarget)
-    }
+    const changeTarget = (newTarget: HTMLElement | null) => {
+        setTarget(newTarget);
+    };
 
     return {
         target,

@@ -2,10 +2,10 @@ import type { Meta, StoryObj } from '@storybook/react';
 
 import { type ComponentProps, useState } from 'react';
 
-import Tooltip from './index';
-import { type ITooltipProps } from './types';
-import { POSITION_OPTIONS } from './scripts';
 import README from '../README.md';
+import { Tooltip } from './index';
+import { POSITION_OPTIONS } from './scripts';
+import { type ITooltipProps } from './types';
 
 export default {
     title: 'Components / Tooltip',
@@ -27,26 +27,21 @@ export const Basic: StoryObj<ComponentProps<typeof Tooltip> & { offsetX: number;
         offsetX: 0,
         offsetY: 16,
         position: 'left',
-        view: 'tooltip',
         zIndex: 1000,
         useAnchorWidth: false,
         preventOverflow: true,
         availableHeight: true,
-        fallbackPlacements: ['bottom', 'top'],
     },
     argTypes: {
-        view: {
-            options: ['tooltip', 'hint'],
-            control: { type: 'radio' },
-            description: 'Defines the type of tooltip. "tooltip" is used for standard tooltips, while "hint" provides more contextual information.',
-        },
         offsetX: {
             control: { type: 'number' },
-            description: 'Horizontal offset of the tooltip relative to its anchor element. Positive values move the tooltip to the right, and negative values move it to the left.',
+            description:
+                'Horizontal offset of the tooltip relative to its anchor element. Positive values move the tooltip to the right, and negative values move it to the left.',
         },
         offsetY: {
             control: { type: 'number' },
-            description: 'Vertical offset of the tooltip relative to its anchor element. Positive values move the tooltip downward, and negative values move it upward.',
+            description:
+                'Vertical offset of the tooltip relative to its anchor element. Positive values move the tooltip downward, and negative values move it upward.',
         },
         trigger: {
             options: ['hover', 'click'],
@@ -56,7 +51,8 @@ export const Basic: StoryObj<ComponentProps<typeof Tooltip> & { offsetX: number;
         position: {
             options: POSITION_OPTIONS,
             control: { type: 'select' },
-            description: 'Determines the position of the tooltip relative to the anchor element. Options include "top", "bottom", "left", and "right".',
+            description:
+                'Determines the position of the tooltip relative to the anchor element. Options include "top", "bottom", "left", and "right".',
         },
         zIndex: {
             control: { type: 'number' },
@@ -68,15 +64,13 @@ export const Basic: StoryObj<ComponentProps<typeof Tooltip> & { offsetX: number;
         },
         preventOverflow: {
             control: { type: 'boolean' },
-            description: 'Prevents the tooltip from repositioning itself to fit within the screen if there is not enough space.',
+            description:
+                'Prevents the tooltip from repositioning itself to fit within the screen if there is not enough space.',
         },
         availableHeight: {
             control: { type: 'boolean' },
-            description: 'Allows the tooltip to adjust its height to fit within the available screen space if its content is too large.',
-        },
-        fallbackPlacements: {
-            control: { type: 'select', options: ['top', 'bottom', 'left', 'right'] },
-            description: 'Alternative positions for the tooltip if it does not fit in the original position.',
+            description:
+                'Allows the tooltip to adjust its height to fit within the available screen space if its content is too large.',
         },
     },
     render: args => {

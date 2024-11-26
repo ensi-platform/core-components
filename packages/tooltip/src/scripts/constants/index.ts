@@ -1,5 +1,4 @@
-
-import { CSSObject } from '@emotion/react';
+import type { CSSObject } from '@emotion/react';
 
 export const DEFAULT_OFFSET: [number, number] = [0, 16];
 

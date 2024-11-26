@@ -1,14 +1,10 @@
 import { defaultTheme } from '@ensi-platform/core-components-common';
-import type { IPopoverArrowProps } from '../../types'
+
+import type { IPopoverArrowProps } from '../../types';
 
 const { colors } = defaultTheme;
 
-export const PopoverArrow = ({
-    popperStyles,
-    arrowShift,
-    arrowCSS,
-    setArrowElement,
-}: IPopoverArrowProps) => (
+export const PopoverArrow = ({ popperStyles, arrowShift, arrowCSS, setArrowElement }: IPopoverArrowProps) => (
     <div
         ref={setArrowElement}
         style={popperStyles?.arrow}
@@ -18,23 +14,23 @@ export const PopoverArrow = ({
                 content: "''",
                 display: 'block',
                 position: 'absolute',
+                top: -6,
                 width: 12,
                 height: 12,
-                border: `0px solid ${colors.white}`,
-                borderWidth: '0 8px 8px',
+                backgroundColor: colors.white,
                 transform: 'rotate(45deg)',
+                ...arrowCSS,
             },
             '[data-popper-placement="left"] &, [data-popper-placement="left-start"] &, [data-popper-placement="left-end"] &':
-            {
-                right: 5,
-                '&:after': {
-                    top: -6,
-                    borderBottom: 'none',
-                    borderLeft: 'none',
+                {
+                    right: 6,
                 },
-            },
+            '[data-popper-placement="right"] &, [data-popper-placement="right-start"] &, [data-popper-placement="right-end"] &':
+                {
+                    left: -6,
+                },
             ...(arrowShift && {
-                "[data-popper-placement='bottom-start'] &": {
+                "[data-popper-placement='bottom-start'] &, [data-popper-placement='top-start'] &": {
                     ':after': {
                         left: -17,
                     },
@@ -55,7 +51,6 @@ export const PopoverArrow = ({
                     },
                 },
             }),
-            ...arrowCSS,
         }}
     />
 );

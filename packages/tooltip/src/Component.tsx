@@ -1,19 +1,21 @@
-import {
-    type HTMLAttributes,
-    type ClassAttributes,
-    type FC,
-    useMemo
-} from 'react';
-import mergeRefs from 'react-merge-refs';
-import deepmerge from 'deepmerge';
-
+import { useThemeCSSPart } from '@ensi-platform/core-components-common';
 import { Popover } from '@ensi-platform/core-components-popover';
 
 import type { CSSObject } from '@emotion/react';
-import { useThemeCSSPart } from '@ensi-platform/core-components-common'
-import { type ITooltipProps, type TooltipThemeStateType, TooltipThemeState, type TooltipProps, Trigger } from './types';
+
+import deepmerge from 'deepmerge';
+import { type FC, type HTMLAttributes, type Ref, useMemo } from 'react';
+import mergeRefs from 'react-merge-refs';
+
+import { DEFAULT_OFFSET, EMPTY_OBJ, useTooltip } from './scripts';
 import { tooltipThemes } from './themes/defaultTheme';
-import { useTooltip, DEFAULT_OFFSET, EMPTY_OBJ } from './scripts';
+import { type ITooltipProps, type TooltipThemeStateType } from './types';
+
+interface ExtendedDivAttributes extends HTMLAttributes<HTMLDivElement> {
+    css?: CSSObject;
+    'data-test-id'?: string;
+    ref?: Ref<HTMLDivElement>;
+}
 
 const Tooltip: FC<ITooltipProps> = ({
     children,
@@ -26,6 +28,7 @@ const Tooltip: FC<ITooltipProps> = ({
     offset = DEFAULT_OFFSET,
     position,
     contentCSS = EMPTY_OBJ,
+    withArrow,
     arrowCSS = EMPTY_OBJ,
     className,
     updatePopover,
@@ -35,12 +38,11 @@ const Tooltip: FC<ITooltipProps> = ({
     onClose,
     onOpen,
     getPortalContainer,
-    view = 'tooltip',
     targetRef = null,
     fallbackPlacements,
     preventOverflow = true,
     availableHeight = false,
-    anchor = null,
+    anchorElement = null,
     useAnchorWidth,
     theme = tooltipThemes.basic,
 }) => {
@@ -53,32 +55,30 @@ const Tooltip: FC<ITooltipProps> = ({
         onClose,
     });
 
-    const eventHandlers = trigger === 'hover'
-        ? { onMouseEnter: handleOpen, onMouseLeave: handleClose }
-        : { onClick: visible ? handleClose : handleOpen };
+    const eventHandlers =
+        trigger === 'hover'
+            ? { onMouseEnter: handleOpen, onMouseLeave: handleClose }
+            : { onClick: visible ? handleClose : handleOpen };
 
     const themeState = useMemo<TooltipThemeStateType>(
         () => ({
             targetTag: TargetTag,
-            view,
         }),
-        [TargetTag, view]
+        [TargetTag]
     );
 
     const getCSS = useThemeCSSPart(theme, themeState);
     const themeContentCSS = useMemo<CSSObject>(() => getCSS('content', themeState), [getCSS, themeState]);
     const themeTargetCSS = useMemo<CSSObject>(() => getCSS('target', themeState), [getCSS, themeState]);
 
-    const getContentProps = (): ClassAttributes<HTMLDivElement> =>
-    ({
+    const getContentProps = (): ExtendedDivAttributes => ({
         ref: contentRef,
         'data-test-id': dataTestId,
         css: deepmerge.all<CSSObject>([themeContentCSS, contentCSS]),
         ...eventHandlers,
-    })
-        ;
+    });
 
-    const getTargetProps = (): HTMLAttributes<HTMLElement> => ({
+    const getTargetProps = (): HTMLAttributes<HTMLElement> & { css?: CSSObject } => ({
         css: deepmerge.all<CSSObject>([themeTargetCSS, targetCSS]),
         ...eventHandlers,
     });
@@ -101,14 +101,14 @@ const Tooltip: FC<ITooltipProps> = ({
             </TargetTag>
 
             <Popover
-                anchorElement={anchor || target}
+                anchorElement={anchorElement || target}
                 open={visible}
                 getPortalContainer={getPortalContainer}
                 arrowCSS={arrowCSS}
                 popperCSS={{}}
                 className={className}
                 offset={offset}
-                withArrow
+                withArrow={withArrow}
                 position={position}
                 update={updatePopover}
                 zIndex={zIndex}

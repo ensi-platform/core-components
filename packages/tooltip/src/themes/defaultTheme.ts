@@ -1,6 +1,6 @@
 import { defaultTheme, scale } from '@ensi-platform/core-components-common';
 
-import { TooltipThemeType } from '../types';
+import type { TooltipThemeType } from '../types';
 
 const { colors, shadows } = defaultTheme;
 
