@@ -1,17 +1,20 @@
 import { type BaseThemeState, useThemeCSSPart } from '@ensi-platform/core-components-common';
 
-import type { TabsState } from './component';
-import type { TabsSize, TabsTheme, TabsThemeState, TabsVariant } from './themes';
+import type { ITabsState } from './component';
+import type { TabsSize, TabsThemeStateType, TabsThemeType, TabsVariant } from './themes';
 
-const useTabsCSS = () => useThemeCSSPart<Omit<TabsThemeState, 'theme'>, TabsTheme>(...([] as never as [any, any]));
+const useTabsCSS = () =>
+    useThemeCSSPart<Omit<TabsThemeStateType, 'theme'>, TabsThemeType>(...([] as never as [any, any]));
 
-export interface ITabsThemeContext extends Required<BaseThemeState<typeof TabsVariant, typeof TabsSize, TabsTheme>> {
-    state: TabsState;
+export interface ITabsThemeContext
+    extends Required<BaseThemeState<typeof TabsVariant, typeof TabsSize, TabsThemeType>> {
+    state: ITabsState;
     getCSS: ReturnType<typeof useTabsCSS>;
     idPrefix: string;
 }
 
-export interface ITabsContextProps extends Required<BaseThemeState<typeof TabsVariant, typeof TabsSize, TabsTheme>> {
+export interface ITabsContextProps
+    extends Required<BaseThemeState<typeof TabsVariant, typeof TabsSize, TabsThemeType>> {
     idPrefix: string;
-    state: TabsState;
+    state: ITabsState;
 }

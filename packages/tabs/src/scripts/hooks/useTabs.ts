@@ -1,6 +1,6 @@
 import { type KeyboardEvent, type MouseEvent, type MutableRefObject, useCallback, useRef, useState } from 'react';
 
-import type { TabListTitle, UseTabsProps } from '../../types/component';
+import type { TabListTitleType, UseTabsProps } from '../../types/component';
 
 export function useTabs({ titles = [], selectedId, onChange }: UseTabsProps) {
     const [selectedTab, setSelectedTab] = useState<HTMLButtonElement | null>(null);
@@ -8,7 +8,7 @@ export function useTabs({ titles = [], selectedId, onChange }: UseTabsProps) {
     const itemRefs = useRef<HTMLButtonElement[]>([]);
 
     const handleItemRef = useCallback(
-        (node: HTMLButtonElement, item: TabListTitle, index: number) => {
+        (node: HTMLButtonElement, item: TabListTitleType, index: number) => {
             if (node && item.id === selectedId) setSelectedTab(node);
             itemRefs.current[index] = node;
         },
@@ -16,7 +16,7 @@ export function useTabs({ titles = [], selectedId, onChange }: UseTabsProps) {
     );
 
     const handleItemClick = useCallback(
-        (event: MouseEvent, item: TabListTitle) => {
+        (event: MouseEvent, item: TabListTitleType) => {
             // При желании можно вообще отключить возможность подсветить кастомный таб линией снизу
             // Полезно для ссылок, по желанию клиента.
             if (item.renderTitle && item.unfocusable) return;

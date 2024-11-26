@@ -9,7 +9,7 @@ import { LinkTitle } from './components/Title/LinkTitle';
 import { TabsThemeProvider } from './context';
 import { useMedia } from './scripts/hooks/useMedia';
 import { TABS_THEMES } from './themes';
-import type { SelectedId, TabsMatchMedia, TabsProps, TabsState } from './types/component';
+import type { ITabsProps, ITabsState, SelectedIdType, TabsMatchMediaType } from './types/component';
 
 const {
     mediaQueries: MEDIA_QUERIES,
@@ -18,15 +18,15 @@ const {
     },
 } = defaultTheme;
 
-export type { TabsProps };
+export type { ITabsProps as TabsProps };
 
 interface TabsCompositionProps {
     Tab: typeof Tab;
     LinkTitle: typeof LinkTitle;
 }
 
-type TabsComponentProps = Omit<TabsProps, 'TabList'> & {
-    TabList?: TabsProps['TabList'];
+type TabsComponentProps = Omit<ITabsProps, 'TabList'> & {
+    TabList?: ITabsProps['TabList'];
 };
 
 export const Tabs: FC<TabsComponentProps> & TabsCompositionProps = ({
@@ -47,10 +47,10 @@ export const Tabs: FC<TabsComponentProps> & TabsCompositionProps = ({
     const isControlled = typeof propsSelectedId !== 'undefined' && typeof onChange !== 'undefined';
     const theme = typeof themeName === 'string' ? TABS_THEMES[themeName] : themeName;
 
-    const [view] = useMedia<TabsMatchMedia>([['desktop', MEDIA_QUERIES.mdMin]], 'desktop');
+    const [view] = useMedia<TabsMatchMediaType>([['desktop', MEDIA_QUERIES.mdMin]], 'desktop');
     const mobile = typeof mobileProps === 'undefined' ? view === 'mobile' : mobileProps;
 
-    const state = useMemo<TabsState>(
+    const state = useMemo<ITabsState>(
         () => ({
             mobile,
             collapsible,
@@ -63,9 +63,9 @@ export const Tabs: FC<TabsComponentProps> & TabsCompositionProps = ({
     const localPrefix = useId();
     const prefix = typeof propsPrefix === 'undefined' ? localPrefix : propsPrefix;
 
-    const [localSelectedId, setLocalSelectedId] = useState<SelectedId>();
+    const [localSelectedId, setLocalSelectedId] = useState<SelectedIdType>();
 
-    const handleChange = (e: MouseEvent, payload: { selectedId: SelectedId }) => {
+    const handleChange = (e: MouseEvent, payload: { selectedId: SelectedIdType }) => {
         if (isControlled) {
             onChange?.(e, payload);
             return;

@@ -4,7 +4,7 @@ import { useTabsTheme } from '../../context';
 import { useMedia } from '../../scripts/hooks/useMedia';
 import { useTablistTitles } from '../../scripts/hooks/useTablistTitles';
 import { createSyntheticMouseEvent } from '../../scripts/syntheticEvents';
-import type { ShowMoreButtonOption, TabListProps, TabsMatchMedia } from '../../types/component';
+import type { IShowMoreButtonOption, ITabListProps, TabsMatchMediaType } from '../../types/component';
 import { KeyboardFocusable } from '../KeyboardFocusable';
 import { ScrollableContainer } from '../ScrollableContainer';
 import { ShowMoreButton as DefaultTooltipButton } from '../ShowMore';
@@ -22,11 +22,11 @@ export const TabList = ({
     onChange,
     dataTestId,
     breakpoint = 1024,
-}: TabListProps) => {
+}: ITabListProps) => {
     const lineRef = useRef<HTMLDivElement>(null);
     const wrapperRef = useRef<HTMLDivElement>(null);
 
-    const [view] = useMedia<TabsMatchMedia>([['desktop', `(min-width: ${breakpoint}px)`]], 'desktop');
+    const [view] = useMedia<TabsMatchMediaType>([['desktop', `(min-width: ${breakpoint}px)`]], 'desktop');
 
     const scrollable = view === 'desktop' ? propsScrollable : true;
     const collapsible = view === 'desktop' ? propsCollapsible : false;
@@ -49,7 +49,7 @@ export const TabList = ({
 
     const collapsedOptions = useMemo(
         () =>
-            tablistTitles.reduce<ShowMoreButtonOption[]>((options, title) => {
+            tablistTitles.reduce<IShowMoreButtonOption[]>((options, title) => {
                 if (title.collapsed) {
                     options.push({
                         label: title.title,

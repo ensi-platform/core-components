@@ -1,6 +1,6 @@
 import { useMemo } from 'react';
 
-import type { TabListProps, TabsMatchMedia } from '../../types/component';
+import type { ITabListProps, TabsMatchMediaType } from '../../types/component';
 import { useCollapsibleElements } from './useCollapsibleElements';
 import { useMedia } from './useMedia';
 import { useTabs } from './useTabs';
@@ -12,14 +12,14 @@ export const useTablistTitles = ({
     collapsedTabsIds,
     breakpoint,
     onChange,
-}: Pick<TabListProps, 'titles' | 'selectedId' | 'collapsible' | 'collapsedTabsIds' | 'onChange'> &
-    Required<Pick<TabListProps, 'breakpoint'>>) => {
+}: Pick<ITabListProps, 'titles' | 'selectedId' | 'collapsible' | 'collapsedTabsIds' | 'onChange'> &
+    Required<Pick<ITabListProps, 'breakpoint'>>) => {
     const { containerRef, addonRef, idsCollapsedElements } = useCollapsibleElements<HTMLDivElement, HTMLInputElement>(
         '[role=tab]',
         [titles]
     );
 
-    const [view] = useMedia<TabsMatchMedia>([['desktop', `(min-width: ${breakpoint}px)`]], 'desktop');
+    const [view] = useMedia<TabsMatchMediaType>([['desktop', `(min-width: ${breakpoint}px)`]], 'desktop');
 
     const tablistTitles = useMemo(() => {
         const idsCollapsedTitles: string[] = [];

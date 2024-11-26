@@ -10,7 +10,7 @@ import {
 import type { FC, FocusEvent, MouseEvent } from 'react';
 
 import { useTabsTheme } from '../../context';
-import type { ShowMoreButtonProps } from '../../types/component';
+import type { IShowMoreButtonProps } from '../../types/component';
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 const ButtonField = ({
@@ -62,7 +62,7 @@ const ButtonField = ({
     );
 };
 
-export const ShowMoreButton: FC<ShowMoreButtonProps> = ({
+export const ShowMoreButton: FC<IShowMoreButtonProps> = ({
     Optgroup = DefaultOptgroup,
     OptionsList = DefaultOptionsList,
     count,

@@ -1,7 +1,7 @@
 import { Children, type ReactElement, cloneElement } from 'react';
 
 import { useTabsTheme } from '../../context';
-import type { TabProps, TabsProps } from '../../types/component';
+import type { ITabsProps, TabPropsType } from '../../types/component';
 import { ShowMoreButton as DefaultTooltipButton } from '../ShowMore';
 
 const makeSureStringHasPrefix = (str: string, prefix: string) => {
@@ -26,10 +26,10 @@ export const TabsComponent = ({
     breakpoint,
     countErrors,
     onChange,
-}: Omit<TabsProps, 'view'>) => {
+}: Omit<ITabsProps, 'view'>) => {
     const { idPrefix } = useTabsTheme();
 
-    const tabsArray = Children.toArray(children) as Array<ReactElement<TabProps>>;
+    const tabsArray = Children.toArray(children) as Array<ReactElement<TabPropsType>>;
 
     const titles = tabsArray.map(
         ({

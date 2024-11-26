@@ -7,19 +7,19 @@ import type { CSSObject } from '@emotion/react';
 import type { FC, MouseEvent, ReactElement, ReactNode } from 'react';
 
 import type { TABS_THEMES } from '../themes';
-import type { TabsSize, TabsTheme, TabsVariant } from './themes';
+import type { TabsSize, TabsThemeType, TabsVariant } from './themes';
 
-export type SelectedId = any;
+export type SelectedIdType = any;
 
-export type TabsMatchMedia = 'desktop' | 'mobile';
+export type TabsMatchMediaType = 'desktop' | 'mobile';
 
-export interface ShowMoreButtonOption {
+export interface IShowMoreButtonOption {
     label: string;
-    value: SelectedId;
+    value: SelectedIdType;
     content: ReactNode;
 }
 
-export interface ShowMoreButtonProps
+export interface IShowMoreButtonProps
     extends Omit<
         SelectProps,
         | 'Field'
@@ -36,12 +36,12 @@ export interface ShowMoreButtonProps
         | 'options'
         | 'allowUnselect'
     > {
-    options: ShowMoreButtonOption[];
+    options: IShowMoreButtonOption[];
     count: number;
     ['data-collapse']?: 'true';
 }
 
-export interface TabsState {
+export interface ITabsState {
     mobile: boolean;
 
     /**
@@ -60,80 +60,81 @@ export interface TabsState {
     collapsible?: boolean;
 }
 
-export type TabsProps = Partial<Omit<BaseThemeState<typeof TabsVariant, typeof TabsSize, TabsTheme>, 'theme'>> &
-    Partial<TabsState> & {
-        theme?: TabsTheme | keyof typeof TABS_THEMES;
+export interface ITabsProps
+    extends Partial<Omit<BaseThemeState<typeof TabsVariant, typeof TabsSize, TabsThemeType>, 'theme'>>,
+        Partial<ITabsState> {
+    theme?: TabsThemeType | keyof typeof TABS_THEMES;
 
-        breakpoint?: number;
+    breakpoint?: number;
 
-        prefix?: string;
+    prefix?: string;
 
-        /**
-         * Дополнительный класс
-         */
-        className?: string;
+    /**
+     * Дополнительный класс
+     */
+    className?: string;
 
-        /**
-         * Дополнительный стиль контейнера
-         */
-        containerCSS?: CSSObject;
+    /**
+     * Дополнительный стиль контейнера
+     */
+    containerCSS?: CSSObject;
 
-        /**
-         * Id активного таба
-         */
-        selectedId?: SelectedId;
+    /**
+     * Id активного таба
+     */
+    selectedId?: SelectedIdType;
 
-        /**
-         * Рендерить неактивные табы
-         */
-        keepMounted?: boolean;
+    /**
+     * Рендерить неактивные табы
+     */
+    keepMounted?: boolean;
 
-        /**
-         * Режим отображения по умолчанию
-         */
-        defaultMatch?: TabsMatchMedia;
+    /**
+     * Режим отображения по умолчанию
+     */
+    defaultMatch?: TabsMatchMediaType;
 
-        /**
-         * Список табов, для контроля переноса вкладок в PickerButton
-         */
-        collapsedTabsIds?: string[];
+    /**
+     * Список табов, для контроля переноса вкладок в PickerButton
+     */
+    collapsedTabsIds?: string[];
 
-        /**
-         * Компоненты табов
-         */
-        children: ReactNode; // Array<ReactElement<TabProps>> | ReactElement<TabProps>;
+    /**
+     * Компоненты табов
+     */
+    children: ReactNode; // Array<ReactElement<TabProps>> | ReactElement<TabProps>;
 
-        /**
-         * Компонент заголовков табов
-         */
-        TabList: FC<TabListProps>;
+    /**
+     * Компонент заголовков табов
+     */
+    TabList: FC<ITabListProps>;
 
-        /**
-         * Компонент заголовков табов
-         */
-        ShowMoreButton?: FC<ShowMoreButtonProps>;
+    /**
+     * Компонент заголовков табов
+     */
+    ShowMoreButton?: FC<IShowMoreButtonProps>;
 
-        /**
-         * Обработчик переключения табов
-         */
-        onChange?: (event: MouseEvent, payload: { selectedId: SelectedId }) => void;
+    /**
+     * Обработчик переключения табов
+     */
+    onChange?: (event: MouseEvent, payload: { selectedId: SelectedIdType }) => void;
 
-        /**
-         * Идентификатор для систем автоматизированного тестирования
-         */
-        dataTestId?: string;
+    /**
+     * Идентификатор для систем автоматизированного тестирования
+     */
+    dataTestId?: string;
 
-        /**
-         * Массив, который нужен для вывода количества ошибок у таба
-         */
-        countErrors?: { id: string; count: number }[];
-    };
+    /**
+     * Массив, который нужен для вывода количества ошибок у таба
+     */
+    countErrors?: { id: string; count: number }[];
+}
 
-export type TabProps = {
+export type TabPropsType = {
     /**
      * Id таба
      */
-    id: SelectedId;
+    id: SelectedIdType;
 
     /**
      * Заголовок таба
@@ -191,7 +192,7 @@ export type TabProps = {
           /**
            * Кастомный рендер тайтла
            */
-          renderTitle?: (props: TabListTitle) => ReactElement;
+          renderTitle?: (props: TabListTitleType) => ReactElement;
           unfocusable?: boolean;
       }
     | {
@@ -200,9 +201,9 @@ export type TabProps = {
       }
 );
 
-export type TabListTitle = {
+export type TabListTitleType = {
     title: string;
-    id: SelectedId;
+    id: SelectedIdType;
     disabled?: boolean;
     rightAddons?: ReactNode;
     leftAddons?: ReactNode;
@@ -217,7 +218,7 @@ export type TabListTitle = {
     countErrors: number;
 } & (
     | {
-          renderTitle?: TabProps['renderTitle'];
+          renderTitle?: TabPropsType['renderTitle'];
           unfocusable?: boolean;
       }
     | {
@@ -226,29 +227,30 @@ export type TabListTitle = {
       }
 );
 
-export type TabListProps = Pick<
-    TabsProps,
-    | 'className'
-    | 'containerCSS'
-    | 'defaultMatch'
-    | 'selectedId'
-    | 'scrollable'
-    | 'collapsible'
-    | 'collapsedTabsIds'
-    | 'onChange'
-    | 'dataTestId'
-> & {
+export interface ITabListProps
+    extends Pick<
+        ITabsProps,
+        | 'className'
+        | 'containerCSS'
+        | 'defaultMatch'
+        | 'selectedId'
+        | 'scrollable'
+        | 'collapsible'
+        | 'collapsedTabsIds'
+        | 'onChange'
+        | 'dataTestId'
+    > {
     /**
      * Заголовки табов
      */
-    titles?: TabListTitle[];
+    titles?: TabListTitleType[];
     /**
      * Контрольная точка, с нее начинается desktop версия
      * @default md
      */
     breakpoint?: number;
 
-    ShowMoreButton?: FC<ShowMoreButtonProps>;
-};
+    ShowMoreButton?: FC<IShowMoreButtonProps>;
+}
 
-export type UseTabsProps = TabListProps;
+export type UseTabsProps = ITabListProps;

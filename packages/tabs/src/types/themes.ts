@@ -1,6 +1,6 @@
 import type { BaseThemeState, StyleDefinition } from '@ensi-platform/core-components-common';
 
-import type { TabsState } from './component';
+import type { ITabsState } from './component';
 
 export enum TabsSize {
     md = 'md',
@@ -10,16 +10,16 @@ export enum TabsVariant {
     primary = 'primary',
 }
 
-export type TabsThemeState = BaseThemeState<typeof TabsVariant, typeof TabsSize, never> & TabsState;
+export type TabsThemeStateType = BaseThemeState<typeof TabsVariant, typeof TabsSize, never> & ITabsState;
 
-export type TabsTheme = {
-    container: StyleDefinition<TabsThemeState>;
-    scrollableContainer: StyleDefinition<TabsThemeState>;
-    tabList: StyleDefinition<TabsThemeState>;
-    line: StyleDefinition<TabsThemeState>;
-    tab: StyleDefinition<TabsThemeState & { hidden?: boolean }>;
+export type TabsThemeType = {
+    container: StyleDefinition<TabsThemeStateType>;
+    scrollableContainer: StyleDefinition<TabsThemeStateType>;
+    tabList: StyleDefinition<TabsThemeStateType>;
+    line: StyleDefinition<TabsThemeStateType>;
+    tab: StyleDefinition<TabsThemeStateType & { hidden?: boolean }>;
     toggle: StyleDefinition<
-        TabsThemeState & {
+        TabsThemeStateType & {
             isSelected?: boolean;
             disabled?: boolean;
             focused?: boolean;
@@ -28,8 +28,8 @@ export type TabsTheme = {
             isCollapsed?: boolean;
         }
     >;
-    showMoreButton: StyleDefinition<TabsThemeState>;
-    toggleRightAddons: StyleDefinition<TabsThemeState>;
-    toggleLeftAddons: StyleDefinition<TabsThemeState>;
-    errorAddon: StyleDefinition<TabsThemeState>;
+    showMoreButton: StyleDefinition<TabsThemeStateType>;
+    toggleRightAddons: StyleDefinition<TabsThemeStateType>;
+    toggleLeftAddons: StyleDefinition<TabsThemeStateType>;
+    errorAddon: StyleDefinition<TabsThemeStateType>;
 };

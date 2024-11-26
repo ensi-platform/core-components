@@ -1,9 +1,9 @@
 import { type ButtonHTMLAttributes, forwardRef } from 'react';
 
 import { useTabsTheme } from '../../context';
-import type { TabListTitle } from '../../types/component';
+import type { TabListTitleType } from '../../types/component';
 
-type Props = TabListTitle & Omit<ButtonHTMLAttributes<HTMLButtonElement>, 'id'>;
+type Props = TabListTitleType & Omit<ButtonHTMLAttributes<HTMLButtonElement>, 'id'>;
 
 export const Title = forwardRef<HTMLButtonElement, Props>(
     (
