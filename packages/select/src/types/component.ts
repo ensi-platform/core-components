@@ -1,5 +1,5 @@
 import type { FormControlProps } from '@ensi-platform/core-components-form-control';
-import type { PopoverProps } from '@ensi-platform/core-components-popover';
+import type { IPopoverProps } from '@ensi-platform/core-components-popover';
 
 import type { CSSObject } from '@emotion/react';
 
@@ -159,17 +159,17 @@ export interface SelectPopover {
     /**
      * Хранит функцию, с помощью которой можно обновить положение поповера
      */
-    updatePopover?: PopoverProps['update'];
+    updatePopover?: IPopoverProps['update'];
 
     /**
      * z-index поповера
      */
-    zIndexPopover?: PopoverProps['zIndex'];
+    zIndexPopover?: IPopoverProps['zIndex'];
 
     /**
      * Позиционирование выпадающего списка
      */
-    popoverPosition?: PopoverProps['position'];
+    popoverPosition?: IPopoverProps['position'];
 }
 
 export interface SelectProps

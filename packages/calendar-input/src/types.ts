@@ -1,7 +1,7 @@
 import type { CalendarProps } from '@ensi-platform/core-components-calendar';
 import type { FormFieldHelperProps } from '@ensi-platform/core-components-common';
 import type { InputProps } from '@ensi-platform/core-components-input';
-import type { PopoverProps } from '@ensi-platform/core-components-popover';
+import type { IPopoverProps } from '@ensi-platform/core-components-popover';
 
 import type { CSSObject } from '@emotion/react';
 
@@ -88,7 +88,7 @@ export interface BaseCalendarInputProps
     /**
      * Пропсы поповера
      */
-    popoverProps?: PopoverProps;
+    popoverProps?: IPopoverProps;
 
     /**
      * Ref для обертки input
