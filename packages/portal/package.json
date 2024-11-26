@@ -16,8 +16,5 @@
     },
     "dependencies": {
         "tslib": "^2.6.2"
-    },
-    "devDependencies": {
-        "@ensi-platform/core-components-common": "^1.0.0"
     }
 }

@@ -1,12 +1,9 @@
 {
-    "include": ["src", "../../typings", "../common/src"],
+    "include": ["src", "../../typings"],
     "extends": "../../tsconfig.json",
     "compilerOptions": {
         "outDir": "dist",
         "rootDirs": ["src"],
-        "baseUrl": ".",
-        "paths": {
-            "@ensi-platform/core-components-*": ["../*/src"]
-        }
+        "baseUrl": "."
     }
 }
