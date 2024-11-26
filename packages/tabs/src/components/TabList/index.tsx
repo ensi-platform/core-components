@@ -1,10 +1,8 @@
 import { useEffect, useMemo, useRef } from 'react';
 
 import { useTabsTheme } from '../../context';
-import { useMedia } from '../../scripts/hooks/useMedia';
-import { useTablistTitles } from '../../scripts/hooks/useTablistTitles';
-import { createSyntheticMouseEvent } from '../../scripts/syntheticEvents';
-import type { IShowMoreButtonOption, ITabListProps, TabsMatchMediaType } from '../../types/component';
+import { createSyntheticMouseEvent, useMedia, useTablistTitles } from '../../scripts';
+import type { IShowMoreButtonOption, ITabListProps, TabsMatchMediaType } from '../../types';
 import { KeyboardFocusable } from '../KeyboardFocusable';
 import { ScrollableContainer } from '../ScrollableContainer';
 import { ShowMoreButton as DefaultTooltipButton } from '../ShowMore';

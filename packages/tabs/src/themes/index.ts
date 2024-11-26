@@ -1,4 +1,4 @@
-import type { TabsThemeType } from '../types/themes';
+import type { TabsThemeType } from '../types';
 import { basicTheme } from './basic';
 
 export const TABS_THEMES = {

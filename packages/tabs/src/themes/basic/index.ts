@@ -1,6 +1,6 @@
 import { type OptionizedCSS, defaultTheme, extractCSSOption, scale } from '@ensi-platform/core-components-common';
 
-import type { TabsSize, TabsThemeType } from '../../types/themes';
+import type { TabsSize, TabsThemeType } from '../../types';
 import { toggle } from './toggle';
 
 const { colors, typography } = defaultTheme;
