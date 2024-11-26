@@ -9,7 +9,7 @@ import { LinkTitle } from './components/Title/LinkTitle';
 import { TabsThemeProvider } from './context';
 import { useMedia } from './scripts/hooks/useMedia';
 import { TABS_THEMES } from './themes';
-import type { SelectedId, TabsMatchMedia, TabsProps, TabsState } from './types';
+import type { SelectedId, TabsMatchMedia, TabsProps, TabsState } from './types/component';
 
 const {
     mediaQueries: MEDIA_QUERIES,

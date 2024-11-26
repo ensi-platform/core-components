@@ -1,7 +1,7 @@
 import { type BaseThemeState, useThemeCSSPart } from '@ensi-platform/core-components-common';
 
-import type { TabsState, TabsTheme, TabsThemeState } from '../types';
-import type { TabsSize, TabsVariant } from './themes';
+import type { TabsState } from './component';
+import type { TabsSize, TabsTheme, TabsThemeState, TabsVariant } from './themes';
 
 const useTabsCSS = () => useThemeCSSPart<Omit<TabsThemeState, 'theme'>, TabsTheme>(...([] as never as [any, any]));
 

@@ -1,6 +1,6 @@
 import { useMemo } from 'react';
 
-import type { TabListProps, TabsMatchMedia } from '../../types';
+import type { TabListProps, TabsMatchMedia } from '../../types/component';
 import { useCollapsibleElements } from './useCollapsibleElements';
 import { useMedia } from './useMedia';
 import { useTabs } from './useTabs';

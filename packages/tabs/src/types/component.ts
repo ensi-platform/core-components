@@ -1,24 +1,17 @@
 /* eslint-disable no-use-before-define */
-import type { BaseThemeState, StyleDefinition } from '@ensi-platform/core-components-common';
+import type { BaseThemeState } from '@ensi-platform/core-components-common';
 import type { SelectProps } from '@ensi-platform/core-components-select';
 
 import type { CSSObject } from '@emotion/react';
 
 import type { FC, MouseEvent, ReactElement, ReactNode } from 'react';
 
-import type { TABS_THEMES } from './themes';
+import type { TABS_THEMES } from '../themes';
+import type { TabsSize, TabsTheme, TabsVariant } from './themes';
 
 export type SelectedId = any;
 
 export type TabsMatchMedia = 'desktop' | 'mobile';
-
-export enum TabsSize {
-    md = 'md',
-}
-
-export enum TabsVariant {
-    primary = 'primary',
-}
 
 export interface ShowMoreButtonOption {
     label: string;
@@ -66,30 +59,6 @@ export interface TabsState {
      */
     collapsible?: boolean;
 }
-
-export type TabsThemeState = BaseThemeState<typeof TabsVariant, typeof TabsSize, never> & TabsState;
-
-export type TabsTheme = {
-    container: StyleDefinition<TabsThemeState>;
-    scrollableContainer: StyleDefinition<TabsThemeState>;
-    tabList: StyleDefinition<TabsThemeState>;
-    line: StyleDefinition<TabsThemeState>;
-    tab: StyleDefinition<TabsThemeState & { hidden?: boolean }>;
-    toggle: StyleDefinition<
-        TabsThemeState & {
-            isSelected?: boolean;
-            disabled?: boolean;
-            focused?: boolean;
-            isOption?: boolean;
-            hasErrors?: boolean;
-            isCollapsed?: boolean;
-        }
-    >;
-    showMoreButton: StyleDefinition<TabsThemeState>;
-    toggleRightAddons: StyleDefinition<TabsThemeState>;
-    toggleLeftAddons: StyleDefinition<TabsThemeState>;
-    errorAddon: StyleDefinition<TabsThemeState>;
-};
 
 export type TabsProps = Partial<Omit<BaseThemeState<typeof TabsVariant, typeof TabsSize, TabsTheme>, 'theme'>> &
     Partial<TabsState> & {

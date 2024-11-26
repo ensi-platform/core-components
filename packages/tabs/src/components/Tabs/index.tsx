@@ -1,7 +1,7 @@
 import { Children, type ReactElement, cloneElement } from 'react';
 
 import { useTabsTheme } from '../../context';
-import type { TabProps, TabsProps } from '../../types';
+import type { TabProps, TabsProps } from '../../types/component';
 import { ShowMoreButton as DefaultTooltipButton } from '../ShowMore';
 
 const makeSureStringHasPrefix = (str: string, prefix: string) => {

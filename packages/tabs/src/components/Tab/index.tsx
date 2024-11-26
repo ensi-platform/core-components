@@ -1,5 +1,5 @@
 import { useTabsTheme } from '../../context';
-import type { TabProps } from '../../types';
+import type { TabProps } from '../../types/component';
 
 export const Tab = ({ children, hidden, className, disabled, dataTestId }: TabProps) => {
     const { getCSS } = useTabsTheme();

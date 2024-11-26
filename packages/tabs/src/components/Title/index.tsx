@@ -1,7 +1,7 @@
 import { type ButtonHTMLAttributes, forwardRef } from 'react';
 
 import { useTabsTheme } from '../../context';
-import type { TabListTitle } from '../../types';
+import type { TabListTitle } from '../../types/component';
 
 type Props = TabListTitle & Omit<ButtonHTMLAttributes<HTMLButtonElement>, 'id'>;
 

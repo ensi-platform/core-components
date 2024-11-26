@@ -4,7 +4,7 @@ import { useTabsTheme } from '../../context';
 import { useMedia } from '../../scripts/hooks/useMedia';
 import { useTablistTitles } from '../../scripts/hooks/useTablistTitles';
 import { createSyntheticMouseEvent } from '../../scripts/syntheticEvents';
-import type { ShowMoreButtonOption, TabListProps, TabsMatchMedia } from '../../types';
+import type { ShowMoreButtonOption, TabListProps, TabsMatchMedia } from '../../types/component';
 import { KeyboardFocusable } from '../KeyboardFocusable';
 import { ScrollableContainer } from '../ScrollableContainer';
 import { ShowMoreButton as DefaultTooltipButton } from '../ShowMore';
