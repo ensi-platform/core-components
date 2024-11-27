@@ -1,16 +1,11 @@
-import {
-    Button,
-    type FormFieldHelperProps,
-    IconSmallImport,
-    defaultTheme,
-    scale,
-} from '@ensi-platform/core-components-common';
+import { Button, IconSmallImport, defaultTheme, scale } from '@ensi-platform/core-components-common';
+import type { IFieldWrapperProps } from '@ensi-platform/core-components-form';
 
 import { type HTMLAttributes, forwardRef } from 'react';
 
 import type { FileType } from './DropzoneFile';
 
-interface DropzoneAreaProps extends HTMLAttributes<HTMLDivElement>, Partial<FormFieldHelperProps<FileType[]>> {
+interface DropzoneAreaProps extends HTMLAttributes<HTMLDivElement>, Partial<IFieldWrapperProps<FileType[]>> {
     inputFieldProps: HTMLAttributes<HTMLInputElement>;
     disabled?: boolean;
     /** Button-like view */
@@ -20,7 +15,7 @@ interface DropzoneAreaProps extends HTMLAttributes<HTMLDivElement>, Partial<Form
 const { colors } = defaultTheme;
 
 const DropzoneArea = forwardRef<HTMLDivElement, DropzoneAreaProps>(
-    ({ disabled, inputFieldProps, simple, meta, ...props }, ref) =>
+    ({ disabled, inputFieldProps, simple, error, ...props }, ref) =>
         simple ? (
             <div
                 {...props}
@@ -49,7 +44,7 @@ const DropzoneArea = forwardRef<HTMLDivElement, DropzoneAreaProps>(
                 css={{
                     display: 'grid',
                     placeItems: 'center',
-                    border: meta?.error ? `1px solid ${colors?.danger}` : `1px dashed ${colors.grey300}`,
+                    border: error ? `1px solid ${colors?.danger}` : `1px dashed ${colors.grey300}`,
                     // borderRadius: IT?.borderRadius,
                     // background: IT?.bg,
                     padding: scale(2),

@@ -1,4 +1,5 @@
-import { type FormFieldHelperProps, scale, useDeferredLoading } from '@ensi-platform/core-components-common';
+import { scale, useDeferredLoading } from '@ensi-platform/core-components-common';
+import type { IFieldWrapperProps } from '@ensi-platform/core-components-form';
 import { FormControl } from '@ensi-platform/core-components-form-control';
 import { LoadingSkeleton } from '@ensi-platform/core-components-loading-skeleton';
 
@@ -22,7 +23,7 @@ const DragDropContext = UntypedDragDropContext as never as FC<DragDropContextPro
 const Droppable = UntypedDroppable as never as FC<DroppableProps>;
 
 type DropzoneProps = UseDropzoneProps &
-    Partial<FormFieldHelperProps<FileType[]>> & {
+    Partial<IFieldWrapperProps<FileType[]>> & {
         label?: string;
         /** On files change callback */
         onFilesChange?: (files: FileType[]) => void;
@@ -47,12 +48,12 @@ type DropzoneProps = UseDropzoneProps &
     };
 
 export const Dropzone: FC<DropzoneProps> = ({
-    meta,
     accept,
     maxFiles,
     maxSize,
     maxFileNameLength,
     field,
+    setFieldValue,
     onFilesChange,
     onFileRemove: onFileRemoveFromProps,
     isDragDisabled,
@@ -63,6 +64,7 @@ export const Dropzone: FC<DropzoneProps> = ({
     onFileClick,
     enableFileClick = false,
     label,
+    error,
     onBlur,
     ...props
 }) => {
@@ -79,17 +81,13 @@ export const Dropzone: FC<DropzoneProps> = ({
     const setFiles = useCallback(
         (newFiles: FileType[]) => {
             if (isControlled) {
-                field?.onChange({
-                    target: {
-                        value: newFiles,
-                    },
-                });
+                setFieldValue?.(newFiles);
             } else {
                 setFilesState(newFiles);
             }
             if (onFilesChange) onFilesChange(newFiles);
         },
-        [field, isControlled, onFilesChange]
+        [setFieldValue, isControlled, onFilesChange]
     );
 
     const [rejectedFiles, setRejectedFiles] = useState<FileRejection[]>([]);
@@ -203,7 +201,7 @@ export const Dropzone: FC<DropzoneProps> = ({
     const deferredIsLoading = useDeferredLoading(isLoading, 1000);
 
     return (
-        <FormControl label={label} error={meta?.error}>
+        <FormControl label={label} error={error}>
             <DropzoneArea
                 {...getRootProps()}
                 inputFieldProps={{
@@ -212,7 +210,7 @@ export const Dropzone: FC<DropzoneProps> = ({
                 }}
                 disabled={disabled || isDragDisabled}
                 simple={simple}
-                meta={meta}
+                error={error}
             />
             {deferredIsLoading ? (
                 <LoadingSkeleton height={scale(28)} width={scale(23)} />

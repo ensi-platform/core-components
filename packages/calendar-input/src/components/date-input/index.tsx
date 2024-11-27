@@ -85,7 +85,7 @@ export const DateInput = forwardRef<HTMLInputElement, InnerDateInputProps>(
             if (autoCorrection) {
                 const isComplete = isCompleteDate(inputDate) && isCompleteTime(inputTime, withTime);
 
-                return isComplete && !isValidValue ? 'Эта дата недоступна' : undefined;
+                return isComplete && !isValidValue ? 'Эта дата недоступна' : '';
             }
         };
 

@@ -151,7 +151,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps & Partial<IFieldWra
 
         const handleInputChange = useCallback(
             (event: ChangeEvent<HTMLInputElement>) => {
-                field?.onChange?.(event);
+                if (field && field.onChange) field.onChange(event);
 
                 if (onChange) {
                     onChange(event, { value: event.target.value });

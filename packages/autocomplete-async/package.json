@@ -24,11 +24,11 @@
         "@ensi-platform/core-components-select-with-tags": "^1.0.0",
         "@ensi-platform/core-components-input": "^1.0.0",
         "@ensi-platform/core-components-select": "^1.0.0",
-        "@ensi-platform/core-components-form-control": "^1.0.0",
         "@ensi-platform/core-components-loading-skeleton": "^1.0.0"
     },
     "devDependencies": {
         "yup": "^1.4.0",
+        "@ensi-platform/core-components-form-control": "^1.0.0",
         "@ensi-platform/core-components-form": "^1.0.0"
     }
 }

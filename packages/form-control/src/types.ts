@@ -112,7 +112,7 @@ export type FormControlProps = Partial<
         /**
          * Отображение ошибки
          */
-        error?: ReactNode | boolean;
+        error?: string;
 
         /**
          * Флаг отображения ошибки

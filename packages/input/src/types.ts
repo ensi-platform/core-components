@@ -18,6 +18,8 @@ export type InputProps = Omit<
      */
     defaultValue?: string;
 
+    error?: string;
+
     /**
      * Растягивает компонент на ширину контейнера
      */

@@ -322,7 +322,9 @@ export const AutocompleteAsync = forwardRef<HTMLInputElement, AutocompleteAsyncP
                     Option={(optionProps: OptionProps) =>
                         lazyProps.Option({
                             ...optionProps,
-                            selected: selectedValues.includes(optionProps.option.value),
+                            selected: optionProps.option.value
+                                ? selectedValues.includes(optionProps.option.value)
+                                : false,
                         })
                     }
                     {...props}
