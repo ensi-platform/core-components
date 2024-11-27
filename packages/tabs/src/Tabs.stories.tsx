@@ -91,7 +91,6 @@ export const Basic: StoryObj<ComponentProps<typeof TabsList> & {}> = {
                 <Tab
                     title="I am a last link"
                     id="link2"
-                    /** You can use custom wrapper for link, such as Link component from next/link */
                     renderTitle={props => <TabLinkTitle href="https://ya.ru" target="_blank" {...props} />}
                     unfocusable
                 >

@@ -12,19 +12,27 @@ List of components:
  Tab is a container for the tab content. It displays children inside a div and manages visibility, disabled state, and styling.
 
 ## TabLinkTitle
- TabLinkTitle is a link representing a tab title. It supports custom styles, state (e.g., selected, disabled), and optional addons (left/right).
+ TabLinkTitle is a link representing a tab title. It supports custom styles, state (e.g., selected, disabled), and optional addons (left/right). You can use custom wrapper for link, such as ```Link``` component from ```next/link```.
 
 ## Usage
 ```tsx
 <Tabs scrollable>
-    <Tabs.Tab title="First tab" id="1" leftAddons={<TicketIcon />}>
+    <Tab title="First tab" id="1" leftAddons={<TicketIcon />}>
         Content of first tab
-    </Tabs.Tab>
-    <Tabs.Tab title="2nd disabled" id="2" disabled>
+    </Tab>
+    <Tab title="2nd disabled" id="2" disabled>
         <div>You cant reach me</div>
-    </Tabs.Tab>
-    <Tabs.Tab title="Third tab" id="custom_string" rightAddons={<span>99+</span>}>
+    </Tab>
+    <Tab title="Third tab" id="custom_string" rightAddons={<span>99+</span>}>
         <div>Its a third tab</div>
-    </Tabs.Tab>
-</Tabs>
+    </Tab>
+    <Tab
+        title="Custom tab title"
+        id="with_link"
+        renderTitle={props => <TabLinkTitle href="about:blank" target="_blank" {...props} />}
+        unfocusable
+    >
+        <div>Fourth tab</div>
+    </Tab>
+</Tab>
 ```
