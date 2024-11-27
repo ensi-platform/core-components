@@ -1,10 +1,9 @@
-import Link, { type LinkProps } from 'next/link';
 import { type HTMLProps, forwardRef } from 'react';
 
 import { useTabsTheme } from '../../context';
 import type { TabListTitleType } from '../../types';
 
-type Props = TabListTitleType & Omit<LinkProps, 'passHref'> & HTMLProps<HTMLAnchorElement>;
+type Props = TabListTitleType & HTMLProps<HTMLAnchorElement>;
 
 export const TabLinkTitle = forwardRef<HTMLAnchorElement, Props>(
     (
@@ -21,11 +20,6 @@ export const TabLinkTitle = forwardRef<HTMLAnchorElement, Props>(
             focused = false,
             isOption = false,
             href,
-            as,
-            replace,
-            scroll,
-            shallow,
-            locale,
             ...restProps
         },
         ref
@@ -37,43 +31,28 @@ export const TabLinkTitle = forwardRef<HTMLAnchorElement, Props>(
         if (hidden) return null;
 
         return (
-            <Link
-                {...(!disabled
-                    ? {
-                          href,
-                          as,
-                      }
-                    : {
-                          href: undefined as never as string,
-                      })}
-                replace={replace}
-                scroll={scroll}
-                shallow={shallow}
-                locale={locale}
-                passHref
+            <a
+                ref={ref}
+                id={`${id}`}
+                href={href}
+                css={{
+                    ...getCSS('toggle', {
+                        disabled,
+                        isSelected: selected,
+                        focused,
+                        isOption,
+                        isCollapsed: collapsed && !isOption,
+                    }),
+                    ...toggleCSS,
+                }}
+                {...restProps}
             >
-                <a
-                    ref={ref}
-                    id={`${id}`}
-                    css={{
-                        ...getCSS('toggle', {
-                            disabled,
-                            isSelected: selected,
-                            focused,
-                            isOption,
-                            isCollapsed: collapsed && !isOption,
-                        }),
-                        ...toggleCSS,
-                    }}
-                    {...restProps}
-                >
-                    {leftAddons && <span css={getCSS('toggleLeftAddons')}>{leftAddons}</span>}
-                    <span>{title}</span>
-                    {rightAddons && <span css={getCSS('toggleRightAddons')}>{rightAddons}</span>}
-                </a>
-            </Link>
+                {leftAddons && <span css={getCSS('toggleLeftAddons')}>{leftAddons}</span>}
+                <span>{title}</span>
+                {rightAddons && <span css={getCSS('toggleRightAddons')}>{rightAddons}</span>}
+            </a>
         );
     }
 );
 
-TabLinkTitle.displayName = 'LinkTitle';
+TabLinkTitle.displayName = 'TabLinkTitle';
