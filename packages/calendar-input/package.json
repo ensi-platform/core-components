@@ -28,5 +28,9 @@
         "@ensi-platform/core-components-popover": "^1.0.0",
         "@ensi-platform/core-components-calendar": "^1.0.0",
         "@ensi-platform/core-components-form": "^1.0.0"
+    },
+    "devDependencies": {
+        "yup": "^1.4.0",
+        "@ensi-platform/core-components-form": "^1.0.0"
     }
 }

@@ -1,6 +1,8 @@
 import { type ControllerFieldState, type ControllerRenderProps, type NativeFieldValue } from 'react-hook-form';
 
-export type IFieldValueType = Exclude<NativeFieldValue, undefined | null>;
+type ExtendedValue<T> = T | T[] | Record<string, T> | Record<string, T>[];
+
+export type IFieldValueType = Exclude<ExtendedValue<NativeFieldValue>, undefined>;
 
 export interface IControllerRenderProps<T extends IFieldValueType> extends Omit<ControllerRenderProps, 'value'> {
     value: T;
@@ -23,7 +25,8 @@ export interface IFieldWrapperProps<T extends IFieldValueType> {
      * */
     field: IControllerRenderProps<T>;
     /**
-     * Hanlder for changing field value
+     * Handler for changing field value
+     * @param value - field value, not event
      */
     setFieldValue: (value: T) => void;
     /**

@@ -8,8 +8,12 @@ import useForm from '../context/form';
  * Prepare props for controlled field by its name
  */
 export const useFieldHook = ({ name }: Pick<IFormFieldWrapperProps, 'name'>) => {
+    // Get common form props from our context
     const { onChange, disabled } = useForm();
+    // Get props from useForm hook, passed to FormProvider
     const { control, setValue } = useFormContext();
+
+    // Get rhf's props for controlled input
     const { field, fieldState: fieldStateForm } = useController({
         name,
         control,
@@ -26,6 +30,10 @@ export const useFieldHook = ({ name }: Pick<IFormFieldWrapperProps, 'name'>) => 
         disabled,
     };
 
+    /**
+     * Change field value, trigger onBlur and form onChange,
+     * accepts field value (not event)
+     */
     const setFieldValue = useCallback(
         (value: NativeFieldValue) => {
             field.onChange();
@@ -36,6 +44,10 @@ export const useFieldHook = ({ name }: Pick<IFormFieldWrapperProps, 'name'>) => 
         [field, name, onChange, setValue]
     );
 
+    /**
+     * Change field value, trigger onBlur and form onChange,
+     * accepts input event with target value
+     */
     const onChangeHandler = useCallback(
         <T extends HTMLInputElement, E extends Event>(e: SyntheticEvent<T, E>) => {
             field.onChange(e);

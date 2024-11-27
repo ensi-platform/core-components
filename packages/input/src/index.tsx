@@ -1,9 +1,5 @@
-import {
-    IconSmallClosed as CloseIcon,
-    type FormFieldHelperProps,
-    defaultTheme,
-    scale,
-} from '@ensi-platform/core-components-common';
+import { IconSmallClosed as CloseIcon, defaultTheme, scale } from '@ensi-platform/core-components-common';
+import type { IFieldWrapperProps } from '@ensi-platform/core-components-form';
 import { FormControl, formControlThemes } from '@ensi-platform/core-components-form-control';
 
 import type { CSSObject } from '@emotion/react';
@@ -68,7 +64,7 @@ export const BASE_INPUT_CSS: CSSObject = {
 
 const emptyStyle = {};
 
-export const Input = forwardRef<HTMLInputElement, InputProps & Partial<FormFieldHelperProps<string>>>(
+export const Input = forwardRef<HTMLInputElement, InputProps & Partial<IFieldWrapperProps<string>>>(
     (
         {
             type = 'text',
@@ -109,7 +105,6 @@ export const Input = forwardRef<HTMLInputElement, InputProps & Partial<FormField
             fieldCSS = emptyStyle,
             wrapperCSS = emptyStyle,
             field,
-            meta,
             ...restProps
         },
         ref
@@ -156,7 +151,8 @@ export const Input = forwardRef<HTMLInputElement, InputProps & Partial<FormField
 
         const handleInputChange = useCallback(
             (event: ChangeEvent<HTMLInputElement>) => {
-                if (field && field.onChange) field.onChange(event);
+                field?.onChange?.(event);
+
                 if (onChange) {
                     onChange(event, { value: event.target.value });
                 }
@@ -247,7 +243,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps & Partial<FormField
                 ref={wrapperRef}
                 label={label}
                 hint={hint}
-                error={error || meta?.error}
+                error={error}
                 htmlFor={htmlFor}
                 labelWrap={labelWrap}
                 leftAddons={leftAddons}
@@ -276,7 +272,6 @@ export const Input = forwardRef<HTMLInputElement, InputProps & Partial<FormField
                 {innerLeftAddons}
                 <input
                     {...field}
-                    {...meta}
                     {...restProps}
                     id={htmlFor}
                     className="control"

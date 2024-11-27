@@ -1,4 +1,5 @@
-import { type FormFieldHelperProps, defaultTheme } from '@ensi-platform/core-components-common';
+import { defaultTheme } from '@ensi-platform/core-components-common';
+import type { IFieldWrapperProps } from '@ensi-platform/core-components-form';
 import type { InputProps } from '@ensi-platform/core-components-input';
 import {
     BaseSelect,
@@ -222,12 +223,13 @@ export const useAutocomplete = (
     };
 };
 
-export const Autocomplete = forwardRef<HTMLInputElement, IAutocompleteProps & Partial<FormFieldHelperProps<any>> & {}>(
+export const Autocomplete = forwardRef<HTMLInputElement, IAutocompleteProps & Partial<IFieldWrapperProps<any>> & {}>(
     (
         {
             multiple = false,
-            meta,
+            error,
             field,
+            setFieldValue,
             onOpen,
             onChange,
             onInput,
@@ -301,13 +303,9 @@ export const Autocomplete = forwardRef<HTMLInputElement, IAutocompleteProps & Pa
                 }
 
                 setSelectedValues(newValues);
-                field?.onChange({
-                    target: {
-                        value: newValues,
-                    },
-                });
+                setFieldValue?.(newValues);
             },
-            [onChange, selectedOptions, field]
+            [onChange, selectedOptions, setFieldValue]
         );
 
         return (
@@ -341,11 +339,7 @@ export const Autocomplete = forwardRef<HTMLInputElement, IAutocompleteProps & Pa
                     onInput?.(e);
 
                     if (!multiple && !e.currentTarget.value) {
-                        field?.onChange({
-                            target: {
-                                value: null,
-                            },
-                        });
+                        setFieldValue?.(null);
                     }
                 }}
                 onChange={(event, payload) => {
@@ -356,11 +350,7 @@ export const Autocomplete = forwardRef<HTMLInputElement, IAutocompleteProps & Pa
                             ? payload?.selected.map(e => e.value)
                             : payload?.actionItem?.value;
 
-                    field?.onChange({
-                        target: {
-                            value,
-                        },
-                    });
+                    setFieldValue?.(value);
 
                     onChange?.(event, payload);
 
@@ -390,7 +380,7 @@ export const Autocomplete = forwardRef<HTMLInputElement, IAutocompleteProps & Pa
                     }),
                 }}
                 fieldProps={{
-                    error: meta?.error,
+                    error,
                     ...(withTags && {
                         handleDeleteTag,
                         collapseTagList,
@@ -414,11 +404,7 @@ export const Autocomplete = forwardRef<HTMLInputElement, IAutocompleteProps & Pa
                                     return;
                                 }
 
-                                field?.onChange({
-                                    target: {
-                                        value: multiple ? [] : null,
-                                    },
-                                });
+                                setFieldValue?.(multiple ? [] : null);
                             }}
                             focus={() => {
                                 if (isOpenRef.current) {

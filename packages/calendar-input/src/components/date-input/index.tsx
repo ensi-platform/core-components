@@ -42,7 +42,7 @@ export const DateInput = forwardRef<HTMLInputElement, InnerDateInputProps>(
             calendarProps = {},
             platform,
             calendarRef,
-            field,
+            setFieldValue,
             onComplete,
             onChange,
             onBlur,
@@ -85,10 +85,8 @@ export const DateInput = forwardRef<HTMLInputElement, InnerDateInputProps>(
             if (autoCorrection) {
                 const isComplete = isCompleteDate(inputDate) && isCompleteTime(inputTime, withTime);
 
-                return isComplete && !isValidValue ? 'Эта дата недоступна' : false;
+                return isComplete && !isValidValue ? 'Эта дата недоступна' : undefined;
             }
-
-            return false;
         };
 
         const callOnComplete = (val: string) => {
@@ -98,7 +96,7 @@ export const DateInput = forwardRef<HTMLInputElement, InnerDateInputProps>(
 
         const changeValue = (val: string, event: ChangeEvent<HTMLInputElement> | null) => {
             onChange?.(event, { value: val });
-            field?.onChange(val);
+            setFieldValue?.(val);
 
             const [date, time = ''] = val.split(DATE_TIME_SEPARATOR);
 

@@ -32,11 +32,6 @@ export type InputProps = Omit<
     variant?: FormControlProps['variant'];
     size?: FormControlProps['size'];
     labelWrap?: FormControlProps['labelWrap'];
-
-    /**
-     * Отображение ошибки
-     */
-    error?: ReactNode | boolean;
     /**
      * Флаг отображения ошибки
      */
