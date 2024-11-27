@@ -6,7 +6,7 @@ import type { TabListTitleType } from '../../types';
 
 type Props = TabListTitleType & Omit<LinkProps, 'passHref'> & HTMLProps<HTMLAnchorElement>;
 
-export const LinkTitle = forwardRef<HTMLAnchorElement, Props>(
+export const TabLinkTitle = forwardRef<HTMLAnchorElement, Props>(
     (
         {
             id,
@@ -76,4 +76,4 @@ export const LinkTitle = forwardRef<HTMLAnchorElement, Props>(
     }
 );
 
-LinkTitle.displayName = 'LinkTitle';
+TabLinkTitle.displayName = 'LinkTitle';
