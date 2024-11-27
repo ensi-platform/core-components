@@ -5,7 +5,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 
 import { type ComponentProps, useEffect, useState } from 'react';
 
-import { Tabs } from '.';
+import { Tab, TabLinkTitle, TabsList } from '.';
 import README from '../README.md';
 
 export default {
@@ -17,10 +17,10 @@ export default {
             },
         },
     },
-    component: Tabs,
-} as Meta<typeof Tabs>;
+    component: TabsList,
+} as Meta<typeof TabsList>;
 
-export const Basic: StoryObj<ComponentProps<typeof Tabs> & {}> = {
+export const Basic: StoryObj<ComponentProps<typeof TabsList> & {}> = {
     args: {
         fullWidthScroll: false,
         scrollable: false,
@@ -47,56 +47,57 @@ export const Basic: StoryObj<ComponentProps<typeof Tabs> & {}> = {
         }, []);
 
         return (
-            <Tabs {...args}>
-                <Tabs.Tab title="First tab" id="1" leftAddons={<TicketIcon />}>
+            <TabsList {...args}>
+                <Tab title="First tab" id="1" leftAddons={<TicketIcon />}>
                     Content of first tab
-                </Tabs.Tab>
-                <Tabs.Tab title="2nd disabled" disabled id="2">
+                </Tab>
+                <Tab title="2nd disabled" disabled id="2">
                     <div>You cant reach me</div>
-                </Tabs.Tab>
-                <Tabs.Tab
+                </Tab>
+                <Tab
                     title="Link has focus"
                     id="link1"
-                    renderTitle={props => <Tabs.LinkTitle href="https://google.com" target="_blank" {...props} />}
+                    renderTitle={props => <TabLinkTitle href="https://google.com" target="_blank" {...props} />}
                     leftAddons={<TicketIcon />}
                     rightAddons={<span>[SALE!]</span>}
                 >
                     <div />
-                </Tabs.Tab>
-                <Tabs.Tab title="Third tab" id="3" rightAddons={<span>99+</span>}>
+                </Tab>
+                <Tab title="Third tab" id="3" rightAddons={<span>99+</span>}>
                     <div>Its a third tab</div>
-                </Tabs.Tab>
+                </Tab>
                 {!isLoadingRerender
                     ? [1, 2, 3].map(e => (
-                          <Tabs.Tab
+                          <Tab
                               key={e + 3}
                               title={isLoading ? `Loading tab#${e + 3}` : `Appeared #${e + 3}`}
                               id={e + 3}
                               disabled={isLoading}
                           >
                               <div>Its a dynamic tab #{e + 3}</div>
-                          </Tabs.Tab>
+                          </Tab>
                       ))
                     : null}
                 {[4, 5, 6, 7, 8, 9, 10].map(e => (
-                    <Tabs.Tab
+                    <Tab
                         key={e + 3}
                         title={isLoading ? `Loading tab#${e + 3}` : `Dynamic tab#${e + 3}`}
                         id={e + 3}
                         disabled={isLoading}
                     >
                         <div>Its a dynamic tab #{e + 3}</div>
-                    </Tabs.Tab>
+                    </Tab>
                 ))}
-                <Tabs.Tab
+                <Tab
                     title="I am a last link"
                     id="link2"
-                    renderTitle={props => <Tabs.LinkTitle href="https://ya.ru" target="_blank" {...props} />}
+                    /** You can use custom wrapper for link, such as Link component from next/link */
+                    renderTitle={props => <TabLinkTitle href="https://ya.ru" target="_blank" {...props} />}
                     unfocusable
                 >
                     <div />
-                </Tabs.Tab>
-            </Tabs>
+                </Tab>
+            </TabsList>
         );
     },
 };
