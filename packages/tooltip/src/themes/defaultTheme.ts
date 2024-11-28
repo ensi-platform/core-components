@@ -6,7 +6,6 @@ const { colors, shadows } = defaultTheme;
 
 const basicTheme: TooltipThemeType = {
     content: {
-        padding: scale(2),
         maxWidth: scale(46),
         background: colors.white,
         boxShadow: shadows.small,

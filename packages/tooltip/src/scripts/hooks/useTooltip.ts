@@ -11,14 +11,14 @@ export const useTooltip = ({ onOpenDelay, onCloseDelay, trigger, forcedOpen, onO
     const open = useCallback(() => {
         if (!visible) {
             setVisible(true);
-            if (onOpen) onOpen();
+            onOpen?.();
         }
     }, [onOpen, visible]);
 
     const close = useCallback(() => {
         if (visible) {
             setVisible(false);
-            if (onClose) onClose();
+            onClose?.();
         }
     }, [onClose, visible]);
 
@@ -44,6 +44,7 @@ export const useTooltip = ({ onOpenDelay, onCloseDelay, trigger, forcedOpen, onO
 
     const clickedOutside = useCallback(
         (node: Element): boolean => {
+            if (!node) return true;
             if (target && target.contains(node)) {
                 return false;
             }

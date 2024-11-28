@@ -4,7 +4,7 @@ import { Popover } from '@ensi-platform/core-components-popover';
 import type { CSSObject } from '@emotion/react';
 
 import deepmerge from 'deepmerge';
-import { type FC, type HTMLAttributes, type Ref, useMemo } from 'react';
+import { type FC, type HTMLAttributes, type MouseEvent, type Ref, useMemo } from 'react';
 import mergeRefs from 'react-merge-refs';
 
 import { DEFAULT_OFFSET, EMPTY_OBJ, useTooltip } from './scripts';
@@ -24,7 +24,7 @@ const Tooltip: FC<ITooltipProps> = ({
     onCloseDelay = 300,
     onOpenDelay = 300,
     dataTestId,
-    open: forcedOpen,
+    open: forcedOpen = false,
     offset = DEFAULT_OFFSET,
     position,
     contentCSS = EMPTY_OBJ,
@@ -45,6 +45,7 @@ const Tooltip: FC<ITooltipProps> = ({
     anchorElement = null,
     useAnchorWidth,
     theme = tooltipThemes.basic,
+    popperCSS,
 }) => {
     const { target, visible, contentRef, handleOpen, handleClose, changeTarget } = useTooltip({
         onOpenDelay,
@@ -57,7 +58,15 @@ const Tooltip: FC<ITooltipProps> = ({
 
     const eventHandlers =
         trigger === 'hover'
-            ? { onMouseEnter: handleOpen, onMouseLeave: handleClose }
+            ? // After the component loads, an auto-generated onMouseEnter is triggered.
+              // I can't find the source.
+              // I found 'e.isTrusted' solution to the problem.
+              {
+                  onMouseEnter: (e: MouseEvent<HTMLElement>) => {
+                      if (e.isTrusted) handleOpen();
+                  },
+                  onMouseLeave: handleClose,
+              }
             : { onClick: visible ? handleClose : handleOpen };
 
     const themeState = useMemo<TooltipThemeStateType>(
@@ -105,7 +114,7 @@ const Tooltip: FC<ITooltipProps> = ({
                 open={visible}
                 getPortalContainer={getPortalContainer}
                 arrowCSS={arrowCSS}
-                popperCSS={{}}
+                popperCSS={popperCSS}
                 className={className}
                 offset={offset}
                 withArrow={withArrow}

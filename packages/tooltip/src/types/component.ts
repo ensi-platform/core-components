@@ -9,7 +9,11 @@ import type { ITooltipState, IUseTooltipProps, TooltipThemeType } from '.';
 /**
  * Props for the Tooltip component
  */
-export interface ITooltipProps extends IPopoverProps, ITooltipState, IUseTooltipProps {
+export interface ITooltipProps
+    extends Omit<IPopoverProps, 'anchorElement' | 'open'>,
+        Partial<Pick<IPopoverProps, 'anchorElement' | 'open'>>,
+        ITooltipState,
+        IUseTooltipProps {
     /**
      * Tooltip content
      */

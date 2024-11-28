@@ -15,19 +15,20 @@ export const PopoverArrow = ({ popperStyles, arrowShift, arrowCSS, setArrowEleme
                 display: 'block',
                 position: 'absolute',
                 top: -6,
+                left: -6,
                 width: 12,
                 height: 12,
                 backgroundColor: colors.white,
                 transform: 'rotate(45deg)',
                 ...arrowCSS,
             },
+            '[data-popper-placement="bottom"] &, [data-popper-placement="bottom-start"] &, [data-popper-placement="bottom-end"] &':
+                {
+                    top: 0,
+                },
             '[data-popper-placement="left"] &, [data-popper-placement="left-start"] &, [data-popper-placement="left-end"] &':
                 {
                     right: 6,
-                },
-            '[data-popper-placement="right"] &, [data-popper-placement="right-start"] &, [data-popper-placement="right-end"] &':
-                {
-                    left: -6,
                 },
             ...(arrowShift && {
                 "[data-popper-placement='bottom-start'] &, [data-popper-placement='top-start'] &": {
