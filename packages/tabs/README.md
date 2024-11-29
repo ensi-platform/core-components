@@ -1,7 +1,7 @@
 Used for displaying various content in tabs.
 
 List of components:
- - TabsList
+ - TabList
  - Tab
  - TabLinkTitle
 
@@ -16,7 +16,7 @@ List of components:
 
 ## Usage
 ```tsx
-<Tabs scrollable>
+<TabList scrollable>
     <Tab title="First tab" id="1" leftAddons={<TicketIcon />}>
         Content of first tab
     </Tab>
@@ -34,5 +34,5 @@ List of components:
     >
         <div>Fourth tab</div>
     </Tab>
-</Tab>
+</TabList>
 ```

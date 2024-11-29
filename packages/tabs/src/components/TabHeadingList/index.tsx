@@ -8,18 +8,32 @@ import { ScrollableContainer } from '../ScrollableContainer';
 import { ShowMoreButton as DefaultTooltipButton } from '../ShowMore';
 import { Title } from '../Title';
 
-export const TabList = ({
-    ShowMoreButton: TooltipButton = DefaultTooltipButton,
+/**
+ * Parent component for list of ```Tab``` components
+ * @param breakpoint width breakpoint for desktop version
+ * @param className additional class for tab headings list
+ * @param containerCSS additional CSS for list container
+ * @param ShowMoreButton custom component for 'Show more' button
+ * @param titles list of tabs heading
+ * @param selectedId current selected tab id
+ * @param collapsedTabsIds list of collapsed tabs ids
+ * @param scrollable use scrollable container for tab headings
+ * @param collpsible collapse extra tab headings into dropdown list
+ * @param onChange handler for tab change event
+ * @param dataTestId id for automatic testing
+ */
+export const TabHeadingList = ({
+    breakpoint = 1024,
     className,
     containerCSS,
+    ShowMoreButton: TooltipButton = DefaultTooltipButton,
     titles = [],
+    collapsedTabsIds,
     selectedId = titles.length ? titles[0].id : undefined,
     scrollable: propsScrollable = true,
     collapsible: propsCollapsible,
-    collapsedTabsIds,
     onChange,
     dataTestId,
-    breakpoint = 1024,
 }: ITabListProps) => {
     const lineRef = useRef<HTMLDivElement>(null);
     const wrapperRef = useRef<HTMLDivElement>(null);

@@ -3,7 +3,7 @@ import { defaultTheme } from '@ensi-platform/core-components-common';
 import { type FC, type MouseEvent, useId, useMemo, useState } from 'react';
 
 import { Tab } from './components/Tab';
-import { TabList as DefaultTabList } from './components/TabList';
+import { TabHeadingList as DefaultTabList } from './components/TabHeadingList';
 import { TabsComponent } from './components/Tabs';
 import { TabLinkTitle } from './components/Title/LinkTitle';
 import { TabsThemeProvider } from './context';
@@ -18,10 +18,10 @@ const {
     },
 } = defaultTheme;
 
-export type { ITabsProps as TabsProps };
+export type { ITabsProps };
 
-type TabsComponentPropsType = Omit<ITabsProps, 'TabList'> & {
-    TabList?: ITabsProps['TabList'];
+type TabsComponentPropsType = Omit<ITabsProps, 'TabHeadingList'> & {
+    TabHeadingList?: ITabsProps['TabHeadingList'];
 };
 
 interface ITabsCompositionProps {
@@ -29,19 +29,19 @@ interface ITabsCompositionProps {
     LinkTitle: typeof TabLinkTitle;
 }
 
-export const TabsList: FC<TabsComponentPropsType> & ITabsCompositionProps = ({
-    TabList = DefaultTabList,
-    variant = 'primary',
+export const TabList: FC<TabsComponentPropsType> & ITabsCompositionProps = ({
+    breakpoint = Breakpoints.md,
     size = 'md',
-    mobile: mobileProps,
+    TabHeadingList = DefaultTabList,
+    theme: themeName = 'basic',
+    variant = 'primary',
+    prefix: propsPrefix,
+    selectedId: propsSelectedId,
     collapsible,
     fullWidthScroll,
+    mobile: mobileProps,
     scrollable,
     onChange,
-    selectedId: propsSelectedId,
-    theme: themeName = 'basic',
-    breakpoint = Breakpoints.md,
-    prefix: propsPrefix,
     ...props
 }) => {
     const isControlled = typeof propsSelectedId !== 'undefined' && typeof onChange !== 'undefined';
@@ -79,7 +79,7 @@ export const TabsList: FC<TabsComponentPropsType> & ITabsCompositionProps = ({
     return (
         <TabsThemeProvider idPrefix={prefix} size={size} state={state} theme={theme} variant={variant}>
             <TabsComponent
-                TabList={TabList}
+                TabHeadingList={TabHeadingList}
                 selectedId={selectedId}
                 collapsible={collapsible}
                 onChange={handleChange}
@@ -90,6 +90,6 @@ export const TabsList: FC<TabsComponentPropsType> & ITabsCompositionProps = ({
     );
 };
 
-TabsList.displayName = 'Tabs';
-TabsList.Tab = Tab;
-TabsList.LinkTitle = TabLinkTitle;
+TabList.displayName = 'Tabs';
+TabList.Tab = Tab;
+TabList.LinkTitle = TabLinkTitle;

@@ -1,5 +1,5 @@
 import {
-    Arrow,
+    Arrow as ArrowIcon,
     BaseSelect,
     Optgroup as DefaultOptgroup,
     OptionsList as DefaultOptionsList,
@@ -66,13 +66,13 @@ export const ShowMoreButton: FC<IShowMoreButtonProps> = ({
     Optgroup = DefaultOptgroup,
     OptionsList = DefaultOptionsList,
     count,
-    onChange,
     options,
+    onChange,
     ...props
 }) => (
     <BaseSelect
         {...props}
-        Arrow={Arrow}
+        Arrow={ArrowIcon}
         options={options}
         optionProps={{ Checkmark: null }}
         Option={Option}

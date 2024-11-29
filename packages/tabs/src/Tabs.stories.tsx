@@ -5,7 +5,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 
 import { type ComponentProps, useEffect, useState } from 'react';
 
-import { Tab, TabLinkTitle, TabsList } from '.';
+import { Tab, TabLinkTitle, TabList } from '.';
 import README from '../README.md';
 
 export default {
@@ -17,10 +17,10 @@ export default {
             },
         },
     },
-    component: TabsList,
-} as Meta<typeof TabsList>;
+    component: TabList,
+} as Meta<typeof TabList>;
 
-export const Basic: StoryObj<ComponentProps<typeof TabsList> & {}> = {
+export const Basic: StoryObj<ComponentProps<typeof TabList> & {}> = {
     args: {
         fullWidthScroll: false,
         scrollable: false,
@@ -47,7 +47,7 @@ export const Basic: StoryObj<ComponentProps<typeof TabsList> & {}> = {
         }, []);
 
         return (
-            <TabsList {...args}>
+            <TabList {...args}>
                 <Tab title="First tab" id="1" leftAddons={<TicketIcon />}>
                     Content of first tab
                 </Tab>
@@ -96,7 +96,7 @@ export const Basic: StoryObj<ComponentProps<typeof TabsList> & {}> = {
                 >
                     <div />
                 </Tab>
-            </TabsList>
+            </TabList>
         );
     },
 };

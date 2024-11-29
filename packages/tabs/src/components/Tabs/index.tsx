@@ -11,20 +11,20 @@ const makeSureStringHasPrefix = (str: string, prefix: string) => {
 };
 
 export const TabsComponent = ({
-    TabList,
+    TabHeadingList,
     ShowMoreButton = DefaultTooltipButton,
+    breakpoint,
     className,
     containerCSS,
     defaultMatch,
     children,
     selectedId: propsSelectedId,
+    countErrors,
     scrollable,
     collapsible,
     collapsedTabsIds,
     keepMounted = false,
     dataTestId,
-    breakpoint,
-    countErrors,
     onChange,
 }: Omit<ITabsProps, 'view'>) => {
     const { idPrefix } = useTabsTheme();
@@ -71,7 +71,7 @@ export const TabsComponent = ({
 
     return (
         <div className={className} role="navigation">
-            <TabList
+            <TabHeadingList
                 ShowMoreButton={ShowMoreButton}
                 containerCSS={containerCSS}
                 titles={titles}

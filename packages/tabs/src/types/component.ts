@@ -107,7 +107,7 @@ export interface ITabsProps
     /**
      * Tab heading component
      */
-    TabList: FC<ITabListProps>;
+    TabHeadingList: FC<ITabListProps>;
 
     /**
      * Custom 'Show more' button component
