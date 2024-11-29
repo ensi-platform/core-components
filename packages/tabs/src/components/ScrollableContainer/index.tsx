@@ -6,24 +6,24 @@ import { type ReactNode, useEffect, useRef } from 'react';
 import { useTabsTheme } from '../../context';
 
 /**
- * Дополнительная прокрутка при клике на не поместившийся таб
+ * Additional scrolling when clicking on a tab that does not fit
  */
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 const getExtraScrollValue = (_: Element) => 40;
 
 export type ScrollableContainerProps = {
     /**
-     * Дополнительный класс контейнера
+     * Additional container class
      */
     containerCSS?: CSSObject;
 
     /**
-     * Дочерние компоненты
+     * Children components
      */
     children: ReactNode;
 
     /**
-     * Активный элемент (всегда будет в видимой области)
+     * Active element (always will be visible)
      */
     activeChild: HTMLElement | null;
 };

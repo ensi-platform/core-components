@@ -2,9 +2,9 @@ import { type MutableRefObject, type RefObject, useCallback, useEffect, useRef, 
 
 type KeyboardFocusableProps = {
     /**
-     * Рендер-проп, в который передается состояние фокуса и реф.
+     * Render-props which will have ```ref``` and ```focused``` state passed
      *
-     * Реф нужно установить на интерактивный элемент или на одного из его родителей.
+     * Ref should be placed on an interactive element or one of its parent elements.
      */
     // eslint-disable-next-line no-undef
     children: (ref: RefObject<any>, focused: boolean) => JSX.Element;
@@ -29,8 +29,8 @@ function handleTouchStart() {
 }
 
 /**
- * Навешивает несколько глобальных обработчиков и отслеживает метод ввода - мышь или клавиатура.
- * Note: Повторный вызов функции не дублирует обработчики
+ * Adds global event handlers and tracks input method - keyboard, mouse, touch.
+ * Note: Multiple calls doesn't duplicate handlers
  */
 function addGlobalListeners() {
     document.addEventListener('keydown', handleKeyDown);
@@ -39,10 +39,9 @@ function addGlobalListeners() {
 }
 
 /**
- * Хук устанавливает обработчик события на focusin и focusout
- * по конкретному типу события
- * @param node Элемент на котором установится обработчик (default = document)
- * @param inputMethod Если параметр не задан, установит обработчик по любому событию фокуса
+ * This hook adds event handlers for ```focusin``` and ```focusout``` events
+ * @param ref ref for element on which the handler will be added (default = document)
+ * @param inputMethod input type on which events should be handled, if omitted - all input methods are handled
  */
 export function useFocus<T extends HTMLElement>(
     ref: MutableRefObject<T> | RefObject<T>,

@@ -17,8 +17,8 @@ export function useTabs({ titles = [], selectedId, onChange }: UseTabsProps) {
 
     const handleItemClick = useCallback(
         (event: MouseEvent, item: TabListTitleType) => {
-            // При желании можно вообще отключить возможность подсветить кастомный таб линией снизу
-            // Полезно для ссылок, по желанию клиента.
+            // It's possible to disable tab highlight with underline
+            // Useful for links if needed
             if (item.renderTitle && item.unfocusable) return;
             if (onChange && item.id !== selectedId) {
                 onChange(event, { selectedId: item.id });

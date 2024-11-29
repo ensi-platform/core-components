@@ -45,17 +45,17 @@ export interface ITabsState {
     mobile: boolean;
 
     /**
-     * При скроле табы будут уходить в край экрана
+     * Expand scrollable container to full width
      */
     fullWidthScroll?: boolean;
 
     /**
-     * Рендерить заголовки табов в контейнере со скроллом
+     * Render tabs heading inside scrollable container
      */
     scrollable?: boolean;
 
     /**
-     * Сворачивает не помещающиеся в окне табы в PickerButton
+     * Collapse tabs, which cannot fit, inside PickerButton
      */
     collapsible?: boolean;
 }
@@ -70,127 +70,130 @@ export interface ITabsProps
     prefix?: string;
 
     /**
-     * Дополнительный класс
+     * Additional class
      */
     className?: string;
 
     /**
-     * Дополнительный стиль контейнера
+     * Additional container class
      */
     containerCSS?: CSSObject;
 
     /**
-     * Id активного таба
+     * Id of active tab
      */
     selectedId?: SelectedIdType;
 
     /**
-     * Рендерить неактивные табы
+     * Should render inactive tabs
      */
     keepMounted?: boolean;
 
     /**
-     * Режим отображения по умолчанию
+     * Default appearance
      */
     defaultMatch?: TabsMatchMediaType;
 
     /**
-     * Список табов, для контроля переноса вкладок в PickerButton
+     * List of tab ids, which should be collapsed inside PickerButton
      */
     collapsedTabsIds?: string[];
 
     /**
-     * Компоненты табов
+     * List of ```Tab``` components
      */
     children: ReactNode; // Array<ReactElement<TabProps>> | ReactElement<TabProps>;
 
     /**
-     * Компонент заголовков табов
+     * Tab heading component
      */
     TabList: FC<ITabListProps>;
 
     /**
-     * Компонент заголовков табов
+     * Custom 'Show more' button component
      */
     ShowMoreButton?: FC<IShowMoreButtonProps>;
 
     /**
-     * Обработчик переключения табов
+     * Tab change event handler
      */
     onChange?: (event: MouseEvent, payload: { selectedId: SelectedIdType }) => void;
 
     /**
-     * Идентификатор для систем автоматизированного тестирования
+     * Id for automatic testing
      */
     dataTestId?: string;
 
     /**
-     * Массив, который нужен для вывода количества ошибок у таба
+     * Array of errors within each tab
      */
     countErrors?: { id: string; count: number }[];
 }
 
 export type TabPropsType = {
     /**
-     * Id таба
+     * Tab id
      */
     id: SelectedIdType;
 
     /**
-     * Заголовок таба
+     * Tabs title
      */
     title: string;
 
     /**
-     * Дополнительный класс для контейнера содержимого таба
+     * Additional class for container of tab content
      */
     className?: string;
 
     /**
-     * Дополнительный стиль для кнопки таба
+     * Additional style for tab button
      */
     toggleCSS?: CSSObject;
 
     /**
-     * Блокирует таб
+     * Disable tab
      */
     disabled?: boolean;
 
     /**
-     * Управление видимостью таба
+     * Visually hide tab
      */
     hidden?: boolean;
 
     /**
-     * Рендерить таб, если он неактивен
+     * Render tab even if its inactive
      */
     keepMounted?: boolean;
 
     /**
-     * Контент таба
+     * Tab content
      */
     children?: ReactNode;
 
     /**
-     * Слот справа
+     * Right addon inside tab heading
      */
     rightAddons?: ReactNode;
 
     /**
-     * Слот слева
+     * Left addon inside tab heading
      */
     leftAddons?: ReactNode;
 
     /**
-     * Идентификатор для систем автоматизированного тестирования
+     * Id for automatic tests
      */
     dataTestId?: string;
 
+    /**
+     * Don't highlight active tab heading
+     */
     unfocusable?: boolean;
 } & (
     | {
           /**
-           * Кастомный рендер тайтла
+           * Custom tab heading
            */
           renderTitle?: (props: TabListTitleType) => ReactElement;
           unfocusable?: boolean;
@@ -241,11 +244,11 @@ export interface ITabListProps
         | 'dataTestId'
     > {
     /**
-     * Заголовки табов
+     * Tabs titles
      */
     titles?: TabListTitleType[];
     /**
-     * Контрольная точка, с нее начинается desktop версия
+     * Width breakpoint after which it renders desktop version
      * @default md
      */
     breakpoint?: number;
