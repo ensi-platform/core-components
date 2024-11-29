@@ -10,6 +10,24 @@ const makeSureStringHasPrefix = (str: string, prefix: string) => {
     return `${prefix}_${str}`;
 };
 
+/**
+ * Root component that renders tabs heading and tabs content
+ * @param TabHeadingList component for rendering tabs headings
+ * @param ShowMoreButton component for 'Show more' button
+ * @param breakpoint width breakpoint for desktop appearance
+ * @param className additional class for tabs component
+ * @param containerCSS additional CSS for tabs headings list container
+ * @param defaultMatch default component appearance
+ * @param children list of tabs
+ * @param selectedId id of current selected tab
+ * @param countErrors array of errors by each tab
+ * @param scrollable use scrollable container for headings
+ * @param collapsible collapse extra tab headings
+ * @param collapsedTabsIds ids of tabs to collapse into dropdown menu
+ * @param keepMounted render tabs even if they are not visible
+ * @param dataTestId id for automatic testing
+ * @param onChange tab change event handler
+ */
 export const TabsComponent = ({
     TabHeadingList,
     ShowMoreButton = DefaultTooltipButton,

@@ -29,6 +29,25 @@ interface ITabsCompositionProps {
     LinkTitle: typeof TabLinkTitle;
 }
 
+/**
+ * Root component for tabs list with theming
+ * @param breakpoint width breakpoint for desktop appearance
+ * @param size size to use, passed into context
+ * @param ShowMoreButton component for 'Show more' button
+ * @param TabHeadingList component for rendering tabs headings
+ * @param className additional class for tabs component
+ * @param containerCSS additional CSS for tabs headings list container
+ * @param defaultMatch default component appearance
+ * @param children list of tabs
+ * @param selectedId id of current selected tab
+ * @param countErrors array of errors by each tab
+ * @param scrollable use scrollable container for headings
+ * @param collapsible collapse extra tab headings
+ * @param collapsedTabsIds ids of tabs to collapse into dropdown menu
+ * @param keepMounted render tabs even if they are not visible
+ * @param dataTestId id for automatic testing
+ * @param onChange tab change event handler
+ */
 export const TabList: FC<TabsComponentPropsType> & ITabsCompositionProps = ({
     breakpoint = Breakpoints.md,
     size = 'md',

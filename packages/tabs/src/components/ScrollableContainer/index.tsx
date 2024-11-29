@@ -28,6 +28,12 @@ export type ScrollableContainerProps = {
     activeChild: HTMLElement | null;
 };
 
+/**
+ * Scrollable container for tabs headings
+ * @param children list of tabs headings (```Tab``` component)
+ * @param activeChild current active tab
+ * @param containerCSS additional CSS for scrollable container
+ */
 export const ScrollableContainer = ({ containerCSS, children, activeChild }: ScrollableContainerProps) => {
     const containerRef = useRef<HTMLDivElement>(null);
 

@@ -1,6 +1,13 @@
 import { useTabsTheme } from '../../context';
 import type { TabPropsType } from '../../types';
 
+/**
+ * Tab component
+ * @param children tab content
+ * @param className additional content container class
+ * @param hidden is tab visually hidden
+ * @param disabled is tab disabled
+ */
 export const Tab = ({ children, hidden, className, disabled, dataTestId }: TabPropsType) => {
     const { getCSS } = useTabsTheme();
     if (!children) return null;

@@ -62,6 +62,14 @@ const ButtonField = ({
     );
 };
 
+/**
+ * 'Show more' button for collapsed tabs which didn't fit into container
+ * @param Optgroup custom dropdown item component
+ * @param OptionsList custom dropdown list component
+ * @param count number of collapsed tabs
+ * @param options list of collapsed tabs
+ * @param onChange tab change event handler
+ */
 export const ShowMoreButton: FC<IShowMoreButtonProps> = ({
     Optgroup = DefaultOptgroup,
     OptionsList = DefaultOptionsList,
