@@ -1,11 +1,15 @@
-Базовый компонент для модальных окон
+The basic component for modal windows
 
-Основан на  [alfalab/core-components](https://github.com/alfa-laboratory/core-components)
-```js
-import BaseModal from '@components/BaseModal';
+Based on [alfalab/core-components](https://github.com/alfa-laboratory/core-components)
+
+#### Usage example below:
+
+```jsx
+import BaseModal from '@ensi-platform/core-components';
 
 const [isOpen, setOpen] = useState(false);
 const handleModalOpen = () => setOpen(!open);
+
 return (
     <BaseModal open={isOpen} onClose={handleModalOpen}>
         <div style={{ padding: '100px' }}>BaseModal content!</div>

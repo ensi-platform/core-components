@@ -13,7 +13,7 @@ export const getScrollbarSize = (() => {
     let cachedSize: number;
 
     return () => {
-        if (cachedSize !== undefined) return cachedSize;
+        if (cachedSize) return cachedSize;
 
         const scrollDiv = document.createElement('div');
 
@@ -29,7 +29,6 @@ export const getScrollbarSize = (() => {
         document.body.removeChild(scrollDiv);
 
         cachedSize = scrollbarSize;
-
         return scrollbarSize;
     };
 })();
@@ -76,7 +75,6 @@ export const handleContainer = (container?: HTMLElement) => {
 
     if (existingStyles) {
         existingStyles.modals += 1;
-
         return;
     }
 
@@ -92,16 +90,13 @@ export const handleContainer = (container?: HTMLElement) => {
             el: container,
         });
         // Вычисляем стили, чтобы получить реальный `padding` c шириной сколлбара
-        // eslint-disable-next-line no-param-reassign
         container.style.paddingRight = `${getPaddingRight(container) + scrollbarSize}px`;
     }
 
     const parent = container.parentElement;
+
     const scrollContainer =
-        // TODO: заменить на optional chaining
-        parent && parent.nodeName === 'HTML' && window.getComputedStyle(parent).overflowY === 'scroll'
-            ? parent
-            : container;
+        parent?.nodeName === 'HTML' && window.getComputedStyle(parent).overflowY === 'scroll' ? parent : container;
 
     // Блокируем скролл даже если отсутствует скроллбар
     if (scrollContainer.style.overflow !== 'hidden') {

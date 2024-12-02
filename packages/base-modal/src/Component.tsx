@@ -20,17 +20,22 @@ import FocusLock, { AutoFocusInside } from 'react-focus-lock';
 import mergeRefs from 'react-merge-refs';
 import { useTransition } from 'react-transition-state';
 
+import ComponentDiv from './components/ComponentDiv';
+import ContentDiv from './components/ContentDiv';
+import DialogDiv from './components/DialogDiv';
 import { BaseModalContext } from './context';
-import { ClosureReasonsEmum } from './scripts';
-import { useTransitionStyles } from './scripts/hooks';
 import {
+    ClosureReasonsEmum,
+    TransitionStatusesEnum,
+    dialogDivCSS,
     getScrollbarSize,
     handleContainer,
     hasScrollbar,
     isScrolledToBottom,
     isScrolledToTop,
     restoreContainerStyles,
-} from './scripts/utils';
+    useTransitionStyles,
+} from './scripts';
 import type { IBaseModalContext, IBaseModalProps } from './types';
 
 const BaseModal = forwardRef<HTMLDivElement, IBaseModalProps>(
@@ -247,15 +252,15 @@ const BaseModal = forwardRef<HTMLDivElement, IBaseModalProps>(
         }, [handleScroll, onUnmount, removeResizeHandle, timeout]);
 
         const handlersRef = useRef({
-            entered: handleEntered,
-            exited: handleExited,
+            entering: handleEntered,
+            unmounted: handleExited,
         });
-        handlersRef.current.entered = handleEntered;
-        handlersRef.current.exited = handleExited;
+        handlersRef.current.entering = handleEntered;
+        handlersRef.current.unmounted = handleExited;
 
         useEffect(() => {
-            if (status === 'entering') handlersRef.current.entered();
-            if (status === 'exiting') handlersRef.current.exited();
+            if (status === TransitionStatusesEnum.entering) handlersRef.current.entering();
+            if (status === TransitionStatusesEnum.unmounted) handlersRef.current.unmounted();
         }, [status]);
 
         useEffect(() => {
@@ -315,7 +320,7 @@ const BaseModal = forwardRef<HTMLDivElement, IBaseModalProps>(
         return (
             <Stack value={zIndex}>
                 {computedZIndex => (
-                    <Portal container={container}>
+                    <Portal getPortalContainer={container}>
                         <BaseModalContext.Provider value={contextValue}>
                             <FocusLock
                                 autoFocus={!disableAutoFocus}
@@ -332,16 +337,9 @@ const BaseModal = forwardRef<HTMLDivElement, IBaseModalProps>(
                                 />
                                 <AutoFocusInside>
                                     {isMounted && (
-                                        <div
-                                            role="dialog"
+                                        <DialogDiv
                                             css={{
-                                                position: 'fixed',
-                                                inset: 0,
-                                                overflow: 'auto',
-                                                display: 'flex',
-                                                flexDirection: 'column',
-                                                alignItems: 'center',
-                                                outline: 0,
+                                                ...dialogDivCSS,
                                                 zIndex: computedZIndex,
                                                 ...(!open &&
                                                     isExited &&
@@ -351,40 +349,20 @@ const BaseModal = forwardRef<HTMLDivElement, IBaseModalProps>(
                                                 ...transitionStyles[status],
                                                 ...wrapperCSS,
                                             }}
-                                            ref={mergeRefs([ref, wrapperRef])}
-                                            onKeyDown={handleKeyDown}
-                                            onMouseDown={handleBackdropMouseDown}
-                                            onMouseUp={handleBackdropMouseUp}
-                                            // eslint-disable-next-line jsx-a11y/no-noninteractive-tabindex
-                                            tabIndex={0}
-                                            data-test-id={dataTestId}
+                                            ref={mergeRefs<HTMLDivElement>([ref, wrapperRef])}
+                                            handleKeyDown={handleKeyDown}
+                                            handleBackdropMouseDown={handleBackdropMouseDown}
+                                            handleBackdropMouseUp={handleBackdropMouseUp}
+                                            dataTestId={dataTestId}
                                             id={id}
                                         >
-                                            <div
-                                                data-role="component"
+                                            <ComponentDiv
                                                 className={className}
-                                                css={{
-                                                    position: 'relative',
-                                                    margin: 'auto',
-                                                    flexShrink: 0,
-                                                }}
-                                                ref={mergeRefs([componentRef, componentNodeRef])}
+                                                ref={mergeRefs<HTMLDivElement>([componentRef, componentNodeRef])}
                                             >
-                                                <div
-                                                    data-role="content"
-                                                    css={{
-                                                        width: '100%',
-                                                        height: '100%',
-                                                        display: 'flex',
-                                                        flexDirection: 'column',
-                                                        flex: 1,
-                                                        ...contentCSS,
-                                                    }}
-                                                >
-                                                    {children}
-                                                </div>
-                                            </div>
-                                        </div>
+                                                <ContentDiv contentCSS={contentCSS}>{children}</ContentDiv>
+                                            </ComponentDiv>
+                                        </DialogDiv>
                                     )}
                                 </AutoFocusInside>
                             </FocusLock>

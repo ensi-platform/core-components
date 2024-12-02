@@ -27,118 +27,116 @@ export interface IBaseModalProps {
     backdropProps?: Partial<IBackdropProps> & Record<string, unknown>;
 
     /**
-     * Нода, компонент или функция возвращающая их
-     *
-     * Контейнер к которому будут добавляться порталы
+     * Function that returns the container to which the portals will be added
      */
-    container?: IPortalProps['container'];
+    container?: IPortalProps['getPortalContainer'];
 
     /**
-     * Отключает автоматический перевод фокуса на модалку при открытии
+     * Disable automatic focus transfer to the modal when opening
      * @default false
      */
     disableAutoFocus?: boolean;
 
     /**
-     * Отключает ловушку фокуса
+     * Disable focus lock
      * @default false
      */
     disableFocusLock?: boolean;
 
     /**
-     * Отключает восстановление фокуса на предыдущем элементе после закрытия модалки
+     * Disable focus restoration
      * @default false
      */
     disableRestoreFocus?: boolean;
 
     /**
-     * Отключает вызов `callback` при нажатии Escape
+     * Disable the `callback` call when pressing Escape
      * @default false
      */
     disableEscapeKeyDown?: boolean;
 
     /**
-     * Отключает вызов `callback` при клике на бэкдроп
+     * Disable the `callback` call when clicking on the backdrop
      * @default false
      */
     disableBackdropClick?: boolean;
 
     /**
-     * Отключает блокировку скролла при открытии модального окна
+     * Disable scroll lock when opening a modal window
      * @default false
      */
     disableBlockingScroll?: boolean;
 
     /**
-     * Содержимое модалки всегда в DOM
+     * Content of the modal are always in the DOM
      * @default false
      */
     keepMounted?: boolean;
 
     /**
-     * Управление видимостью модалки
+     * Is modal open
      */
     open: boolean;
 
     /**
-     * Дополнительный класс
+     * Additional styles
      */
     className?: string;
 
     /**
-     * Дополнительный стиль контента
+     * Additional content styles
      */
     contentCSS?: CSSObject;
 
     /**
-     * Дополнительный стиль для обертки (Modal)
+     * Additional wrapper styles
      */
     wrapperCSS?: CSSObject;
 
     /**
-     * Обработчик скролла контента
+     * Scroll handler
      */
     scrollHandler?: 'wrapper' | 'content' | MutableRefObject<HTMLDivElement | null>;
 
     /**
-     * Обработчик события нажатия на бэкдроп
+     * Backdrop click handler
      */
     onBackdropClick?: (event: MouseEvent) => void;
 
     /**
-     * Обработчик события нажатия на Escape
+     * Escape click handler
      *
-     * Если `disableEscapeKeyDown` - false и модальное окно в фокусе
+     * Called if `disableEscapeKeyDown` is false and the modal window is in focus
      */
     onEscapeKeyDown?: (event: KeyboardEvent) => void;
 
     /**
-     * Обработчик закрытия
+     * Close handler
      */
     onClose?: (event: MouseEvent<HTMLElement> | KeyboardEvent<HTMLElement>, reason?: ClosureReasonsType) => void;
 
     /**
-     * Обработчик события onEntered компонента Transition
+     * Function that will be called after component mount
      */
     onMount?: () => void;
 
     /**
-     * Обработчик события onExited компонента Transition
+     * Function that will be called after component unmount
      */
     onUnmount?: () => void;
 
     /**
-     * Идентификатор для систем автоматизированного тестирования
+     * Identifier for automated testing systems
      */
     dataTestId?: string;
 
     /**
-     * z-index компонента
+     * Modal z-index
      */
     zIndex?: number;
 
     /**
-     * Реф, который должен быть установлен компонентной области
+     * Ref that can be set to a component area
      */
     componentRef?: MutableRefObject<HTMLDivElement | null>;
 
@@ -149,12 +147,12 @@ export interface IBaseModalProps {
     timeout?: number;
 
     /**
-     * Набор стилей для разных состояний (открытие, закрытие)
+     * Styles for react-transition-state
      */
     transitionStyles?: Partial<Record<TransitionStatus, CSSObject>>;
 
     /**
-     * ID для родительского элемента
+     * Modal id
      */
     id?: string;
 }

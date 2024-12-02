@@ -1,6 +1,7 @@
 import { useMemo } from 'react';
 
 import type { IBaseModalProps } from '../../types';
+import { TransitionStatusesEnum } from '../enums';
 
 interface IUseTransitionStyles extends Required<Pick<IBaseModalProps, 'timeout'>> {
     override: IBaseModalProps['transitionStyles'];
@@ -9,27 +10,27 @@ interface IUseTransitionStyles extends Required<Pick<IBaseModalProps, 'timeout'>
 export const useTransitionStyles = ({ timeout, override }: IUseTransitionStyles) => {
     const transitionStyle = useMemo(
         () => ({
-            preEnter: {
+            [TransitionStatusesEnum.preEnter]: {
                 opacity: 0,
                 transform: 'scale(0.85)',
                 transition: `transform ${timeout * 1.5}ms ease-in, opacity ${timeout}ms ease-in`,
             },
-            entering: {
+            [TransitionStatusesEnum.entering]: {
                 opacity: 1,
                 transform: 'scale(1)',
                 transition: `transform ${timeout * 1.5}ms ease-out, opacity ${timeout}ms ease-in`,
             },
-            entered: {
+            [TransitionStatusesEnum.entered]: {
                 opacity: 1,
                 transform: 'scale(1)',
                 transition: `transform ${timeout * 1.5}ms ease-out, opacity ${timeout}ms ease`,
             },
-            exiting: {
+            [TransitionStatusesEnum.exiting]: {
                 opacity: 0,
                 transform: 'scale(0.85)',
                 transition: `transform ${timeout * 1.5}ms ease-out, opacity ${timeout}ms ease-in`,
             },
-            exited: {
+            [TransitionStatusesEnum.exited]: {
                 opacity: 0,
             },
             ...override,
