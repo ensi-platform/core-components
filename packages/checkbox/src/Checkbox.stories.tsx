@@ -1,5 +1,5 @@
 import { Button, ErrorMessages } from '@ensi-platform/core-components-common';
-import { Form, FormFieldWrapper } from '@ensi-platform/core-components-form';
+import { Form, FormFieldWrapper, FormReset } from '@ensi-platform/core-components-form';
 
 import { action } from '@storybook/addon-actions';
 import type { Meta, StoryObj } from '@storybook/react';
@@ -187,6 +187,7 @@ export const WithForm: StoryObj<ComponentProps<typeof Checkbox>> = {
             <Button type="submit" size="sm">
                 Submit
             </Button>
+            <FormReset>Reset</FormReset>
         </Form>
     ),
 };

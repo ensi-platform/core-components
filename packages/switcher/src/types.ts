@@ -4,10 +4,11 @@ import type {
     ValueOrFunction,
     useCheckboxLikeControlHookType,
 } from '@ensi-platform/core-components-common';
+import type { IFieldWrapperProps } from '@ensi-platform/core-components-form';
 
 import type { CSSObject } from '@emotion/react';
 
-import type { HTMLProps, Ref } from 'react';
+import type { ChangeEventHandler, HTMLProps, Ref } from 'react';
 
 import type { switcherThemes } from './themes';
 
@@ -76,7 +77,8 @@ export type SwitcherTheme = ValueOrFunction<
  */
 export interface SwitcherProps
     extends Omit<BaseThemeState<typeof SwitcherVariant, typeof SwitcherSize, SwitcherTheme>, 'theme'>,
-        Omit<HTMLProps<HTMLInputElement>, 'size'> {
+        Omit<HTMLProps<HTMLInputElement>, 'size' | 'onChange'>,
+        Partial<IFieldWrapperProps<boolean>> {
     /** Ref for inner input */
     inputRef?: Ref<HTMLInputElement>;
 
@@ -95,4 +97,6 @@ export interface SwitcherProps
     allowUnselectDisabledOptions?: boolean;
 
     useControlHook?: useCheckboxLikeControlHookType;
+
+    onChange?: ChangeEventHandler;
 }

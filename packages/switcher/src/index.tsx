@@ -1,9 +1,9 @@
-import { useCheckboxLikeControlHookRHF, useThemeCSSPart } from '@ensi-platform/core-components-common';
+import { useThemeCSSPart } from '@ensi-platform/core-components-common';
 
 import type { CSSObject } from '@emotion/react';
 
 import deepmerge from 'deepmerge';
-import { useMemo, useRef } from 'react';
+import { type ChangeEvent, useCallback, useMemo, useRef } from 'react';
 import mergeRefs from 'react-merge-refs';
 
 import { switcherThemes } from './themes';
@@ -16,7 +16,8 @@ export * from './types';
  */
 export const Switcher = ({
     name,
-    value,
+    field,
+    value = '',
     error,
     inputCSS: propsInputCSS,
     labelCSS: propsLabelCSS,
@@ -26,11 +27,10 @@ export const Switcher = ({
     size = 'md',
     variant = 'primary',
     css,
-    checked: propsChecked,
+    checked: propChecked,
     allowUnselectDisabledOptions = false,
     disabled,
     onChange,
-    useControlHook = useCheckboxLikeControlHookRHF,
     ...props
 }: SwitcherProps) => {
     const inputId = `${name}-${value}-${props.id}`;
@@ -38,7 +38,15 @@ export const Switcher = ({
 
     const theme = typeof themeName === 'string' ? switcherThemes[themeName] : themeName;
 
-    const { checked, handleChange } = useControlHook(name!, onChange!, propsChecked);
+    const checked = typeof field?.value === 'boolean' ? field?.value : !!propChecked;
+
+    const handleChange = useCallback(
+        (e: ChangeEvent<HTMLInputElement>) => {
+            field?.onChange(e);
+            onChange?.(e);
+        },
+        [field, onChange]
+    );
 
     const state = useMemo<Omit<SwitcherThemeState, 'theme'>>(
         () => ({
