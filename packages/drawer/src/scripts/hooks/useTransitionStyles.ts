@@ -4,12 +4,6 @@ import { useMemo } from 'react';
 
 import type { IDrawerProps } from '../../types';
 
-// interface IUseTransitionStyles
-//     extends Required<Pick<IBaseModalProps, 'timeout'>>,
-//         Required<Pick<IDrawerProps, 'placement'>> {
-//     override: IBaseModalProps['transitionStyles'];
-// }
-
 interface IUseTransitionStyles
     extends Required<Pick<IBaseModalProps, 'timeout'>>,
         Required<Pick<IDrawerProps, 'placement'>> {}

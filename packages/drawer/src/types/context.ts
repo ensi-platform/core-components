@@ -13,8 +13,6 @@ export interface IContext
     getCSS: getCSSType;
 }
 
-export interface IContextProps
-    extends Required<BaseThemeState<typeof DrawerVariantsEnum, typeof DrawerSizesEnum, DrawerThemeType>> {
-    state: IDrawerState;
+export interface IContextProps extends Omit<IContext, 'getCSS'> {
     children: ReactNode;
 }

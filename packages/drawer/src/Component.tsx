@@ -26,7 +26,7 @@ const DrawerComponent = forwardRef<HTMLDivElement, IDrawerProps>(
         },
         ref
     ) => {
-        const baseModalTransitionStyles = useTransitionStyles({ timeout, placement });
+        const transitionStyles = useTransitionStyles({ timeout, placement });
 
         const themeState = useMemo<DrawerStateFullType>(
             () => ({
@@ -45,7 +45,7 @@ const DrawerComponent = forwardRef<HTMLDivElement, IDrawerProps>(
                 scrollHandler="content"
                 ref={ref}
                 open={open}
-                transitionStyles={baseModalTransitionStyles}
+                transitionStyles={transitionStyles}
                 className={className}
                 backdropProps={backdropProps}
                 {...props}

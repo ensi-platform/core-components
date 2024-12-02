@@ -8,7 +8,7 @@ import README from '../README.md';
 import { Drawer } from './index';
 
 export default {
-    title: 'Controls / Drawer',
+    title: 'Components / Drawer',
     component: Drawer,
     parameters: {
         docs: {
@@ -24,7 +24,6 @@ export default {
             },
             description: 'Is Drawer open',
             required: true,
-            control: { type: 'text' },
         },
         timeout: {
             table: {

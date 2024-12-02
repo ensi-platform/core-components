@@ -5,7 +5,7 @@ import { type FC, useMemo } from 'react';
 import { useDrawerContext } from '../../scripts';
 import type { IHeaderProps } from '../../types';
 
-const Header: FC<IHeaderProps> = ({ title = '', hasCloseButton = true, onClose, ...props }) => {
+const Header: FC<IHeaderProps> = ({ title, hasCloseButton = false, onClose, ...props }) => {
     const { getCSS } = useDrawerContext();
     const styles = useMemo(
         () =>
