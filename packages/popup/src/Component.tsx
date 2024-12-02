@@ -1,15 +1,18 @@
 import { BaseModal } from '@ensi-platform/core-components-base-modal';
-import { useThemeCSSPart } from '@ensi-platform/core-components-common';
+import { useMediaQuery, useThemeCSSPart } from '@ensi-platform/core-components-common';
 
 import { type ForwardedRef, forwardRef, useMemo, useRef } from 'react';
 import mergeRefs from 'react-merge-refs';
 
+import Content from './components/compound/Content';
+import Footer from './components/compound/Footer';
+import Header from './components/compound/Header';
 import { PopupContextProvider } from './context';
 import { PopupSizesEnum, PopupVariantsEnum } from './scripts';
 import { POPUP_THEMES } from './themes';
-import type { IPopupProps, PopupStateFullType } from './types';
+import type { IModalResponsiveProps, IPopupProps, PopupStateFullType, ViewType } from './types';
 
-const Popup = forwardRef<HTMLDivElement, IPopupProps>(
+const PopupComponent = forwardRef<HTMLDivElement, IPopupProps>(
     (
         {
             theme = POPUP_THEMES.basic,
@@ -99,5 +102,34 @@ const Popup = forwardRef<HTMLDivElement, IPopupProps>(
         );
     }
 );
+
+const PopupResponsiveComponent = forwardRef<HTMLDivElement, IModalResponsiveProps>(
+    ({ children, breakpoint = 1024, ...restProps }, ref) => {
+        const [view] = useMediaQuery<ViewType>(
+            [
+                ['mobile', `(max-width: ${breakpoint - 1}px)`],
+                ['desktop', `(min-width: ${breakpoint}px)`],
+            ],
+            'desktop'
+        );
+
+        return (
+            <PopupComponent
+                ref={ref}
+                {...restProps}
+                view={view}
+                size={view === 'mobile' ? 'fullscreen' : restProps.size}
+            >
+                {children}
+            </PopupComponent>
+        );
+    }
+);
+
+export const Popup = Object.assign(PopupResponsiveComponent, {
+    Header,
+    Content,
+    Footer,
+});
 
 export default Popup;

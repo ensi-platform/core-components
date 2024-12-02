@@ -17,16 +17,3 @@ export interface IContext
 export interface IContextProps extends IContext {
     children?: ReactNode;
 }
-
-// export interface IContext<V extends EnumLike, S extends EnumLike>
-//     extends BaseThemeState<V, S, PopupThemeType<V, S>>,
-//         IPopupState {
-//     // state: IPopupState;
-//     // getCSS: ReturnType<typeof useFoo>;
-// }
-
-// export interface IContextProps<V extends EnumLike, S extends EnumLike>
-//     extends BaseThemeState<V, S, PopupThemeType<V, S>>,
-//         IPopupState {
-//     children: ReactNode;
-// }

@@ -3,11 +3,11 @@ import { type OptionizedCSS, defaultTheme, extractCSSOption, scale } from '@ensi
 import type { CSSObject } from '@emotion/react';
 
 import type { PopupSizesEnum } from '../scripts';
-import type { Align, PopupThemeType } from '../types';
+import type { AlignType, PopupThemeType } from '../types';
 
 const { colors, typography } = defaultTheme;
 
-const ALIGN_CSS: Record<Align, CSSObject> = {
+const ALIGN_CSS: Record<AlignType, CSSObject> = {
     center: {
         justifyContent: 'center',
         textAlign: 'center',

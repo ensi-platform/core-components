@@ -6,62 +6,77 @@ import type { ReactNode } from 'react';
 import type { PopupSizesEnum, PopupVariantsEnum } from '../scripts';
 import type { PopupThemeType } from './theme';
 
-export type View = 'desktop' | 'mobile';
-export type Align = 'left' | 'center' | 'right';
+export type ViewType = 'desktop' | 'mobile';
+export type AlignType = 'left' | 'center' | 'right';
 
 export interface IPopupState {
     /**
-     * Растягивает контент на всю высоту
+     * Stretches the content to its full height
+     * @default false
      */
     flex?: boolean;
 
     /**
-     * Скроллбар в контенте вместо компонента
+     * Has inner scroll
+     * @default false
      */
     innerScroll?: boolean;
 
     /**
-     * Фиксирует футер
+     * Sticky footer
+     * @default false
      */
     stickyFooter?: boolean;
 
     /**
-     * Фиксирует шапку
+     * Sticky header
+     * @default false
      */
     stickyHeader?: boolean;
 
     /**
-     * Выравнивание заголовка
+     * Title alignment
+     * @default 'left'
      */
-    align?: Align;
+    align?: AlignType;
 
     /**
-     * Наличие компонента крестика
+     * The presence of the closure component (cross)
+     * @default true
      */
     hasCloser?: ReactNode;
 
     /**
-     * Обрезать ли заголовок
+     * Trim the title
+     * @default false
      */
     trim?: boolean;
 
     /**
-     * Мобильный или десктопный вид
+     * Mobile or desktop view
      */
-    view?: View;
+    view?: ViewType;
 
     /**
-     * Фиксирует позицию модального окна после открытия,
-     * предотвращая скачки, если контент внутри будет меняться
+     * Fixes the position of the modal window after opening, preventing jumps if the content inside changes
+     * @default false
      */
     fixedPosition?: boolean;
 
-    offset?: number;
+    /**
+     * Enable header content
+     * @default false
+     */
     hasContent?: boolean;
+
+    /**
+     * Highlight BaseModal header / footer
+     * @default false
+     */
     highlighted?: boolean;
 
     /**
-     * Отображение на весь экран контента
+     * Full-screen display of content
      */
     isFullscreen?: boolean;
 }
@@ -70,13 +85,20 @@ export interface IPopupProps
     extends BaseThemeState<typeof PopupVariantsEnum, typeof PopupSizesEnum, PopupThemeType>,
         IPopupState,
         IBaseModalProps {
+    /**
+     * Popup content
+     */
     children?: ReactNode;
+
+    /**
+     * Additional styles
+     */
     className?: string;
 }
 
 export interface IModalDesktopProps extends IPopupProps {
     /**
-     * Ширина модального окна
+     * Modal window width
      * @default "md"
      */
     size?: PopupSizesEnum | keyof typeof PopupSizesEnum;
@@ -86,7 +108,7 @@ export interface IModalMobileProps extends Omit<IModalDesktopProps, 'size' | 'fi
 
 export interface IModalResponsiveProps extends IModalDesktopProps {
     /**
-     * Контрольная точка, с нее начинается desktop версия
+     * The breakpoint, the desktop version starts from it
      * @default 1024
      */
     breakpoint?: number;

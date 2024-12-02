@@ -1,5 +1,6 @@
 import { type FC, createContext, useMemo } from 'react';
-import type { IContext, IContextProps } from 'src/types';
+
+import type { IContext, IContextProps } from '../types';
 
 const PopupContext = createContext<IContext | null>(null);
 
