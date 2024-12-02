@@ -185,54 +185,54 @@ export const SimpleSelectWithTags = forwardRef<HTMLDivElement, SelectWithTagsPro
 
 const getValue = (option: string | SelectItem) => (typeof option === 'string' ? option : option.value);
 
-export const SelectWithTags = forwardRef<
-    HTMLDivElement,
-    Omit<SelectWithTagsProps, 'value' | 'onInput'> & {
-        meta?: any;
-        field?: { value: any; onChange: (val: any) => void };
+export const SelectWithTags = forwardRef<HTMLDivElement, Omit<SelectWithTagsProps, 'value' | 'onInput'>>(
+    ({ name, field, setFieldValue, options, error, onChange, onBlur, selected, ...props }, ref) => {
+        const selectedValues = useMemo(() => {
+            const selectedProps = selected
+                ? Array.isArray(selected)
+                    ? selected.map(getValue)
+                    : [getValue(selected)]
+                : [];
+
+            return Array.isArray(field?.value) ? field?.value || [] : selectedProps;
+        }, [field?.value, selected]);
+
+        const selectedOptions = useMemo(
+            () =>
+                options.filter(e => {
+                    if ('value' in e) {
+                        return selectedValues.includes(e.value);
+                    }
+                    return false;
+                }),
+            [options, selectedValues]
+        );
+
+        const [value, setValue] = useState('');
+        const handleInput = (event: any) => {
+            setValue(event.target.value);
+        };
+
+        return (
+            <SimpleSelectWithTags
+                ref={ref}
+                name={name}
+                options={options}
+                {...props}
+                value={value}
+                onInput={handleInput}
+                error={error}
+                selected={selectedOptions as any}
+                collapseOnClose
+                onChange={(event, payload) => {
+                    onChange?.(event, payload);
+                    if (!setFieldValue) return;
+
+                    const newValue = payload.selected?.map(e => (typeof e === 'string' ? e : e.value)) || null;
+                    setFieldValue(newValue);
+                }}
+                onBlur={onBlur}
+            />
+        );
     }
->(({ name, field, options, meta, onChange, onBlur, selected, ...props }, ref) => {
-    const selectedValues = useMemo(() => {
-        const selectedProps = selected ? (Array.isArray(selected) ? selected.map(getValue) : [getValue(selected)]) : [];
-
-        return Array.isArray(field?.value) ? field?.value || [] : selectedProps;
-    }, [field?.value, selected]);
-
-    const selectedOptions = useMemo(
-        () =>
-            options.filter(e => {
-                if ('value' in e) {
-                    return selectedValues.includes(e.value);
-                }
-                return false;
-            }),
-        [options, selectedValues]
-    );
-
-    const [value, setValue] = useState('');
-    const handleInput = (event: any) => {
-        setValue(event.target.value);
-    };
-
-    return (
-        <SimpleSelectWithTags
-            ref={ref}
-            name={name}
-            options={options}
-            {...props}
-            value={value}
-            onInput={handleInput}
-            error={meta?.touched && meta?.error}
-            selected={selectedOptions as any}
-            collapseOnClose
-            onChange={(event, payload) => {
-                onChange?.(event, payload);
-                if (!field?.onChange) return;
-
-                const value = payload.selected?.map(e => (typeof e === 'string' ? e : e.value)) || null;
-                field.onChange({ target: { value } });
-            }}
-            onBlur={onBlur}
-        />
-    );
-});
+);

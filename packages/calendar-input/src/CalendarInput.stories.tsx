@@ -1,8 +1,10 @@
-import { Button, scale } from '@ensi-platform/core-components-common';
-import { Form } from '@ensi-platform/core-components-form';
+import { Button, ErrorMessages, scale } from '@ensi-platform/core-components-common';
+import { Form, FormFieldWrapper, FormReset } from '@ensi-platform/core-components-form';
 
+import { action } from '@storybook/addon-actions';
 import type { Meta, StoryObj } from '@storybook/react';
 
+import * as Yup from 'yup';
 import { type ComponentProps, useState } from 'react';
 
 import README from '../README.md';
@@ -61,22 +63,28 @@ export const Basic: StoryObj<ComponentProps<typeof CalendarInput> & { rangeBehav
 
 export const WithForm: StoryObj<ComponentProps<typeof CalendarInput> & { rangeBehavior: 'clarification' | 'reset' }> = {
     render: () => (
-        <Form initialValues={{ calendar: '12.12.2024' }} onSubmit={vals => alert(JSON.stringify(vals))}>
-            <Form.Field name="calendar">
+        <Form
+            initialValues={{ calendar: '12.12.2024' }}
+            validationSchema={Yup.object().shape({
+                calendar: Yup.string().required(ErrorMessages.REQUIRED),
+            })}
+            onSubmit={action('onSubmit')}
+        >
+            <FormFieldWrapper name="calendar">
                 <CalendarInput
                     picker
                     placeholder="Дата"
                     view="date"
                     platform="desktop"
-                    label="Инпут выбора даты со значением по умолчанию"
+                    label="Calendar input with default value"
                 />
-            </Form.Field>
+            </FormFieldWrapper>
             <br />
             <div style={{ display: 'flex' }}>
-                <Form.Reset style={{ marginRight: scale(2) }} theme="secondary">
-                    Сбросить
-                </Form.Reset>
-                <Button type="submit">Отправить</Button>
+                <Button type="submit" style={{ marginRight: scale(2) }}>
+                    Submit
+                </Button>
+                <FormReset theme="secondary">Reset</FormReset>
             </div>
         </Form>
     ),

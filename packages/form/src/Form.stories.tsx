@@ -1,6 +1,5 @@
-import { ErrorMessages } from '@ensi-platform/core-components-common';
+import { Button, ErrorMessages, Layout } from '@ensi-platform/core-components-common';
 
-import { Button, Layout } from '@greensight/gds';
 import { action } from '@storybook/addon-actions';
 import type { Meta, StoryObj } from '@storybook/react';
 

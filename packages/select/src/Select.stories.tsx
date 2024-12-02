@@ -1,6 +1,7 @@
-import { Button, scale } from '@ensi-platform/core-components-common';
-import { Form } from '@ensi-platform/core-components-form';
+import { Button, ErrorMessages, scale } from '@ensi-platform/core-components-common';
+import { Form, FormField, FormFieldWrapper, FormReset } from '@ensi-platform/core-components-form';
 
+import { action } from '@storybook/addon-actions';
 import type { StoryObj } from '@storybook/react';
 
 import * as Yup from 'yup';
@@ -184,28 +185,31 @@ export const WithForm: StoryObj<ComponentProps<typeof Select>> = {
     },
     argTypes: {},
     render: ({ ...args }) => (
-        <div style={{ width: 500, minHeight: 800 }}>
+        <div style={{ width: 500 }}>
             <Form
-                initialValues={{ selectValue: null, otherField: '' }}
-                onSubmit={values => {
-                    console.log('SUBMIT FORM VALUES', values);
-                }}
+                initialValues={{ selectValue: '6', otherField: '' }}
+                onSubmit={action('onSubmit')}
                 validationSchema={Yup.object().shape({
-                    selectValue: Yup.number()
-                        .transform(val => (Number.isNaN(val) ? undefined : val))
-                        .required('Обязательное поле'),
+                    selectValue: Yup.string().required(ErrorMessages.REQUIRED),
                 })}
             >
-                <Form.Field name="selectValue" label="label селект" required>
+                <FormFieldWrapper name="selectValue" label="Select content" required>
                     <Select {...args} css={{ minWidth: 200 }} />
-                </Form.Field>
+                </FormFieldWrapper>
                 <br />
-                <Form.Field name="otherField" placeholder="При вводе в это поле нет лагов перерендера" size="md" />
+                <FormField
+                    name="otherField"
+                    placeholder="There are no re-render lags when entering this field"
+                    size="md"
+                />
+
                 <br />
-                <Button type="submit">Отправить</Button>
-                <Button type="reset" theme="secondary">
-                    Сбросить
+                <Button type="submit" style={{ marginRight: scale(2) }}>
+                    Submit
                 </Button>
+                <FormReset type="reset" theme="secondary">
+                    Reset
+                </FormReset>
             </Form>
         </div>
     ),

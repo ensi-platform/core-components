@@ -38,17 +38,11 @@ export type CounterProps = Partial<Omit<CounterState, 'hasLabel' | 'view'>> &
     Partial<Omit<BaseThemeState<typeof CounterVariant, typeof CounterSize, CounterTheme>, 'theme'>> &
     Omit<HTMLProps<HTMLInputElement>, 'onChange' | 'size'> &
     Partial<IFieldWrapperProps<number>> & {
-        /** Input unique name. Used for name and id properties */
-        name: string;
-
         /** Parsed value */
         value?: number;
 
         /** Вид отображения */
         view?: View;
-
-        /** Label text */
-        label: string;
 
         /** Minimum value */
         min?: number;

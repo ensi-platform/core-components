@@ -1,5 +1,10 @@
+import { Button, ErrorMessages, scale } from '@ensi-platform/core-components-common';
+import { Form, FormFieldWrapper, FormReset } from '@ensi-platform/core-components-form';
+
+import { action } from '@storybook/addon-actions';
 import type { Meta, StoryObj } from '@storybook/react';
 
+import * as Yup from 'yup';
 import { type ComponentProps, useState } from 'react';
 
 import README from '../README.md';
@@ -47,4 +52,28 @@ export const Basic: StoryObj<ComponentProps<typeof Rating>> = {
             </>
         );
     },
+};
+
+export const WithForm: StoryObj<ComponentProps<typeof Rating>> = {
+    args: {},
+    render: args => (
+        <div style={{ width: 500, minHeight: 800 }}>
+            <Form
+                initialValues={{ rating: 5 }}
+                validationSchema={Yup.object().shape({
+                    rating: Yup.number().min(5, 'Поставьте нам 5 баллов').required(ErrorMessages.REQUIRED),
+                })}
+                onSubmit={action('onSubmit')}
+            >
+                <FormFieldWrapper name="rating" label="Rating">
+                    <Rating {...args} />
+                </FormFieldWrapper>
+                <br />
+                <Button type="submit" style={{ marginRight: scale(2) }}>
+                    Submit
+                </Button>
+                <FormReset theme="secondary">Reset</FormReset>
+            </Form>
+        </div>
+    ),
 };

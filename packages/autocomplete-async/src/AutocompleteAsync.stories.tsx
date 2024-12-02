@@ -1,4 +1,4 @@
-import { Button } from '@ensi-platform/core-components-common';
+import { Button, ErrorMessages, scale } from '@ensi-platform/core-components-common';
 import { Form, FormFieldWrapper, FormReset } from '@ensi-platform/core-components-form';
 import type { Select, SelectHandlers, SelectItem } from '@ensi-platform/core-components-select';
 
@@ -224,35 +224,37 @@ export const WithForm: StoryObj<ComponentProps<typeof Select>> = {
             []
         );
         const asyncOptionsByValuesFn = useCallback(
-            async (vals: string[]): Promise<SelectItem[]> =>
+            async (vals: number[]): Promise<SelectItem[]> =>
                 new Promise(resolve => {
-                    const total = optionItems.filter(e => e.value && vals.includes(e.value.toString()));
+                    const total = optionItems.filter(e => e.value && vals.some(val => val === e.value));
                     setTimeout(() => resolve(total), 1800);
                 }),
             []
         );
+
         return (
             <div style={{ width: 500, minHeight: 800 }}>
                 <Form
-                    initialValues={{ selectValue: null, otherField: '' }}
-                    onSubmit={action('onSubmit')}
+                    initialValues={{ selectValue: [3] }}
                     validationSchema={Yup.object().shape({
-                        selectValue: Yup.number()
-                            .transform(val => (Number.isNaN(val) ? undefined : val))
-                            .required('Обязательное поле'),
+                        selectValue: Yup.array().min(1, 'Обязательное поле').required(ErrorMessages.REQUIRED),
                     })}
+                    onSubmit={action('onSubmit')}
                 >
-                    <FormFieldWrapper name="selectValue" label="Выберите пункты" required>
+                    <FormFieldWrapper name="selectValue" label="Select items" required>
                         <AutocompleteAsync
                             closeOnSelect={false}
                             asyncSearchFn={asyncSearchFn}
                             asyncOptionsByValuesFn={asyncOptionsByValuesFn}
                             collapseTagList
+                            multiple
                         />
                     </FormFieldWrapper>
                     <br />
-                    <Button type="submit">Отправить</Button>
-                    <FormReset theme="secondary">Сбросить</FormReset>
+                    <Button type="submit" style={{ marginRight: scale(2) }}>
+                        Submit
+                    </Button>
+                    <FormReset theme="secondary">Reset</FormReset>
                 </Form>
             </div>
         );

@@ -42,35 +42,4 @@ export const useCheckboxLikeControlHookRHF = (
     };
 };
 
-export const useSimpleControlHookRHF = <T>(name: string, propsOnChange: (e: { target: { value: T } }) => void) => {
-    const value = useWatch({ name });
-    const handleChange = useCallback(
-        (newValue: T, e?: ChangeEvent<HTMLInputElement>) => {
-            const patchedEvent = e ? { ...e } : undefined;
-            if (patchedEvent) {
-                patchedEvent.target.value = newValue as string;
-                patchedEvent.currentTarget.value = newValue as string;
-            }
-
-            propsOnChange(
-                (e as any) || {
-                    target: {
-                        value: newValue,
-                    },
-                    currentTarget: {
-                        value: newValue,
-                    },
-                }
-            );
-        },
-        [propsOnChange]
-    );
-
-    return {
-        value,
-        handleChange,
-    };
-};
-
 export type useCheckboxLikeControlHookType = typeof useCheckboxLikeControlHookRHF;
-export type useSimpleControlHookType = typeof useSimpleControlHookRHF;

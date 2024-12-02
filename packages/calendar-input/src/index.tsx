@@ -35,6 +35,8 @@ export const CalendarInput = forwardRef<HTMLInputElement, BaseCalendarInputProps
             onKeyDown,
             disabled,
             readOnly,
+            field,
+            value,
             fieldCSS,
             disableUserInput,
             ...restProps
@@ -149,6 +151,7 @@ export const CalendarInput = forwardRef<HTMLInputElement, BaseCalendarInputProps
             autoCorrection,
             disabled,
             readOnly,
+            value: field?.value || value,
             fieldCSS: { ...fieldCSS, ...(correctionOccurred && {}) },
             onKeyDown: handleInputKeyDown,
         } as const;

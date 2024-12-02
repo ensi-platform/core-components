@@ -1,6 +1,6 @@
+import { Button, ErrorMessages } from '@ensi-platform/core-components-common';
 import { Form, FormFieldWrapper } from '@ensi-platform/core-components-form';
 
-import { Button } from '@greensight/gds';
 import { action } from '@storybook/addon-actions';
 import type { Meta, StoryObj } from '@storybook/react';
 
@@ -166,8 +166,8 @@ export const WithForm: StoryObj<ComponentProps<typeof Checkbox>> = {
                 checkboxGroup: ['2'],
             }}
             validationSchema={Yup.object().shape({
-                checkbox: Yup.boolean().required('Обязательное поле'),
-                checkboxGroup: Yup.array().min(1, 'Обязательное поле').required('Обязательное поле'),
+                checkbox: Yup.boolean().required(ErrorMessages.REQUIRED),
+                checkboxGroup: Yup.array().min(1, ErrorMessages.REQUIRED).required(ErrorMessages.REQUIRED),
             })}
             onSubmit={action('submit')}
         >

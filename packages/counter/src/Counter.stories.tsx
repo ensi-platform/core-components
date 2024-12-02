@@ -1,7 +1,10 @@
-import { Button } from '@ensi-platform/core-components-common';
+import { Button, ErrorMessages, scale } from '@ensi-platform/core-components-common';
+import { Form, FormFieldWrapper, FormReset } from '@ensi-platform/core-components-form';
 
+import { action } from '@storybook/addon-actions';
 import type { Meta, StoryObj } from '@storybook/react';
 
+import * as Yup from 'yup';
 import { type ComponentProps, useState } from 'react';
 
 import README from '../README.md';
@@ -121,4 +124,27 @@ export const Vertical: StoryObj<ComponentProps<typeof Counter>> = {
         },
     },
     render: () => <Counter name="counter-vertical" label="Выберите количество товара" view="vertical" />,
+};
+
+export const WithForm: StoryObj<ComponentProps<typeof Counter>> = {
+    render: () => (
+        <Form
+            initialValues={{ counter: 10 }}
+            validationSchema={Yup.object().shape({
+                counter: Yup.number().max(100).required(ErrorMessages.REQUIRED),
+            })}
+            onSubmit={action('onSubmit')}
+        >
+            <FormFieldWrapper name="counter">
+                <Counter label="Quantity" />
+            </FormFieldWrapper>
+            <br />
+            <div style={{ display: 'flex' }}>
+                <Button type="submit" style={{ marginRight: scale(2) }}>
+                    Submit
+                </Button>
+                <FormReset theme="secondary">Reset</FormReset>
+            </div>
+        </Form>
+    ),
 };

@@ -1,4 +1,10 @@
-import type { SelectItem, SelectPayload, SelectProps } from '@ensi-platform/core-components-select';
+import type { IFieldWrapperProps } from '@ensi-platform/core-components-form';
+import type {
+    SelectItem,
+    SelectItemValueType,
+    SelectPayload,
+    SelectProps,
+} from '@ensi-platform/core-components-select';
 
 import type { ChangeEvent, ReactNode } from 'react';
 
@@ -65,6 +71,7 @@ interface SelectWithTagsPartsProps {
 
 export interface SelectWithTagsProps
     extends Omit<SelectProps, 'multiple' | 'selected' | 'onReset' | 'onInput' | 'onChange'>,
+        Partial<IFieldWrapperProps<SelectItemValueType | SelectItemValueType[]>>,
         SelectWithTagsStates,
         SelectWithTagsHandlers,
         SelectWithTagsParts,

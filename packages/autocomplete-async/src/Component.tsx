@@ -229,10 +229,9 @@ export const AutocompleteAsync = forwardRef<HTMLInputElement, AutocompleteAsyncP
 
                             setValuesMap(new Map(valuesMapRef.current));
 
-                            const newValue =
-                                payload.selected.map(e => (typeof e === 'string' ? e : e.value))[0] || null;
-
-                            setFieldValue?.(newValue);
+                            const newValue = payload.selected.map(e => (typeof e === 'string' ? e : e.value))[0];
+                            if (newValue === undefined) setFieldValue?.(null);
+                            else setFieldValue?.(newValue);
                         }
                     }}
                     error={error}
@@ -358,9 +357,8 @@ export const AutocompleteAsync = forwardRef<HTMLInputElement, AutocompleteAsyncP
                     if (payload.selected === null && multiple) {
                         setFieldValue?.([]);
                     } else {
-                        const newValue = (payload.selected?.map(e => (typeof e === 'string' ? e : e.value) || null) ||
+                        const newValue = (payload.selected?.map(e => (typeof e === 'string' ? e : e.value)) ||
                             []) as AutocompleteAsyncValue;
-
                         setFieldValue?.(newValue);
                     }
                 }}

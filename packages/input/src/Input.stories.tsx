@@ -1,4 +1,4 @@
-import { Button, ErrorMessages, IconSmallUser as ProfileIcon } from '@ensi-platform/core-components-common';
+import { Button, ErrorMessages, IconSmallUser as ProfileIcon, scale } from '@ensi-platform/core-components-common';
 import { Form, FormFieldWrapper, FormReset } from '@ensi-platform/core-components-form';
 import { FormControlSize } from '@ensi-platform/core-components-form-control';
 
@@ -56,18 +56,20 @@ export const WithForm: StoryObj<ComponentProps<typeof Input>> = {
     render: args => (
         <div style={{ width: 500, minHeight: 800 }}>
             <Form
-                initialValues={{ selectValue: null, otherField: '' }}
-                onSubmit={action('onSubmit')}
+                initialValues={{ text: 'Default value' }}
                 validationSchema={Yup.object().shape({
                     text: Yup.string().min(5, ErrorMessages.MIN_SYMBOLS(3)).required(ErrorMessages.REQUIRED),
                 })}
+                onSubmit={action('onSubmit')}
             >
-                <FormFieldWrapper name="text" label="Введите текст" required>
+                <FormFieldWrapper name="text" label="Enter some text">
                     <Input id="example-input" {...args} />
                 </FormFieldWrapper>
                 <br />
-                <Button type="submit">Отправить</Button>
-                <FormReset theme="secondary">Сбросить</FormReset>
+                <Button type="submit" style={{ marginRight: scale(2) }}>
+                    Submit
+                </Button>
+                <FormReset theme="secondary">Reset</FormReset>
             </Form>
         </div>
     ),
