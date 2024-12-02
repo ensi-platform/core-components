@@ -2,7 +2,7 @@ import type { ReactNode } from 'react';
 
 export interface IStackProps {
     /**
-     * Accepts a ReactNode or function.
+     * Accepts a ReactNode or function that returns ReactNode.
      *
      * The function accepts an argument with the z-index value from the current context.
      */

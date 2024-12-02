@@ -7,9 +7,9 @@ Based on [alfalab/core-components](https://github.com/alfa-laboratory/core-compo
 #### Usage example below:
 
 ```jsx
-import { Stack } from './index';
+import { Stack } from '@ensi-platform/core-components';
 
-export const StackUsageExample = () => (
+return (
     <Stack>
         {zIndex1 => (  // zIndex1 === 10
             /* ... */

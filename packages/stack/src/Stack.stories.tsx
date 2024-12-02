@@ -9,7 +9,7 @@ import README from '../README.md';
 import { type IStackProps, Stack } from './index';
 
 export default {
-    title: 'Controls / Stack',
+    title: 'Components / Stack',
     component: Stack,
     parameters: {
         docs: {
