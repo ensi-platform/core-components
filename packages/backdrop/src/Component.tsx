@@ -1,6 +1,4 @@
-import type { CSSObject } from '@emotion/react';
-
-import { type FC, useEffect, useMemo, useRef } from 'react';
+import { type FC, useEffect, useRef } from 'react';
 import { useTransition } from 'react-transition-state';
 
 import { useTransitionStyles } from './scripts/hooks';
@@ -41,20 +39,6 @@ const Backdrop: FC<IBackdropProps> = ({
         if (!isMounted) onDestroyRef.current?.();
     }, [isMounted]);
 
-    const backdropStyles = useMemo<CSSObject>(
-        () => ({
-            content: '""',
-            height: '100dvh',
-            position: 'fixed',
-            inset: 0,
-            zIndex,
-            WebkitTapHighlightColor: 'transparent',
-            ...(invisible && { opacity: 0 }),
-            ...transitionStyles[status],
-        }),
-        [invisible, status, transitionStyles, zIndex]
-    );
-
     if (!isMounted) return null;
 
     return (
@@ -64,7 +48,15 @@ const Backdrop: FC<IBackdropProps> = ({
             data-test-id={dataTestId}
             className={className}
             css={{
-                '&::after': backdropStyles,
+                '&::after': {
+                    content: '""',
+                    position: 'fixed',
+                    inset: 0,
+                    zIndex,
+                    WebkitTapHighlightColor: 'transparent',
+                    ...(invisible && { opacity: 0 }),
+                    ...transitionStyles[status],
+                },
             }}
             {...restProps}
         >
