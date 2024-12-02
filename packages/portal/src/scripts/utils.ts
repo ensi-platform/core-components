@@ -2,7 +2,7 @@ import type { MutableRefObject, RefObject } from 'react';
 
 export const PORTAL_CONTAINER_ATTRIBUTE = 'react-portal-container';
 
-function createPortalContainer() {
+export const createPortalContainer = () => {
     const portalContainer = document.createElement('div');
 
     portalContainer.setAttribute(PORTAL_CONTAINER_ATTRIBUTE, '');
@@ -10,19 +10,16 @@ function createPortalContainer() {
     document.body.appendChild(portalContainer);
 
     return portalContainer;
-}
+};
 
 export const getDefaultPortalContainer = (): Element =>
     document.querySelector(`[${PORTAL_CONTAINER_ATTRIBUTE}]`) || createPortalContainer();
 
-export function setRef<T>(
-    ref: RefObject<T> | ((instance: T | null) => void) | null | undefined,
-    value: T | null
-): void {
+export const setRef = <T>(ref: RefObject<T> | ((instance: T | null) => void) | null | undefined, value: T | null) => {
     if (typeof ref === 'function') {
         ref(value);
     } else if (ref) {
         // eslint-disable-next-line no-param-reassign
         (ref as MutableRefObject<T | null>).current = value;
     }
-}
+};

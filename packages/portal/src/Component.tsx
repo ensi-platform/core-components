@@ -1,23 +1,10 @@
-import { type ReactNode, forwardRef, useEffect, useState } from 'react';
+import { forwardRef, useEffect, useState } from 'react';
 import { createPortal } from 'react-dom';
 
-import { getDefaultPortalContainer, setRef } from './scripts/utils';
+import { getDefaultPortalContainer, setRef } from './scripts';
+import type { IPortalProps } from './types';
 
-export type PortalProps = {
-    /** Контент */
-    children?: ReactNode;
-
-    /**
-     * Функция, возвращающая контейнер, в который будут рендериться дочерние элементы
-     */
-    getPortalContainer?: () => Element;
-
-    /**
-     * Немедленно отрендерить дочерние элементы (false - контент будет отрендерен на след. рендер).
-     */
-    immediateMount?: boolean;
-};
-export const Portal = forwardRef<Element, PortalProps>(
+const Portal = forwardRef<Element, IPortalProps>(
     ({ getPortalContainer = getDefaultPortalContainer, immediateMount = false, children }, ref) => {
         const [mountNode, setMountNode] = useState<Element | null>(() =>
             immediateMount ? getPortalContainer() : null
@@ -40,3 +27,5 @@ export const Portal = forwardRef<Element, PortalProps>(
         return mountNode ? <>{createPortal(children as any, mountNode)}</> : mountNode;
     }
 );
+
+export default Portal;
