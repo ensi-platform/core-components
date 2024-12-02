@@ -98,7 +98,7 @@ export type TooltipProps = TooltipState & {
     /**
      * Функция, возвращающая контейнер, в который будет рендериться тултип
      */
-    getPortalContainer?: () => HTMLElement;
+    container?: PopoverProps['container'];
 
     /**
      * Дополнительный стиль для стрелочки

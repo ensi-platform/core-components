@@ -105,7 +105,7 @@ export type PopoverProps = {
     /**
      * Функция, возвращающая контейнер, в который будет рендериться поповер
      */
-    container?: IPortalProps['container'];
+    container?: IPortalProps['getPortalContainer'];
 
     /**
      * TransitionOptions, прокидываются в хук useTransition.
@@ -447,7 +447,7 @@ export const Popover = forwardRef<HTMLDivElement, PopoverProps>(
         return (
             <Stack value={zIndex}>
                 {computedZIndex => (
-                    <Portal container={container}>
+                    <Portal getPortalContainer={container}>
                         {withTransition
                             ? isMounted && (
                                   <div
