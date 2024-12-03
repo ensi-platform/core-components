@@ -1,5 +1,5 @@
 /* eslint-disable react-hooks/rules-of-hooks */
-import { IconSmallCard as TicketIcon } from '@ensi-platform/core-components-common';
+import { IconSmallCard } from '@ensi-platform/core-components-common';
 
 import type { Meta, StoryObj } from '@storybook/react';
 
@@ -20,41 +20,8 @@ export default {
     component: TabList,
 } as Meta<typeof TabList>;
 
-function Content() {
-    // eslint-disable-next-line no-console
-    console.info('Content of second tab is rendered');
-    return <span>Content of second tab</span>;
-}
-
-export const TabProps: StoryObj<ComponentProps<typeof Tab> & {}> = {
-    args: {
-        title: 'Title',
-        hidden: false,
-        disabled: false,
-        leftAddons: false,
-        rightAddons: false,
-        keepMounted: false,
-    },
-    argTypes: {},
-    render: (args: TabPropsType) => (
-        <TabList>
-            <Tab id="0" title="Tab 0">
-                Default opened tab. Try to change controls for second tab.
-                {args.keepMounted ? <p>Check your console!</p> : null}
-            </Tab>
-            <Tab
-                {...args}
-                id="1"
-                leftAddons={args.leftAddons ? <TicketIcon /> : null}
-                rightAddons={args.rightAddons ? <TicketIcon /> : null}
-            >
-                <Content />
-            </Tab>
-        </TabList>
-    ),
-};
-
 export const Basic: StoryObj<ComponentProps<typeof TabList> & {}> = {
+    name: 'TabList',
     args: {
         fullWidthScroll: false,
         scrollable: false,
@@ -66,6 +33,22 @@ export const Basic: StoryObj<ComponentProps<typeof TabList> & {}> = {
         theme: {
             options: ['basic'],
             control: { type: 'radio' },
+        },
+        fullWidthScroll: {
+            control: 'boolean',
+            description: 'Fill extra space for tabs list',
+        },
+        scrollable: {
+            control: 'boolean',
+            description: 'Make tab list scrollable',
+        },
+        collapsible: {
+            control: 'boolean',
+            description: 'Collapse tab headings, that are not fit',
+        },
+        mobile: {
+            control: 'boolean',
+            description: 'Mobile appearance (changes scroll thumb)',
         },
     },
     render: args => {
@@ -83,7 +66,7 @@ export const Basic: StoryObj<ComponentProps<typeof TabList> & {}> = {
 
         return (
             <TabList {...args}>
-                <Tab title="First tab" id="1" leftAddons={<TicketIcon />}>
+                <Tab title="First tab" id="1" leftAddons={<IconSmallCard />}>
                     Content of first tab
                 </Tab>
                 <Tab title="2nd disabled" disabled id="2">
@@ -93,7 +76,7 @@ export const Basic: StoryObj<ComponentProps<typeof TabList> & {}> = {
                     title="Link has focus"
                     id="link1"
                     renderTitle={props => <TabLinkTitle href="https://google.com" target="_blank" {...props} />}
-                    leftAddons={<TicketIcon />}
+                    leftAddons={<IconSmallCard />}
                     rightAddons={<span>[SALE!]</span>}
                 >
                     <div />
@@ -134,4 +117,69 @@ export const Basic: StoryObj<ComponentProps<typeof TabList> & {}> = {
             </TabList>
         );
     },
+};
+
+function Content() {
+    // eslint-disable-next-line no-console
+    console.info('Content of second tab is rendered');
+    return <span>Content of second tab</span>;
+}
+
+export const TabProps: StoryObj<ComponentProps<typeof Tab> & {}> = {
+    name: 'Tab',
+    args: {
+        title: 'Title',
+        hidden: false,
+        disabled: false,
+        leftAddons: false,
+        rightAddons: false,
+        keepMounted: false,
+    },
+    argTypes: {
+        title: {
+            control: 'text',
+            description: 'Text tab label',
+        },
+        hidden: {
+            control: 'boolean',
+            description: 'Used to visually hide tab and tab content',
+        },
+        disabled: {
+            control: 'boolean',
+            description: 'Used to prevent user from changing to this tab',
+        },
+        leftAddons: {
+            control: 'radio',
+            options: ['None', 'Icon'],
+            description: 'Left slot for custom addons',
+            mapping: {
+                None: undefined,
+                Icon: <IconSmallCard />,
+            },
+        },
+        rightAddons: {
+            control: 'radio',
+            options: ['None', 'Icon'],
+            description: 'Right slot for custom addons',
+            mapping: {
+                None: undefined,
+                Icon: <IconSmallCard />,
+            },
+        },
+        keepMounted: {
+            control: 'boolean',
+            description: "Mount tab content even if it's not visible",
+        },
+    },
+    render: (args: TabPropsType) => (
+        <TabList>
+            <Tab id="0" title="Tab 0">
+                Default opened tab. Try to change controls for second tab.
+                {args.keepMounted ? <p>Check your console!</p> : null}
+            </Tab>
+            <Tab {...args} id="1">
+                <Content />
+            </Tab>
+        </TabList>
+    ),
 };
