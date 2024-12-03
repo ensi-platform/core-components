@@ -4,10 +4,10 @@ import { Popover } from '@ensi-platform/core-components-popover';
 import type { CSSObject } from '@emotion/react';
 
 import deepmerge from 'deepmerge';
-import { type FC, type HTMLAttributes, type MouseEvent, type Ref, useMemo } from 'react';
+import { type FC, type HTMLAttributes, type MouseEvent, type Ref, useMemo, useState } from 'react';
 import mergeRefs from 'react-merge-refs';
 
-import { DEFAULT_OFFSET, EMPTY_OBJ, useTooltip } from './scripts';
+import { DEFAULT_OFFSET, EMPTY_OBJ, useFollowCursor, useHideOnEsc, useTooltip } from './scripts';
 import { tooltipThemes } from './themes/defaultTheme';
 import { type ITooltipProps, type TooltipThemeStateType } from './types';
 
@@ -46,7 +46,11 @@ const Tooltip: FC<ITooltipProps> = ({
     useAnchorWidth,
     theme = tooltipThemes.basic,
     popperCSS,
+    enableHideOnEsc = false,
+    contextmenuFollowCursor = false,
 }) => {
+    const [cursorPosition, setCursorPosition] = useState<{ x: number; y: number } | null>(null);
+
     const { target, visible, contentRef, handleOpen, handleClose, changeTarget } = useTooltip({
         onOpenDelay,
         onCloseDelay,
@@ -56,18 +60,36 @@ const Tooltip: FC<ITooltipProps> = ({
         onClose,
     });
 
+    useHideOnEsc({ open: visible, enableHideOnEsc, handleClose });
+
+    const { cursorOffset } = useFollowCursor({
+        cursorPosition,
+        contextmenuFollowCursor,
+        target,
+        trigger,
+        position,
+    });
+
     const eventHandlers =
         trigger === 'hover'
-            ? // After the component loads, an auto-generated onMouseEnter is triggered.
-              // I can't find the source.
-              // I found 'e.isTrusted' solution to the problem.
-              {
+            ? {
                   onMouseEnter: (e: MouseEvent<HTMLElement>) => {
                       if (e.isTrusted) handleOpen();
                   },
                   onMouseLeave: handleClose,
               }
-            : { onClick: visible ? handleClose : handleOpen };
+            : {
+                  ...(!contextmenuFollowCursor && {
+                      onClick: visible ? handleClose : handleOpen,
+                  }),
+                  ...(contextmenuFollowCursor && {
+                      onContextMenu: (e: MouseEvent<HTMLElement>) => {
+                          e.preventDefault();
+                          setCursorPosition({ x: e.clientX, y: e.clientY });
+                          handleOpen();
+                      },
+                  }),
+              };
 
     const themeState = useMemo<TooltipThemeStateType>(
         () => ({
@@ -116,7 +138,7 @@ const Tooltip: FC<ITooltipProps> = ({
                 arrowCSS={arrowCSS}
                 popperCSS={popperCSS}
                 className={className}
-                offset={offset}
+                offset={cursorOffset || offset}
                 withArrow={withArrow}
                 position={position}
                 update={updatePopover}

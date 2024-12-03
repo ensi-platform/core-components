@@ -31,6 +31,8 @@ export const Basic: StoryObj<ComponentProps<typeof Tooltip> & { offsetX: number;
         useAnchorWidth: false,
         preventOverflow: true,
         availableHeight: true,
+        enableHideOnEsc: false,
+        contextmenuFollowCursor: false,
     },
     argTypes: {
         offsetX: {
@@ -71,6 +73,14 @@ export const Basic: StoryObj<ComponentProps<typeof Tooltip> & { offsetX: number;
             control: { type: 'boolean' },
             description:
                 'Allows the tooltip to adjust its height to fit within the available screen space if its content is too large.',
+        },
+        enableHideOnEsc: {
+            control: { type: 'boolean' },
+            description: 'Enable hiding on escape.',
+        },
+        contextmenuFollowCursor: {
+            control: { type: 'boolean' },
+            description: 'Enable follow cursor on contextmenu for trigger = "click".',
         },
     },
     render: args => {

@@ -4,7 +4,7 @@ import type { CSSObject } from '@emotion/react';
 
 import type { MutableRefObject, ReactElement } from 'react';
 
-import type { ITooltipState, IUseTooltipProps, TooltipThemeType } from '.';
+import type { ITooltipState, IUseFollowCursor, IUseHideOnEsc, IUseTooltipProps, TooltipThemeType } from '.';
 
 /**
  * Props for the Tooltip component
@@ -12,6 +12,8 @@ import type { ITooltipState, IUseTooltipProps, TooltipThemeType } from '.';
 export interface ITooltipProps
     extends Omit<IPopoverProps, 'anchorElement' | 'open'>,
         Partial<Pick<IPopoverProps, 'anchorElement' | 'open'>>,
+        Pick<IUseHideOnEsc, 'enableHideOnEsc'>,
+        Pick<IUseFollowCursor, 'contextmenuFollowCursor'>,
         ITooltipState,
         IUseTooltipProps {
     /**
