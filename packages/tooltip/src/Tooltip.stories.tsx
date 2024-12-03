@@ -33,6 +33,7 @@ export const Basic: StoryObj<ComponentProps<typeof Tooltip> & { offsetX: number;
         availableHeight: true,
         enableHideOnEsc: false,
         contextmenuFollowCursor: false,
+        disablePopover: false,
     },
     argTypes: {
         offsetX: {
@@ -81,6 +82,10 @@ export const Basic: StoryObj<ComponentProps<typeof Tooltip> & { offsetX: number;
         contextmenuFollowCursor: {
             control: { type: 'boolean' },
             description: 'Enable follow cursor on contextmenu for trigger = "click".',
+        },
+        disablePopover: {
+            control: { type: 'boolean' },
+            description: 'Enable disable popover',
         },
     },
     render: args => {

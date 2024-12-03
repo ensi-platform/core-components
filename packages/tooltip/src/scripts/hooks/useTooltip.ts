@@ -59,6 +59,12 @@ export const useTooltip = ({ onOpenDelay, onCloseDelay, trigger, forcedOpen, onO
     );
 
     useEffect(() => {
+        if (forcedOpen !== undefined) {
+            setVisible(forcedOpen);
+        }
+    }, [forcedOpen]);
+
+    useEffect(() => {
         const handleBodyClick = (event: MouseEvent | TouchEvent) => {
             if (clickedOutside(event.target as Element)) handleClose();
         };

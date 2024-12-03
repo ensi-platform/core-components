@@ -55,4 +55,9 @@ export interface ITooltipProps
      * Theme
      */
     theme?: TooltipThemeType;
+
+    /**
+     * Disable popover;
+     */
+    disablePopover?: boolean;
 }

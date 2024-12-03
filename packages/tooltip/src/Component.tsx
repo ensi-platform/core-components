@@ -48,10 +48,18 @@ const Tooltip: FC<ITooltipProps> = ({
     popperCSS,
     enableHideOnEsc = false,
     contextmenuFollowCursor = false,
+    disablePopover = false,
 }) => {
     const [cursorPosition, setCursorPosition] = useState<{ x: number; y: number } | null>(null);
 
-    const { target, visible, contentRef, handleOpen, handleClose, changeTarget } = useTooltip({
+    const {
+        target,
+        visible: tooltipVisible,
+        contentRef,
+        handleOpen,
+        handleClose,
+        changeTarget,
+    } = useTooltip({
         onOpenDelay,
         onCloseDelay,
         forcedOpen,
@@ -59,6 +67,8 @@ const Tooltip: FC<ITooltipProps> = ({
         onOpen,
         onClose,
     });
+
+    const visible = tooltipVisible && !disablePopover;
 
     useHideOnEsc({ open: visible, enableHideOnEsc, handleClose });
 
@@ -74,7 +84,7 @@ const Tooltip: FC<ITooltipProps> = ({
         trigger === 'hover'
             ? {
                   onMouseEnter: (e: MouseEvent<HTMLElement>) => {
-                      if (e.isTrusted) handleOpen();
+                      if (!disablePopover && e.isTrusted) handleOpen();
                   },
                   onMouseLeave: handleClose,
               }
@@ -85,8 +95,10 @@ const Tooltip: FC<ITooltipProps> = ({
                   ...(contextmenuFollowCursor && {
                       onContextMenu: (e: MouseEvent<HTMLElement>) => {
                           e.preventDefault();
-                          setCursorPosition({ x: e.clientX, y: e.clientY });
-                          handleOpen();
+                          if (!disablePopover) {
+                              setCursorPosition({ x: e.clientX, y: e.clientY });
+                              handleOpen();
+                          }
                       },
                   }),
               };
