@@ -5,7 +5,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 
 import { type ComponentProps, useEffect, useState } from 'react';
 
-import { Tab, TabLinkTitle, TabList } from '.';
+import { Tab, TabLinkTitle, TabList, type TabPropsType } from '.';
 import README from '../README.md';
 
 export default {
@@ -20,11 +20,46 @@ export default {
     component: TabList,
 } as Meta<typeof TabList>;
 
+function Content() {
+    // eslint-disable-next-line no-console
+    console.info('Content of second tab is rendered');
+    return <span>Content of second tab</span>;
+}
+
+export const TabProps: StoryObj<ComponentProps<typeof Tab> & {}> = {
+    args: {
+        title: 'Title',
+        hidden: false,
+        disabled: false,
+        leftAddons: false,
+        rightAddons: false,
+        keepMounted: false,
+    },
+    argTypes: {},
+    render: (args: TabPropsType) => (
+        <TabList>
+            <Tab id="0" title="Tab 0">
+                Default opened tab. Try to change controls for second tab.
+                {args.keepMounted ? <p>Check your console!</p> : null}
+            </Tab>
+            <Tab
+                {...args}
+                id="1"
+                leftAddons={args.leftAddons ? <TicketIcon /> : null}
+                rightAddons={args.rightAddons ? <TicketIcon /> : null}
+            >
+                <Content />
+            </Tab>
+        </TabList>
+    ),
+};
+
 export const Basic: StoryObj<ComponentProps<typeof TabList> & {}> = {
     args: {
         fullWidthScroll: false,
         scrollable: false,
         collapsible: false,
+        mobile: false,
         theme: 'basic',
     },
     argTypes: {
