@@ -9,7 +9,7 @@ import type { ITypedFieldProps } from './types';
 /**
  * TypedField - is just Input, controlled with RHF, with onBlur-transformations according to fieldType prop
  */
-export const TypedField = forwardRef<HTMLInputElement, ITypedFieldProps>(
+export const FormTypedField = forwardRef<HTMLInputElement, ITypedFieldProps>(
     ({ name, className, wrapperCSS, block = true, fieldType = 'positiveInt', dataType = 'number', ...props }, ref) => {
         const { fieldState, field, onChange, setFieldValue, inputProps } = useFieldHook({
             name,
@@ -79,4 +79,4 @@ export const TypedField = forwardRef<HTMLInputElement, ITypedFieldProps>(
     }
 );
 
-export default TypedField;
+export default FormTypedField;

@@ -6,7 +6,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import * as Yup from 'yup';
 import type { ComponentProps } from 'react';
 
-import { Form, FormField, FormReset, TypedField } from '.';
+import { Form, FormField, FormReset, FormTypedField } from '.';
 import README from '../README.md';
 
 const defaultProps: ComponentProps<typeof Form> = {
@@ -133,7 +133,7 @@ export const Basic: StoryObj<ComponentProps<typeof Form> & { withIcon: boolean }
         <Form {...args}>
             <FormField label="Обычное поле" name="field" clear />
             <br />
-            <TypedField label="Поле с числами" name="typedField" clear />
+            <FormTypedField label="Поле с числами" name="typedField" clear />
 
             <br />
 

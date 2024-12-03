@@ -1,5 +1,6 @@
 export * from './Component';
 export * from './types';
+export * from './context/form';
 
 export * from './components/Field';
 export * from './components/Field/types';
