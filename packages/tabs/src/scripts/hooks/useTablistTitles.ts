@@ -5,6 +5,23 @@ import { useCollapsibleElements } from './useCollapsibleElements';
 import { useMedia } from './useMedia';
 import { useTabs } from './useTabs';
 
+/**
+ * Custom hook to manage tablist titles with collapsible functionality.
+ *
+ * @param titles - The list of tab titles.
+ * @param selectedId - The ID of the currently selected tab.
+ * @param collapsible - Flag that indicates if the tabs are collapsible.
+ * @param collapsedTabsIds - The list of IDs of collapsed tabs.
+ * @param breakpoint - The breakpoint for media queries.
+ * @param onChange - The callback function for when the selected tab changes.
+ * @returns ```containerRef``` - The reference for the container element.
+ * @returns ```addonRef``` - The reference for the addon element.
+ * @returns ```tablistTitles``` - The list of tab titles with collapsible status.
+ * @returns ```selectedTab``` - The currently selected tab.
+ * @returns ```focusedTab``` - The currently focused tab.
+ * @returns ```getTabListItemProps``` - Function to get properties for tab list items.
+ */
+
 export const useTablistTitles = ({
     titles = [],
     selectedId,

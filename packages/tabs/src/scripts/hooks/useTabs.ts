@@ -2,6 +2,17 @@ import { type KeyboardEvent, type MouseEvent, type MutableRefObject, useCallback
 
 import type { TabListTitleType, UseTabsProps } from '../../types';
 
+/**
+ * Custom hook to manage tabs with selection and focus handling.
+ *
+ * @param titles - The list of tab titles.
+ * @param selectedId - The ID of the currently selected tab.
+ * @param onChange - The callback function for when the selected tab changes.
+ * @returns ```getTabListItemProps``` - Function to get properties for tab list items.
+ * @returns ```selectedTab``` - The currently selected tab element.
+ * @returns ```focusedTab``` - The currently focused tab element.
+ */
+
 export function useTabs({ titles = [], selectedId, onChange }: UseTabsProps) {
     const [selectedTab, setSelectedTab] = useState<HTMLButtonElement | null>(null);
     const [focusedTab, setFocusedTab] = useState<HTMLButtonElement | null>(null);

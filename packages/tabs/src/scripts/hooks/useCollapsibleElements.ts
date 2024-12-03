@@ -4,6 +4,14 @@ import { ResizeObserver as ResizeObserverPolyfill } from '@juggle/resize-observe
 
 import { type DependencyList, useRef, useState } from 'react';
 
+/**
+ * Hook to manage collapsible elements within a container.
+ *
+ * @param selectors - The CSS selectors to identify the elements to be managed.
+ * @param deps The dependency list for the hook.
+ *
+ * @returns An object containing the ```containerRef``` - ref prop for container, ```addonRef``` - ref prop for addon, and ```idsCollapsedElements``` - array of IDs of collapsed items.
+ */
 export const useCollapsibleElements = <ContainerType extends HTMLElement, AddonType extends HTMLElement>(
     selectors: string,
     deps: DependencyList = []
