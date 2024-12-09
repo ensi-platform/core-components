@@ -1,6 +1,6 @@
 import { useMemo } from 'react';
 
-import type { ITabListProps, TabsMatchMediaType } from '../../types';
+import type { ITabHeadingListProps, TabsMatchMediaType } from '../../types';
 import { useCollapsibleElements } from './useCollapsibleElements';
 import { useMedia } from './useMedia';
 import { useTabs } from './useTabs';
@@ -29,8 +29,8 @@ export const useTablistTitles = ({
     collapsedTabsIds,
     breakpoint,
     onChange,
-}: Pick<ITabListProps, 'titles' | 'selectedId' | 'collapsible' | 'collapsedTabsIds' | 'onChange'> &
-    Required<Pick<ITabListProps, 'breakpoint'>>) => {
+}: Pick<ITabHeadingListProps, 'titles' | 'selectedId' | 'collapsible' | 'collapsedTabsIds' | 'onChange'> &
+    Required<Pick<ITabHeadingListProps, 'breakpoint'>>) => {
     const { containerRef, addonRef, idsCollapsedElements } = useCollapsibleElements<HTMLDivElement, HTMLInputElement>(
         '[role=tab]',
         [titles]

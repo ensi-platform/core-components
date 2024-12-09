@@ -11,7 +11,7 @@ import { useTabsTheme } from '../../context';
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 const getExtraScrollValue = (_: Element) => 40;
 
-export type ScrollableContainerProps = {
+export type ScrollableContainerPropsType = {
     /**
      * Additional container class
      */
@@ -34,7 +34,7 @@ export type ScrollableContainerProps = {
  * @param activeChild current active tab
  * @param containerCSS additional CSS for scrollable container
  */
-export const ScrollableContainer = ({ containerCSS, children, activeChild }: ScrollableContainerProps) => {
+export const ScrollableContainer = ({ containerCSS, children, activeChild }: ScrollableContainerPropsType) => {
     const containerRef = useRef<HTMLDivElement>(null);
 
     useEffect(() => {

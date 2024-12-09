@@ -63,10 +63,19 @@ export interface ITabsState {
 export interface ITabsProps
     extends Partial<Omit<BaseThemeState<typeof TabsVariant, typeof TabsSize, TabsThemeType>, 'theme'>>,
         Partial<ITabsState> {
+    /**
+     * GDS theme
+     */
     theme?: TabsThemeType | keyof typeof TABS_THEMES;
 
+    /* Width breakpoint after which it renders desktop version
+     * @default md
+     */
     breakpoint?: number;
 
+    /**
+     * Use it if you have multiple tabs lists on one page
+     */
     prefix?: string;
 
     /**
@@ -107,7 +116,7 @@ export interface ITabsProps
     /**
      * Tab heading component
      */
-    TabHeadingList: FC<ITabListProps>;
+    TabHeadingList: FC<ITabHeadingListProps>;
 
     /**
      * Custom 'Show more' button component
@@ -230,7 +239,7 @@ export type TabListTitleType = {
       }
 );
 
-export interface ITabListProps
+export interface ITabHeadingListProps
     extends Pick<
         ITabsProps,
         | 'className'
@@ -256,4 +265,4 @@ export interface ITabListProps
     ShowMoreButton?: FC<IShowMoreButtonProps>;
 }
 
-export type UseTabsProps = ITabListProps;
+export type UseTabsProps = ITabHeadingListProps;

@@ -20,7 +20,7 @@ const {
 
 export type { ITabsProps };
 
-type TabsComponentPropsType = Omit<ITabsProps, 'TabHeadingList'> & {
+type TabListComponentPropsType = Omit<ITabsProps, 'TabHeadingList'> & {
     TabHeadingList?: ITabsProps['TabHeadingList'];
 };
 
@@ -48,7 +48,7 @@ interface ITabsCompositionProps {
  * @param dataTestId id for automatic testing
  * @param onChange tab change event handler
  */
-export const TabList: FC<TabsComponentPropsType> & ITabsCompositionProps = ({
+export const TabList: FC<TabListComponentPropsType> & ITabsCompositionProps = ({
     breakpoint = Breakpoints.md,
     size = 'md',
     TabHeadingList = DefaultTabList,

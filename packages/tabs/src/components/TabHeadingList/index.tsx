@@ -2,7 +2,7 @@ import { useEffect, useMemo, useRef } from 'react';
 
 import { useTabsTheme } from '../../context';
 import { createSyntheticMouseEvent, useMedia, useTablistTitles } from '../../scripts';
-import type { IShowMoreButtonOption, ITabListProps, TabsMatchMediaType } from '../../types';
+import type { IShowMoreButtonOption, ITabHeadingListProps, TabsMatchMediaType } from '../../types';
 import { KeyboardFocusable } from '../KeyboardFocusable';
 import { ScrollableContainer } from '../ScrollableContainer';
 import { ShowMoreButton as DefaultTooltipButton } from '../ShowMore';
@@ -34,7 +34,7 @@ export const TabHeadingList = ({
     collapsible: propsCollapsible,
     onChange,
     dataTestId,
-}: ITabListProps) => {
+}: ITabHeadingListProps) => {
     const lineRef = useRef<HTMLDivElement>(null);
     const wrapperRef = useRef<HTMLDivElement>(null);
 
