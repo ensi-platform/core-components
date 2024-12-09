@@ -10,10 +10,13 @@ const makeSureStringHasPrefix = (str: string, prefix: string) => {
     return `${prefix}_${str}`;
 };
 
+/** Checks if requested tab is not blocked, returns this tab if so, otherwise returns first not blocked tab */
 const findAllowedTabId = (requestedTabId: string, tabs: Array<ReactElement<TabProps>>) => {
     const tabsList = tabs.map(tab => ({ id: tab.props.id, blocked: tab.props.blocked }));
+
     const requestedTabBlocked = tabsList.find(tab => tab.id === requestedTabId)?.blocked;
     if (!requestedTabBlocked) return requestedTabId;
+
     const firstNotBlockedTabId = tabsList.find(tab => !tab.blocked)?.id || undefined;
     return firstNotBlockedTabId;
 };
@@ -72,7 +75,7 @@ export const TabsComponent = ({
 
     const selectedId =
         typeof propsSelectedId === 'undefined'
-            ? findAllowedTabId(titles?.[0]?.id, tabsArray) || undefined
+            ? findAllowedTabId(titles?.[0]?.id, tabsArray)
             : makeSureStringHasPrefix(`${findAllowedTabId(propsSelectedId, tabsArray)}`, idPrefix);
 
     const tabs = tabsArray
