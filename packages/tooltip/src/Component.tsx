@@ -4,7 +4,7 @@ import { Popover } from '@ensi-platform/core-components-popover';
 import type { CSSObject } from '@emotion/react';
 
 import deepmerge from 'deepmerge';
-import { type FC, type HTMLAttributes, type MouseEvent, type Ref, useMemo, useState } from 'react';
+import { type FC, type HTMLAttributes, type MouseEvent, type Ref, cloneElement, useMemo, useState } from 'react';
 import mergeRefs from 'react-merge-refs';
 
 import { DEFAULT_OFFSET, EMPTY_OBJ, useFollowCursor, useHideOnEsc, useTooltip } from './scripts';
@@ -49,6 +49,7 @@ const Tooltip: FC<ITooltipProps> = ({
     enableHideOnEsc = false,
     contextmenuFollowCursor = false,
     disablePopover = false,
+    withoutTargetTag = false,
 }) => {
     const [cursorPosition, setCursorPosition] = useState<{ x: number; y: number } | null>(null);
 
@@ -128,20 +129,27 @@ const Tooltip: FC<ITooltipProps> = ({
 
     return (
         <>
-            <TargetTag ref={mergeRefs([targetRef, changeTarget])} {...getTargetProps()}>
-                {children.props.disabled && (
-                    <div
-                        css={{
-                            cursor: 'not-allowed',
-                            position: 'absolute',
-                            height: '100%',
-                            width: '100%',
-                            zIndex: 2,
-                        }}
-                    />
-                )}
-                {children}
-            </TargetTag>
+            {withoutTargetTag ? (
+                cloneElement(children, {
+                    ref: mergeRefs([targetRef, changeTarget]),
+                    ...eventHandlers,
+                })
+            ) : (
+                <TargetTag ref={mergeRefs([targetRef, changeTarget])} {...getTargetProps()}>
+                    {children.props.disabled && (
+                        <div
+                            css={{
+                                cursor: 'not-allowed',
+                                position: 'absolute',
+                                height: '100%',
+                                width: '100%',
+                                zIndex: 2,
+                            }}
+                        />
+                    )}
+                    {children}
+                </TargetTag>
+            )}
 
             <Popover
                 anchorElement={anchorElement || target}

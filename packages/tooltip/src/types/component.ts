@@ -60,4 +60,9 @@ export interface ITooltipProps
      * Disable popover;
      */
     disablePopover?: boolean;
+
+    /**
+     * Use children without target tag (children wrapper);
+     */
+    withoutTargetTag?: boolean;
 }

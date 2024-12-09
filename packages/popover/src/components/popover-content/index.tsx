@@ -28,13 +28,13 @@ export const PopoverContent = ({
                 zIndex: computedZIndex,
                 width: useAnchorWidth ? referenceElement?.offsetWidth : undefined,
                 opacity: 1,
+                boxShadow: '0px 4px 24px 0px #26292B40',
                 transition: 'opacity .01s ease',
                 willChange: 'opacity',
                 ...popperStyles?.popper,
                 ...(!popperStyles?.popper.transform && {
                     opacity: 0,
                 }),
-
             }}
             {...(!tabFocusableWrapper && {
                 tabIndex: -1,

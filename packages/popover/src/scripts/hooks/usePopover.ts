@@ -1,9 +1,8 @@
 import { useEffect, useRef, useState } from 'react';
 import { usePopper } from 'react-popper';
-import { ResizeObserver as ResizeObserverPolyfill } from '@juggle/resize-observer';
 
+import { MIN_ARROW_SHIFT_SIZE } from '..';
 import type { IUsePopoverProps, RefElementType } from '../../types';
-import { MIN_ARROW_SHIFT_SIZE } from "..";
 
 export const usePopover = ({
     arrowElement,
@@ -49,33 +48,10 @@ export const usePopover = ({
         update.current = updatePopper;
     }
 
-    useEffect(() => {
-        // Dirty hack to force popover to fit the anchor position
-        const ResizeObserver = window.ResizeObserver || ResizeObserverPolyfill;
-        const observer = new ResizeObserver(() => {
-            const event = new MouseEvent('mouseover', {
-                bubbles: true,
-                cancelable: false,
-                view: window,
-            });
-
-            anchorElement?.dispatchEvent(event);
-            updatePopperRef.current?.();
-        });
-
-        if (anchorElement) {
-            observer.observe(anchorElement);
-        }
-
-        return () => {
-            observer.disconnect();
-        };
-    }, [anchorElement]);
-
     /**
-    * According to the design, if the tooltip has -start/-end positioning, the arrow shifts slightly to the side.
-    * However, if the anchorElement is too small, the arrow should not shift.
-    */
+     * According to the design, if the tooltip has -start/-end positioning, the arrow shifts slightly to the side.
+     * However, if the anchorElement is too small, the arrow should not shift.
+     */
     useEffect(() => {
         const shiftedPosition = position?.includes('-start') || position?.includes('-end');
 
@@ -100,4 +76,4 @@ export const usePopover = ({
         attributes,
         arrowShift,
     };
-}
+};

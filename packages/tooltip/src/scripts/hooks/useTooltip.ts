@@ -69,11 +69,11 @@ export const useTooltip = ({ onOpenDelay, onCloseDelay, trigger, forcedOpen, onO
             if (clickedOutside(event.target as Element)) handleClose();
         };
 
-        document.body.addEventListener('click', handleBodyClick);
+        document.body.addEventListener('mousedown', handleBodyClick);
         document.body.addEventListener('touchstart', handleBodyClick);
 
         return () => {
-            document.body.removeEventListener('click', handleBodyClick);
+            document.body.removeEventListener('mousedown', handleBodyClick);
             document.body.removeEventListener('touchstart', handleBodyClick);
 
             if (timer.current !== undefined) clearTimeout(timer.current);
