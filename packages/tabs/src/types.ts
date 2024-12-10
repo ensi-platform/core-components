@@ -190,6 +190,10 @@ export type TabProps = {
      * Управление видимостью таба
      */
     hidden?: boolean;
+    /**
+     * Entirely blocks render of tab content
+     */
+    blocked?: boolean;
 
     /**
      * Рендерить таб, если он неактивен
@@ -237,6 +241,7 @@ export type TabListTitle = {
     disabled?: boolean;
     rightAddons?: ReactNode;
     leftAddons?: ReactNode;
+    blocked?: boolean;
     hidden?: boolean;
     toggleCSS?: CSSObject;
     selected?: boolean;

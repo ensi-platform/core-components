@@ -15,6 +15,7 @@ export const LinkTitle = forwardRef<HTMLAnchorElement, Props>(
             rightAddons = null,
             leftAddons = null,
             hidden = false,
+            blocked = false,
             selected = false,
             disabled = false,
             collapsed = false,
@@ -34,7 +35,7 @@ export const LinkTitle = forwardRef<HTMLAnchorElement, Props>(
         delete restProps.unfocusable;
         const { getCSS } = useTabsTheme();
 
-        if (hidden) return null;
+        if (hidden || blocked) return null;
 
         return (
             <Link
