@@ -4,9 +4,21 @@ import { useTabsTheme } from '../../context';
 import type { ITabsProps, TabPropsType } from '../../types/component';
 import { ShowMoreButton as DefaultTooltipButton } from '../ShowMore';
 
+/**
+ * Add string prefix to id if its exists
+ */
 const makeSureStringHasPrefix = (str: string, prefix: string) => {
-    if (str.startsWith(`${prefix}_`)) return str;
+    if (!prefix) return str;
+    if (`${str}`.startsWith(`${prefix}_`)) return str;
 
+    return `${prefix}_${str}`;
+};
+
+/**
+ * Prepends prefix if its a valid string
+ */
+const addPrefix = (str: string, prefix: string) => {
+    if (!prefix) return str;
     return `${prefix}_${str}`;
 };
 
@@ -65,7 +77,7 @@ export const TabsComponent = ({
             },
         }) => ({
             title,
-            id: `${idPrefix}_${id}`,
+            id: addPrefix(id, idPrefix),
             disabled,
             rightAddons,
             leftAddons,
@@ -81,10 +93,10 @@ export const TabsComponent = ({
     const selectedId =
         typeof propsSelectedId === 'undefined'
             ? titles?.[0]?.id || undefined
-            : makeSureStringHasPrefix(`${propsSelectedId}`, idPrefix);
+            : makeSureStringHasPrefix(propsSelectedId, idPrefix);
 
     const tabs = tabsArray
-        .map(e => ({ ...e, id: `${idPrefix}_${e.props.id}` }))
+        .map(e => ({ ...e, id: addPrefix(e.props.id, idPrefix) }))
         .filter(tab => (tab.id === selectedId || tab.props.keepMounted || keepMounted) && !tab.props.renderTitle);
 
     return (

@@ -1,6 +1,6 @@
 import { defaultTheme } from '@ensi-platform/core-components-common';
 
-import { type FC, type MouseEvent, useId, useMemo, useState } from 'react';
+import { type FC, type MouseEvent, useMemo, useState } from 'react';
 
 import { Tab } from './components/Tab';
 import { TabHeadingList as DefaultTabList } from './components/TabHeadingList';
@@ -79,7 +79,7 @@ export const TabList: FC<TabListComponentPropsType> & ITabsCompositionProps = ({
         [collapsible, fullWidthScroll, mobile, scrollable]
     );
 
-    const localPrefix = useId();
+    const localPrefix = '';
     const prefix = typeof propsPrefix === 'undefined' ? localPrefix : propsPrefix;
 
     const [localSelectedId, setLocalSelectedId] = useState<SelectedIdType>();

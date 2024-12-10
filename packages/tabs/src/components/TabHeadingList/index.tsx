@@ -75,12 +75,12 @@ export const TabHeadingList = ({
         [tablistTitles]
     );
 
-    const handleOptionsChange = (_: any, { selected }: { selected: any }) => {
-        if (selected?.value && onChange) {
+    const handleOptionsChange = (_: any, { selected }: { selected?: { value?: any }[] | null }) => {
+        if (selected && selected[0]?.value && onChange) {
             const nativeMouseEvent = new MouseEvent('change');
             const syntheticMouseEvent = createSyntheticMouseEvent(nativeMouseEvent);
 
-            onChange(syntheticMouseEvent, { selectedId: selected?.value });
+            onChange(syntheticMouseEvent, { selectedId: selected[0]?.value });
         }
     };
 
