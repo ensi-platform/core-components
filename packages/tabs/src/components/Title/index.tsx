@@ -29,6 +29,7 @@ export const Title = forwardRef<HTMLButtonElement, Props>(
             rightAddons = null,
             leftAddons = null,
             hidden = false,
+            blocked = false,
             selected = false,
             disabled = false,
             collapsed = false,
@@ -45,7 +46,7 @@ export const Title = forwardRef<HTMLButtonElement, Props>(
 
         const { getCSS } = useTabsTheme();
 
-        if (hidden) return null;
+        if (hidden || blocked) return null;
 
         return (
             <button

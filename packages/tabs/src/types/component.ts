@@ -171,6 +171,11 @@ export type TabPropsType = {
     hidden?: boolean;
 
     /**
+     * Entirely blocks render of tab content
+     */
+    blocked?: boolean;
+
+    /**
      * Render tab even if its inactive
      */
     keepMounted?: boolean;
@@ -219,6 +224,7 @@ export type TabListTitleType = {
     disabled?: boolean;
     rightAddons?: ReactNode;
     leftAddons?: ReactNode;
+    blocked?: boolean;
     hidden?: boolean;
     toggleCSS?: CSSObject;
     selected?: boolean;
