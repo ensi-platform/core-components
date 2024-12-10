@@ -1,5 +1,5 @@
 import { basicTheme } from './basic';
 
-export const radioThemes = {
+export const RADIO_THEMES = {
     basic: basicTheme,
 };

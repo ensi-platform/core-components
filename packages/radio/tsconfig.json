@@ -12,6 +12,12 @@
     "references": [
         {
             "path": "../common/tsconfig.json"
+        },
+        {
+            "path": "../form-control/tsconfig.json"
+        },
+        {
+            "path": "../form/tsconfig.json"
         }
     ]
 }
