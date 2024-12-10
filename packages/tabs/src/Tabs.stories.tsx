@@ -3,10 +3,12 @@ import { IconSmallCard } from '@ensi-platform/core-components-common';
 
 import type { Meta, StoryObj } from '@storybook/react';
 
-import { type ComponentProps, useEffect, useState } from 'react';
+import { type ComponentProps, type MouseEvent, useCallback, useEffect, useState } from 'react';
 
 import { Tab, TabLinkTitle, TabList, type TabPropsType } from '.';
 import README from '../README.md';
+import { ShowMoreButton } from './components/ShowMore';
+import { TabHeadingList } from './components/TabHeadingList';
 
 export default {
     title: 'Components / Tabs',
@@ -49,6 +51,84 @@ export const Basic: StoryObj<ComponentProps<typeof TabList> & {}> = {
         mobile: {
             control: 'boolean',
             description: 'Mobile appearance (changes scroll thumb)',
+        },
+        keepMounted: {
+            control: 'boolean',
+            description: 'Mount all tabs and keep them mounted despite hidden',
+        },
+        variant: {
+            options: ['primary'],
+            control: { type: 'radio' },
+            description: 'Variant of the component',
+        },
+        size: {
+            options: ['md'],
+            control: { type: 'radio' },
+            description: 'Size of the component',
+        },
+        breakpoint: {
+            control: 'number',
+            description: 'Width breakpoint for desktop appearance',
+        },
+        prefix: {
+            control: 'text',
+            description: 'Prefix for tabs to differentiate multiple tabs list on one page',
+        },
+        className: {
+            control: 'text',
+            description: 'Custom class name for the component',
+        },
+        containerCSS: {
+            control: 'object',
+            description: 'Custom CSS object for the container',
+        },
+        selectedId: {
+            control: 'text',
+            description: 'ID of the selected tab',
+        },
+        defaultMatch: {
+            options: ['mobile', 'desktop'],
+            control: { type: 'radio' },
+            description: 'Default match type for the component',
+        },
+        collapsedTabsIds: {
+            options: ['First 3', 'undefined'],
+            control: 'radio',
+            mapping: {
+                'First 3': ['1', '2', 'link1'],
+                undefined,
+            },
+            description: 'Array of IDs for collapsed tabs',
+        },
+        ShowMoreButton: {
+            options: ['div', 'ShowMoreButton'],
+            control: { type: 'radio' },
+            mapping: {
+                div: 'div',
+                ShowMoreButton,
+            },
+            description: 'Component for the Show More button',
+        },
+        onChange: {
+            control: 'function',
+            description: 'Callback function for change events',
+        },
+        dataTestId: {
+            control: 'text',
+            description: 'Data test ID for the component',
+        },
+        countErrors: {
+            control: 'object',
+            description: 'Array of error counts with IDs ({id: string, count: number}[])',
+        },
+        TabHeadingList: {
+            options: ['div', 'TabHeadingList'],
+            control: { type: 'radio' },
+            mapping: {
+                div: 'div',
+                TabHeadingList,
+            },
+            description: 'Component for the tab heading list',
         },
     },
     render: args => {
@@ -136,9 +216,21 @@ export const TabProps: StoryObj<ComponentProps<typeof Tab> & {}> = {
         keepMounted: false,
     },
     argTypes: {
+        id: {
+            control: 'text',
+            description: 'Unique identifier for the component',
+        },
         title: {
             control: 'text',
             description: 'Text tab label',
+        },
+        className: {
+            control: 'text',
+            description: 'Custom CSS class name for styling',
+        },
+        toggleCSS: {
+            control: 'object',
+            description: 'Emotion CSS object for custom toggle styling',
         },
         hidden: {
             control: 'boolean',
@@ -170,6 +262,18 @@ export const TabProps: StoryObj<ComponentProps<typeof Tab> & {}> = {
             control: 'boolean',
             description: "Mount tab content even if it's not visible",
         },
+        dataTestId: {
+            control: 'text',
+            description: 'Test identifier for testing purposes',
+        },
+        unfocusable: {
+            control: 'boolean',
+            description: 'Whether the tab can receive focus',
+        },
+        renderTitle: {
+            control: 'object',
+            description: 'Render props pattern function for custom title rendering',
+        },
     },
     render: (args: TabPropsType) => (
         <TabList>
@@ -182,4 +286,40 @@ export const TabProps: StoryObj<ComponentProps<typeof Tab> & {}> = {
             </Tab>
         </TabList>
     ),
+};
+
+export const ControlledTabs: StoryObj<ComponentProps<typeof TabList> & {}> = {
+    render: () => {
+        const [currentTab, setCurrentTab] = useState(0);
+
+        const handleChange = useCallback((e: MouseEvent, payload: { selectedId: any }) => {
+            setCurrentTab(payload.selectedId);
+        }, []);
+
+        const increaseTab = useCallback(() => {
+            setCurrentTab(prev => (prev >= 2 ? 0 : prev + 1));
+        }, []);
+
+        return (
+            <>
+                <button
+                    css={{ padding: 8, marginBottom: 10, backgroundColor: '#0d7ad9', color: 'white' }}
+                    onClick={increaseTab}
+                >
+                    Switch to next tab
+                </button>
+                <TabList onChange={handleChange} selectedId={`${currentTab}`}>
+                    <Tab title="First tab" id="0">
+                        <div>Content of first tab</div>
+                    </Tab>
+                    <Tab title="Second tab" id="1">
+                        <div>Content of second tab</div>
+                    </Tab>
+                    <Tab title="Third tab" id="2">
+                        <div>Content of third tab</div>
+                    </Tab>
+                </TabList>
+            </>
+        );
+    },
 };
