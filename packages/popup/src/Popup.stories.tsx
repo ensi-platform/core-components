@@ -5,7 +5,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 
 import { type ComponentProps, useRef, useState } from 'react';
 
-import { POPUP_THEMES, Popup } from '.';
+import { POPUP_THEMES, Popup, PopupContent, PopupFooter, PopupHeader } from '.';
 import README from '../README.md';
 import { PopupSizesEnum, PopupVariantsEnum } from './scripts';
 
@@ -259,13 +259,13 @@ export const Basic: StoryObj<ComponentProps<typeof Popup>> = {
                     highlighted={false}
                     {...args}
                 >
-                    <Popup.Header title="The header of the popup can have any length" />
-                    <Popup.Content ref={scrollHandler}>
+                    <PopupHeader title="The header of the popup can have any length" />
+                    <PopupContent ref={scrollHandler}>
                         <Content />
-                    </Popup.Content>
-                    <Popup.Footer gap={8}>
+                    </PopupContent>
+                    <PopupFooter gap={8}>
                         <Footer />
-                    </Popup.Footer>
+                    </PopupFooter>
                 </Popup>
             </>
         );

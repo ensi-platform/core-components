@@ -1,6 +1,9 @@
+import { Backdrop } from '@ensi-platform/core-components-backdrop';
+import { Button } from '@ensi-platform/core-components-common';
+
 import type { Meta, StoryObj } from '@storybook/react';
 
-import { type ComponentProps } from 'react';
+import { type ComponentProps, useState } from 'react';
 
 import README from '../README.md';
 import { type IPortalProps, Portal } from './index';
@@ -23,7 +26,7 @@ export default {
             required: true,
             description: 'Portal content.',
         },
-        container: {
+        getPortalContainer: {
             table: {
                 type: { summary: 'Element' },
             },
@@ -38,13 +41,35 @@ export default {
             },
             description:
                 'Render the child elements immediately.<br />false - the content will be rendered to the next render',
-            control: false,
         },
     },
 } as Meta<IPortalProps>;
 
+const defaultProps: ComponentProps<typeof Portal> = {
+    children: undefined,
+    getPortalContainer: undefined,
+    immediateMount: false,
+};
+
 export const Basic: StoryObj<ComponentProps<typeof Portal>> = {
     args: {
-        immediateMount: false,
+        ...defaultProps,
+    },
+    render: args => {
+        const [isOpen, setOpen] = useState(false);
+        return (
+            <div style={{ zIndex: 1 }}>
+                <Button onClick={() => setOpen(!isOpen)}>{isOpen ? 'Close' : 'Open'} backdrop</Button>
+                <Portal {...args}>
+                    <Backdrop
+                        isOpen={isOpen}
+                        zIndex={10}
+                        onClose={() => {
+                            setOpen(false);
+                        }}
+                    />
+                </Portal>
+            </div>
+        );
     },
 };

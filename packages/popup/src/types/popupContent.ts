@@ -1,13 +1,13 @@
 import type { ReactNode } from 'react';
 
-export interface IContentProps {
+export interface IPopupContentProps {
     /**
-     * Контент
+     * Content
      */
     children?: ReactNode;
 
     /**
-     * Дополнительный класс
+     * Additional content styles
      */
     className?: string;
 }

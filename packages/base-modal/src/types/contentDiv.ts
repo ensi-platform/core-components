@@ -1,7 +1,5 @@
-import type { ReactNode } from 'react';
+import type { HTMLProps } from 'react';
 
 import type { IBaseModalProps } from './component';
 
-export interface IContentDivProps extends Pick<IBaseModalProps, 'contentCSS'> {
-    children: ReactNode;
-}
+export interface IContentDivProps extends HTMLProps<HTMLDivElement>, Pick<IBaseModalProps, 'contentCSS'> {}

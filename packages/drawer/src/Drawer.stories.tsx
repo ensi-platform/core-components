@@ -5,7 +5,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { type ComponentProps, useState } from 'react';
 
 import README from '../README.md';
-import { Drawer } from './index';
+import { Drawer, DrawerContent, DrawerFooter, DrawerHeader } from './index';
 
 export default {
     title: 'Components / Drawer',
@@ -85,11 +85,11 @@ export const Basic: StoryObj<ComponentProps<typeof Drawer>> = {
                         setOpen(false);
                     }}
                 >
-                    <Drawer.Header title="Drawer title" hasCloseButton onClose={() => setOpen(!isOpen)} />
-                    <Drawer.Content>Drawer content</Drawer.Content>
-                    <Drawer.Footer>
+                    <DrawerHeader title="Drawer title" hasCloseButton onClose={() => setOpen(!isOpen)} />
+                    <DrawerContent>Drawer content</DrawerContent>
+                    <DrawerFooter>
                         <Button onClick={() => setOpen(!isOpen)}>Footer button</Button>
-                    </Drawer.Footer>
+                    </DrawerFooter>
                 </Drawer>
             </div>
         );

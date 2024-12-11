@@ -2,10 +2,10 @@ import { IconCross } from '@ensi-platform/core-components-common';
 
 import { type FC, useMemo } from 'react';
 
-import { useDrawerContext } from '../../scripts';
-import type { IHeaderProps } from '../../types';
+import { useDrawerContext } from '../scripts';
+import type { IDrawerHeaderProps } from '../types';
 
-const Header: FC<IHeaderProps> = ({ title, hasCloseButton = false, onClose, ...props }) => {
+const DrawerHeader: FC<IDrawerHeaderProps> = ({ title, hasCloseButton = false, onClose, ...props }) => {
     const { getCSS } = useDrawerContext();
     const styles = useMemo(
         () =>
@@ -27,4 +27,4 @@ const Header: FC<IHeaderProps> = ({ title, hasCloseButton = false, onClose, ...p
     );
 };
 
-export default Header;
+export default DrawerHeader;

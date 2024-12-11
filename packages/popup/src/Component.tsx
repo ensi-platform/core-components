@@ -4,9 +4,6 @@ import { useMediaQuery, useThemeCSSPart } from '@ensi-platform/core-components-c
 import { type ForwardedRef, forwardRef, useMemo, useRef } from 'react';
 import mergeRefs from 'react-merge-refs';
 
-import Content from './components/compound/Content';
-import Footer from './components/compound/Footer';
-import Header from './components/compound/Header';
 import { PopupContextProvider } from './context';
 import { PopupSizesEnum, PopupVariantsEnum } from './scripts';
 import { POPUP_THEMES } from './themes';
@@ -79,7 +76,7 @@ const PopupComponent = forwardRef<HTMLDivElement, IPopupProps>(
                       className,
                   };
 
-        const getCSS = useThemeCSSPart(theme!, {
+        const getCSS = useThemeCSSPart(theme, {
             ...state,
             size,
             variant,
@@ -126,10 +123,4 @@ const PopupResponsiveComponent = forwardRef<HTMLDivElement, IModalResponsiveProp
     }
 );
 
-export const Popup = Object.assign(PopupResponsiveComponent, {
-    Header,
-    Content,
-    Footer,
-});
-
-export default Popup;
+export default PopupResponsiveComponent;

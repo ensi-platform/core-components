@@ -2,34 +2,34 @@ import type { CSSObject } from '@emotion/react';
 
 import type { ReactNode } from 'react';
 
-export interface IHeaderProps {
+export interface IPopupHeaderProps {
     /**
-     * Контент шапки
+     * Content
      */
     children?: ReactNode;
 
     /**
-     * Слот слева
+     * Left addon
      */
     leftAddons?: ReactNode;
 
     /**
-     * Дополнительный класс
+     * Additional header styles
      */
     className?: string;
 
     /**
-     * Дополнительный стиль для аддонов
+     * Additional addon styles
      */
     addonCSS?: CSSObject;
 
     /**
-     * Дополнительный стиль для контента
+     * Additional content styles
      */
     contentCSS?: CSSObject;
 
     /**
-     * Заголовок шапки
+     * Title
      */
     title?: string;
 }

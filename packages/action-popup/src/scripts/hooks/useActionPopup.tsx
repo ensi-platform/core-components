@@ -2,7 +2,7 @@ import { type Action, ActionType, usePopupState } from '@ensi-platform/core-comp
 
 import type { Dispatch } from 'react';
 
-import { ActionEnum, ActionPopup } from '../../index';
+import { ActionEnum, ActionPopup, ActionPopupContent } from '../../index';
 import type { ActionState } from '../../types';
 
 const ActionPopupComponent = ({
@@ -31,7 +31,7 @@ const ActionPopupComponent = ({
         action={popupState.popupAction}
         title={popupState.title}
     >
-        {popupState.children && <ActionPopup.Content>{popupState.children}</ActionPopup.Content>}
+        {popupState.children && <ActionPopupContent>{popupState.children}</ActionPopupContent>}
     </ActionPopup>
 );
 

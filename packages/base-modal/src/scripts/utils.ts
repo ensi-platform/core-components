@@ -81,7 +81,7 @@ export const handleContainer = (container?: HTMLElement) => {
     const containerStyles: SavedStyle[] = [];
 
     if (isOverflowing(container)) {
-        // Вычисляет размер до применения `overflow hidden` для избежания скачков
+        // Calculates the size before applying `overflow hidden` to avoid ui defects
         const scrollbarSize = getScrollbarSize();
 
         containerStyles.push({
@@ -89,7 +89,7 @@ export const handleContainer = (container?: HTMLElement) => {
             key: 'padding-right',
             el: container,
         });
-        // Вычисляем стили, чтобы получить реальный `padding` c шириной сколлбара
+        // Calculating styles to get a real `padding` with the width of the scrollbar
         container.style.paddingRight = `${getPaddingRight(container) + scrollbarSize}px`;
     }
 
@@ -98,7 +98,7 @@ export const handleContainer = (container?: HTMLElement) => {
     const scrollContainer =
         parent?.nodeName === 'HTML' && window.getComputedStyle(parent).overflowY === 'scroll' ? parent : container;
 
-    // Блокируем скролл даже если отсутствует скроллбар
+    // Blocking the scroll even if there is no scrollbar
     if (scrollContainer.style.overflow !== 'hidden') {
         containerStyles.push({
             value: scrollContainer.style.overflow,

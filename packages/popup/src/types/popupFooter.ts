@@ -2,14 +2,14 @@ import type { LayoutProps } from '@ensi-platform/core-components-common';
 
 import type { ReactNode } from 'react';
 
-export interface IFooterProps extends Omit<LayoutProps, 'children'> {
+export interface IPopupFooterProps extends Omit<LayoutProps, 'children'> {
     /**
-     * Контент футера
+     * Content
      */
     children?: ReactNode;
 
     /**
-     * Дополнительный класс
+     * Additional footer styles
      */
     className?: string;
 }

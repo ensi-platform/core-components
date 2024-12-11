@@ -1,6 +1,6 @@
 import type { HTMLProps } from 'react';
 
-export interface IHeaderProps extends HTMLProps<HTMLDivElement> {
+export interface IDrawerHeaderProps extends HTMLProps<HTMLDivElement> {
     /**
      * Drawer title
      */

@@ -3,15 +3,12 @@ import { emptyCSS, useMergeCSS, useThemeCSSPart } from '@ensi-platform/core-comp
 
 import { forwardRef, useMemo } from 'react';
 
-import Content from './components/compound/Content';
-import Footer from './components/compound/Footer';
-import Header from './components/compound/Header';
 import { DrawerThemeProvider } from './context';
 import { useTransitionStyles } from './scripts';
 import { DRAWER_THEMES } from './themes';
 import type { DrawerStateFullType, IDrawerProps } from './types';
 
-const DrawerComponent = forwardRef<HTMLDivElement, IDrawerProps>(
+const Drawer = forwardRef<HTMLDivElement, IDrawerProps>(
     (
         {
             open,
@@ -57,11 +54,5 @@ const DrawerComponent = forwardRef<HTMLDivElement, IDrawerProps>(
         );
     }
 );
-
-const Drawer = Object.assign(DrawerComponent, {
-    Header,
-    Content,
-    Footer,
-});
 
 export default Drawer;

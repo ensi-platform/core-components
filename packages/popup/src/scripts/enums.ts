@@ -1,3 +1,14 @@
+export enum PopupThemePartsEnum {
+    wrapper,
+    component,
+    header,
+    headerContent,
+    headerCloser,
+    headerTitle,
+    content,
+    footer,
+}
+
 export enum PopupSizesEnum {
     sm = 'sm',
     md = 'md',

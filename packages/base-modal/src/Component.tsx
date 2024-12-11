@@ -27,7 +27,6 @@ import { BaseModalContext } from './context';
 import {
     ClosureReasonsEmum,
     TransitionStatusesEnum,
-    dialogDivCSS,
     getScrollbarSize,
     handleContainer,
     hasScrollbar,
@@ -117,10 +116,7 @@ const BaseModal = forwardRef<HTMLDivElement, IBaseModalProps>(
             if (open) setIsBackdropDestroyed(false);
         }, [open]);
 
-        const shouldRender = useMemo(
-            () => keepMounted || open || !isExited || !isBackdropDestroyed,
-            [isBackdropDestroyed, isExited, keepMounted, open]
-        );
+        const shouldRender = keepMounted || open || !isExited || !isBackdropDestroyed;
 
         const getContainer = useCallback(() => (container ?? document.body) as HTMLElement, [container]);
 
@@ -145,18 +141,15 @@ const BaseModal = forwardRef<HTMLDivElement, IBaseModalProps>(
             checkToHasScrollBar();
         }, []);
 
-        const isPropsScrollRef = useMemo(
-            () =>
-                typeof scrollHandler === 'string' || (typeof scrollHandler === 'object' && 'current' in scrollHandler),
-            [scrollHandler]
-        );
+        const isPropsScroll =
+            typeof scrollHandler === 'string' || (typeof scrollHandler === 'object' && 'current' in scrollHandler);
 
         const handleScroll = useCallback(() => {
             if (!scrollableNodeRef.current || !componentNodeRef.current) return;
 
             if (hasHeader) {
                 const isScrolled = componentNodeRef.current.getBoundingClientRect().top - headerOffset <= 0;
-                setHeaderHighlighted(!isScrolledToTop(scrollableNodeRef.current) && (isScrolled || isPropsScrollRef));
+                setHeaderHighlighted(!isScrolledToTop(scrollableNodeRef.current) && (isScrolled || isPropsScroll));
             }
 
             if (hasFooter) {
@@ -165,7 +158,7 @@ const BaseModal = forwardRef<HTMLDivElement, IBaseModalProps>(
                         componentNodeRef.current.getBoundingClientRect().bottom >= window.innerHeight
                 );
             }
-        }, [hasFooter, hasHeader, headerOffset, isPropsScrollRef]);
+        }, [hasFooter, hasHeader, headerOffset, isPropsScroll]);
 
         const handleClose = useCallback<Required<IBaseModalProps>['onClose']>(
             (event, reason) => {
@@ -188,7 +181,7 @@ const BaseModal = forwardRef<HTMLDivElement, IBaseModalProps>(
                 const clientWidth = (event.target as HTMLElement)?.clientWidth;
 
                 if (event.clientX && clientWidth) {
-                    // Устанавливаем смещение для абсолютно спозиционированного скроллбара в OSX в 17px.
+                    // Setting the offset for an absolutely positioned scrollbar in OSX to 17px.
                     const offset = getScrollbarSize() === 0 ? 17 : 0;
 
                     clickedOnScrollbar = event.clientX + offset > clientWidth;
@@ -339,7 +332,6 @@ const BaseModal = forwardRef<HTMLDivElement, IBaseModalProps>(
                                     {isMounted && (
                                         <DialogDiv
                                             css={{
-                                                ...dialogDivCSS,
                                                 zIndex: computedZIndex,
                                                 ...(!open &&
                                                     isExited &&
@@ -350,9 +342,9 @@ const BaseModal = forwardRef<HTMLDivElement, IBaseModalProps>(
                                                 ...wrapperCSS,
                                             }}
                                             ref={mergeRefs<HTMLDivElement>([ref, wrapperRef])}
-                                            handleKeyDown={handleKeyDown}
-                                            handleBackdropMouseDown={handleBackdropMouseDown}
-                                            handleBackdropMouseUp={handleBackdropMouseUp}
+                                            onKeyDown={handleKeyDown}
+                                            onMouseDown={handleBackdropMouseDown}
+                                            onMouseUp={handleBackdropMouseUp}
                                             dataTestId={dataTestId}
                                             id={id}
                                         >

@@ -1,14 +1,12 @@
 import { BaseModalContext } from '@ensi-platform/core-components-base-modal';
 import { IconCross, scale } from '@ensi-platform/core-components-common';
 
-import type { CSSObject } from '@emotion/react';
-
 import { useContext, useEffect } from 'react';
 
-import { usePopupContext } from '../../scripts';
-import type { IHeaderProps } from '../../types';
+import { usePopupContext } from '../scripts';
+import type { IPopupHeaderProps } from '../types';
 
-const Header = ({ className, addonCSS, contentCSS, leftAddons, children, title }: IHeaderProps) => {
+const PopupHeader = ({ className, addonCSS, contentCSS, leftAddons, children, title }: IPopupHeaderProps) => {
     const { headerOffset, headerHighlighted, setHasHeader, onClose } = useContext(BaseModalContext);
 
     const {
@@ -25,7 +23,7 @@ const Header = ({ className, addonCSS, contentCSS, leftAddons, children, title }
     return (
         <div
             className={className}
-            css={getCSS('header', { offset: headerOffset, hasContent, highlighted: headerHighlighted }) as CSSObject}
+            css={getCSS('header', { offset: headerOffset, hasContent, highlighted: headerHighlighted })}
         >
             {leftAddons && (
                 <div
@@ -46,22 +44,22 @@ const Header = ({ className, addonCSS, contentCSS, leftAddons, children, title }
             {hasContent && (
                 <div
                     css={{
-                        ...(getCSS('headerContent') as CSSObject),
+                        ...getCSS('headerContent'),
                         ...contentCSS,
                     }}
                 >
                     {children}
-                    {title && <div css={getCSS('headerTitle') as CSSObject}>{title}</div>}
+                    {title && <div css={getCSS('headerTitle')}>{title}</div>}
                 </div>
             )}
 
             {hasCloser && (
                 <button type="button" onClick={e => onClose(e, 'closerClick')}>
-                    <IconCross css={getCSS('headerCloser') as CSSObject} />
+                    <IconCross css={getCSS('headerCloser')} />
                 </button>
             )}
         </div>
     );
 };
 
-export default Header;
+export default PopupHeader;
