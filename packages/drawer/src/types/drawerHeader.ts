@@ -8,7 +8,7 @@ export interface IDrawerHeaderProps extends HTMLProps<HTMLDivElement> {
 
     /**
      * Is header has close button
-     * @default  false
+     * @default false
      */
     hasCloseButton?: boolean;
 
