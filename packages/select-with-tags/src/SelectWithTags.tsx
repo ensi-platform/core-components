@@ -229,7 +229,7 @@ export const SelectWithTags = forwardRef<
                 onChange?.(event, payload);
                 if (!field?.onChange) return;
 
-                const value = payload.selected?.map(e => (typeof e === 'string' ? e : e.value)) || null;
+                const value = payload.selected?.map(e => (typeof e === 'string' ? e : e.value)) || [];
                 field.onChange({ target: { value } });
             }}
             onBlur={onBlur}
