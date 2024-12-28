@@ -152,7 +152,7 @@ export const FormControl = forwardRef<HTMLDivElement, FormControlProps>(
 
                 {bottomAddons}
 
-                {hint && !errorMessage && <span css={getCSS('sub') as CSSObject}>{hint}</span>}
+                {hint && <span css={getCSS('sub') as CSSObject}>{hint}</span>}
             </div>
         );
     }
