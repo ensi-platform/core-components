@@ -149,7 +149,7 @@ const basicTheme: FormControlTheme = {
             ...extractCSSOption(paddings, size),
         };
     },
-    sub: ({ hasError, size = 'md', variant = 'primary' }) => {
+    sub: ({ size = 'md', variant = 'primary' }) => {
         const sized: OptionizedCSS<typeof FormControlSize> = {
             sm: {
                 marginTop: scale(1),
@@ -166,7 +166,6 @@ const basicTheme: FormControlTheme = {
             display: 'block',
             ...extractCSSOption(sized, size),
             ...extractCSSOption(variants, variant),
-            ...(hasError && { color: colors.danger }),
         };
     },
     clear: ({ size = 'md', hasRightAddons }) => {
