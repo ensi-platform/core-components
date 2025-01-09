@@ -18,7 +18,7 @@
     ],
     "scripts": {
         "test": "jest --watch",
-        "clean": "rimraf packages/*/{tsconfig.tsbuildinfo,dist,node_modules} && rimraf {dist,build} && rimraf packages/**/__diff_output__ && rimraf .storybook/public/images/*preview-snap.png",
+        "clean": "rimraf packages/*/{tsconfig.tsbuildinfo,dist} && rimraf {dist,build} && rimraf packages/**/__diff_output__ && rimraf .storybook/public/images/*preview-snap.png",
         "lint": "eslint . --ext .ts,.tsx,.mdx --fix",
         "format": "prettier  . --write --ignore-path .prettierignore",
         "tsc": "tsc",
