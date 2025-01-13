@@ -1,3 +1,5 @@
+import type { CSSObject } from '@emotion/react';
+
 import { format } from 'date-fns';
 import { ru } from 'date-fns/locale';
 import type { ParsedUrlQuery } from 'querystring';
@@ -198,3 +200,5 @@ export const getValueFromObject = (keys: string, obj: Record<string, any>, empty
         { obj, isCorrectKey: true }
     ).obj;
 };
+
+export const emptyCSS: CSSObject = {};

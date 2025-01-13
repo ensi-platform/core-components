@@ -1,14 +1,17 @@
-Компонент для затемнения экрана при открытии модальных окон
+A component for darkening the screen when opening modal windows
 
-Основан на  [alfalab/core-components](https://github.com/alfa-laboratory/core-components)
-```js
-import Backdrop from '@components/Backdrop';
+Based on [alfalab/core-components](https://github.com/alfa-laboratory/core-components)
+
+#### Usage example below:
+
+```jsx
+import Backdrop from '@ensi-platform/core-components';
 
 const [isOpen, setOpen] = useState(false);
 
 return (
     <Portal>
-        <Backdrop open={isOpen} onClose={() => setOpen(false)} />
+        <Backdrop isOpen={isOpen} onClose={() => setOpen(false)} />
     </Portal>
 );
 ```
