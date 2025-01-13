@@ -44,7 +44,7 @@ export const Tooltip: FC<TooltipProps> = ({
     zIndex,
     onClose,
     onOpen,
-    getPortalContainer,
+    container,
     view = 'tooltip',
     targetRef = null,
     fallbackPlacements,
@@ -251,7 +251,7 @@ export const Tooltip: FC<TooltipProps> = ({
             <Popover
                 anchorElement={anchor || target}
                 open={show}
-                getPortalContainer={getPortalContainer}
+                container={container}
                 arrowCSS={arrowCSS}
                 popperCSS={{}}
                 className={className}

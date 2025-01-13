@@ -2,12 +2,12 @@ import { type OptionizedCSS, defaultTheme, extractCSSOption, scale } from '@ensi
 
 import type { CSSObject } from '@emotion/react';
 
-// eslint-disable-next-line import/no-cycle
-import type { Align, PopupSize, PopupTheme } from '../types';
+import type { PopupSizesEnum } from '../scripts';
+import type { AlignType, PopupThemeType } from '../types';
 
 const { colors, typography } = defaultTheme;
 
-const ALIGN_CSS: Record<Align, CSSObject> = {
+const ALIGN_CSS: Record<AlignType, CSSObject> = {
     center: {
         justifyContent: 'center',
         textAlign: 'center',
@@ -24,7 +24,7 @@ const ALIGN_CSS: Record<Align, CSSObject> = {
 
 const WRAPPER_INSET = scale(4);
 
-const COMPONENT_SIZES: OptionizedCSS<typeof PopupSize> = {
+const COMPONENT_SIZES: OptionizedCSS<typeof PopupSizesEnum> = {
     fullscreen: {
         flex: 1,
         width: '100%',
@@ -58,7 +58,7 @@ const COMPONENT_SIZES: OptionizedCSS<typeof PopupSize> = {
     },
 };
 
-export const basicTheme: PopupTheme = {
+export const basicTheme: PopupThemeType = {
     wrapper: ({ view, size }) => ({
         ...(view === 'desktop' &&
             size !== 'fullscreen' && {

@@ -1,37 +1,14 @@
-import { useMediaQuery } from '@ensi-platform/core-components-common';
+import Popup from './Component';
+import PopupContent from './components/PopupContent';
+import PopupFooter from './components/PopupFooter';
+import PopupHeader from './components/PopupHeader';
+import type { IModalResponsiveProps } from './types';
 
-import { forwardRef } from 'react';
+export { Popup, PopupContent, PopupFooter, PopupHeader };
 
-import Modal from './Component';
-import { Content } from './components/Content';
-import { Footer } from './components/Footer';
-import { Header } from './components/Header';
-import { setBasicPopupTheme } from './themes';
-import type { ModalResponsiveProps, PopupTheme, View } from './types';
+export * from './context';
+export * from './scripts';
+export * from './themes';
+export * from './types';
 
-export { PopupTheme, setBasicPopupTheme, Content, Footer, Header };
-export type PopupProps = ModalResponsiveProps;
-
-const ModalResponsiveComponent = forwardRef<HTMLDivElement, PopupProps>(
-    ({ children, breakpoint = 1024, ...restProps }, ref) => {
-        const [view] = useMediaQuery<View>(
-            [
-                ['mobile', `(max-width: ${breakpoint - 1}px)`],
-                ['desktop', `(min-width: ${breakpoint}px)`],
-            ],
-            'desktop'
-        );
-
-        return (
-            <Modal ref={ref} {...restProps} view={view} size={view === 'mobile' ? 'fullscreen' : restProps.size}>
-                {children}
-            </Modal>
-        );
-    }
-);
-
-export const Popup = Object.assign(ModalResponsiveComponent, {
-    Header,
-    Content,
-    Footer,
-});
+export { IModalResponsiveProps as IPopupProps };
