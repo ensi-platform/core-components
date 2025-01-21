@@ -2,7 +2,12 @@ import { forwardRef } from 'react';
 
 import { Checkbox } from './Component';
 import { CheckboxFormWrapper } from './FormComponentWrapper';
-import { type IFormCheckboxProps } from './types';
+import { checkboxThemes } from './themes';
+import { CheckboxSizeEnum, CheckboxVariantEnum, type IFormCheckboxProps } from './types';
+
+export * from './types';
+
+export { checkboxThemes, CheckboxSizeEnum, CheckboxVariantEnum };
 
 /**
  * Controlled by RHF checkbox component

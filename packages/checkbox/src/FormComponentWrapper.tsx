@@ -1,11 +1,6 @@
 import { type ChangeEvent, forwardRef, useCallback, useId, useRef } from 'react';
 
-import { checkboxThemes } from './themes/defaultTheme';
-import { CheckboxSize, type CheckboxValueType, CheckboxVariant, type ICheckboxWrapperProps } from './types';
-
-export * from './types';
-
-export { checkboxThemes, CheckboxSize, CheckboxVariant };
+import { type CheckboxValueType, type ICheckboxWrapperProps } from './types';
 
 const parseValue = (value?: CheckboxValueType) => (typeof value === 'undefined' ? false : value);
 

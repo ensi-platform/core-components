@@ -4,13 +4,13 @@ import type { CSSObject } from '@emotion/react';
 
 import type { ICheckboxState } from './component';
 
-export const CheckboxSize = {
-    md: 'md',
-} as const;
+export enum CheckboxSizeEnum {
+    md = 'md',
+}
 
-export const CheckboxVariant = {
-    primary: 'primary',
-} as const;
+export enum CheckboxVariantEnum {
+    primary = 'primary',
+}
 
 /**
  * Interface of additional classes for checkbox
@@ -33,9 +33,9 @@ export interface ICheckboxCSS {
      */
     indeterminateLineCSS?: CSSObject;
     /**
-     * Container with label, error message and hint
+     * Message container with error message and hint
      */
-    contentCSS?: CSSObject;
+    messageCSS?: CSSObject;
     /**
      * Container with label
      */
@@ -46,11 +46,13 @@ export interface ICheckboxCSS {
     hintCSS?: CSSObject;
 }
 
-export type CheckboxThemeStateType = BaseThemeState<typeof CheckboxVariant, typeof CheckboxSize> & ICheckboxState;
+export type CheckboxThemeStateType = BaseThemeState<typeof CheckboxVariantEnum, typeof CheckboxSizeEnum> &
+    ICheckboxState;
 
 enum CheckboxThemeParts {
     container,
-    content,
+    message,
+    label,
     box,
     icon,
     indeterminateLine,

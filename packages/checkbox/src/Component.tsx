@@ -3,16 +3,16 @@ import { FormMessage } from '@ensi-platform/core-components-form-control';
 
 import { type CSSObject } from '@emotion/react';
 
-import { forwardRef, useMemo, useRef } from 'react';
+import { forwardRef, useId, useMemo, useRef } from 'react';
 import mergeRefs from 'react-merge-refs';
 
 import { useFocus } from './scripts/hooks';
-import { checkboxThemes } from './themes/defaultTheme';
-import { CheckboxSize, type CheckboxThemeStateType, CheckboxVariant, type ICheckboxProps } from './types';
+import { checkboxThemes } from './themes';
+import { CheckboxSizeEnum, type CheckboxThemeStateType, CheckboxVariantEnum, type ICheckboxProps } from './types';
 
 export * from './types';
 
-export { checkboxThemes, CheckboxSize, CheckboxVariant };
+export { checkboxThemes, CheckboxSizeEnum, CheckboxVariantEnum };
 
 const DEFAULT_CSS = {};
 
@@ -26,6 +26,7 @@ export const Checkbox = forwardRef<HTMLLabelElement, ICheckboxProps>(
             children,
             hint,
             error,
+            hideError,
 
             block,
             disabled,
@@ -33,13 +34,15 @@ export const Checkbox = forwardRef<HTMLLabelElement, ICheckboxProps>(
 
             className,
             align = 'start',
-            variant = CheckboxVariant.primary,
-            size = CheckboxSize.md,
+
+            theme: themeName = 'basic',
+            variant = 'primary',
+            size = 'md',
 
             css = DEFAULT_CSS,
             labelCSS: labelCSSProp = DEFAULT_CSS,
             boxCSS: boxCSSProp = DEFAULT_CSS,
-            contentCSS: contentCSSProp = DEFAULT_CSS,
+            messageCSS: messageCSSProp = DEFAULT_CSS,
             hintCSS: hintCSSProp = DEFAULT_CSS,
             iconCSS: iconCSSProp = DEFAULT_CSS,
             indeterminateLineCSS: indeterminateLineCSSProp = DEFAULT_CSS,
@@ -49,10 +52,12 @@ export const Checkbox = forwardRef<HTMLLabelElement, ICheckboxProps>(
         },
         ref
     ) => {
+        const inputId = useId();
         const labelRef = useRef<HTMLLabelElement>(null);
 
         const [focused] = useFocus(labelRef, 'keyboard');
 
+        const theme = typeof themeName === 'string' ? checkboxThemes[themeName] : themeName;
         const themeState = useMemo<CheckboxThemeStateType>(
             () => ({
                 align,
@@ -68,18 +73,12 @@ export const Checkbox = forwardRef<HTMLLabelElement, ICheckboxProps>(
             [align, block, checked, disabled, error, focused, indeterminate, restProps.readOnly, size, variant]
         );
 
-        const getCSS = useThemeCSSPart(checkboxThemes.basic, themeState);
+        const getCSS = useThemeCSSPart(theme, themeState);
 
         const containerCSS = useMergeCSS(getCSS('container'), css);
-        const labelCSS = useMergeCSS(
-            {
-                display: 'block',
-            },
-            labelCSSProp
-        );
-
+        const labelCSS = useMergeCSS(getCSS('label'), labelCSSProp);
         const boxCSS = useMergeCSS(getCSS('box'), boxCSSProp);
-        const contentCSS = useMergeCSS(getCSS('content'), contentCSSProp);
+        const messageCSS = useMergeCSS(getCSS('message'), messageCSSProp);
         const hintCSS = useMergeCSS(getCSS('hint'), hintCSSProp);
 
         const iconCSS = useMergeCSS(getCSS('icon'), iconCSSProp);
@@ -95,31 +94,41 @@ export const Checkbox = forwardRef<HTMLLabelElement, ICheckboxProps>(
         );
 
         return (
-            <label className={className} css={containerCSS} ref={mergeRefs([labelRef, ref])}>
-                <input
-                    type="checkbox"
-                    css={inputCSS}
-                    checked={checked}
-                    disabled={disabled}
-                    onChange={onChange}
-                    {...restProps}
-                />
+            <div css={containerCSS}>
+                <label className={className} css={labelCSS} ref={mergeRefs([labelRef, ref])}>
+                    <input
+                        type="checkbox"
+                        aria-invalid={!!error}
+                        aria-describedby={`${inputId}-hint`}
+                        aria-errormessage={`${inputId}-error`}
+                        id={inputId}
+                        css={inputCSS}
+                        checked={checked}
+                        disabled={disabled}
+                        onChange={onChange}
+                        {...restProps}
+                    />
 
-                <span css={boxCSS}>
-                    <IconCheck css={iconCSS} />
-                    {indeterminate && !checked && <span css={indeterminateLineCSS} />}
-                </span>
-
-                {(children || hint || error) && (
-                    <span css={contentCSS}>
-                        {children && <span css={labelCSS}>{children}</span>}
-
-                        {hint && !error && <span css={hintCSS}>{hint}</span>}
-
-                        {error && <FormMessage message={error} type="error" />}
+                    <span css={boxCSS}>
+                        <IconCheck css={iconCSS} />
+                        {indeterminate && !checked && <span css={indeterminateLineCSS} />}
                     </span>
+
+                    {children && <span>{children}</span>}
+                </label>
+
+                {(hint || (error && !hideError)) && (
+                    <div css={messageCSS}>
+                        {hint && (
+                            <span id={`${inputId}-hint`} css={hintCSS}>
+                                {hint}
+                            </span>
+                        )}
+
+                        {error && !hideError && <FormMessage type="error" id={`${inputId}-error`} message={error} />}
+                    </div>
                 )}
-            </label>
+            </div>
         );
     }
 );

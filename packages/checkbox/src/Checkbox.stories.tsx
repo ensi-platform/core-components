@@ -1,14 +1,18 @@
-import { Button, ErrorMessages } from '@ensi-platform/core-components-common';
+import { Button, ErrorMessages, defaultTheme, scale } from '@ensi-platform/core-components-common';
 import { Form, FormFieldWrapper, FormReset } from '@ensi-platform/core-components-form';
+import { FormMessage } from '@ensi-platform/core-components-form-control';
 
 import { action } from '@storybook/addon-actions';
 import type { Meta, StoryObj } from '@storybook/react';
 
 import * as Yup from 'yup';
 import { type ComponentProps, useState } from 'react';
+import { useController } from 'react-hook-form';
 
 import README from '../README.md';
 import { Checkbox, FormCheckbox } from './index';
+
+const { typography } = defaultTheme;
 
 const defaultProps: ComponentProps<typeof Checkbox> = {
     onChange: action('onChange'),
@@ -158,12 +162,38 @@ export const WithLink: StoryObj<ComponentProps<typeof Checkbox>> = {
     },
 };
 
+const CheckboxGroup = () => {
+    const { fieldState } = useController({ name: 'checkboxGroup' });
+    const error = Array.isArray(fieldState.error) ? fieldState.error[0] : fieldState.error;
+
+    const options = [
+        { value: '1', label: 'Checkbox group 1' },
+        { value: '2', label: 'Checkbox group 2' },
+        { value: '3', label: 'Checkbox group 3' },
+        { value: '4', label: 'Checkbox group 4' },
+    ];
+
+    return (
+        <fieldset>
+            <legend css={{ ...typography('bodySmBold'), marginBottom: scale(1) }}>Checkbox group</legend>
+
+            {error?.message && <FormMessage css={{ marginBottom: scale(1) }} message={error.message} />}
+
+            {options.map(option => (
+                <FormFieldWrapper name="checkboxGroup" value={option.value}>
+                    <FormCheckbox hideError>{option.label}</FormCheckbox>
+                </FormFieldWrapper>
+            ))}
+        </fieldset>
+    );
+};
+
 export const WithForm: StoryObj<ComponentProps<typeof Checkbox>> = {
     render: () => (
         <Form
             initialValues={{
-                checkbox: false,
-                checkboxGroup: ['2'],
+                checkbox: null,
+                checkboxGroup: [],
             }}
             validationSchema={Yup.object().shape({
                 checkbox: Yup.boolean().required(ErrorMessages.REQUIRED),
@@ -176,18 +206,13 @@ export const WithForm: StoryObj<ComponentProps<typeof Checkbox>> = {
             </FormFieldWrapper>
             <br />
 
-            {/* <FormFieldWrapper name="checkboxGroup">
-                <FormControlGroup>
-                    <FormCheckbox value="1">Checkbox group 1</FormCheckbox>
-                    <FormCheckbox value="2">Checkbox group 2</FormCheckbox>
-                    <FormCheckbox value="3">Checkbox group 3</FormCheckbox>
-                </FormControlGroup>
-            </FormFieldWrapper> */}
+            <CheckboxGroup />
+
             <br />
-            <Button type="submit" size="sm">
+            <Button type="submit" style={{ marginRight: scale(2) }}>
                 Submit
             </Button>
-            <FormReset>Reset</FormReset>
+            <FormReset theme="secondary">Reset</FormReset>
         </Form>
     ),
 };
