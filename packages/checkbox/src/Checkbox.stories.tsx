@@ -180,7 +180,7 @@ const CheckboxGroup = () => {
             {error?.message && <FormMessage css={{ marginBottom: scale(1) }} message={error.message} />}
 
             {options.map(option => (
-                <FormFieldWrapper name="checkboxGroup" value={option.value}>
+                <FormFieldWrapper name="checkboxGroup" value={option.value} key={option.value}>
                     <FormCheckbox hideError>{option.label}</FormCheckbox>
                 </FormFieldWrapper>
             ))}
