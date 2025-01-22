@@ -13,6 +13,7 @@ export const BaseSelect = forwardRef(
         {
             className,
             fieldCSS,
+            optionCSS,
             options: items,
             autocomplete = false,
             multiple = false,
@@ -130,25 +131,27 @@ export const BaseSelect = forwardRef(
         );
 
         const getOptionProps = useCallback(
-            (option: SelectItem, index: number) => ({
-                ...(optionProps as object),
-                innerProps: getItemProps({
+            (option: SelectItem, index: number) => {
+                const isSelected = selectedItems.includes(option);
+
+                return {
+                    ...(optionProps as object),
+                    innerProps: getItemProps({
+                        index,
+                        item: option,
+                        isItemDisabled: option.disabled,
+                        onMouseDown: (event: MouseEvent) => event.preventDefault(),
+                    }),
+                    multiple,
                     index,
-                    item: option,
-                    isItemDisabled: option.disabled,
-                    onMouseDown: (event: MouseEvent) => event.preventDefault(),
-                }),
-                multiple,
-                index,
-                option,
-                disabled: option.disabled,
-                highlighted: index === highlightedIndex,
-                selected: selectedItems.includes(option),
-                css: {
-                    // TODO: optionCSS from props
-                },
-            }),
-            [getItemProps, highlightedIndex, multiple, optionProps, selectedItems]
+                    option,
+                    disabled: option.disabled,
+                    highlighted: index === highlightedIndex,
+                    selected: isSelected,
+                    css: optionCSS ? optionCSS(option, isSelected) : {},
+                };
+            },
+            [getItemProps, highlightedIndex, multiple, optionCSS, optionProps, selectedItems]
         );
 
         useList({

@@ -206,6 +206,11 @@ export interface SelectProps
     fieldCSS?: CSSObject;
 
     /**
+     * Дополнительный стиль для опции
+     */
+    optionCSS?: (option: SelectItem, selected: boolean) => CSSObject;
+
+    /**
      * Список вариантов выбора
      */
     options: Array<SelectItem>;
