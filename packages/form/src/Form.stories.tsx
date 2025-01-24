@@ -1,3 +1,4 @@
+import { FormCheckbox } from '@ensi-platform/core-components-checkbox';
 import { Button, ErrorMessages, Layout } from '@ensi-platform/core-components-common';
 
 import { action } from '@storybook/addon-actions';
@@ -6,13 +7,14 @@ import type { Meta, StoryObj } from '@storybook/react';
 import * as Yup from 'yup';
 import type { ComponentProps } from 'react';
 
-import { Form, FormField, FormReset, FormTypedField } from '.';
+import { Form, FormField, FormFieldWrapper, FormReset, FormTypedField } from '.';
 import README from '../README.md';
 
 const defaultProps: ComponentProps<typeof Form> = {
     initialValues: {
         field: '',
         typedField: '',
+        check: false,
     },
     validationSchema: Yup.object({
         field: Yup.string().required(ErrorMessages.REQUIRED),
@@ -131,9 +133,13 @@ export const Basic: StoryObj<ComponentProps<typeof Form> & { withIcon: boolean }
     args: { ...defaultProps },
     render: ({ ...args }) => (
         <Form {...args}>
-            <FormField label="Обычное поле" name="field" clear />
+            <FormField label="Имя" name="field" clear />
             <br />
-            <FormTypedField label="Поле с числами" name="typedField" clear />
+            <FormTypedField label="Возраст" name="typedField" clear />
+            <br />
+            <FormFieldWrapper label="Чек" name="check">
+                <FormCheckbox />
+            </FormFieldWrapper>
 
             <br />
 

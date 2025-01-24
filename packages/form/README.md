@@ -12,8 +12,6 @@ There are several special components for use inside the form:
 
 **TypedField** − is just `Field` with onBlur-transformations according to special `fieldType` prop.
 
-**FieldArray** − is a wrapper for an array of similar fields, controlled with RHF. It implements special logic for an array from <a href="https://react-hook-form.com/docs/usefieldarray" target="_blank">`useFieldArray`</a> hook.
-
 **Reset** − is button with RHF's reset logic on click.
 
 ### Common questions

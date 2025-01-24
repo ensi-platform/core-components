@@ -24,5 +24,8 @@
         "@ensi-platform/core-components-common": "^1.0.0",
         "@ensi-platform/core-components-input": "^1.0.0",
         "tslib": "^2.4.0"
+    },
+    "devDependencies": {
+        "@ensi-platform/core-components-checkbox": "^1.0.0"
     }
 }

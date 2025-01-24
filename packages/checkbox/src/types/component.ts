@@ -61,6 +61,11 @@ export interface ICheckboxState {
     disabled?: boolean;
 
     /**
+     * Checkbox label
+     */
+    label?: string;
+
+    /**
      * Field error
      */
     error?: string;

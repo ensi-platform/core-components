@@ -25,6 +25,7 @@ export const Checkbox = forwardRef<HTMLLabelElement, ICheckboxProps>(
             checked,
             children,
             hint,
+            label,
             error,
             hideError,
 
@@ -114,7 +115,7 @@ export const Checkbox = forwardRef<HTMLLabelElement, ICheckboxProps>(
                         {indeterminate && !checked && <span css={indeterminateLineCSS} />}
                     </span>
 
-                    {children && <span>{children}</span>}
+                    {(children || label) && <span>{children || label}</span>}
                 </label>
 
                 {(hint || (error && !hideError)) && (
