@@ -35,11 +35,11 @@ export interface IFormProps<T extends FieldValues>
     /**
      * Form submit handler
      */
-    onSubmit: (values: T, formProps: UseFormReturn<T, unknown>) => void | Promise<unknown>;
+    onSubmit: (values: T, formProps: UseFormReturn<T, unknown>) => void | Promise<void>;
     /**
      * Form reset handler
      */
-    onReset?: (values: T, formProps: UseFormReturn<T, unknown>) => void | Promise<unknown>;
+    onReset?: (values: T, formProps: UseFormReturn<T, unknown>) => void | Promise<void>;
     /**
      * Form change handler
      */
