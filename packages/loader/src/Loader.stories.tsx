@@ -1,11 +1,11 @@
-import { scale } from '@ensi-platform/core-components-common';
+import { emptyCSS, scale } from '@ensi-platform/core-components-common';
 
 import type { Meta, StoryObj } from '@storybook/react';
 
 import type { ComponentProps } from 'react';
 
 import README from '../README.md';
-import { Loader, LoaderSizes, LoaderVariants, emptyCSS } from './index';
+import { Loader, LoaderSizes, LoaderVariants } from './index';
 
 export default {
     title: 'Components / Loader',

@@ -10,6 +10,17 @@ const makeSureStringHasPrefix = (str: string, prefix: string) => {
     return `${prefix}_${str}`;
 };
 
+/** Checks if requested tab is not blocked, returns this tab if so, otherwise returns first not blocked tab */
+const findAllowedTabId = (requestedTabId: string, tabs: Array<ReactElement<TabProps>>) => {
+    const tabsList = tabs.map(tab => ({ id: tab.props.id, blocked: tab.props.blocked }));
+
+    const requestedTabBlocked = tabsList.find(tab => tab.id === requestedTabId)?.blocked;
+    if (!requestedTabBlocked) return requestedTabId;
+
+    const firstNotBlockedTabId = tabsList.find(tab => !tab.blocked)?.id || undefined;
+    return firstNotBlockedTabId;
+};
+
 export const TabsComponent = ({
     TabList,
     ShowMoreButton = DefaultTooltipButton,
@@ -40,6 +51,7 @@ export const TabsComponent = ({
                 leftAddons,
                 disabled,
                 hidden,
+                blocked,
                 toggleCSS,
                 className,
                 renderTitle,
@@ -52,6 +64,7 @@ export const TabsComponent = ({
             rightAddons,
             leftAddons,
             hidden,
+            blocked,
             toggleCSS,
             className,
             renderTitle,
@@ -62,12 +75,17 @@ export const TabsComponent = ({
 
     const selectedId =
         typeof propsSelectedId === 'undefined'
-            ? titles?.[0]?.id || undefined
-            : makeSureStringHasPrefix(`${propsSelectedId}`, idPrefix);
+            ? findAllowedTabId(titles?.[0]?.id, tabsArray)
+            : makeSureStringHasPrefix(`${findAllowedTabId(propsSelectedId, tabsArray)}`, idPrefix);
 
     const tabs = tabsArray
         .map(e => ({ ...e, id: `${idPrefix}_${e.props.id}` }))
-        .filter(tab => (tab.id === selectedId || tab.props.keepMounted || keepMounted) && !tab.props.renderTitle);
+        .filter(
+            tab =>
+                (tab.id === selectedId || tab.props.keepMounted || keepMounted) &&
+                !tab.props.renderTitle &&
+                !tab.props.blocked
+        );
 
     return (
         <div className={className} role="navigation">
@@ -85,7 +103,9 @@ export const TabsComponent = ({
                 breakpoint={breakpoint}
             />
 
-            {tabs.map(tab => cloneElement(tab, { hidden: tab.id !== selectedId }))}
+            {tabs.map(
+                tab => !tab.props.blocked && cloneElement(tab, { hidden: tab.id !== selectedId || tab.props.hidden })
+            )}
         </div>
     );
 };

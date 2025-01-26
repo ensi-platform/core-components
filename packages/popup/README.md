@@ -1,1 +1,1 @@
-# Компонент popup
+Component based on **BaseModal**

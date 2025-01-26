@@ -1,6 +1,6 @@
 {
     "name": "@ensi-platform/core-components",
-    "version": "1.0.0-beta.2.0.1",
+    "version": "1.0.0-beta.3.1.0",
     "prepublishOnly": "yarn build",
     "description": "Библиотека React компонентов для создания интерфейсов",
     "private": true,
@@ -18,7 +18,7 @@
     ],
     "scripts": {
         "test": "jest --watch",
-        "clean": "rimraf packages/*/{tsconfig.tsbuildinfo,dist,node_modules} && rimraf {dist,build} && rimraf packages/**/__diff_output__ && rimraf .storybook/public/images/*preview-snap.png",
+        "clean": "rimraf packages/*/{tsconfig.tsbuildinfo,dist} && rimraf {dist,build} && rimraf packages/**/__diff_output__ && rimraf .storybook/public/images/*preview-snap.png",
         "lint": "eslint . --ext .ts,.tsx,.mdx --fix",
         "format": "prettier  . --write --ignore-path .prettierignore",
         "tsc": "tsc",
@@ -65,10 +65,9 @@
         "react-accessible-accordion": "5.0.0",
         "react-dom": ">=16.8.0",
         "react-fast-compare": "^3.2.2",
-        "react-focus-lock": "^2.11.3",
+        "react-focus-lock": "^2.13.2",
         "react-hook-form": "^7.53.2",
         "react-loading-skeleton": "^3.5.0",
-        "react-media": "^1.10.0",
         "react-merge-refs": "1.1.0",
         "react-popper": "^2.3.0",
         "react-textarea-autosize": "8.5.3",

@@ -12,8 +12,6 @@ declare global {
 const getGlobalStore = (): GlobalStore => {
     if (!window.globalStore) {
         window.globalStore = new GlobalStore();
-
-        return window.globalStore;
     }
 
     return window.globalStore;

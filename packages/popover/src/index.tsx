@@ -1,6 +1,6 @@
 import { defaultTheme } from '@ensi-platform/core-components-common';
-import { Portal } from '@ensi-platform/core-components-portal';
-import { Stack, stackingOrder } from '@ensi-platform/core-components-stack';
+import { type IPortalProps, Portal } from '@ensi-platform/core-components-portal';
+import { Stack, StackingOrderEnum } from '@ensi-platform/core-components-stack';
 
 import type { CSSObject } from '@emotion/react';
 import { ResizeObserver as ResizeObserverPolyfill } from '@juggle/resize-observer';
@@ -105,7 +105,7 @@ export type PopoverProps = {
     /**
      * Функция, возвращающая контейнер, в который будет рендериться поповер
      */
-    getPortalContainer?: () => HTMLElement;
+    container?: IPortalProps['getPortalContainer'];
 
     /**
      * TransitionOptions, прокидываются в хук useTransition.
@@ -165,7 +165,7 @@ export const Popover = forwardRef<HTMLDivElement, PopoverProps>(
         {
             tabFocusableWrapper,
             children,
-            getPortalContainer,
+            container,
             transitionOptions = DEFAULT_TRANSITION,
             anchorElement,
             useAnchorWidth,
@@ -180,7 +180,7 @@ export const Popover = forwardRef<HTMLDivElement, PopoverProps>(
             open,
             dataTestId,
             update,
-            zIndex = stackingOrder.POPOVER,
+            zIndex = StackingOrderEnum.POPOVER,
             fallbackPlacements,
             preventOverflow = true,
             availableHeight = false,
@@ -447,7 +447,7 @@ export const Popover = forwardRef<HTMLDivElement, PopoverProps>(
         return (
             <Stack value={zIndex}>
                 {computedZIndex => (
-                    <Portal getPortalContainer={getPortalContainer}>
+                    <Portal getPortalContainer={container}>
                         {withTransition
                             ? isMounted && (
                                   <div

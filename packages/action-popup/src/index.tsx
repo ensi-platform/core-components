@@ -8,7 +8,7 @@ import {
     defaultTheme,
     scale,
 } from '@ensi-platform/core-components-common';
-import { Content, Popup } from '@ensi-platform/core-components-popup';
+import { Popup, PopupContent, PopupFooter, PopupHeader } from '@ensi-platform/core-components-popup';
 
 import { type ReactNode, useMemo } from 'react';
 
@@ -101,7 +101,7 @@ export const ActionPopup = ({
 
     return (
         <Popup hasCloser={false} onClose={onBackdropClick ?? onClose} {...props}>
-            <Popup.Header
+            <PopupHeader
                 leftAddons={leftAddonIcon()}
                 addonCSS={{
                     paddingRight: scale(2),
@@ -110,10 +110,10 @@ export const ActionPopup = ({
                 }}
             >
                 <p css={typography('h3')}>{title}</p>
-            </Popup.Header>
+            </PopupHeader>
             {children}
             {!disableFooter && (
-                <Popup.Footer css={{ display: 'flex', justifyContent: 'flex-end' }}>
+                <PopupFooter css={{ display: 'flex', justifyContent: 'flex-end' }}>
                     <Button
                         onClick={onClose}
                         theme="secondary"
@@ -145,10 +145,10 @@ export const ActionPopup = ({
                             {btnParams.actionButtonText}
                         </Button>
                     )}
-                </Popup.Footer>
+                </PopupFooter>
             )}
         </Popup>
     );
 };
 
-ActionPopup.Content = Content;
+export const ActionPopupContent = PopupContent;

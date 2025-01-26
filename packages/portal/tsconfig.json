@@ -4,6 +4,17 @@
     "compilerOptions": {
         "outDir": "dist",
         "rootDirs": ["src"],
-        "baseUrl": "."
-    }
+        "baseUrl": ".",
+        "paths": {
+            "@ensi-platform/core-components-*": ["../*/src"]
+        }
+    },
+    "references": [
+        {
+            "path": "../common"
+        },
+        {
+            "path": "../backdrop"
+        }
+    ]
 }

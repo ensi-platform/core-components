@@ -1,11 +1,11 @@
-import { scale } from '@ensi-platform/core-components-common';
+import { emptyCSS, scale } from '@ensi-platform/core-components-common';
 
 import type { Meta, StoryObj } from '@storybook/react';
 
 import type { ComponentProps } from 'react';
 
 import README from '../README.md';
-import { LoadingSkeleton, LoadingSkeletonSizes, LoadingSkeletonVariants, emptyCSS } from './index';
+import { LoadingSkeleton, LoadingSkeletonSizes, LoadingSkeletonVariants } from './index';
 
 export default {
     title: 'Components / LoadingSkeleton',
@@ -97,14 +97,14 @@ export default {
         },
         skeletonWrapperCSS: {
             table: {
-                type: { summary: 'object' },
+                type: { summary: 'CSSObject' },
             },
             description: 'Additional skeleton wrapper styles.',
             summary: 'object',
         },
         skeletonCSS: {
             table: {
-                type: { summary: 'object' },
+                type: { summary: 'CSSObject' },
             },
             description: 'Additional skeleton styles.',
             summary: 'object',

@@ -6,7 +6,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import type { ComponentProps } from 'react';
 
 import README from '../README.md';
-import { ActionEnum, ActionPopup, ThemesEnum } from './index';
+import { ActionEnum, ActionPopup, ActionPopupContent, ThemesEnum } from './index';
 import { useActionPopup } from './scripts/hooks/useActionPopup';
 import type { ActionState } from './types';
 
@@ -82,7 +82,7 @@ const Template: Story = {
                         if (popupState.onAction) await popupState.onAction();
                     }}
                 >
-                    {args.children && <ActionPopup.Content>{args.children}</ActionPopup.Content>}
+                    {args.children && <ActionPopupContent>{args.children}</ActionPopupContent>}
                 </ActionPopup>
             </>
         );
