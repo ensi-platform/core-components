@@ -31,9 +31,8 @@ export const Select = forwardRef<
         },
         ref
     ) => {
-        const clearProps = useSelectClear({
-            closeOnClear,
-            onClearClick:
+        const onClearClick = useMemo(
+            () =>
                 onClear ||
                 (() => {
                     setTimeout(() => {
@@ -44,6 +43,11 @@ export const Select = forwardRef<
                         });
                     }, 0);
                 }),
+            [field, onClear]
+        );
+        const clearProps = useSelectClear({
+            closeOnClear,
+            onClearClick,
             disabled: props.disabled,
         });
 
