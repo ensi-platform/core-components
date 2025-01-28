@@ -1,6 +1,7 @@
 import type { BaseThemeState, EnumLike } from '@ensi-platform/core-components-common';
 
 import type { CSSObject } from '@emotion/react';
+import type { LayoutItemProps } from '@greensight/gds/types/src/components/Layout/Item';
 
 import type { CSSProperties } from 'react';
 
@@ -8,39 +9,39 @@ import type { LoadingSkeletonThemeType } from './themes';
 
 export interface ILoadingSkeletonState {
     /**
-     * The number of lines of skeletons to render.
+     * The number of lines of skeletons to render
      *
-     * If count is a decimal number like 3.5, three full skeletons and one half-width skeleton will be rendered.
+     * If count is a decimal number like 3.5, three full skeletons and one half-width skeleton will be rendered
      * @default 1
      */
     count?: number;
 
     /**
-     * The length of the animation in seconds.
+     * The length of the animation in seconds
      * @default 1.5
      */
     duration?: number;
 
     /**
-     * The height of each skeleton line (px).
+     * The height of each skeleton line (px)
      * @default font-size
      */
     height?: CSSProperties['height'];
 
     /**
-     * The width of the skeleton (px).
+     * The width of the skeleton (px)
      * @default 100%
      */
     width?: CSSProperties['width'];
 
     /**
-     * Makes the skeleton circular by setting border-radius to 50%.
+     * Makes the skeleton circular by setting border-radius to 50%
      * @default false
      */
     circle?: boolean;
 
     /**
-     * The direction of the animation, either left-to-right or right-to-left.
+     * The direction of the animation, either left-to-right or right-to-left
      *
      * Set `true` to get reverse animation direction
      * @default false (left-to-right)
@@ -48,16 +49,26 @@ export interface ILoadingSkeletonState {
     reverseAnimationDirection?: boolean;
 
     /**
-     * Removes the animation of the skeleton.
+     * Removes the animation of the skeleton
      * @default false
      */
     disableAnimation?: boolean;
 
     /**
-     * Adds an indentation after each skeleton except the last one (px).
+     * Adds an indentation after each skeleton except the last one (px)
      * @default 0
      */
     verticalStep?: number;
+
+    /**
+     * Use `Layout.Item` as a skeleton wrapper instead of a `div`
+     *
+     * When `asLayoutItem` is `true`, the `verticalStep` prop has no effect.
+     * Use `layoutItemProps` or `Layout` props to set spacing
+     *
+     * @default false
+     */
+    asLayoutItem?: boolean;
 }
 
 export interface ILoadingSkeletonProps<V extends EnumLike, S extends EnumLike>
@@ -77,4 +88,11 @@ export interface ILoadingSkeletonProps<V extends EnumLike, S extends EnumLike>
      * Additional skeleton wrapper styles
      */
     className?: string;
+
+    /**
+     * Props for `Layout.Item`, used only when `asLayoutItem` is `true`
+     *
+     * Has no effect if `asLayoutItem` is `false`
+     */
+    layoutItemProps?: LayoutItemProps;
 }

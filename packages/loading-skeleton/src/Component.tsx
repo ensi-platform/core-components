@@ -1,9 +1,11 @@
-import { type EnumLike, emptyCSS, useMergeCSS, useThemeCSSPart } from '@ensi-platform/core-components-common';
+import { type EnumLike, Layout, emptyCSS, useMergeCSS, useThemeCSSPart } from '@ensi-platform/core-components-common';
+
+import { jsx } from '@emotion/react';
 
 import { type FC, useMemo } from 'react';
 import Skeleton from 'react-loading-skeleton';
 
-import { LoadingSkeletonSizes, LoadingSkeletonVariants, useValidateSizes } from './scripts';
+import { LoadingSkeletonSizes, LoadingSkeletonVariants, prepareCount, useValidateSizes } from './scripts';
 import { LOADING_SKELETON_THEMES } from './themes';
 import type { ILoadingSkeletonProps, LoadingSkeletonStateFullType, LoadingSkeletonThemeType } from './types';
 
@@ -22,6 +24,8 @@ export const BaseLoadingSkeleton = <V extends EnumLike, S extends EnumLike>({
     circle = false,
     reverseAnimationDirection = false,
     disableAnimation = false,
+    asLayoutItem = false,
+    layoutItemProps,
 }: ILoadingSkeletonProps<V, S>) => {
     const state = useMemo<LoadingSkeletonStateFullType<V, S>>(
         () => ({
@@ -35,6 +39,7 @@ export const BaseLoadingSkeleton = <V extends EnumLike, S extends EnumLike>({
             circle,
             reverseAnimationDirection,
             disableAnimation,
+            asLayoutItem,
         }),
         [
             variant,
@@ -47,6 +52,7 @@ export const BaseLoadingSkeleton = <V extends EnumLike, S extends EnumLike>({
             circle,
             reverseAnimationDirection,
             disableAnimation,
+            asLayoutItem,
         ]
     );
 
@@ -57,10 +63,16 @@ export const BaseLoadingSkeleton = <V extends EnumLike, S extends EnumLike>({
     const wrapperCSS = useMergeCSS(getCSS('wrapper'), skeletonWrapperCSSProp);
     const skeletonCSS = useMergeCSS(getCSS('skeleton'), skeletonCSSProp);
 
-    return (
-        <div css={wrapperCSS} className={className}>
-            <Skeleton css={skeletonCSS} count={count} />
-        </div>
+    return prepareCount(count).map(preparedCount =>
+        jsx(
+            asLayoutItem ? Layout.Item : 'div',
+            {
+                css: wrapperCSS,
+                className,
+                ...(asLayoutItem && layoutItemProps),
+            },
+            <Skeleton inline css={skeletonCSS} count={preparedCount} />
+        )
     );
 };
 

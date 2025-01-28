@@ -1,11 +1,15 @@
-import { emptyCSS, scale } from '@ensi-platform/core-components-common';
+import { Block } from '@ensi-platform/core-components-block';
+import { Layout, defaultTheme, emptyCSS, scale } from '@ensi-platform/core-components-common';
 
+import type { LayoutItemProps } from '@greensight/gds/types/src/components/Layout/Item';
 import type { Meta, StoryObj } from '@storybook/react';
 
 import type { ComponentProps } from 'react';
 
 import README from '../README.md';
 import { LoadingSkeleton, LoadingSkeletonSizes, LoadingSkeletonVariants } from './index';
+
+const { colors } = defaultTheme;
 
 export default {
     title: 'Controls / LoadingSkeleton',
@@ -116,12 +120,34 @@ export default {
             description: 'Additional skeleton wrapper styles.',
             summary: 'string',
         },
+        asLayoutItem: {
+            table: {
+                type: { summary: 'boolean' },
+            },
+            required: false,
+            description:
+                'Use `Layout.Item` as a skeleton wrapper instead of a `div`<br />When `asLayoutItem` is `true` `verticalStep` prop has no effect<br />Use `layoutItemProps` or `Layout` props to set spacing.',
+            defaultValue: {
+                summary: false,
+            },
+            summary: 'boolean',
+        },
         circle: {
             table: {
                 type: { summary: 'boolean' },
             },
             required: false,
             description: 'Makes the skeleton circular by setting border-radius to 50%.',
+            defaultValue: {
+                summary: false,
+            },
+            summary: 'boolean',
+        },
+        disableAnimation: {
+            table: {
+                type: { summary: 'boolean' },
+            },
+            description: 'Removes the animation of the skeleton.',
             defaultValue: {
                 summary: false,
             },
@@ -138,15 +164,13 @@ export default {
             },
             summary: 'boolean',
         },
-        disableAnimation: {
+        layoutItemProps: {
             table: {
-                type: { summary: 'boolean' },
+                type: { summary: 'LayoutItemProps' },
             },
-            description: 'Removes the animation of the skeleton.',
-            defaultValue: {
-                summary: false,
-            },
-            summary: 'boolean',
+            description:
+                'Props for `Layout.Item`, used only when `asLayoutItem` is `true`<br />Has no effect if `asLayoutItem` is `false`',
+            summary: 'object',
         },
     },
 } as Meta<typeof LoadingSkeleton>;
@@ -159,27 +183,21 @@ const defaultProps: ComponentProps<typeof LoadingSkeleton> = {
     verticalStep: 0,
     width: undefined,
     height: undefined,
-    skeletonWrapperCSS: emptyCSS,
+    layoutItemProps: {} as LayoutItemProps,
     skeletonCSS: emptyCSS,
+    skeletonWrapperCSS: emptyCSS,
     className: '',
+    asLayoutItem: false,
     circle: false,
-    reverseAnimationDirection: false,
     disableAnimation: false,
+    reverseAnimationDirection: false,
 };
 
 export const Basic: StoryObj<ComponentProps<typeof LoadingSkeleton>> = {
     args: {
         ...defaultProps,
     },
-    render: args => (
-        <div
-            css={{
-                height: scale(10),
-            }}
-        >
-            <LoadingSkeleton {...args} />
-        </div>
-    ),
+    render: args => <LoadingSkeleton {...args} />,
 };
 
 export const Sized: StoryObj<ComponentProps<typeof LoadingSkeleton>> = {
@@ -198,4 +216,59 @@ export const Text: StoryObj<ComponentProps<typeof LoadingSkeleton>> = {
         verticalStep: scale(2),
     },
     render: args => <LoadingSkeleton {...args} />,
+};
+
+export const WithLayout: StoryObj<ComponentProps<typeof LoadingSkeleton>> = {
+    args: {
+        ...defaultProps,
+        asLayoutItem: true,
+        height: scale(8),
+    },
+    render: args => {
+        const blockCSS = {
+            height: '100%',
+            border: `2px solid ${colors.primary}`,
+        };
+
+        return (
+            <Layout type="grid" rows={3} cols={3} gap={scale(2)}>
+                <Layout.Item row={[1, 2]} col={[1, 2]}>
+                    <Block css={blockCSS}>
+                        <Block.Body>Layout.Item</Block.Body>
+                    </Block>
+                </Layout.Item>
+
+                <LoadingSkeleton
+                    {...args}
+                    layoutItemProps={{ row: [2, 3], col: [2, 3], align: 'center', justify: 'center' }}
+                />
+
+                <Layout.Item row={[3, 4]} col={[3, 4]}>
+                    <Block css={blockCSS}>
+                        <Block.Header>Layout.Item</Block.Header>
+
+                        <Block.Body>
+                            <LoadingSkeleton {...args} asLayoutItem={false} />
+                        </Block.Body>
+                    </Block>
+                </Layout.Item>
+            </Layout>
+        );
+    },
+};
+
+export const WithBlock: StoryObj<ComponentProps<typeof LoadingSkeleton>> = {
+    args: {
+        ...defaultProps,
+        count: 6,
+        verticalStep: scale(5),
+        height: scale(8),
+    },
+    render: args => (
+        <Block>
+            <Block.Body>
+                <LoadingSkeleton {...args} />
+            </Block.Body>
+        </Block>
+    ),
 };

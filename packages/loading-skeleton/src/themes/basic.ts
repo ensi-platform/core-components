@@ -43,9 +43,7 @@ export const basicTheme: LoadingSkeletonThemeType<typeof LoadingSkeletonVariants
                 content: '""',
                 display: disableAnimation ? 'none' : 'block',
                 position: 'absolute',
-                top: 0,
-                left: 0,
-                right: 0,
+                inset: 0,
                 height: '100%',
                 backgroundRepeat: 'no-repeat',
                 ...extractCSSOption(variantedHighlightColor, variant),
@@ -59,25 +57,28 @@ export const basicTheme: LoadingSkeletonThemeType<typeof LoadingSkeletonVariants
             },
         };
     },
-    wrapper: ({ count, verticalStep, height, width }) => {
+    wrapper: ({ count, verticalStep, height, width, asLayoutItem }) => {
         const preparedHeight = typeof height === 'number' ? height : prepareSize(height as string);
         const preparedWidth = typeof width === 'number' ? width : prepareSize(width as string);
 
         return {
             ...(count && count <= 1 && { lineHeight: 1 }),
-            ...(verticalStep && {
-                '& > span > span:not(:first-child)': {
-                    marginTop: verticalStep,
-                },
-            }),
+
+            ...(!asLayoutItem &&
+                verticalStep && {
+                    '&:not(:first-child)': {
+                        marginTop: verticalStep,
+                    },
+                }),
+
             ...(height && {
                 '& > span': {
                     display: 'block',
-                    height: '100%',
+                    height: preparedHeight ?? '100%',
                     width: '100%',
                 },
-                height: preparedHeight,
             }),
+
             width: preparedWidth ?? '100%',
         };
     },

@@ -11,3 +11,11 @@ export const isValidSize = (size: CSSProperties['width']) => {
     if (size === undefined || size === '') return true;
     return sizeRegexp.test(size);
 };
+
+export const prepareCount = (count: number) => {
+    const floor = Math.floor(count);
+    const rest = count - floor;
+    const counts = new Array(floor).fill(1);
+
+    return rest ? [...counts, rest] : counts;
+};
