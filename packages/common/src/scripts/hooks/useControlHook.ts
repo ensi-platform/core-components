@@ -1,15 +1,15 @@
 import { type ChangeEvent, useCallback } from 'react';
-import { useWatch } from 'react-hook-form';
+import { useFormContext, useWatch } from 'react-hook-form';
 
 const useCheckFormWatch = (name: string) => {
+    const context = useFormContext();
     let formChecked;
 
-    try {
+    if (context) {
         // eslint-disable-next-line react-hooks/rules-of-hooks
         formChecked = useWatch({ name });
-    } catch (e) {
-        console.error('form not found');
     }
+
     return formChecked;
 };
 
