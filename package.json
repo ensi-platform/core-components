@@ -31,7 +31,8 @@
         "generate-icons-export": "cd packages/common && node tools/generateIconsExport.js && cd ../../",
         "build": "./bin/build.sh",
         "build-component": "./bin/build-component.sh",
-        "create-package": "node tools/create-package.js"
+        "create-package": "node tools/create-package.js",
+        "link": "./bin/linker.sh"
     },
     "dependencies": {
         "@emotion/babel-preset-css-prop": "^11.11.0",
