@@ -15,10 +15,10 @@ export { checkboxThemes, CheckboxSizeEnum, CheckboxVariantEnum };
 export const FormCheckbox = forwardRef<HTMLLabelElement, IFormCheckboxProps>(
     ({ value, onChange: onChangeProp, setFieldValue, field, fieldState, ...props }, ref) => (
         <CheckboxFormWrapper
-            setFieldValue={setFieldValue}
+            value={value}
             field={field}
             fieldState={fieldState}
-            value={value}
+            setFieldValue={setFieldValue}
             onChange={onChangeProp}
         >
             {({ onChange, id, checked }) => (

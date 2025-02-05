@@ -26,7 +26,7 @@ export interface ICheckboxWrapperReturn {
 export interface ICheckboxWrapperProps extends Partial<IFieldWrapperProps<CheckboxValueType>> {
     value?: string;
     children: (params: ICheckboxWrapperReturn) => ReactNode;
-    onChange?: ChangeEventHandler;
+    onChange?: ChangeEventHandler<HTMLInputElement>;
 }
 
 export interface ICheckboxState {
