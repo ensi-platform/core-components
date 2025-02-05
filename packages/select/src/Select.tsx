@@ -26,15 +26,19 @@ export const Select = forwardRef<HTMLDivElement, SelectProps>(
         },
         ref
     ) => {
-        const clearProps = useSelectClear({
-            closeOnClear,
-            onClearClick:
+        const onClearClick = useMemo(
+            () =>
                 onClear ||
                 (() => {
                     setTimeout(() => {
                         setFieldValue?.(null);
                     }, 0);
                 }),
+            [field, onClear]
+        );
+        const clearProps = useSelectClear({
+            closeOnClear,
+            onClearClick,
             disabled: props.disabled,
         });
 
