@@ -14,14 +14,20 @@ export const basicTheme: CheckboxThemeType = {
     label: ({ align, disabled }) => ({
         display: 'inline-flex',
         alignItems: align === 'center' ? 'center' : 'flex-start',
-        cursor: 'pointer',
         ...typography('bodySm'),
         color: colors.black,
+        cursor: 'pointer',
         transition: 'color ease 300ms',
 
         ...(disabled && {
             color: colors.grey600,
             cursor: 'not-allowed',
+        }),
+
+        ...(!disabled && {
+            ':hover input + span': {
+                borderColor: colors.primary,
+            },
         }),
     }),
 
@@ -51,16 +57,10 @@ export const basicTheme: CheckboxThemeType = {
             borderColor: colors.primary,
         }),
 
-        ...(disabled
-            ? {
-                  borderColor: colors?.grey400,
-                  background: colors?.grey200,
-              }
-            : {
-                  ':hover': {
-                      borderColor: colors.primary,
-                  },
-              }),
+        ...(disabled && {
+            borderColor: colors?.grey400,
+            background: colors?.grey200,
+        }),
     }),
 
     icon: {
