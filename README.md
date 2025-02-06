@@ -122,7 +122,78 @@ yarn link @types/react
 
 ---
 
-### Publish a new version
+## Restoring LIB and REP to Original State
+
+After completing your work, it's important to return both the LIB and REP to their original states.
+
+You can do this in two ways: manually or using the unlinking script (recommended).
+
+### Unlinking via script (recommended)
+
+Simply run the following command:
+
+```bash
+yarn run unlink
+```
+
+For detailed output, use the --verbose (-v) flag:
+
+```bash
+yarn run unlink --verbose
+```
+
+If you don't want to reinstall some dependencies after unlinking, use the --no-repack (-nr) flag:
+
+```bash
+yarn run unlink --no-repack
+```
+
+### Manually unlinking
+
+#### Step 1: Unlink @ensi-platform/core-components from REP
+
+Navigate to the REP directory and run:
+
+```bash
+yarn unlink @ensi-platform/core-components
+```
+
+#### Step 2: Unregister `react` and `@types/react` links
+
+Navigate to the REP/node_modules/react directory and run:
+
+```bash
+yarn unlink
+```
+
+#### Step 3: Unlink `react` and `@types/react` from LIB
+
+Navigate to the LIB directory and run:
+
+```bash
+yarn unlink react
+yarn unlink @types/react
+```
+
+#### Step 4: Unregister `@ensi-platform/core-components` link
+
+Navigate to the LIB/dist directory and run:
+
+```bash
+yarn unlink
+```
+
+#### Step 5: Reinstall dependencies
+
+After unlinking to restore initial LIB and REP node_modules you need to reinstall dependencies.
+
+Run the following command in both the LIB and REP directories:
+
+```bash
+yarn repack
+```
+
+## Publish a new version
 
 After review approval and merging task-branch to master, you should publish a new version.
 
@@ -165,7 +236,7 @@ git push origin --tags
 
 ---
 
-### Creating a new package
+## Creating a new package
 
 It is **recommended** to use create-package.js script to create a new package
 
