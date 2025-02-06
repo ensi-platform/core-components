@@ -14,4 +14,4 @@ export * from './components/TypedField/types';
 export * from './components/Reset';
 export * from './components/Reset/types';
 
-export { useFormContext } from 'react-hook-form';
+export { useFormContext, useFormState, useController, useWatch, useFieldArray } from 'react-hook-form';
