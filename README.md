@@ -4,13 +4,13 @@ This React component library is designed for use in Ensi frontend services. It m
 
 ---
 
-### How and where to get accesses
+## How and where to get accesses
 
 For accesses to the [ensi-platform at npmjs.com](https://www.npmjs.com/org/ensi-platform) oraganization, contact the resource manager.
 
 ---
 
-### How to work with LIB
+## How to work with LIB
 
 After cloning the repository, install the `yarn` dependencies (Node 18.18+)
 
@@ -29,9 +29,60 @@ P.s. build.bat for Windows is outdated and not debugged, there may be problems.
 
 ## Start working on the task
 
-Next, let's describe the process of working with this library (hereinafter LIB) and testing it in another repository/project (hereinafter REP).
+Next, let's describe the process of working with this library (hereinafter **LIB**) and testing it in another repository/project (hereinafter **REP**).
 
-To customize the LIB for local integration with REP, follow these steps:
+To customize the LIB for local integration with REP, you must link following dependencies:
+
+For LIB:
+- `react`
+- `@types/react`
+
+For REP:
+- `@ensi-platform/core-components`
+
+Ensure that the versions of `@ensi-platform/core-components` in both LIB and REP are identical.
+
+You can link the LIB to the REP in two ways: manually or using the linking script (recommended).
+
+### Linking via script (recommended)
+
+#### Step 1: Configure path to REP
+
+By default, the script assumes that LIB and REP are located in the same parent directory. If this is not the case, create a `linker.config.json` file based on the `linker.config.json.example` file in the root of LIB.
+
+In the `linker.config.json`, set the `"frontendPath"` key to the absolute path of REP. If you leave this value empty or delete it, the script will attempt to link assuming LIB and REP are in the same directory.
+
+To get the absolute path to REP, navigate to the REP directory and run the following command:
+
+```bash
+pwd
+```
+
+Example `linker.config.json`:
+
+```json
+{
+  "frontendPath": "/absolute/path/to/your/repo"
+}
+```
+
+####  Step 2: Run script
+
+Run the following command:
+
+```bash
+yarn run link
+```
+
+The script will inform you of success or display any errors if they occur.
+
+By default, the script suppresses the console output of yarn commands. To run the script with detailed logs, use the following command:
+
+```bash
+yarn run link --verbose
+```
+
+### Manually linking
 
 #### Step 1: Create a symbolic link for the LIB
 
@@ -71,7 +122,79 @@ yarn link @types/react
 
 ---
 
-### Publish a new version
+## Restoring LIB and REP to Original State
+
+After completing your work, it's important to return both the LIB and REP to their original states.
+
+You can do this in two ways: manually or using the unlinking script (recommended).
+
+### Unlinking via script (recommended)
+
+Simply run the following command:
+
+```bash
+yarn run unlink
+```
+
+For detailed output, use the --verbose (-v) flag:
+
+```bash
+yarn run unlink --verbose
+```
+
+If you don't want to reinstall some dependencies after unlinking, use the --no-repack (-nr) flag:
+
+```bash
+yarn run unlink --no-repack
+```
+
+### Manually unlinking
+
+#### Step 1: Unlink @ensi-platform/core-components from REP
+
+Navigate to the REP directory and run:
+
+```bash
+yarn unlink @ensi-platform/core-components
+```
+
+#### Step 2: Unregister `react` and `@types/react` links
+
+Navigate to the REP/node_modules directory and run:
+
+```bash
+yarn unlink --cwd react
+yarn unlink --cwd @types/react
+```
+
+#### Step 3: Unlink `react` and `@types/react` from LIB
+
+Navigate to the LIB directory and run:
+
+```bash
+yarn unlink react
+yarn unlink @types/react
+```
+
+#### Step 4: Unregister `@ensi-platform/core-components` link
+
+Navigate to the LIB/dist directory and run:
+
+```bash
+yarn unlink
+```
+
+#### Step 5: Reinstall dependencies
+
+After unlinking to restore initial LIB and REP node_modules you need to reinstall dependencies.
+
+Run the following command in both the LIB and REP directories:
+
+```bash
+yarn repack
+```
+
+## Publish a new version
 
 After review approval and merging task-branch to master, you should publish a new version.
 
@@ -114,7 +237,7 @@ git push origin --tags
 
 ---
 
-### Creating a new package
+## Creating a new package
 
 It is **recommended** to use create-package.js script to create a new package
 
