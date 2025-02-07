@@ -160,10 +160,11 @@ yarn unlink @ensi-platform/core-components
 
 #### Step 2: Unregister `react` and `@types/react` links
 
-Navigate to the REP/node_modules/react directory and run:
+Navigate to the REP/node_modules directory and run:
 
 ```bash
-yarn unlink
+yarn unlink --cwd react
+yarn unlink --cwd @types/react
 ```
 
 #### Step 3: Unlink `react` and `@types/react` from LIB
