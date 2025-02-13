@@ -19,7 +19,6 @@
     "dependencies": {
         "react-hook-form": "^7.53.2",
         "react-fast-compare": "^3.2.2",
-        "@greensight/gds": "3.0.14",
         "@hookform/resolvers": "^3.9.1",
         "@ensi-platform/core-components-common": "^1.0.0",
         "@ensi-platform/core-components-input": "^1.0.0",

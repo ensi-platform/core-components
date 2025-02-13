@@ -32,31 +32,39 @@ export interface ICheckboxWrapperProps extends Partial<IFieldWrapperProps<Checkb
 export interface ICheckboxState {
     /**
      * Manage checkbox checked state (native prop)
+     * @default false
      */
     checked?: boolean;
 
     /**
      * Manage checkbox indeterminate state
+     * @default false
      */
     indeterminate?: boolean;
 
     /**
-     * Checkbox vertical alignment relative to its label
+     * Checkbox vertical alignment relative to its label. Available values:
+     * * `start` align-items: flex-start;
+     * * `center` align-items: center;
+     * @default 'start'
      */
     align?: Align;
 
     /**
      * Use 100% of parent width
+     * @default false
      */
     block?: boolean;
 
     /**
      * Manage focus(element select) state
+     * @default false
      */
     focused?: boolean;
 
     /**
      * Is input disabled
+     * @default false
      */
     disabled?: boolean;
 
@@ -72,6 +80,7 @@ export interface ICheckboxState {
 
     /**
      * Hide error message
+     * @default false
      */
     hideError?: boolean;
 }

@@ -1,4 +1,4 @@
-import type { ButtonProps } from '@greensight/gds';
+import type { ButtonProps } from '@ensi-platform/core-components-common';
 
 import type { DeepPartial } from 'react-hook-form';
 

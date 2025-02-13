@@ -7,7 +7,7 @@ import {
 
 import type { FC } from 'react';
 
-import type { FormMessageProps, MessageIconProps } from './types';
+import type { FormMessageProps, IMessageIconProps } from './types';
 
 const useMessageColor = (type: FormMessageProps['type']) => {
     const { colors } = defaultTheme;
@@ -23,15 +23,13 @@ const useMessageColor = (type: FormMessageProps['type']) => {
     }
 };
 
-const MessageIcon: FC<MessageIconProps> = ({ type, ...props }) => {
+const MessageIcon: FC<IMessageIconProps> = ({ type, ...props }) => {
     switch (type) {
         case 'warning': {
-            // @ts-ignore
             return <WarningIcon {...props} />;
         }
         case 'error':
         default: {
-            // @ts-ignore
             return <ErrorIcon {...props} />;
         }
     }

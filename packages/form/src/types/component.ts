@@ -22,14 +22,17 @@ export interface IFormProps<T extends FieldValues>
     children?: ReactNode | ((props: UseFormReturn<T, unknown>) => ReactNode);
     /**
      * Enable reinitialize on initialValues change
+     * @default false
      */
     enableReinitialize?: boolean;
     /**
-     * Render form tag
+     * Whether to render form tag
+     * @default true
      */
     isForm?: boolean;
     /**
      * Disabled flag
+     * @default false
      */
     disabled?: boolean;
     /**
