@@ -36,12 +36,11 @@ export const useFieldHook = ({ name }: Pick<IFormFieldWrapperProps, 'name'>) => 
      */
     const setFieldValue = useCallback(
         (value: NativeFieldValue) => {
-            field.onChange();
-            setValue(name, value);
+            field.onChange(value);
             onChange(name, value);
             field.onBlur();
         },
-        [field, name, onChange, setValue]
+        [field, name, onChange]
     );
 
     /**
