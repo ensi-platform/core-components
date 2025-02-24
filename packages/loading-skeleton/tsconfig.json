@@ -1,5 +1,5 @@
 {
-    "include": ["src", "../../typings", "src/loading-skeleton.stories.tsx"],
+    "include": ["src", "../../typings", "src/LoadingSkeleton.stories.tsx"],
     "extends": "../../tsconfig.json",
     "compilerOptions": {
         "outDir": "dist",

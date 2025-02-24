@@ -8,7 +8,7 @@ import README from '../README.md';
 import { Accordion } from './index';
 
 export default {
-    title: 'Controls / Accordion',
+    title: 'Components / Accordion',
     component: Accordion,
     parameters: {
         docs: {

@@ -19,8 +19,8 @@ function handleTouchStart() {
 }
 
 /**
- * Навешивает несколько глобальных обработчиков и отслеживает метод ввода - мышь или клавиатура.
- * Note: Повторный вызов функции не дублирует обработчики
+ * Add several global handlers and track the input method - mouse or keyboard
+ * Note: calling the function again does not duplicate the handlers
  */
 function addGlobalListeners() {
     document.addEventListener('keydown', handleKeyDown);
@@ -29,10 +29,10 @@ function addGlobalListeners() {
 }
 
 /**
- * Хук устанавливает обработчик события на focusin и focusout
- * по конкретному типу события
- * @param node Элемент на котором установится обработчик (default = document)
- * @param inputMethod Если параметр не задан, установит обработчик по любому событию фокуса
+ * Hook sets the event handler to focusin and focusout
+ * for a specific type of event
+ * @param node The element on which the handler will be installed (default = document)
+ * @param inputMethod If the parameter is not specified, set a handler for any focus event
  */
 export function useFocus<T extends HTMLElement>(
     ref: MutableRefObject<T> | RefObject<T>,

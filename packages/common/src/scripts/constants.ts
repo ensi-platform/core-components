@@ -1,3 +1,5 @@
+import type { CSSObject } from '@emotion/react';
+
 import { declOfNum } from './helpers';
 
 export const MAX_AGE_NEVER = 2 ** 31 - 1;
@@ -74,3 +76,5 @@ export const FileSizes = {
     MB2: 1024 * 1000 * 2,
     MB10: 1024 * 1000 * 10,
 };
+
+export const emptyCSS: CSSObject = {};

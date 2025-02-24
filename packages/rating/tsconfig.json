@@ -1,5 +1,5 @@
 {
-    "include": ["src", "../../typings", "src/rating.stories.tsx"],
+    "include": ["src", "../../typings", "src/Rating.stories.tsx"],
     "extends": "../../tsconfig.json",
     "compilerOptions": {
         "outDir": "dist",

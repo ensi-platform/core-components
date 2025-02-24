@@ -1,14 +1,16 @@
-import { Button, scale } from '@ensi-platform/core-components-common';
-import { Form } from '@ensi-platform/core-components-form';
+import { Button, ErrorMessages, scale } from '@ensi-platform/core-components-common';
+import { Form, FormField, FormFieldWrapper, FormReset } from '@ensi-platform/core-components-form';
 import type { SelectItem, SelectPayload } from '@ensi-platform/core-components-select';
 
+import { action } from '@storybook/addon-actions';
 import type { StoryObj } from '@storybook/react';
 
+import * as Yup from 'yup';
 import { type ComponentProps, type SetStateAction, useCallback, useMemo, useState } from 'react';
 
 import README from '../README.md';
-import { SimpleSelectWithTags } from './SelectWithTags';
-import { SelectWithTags, type SelectWithTagsProps } from './index';
+import { SelectWithTags, SimpleSelectWithTags } from './SelectWithTags';
+import { type SelectWithTagsProps } from './types';
 
 const optionItems: SelectItem[] = [
     {
@@ -163,21 +165,29 @@ export const WithForm: StoryObj<ComponentProps<typeof SelectWithTags>> = {
     render: ({ ...args }) => (
         <div style={{ width: 500, minHeight: 800 }}>
             <Form
-                initialValues={{ selectValue: null, otherField: '' }}
-                onSubmit={values => {
-                    console.log('SUBMIT FORM VALUES', values);
-                }}
+                initialValues={{ selectValue: [42, 131], otherField: '' }}
+                validationSchema={Yup.object().shape({
+                    selectValue: Yup.array().min(1, ErrorMessages.REQUIRED).required(ErrorMessages.REQUIRED),
+                })}
+                onSubmit={action('onSubmit')}
             >
-                <Form.Field name="selectValue" label="SelectWithTags" required>
+                <FormFieldWrapper name="selectValue" label="SelectWithTags" required>
                     <SelectWithTags options={args.options} />
-                </Form.Field>
+                </FormFieldWrapper>
                 <br />
-                <Form.Field name="otherField" placeholder="При вводе в это поле нет лагов перерендера" size="md" />
+                <FormField
+                    name="otherField"
+                    placeholder="There are no re-render lags when entering this field"
+                    size="md"
+                />
+
                 <br />
-                <Button type="submit">Отправить</Button>
-                <Button type="reset" theme="secondary">
-                    Сбросить
+                <Button type="submit" style={{ marginRight: scale(2) }}>
+                    Submit
                 </Button>
+                <FormReset type="reset" theme="secondary">
+                    Reset
+                </FormReset>
             </Form>
         </div>
     ),

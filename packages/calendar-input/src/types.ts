@@ -1,5 +1,5 @@
 import type { CalendarProps } from '@ensi-platform/core-components-calendar';
-import type { FormFieldHelperProps } from '@ensi-platform/core-components-common';
+import type { IFieldWrapperProps } from '@ensi-platform/core-components-form';
 import type { InputProps } from '@ensi-platform/core-components-input';
 import type { PopoverProps } from '@ensi-platform/core-components-popover';
 
@@ -34,7 +34,7 @@ export type DateSegments<T = string> = {
 
 export interface BaseCalendarInputProps
     extends Omit<InputProps, 'onChange' | 'wrapperRef'>,
-        Partial<FormFieldHelperProps<string>> {
+        Partial<IFieldWrapperProps<string>> {
     /**
      * Автоматическое исправление ввода
      *  @default true
@@ -167,7 +167,7 @@ export interface InnerDateRangeInputProps extends Omit<InnerDateInputProps, 'onC
     onComplete?: (value: string, dateFrom: Date, dateTo: Date) => void;
 }
 
-export interface InnerTimeInputProps extends Omit<InputProps, 'onChange'>, Partial<FormFieldHelperProps<string>> {
+export interface InnerTimeInputProps extends Omit<InputProps, 'onChange'>, Partial<IFieldWrapperProps<string>> {
     /**
      * Автоматическое исправление ввода
      *  @default true

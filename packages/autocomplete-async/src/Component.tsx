@@ -14,7 +14,7 @@ import deepEqual from 'react-fast-compare';
 import { BaseAutocomplete } from './components';
 import { DEBOUNCE_TIMEOUT } from './scripts/constants';
 import { useLazyLoading } from './scripts/hooks';
-import type { AutocompleteAsyncPropsType } from './types';
+import type { AutocompleteAsyncPropsType, AutocompleteAsyncValue } from './types';
 
 export const AutocompleteAsync = forwardRef<HTMLInputElement, AutocompleteAsyncPropsType>(
     (
@@ -22,7 +22,6 @@ export const AutocompleteAsync = forwardRef<HTMLInputElement, AutocompleteAsyncP
             collapseTagList = false,
             multiple = false,
             clearOnSelect = true,
-            meta,
             field,
             onOpen,
             onChange,
@@ -31,6 +30,8 @@ export const AutocompleteAsync = forwardRef<HTMLInputElement, AutocompleteAsyncP
             asyncSearchFn,
             onOptionsChange,
             fieldProps = {},
+            error,
+            setFieldValue,
             extractKeyFromValue = val => `${val}`,
             onClear,
             ...props
@@ -210,11 +211,7 @@ export const AutocompleteAsync = forwardRef<HTMLInputElement, AutocompleteAsyncP
                         if (!e.currentTarget.value) {
                             reset();
 
-                            field?.onChange({
-                                target: {
-                                    value: null,
-                                },
-                            });
+                            setFieldValue?.(null);
                         }
                     }}
                     selected={selectedOptions}
@@ -233,15 +230,11 @@ export const AutocompleteAsync = forwardRef<HTMLInputElement, AutocompleteAsyncP
                             setValuesMap(new Map(valuesMapRef.current));
 
                             const newValue = payload.selected.map(e => (typeof e === 'string' ? e : e.value))[0];
-
-                            field?.onChange({
-                                target: {
-                                    value: newValue,
-                                },
-                            });
+                            if (newValue === undefined) setFieldValue?.(null);
+                            else setFieldValue?.(newValue);
                         }
                     }}
-                    error={meta?.error}
+                    error={error}
                     fieldProps={{
                         ...fieldProps,
                         inputProps: {
@@ -258,11 +251,7 @@ export const AutocompleteAsync = forwardRef<HTMLInputElement, AutocompleteAsyncP
                                         onClick={e => {
                                             e.stopPropagation();
 
-                                            field?.onChange({
-                                                target: {
-                                                    value: null,
-                                                },
-                                            });
+                                            setFieldValue?.(null);
                                             reset();
 
                                             wasSettingValueRef.current = true;
@@ -332,7 +321,9 @@ export const AutocompleteAsync = forwardRef<HTMLInputElement, AutocompleteAsyncP
                     Option={(optionProps: OptionProps) =>
                         lazyProps.Option({
                             ...optionProps,
-                            selected: selectedValues.includes(optionProps.option.value),
+                            selected: optionProps.option.value
+                                ? selectedValues.includes(optionProps.option.value)
+                                : false,
                         })
                     }
                     {...props}
@@ -364,23 +355,17 @@ export const AutocompleteAsync = forwardRef<HTMLInputElement, AutocompleteAsyncP
                     if (!field) return;
 
                     if (payload.selected === null && multiple) {
-                        field.onChange({
-                            target: {
-                                value: [],
-                            },
-                        });
+                        setFieldValue?.([]);
                     } else {
-                        field.onChange({
-                            target: {
-                                value: payload.selected?.map(e => (typeof e === 'string' ? e : e.value)),
-                            },
-                        });
+                        const newValue = (payload.selected?.map(e => (typeof e === 'string' ? e : e.value)) ||
+                            []) as AutocompleteAsyncValue;
+                        setFieldValue?.(newValue);
                     }
                 }}
                 collapseTagList={collapseTagList}
                 resetOnChange={false}
                 resetOnClose={false}
-                error={meta?.error}
+                error={error}
                 fieldProps={{
                     ...fieldProps,
                     ...(isLoading && {

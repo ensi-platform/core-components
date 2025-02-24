@@ -1,3 +1,4 @@
+import type { IFieldWrapperProps } from '@ensi-platform/core-components-form';
 import type { FormControlProps } from '@ensi-platform/core-components-form-control';
 import type { PopoverProps } from '@ensi-platform/core-components-popover';
 
@@ -10,7 +11,7 @@ import type { FieldProps } from '../components/Field/types';
 import type { OptgroupProps } from '../components/Optgroup/types';
 import type { OptionProps } from '../components/Option/types';
 import type { OptionsListProps } from '../components/OptionsList/types';
-import type { SelectItem, SelectPayload } from './common';
+import type { SelectItem, SelectItemValueType, SelectPayload } from './common';
 import type { SelectThemeProps } from './themes';
 
 export interface SelectParts {
@@ -174,6 +175,7 @@ export interface SelectPopover {
 
 export interface SelectProps
     extends Omit<FormControlProps, 'theme' | 'size' | 'variant' | 'onChange' | 'onFocus' | 'onBlur'>,
+        Partial<IFieldWrapperProps<SelectItemValueType | SelectItemValueType[]>>,
         Partial<SelectThemeProps>,
         SelectPopover,
         SelectHandlers,

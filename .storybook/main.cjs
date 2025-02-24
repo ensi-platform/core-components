@@ -16,8 +16,8 @@ const getAbsolutePath = value => {
 
 module.exports = {
     stories: [
-        './intro/welcome.stories.mdx',
-        './intro/*.stories.mdx',
+        // './intro/welcome.stories.mdx',
+        // './intro/*.stories.mdx',
         '../packages/*/src/*.stories.mdx',
         '../packages/*/src/*.stories.tsx',
     ],

@@ -6,7 +6,7 @@ import README from '../README.md';
 import { Picture } from './index';
 
 export default {
-    title: 'Controls / Picture',
+    title: 'Components / Picture',
     component: Picture,
     args: {
         alt: 'замещающий текст',

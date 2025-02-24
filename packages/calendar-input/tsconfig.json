@@ -1,5 +1,5 @@
 {
-    "include": ["src", "../../typings", "src/calendar-input.stories.tsx"],
+    "include": ["src", "../../typings", "src/CalendarInput.stories.tsx"],
     "extends": "../../tsconfig.json",
     "compilerOptions": {
         "outDir": "dist",

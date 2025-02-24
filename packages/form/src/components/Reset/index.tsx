@@ -3,9 +3,12 @@ import { Button } from '@ensi-platform/core-components-common';
 import type { MouseEvent } from 'react';
 import { useFormContext } from 'react-hook-form';
 
-import type { FormResetProps } from './types';
+import type { IFormResetProps } from './types';
 
-const FormReset = <T extends any>({ children, onClick, initialValues, ...props }: FormResetProps<T>) => {
+/**
+ * Button with RHF's reset logic on click.
+ */
+export const FormReset = <T,>({ children, onClick, initialValues, ...props }: IFormResetProps<T>) => {
     const { reset } = useFormContext();
 
     return (

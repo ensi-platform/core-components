@@ -231,6 +231,7 @@ export function useLazyLoading({
                 .fill(0)
                 .map((_, key) => ({
                     label: `loading-${key}`,
+                    value: '',
                     disabled: true,
                     content: skeleton,
                     isPreloader: true,

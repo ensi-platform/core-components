@@ -15,6 +15,7 @@
         { "path": "../input" },
         { "path": "../select" },
         { "path": "../form-control" },
+        { "path": "../form" },
         { "path": "../loading-skeleton" }
     ]
 }

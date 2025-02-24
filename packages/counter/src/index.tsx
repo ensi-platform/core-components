@@ -7,7 +7,6 @@ import { counterThemes } from './themes/defaultTheme';
 import type { CounterProps, CounterThemeState } from './types';
 
 export const Counter = ({
-    name,
     value,
     label,
     step = 1,
@@ -17,7 +16,8 @@ export const Counter = ({
     view = 'horizontal',
     hint,
     field,
-    meta,
+    setFieldValue,
+    error,
     size = 'md',
     variant = 'primary',
     theme = counterThemes.basic,
@@ -40,14 +40,16 @@ export const Counter = ({
 
     const [innerValue, setInnerValue] = useState<number | ''>('');
 
+    const formValue = field?.value || value;
+
     useEffect(() => {
-        if (value) setInnerValue(value);
-    }, [value, innerValue]);
+        if (formValue) setInnerValue(formValue);
+    }, [formValue, innerValue]);
 
     const changeValue = (newValue: number) => {
         setInnerValue(newValue);
         if (onChange) onChange(newValue);
-        if (field?.onChange) field.onChange({ target: { value: newValue } });
+        setFieldValue?.(newValue);
     };
 
     const handleInputBlur = ({ target }: ChangeEvent<HTMLInputElement>) => {
@@ -71,7 +73,7 @@ export const Counter = ({
         <FormControl
             label={label}
             hint={hint}
-            error={meta?.error}
+            error={error}
             fieldCSS={{
                 background: 'none',
                 border: 'none',
@@ -102,8 +104,6 @@ export const Counter = ({
                     <input
                         type="number"
                         inputMode="numeric"
-                        name={name}
-                        id={name}
                         {...field}
                         {...props}
                         value={innerValue}

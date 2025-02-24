@@ -1,4 +1,4 @@
-import type { FormFieldHelperProps } from '@ensi-platform/core-components-common';
+import type { IFieldWrapperProps } from '@ensi-platform/core-components-form';
 import type { FormControlProps } from '@ensi-platform/core-components-form-control';
 
 import type { CSSObject } from '@emotion/react';
@@ -29,7 +29,7 @@ interface ITextareaInputProps {
     /**
      * Отображение ошибки
      */
-    error?: ReactNode | boolean;
+    error?: string;
     /**
      * Текст подсказки
      */
@@ -88,7 +88,7 @@ interface ITextareaFieldProps {
 
 export interface ITextareaProps
     extends Omit<HTMLProps<HTMLDivElement>, 'ref' | 'size' | 'value' | 'label'>,
-        Partial<FormFieldHelperProps<string>>,
+        Partial<IFieldWrapperProps<string>>,
         ITextareaInputProps,
         ITextareaFieldProps {
     /** Minimum number of visible rows */

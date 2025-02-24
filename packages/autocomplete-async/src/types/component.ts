@@ -1,4 +1,4 @@
-import type { FormFieldHelperProps } from '@ensi-platform/core-components-common';
+import type { IFieldWrapperProps } from '@ensi-platform/core-components-form';
 import type { OptionProps, SelectItem } from '@ensi-platform/core-components-select';
 import type { SelectWithTagsProps } from '@ensi-platform/core-components-select-with-tags';
 
@@ -44,14 +44,14 @@ export interface AutocompleteAsyncHandlers {
     onClear?: () => void;
 }
 
-type ValOrArr<T> = T | T[];
-type AutocompleteAsyncValue = ValOrArr<string | number | object | null>;
+type ExtendedValue<T> = T | T[] | Record<string, T> | Record<string, T>[];
+export type AutocompleteAsyncValue = ExtendedValue<string | number | boolean | null>;
 
 export type AutocompleteAsyncPropsType = Omit<
     SelectWithTagsProps,
     'options' | 'selected' | 'value' | 'onInput' | 'onChange'
 > &
-    Partial<FormFieldHelperProps<AutocompleteAsyncValue>> &
+    Partial<IFieldWrapperProps<AutocompleteAsyncValue>> &
     AutocompleteAsyncHandlers &
     AutocompleteAsyncState & {
         asyncSearchFn: IUseLazyLoadingProps['optionsFetcher'];

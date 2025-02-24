@@ -1,3 +1,7 @@
+import { Button } from '@ensi-platform/core-components-common';
+import { Form, FormFieldWrapper, FormReset } from '@ensi-platform/core-components-form';
+
+import { action } from '@storybook/addon-actions';
 import type { Meta, StoryObj } from '@storybook/react';
 
 import { type ChangeEvent, type ComponentProps, useState } from 'react';
@@ -6,7 +10,7 @@ import README from '../README.md';
 import { Switcher, type SwitcherProps } from './index';
 
 export default {
-    title: 'Controls / Form / Switcher',
+    title: 'Components / Switcher',
     component: Switcher,
     parameters: {
         docs: {
@@ -35,4 +39,26 @@ export const Basic: StoryObj<ComponentProps<typeof Switcher>> = {
             </>
         );
     },
+};
+
+export const WithForm: StoryObj<ComponentProps<typeof Switcher>> = {
+    render: () => (
+        <Form
+            initialValues={{
+                activity: false,
+            }}
+            onSubmit={action('submit')}
+        >
+            <FormFieldWrapper name="activity">
+                <Switcher>Activity</Switcher>
+            </FormFieldWrapper>
+            <br />
+
+            <br />
+            <Button type="submit" size="sm">
+                Submit
+            </Button>
+            <FormReset>Reset</FormReset>
+        </Form>
+    ),
 };

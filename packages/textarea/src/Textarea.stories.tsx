@@ -1,5 +1,10 @@
+import { Button, ErrorMessages, scale } from '@ensi-platform/core-components-common';
+import { Form, FormFieldWrapper, FormReset } from '@ensi-platform/core-components-form';
+
+import { action } from '@storybook/addon-actions';
 import type { StoryObj } from '@storybook/react';
 
+import * as Yup from 'yup';
 import type { ComponentProps } from 'react';
 
 import README from '../README.md';
@@ -42,4 +47,27 @@ export const Basic: StoryObj<Args> = {
         maxRows: { control: 'range' },
     },
     render: args => <Textarea {...args} />,
+};
+
+export const WithForm: StoryObj<ComponentProps<typeof Textarea>> = {
+    render: args => (
+        <div style={{ width: 500, minHeight: 800 }}>
+            <Form
+                initialValues={{ text: 'Default value' }}
+                validationSchema={Yup.object().shape({
+                    text: Yup.string().min(5, ErrorMessages.MIN_SYMBOLS(3)).required(ErrorMessages.REQUIRED),
+                })}
+                onSubmit={action('onSubmit')}
+            >
+                <FormFieldWrapper name="text" label="Enter some text">
+                    <Textarea {...args} />
+                </FormFieldWrapper>
+                <br />
+                <Button type="submit" style={{ marginRight: scale(2) }}>
+                    Submit
+                </Button>
+                <FormReset theme="secondary">Reset</FormReset>
+            </Form>
+        </div>
+    ),
 };
