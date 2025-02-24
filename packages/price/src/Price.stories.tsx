@@ -22,9 +22,8 @@ export default {
             table: {
                 type: { summary: 'number' },
             },
-            required: true,
             description: 'Price value.',
-            summary: 'number',
+            type: { name: 'number', required: true },
         },
         unit: {
             table: {

@@ -12,7 +12,7 @@ const { colors } = defaultTheme;
 export const getValue = ({ selected }: { selected?: SelectItem[] }) => {
     if (!selected) return null;
 
-    const options = Array.isArray(selected) ? selected : [selected] || [];
+    const options = !Array.isArray(selected) && selected ? [selected] : selected || [];
 
     if (!options.length) return null;
 

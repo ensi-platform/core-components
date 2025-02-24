@@ -1,5 +1,5 @@
 {
-    "include": ["src", "../../typings", "src/counter.stories.tsx"],
+    "include": ["src", "../../typings", "src/Counter.stories.tsx"],
     "extends": "../../tsconfig.json",
     "compilerOptions": {
         "outDir": "dist",

@@ -18,30 +18,33 @@ export * from './types';
 const emptyCSS: CSSObject = {};
 
 export const Rating = ({
+    name = 'rating',
+    label = '',
+    error,
     value: propsValue,
-    onChange,
-    onHoverChange,
+    field,
+    setFieldValue,
     getLabelText = val => `${val} звезд.`,
+    precision = 1,
     showReadOnlyEmptyStar = true,
     disabled = false,
     readOnly = false,
     className,
-    name = 'rating',
-    precision = 1,
     size = 'sm',
+    theme: themeProp = 'basic',
+    variant = 'primary',
+    StarIcon = IconStar,
     containerCSS = emptyCSS,
     fractionWrapperCSS = emptyCSS,
     iconCSS = emptyCSS,
     iconWrapperCSS = emptyCSS,
-    theme: themeProp = 'basic',
-    variant = 'primary',
-    label = '',
-    StarIcon = IconStar,
     onMouseMove,
+    onChange,
+    onHoverChange,
 }: RatingProps) => {
     const theme = typeof themeProp === 'string' ? ratingThemes[themeProp] : themeProp;
 
-    const innerValue = propsValue || 0;
+    const innerValue = field?.value || propsValue || 0;
 
     if (!onChange && !readOnly) {
         console.error('Rating component in non-readonly mode requires onChange');
@@ -149,11 +152,13 @@ export const Rating = ({
                 newValue = hoveredValue;
             }
 
+            setFieldValue?.(newValue);
+
             if (onChange) {
                 onChange({ target: { value: newValue } });
             }
         },
-        [hoveredValue, onChange]
+        [hoveredValue, onChange, setFieldValue]
     );
 
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -188,6 +193,7 @@ export const Rating = ({
     return (
         <FormControl
             label={label}
+            error={error}
             fieldCSS={{ background: 'none' }}
             ref={ref}
             onMouseMove={handleMouseMove}

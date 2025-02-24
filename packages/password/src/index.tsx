@@ -1,21 +1,17 @@
-import {
-    type FormFieldHelperProps,
-    IconSmallEye,
-    IconSmallEyeOff,
-    defaultTheme,
-} from '@ensi-platform/core-components-common';
+import { IconSmallEye, IconSmallEyeOff, defaultTheme } from '@ensi-platform/core-components-common';
+import type { IFieldWrapperProps } from '@ensi-platform/core-components-form';
 import { Input } from '@ensi-platform/core-components-input';
 
 import { type HTMLProps, useState } from 'react';
 
 const { colors } = defaultTheme;
 
-export interface PasswordProps extends HTMLProps<HTMLInputElement>, Partial<FormFieldHelperProps<string>> {
+export interface PasswordProps extends HTMLProps<HTMLInputElement>, Partial<IFieldWrapperProps<string>> {
     /** Custom icon */
     Icon?: () => JSX.Element;
 }
 
-export const Password = ({ field, meta, autoComplete = 'off', ...props }: PasswordProps) => {
+export const Password = ({ field, error, autoComplete = 'off', ...props }: PasswordProps) => {
     delete props.Icon;
     const [isVisible, setIsVisible] = useState(false);
 
@@ -26,7 +22,7 @@ export const Password = ({ field, meta, autoComplete = 'off', ...props }: Passwo
             <Input
                 value={field?.value || ''}
                 onChange={field?.onChange}
-                error={meta?.error}
+                error={error}
                 autoComplete={autoComplete}
                 type={isVisible ? 'text' : 'password'}
                 rightAddons={

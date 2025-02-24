@@ -2,7 +2,7 @@ import type { BaseThemeState, EnumLike, ExtractTypography, defaultTokens } from 
 
 import type { CSSObject } from '@emotion/react';
 
-import type { PriceThemeType } from './theme';
+import type { PriceThemeType } from './themes';
 
 export interface IPriceState {
     /**

@@ -1,4 +1,5 @@
 export {};
+
 declare const UNDEFINED_VOID_ONLY: unique symbol;
 type VoidOrUndefinedOnly = void | { [UNDEFINED_VOID_ONLY]: never };
 type TransitionFunction = () => VoidOrUndefinedOnly;

@@ -1,5 +1,5 @@
 {
-    "include": ["src", "../../typings", "src/checkbox.stories.tsx"],
+    "include": ["src", "../../typings", "src/Checkbox.stories.tsx"],
     "extends": "../../tsconfig.json",
     "compilerOptions": {
         "outDir": "dist",
@@ -12,6 +12,12 @@
     "references": [
         {
             "path": "../common"
+        },
+        {
+            "path": "../form"
+        },
+        {
+            "path": "../form-control"
         }
     ]
 }

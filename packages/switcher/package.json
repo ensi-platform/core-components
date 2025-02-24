@@ -21,5 +21,8 @@
         "tslib": "^2.6.2",
         "react-merge-refs": "1.1.0",
         "@ensi-platform/core-components-common": "^1.0.0"
+    },
+    "devDependencies": {
+        "@ensi-platform/core-components-form": "^1.0.0"
     }
 }

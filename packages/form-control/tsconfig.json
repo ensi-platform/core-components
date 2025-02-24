@@ -1,5 +1,5 @@
 {
-    "include": ["src", "../../typings", "src/form-control.stories.tsx"],
+    "include": ["src", "../../typings", "src/Form-control.stories.tsx"],
     "extends": "../../tsconfig.json",
     "compilerOptions": {
         "outDir": "dist",

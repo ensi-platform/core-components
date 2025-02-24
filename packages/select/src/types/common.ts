@@ -1,5 +1,9 @@
 import type { ReactNode } from 'react';
 
+type ExtendedValue<T> = T | Record<string, T>;
+
+export type SelectItemValueType = ExtendedValue<number | string | boolean | null>;
+
 export type SelectItem = {
     /**
      * Текстовое представление пункта
@@ -19,7 +23,7 @@ export type SelectItem = {
     /**
      * Дополнительные данные
      */
-    value?: number | string | boolean | null | Record<string, any>;
+    value: SelectItemValueType;
 
     // Опция-прелоадер
     isPreloader?: boolean;

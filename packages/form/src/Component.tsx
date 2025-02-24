@@ -2,32 +2,30 @@ import { usePrevious } from '@ensi-platform/core-components-common';
 
 import { yupResolver } from '@hookform/resolvers/yup';
 
-import { type SyntheticEvent, useCallback, useEffect, useMemo, useRef } from 'react';
+import { type BaseSyntheticEvent, useCallback, useEffect, useMemo, useRef } from 'react';
 import deepEqual from 'react-fast-compare';
-import { type FieldValues, FormProvider, useForm } from 'react-hook-form';
+import { type FieldValues, FormProvider, type NativeFieldValue, useForm } from 'react-hook-form';
 
-import FormField from './components/Field';
-import FormFieldArray from './components/FieldArray';
-import FormMessage from './components/Message';
-import FormReset from './components/Reset';
-import TypedField from './components/TypedField';
-import { FormContext } from './hooks/useForm';
-import type { FormCompositionProps, FormProps } from './types';
+import { FormContext } from './context/form';
+import type { IFormProps } from './types';
 
+/**
+ * Form - is a wrapper for RHF's form initialization logic
+ */
 export const Form = <T extends FieldValues>({
     initialValues,
     validationSchema,
-    onSubmit,
-    onReset,
     children: childrenProp,
-    enableReinitialize = false,
-    onChange,
-    isForm = true,
     mode = 'all',
     className,
-    disabled,
+    isForm = true,
+    enableReinitialize = false,
+    disabled = false,
+    onSubmit,
+    onReset,
+    onChange,
     ...props
-}: FormProps<T> & Partial<FormCompositionProps>) => {
+}: IFormProps<T>) => {
     const form = useForm<T>({
         defaultValues: initialValues,
         mode,
@@ -57,29 +55,30 @@ export const Form = <T extends FieldValues>({
     }, [enableReinitialize, initialValues, form, prevInitialValues]);
 
     const onChangeHandler = useCallback(
-        (key: string, value: any) => {
+        (key: string, value: NativeFieldValue) => {
             if (onChange) onChange(form.getValues(), form, { [key]: value });
         },
         [form, onChange]
     );
 
-    const formHandlerRef = useRef<any>();
+    const formHandlerRef = useRef<ReturnType<typeof form.handleSubmit>>();
     formHandlerRef.current = form.handleSubmit(v => onSubmit(v, form));
 
-    const onSubmitHandler = useCallback((event: SyntheticEvent) => {
+    const onSubmitHandler = useCallback((event: BaseSyntheticEvent) => {
         event.stopPropagation();
         if (formHandlerRef.current) formHandlerRef.current(event);
     }, []);
 
     const providerValue = useMemo(
-        () => ({ onChange: onChangeHandler, disabled, onSubmitHandler }),
-        [onChangeHandler, disabled, onSubmitHandler]
+        () => ({ onChange: onChangeHandler, onSubmit, disabled }),
+        [onChangeHandler, onSubmit, disabled]
     );
+
     return (
         <FormProvider {...form} reset={reset}>
             <FormContext.Provider value={providerValue}>
                 {isForm ? (
-                    <form onSubmit={onSubmitHandler} noValidate className={className}>
+                    <form className={className} onSubmit={onSubmitHandler} noValidate>
                         {children}
                     </form>
                 ) : (
@@ -90,8 +89,4 @@ export const Form = <T extends FieldValues>({
     );
 };
 
-Form.Field = FormField;
-Form.TypedField = TypedField;
-Form.Message = FormMessage;
-Form.Reset = FormReset;
-Form.FieldArray = FormFieldArray;
+export default Form;

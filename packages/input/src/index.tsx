@@ -1,9 +1,5 @@
-import {
-    IconSmallClosed as CloseIcon,
-    type FormFieldHelperProps,
-    defaultTheme,
-    scale,
-} from '@ensi-platform/core-components-common';
+import { IconSmallClosed as CloseIcon, defaultTheme, scale } from '@ensi-platform/core-components-common';
+import type { IFieldWrapperProps } from '@ensi-platform/core-components-form';
 import { FormControl, formControlThemes } from '@ensi-platform/core-components-form-control';
 
 import type { CSSObject } from '@emotion/react';
@@ -17,6 +13,7 @@ import {
     forwardRef,
     useCallback,
     useEffect,
+    useId,
     useMemo,
     useRef,
     useState,
@@ -67,7 +64,7 @@ export const BASE_INPUT_CSS: CSSObject = {
 
 const emptyStyle = {};
 
-export const Input = forwardRef<HTMLInputElement, InputProps & Partial<FormFieldHelperProps<string>>>(
+export const Input = forwardRef<HTMLInputElement, InputProps & Partial<IFieldWrapperProps<string>>>(
     (
         {
             type = 'text',
@@ -108,7 +105,6 @@ export const Input = forwardRef<HTMLInputElement, InputProps & Partial<FormField
             fieldCSS = emptyStyle,
             wrapperCSS = emptyStyle,
             field,
-            meta,
             ...restProps
         },
         ref
@@ -156,6 +152,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps & Partial<FormField
         const handleInputChange = useCallback(
             (event: ChangeEvent<HTMLInputElement>) => {
                 if (field && field.onChange) field.onChange(event);
+
                 if (onChange) {
                     onChange(event, { value: event.target.value });
                 }
@@ -239,44 +236,42 @@ export const Input = forwardRef<HTMLInputElement, InputProps & Partial<FormField
 
         const css = useMemo(() => deepmerge.all<CSSObject>([BASE_INPUT_CSS, inputCSS]), [inputCSS]);
 
-        // TODO: react 18 useId()
-        const htmlFor = restProps.id;
+        const htmlFor = useId();
 
         return (
             <FormControl
-                htmlFor={htmlFor}
                 ref={wrapperRef}
+                label={label}
+                hint={hint}
+                error={error}
+                htmlFor={htmlFor}
+                labelWrap={labelWrap}
+                leftAddons={leftAddons}
+                rightAddons={renderRightAddons()}
+                filled={filled || autofilled || focused || !!placeholder?.length}
+                focused={focused}
+                block={block}
+                readOnly={readOnly}
+                disabled={disabled}
                 className={className}
                 css={{ cursor: disabled ? 'not-allowed' : 'text' }}
-                labelCSS={labelCSS}
                 theme={theme}
                 size={size}
                 variant={variant}
-                block={block}
-                disabled={disabled}
-                labelWrap={labelWrap}
-                readOnly={readOnly}
-                filled={filled || autofilled || focused || !!placeholder?.length}
-                focused={focused}
-                error={error || meta?.error}
-                label={label}
-                hint={hint}
-                leftAddons={leftAddons}
-                rightAddons={renderRightAddons()}
+                labelCSS={labelCSS}
                 bottomAddons={bottomAddons}
                 leftAddonsCSS={leftAddonsCSS}
                 rightAddonsCSS={rightAddonsCSS}
-                onClick={onClick}
-                onMouseDown={onMouseDown}
-                onMouseUp={onMouseUp}
                 showError={showError}
                 fieldCSS={fieldCSS}
                 wrapperCSS={wrapperCSS}
+                onClick={onClick}
+                onMouseDown={onMouseDown}
+                onMouseUp={onMouseUp}
             >
                 {innerLeftAddons}
                 <input
                     {...field}
-                    {...meta}
                     {...restProps}
                     id={htmlFor}
                     className="control"

@@ -7,20 +7,15 @@ import type { SelectItem, SelectProps } from './types';
 const getValue = (option: string | SelectItem) =>
     typeof option === 'object' && 'label' in option && 'value' in option ? option.value : option;
 
-export const Select = forwardRef<
-    HTMLDivElement,
-    SelectProps & {
-        field?: { value: any; onChange: (val: any) => void };
-        meta?: any;
-    }
->(
+export const Select = forwardRef<HTMLDivElement, SelectProps>(
     (
         {
             name,
             multiple,
             field,
+            setFieldValue,
+            error,
             options,
-            meta,
             onChange,
             onBlur,
             selected,
@@ -36,11 +31,7 @@ export const Select = forwardRef<
                 onClear ||
                 (() => {
                     setTimeout(() => {
-                        field?.onChange({
-                            target: {
-                                value: null,
-                            },
-                        });
+                        setFieldValue?.(null);
                     }, 0);
                 }),
             [field, onClear]
@@ -85,23 +76,19 @@ export const Select = forwardRef<
                 options={options}
                 {...(!hideClearButton && { ...clearProps })}
                 {...props}
-                error={meta?.touched && meta?.error}
+                error={error}
                 selected={selectedOptions}
                 onChange={(event, payload) => {
                     onChange?.(event, payload);
 
-                    if (typeof field?.onChange === 'function') {
+                    if (typeof setFieldValue === 'function') {
                         const value =
                             (multiple || isValueArray) && payload?.selected && payload?.selected?.length > 1
-                                ? payload?.selected.map(e => e.value)
-                                : payload?.actionItem?.value;
+                                ? payload?.selected.map(e => e.value) || []
+                                : payload?.actionItem?.value || null;
 
                         if (!hideClearButton || payload?.selected !== null) {
-                            field.onChange({
-                                target: {
-                                    value,
-                                },
-                            });
+                            setFieldValue(value);
                         }
                     }
                 }}

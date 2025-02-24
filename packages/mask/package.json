@@ -21,7 +21,9 @@
         "react-imask": "7.6.0",
         "react-merge-refs": "1.1.0",
         "imask": "^7.6.0",
-        "@ensi-platform/core-components-common": "^1.0.0",
         "@ensi-platform/core-components-input": "^1.0.0"
+    },
+    "devDependencies": {
+        "@ensi-platform/core-components-form": "^1.0.0"
     }
 }

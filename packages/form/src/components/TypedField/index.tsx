@@ -1,98 +1,22 @@
-import type { FormFieldHelperProps } from '@ensi-platform/core-components-common';
 import { Input } from '@ensi-platform/core-components-input';
 
-import {
-    type ChangeEvent,
-    Children,
-    type FC,
-    cloneElement,
-    forwardRef,
-    isValidElement,
-    useCallback,
-    useMemo,
-} from 'react';
-import { useController, useFormContext } from 'react-hook-form';
+import { type FormEvent, forwardRef, useCallback } from 'react';
 
-import useForm from '../../hooks/useForm';
-import type { FieldProps } from '../Field/types';
-import type { DataType, TypedFieldProps } from './types';
+import { useFieldHook } from '../../hooks/useFieldHook';
+import { getValueByDataType, transformFloatValue } from './helpers';
+import type { ITypedFieldProps } from './types';
 
-const transformFloatValue = (input: string): string => {
-    let sanitizedString: string = input.trim();
-
-    // Remove any non-digit and non-decimal point characters from the string
-    sanitizedString = sanitizedString.replace(/[^0-9.]/g, '');
-
-    const parts = sanitizedString.split('.');
-
-    // If the string ends with a dot, remove it
-    sanitizedString = (parts.length > 2 ? parts.slice(0, -1) : parts).join('.');
-
-    return sanitizedString;
-};
-
-const getValueByDataType = (value: string, dataType?: DataType) => {
-    if (!value) return '';
-    return dataType === 'number' ? Number(value) : value;
-};
-
-const TypedField = forwardRef<HTMLInputElement, TypedFieldProps>(
-    (
-        { name, children, size = 'md', className, wrapperCSS, block = true, fieldType, dataType = 'number', ...props },
-        ref
-    ) => {
-        const { onChange, disabled } = useForm()!;
-        const { control, setValue } = useFormContext(); // retrieve all hook methods
-        const { field, fieldState: fieldStateForm } = useController({
+/**
+ * TypedField - is just Input, controlled with RHF, with onBlur-transformations according to fieldType prop
+ */
+export const FormTypedField = forwardRef<HTMLInputElement, ITypedFieldProps>(
+    ({ name, className, wrapperCSS, block = true, fieldType = 'positiveInt', dataType = 'number', ...props }, ref) => {
+        const { fieldState, field, onChange, setFieldValue, inputProps } = useFieldHook({
             name,
-            control,
         });
 
-        const fieldState = useMemo(
-            () => ({
-                ...fieldStateForm,
-                error: Array.isArray(fieldStateForm.error) ? fieldStateForm.error[0] : fieldStateForm.error,
-            }),
-            [fieldStateForm]
-        );
-
-        const onBlurHandler = useCallback(
-            (...args: [any]) => {
-                const parsedVal = getValueByDataType(field.value, dataType);
-                const safeVal = Number.isNaN(parsedVal) ? '' : parsedVal;
-
-                field.onChange(safeVal);
-                onChange(name, safeVal);
-
-                field.onBlur();
-
-                if (typeof props.onBlur === 'function') {
-                    props.onBlur(...args);
-                }
-            },
-            [dataType, field, name, onChange, props]
-        );
-
-        const isCheckbox = isValidElement(children) && (children?.type as FC)?.name === 'Checkbox';
-        const isRadio = isValidElement(children) && (children?.type as FC)?.name === 'Radio';
-
-        const inputProps = {
-            name,
-            size,
-            error: fieldState.error?.message,
-            value: `${field.value}`,
-            ref,
-            label: props.label,
-            ...(!isCheckbox && !isRadio && { isLegend: true, label: '' }),
-            disabled,
-            ...props,
-            onBlur: onBlurHandler,
-        };
-
         const transformValue = useCallback(
-            (val: any) => {
-                if (typeof val !== 'string') return val;
-
+            (val: string) => {
                 if (fieldType === 'positiveInt') {
                     return val.replace(/[^\d]+/g, '');
                 }
@@ -107,59 +31,52 @@ const TypedField = forwardRef<HTMLInputElement, TypedFieldProps>(
             [fieldType]
         );
 
+        const onBlurHandler = useCallback(() => {
+            const parsedVal = getValueByDataType(field.value, dataType);
+            const safeVal = Number.isNaN(parsedVal) ? '' : parsedVal;
+
+            field.onChange(safeVal);
+            onChange(name, safeVal);
+
+            field.onBlur();
+        }, [dataType, field, name, onChange]);
+
         const onChangeHandler = useCallback(
-            (e?: ChangeEvent<any>, initialValue?: any) => {
-                const val = transformValue(initialValue || e?.target.value);
+            (e: FormEvent<HTMLInputElement>) => {
+                const val = transformValue((e.target as EventTarget & HTMLInputElement).value);
                 field.onChange(val);
                 onChange(name, val);
             },
             [field, name, onChange, transformValue]
         );
 
-        const fieldProps = useMemo<FormFieldHelperProps>(
-            () => ({
-                field,
-                meta: {
-                    error: fieldState.error?.message,
-                },
-            }),
-            [field, fieldState.error?.message]
-        );
+        const commonProps = {
+            ...inputProps,
+            ref,
+            error: fieldState.error?.message,
+            value: `${field.value}`,
+            ...props,
+            onBlur: onBlurHandler,
+        };
 
         return (
-            <div css={{ width: '100%' }} className={className}>
-                {children ? (
-                    <>
-                        {Children.map(children, child => {
-                            if (isValidElement<any>(child)) {
-                                const formProps: FieldProps<any> = {
-                                    ...fieldProps,
-                                    id: (child?.type as FC)?.displayName !== 'Legend' ? name : '',
-                                    ...inputProps,
-                                    ...child.props,
-                                };
-                                return cloneElement(child, { ...formProps });
-                            }
-                        })}
-                    </>
-                ) : (
-                    <Input
-                        block={block}
-                        wrapperCSS={wrapperCSS}
-                        onInput={e => {
-                            field.onChange(e);
-                            onChangeHandler(e);
-                        }}
-                        onClear={() => {
-                            setValue(name, '');
-                            onChangeHandler(undefined, '');
-                        }}
-                        {...inputProps}
-                    />
-                )}
+            <div className={className} css={{ width: '100%' }}>
+                <Input
+                    {...commonProps}
+                    value={field.value}
+                    block={block}
+                    wrapperCSS={wrapperCSS}
+                    onInput={e => {
+                        field.onChange(e);
+                        onChangeHandler(e);
+                    }}
+                    onClear={() => {
+                        setFieldValue('');
+                    }}
+                />
             </div>
         );
     }
 );
 
-export default TypedField;
+export default FormTypedField;

@@ -59,7 +59,6 @@ export * from './scripts/enums';
 export * from './scripts/gds';
 export * from './scripts/helpers';
 export * from './scripts/hooks';
+export * from './scripts/regex';
 export * from './scripts/mask';
-export * from './scripts/types';
-
 export * from './icons-export';
