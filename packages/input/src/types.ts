@@ -18,6 +18,8 @@ export type InputProps = Omit<
      */
     defaultValue?: string;
 
+    error?: string;
+
     /**
      * Растягивает компонент на ширину контейнера
      */
@@ -32,11 +34,6 @@ export type InputProps = Omit<
     variant?: FormControlProps['variant'];
     size?: FormControlProps['size'];
     labelWrap?: FormControlProps['labelWrap'];
-
-    /**
-     * Отображение ошибки
-     */
-    error?: ReactNode | boolean;
     /**
      * Флаг отображения ошибки
      */

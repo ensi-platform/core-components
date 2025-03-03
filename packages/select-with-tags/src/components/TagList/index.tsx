@@ -205,22 +205,22 @@ export const TagList: FC<FieldProps & FormControlProps & TagListOwnProps> = ({
             <FormControl
                 {...restProps}
                 ref={innerProps.ref}
-                block
-                size={size}
-                focused={isOpen || focused}
-                disabled={disabled}
-                filled={filled || !!placeholder}
-                onMouseDown={handleMouseDown}
+                label={label}
                 rightAddons={
                     <>
                         {rightAddons}
                         {Arrow}
                     </>
                 }
-                onClick={handleClick}
-                label={label}
+                focused={isOpen || focused}
+                disabled={disabled}
+                filled={filled || !!placeholder}
+                block
+                size={size}
                 labelCSS={{}}
                 css={fieldCSS}
+                onClick={handleClick}
+                onMouseDown={handleMouseDown}
             >
                 <div
                     css={{
@@ -304,6 +304,7 @@ export const TagList: FC<FieldProps & FormControlProps & TagListOwnProps> = ({
                             placeholder={filled ? '' : placeholder}
                         />
                     )}
+
                     {placeholder && !filled && !autocomplete && <span>{placeholder}</span>}
                 </div>
             </FormControl>

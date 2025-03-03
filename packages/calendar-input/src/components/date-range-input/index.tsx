@@ -29,7 +29,7 @@ export const DateRangeInput = forwardRef<HTMLInputElement, InnerDateRangeInputPr
             value: valueProp,
             defaultValue,
             inputWrapperRef: inputWrapperRefProp = null,
-            field,
+            setFieldValue,
             onComplete,
             onChange,
             onBlur,
@@ -86,10 +86,8 @@ export const DateRangeInput = forwardRef<HTMLInputElement, InnerDateRangeInputPr
             if (autoCorrection) {
                 return (isCompleteDate(from) && !validFrom) || (isCompleteDate(to) && !validTo)
                     ? 'Эта дата недоступна'
-                    : false;
+                    : '';
             }
-
-            return false;
         };
 
         const callOnComplete = (val: string) => {
@@ -101,7 +99,7 @@ export const DateRangeInput = forwardRef<HTMLInputElement, InnerDateRangeInputPr
 
         const changeValue = (val: string, event: ChangeEvent<HTMLInputElement> | null) => {
             onChange?.(event, { value: val });
-            field?.onChange(val);
+            setFieldValue?.(val);
 
             if (uncontrolled) setValue(val);
             if (isCompleteDateRange(val)) callOnComplete(val);

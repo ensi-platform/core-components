@@ -1,4 +1,5 @@
 import type { BaseThemeState, StyleDefinition, ValueOrFunction } from '@ensi-platform/core-components-common';
+import type { IFieldWrapperProps } from '@ensi-platform/core-components-form';
 
 import type { CSSObject } from '@emotion/react';
 
@@ -52,7 +53,8 @@ export type RatingTheme = ValueOrFunction<
 >;
 
 export type RatingProps = Partial<Omit<BaseThemeState<typeof RatingVariant, typeof RatingSize, RatingTheme>, 'theme'>> &
-    Partial<RatingState> & {
+    Partial<RatingState> &
+    Partial<IFieldWrapperProps<number>> & {
         onMouseMove?: MouseEventHandler;
         name?: string;
         className?: string;

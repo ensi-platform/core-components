@@ -1,8 +1,14 @@
-import { type EnumLike, formatPrice, useThemeCSSPart } from '@ensi-platform/core-components-common';
+import {
+    type EnumLike,
+    emptyCSS,
+    formatPrice,
+    useMergeCSS,
+    useThemeCSSPart,
+} from '@ensi-platform/core-components-common';
 
 import { type FC, useMemo } from 'react';
 
-import { PriceSizes, PriceVariants, emptyCSS, useMergeCSS } from './scripts';
+import { PriceSizes, PriceVariants } from './scripts';
 import { PRICE_THEMES } from './themes';
 import type { IPriceProps, PriceStateFullType, PriceThemeType } from './types';
 

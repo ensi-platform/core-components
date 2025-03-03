@@ -6,7 +6,7 @@ import README from '../README.md';
 import { Radio, type RadioProps } from './index';
 
 export default {
-    title: 'Controls / Form / Radio',
+    title: 'Components / Radio',
     component: Radio,
     parameters: {
         docs: {

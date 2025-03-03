@@ -21,6 +21,7 @@ Thumbs.db
 /docs
 .env
 gds.config.json
+linker.config.json
 
 coverage/
 .eslintcache

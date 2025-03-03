@@ -21,7 +21,6 @@ export const Textarea = ({
     name,
     value,
     field,
-    meta,
     minRows = 3,
     maxRows,
     maxLength = 0,
@@ -52,7 +51,6 @@ export const Textarea = ({
 }: ITextareaProps) => {
     const [lenEnd, setLenEnd] = useState(maxLength);
     const [isExceed, setExceed] = useState(false);
-    const isError = !!meta?.error;
 
     const handlerInput = (e: ChangeEvent<HTMLTextAreaElement>) => {
         if (maxLength) {
@@ -123,7 +121,7 @@ export const Textarea = ({
                     padding: scale(1),
                     borderRadius: 2,
                     background: colors?.grey100,
-                    borderColor: isError ? colors?.danger : colors?.grey400,
+                    borderColor: error ? colors?.danger : colors?.grey400,
                     ':focus': { borderColor: colors?.primary, outline: 'none' },
                     ...(!isResize && { resize: 'none' }),
                     ':disabled': { cursor: 'not-allowed' },

@@ -19,3 +19,4 @@ export * from './useMediaQuery';
 export * from './useIsFocusVisible';
 export * from './useControlHook';
 export * from './useIsomorphicLayoutEffect';
+export * from './useMergeCSS';

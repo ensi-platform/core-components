@@ -1,8 +1,8 @@
-import { type EnumLike, useThemeCSSPart } from '@ensi-platform/core-components-common';
+import { type EnumLike, emptyCSS, useMergeCSS, useThemeCSSPart } from '@ensi-platform/core-components-common';
 
 import { type FC, useMemo } from 'react';
 
-import { LoaderSizes, LoaderVariants, emptyCSS, useMergeCSS } from './scripts';
+import { LoaderSizes, LoaderVariants } from './scripts';
 import { LOADER_THEMES } from './themes';
 import type { ILoaderProps, LoaderStateFullType, LoaderThemeType } from './types';
 

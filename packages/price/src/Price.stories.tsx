@@ -1,11 +1,11 @@
-import { defaultTokens } from '@ensi-platform/core-components-common';
+import { defaultTokens, emptyCSS } from '@ensi-platform/core-components-common';
 
 import type { Meta, StoryObj } from '@storybook/react';
 
 import type { ComponentProps } from 'react';
 
 import README from '../README.md';
-import { type IPriceProps, Price, PriceSizes, PriceVariants, emptyCSS } from './index';
+import { type IPriceProps, Price, PriceSizes, PriceVariants } from './index';
 
 export default {
     title: 'Components / Price',
@@ -22,9 +22,8 @@ export default {
             table: {
                 type: { summary: 'number' },
             },
-            required: true,
             description: 'Price value.',
-            summary: 'number',
+            type: { name: 'number', required: true },
         },
         unit: {
             table: {

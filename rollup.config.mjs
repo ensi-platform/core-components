@@ -5,13 +5,9 @@ import svgr from '@svgr/rollup';
 
 import { createRequire } from 'module';
 import path from 'path';
-import postcssPresetEnv from 'postcss-preset-env';
 import copy from 'rollup-plugin-copy';
-import dts from 'rollup-plugin-dts';
 import multiInput from 'rollup-plugin-multi-input';
-import postcss from 'rollup-plugin-postcss';
 import typescript from 'rollup-plugin-ts';
-import ts from 'typescript';
 
 import {
     coreComponentsResolver,
@@ -22,8 +18,6 @@ import coreComponentsTypingsResolver from './tools/rollup/core-components-typing
 import createPackageJson from './tools/rollup/create-package-json.mjs';
 
 const require = createRequire(import.meta.url);
-
-const { ScriptTarget } = ts;
 
 const currentPackageDir = process.cwd();
 

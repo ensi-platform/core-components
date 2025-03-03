@@ -1,23 +1,19 @@
 import { type SavedStyle, getModalStore } from './store';
 
-export function isScrolledToTop(target: HTMLElement) {
-    return target.scrollTop <= 0;
-}
+export const isScrolledToTop = (target: HTMLElement) => target.scrollTop <= 0;
 
-export function isScrolledToBottom(target: HTMLElement) {
+export const isScrolledToBottom = (target: HTMLElement) => {
     const scroll = target.scrollHeight - target.offsetHeight;
     return scroll - 0.5 <= target.scrollTop;
-}
+};
 
-export function hasScrollbar(target: HTMLElement) {
-    return target.scrollHeight > target.clientHeight;
-}
+export const hasScrollbar = (target: HTMLElement) => target.scrollHeight > target.clientHeight;
 
 export const getScrollbarSize = (() => {
     let cachedSize: number;
 
     return () => {
-        if (cachedSize !== undefined) return cachedSize;
+        if (cachedSize) return cachedSize;
 
         const scrollDiv = document.createElement('div');
 
@@ -33,7 +29,6 @@ export const getScrollbarSize = (() => {
         document.body.removeChild(scrollDiv);
 
         cachedSize = scrollbarSize;
-
         return scrollbarSize;
     };
 })();
@@ -80,14 +75,13 @@ export const handleContainer = (container?: HTMLElement) => {
 
     if (existingStyles) {
         existingStyles.modals += 1;
-
         return;
     }
 
     const containerStyles: SavedStyle[] = [];
 
     if (isOverflowing(container)) {
-        // Вычисляет размер до применения `overflow hidden` для избежания скачков
+        // Calculates the size before applying `overflow hidden` to avoid ui defects
         const scrollbarSize = getScrollbarSize();
 
         containerStyles.push({
@@ -95,19 +89,16 @@ export const handleContainer = (container?: HTMLElement) => {
             key: 'padding-right',
             el: container,
         });
-        // Вычисляем стили, чтобы получить реальный `padding` c шириной сколлбара
-        // eslint-disable-next-line no-param-reassign
+        // Calculating styles to get a real `padding` with the width of the scrollbar
         container.style.paddingRight = `${getPaddingRight(container) + scrollbarSize}px`;
     }
 
     const parent = container.parentElement;
-    const scrollContainer =
-        // TODO: заменить на optional chaining
-        parent && parent.nodeName === 'HTML' && window.getComputedStyle(parent).overflowY === 'scroll'
-            ? parent
-            : container;
 
-    // Блокируем скролл даже если отсутствует скроллбар
+    const scrollContainer =
+        parent?.nodeName === 'HTML' && window.getComputedStyle(parent).overflowY === 'scroll' ? parent : container;
+
+    // Blocking the scroll even if there is no scrollbar
     if (scrollContainer.style.overflow !== 'hidden') {
         containerStyles.push({
             value: scrollContainer.style.overflow,

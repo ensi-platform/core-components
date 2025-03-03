@@ -6,7 +6,11 @@ const prefix = '@ensi-platform/core-components-';
 
 const isKebabCase = str => /^[a-z]+(-[a-z]+)*$/.test(str);
 
-const ucfirst = str => str.slice(0, 1).toUpperCase() + str.slice(1);
+const ucFirst = str => str.slice(0, 1).toUpperCase() + str.slice(1);
+
+const toCamelCase = str => str.replace(/([-][a-z])/g, group => group.toUpperCase().replace('-', ''));
+
+const getComponentName = str => ucFirst(toCamelCase(str));
 
 async function getPeerDependencies() {
     const packageJsonPath = path.join(__dirname, '../package.json');
@@ -76,7 +80,7 @@ async function createPackage(packageName, deps) {
     };
 
     const tsConfigJson = {
-        include: ['src', '../../typings', `src/${ucfirst(packageName)}.stories.tsx`],
+        include: ['src', '../../typings', `src/${getComponentName(packageName)}.stories.tsx`],
         extends: '../../tsconfig.json',
         compilerOptions: {
             outDir: 'dist',
@@ -95,9 +99,9 @@ async function createPackage(packageName, deps) {
     await fs.writeFile('./tsconfig.json', JSON.stringify(rootTsConfigJson, null, 2));
     await fs.writeFile(`packages/${packageName}/package.json`, JSON.stringify(packageJson, null, 2));
     await fs.writeFile(`packages/${packageName}/tsconfig.json`, JSON.stringify(tsConfigJson, null, 2));
-    await fs.writeFile(`packages/${packageName}/README.md`, `# Компонент ${packageName}`);
+    await fs.writeFile(`packages/${packageName}/README.md`, `# Компонент ${getComponentName(packageName)}`);
     await fs.writeFile(`packages/${packageName}/src/index.tsx`, `/// `);
-    await fs.writeFile(`packages/${packageName}/src/${ucfirst(packageName)}.stories.tsx`, `/// `);
+    await fs.writeFile(`packages/${packageName}/src/${getComponentName(packageName)}.stories.tsx`, `/// `);
 
     await fs.mkdir(`packages/${packageName}/src/components`);
     await fs.mkdir(`packages/${packageName}/src/scripts`);

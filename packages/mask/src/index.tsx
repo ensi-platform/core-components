@@ -1,4 +1,4 @@
-import type { FormFieldHelperProps } from '@ensi-platform/core-components-common';
+import type { IFieldWrapperProps } from '@ensi-platform/core-components-form';
 import { Input } from '@ensi-platform/core-components-input';
 
 import { type Ref, forwardRef, useEffect, useRef } from 'react';
@@ -7,7 +7,7 @@ import mergeRefs from 'react-merge-refs';
 
 type MaskType = Exclude<Parameters<typeof useIMask>[0]['mask'], undefined>;
 
-export interface MaskProps extends Partial<FormFieldHelperProps<string>> {
+export interface MaskProps extends Partial<IFieldWrapperProps<string>> {
     /** Mask for input */
     mask: MaskType;
     /** Placeholder for mask */
@@ -26,7 +26,18 @@ export interface MaskProps extends Partial<FormFieldHelperProps<string>> {
 
 export const Mask = forwardRef(
     (
-        { hint, mask, label, meta, field, placeholderChar = '_', lazy = true, className, ...props }: MaskProps,
+        {
+            hint,
+            mask,
+            label,
+            error,
+            field,
+            setFieldValue,
+            placeholderChar = '_',
+            lazy = true,
+            className,
+            ...props
+        }: MaskProps,
         rootRef: Ref<HTMLInputElement>
     ) => {
         const isInnerChangeRef = useRef(false);
@@ -51,11 +62,7 @@ export const Mask = forwardRef(
 
                     isInnerChangeRef.current = true;
 
-                    field?.onChange({
-                        target: {
-                            value: val,
-                        },
-                    });
+                    setFieldValue?.(val);
                 },
             }
         );
@@ -75,7 +82,7 @@ export const Mask = forwardRef(
             <Input
                 label={label}
                 hint={hint}
-                error={meta?.error}
+                error={error}
                 ref={mergeRefs([rootRef, ref])}
                 className={className}
                 value={value}

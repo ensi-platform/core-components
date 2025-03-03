@@ -1,4 +1,4 @@
-import type { SelectItem, SelectProps } from '../../../../types';
+import type { SelectItem, SelectProps } from '@ensi-platform/core-components-select';
 
 export const isOptionShape = (item: SelectItem | string | null): item is SelectItem =>
     !!item && Object.prototype.hasOwnProperty.call(item, 'label');
