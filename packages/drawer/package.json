@@ -20,6 +20,8 @@
         "tslib": "^2.6.2",
         "react-transition-state": "^2.1.1",
         "@ensi-platform/core-components-common": "^1.0.0",
-        "@ensi-platform/core-components-base-modal": "^1.0.0"
+        "@ensi-platform/core-components-base-modal": "^1.0.0",
+        "next-i18next": "^15.4.2",
+        "react-i18next": "^15.4.1"
     }
 }

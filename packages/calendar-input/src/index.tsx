@@ -12,6 +12,7 @@ import {
     useRef,
     useState,
 } from 'react';
+import { useTranslation } from 'react-i18next';
 import mergeRefs from 'react-merge-refs';
 
 import { DateInput } from './components/date-input';
@@ -43,6 +44,8 @@ export const CalendarInput = forwardRef<HTMLInputElement, BaseCalendarInputProps
         },
         ref
     ) => {
+        const { t } = useTranslation('common');
+
         const [correctionOccurred, setCorrectionOccurred] = useState(false);
         const [open, setOpen] = useState(false);
 
@@ -176,7 +179,9 @@ export const CalendarInput = forwardRef<HTMLInputElement, BaseCalendarInputProps
             case 'date-time':
                 return (
                     <DateInput
-                        placeholder={view === 'date-time' ? 'ДД.ММ.ГГГГ, ЧЧ:ММ' : 'ДД.ММ.ГГГГ'}
+                        placeholder={
+                            view === 'date-time' ? t('common:components.fullDate') : t('common:components.date')
+                        }
                         {...restProps}
                         {...commonProps}
                         {...pickerProps}
@@ -191,7 +196,7 @@ export const CalendarInput = forwardRef<HTMLInputElement, BaseCalendarInputProps
             case 'date-range':
                 return (
                     <DateRangeInput
-                        placeholder={`ДД.ММ.ГГГГ${DATE_RANGE_SEPARATOR}ДД.ММ.ГГГГ`}
+                        placeholder={`${t('common:components.date')}${DATE_RANGE_SEPARATOR}${t('common:components.date')}`}
                         {...restProps}
                         {...commonProps}
                         {...pickerProps}
@@ -205,7 +210,7 @@ export const CalendarInput = forwardRef<HTMLInputElement, BaseCalendarInputProps
             case 'time':
                 return (
                     <TimeInput
-                        placeholder={`ЧЧ${HOURS_MINUTES_SEPARATOR}ММ`}
+                        placeholder={`${t('common:components.hours')}${HOURS_MINUTES_SEPARATOR}${t('common:components.minutes')}`}
                         {...restProps}
                         {...commonProps}
                         ref={mergeRefs([ref, maskRef, inputRef])}

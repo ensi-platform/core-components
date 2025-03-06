@@ -22,7 +22,8 @@
         "@hello-pangea/dnd": "^16.6.0",
         "@ensi-platform/core-components-common": "^1.0.0",
         "@ensi-platform/core-components-loading-skeleton": "^1.0.0",
-        "@ensi-platform/core-components-form-control": "^1.0.0"
+        "@ensi-platform/core-components-form-control": "^1.0.0",
+        "react-i18next": "^15.4.1"
     },
     "devDependencies": {
         "@ensi-platform/core-components-form": "^1.0.0"

@@ -144,6 +144,9 @@
       ],
       "@ensi-platform/core-components-internal-theme-provider/*": [
         "packages/internal-theme-provider/src/*"
+      ],
+      "@ensi-platform/core-components-internal-language-provider/*": [
+        "packages/internal-language-provider/src/*"
       ]
     }
   },

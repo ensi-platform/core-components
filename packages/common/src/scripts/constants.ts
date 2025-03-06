@@ -6,8 +6,6 @@ export const MAX_AGE_NEVER = 2 ** 31 - 1;
 
 export const MAX_STRING_SIZE = 40;
 
-export const DAYS = ['Понедельник', 'Вторник', 'Среда', 'Четверг', 'Пятница', 'Суббота', 'Воскресенье'];
-
 export const HttpCode = {
     OK: 200,
     CREATED: 201,

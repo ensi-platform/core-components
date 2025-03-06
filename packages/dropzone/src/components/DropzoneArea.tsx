@@ -2,6 +2,7 @@ import { Button, IconSmallImport, defaultTheme, scale } from '@ensi-platform/cor
 import type { IFieldWrapperProps } from '@ensi-platform/core-components-form';
 
 import { type HTMLAttributes, forwardRef } from 'react';
+import { useTranslation } from 'react-i18next';
 
 import type { FileType } from './DropzoneFile';
 
@@ -15,8 +16,9 @@ interface DropzoneAreaProps extends HTMLAttributes<HTMLDivElement>, Partial<IFie
 const { colors } = defaultTheme;
 
 const DropzoneArea = forwardRef<HTMLDivElement, DropzoneAreaProps>(
-    ({ disabled, inputFieldProps, simple, error, ...props }, ref) =>
-        simple ? (
+    ({ disabled, inputFieldProps, simple, error, ...props }, ref) => {
+        const { t } = useTranslation('common');
+        return simple ? (
             <div
                 {...props}
                 ref={ref}
@@ -29,7 +31,7 @@ const DropzoneArea = forwardRef<HTMLDivElement, DropzoneAreaProps>(
             >
                 <input {...inputFieldProps} disabled={disabled} />
                 <Button Icon={IconSmallImport} type="button" disabled={disabled} theme="secondary">
-                    Загрузить
+                    {t('common:components.upload')}
                 </Button>
             </div>
         ) : (
@@ -60,11 +62,12 @@ const DropzoneArea = forwardRef<HTMLDivElement, DropzoneAreaProps>(
                 <input {...inputFieldProps} disabled={disabled} />
                 <IconSmallImport width={scale(4)} height={scale(4)} css={{ marginBottom: scale(1) }} />
                 <p>
-                    Нажмите для загрузки файла <br />
-                    или перетащите его в&nbsp;эту область
+                    {t('common:components.clickToLoad')} <br />
+                    {t('common:components.orDrag')}
                 </p>
             </div>
-        )
+        );
+    }
 );
 
 export default DropzoneArea;

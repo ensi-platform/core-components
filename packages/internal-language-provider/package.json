@@ -1,7 +1,7 @@
 {
-    "name": "@ensi-platform/core-components-copy-button",
+    "name": "@ensi-platform/core-components-internal-language-provider",
     "version": "1.0.0",
-    "description": "copy-button component",
+    "description": "internal-language-provider component",
     "keywords": [],
     "license": "MIT",
     "main": "index.js",
@@ -18,7 +18,7 @@
     },
     "dependencies": {
         "tslib": "^2.6.2",
-        "@ensi-platform/core-components-common": "^1.0.0",
-        "react-i18next": "^15.4.1"
+        "react-i18next": "^15.4.1",
+        "i18next": "^24.2.2"
     }
 }

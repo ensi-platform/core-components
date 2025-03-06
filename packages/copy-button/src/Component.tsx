@@ -1,6 +1,7 @@
 import { IconSmallCheck, IconSmallCopy, scale, useLinkCSS } from '@ensi-platform/core-components-common';
 
 import { type FC, useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 
 import type { ICopyButtonProps } from './types';
 
@@ -8,6 +9,8 @@ import type { ICopyButtonProps } from './types';
  * A button for copying text content
  */
 const CopyButton: FC<ICopyButtonProps> = ({ children, timeout = 1000, linkStyle, ...props }) => {
+    const { t } = useTranslation('common');
+
     const linkStyles = useLinkCSS(linkStyle);
     const [isSuccess, setIsSuccess] = useState(false);
 
@@ -23,8 +26,8 @@ const CopyButton: FC<ICopyButtonProps> = ({ children, timeout = 1000, linkStyle,
             type="button"
             css={linkStyles}
             {...props}
-            aria-label="Копировать"
-            title="Копировать"
+            aria-label={t('common:components.copy')}
+            title={t('common:components.copy')}
             onClick={() => {
                 navigator?.clipboard.writeText(children).then(() => setIsSuccess(true));
             }}

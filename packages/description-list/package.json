@@ -18,6 +18,8 @@
     },
     "dependencies": {
         "tslib": "^2.6.2",
-        "@ensi-platform/core-components-common": "^1.0.0"
+        "@ensi-platform/core-components-common": "^1.0.0",
+        "react-i18next": "^15.4.1",
+        "i18next": "^24.2.2"
     }
 }

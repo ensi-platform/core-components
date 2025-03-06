@@ -1,5 +1,6 @@
 import { isSameMonth, isThisMonth } from 'date-fns';
 import { useCallback } from 'react';
+import { useTranslation } from 'react-i18next';
 
 import { monthName } from '../../scripts/utils';
 import type { Month } from '../../types';
@@ -23,6 +24,8 @@ export type MonthsTableProps = {
 };
 
 export const MonthsTable = ({ selectedMonth, months = [], getMonthProps }: MonthsTableProps) => {
+    const { t } = useTranslation('constants');
+
     const view = useCallback(
         (month: Month): SelectButtonProps['view'] => {
             if (isThisMonth(month.date)) return 'outlined';
@@ -36,7 +39,7 @@ export const MonthsTable = ({ selectedMonth, months = [], getMonthProps }: Month
         <div css={{ display: 'grid', gridTemplate: "'1fr 1fr 1fr'", margin: 'auto' }}>
             {months.map(month => (
                 <SelectButton {...getMonthProps(month)} key={month.date.getTime()} view={view(month)}>
-                    {monthName(month.date)}
+                    {monthName(month.date, t)}
                 </SelectButton>
             ))}
         </div>

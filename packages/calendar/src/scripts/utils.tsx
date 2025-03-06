@@ -20,6 +20,7 @@ import startOfWeek from 'date-fns/startOfWeek';
 import startOfYear from 'date-fns/startOfYear';
 import subDays from 'date-fns/subDays';
 import subMonths from 'date-fns/subMonths';
+import type { TFunction } from 'i18next';
 import type { MouseEvent, ReactNode } from 'react';
 
 import type { DateShift, Day, DayAddons, Month, SpecialDays, SpecialDaysAddon } from '../types';
@@ -30,20 +31,28 @@ export const SUNDAY_INDEX = 6;
 export const DATE_FORMAT = 'dd.MM.yyyy';
 export const NATIVE_DATE_FORMAT = 'yyyy-MM-dd';
 
-export const WEEKDAYS = ['Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб', 'Вс'];
-export const MONTHS = [
-    'Январь',
-    'Февраль',
-    'Март',
-    'Апрель',
-    'Май',
-    'Июнь',
-    'Июль',
-    'Август',
-    'Сентябрь',
-    'Октябрь',
-    'Ноябрь',
-    'Декабрь',
+export const getWeekdays = (t: TFunction) => [
+    t('constants:weekdays.monday'),
+    t('constants:weekdays.tuesday'),
+    t('constants:weekdays.wednesday'),
+    t('constants:weekdays.thursday'),
+    t('constants:weekdays.friday'),
+    t('constants:weekdays.saturday'),
+    t('constants:weekdays.sunday'),
+];
+export const getMonths = (t: TFunction) => [
+    t('constants:months.january'),
+    t('constants:months.february'),
+    t('constants:months.march'),
+    t('constants:months.april'),
+    t('constants:months.may'),
+    t('constants:months.june'),
+    t('constants:months.july'),
+    t('constants:months.august'),
+    t('constants:months.september'),
+    t('constants:months.october'),
+    t('constants:months.november'),
+    t('constants:months.december'),
 ];
 
 /**
@@ -182,8 +191,8 @@ export function dateInLimits(date?: Date | number | null, minDate?: Date | numbe
 /**
  * Возвращает русское название месяца с большой буквы
  */
-export function monthName(month: Date) {
-    return MONTHS[month.getMonth()];
+export function monthName(month: Date, t: TFunction) {
+    return getMonths(t)[month.getMonth()];
 }
 
 /**

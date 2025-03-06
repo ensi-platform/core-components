@@ -9,6 +9,7 @@ import {
 } from '@ensi-platform/core-components-select';
 
 import { type ChangeEvent, forwardRef, useCallback, useMemo, useRef, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 
 import { TagList } from './components';
 import { filterOptions } from './scripts/helpers';
@@ -47,6 +48,8 @@ export const SimpleSelectWithTags = forwardRef<HTMLDivElement, SelectWithTagsPro
         },
         ref
     ) => {
+        const { t } = useTranslation('common');
+
         const controlled = Boolean(selected);
 
         const [selectedTags, setSelectedTags] = useState(selected || []);
@@ -147,8 +150,8 @@ export const SimpleSelectWithTags = forwardRef<HTMLDivElement, SelectWithTagsPro
                 optionsListProps={{
                     emptyPlaceholder: (
                         <div style={{ display: 'flex', justifyContent: 'center' }}>
-                            {isEverythingSelected ? 'Все элементы выбраны' : null}
-                            {!isEverythingSelected ? <p>Ничего не нашлось</p> : null}
+                            {isEverythingSelected ? t('common:components.allElemsSelected') : null}
+                            {!isEverythingSelected ? <p>{t('common:components.notFounded')}</p> : null}
                         </div>
                     ),
                     ...optionsListProps,

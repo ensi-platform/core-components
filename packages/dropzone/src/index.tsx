@@ -13,6 +13,7 @@ import {
 
 import { type FC, type ReactNode, useCallback, useMemo, useState } from 'react';
 import { type FileRejection, type DropzoneProps as UseDropzoneProps, useDropzone } from 'react-dropzone';
+import { useTranslation } from 'react-i18next';
 
 import DropzoneArea from './components/DropzoneArea';
 import { DraggableDropzoneFile, DropzoneFile, type DropzoneFileProps, type FileType } from './components/DropzoneFile';
@@ -68,6 +69,8 @@ export const Dropzone: FC<DropzoneProps> = ({
     onBlur,
     ...props
 }) => {
+    const { t } = useTranslation('common');
+
     const imagePreview = canPreviewImages(accept);
 
     /** checks is our Dropzone controlled by RHF or not  */
@@ -94,11 +97,14 @@ export const Dropzone: FC<DropzoneProps> = ({
 
     const fileValidator = (file: FileType) => {
         if (maxSize && file.size > maxSize)
-            return { code: ErrorCodes.TOO_BIG_FILE, message: `Максимальный размер файла ${getFileSize(maxSize)}` };
+            return {
+                code: ErrorCodes.TOO_BIG_FILE,
+                message: `${t('common:components.maxFileSize')} ${getFileSize(maxSize)}`,
+            };
         if (maxFileNameLength && file.name.length > maxFileNameLength)
             return {
                 code: ErrorCodes.TOO_LONG_FILE_NAME,
-                message: `Максимальная длина имени файла ${maxFileNameLength} символов`,
+                message: `${t('common:components.maxLengthName')} ${maxFileNameLength} ${t('common:components.symbols')}`,
             };
         return null;
     };

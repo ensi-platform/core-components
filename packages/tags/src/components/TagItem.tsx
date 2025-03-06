@@ -1,6 +1,7 @@
 import { IconSmallClosed, defaultTheme, scale } from '@ensi-platform/core-components-common';
 
 import { forwardRef, useMemo } from 'react';
+import { useTranslation } from 'react-i18next';
 
 import type { ITagProps } from '../types';
 
@@ -23,6 +24,8 @@ const TagItem = (
     }: ITagProps,
     ref: any
 ) => {
+    const { t } = useTranslation('common');
+
     const buttonCSS = useMemo(
         () => ({
             cursor: onClick ? 'pointer' : 'default',
@@ -84,7 +87,7 @@ const TagItem = (
                     role="button"
                     tabIndex={0}
                     css={closeButtonCSS}
-                    title="Удалить"
+                    title={t('components.delete')}
                     onClick={e => {
                         e.stopPropagation();
                         onDelete?.();

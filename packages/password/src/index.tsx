@@ -3,6 +3,7 @@ import type { IFieldWrapperProps } from '@ensi-platform/core-components-form';
 import { Input } from '@ensi-platform/core-components-input';
 
 import { type HTMLProps, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 
 const { colors } = defaultTheme;
 
@@ -12,6 +13,8 @@ export interface PasswordProps extends HTMLProps<HTMLInputElement>, Partial<IFie
 }
 
 export const Password = ({ field, error, autoComplete = 'off', ...props }: PasswordProps) => {
+    const { t } = useTranslation('common');
+
     delete props.Icon;
     const [isVisible, setIsVisible] = useState(false);
 
@@ -38,9 +41,9 @@ export const Password = ({ field, error, autoComplete = 'off', ...props }: Passw
                         }}
                     >
                         {isVisible ? (
-                            <IconSmallEyeOff title="Показать пароль" />
+                            <IconSmallEyeOff title={t('common:components.showPassword')} />
                         ) : (
-                            <IconSmallEye title="Скрыть пароль" />
+                            <IconSmallEye title={t('common:components.hidePassword')} />
                         )}
                     </button>
                 }

@@ -4,6 +4,7 @@ import { Input } from '@ensi-platform/core-components-input';
 import { Popover } from '@ensi-platform/core-components-popover';
 
 import { type ChangeEvent, type FocusEvent, forwardRef, useEffect, useRef, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import mergeRefs from 'react-merge-refs';
 
 import {
@@ -58,6 +59,8 @@ export const DateInput = forwardRef<HTMLInputElement, InnerDateInputProps>(
         },
         ref
     ) => {
+        const { t } = useTranslation('common');
+
         const [value, setValue] = useState(defaultValue);
 
         const lastValidDate = useRef<string>('');
@@ -85,7 +88,7 @@ export const DateInput = forwardRef<HTMLInputElement, InnerDateInputProps>(
             if (autoCorrection) {
                 const isComplete = isCompleteDate(inputDate) && isCompleteTime(inputTime, withTime);
 
-                return isComplete && !isValidValue ? 'Эта дата недоступна' : '';
+                return isComplete && !isValidValue ? t('common:components.notAvailableDate') : '';
             }
         };
 

@@ -3,6 +3,7 @@ import { IconSmallClosedCircle, defaultTheme, scale, useLinkCSS } from '@ensi-pl
 import { type DraggableProps, Draggable as UntypedDraggable } from '@hello-pangea/dnd';
 
 import { type FC, forwardRef } from 'react';
+import { useTranslation } from 'react-i18next';
 
 import { ImagePreview } from '../scripts/constants';
 import { getFileSize } from '../scripts/utils';
@@ -56,6 +57,8 @@ export const DropzoneFile = forwardRef<HTMLLIElement, DropzoneFileProps>(
         },
         ref
     ) => {
+        const { t } = useTranslation('common');
+
         const isImage = file?.type?.includes('image');
         const showPreview = isImage && imagePreview;
         const linkStyles = useLinkCSS();
@@ -145,7 +148,7 @@ export const DropzoneFile = forwardRef<HTMLLIElement, DropzoneFileProps>(
                         }}
                         onClick={() => onRemoveClick(index, file)}
                         disabled={disabled || isDisableRemove}
-                        title="Удалить файл"
+                        title={t('common:components.deleteFile')}
                     >
                         <IconSmallClosedCircle />
                     </button>

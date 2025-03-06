@@ -10,6 +10,7 @@ import { SimpleSelectWithTags } from '@ensi-platform/core-components-select-with
 
 import { forwardRef, useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import deepEqual from 'react-fast-compare';
+import { useTranslation } from 'react-i18next';
 
 import { BaseAutocomplete } from './components';
 import { DEBOUNCE_TIMEOUT } from './scripts/constants';
@@ -38,6 +39,8 @@ export const AutocompleteAsync = forwardRef<HTMLInputElement, AutocompleteAsyncP
         },
         ref
     ) => {
+        const { t } = useTranslation('common');
+
         const [valuesMap, setValuesMap] = useState(new Map<any, SelectItem>());
 
         const selectedValues = useMemo(() => {
@@ -287,19 +290,19 @@ export const AutocompleteAsync = forwardRef<HTMLInputElement, AutocompleteAsyncP
                                             gap: scale(1),
                                         }}
                                     >
-                                        <p>Ничего не найдено</p>
+                                        <p>{t('common:components.notFound')}</p>
                                         <Button
                                             onClick={() => {
                                                 reset();
                                             }}
                                             theme="outline"
                                         >
-                                            Сбросить
+                                            {t('common:components.reset')}
                                         </Button>
                                     </div>
                                 ) : null}
-                                {isLoading ? 'Поиск...' : null}
-                                {!isLoading && !isNotFound ? 'Начинайте вводить' : null}
+                                {isLoading ? t('common:components.search') : null}
+                                {!isLoading && !isNotFound ? t('common:components.startingType') : null}
                             </div>
                         ),
                     }}
@@ -378,18 +381,18 @@ export const AutocompleteAsync = forwardRef<HTMLInputElement, AutocompleteAsyncP
                         <div style={{ display: 'flex', justifyContent: 'center' }}>
                             {isNotFound ? (
                                 <div>
-                                    <p>Ничего не найдено</p>
+                                    <p>{t('common:components.notFound')}</p>
                                     <Button
                                         onClick={() => {
                                             reset();
                                         }}
                                     >
-                                        Сбросить
+                                        {t('common:components.reset')}
                                     </Button>
                                 </div>
                             ) : null}
-                            {isLoading ? 'Поиск...' : null}
-                            {!isLoading && !isNotFound ? 'Начинайте вводить' : null}
+                            {isLoading ? t('common:components.search') : null}
+                            {!isLoading && !isNotFound ? t('common:components.startingType') : null}
                         </div>
                     ),
                 }}
