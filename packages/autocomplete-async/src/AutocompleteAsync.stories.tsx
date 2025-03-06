@@ -1,4 +1,4 @@
-import { Button, ErrorMessages, scale } from '@ensi-platform/core-components-common';
+import { Button, scale } from '@ensi-platform/core-components-common';
 import { Form, FormFieldWrapper, FormReset } from '@ensi-platform/core-components-form';
 import type { Select, SelectHandlers, SelectItem } from '@ensi-platform/core-components-select';
 
@@ -7,6 +7,7 @@ import type { StoryObj } from '@storybook/react';
 
 import * as Yup from 'yup';
 import { type ChangeEvent, type ComponentProps, useCallback, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 
 import README from '../README.md';
 import { AutocompleteAsync } from './Component';
@@ -175,6 +176,7 @@ export const Basic: StoryObj<ComponentProps<typeof AutocompleteAsync>> = {
         closeOnSelect: Boolean,
     },
     render: (...args) => {
+        const { t } = useTranslation('common');
         const asyncSearchFn = useCallback(
             async (queryString: string, offset: number, limit: number): Promise<IOptionsFetcherResponse> =>
                 new Promise(resolve => {
@@ -196,13 +198,13 @@ export const Basic: StoryObj<ComponentProps<typeof AutocompleteAsync>> = {
 
         return (
             <>
-                <h2>Единственный выбор:</h2>
+                <h2>{t('common:components.stories.oneChoice')}</h2>
                 <AutocompleteAsync
                     {...args}
                     block
                     asyncSearchFn={asyncSearchFn}
                     asyncOptionsByValuesFn={asyncOptionsByValuesFn}
-                    placeholder="Начинайте вводить"
+                    placeholder={t('common:components.stories.startType')}
                 />
             </>
         );
@@ -213,6 +215,8 @@ export const WithForm: StoryObj<ComponentProps<typeof Select>> = {
     args: {},
     argTypes: {},
     render: () => {
+        const { t } = useTranslation('constants');
+
         const asyncSearchFn = useCallback(
             async (queryString: string, offset: number, limit: number): Promise<IOptionsFetcherResponse> =>
                 new Promise(resolve => {
@@ -237,7 +241,9 @@ export const WithForm: StoryObj<ComponentProps<typeof Select>> = {
                 <Form
                     initialValues={{ selectValue: [3] }}
                     validationSchema={Yup.object().shape({
-                        selectValue: Yup.array().min(1, 'Обязательное поле').required(ErrorMessages.REQUIRED),
+                        selectValue: Yup.array()
+                            .min(1, t('constants:errorMessages.required'))
+                            .required(t('constants:errorMessages.required')),
                     })}
                     onSubmit={action('onSubmit')}
                 >
@@ -305,7 +311,7 @@ export const ControlledAutocomplete: StoryObj<ComponentProps<typeof Autocomplete
             <BaseAutocomplete
                 options={filteredOptions}
                 selected={selectedOptions}
-                label="Элемент"
+                label="Element"
                 value={value}
                 allowUnselect
                 onChange={handleChange}
