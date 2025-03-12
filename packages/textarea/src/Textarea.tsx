@@ -50,7 +50,7 @@ export const Textarea = ({
     cacheMeasurements = false,
     ...props
 }: ITextareaProps) => {
-    const { t } = useTranslation('common');
+    const { t } = useTranslation('translation');
 
     const [lenEnd, setLenEnd] = useState(maxLength);
     const [isExceed, setExceed] = useState(false);
@@ -67,7 +67,7 @@ export const Textarea = ({
         () =>
             error ||
             (Number.isInteger(maxLength) && isExceed && lenEnd < 0
-                ? `${t('common:components.moreThan')} ${Math.abs(lenEnd)}`
+                ? `${t('translation:moreThan')} ${Math.abs(lenEnd)}`
                 : ''),
         [maxLength, lenEnd, error, isExceed, t]
     );
@@ -76,7 +76,7 @@ export const Textarea = ({
         () =>
             hint ||
             (Number.isInteger(maxLength) && isExceed && lenEnd > 0
-                ? `${t('common:components.remained')} ${Math.abs(lenEnd)}`
+                ? `${t('translation:remained')} ${Math.abs(lenEnd)}`
                 : ''),
         [maxLength, lenEnd, hint, isExceed, t]
     );

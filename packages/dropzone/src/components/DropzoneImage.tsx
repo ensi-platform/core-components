@@ -11,7 +11,7 @@ const areEqualFiles = (prevProps: DropzoneImageProps, nextProps: DropzoneImagePr
     prevProps.file.name === nextProps.file.name || prevProps.file === nextProps.file;
 
 const DropzoneImage = memo(({ file }: DropzoneImageProps) => {
-    const { t } = useTranslation('common');
+    const { t } = useTranslation('translation');
 
     const url = useMemo(() => URL.createObjectURL(file), [file]);
     useEffect(() => () => URL.revokeObjectURL(url), [url]);
@@ -24,7 +24,7 @@ const DropzoneImage = memo(({ file }: DropzoneImageProps) => {
                 img: { width: ImagePreview.width, height: ImagePreview.height, objectFit: 'cover' },
             }}
         >
-            <img src={url} alt={`${t('common:components.preview')} ${file.name}`} />
+            <img src={url} alt={`${t('translation:preview')} ${file.name}`} />
         </div>
     );
 }, areEqualFiles);

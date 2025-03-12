@@ -32,27 +32,27 @@ export const DATE_FORMAT = 'dd.MM.yyyy';
 export const NATIVE_DATE_FORMAT = 'yyyy-MM-dd';
 
 export const getWeekdays = (t: TFunction) => [
-    t('constants:weekdays.monday'),
-    t('constants:weekdays.tuesday'),
-    t('constants:weekdays.wednesday'),
-    t('constants:weekdays.thursday'),
-    t('constants:weekdays.friday'),
-    t('constants:weekdays.saturday'),
-    t('constants:weekdays.sunday'),
+    t('translation:weekdays.monday'),
+    t('translation:weekdays.tuesday'),
+    t('translation:weekdays.wednesday'),
+    t('translation:weekdays.thursday'),
+    t('translation:weekdays.friday'),
+    t('translation:weekdays.saturday'),
+    t('translation:weekdays.sunday'),
 ];
 export const getMonths = (t: TFunction) => [
-    t('constants:months.january'),
-    t('constants:months.february'),
-    t('constants:months.march'),
-    t('constants:months.april'),
-    t('constants:months.may'),
-    t('constants:months.june'),
-    t('constants:months.july'),
-    t('constants:months.august'),
-    t('constants:months.september'),
-    t('constants:months.october'),
-    t('constants:months.november'),
-    t('constants:months.december'),
+    t('translation:months.january'),
+    t('translation:months.february'),
+    t('translation:months.march'),
+    t('translation:months.april'),
+    t('translation:months.may'),
+    t('translation:months.june'),
+    t('translation:months.july'),
+    t('translation:months.august'),
+    t('translation:months.september'),
+    t('translation:months.october'),
+    t('translation:months.november'),
+    t('translation:months.december'),
 ];
 
 /**

@@ -57,7 +57,7 @@ export const DropzoneFile = forwardRef<HTMLLIElement, DropzoneFileProps>(
         },
         ref
     ) => {
-        const { t } = useTranslation('common');
+        const { t } = useTranslation('translation');
 
         const isImage = file?.type?.includes('image');
         const showPreview = isImage && imagePreview;
@@ -148,7 +148,7 @@ export const DropzoneFile = forwardRef<HTMLLIElement, DropzoneFileProps>(
                         }}
                         onClick={() => onRemoveClick(index, file)}
                         disabled={disabled || isDisableRemove}
-                        title={t('common:components.deleteFile')}
+                        title={t('translation:deleteFile')}
                     >
                         <IconSmallClosedCircle />
                     </button>

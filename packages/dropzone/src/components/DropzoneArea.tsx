@@ -17,7 +17,7 @@ const { colors } = defaultTheme;
 
 const DropzoneArea = forwardRef<HTMLDivElement, DropzoneAreaProps>(
     ({ disabled, inputFieldProps, simple, error, ...props }, ref) => {
-        const { t } = useTranslation('common');
+        const { t } = useTranslation('translation');
         return simple ? (
             <div
                 {...props}
@@ -31,7 +31,7 @@ const DropzoneArea = forwardRef<HTMLDivElement, DropzoneAreaProps>(
             >
                 <input {...inputFieldProps} disabled={disabled} />
                 <Button Icon={IconSmallImport} type="button" disabled={disabled} theme="secondary">
-                    {t('common:components.upload')}
+                    {t('translation:upload')}
                 </Button>
             </div>
         ) : (
@@ -62,8 +62,8 @@ const DropzoneArea = forwardRef<HTMLDivElement, DropzoneAreaProps>(
                 <input {...inputFieldProps} disabled={disabled} />
                 <IconSmallImport width={scale(4)} height={scale(4)} css={{ marginBottom: scale(1) }} />
                 <p>
-                    {t('common:components.clickToLoad')} <br />
-                    {t('common:components.orDrag')}
+                    {t('translation:clickToLoad')} <br />
+                    {t('translation:orDrag')}
                 </p>
             </div>
         );

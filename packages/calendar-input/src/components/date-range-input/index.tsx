@@ -52,7 +52,7 @@ export const DateRangeInput = forwardRef<HTMLInputElement, InnerDateRangeInputPr
         },
         ref
     ) => {
-        const { t } = useTranslation('common');
+        const { t } = useTranslation('translation');
 
         const [value, setValue] = useState(defaultValue);
         const [calendarMonth, setCalendarMonth] = useState(calendarProps.defaultMonth);
@@ -88,7 +88,7 @@ export const DateRangeInput = forwardRef<HTMLInputElement, InnerDateRangeInputPr
         const getInnerError = () => {
             if (autoCorrection) {
                 return (isCompleteDate(from) && !validFrom) || (isCompleteDate(to) && !validTo)
-                    ? t('common:components.notAvailableDate')
+                    ? t('translation:notAvailableDate')
                     : '';
             }
         };

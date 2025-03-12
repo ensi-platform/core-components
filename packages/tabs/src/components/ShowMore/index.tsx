@@ -24,7 +24,7 @@ const ButtonField = ({
 }: Pick<FieldProps, 'innerProps' | 'Arrow' | 'className' | 'disabled' | 'id'> & {
     count?: number;
 }) => {
-    const { t } = useTranslation('common');
+    const { t } = useTranslation('translation');
 
     const { getCSS } = useTabsTheme();
 
@@ -59,7 +59,7 @@ const ButtonField = ({
                 id={innerId || id}
                 {...restInnerProps}
             >
-                {t('common:components.more')} ({count}) {Arrow}
+                {t('translation:more')} ({count}) {Arrow}
             </button>
         </div>
     );

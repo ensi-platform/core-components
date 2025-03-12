@@ -1,11 +1,13 @@
 {
-    "include": ["src", "../../typings", "src/*.json", "src/**/*.tsx"],
+    "include": ["src", "../../typings", "src/*.json", "src/**/*.json", "src/**/*.tsx"],
     "extends": "../../tsconfig.json",
     "compilerOptions": {
         "outDir": "dist",
         "rootDirs": ["src"],
         "baseUrl": ".",
         "esModuleInterop": true,
-        "resolveJsonModule": true
+        "resolveJsonModule": true,
+        "allowJs": true,
+        "declaration": true
     }
 }

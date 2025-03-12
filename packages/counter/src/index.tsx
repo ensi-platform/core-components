@@ -25,7 +25,7 @@ export const Counter = ({
     rounded = false,
     ...props
 }: CounterProps) => {
-    const { t } = useTranslation('common');
+    const { t } = useTranslation('translation');
 
     const themeState = useMemo<CounterThemeState>(
         () => ({
@@ -97,7 +97,7 @@ export const Counter = ({
                         type="button"
                         onClick={() => changeValue(Number(innerValue) - step)}
                         disabled={Number(innerValue) < Number(min + step)}
-                        title={`${t('common:components.decrease')} ${step}`}
+                        title={`${t('translation:decrease')} ${step}`}
                         css={getCSS('decrButton')}
                     >
                         <IconMinus css={getCSS('icon')} />
@@ -123,7 +123,7 @@ export const Counter = ({
                         type="button"
                         onClick={() => changeValue(Number(innerValue) + step)}
                         disabled={Number(innerValue) > Number(max - step)}
-                        title={`${t('common:components.increase')} ${step}`}
+                        title={`${t('translation:increase')} ${step}`}
                         css={getCSS('incrButton')}
                     >
                         <IconPlus css={getCSS('icon')} />

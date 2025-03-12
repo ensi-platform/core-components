@@ -24,7 +24,7 @@ const TagItem = (
     }: ITagProps,
     ref: any
 ) => {
-    const { t } = useTranslation('common');
+    const { t } = useTranslation('translation');
 
     const buttonCSS = useMemo(
         () => ({
@@ -87,7 +87,7 @@ const TagItem = (
                     role="button"
                     tabIndex={0}
                     css={closeButtonCSS}
-                    title={t('components.delete')}
+                    title={t('translation:delete')}
                     onClick={e => {
                         e.stopPropagation();
                         onDelete?.();

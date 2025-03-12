@@ -48,7 +48,7 @@ export const SimpleSelectWithTags = forwardRef<HTMLDivElement, SelectWithTagsPro
         },
         ref
     ) => {
-        const { t } = useTranslation('common');
+        const { t } = useTranslation('translation');
 
         const controlled = Boolean(selected);
 
@@ -150,8 +150,8 @@ export const SimpleSelectWithTags = forwardRef<HTMLDivElement, SelectWithTagsPro
                 optionsListProps={{
                     emptyPlaceholder: (
                         <div style={{ display: 'flex', justifyContent: 'center' }}>
-                            {isEverythingSelected ? t('common:components.allElemsSelected') : null}
-                            {!isEverythingSelected ? <p>{t('common:components.notFounded')}</p> : null}
+                            {isEverythingSelected ? t('translation:allElemsSelected') : null}
+                            {!isEverythingSelected ? <p>{t('translation:notFounded')}</p> : null}
                         </div>
                     ),
                     ...optionsListProps,

@@ -69,7 +69,7 @@ export const Dropzone: FC<DropzoneProps> = ({
     onBlur,
     ...props
 }) => {
-    const { t } = useTranslation('common');
+    const { t } = useTranslation('translation');
 
     const imagePreview = canPreviewImages(accept);
 
@@ -99,12 +99,12 @@ export const Dropzone: FC<DropzoneProps> = ({
         if (maxSize && file.size > maxSize)
             return {
                 code: ErrorCodes.TOO_BIG_FILE,
-                message: `${t('common:components.maxFileSize')} ${getFileSize(maxSize)}`,
+                message: `${t('translation:maxFileSize')} ${getFileSize(maxSize)}`,
             };
         if (maxFileNameLength && file.name.length > maxFileNameLength)
             return {
                 code: ErrorCodes.TOO_LONG_FILE_NAME,
-                message: `${t('common:components.maxLengthName')} ${maxFileNameLength} ${t('common:components.symbols')}`,
+                message: `${t('translation:maxLengthName')} ${maxFileNameLength} ${t('translation:symbols')}`,
             };
         return null;
     };

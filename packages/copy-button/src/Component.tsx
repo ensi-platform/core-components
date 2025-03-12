@@ -9,7 +9,7 @@ import type { ICopyButtonProps } from './types';
  * A button for copying text content
  */
 const CopyButton: FC<ICopyButtonProps> = ({ children, timeout = 1000, linkStyle, ...props }) => {
-    const { t } = useTranslation('common');
+    const { t } = useTranslation('translation');
 
     const linkStyles = useLinkCSS(linkStyle);
     const [isSuccess, setIsSuccess] = useState(false);
@@ -26,8 +26,8 @@ const CopyButton: FC<ICopyButtonProps> = ({ children, timeout = 1000, linkStyle,
             type="button"
             css={linkStyles}
             {...props}
-            aria-label={t('common:components.copy')}
-            title={t('common:components.copy')}
+            aria-label={t('translation:copy')}
+            title={t('translation:copy')}
             onClick={() => {
                 navigator?.clipboard.writeText(children).then(() => setIsSuccess(true));
             }}

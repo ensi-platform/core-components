@@ -7,7 +7,7 @@ import { useDrawerContext } from '../scripts';
 import type { IDrawerHeaderProps } from '../types';
 
 const DrawerHeader: FC<IDrawerHeaderProps> = ({ title, hasCloseButton = false, onClose, ...props }) => {
-    const { t } = useTranslation('common');
+    const { t } = useTranslation('translation');
 
     const { getCSS } = useDrawerContext();
     const styles = useMemo(
@@ -21,12 +21,7 @@ const DrawerHeader: FC<IDrawerHeaderProps> = ({ title, hasCloseButton = false, o
     return (
         <div css={styles} {...props}>
             {hasCloseButton && onClose && (
-                <button
-                    aria-label={t('common:components.closePanel')}
-                    css={getCSS('closer')}
-                    onClick={onClose}
-                    type="button"
-                >
+                <button aria-label={t('translation:closePanel')} css={getCSS('closer')} onClick={onClose} type="button">
                     <IconCross />
                 </button>
             )}

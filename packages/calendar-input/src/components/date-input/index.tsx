@@ -59,7 +59,7 @@ export const DateInput = forwardRef<HTMLInputElement, InnerDateInputProps>(
         },
         ref
     ) => {
-        const { t } = useTranslation('common');
+        const { t } = useTranslation('translation');
 
         const [value, setValue] = useState(defaultValue);
 
@@ -88,7 +88,7 @@ export const DateInput = forwardRef<HTMLInputElement, InnerDateInputProps>(
             if (autoCorrection) {
                 const isComplete = isCompleteDate(inputDate) && isCompleteTime(inputTime, withTime);
 
-                return isComplete && !isValidValue ? t('common:components.notAvailableDate') : '';
+                return isComplete && !isValidValue ? t('translation:notAvailableDate') : '';
             }
         };
 

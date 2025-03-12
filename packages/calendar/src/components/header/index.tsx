@@ -78,7 +78,7 @@ export const Header = ({
     onMonthClick,
     onYearClick,
 }: HeaderProps) => {
-    const { t } = useTranslation('common');
+    const { t } = useTranslation('translation');
 
     const linkStyles = useLinkCSS('blue');
 
@@ -90,7 +90,7 @@ export const Header = ({
                         <Button
                             theme="secondary"
                             onClick={onPrevArrowClick}
-                            aria-label={t('common:components.prevMonth')}
+                            aria-label={t('translation:prevMonth')}
                             Icon={IconSmallChevronLeft}
                             hidden
                             css={{
@@ -109,7 +109,7 @@ export const Header = ({
                                 },
                             }}
                         >
-                            {t('common:components.prevMonth')}
+                            {t('translation:prevMonth')}
                         </Button>
                     )}
                 </div>
@@ -133,7 +133,7 @@ export const Header = ({
                         <Button
                             theme="secondary"
                             onClick={onNextArrowClick}
-                            aria-label={t('common:components.nextMonth')}
+                            aria-label={t('translation:nextMonth')}
                             Icon={IconSmallChevronRight}
                             hidden
                             css={{
@@ -152,7 +152,7 @@ export const Header = ({
                                 },
                             }}
                         >
-                            {t('common:components.nextMonth')}
+                            {t('translation:components.nextMonth')}
                         </Button>
                     )}
                 </div>

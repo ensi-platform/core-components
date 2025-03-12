@@ -13,7 +13,7 @@ export interface PasswordProps extends HTMLProps<HTMLInputElement>, Partial<IFie
 }
 
 export const Password = ({ field, error, autoComplete = 'off', ...props }: PasswordProps) => {
-    const { t } = useTranslation('common');
+    const { t } = useTranslation('translation');
 
     delete props.Icon;
     const [isVisible, setIsVisible] = useState(false);
@@ -41,9 +41,9 @@ export const Password = ({ field, error, autoComplete = 'off', ...props }: Passw
                         }}
                     >
                         {isVisible ? (
-                            <IconSmallEyeOff title={t('common:components.showPassword')} />
+                            <IconSmallEyeOff title={t('translation:showPassword')} />
                         ) : (
-                            <IconSmallEye title={t('common:components.hidePassword')} />
+                            <IconSmallEye title={t('translation:hidePassword')} />
                         )}
                     </button>
                 }

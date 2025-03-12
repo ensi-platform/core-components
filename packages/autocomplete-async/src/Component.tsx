@@ -39,7 +39,7 @@ export const AutocompleteAsync = forwardRef<HTMLInputElement, AutocompleteAsyncP
         },
         ref
     ) => {
-        const { t } = useTranslation('common');
+        const { t } = useTranslation('translation');
 
         const [valuesMap, setValuesMap] = useState(new Map<any, SelectItem>());
 
@@ -290,19 +290,19 @@ export const AutocompleteAsync = forwardRef<HTMLInputElement, AutocompleteAsyncP
                                             gap: scale(1),
                                         }}
                                     >
-                                        <p>{t('common:components.notFound')}</p>
+                                        <p>{t('translation:notFound')}</p>
                                         <Button
                                             onClick={() => {
                                                 reset();
                                             }}
                                             theme="outline"
                                         >
-                                            {t('common:components.reset')}
+                                            {t('translation:reset')}
                                         </Button>
                                     </div>
                                 ) : null}
-                                {isLoading ? t('common:components.search') : null}
-                                {!isLoading && !isNotFound ? t('common:components.startingType') : null}
+                                {isLoading ? t('translation:search') : null}
+                                {!isLoading && !isNotFound ? t('translation:startingType') : null}
                             </div>
                         ),
                     }}
@@ -381,18 +381,18 @@ export const AutocompleteAsync = forwardRef<HTMLInputElement, AutocompleteAsyncP
                         <div style={{ display: 'flex', justifyContent: 'center' }}>
                             {isNotFound ? (
                                 <div>
-                                    <p>{t('common:components.notFound')}</p>
+                                    <p>{t('translation:notFound')}</p>
                                     <Button
                                         onClick={() => {
                                             reset();
                                         }}
                                     >
-                                        {t('common:components.reset')}
+                                        {t('translation:reset')}
                                     </Button>
                                 </div>
                             ) : null}
-                            {isLoading ? t('common:components.search') : null}
-                            {!isLoading && !isNotFound ? t('common:components.startingType') : null}
+                            {isLoading ? t('translation:search') : null}
+                            {!isLoading && !isNotFound ? t('translation:startingType') : null}
                         </div>
                     ),
                 }}

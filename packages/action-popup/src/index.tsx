@@ -36,7 +36,7 @@ export const ActionPopup = ({
     disableFooter,
     ...props
 }: IActionPopupProps) => {
-    const { t } = useTranslation('common');
+    const { t } = useTranslation('translation');
 
     const btnParams = useMemo(() => {
         switch (action) {
@@ -44,36 +44,36 @@ export const ActionPopup = ({
                 return {
                     // TODO Разобраться почему в REP не работает тема button-a из core-components-common
                     theme: 'dangerous',
-                    actionButtonText: t('common:components.delete'),
-                    closeButtonText: t('common:components.notDelete'),
+                    actionButtonText: t('translation:delete'),
+                    closeButtonText: t('translation:notDelete'),
                 };
             }
             case ActionEnum.COPY: {
                 return {
                     theme: 'primary',
-                    actionButtonText: t('common:components.duplicate'),
-                    closeButtonText: t('common:components.notDuplicate'),
+                    actionButtonText: t('translation:duplicate'),
+                    closeButtonText: t('translation:notDuplicate'),
                 };
             }
             case ActionEnum.CONFIRM: {
                 return {
                     theme: 'primary',
-                    actionButtonText: t('common:components.confirm'),
-                    closeButtonText: t('common:components.cancel'),
+                    actionButtonText: t('translation:confirm'),
+                    closeButtonText: t('translation:cancel'),
                 };
             }
             case ActionEnum.UNTIE: {
                 return {
                     theme: 'primary',
-                    actionButtonText: t('common:components.untie'),
-                    closeButtonText: t('common:components.notUntie'),
+                    actionButtonText: t('translation:untie'),
+                    closeButtonText: t('translation:notUntie'),
                 };
             }
             default: {
                 return {
                     theme: 'primary',
-                    actionButtonText: t('common:components.save'),
-                    closeButtonText: t('common:components.notSave'),
+                    actionButtonText: t('translation:save'),
+                    closeButtonText: t('translation:notSave'),
                 };
             }
         }

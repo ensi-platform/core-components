@@ -14,12 +14,12 @@ import type {
  * Get a value depending on the content type
  */
 export const useGetInfoItemValue = (item: DescriptionListItemType) => {
-    const { t } = useTranslation('common');
+    const { t } = useTranslation('translation');
     return useMemo(() => {
         switch (item.type) {
             case 'boolean': {
                 const { value } = item as IDescriptionListBooleanItem;
-                return value ? t('common:components.yes') : t('common:components.no');
+                return value ? t('translation:yes') : t('translation:no');
             }
             case 'date': {
                 const { value, format = DateFormatters.DATE_AND_TIME } = item as IDescriptionListDateItem;

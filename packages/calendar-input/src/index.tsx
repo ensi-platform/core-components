@@ -44,7 +44,7 @@ export const CalendarInput = forwardRef<HTMLInputElement, BaseCalendarInputProps
         },
         ref
     ) => {
-        const { t } = useTranslation('common');
+        const { t } = useTranslation('translation');
 
         const [correctionOccurred, setCorrectionOccurred] = useState(false);
         const [open, setOpen] = useState(false);
@@ -179,9 +179,7 @@ export const CalendarInput = forwardRef<HTMLInputElement, BaseCalendarInputProps
             case 'date-time':
                 return (
                     <DateInput
-                        placeholder={
-                            view === 'date-time' ? t('common:components.fullDate') : t('common:components.date')
-                        }
+                        placeholder={view === 'date-time' ? t('translation:fullDate') : t('translation:date')}
                         {...restProps}
                         {...commonProps}
                         {...pickerProps}
@@ -196,7 +194,7 @@ export const CalendarInput = forwardRef<HTMLInputElement, BaseCalendarInputProps
             case 'date-range':
                 return (
                     <DateRangeInput
-                        placeholder={`${t('common:components.date')}${DATE_RANGE_SEPARATOR}${t('common:components.date')}`}
+                        placeholder={`${t('translation:date')}${DATE_RANGE_SEPARATOR}${t('translation:date')}`}
                         {...restProps}
                         {...commonProps}
                         {...pickerProps}
@@ -210,7 +208,7 @@ export const CalendarInput = forwardRef<HTMLInputElement, BaseCalendarInputProps
             case 'time':
                 return (
                     <TimeInput
-                        placeholder={`${t('common:components.hours')}${HOURS_MINUTES_SEPARATOR}${t('common:components.minutes')}`}
+                        placeholder={`${t('translation:hours')}${HOURS_MINUTES_SEPARATOR}${t('translation:minutes')}`}
                         {...restProps}
                         {...commonProps}
                         ref={mergeRefs([ref, maskRef, inputRef])}
