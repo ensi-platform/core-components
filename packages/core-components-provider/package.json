@@ -1,7 +1,7 @@
 {
-    "name": "@ensi-platform/core-components-internal-theme-provider",
+    "name": "@ensi-platform/core-components-core-components-provider",
     "version": "1.0.0",
-    "description": "internal-theme-provider component",
+    "description": "core-components-provider component",
     "keywords": [],
     "license": "MIT",
     "main": "index.js",

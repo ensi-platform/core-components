@@ -5,9 +5,9 @@ import { I18nextProvider } from 'react-i18next';
 
 import { addInternalTranslations } from './scripts/helpers';
 import i18n from './scripts/i18n';
-import type { IInternalThemeProviderProps } from './types';
+import type { ICoreComponentsProviderProps } from './types';
 
-const InternalThemeProvider: FC<IInternalThemeProviderProps> = ({ children, i18nInstance }) => {
+const CoreComponentsProvider: FC<ICoreComponentsProviderProps> = ({ children, i18nInstance }) => {
     if (i18nInstance) {
         addInternalTranslations(i18nInstance);
     }
@@ -21,4 +21,4 @@ const InternalThemeProvider: FC<IInternalThemeProviderProps> = ({ children, i18n
     );
 };
 
-export default InternalThemeProvider;
+export default CoreComponentsProvider;

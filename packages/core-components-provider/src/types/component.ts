@@ -1,7 +1,7 @@
 import { type i18n } from 'i18next';
 import type { ReactNode } from 'react';
 
-export interface IInternalThemeProviderProps {
+export interface ICoreComponentsProviderProps {
     /**
      * Provider's children
      */

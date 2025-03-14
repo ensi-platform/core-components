@@ -6,8 +6,6 @@
         "rootDirs": ["src"],
         "baseUrl": ".",
         "esModuleInterop": true,
-        "resolveJsonModule": true,
-        "allowJs": true,
-        "declaration": true
+        "resolveJsonModule": true
     }
 }
