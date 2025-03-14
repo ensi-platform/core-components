@@ -83,9 +83,9 @@ export const Select = forwardRef<HTMLDivElement, SelectProps>(
 
                     if (typeof setFieldValue === 'function') {
                         const value =
-                            (multiple || isValueArray) && payload?.selected && payload?.selected?.length > 1
+                            (multiple || isValueArray) && payload?.selected
                                 ? payload?.selected.map(e => e.value) || []
-                                : payload?.actionItem?.value || null;
+                                : (payload?.actionItem?.value ?? null);
 
                         if (!hideClearButton || payload?.selected !== null) {
                             setFieldValue(value);
