@@ -34,7 +34,7 @@ export const Basic: StoryObj<ComponentProps<typeof Switcher>> = {
 
         return (
             <>
-                <p css={{ marginBottom: 8 }}>Включить оповещения</p>
+                <p css={{ marginBottom: 8 }}>Activate alerts</p>
                 <Switcher checked={checked} onChange={handleChange} />
             </>
         );

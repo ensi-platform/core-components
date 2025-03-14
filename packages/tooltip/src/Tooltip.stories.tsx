@@ -88,7 +88,7 @@ export const Basic: StoryObj<ComponentProps<typeof Tooltip> & { offsetX: number;
                     onClose={handleClose}
                     fallbackPlacements={['bottom', 'top']}
                 >
-                    <div style={{ padding: '16px', border: '1px dashed rgba(0, 0, 0, 0.1)' }}>Подробнее</div>
+                    <div style={{ padding: '16px', border: '1px dashed rgba(0, 0, 0, 0.1)' }}>Read More</div>
                 </Tooltip>
             </div>
         );

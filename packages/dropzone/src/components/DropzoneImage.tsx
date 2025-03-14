@@ -1,4 +1,5 @@
 import { memo, useEffect, useMemo } from 'react';
+import { useTranslation } from 'react-i18next';
 
 import { ImagePreview } from '../scripts/constants';
 
@@ -10,6 +11,8 @@ const areEqualFiles = (prevProps: DropzoneImageProps, nextProps: DropzoneImagePr
     prevProps.file.name === nextProps.file.name || prevProps.file === nextProps.file;
 
 const DropzoneImage = memo(({ file }: DropzoneImageProps) => {
+    const { t } = useTranslation('translation');
+
     const url = useMemo(() => URL.createObjectURL(file), [file]);
     useEffect(() => () => URL.revokeObjectURL(url), [url]);
 
@@ -21,7 +24,7 @@ const DropzoneImage = memo(({ file }: DropzoneImageProps) => {
                 img: { width: ImagePreview.width, height: ImagePreview.height, objectFit: 'cover' },
             }}
         >
-            <img src={url} alt={`Превью картинки ${file.name}`} />
+            <img src={url} alt={`${t('translation:preview')} ${file.name}`} />
         </div>
     );
 }, areEqualFiles);

@@ -1,6 +1,7 @@
 import { DateFormatters, formatDate } from '@ensi-platform/core-components-common';
 
 import { useMemo } from 'react';
+import { useTranslation } from 'react-i18next';
 
 import type {
     DescriptionListItemType,
@@ -12,12 +13,13 @@ import type {
 /**
  * Get a value depending on the content type
  */
-export const useGetInfoItemValue = (item: DescriptionListItemType) =>
-    useMemo(() => {
+export const useGetInfoItemValue = (item: DescriptionListItemType) => {
+    const { t } = useTranslation('translation');
+    return useMemo(() => {
         switch (item.type) {
             case 'boolean': {
                 const { value } = item as IDescriptionListBooleanItem;
-                return value ? 'да' : 'нет';
+                return value ? t('translation:yes') : t('translation:no');
             }
             case 'date': {
                 const { value, format = DateFormatters.DATE_AND_TIME } = item as IDescriptionListDateItem;
@@ -29,4 +31,5 @@ export const useGetInfoItemValue = (item: DescriptionListItemType) =>
                 return value || '-';
             }
         }
-    }, [item]);
+    }, [item, t]);
+};

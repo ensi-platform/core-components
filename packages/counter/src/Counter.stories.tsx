@@ -1,4 +1,4 @@
-import { Button, ErrorMessages, scale } from '@ensi-platform/core-components-common';
+import { Button, scale } from '@ensi-platform/core-components-common';
 import { Form, FormFieldWrapper, FormReset } from '@ensi-platform/core-components-form';
 
 import { action } from '@storybook/addon-actions';
@@ -15,7 +15,7 @@ export default {
     component: Counter,
     args: {
         name: 'counter-knobs',
-        label: 'Выберите количество товара',
+        label: 'Select the quantity of goods',
         min: 1,
         max: 999,
         step: 1,
@@ -70,7 +70,7 @@ export const Controlled: StoryObj<ComponentProps<typeof Counter>> = {
     parameters: {
         docs: {
             description: {
-                story: 'Использование счетчика без дополнительной логики, т.е. вся логика по управлению компонента, зашита внутри компонента.',
+                story: 'Using the counter without additional logic, i.e. all the logic for controlling the component is located inside the component.',
             },
         },
     },
@@ -84,7 +84,7 @@ export const Controlled: StoryObj<ComponentProps<typeof Counter>> = {
                     </Button>
                     <Counter
                         name="counter-controlled"
-                        label="Выберите количество товара"
+                        label="Select the quantity of goods"
                         value={value}
                         onChange={newValue => setValue(newValue)}
                     />
@@ -98,7 +98,7 @@ export const Controlled: StoryObj<ComponentProps<typeof Counter>> = {
 export const Custom: StoryObj<ComponentProps<typeof Counter>> = {
     args: {
         name: 'custom',
-        label: 'Укажите количество записей',
+        label: 'Specify the number of records',
         min: 2,
         max: 999,
         step: 2,
@@ -107,7 +107,7 @@ export const Custom: StoryObj<ComponentProps<typeof Counter>> = {
     parameters: {
         docs: {
             description: {
-                story: 'Пример счетчика с кастомными параметрами.',
+                story: 'Example of a counter with custom parameters.',
             },
         },
     },
@@ -119,11 +119,11 @@ export const Vertical: StoryObj<ComponentProps<typeof Counter>> = {
     parameters: {
         docs: {
             description: {
-                story: 'Использование счетчика с вертикальным отображением.',
+                story: 'Using a counter with a vertical display.',
             },
         },
     },
-    render: () => <Counter name="counter-vertical" label="Выберите количество товара" view="vertical" />,
+    render: () => <Counter name="counter-vertical" label="Select the quantity of goods" view="vertical" />,
 };
 
 export const WithForm: StoryObj<ComponentProps<typeof Counter>> = {
@@ -131,7 +131,7 @@ export const WithForm: StoryObj<ComponentProps<typeof Counter>> = {
         <Form
             initialValues={{ counter: 10 }}
             validationSchema={Yup.object().shape({
-                counter: Yup.number().max(100).required(ErrorMessages.REQUIRED),
+                counter: Yup.number().max(100).required('Required field'),
             })}
             onSubmit={action('onSubmit')}
         >

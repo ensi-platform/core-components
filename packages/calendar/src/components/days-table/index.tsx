@@ -2,10 +2,11 @@ import { Button, usePrevious } from '@ensi-platform/core-components-common';
 
 import { isEqual, isLastDayOfMonth, isSameDay, isToday, isWithinInterval, startOfMonth } from 'date-fns';
 import { type FC, type RefCallback, useCallback, useMemo, useRef } from 'react';
+import { useTranslation } from 'react-i18next';
 import { CSSTransition as CSSTransitionTyped, TransitionGroup as TransitionGroupTyped } from 'react-transition-group';
 
 import useCalendarTheme from '../../scripts/useCalendarTheme';
-import { WEEKDAYS, getSelectionRange } from '../../scripts/utils';
+import { getSelectionRange, getWeekdays } from '../../scripts/utils';
 import type { Day } from '../../types';
 
 const TransitionGroup = TransitionGroupTyped as never as (props: any) => JSX.Element;
@@ -51,6 +52,8 @@ export const DaysTable: FC<DaysTableProps> = ({
     selectedTo,
     getDayProps,
 }) => {
+    const { t } = useTranslation('constants');
+
     const activeMonthRef = useRef(activeMonth);
 
     activeMonthRef.current = activeMonth;
@@ -67,12 +70,12 @@ export const DaysTable: FC<DaysTableProps> = ({
 
     const renderHeader = useCallback(
         () =>
-            WEEKDAYS.map(dayName => (
+            getWeekdays(t).map((dayName: string) => (
                 <th key={dayName} css={thStyles}>
                     {dayName}
                 </th>
             )),
-        [thStyles]
+        [thStyles, t]
     );
 
     const renderDay = (day: Day) => {

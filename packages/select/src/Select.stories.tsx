@@ -1,4 +1,4 @@
-import { Button, ErrorMessages, scale } from '@ensi-platform/core-components-common';
+import { Button, scale } from '@ensi-platform/core-components-common';
 import { Form, FormField, FormFieldWrapper, FormReset } from '@ensi-platform/core-components-form';
 
 import { action } from '@storybook/addon-actions';
@@ -127,10 +127,10 @@ export const Basic: StoryObj<ComponentProps<typeof Select>> = {
                         if (payload.open !== undefined) setOpen(payload.open);
                     }}
                     allowUnselect
-                    placeholder="Выберите"
+                    placeholder="Select"
                 />
                 <Button css={{ marginTop: scale(1) }} onClick={() => setOpen(!open)}>
-                    {!open ? 'Открыть' : 'Закрыть'} вручную
+                    {!open ? 'Open' : 'Close'} manually
                 </Button>
             </div>
         );
@@ -190,7 +190,7 @@ export const WithForm: StoryObj<ComponentProps<typeof Select>> = {
                 initialValues={{ selectValue: '6', otherField: '' }}
                 onSubmit={action('onSubmit')}
                 validationSchema={Yup.object().shape({
-                    selectValue: Yup.string().required(ErrorMessages.REQUIRED),
+                    selectValue: Yup.string().required('Required field'),
                 })}
             >
                 <FormFieldWrapper name="selectValue" label="Select content" required>

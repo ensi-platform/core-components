@@ -1,4 +1,4 @@
-import { Button, ErrorMessages, scale } from '@ensi-platform/core-components-common';
+import { Button, scale } from '@ensi-platform/core-components-common';
 import { Form, FormFieldWrapper, FormReset } from '@ensi-platform/core-components-form';
 
 import { action } from '@storybook/addon-actions';
@@ -36,7 +36,7 @@ export const Basic: StoryObj<ComponentProps<typeof Rating>> = {
             <>
                 <Rating
                     size="lg"
-                    label="Оценка"
+                    label="Score"
                     value={value}
                     onChange={e => {
                         setValue(e.target.value);
@@ -47,8 +47,8 @@ export const Basic: StoryObj<ComponentProps<typeof Rating>> = {
                     name="score"
                     {...args}
                 />
-                <p>Выбрано: {value}</p>
-                <p>Ховер: {hovered}</p>
+                <p>Chosen: {value}</p>
+                <p>Hover: {hovered}</p>
             </>
         );
     },
@@ -61,7 +61,7 @@ export const WithForm: StoryObj<ComponentProps<typeof Rating>> = {
             <Form
                 initialValues={{ rating: 5 }}
                 validationSchema={Yup.object().shape({
-                    rating: Yup.number().min(5, 'Поставьте нам 5 баллов').required(ErrorMessages.REQUIRED),
+                    rating: Yup.number().min(5, 'Give us 5 points').required('Required field'),
                 })}
                 onSubmit={action('onSubmit')}
             >
