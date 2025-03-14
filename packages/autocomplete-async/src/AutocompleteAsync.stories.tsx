@@ -1,4 +1,4 @@
-import { Button, ErrorMessages, scale } from '@ensi-platform/core-components-common';
+import { Button, scale } from '@ensi-platform/core-components-common';
 import { Form, FormFieldWrapper, FormReset } from '@ensi-platform/core-components-form';
 import type { Select, SelectHandlers, SelectItem } from '@ensi-platform/core-components-select';
 
@@ -196,13 +196,13 @@ export const Basic: StoryObj<ComponentProps<typeof AutocompleteAsync>> = {
 
         return (
             <>
-                <h2>Единственный выбор:</h2>
+                <h2>The only choice:</h2>
                 <AutocompleteAsync
                     {...args}
                     block
                     asyncSearchFn={asyncSearchFn}
                     asyncOptionsByValuesFn={asyncOptionsByValuesFn}
-                    placeholder="Начинайте вводить"
+                    placeholder="Start introducing"
                 />
             </>
         );
@@ -237,7 +237,7 @@ export const WithForm: StoryObj<ComponentProps<typeof Select>> = {
                 <Form
                     initialValues={{ selectValue: [3] }}
                     validationSchema={Yup.object().shape({
-                        selectValue: Yup.array().min(1, 'Обязательное поле').required(ErrorMessages.REQUIRED),
+                        selectValue: Yup.array().min(1, 'Required field').required('Required field'),
                     })}
                     onSubmit={action('onSubmit')}
                 >
@@ -305,7 +305,7 @@ export const ControlledAutocomplete: StoryObj<ComponentProps<typeof Autocomplete
             <BaseAutocomplete
                 options={filteredOptions}
                 selected={selectedOptions}
-                label="Элемент"
+                label="Element"
                 value={value}
                 allowUnselect
                 onChange={handleChange}

@@ -1,4 +1,4 @@
-import { Button, ErrorMessages, regOneDigit, regOneLetter, scale } from '@ensi-platform/core-components-common';
+import { Button, regOneDigit, regOneLetter, scale } from '@ensi-platform/core-components-common';
 import { Form, FormFieldWrapper, FormReset } from '@ensi-platform/core-components-form';
 
 import { action } from '@storybook/addon-actions';
@@ -48,14 +48,14 @@ export const WithForm: StoryObj<ComponentProps<typeof Password>> = {
                 initialValues={{ password: 'qwerty123' }}
                 validationSchema={Yup.object().shape({
                     password: Yup.string()
-                        .matches(regOneLetter, 'Пароль должен содержать хотя бы 1 латинскую букву')
-                        .matches(regOneDigit, 'Пароль должен содержать хотя бы 1 цифру')
-                        .min(8, 'Пароль должен быть не менее 8 символов')
-                        .required(ErrorMessages.REQUIRED),
+                        .matches(regOneLetter, 'Password must contain at least one latin letter')
+                        .matches(regOneDigit, 'The password must contain at least one digit')
+                        .min(8, 'The password must be at least 8 characters long')
+                        .required('Required field'),
                 })}
                 onSubmit={action('onSubmit')}
             >
-                <FormFieldWrapper name="password" label="Пароль">
+                <FormFieldWrapper name="password" label="Password">
                     <Password {...args} />
                 </FormFieldWrapper>
                 <br />

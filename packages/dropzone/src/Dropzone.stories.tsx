@@ -1,4 +1,4 @@
-import { Button, ErrorMessages, scale } from '@ensi-platform/core-components-common';
+import { Button, scale } from '@ensi-platform/core-components-common';
 import { Form, FormFieldWrapper, FormReset } from '@ensi-platform/core-components-form';
 
 import { action } from '@storybook/addon-actions';
@@ -41,7 +41,7 @@ export const WithForm: StoryObj<ComponentProps<typeof Dropzone>> = {
         <Form
             initialValues={{ image: [] }}
             validationSchema={Yup.object().shape({
-                image: Yup.array().of(Yup.mixed()).min(1, ErrorMessages.REQUIRED),
+                image: Yup.array().of(Yup.mixed()).min(1, 'Required field'),
             })}
             onSubmit={action('onSubmit')}
         >
