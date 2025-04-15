@@ -1,12 +1,26 @@
-import Link, { type LinkProps } from 'next/link';
 import { type HTMLProps, forwardRef } from 'react';
 
 import { useTabsTheme } from '../../context';
-import type { TabListTitle } from '../../types';
+import type { TabListTitleType } from '../../types';
 
-type Props = TabListTitle & Omit<LinkProps, 'passHref'> & HTMLProps<HTMLAnchorElement>;
+type Props = TabListTitleType & HTMLProps<HTMLAnchorElement>;
 
-export const LinkTitle = forwardRef<HTMLAnchorElement, Props>(
+/**
+ * Component for making tab heading a link. Looks like default tab heading, but behaves as link
+ * @param id tab unique id
+ * @param toggleCSS additional tab heading css
+ * @param title string title of tab
+ * @param rightAddons right addon on heading
+ * @param leftAddons left addon on heading
+ * @param hidden hide tab and heading visually
+ * @param selected is this tab selected
+ * @param disabled is this tab disabled
+ * @param collapsed is this tab collapsed
+ * @param focused is it shown visually that tab is selected
+ * @param isOption is it in collapsed list
+ * @param href URL link
+ */
+export const TabLinkTitle = forwardRef<HTMLAnchorElement, Props>(
     (
         {
             id,
@@ -22,11 +36,6 @@ export const LinkTitle = forwardRef<HTMLAnchorElement, Props>(
             focused = false,
             isOption = false,
             href,
-            as,
-            replace,
-            scroll,
-            shallow,
-            locale,
             ...restProps
         },
         ref
@@ -38,43 +47,28 @@ export const LinkTitle = forwardRef<HTMLAnchorElement, Props>(
         if (hidden || blocked) return null;
 
         return (
-            <Link
-                {...(!disabled
-                    ? {
-                          href,
-                          as,
-                      }
-                    : {
-                          href: undefined as never as string,
-                      })}
-                replace={replace}
-                scroll={scroll}
-                shallow={shallow}
-                locale={locale}
-                passHref
+            <a
+                ref={ref}
+                id={`${id}`}
+                href={href}
+                css={{
+                    ...getCSS('toggle', {
+                        disabled,
+                        isSelected: selected,
+                        focused,
+                        isOption,
+                        isCollapsed: collapsed && !isOption,
+                    }),
+                    ...toggleCSS,
+                }}
+                {...restProps}
             >
-                <a
-                    ref={ref}
-                    id={`${id}`}
-                    css={{
-                        ...getCSS('toggle', {
-                            disabled,
-                            isSelected: selected,
-                            focused,
-                            isOption,
-                            isCollapsed: collapsed && !isOption,
-                        }),
-                        ...toggleCSS,
-                    }}
-                    {...restProps}
-                >
-                    {leftAddons && <span css={getCSS('toggleLeftAddons')}>{leftAddons}</span>}
-                    <span>{title}</span>
-                    {rightAddons && <span css={getCSS('toggleRightAddons')}>{rightAddons}</span>}
-                </a>
-            </Link>
+                {leftAddons && <span css={getCSS('toggleLeftAddons')}>{leftAddons}</span>}
+                <span>{title}</span>
+                {rightAddons && <span css={getCSS('toggleRightAddons')}>{rightAddons}</span>}
+            </a>
         );
     }
 );
 
-LinkTitle.displayName = 'LinkTitle';
+TabLinkTitle.displayName = 'TabLinkTitle';

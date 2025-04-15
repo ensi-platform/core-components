@@ -1,11 +1,11 @@
 import { type OptionizedCSS, defaultTheme, extractCSSOption, scale } from '@ensi-platform/core-components-common';
 
 // eslint-disable-next-line import/no-cycle
-import type { TabsSize, TabsTheme } from '../../types';
+import type { TabsSize, TabsThemeType } from '../../types';
 
 const { colors, typography } = defaultTheme;
 
-export const toggle: TabsTheme['toggle'] = state => {
+export const toggle: TabsThemeType['toggle'] = state => {
     const sized: OptionizedCSS<typeof TabsSize> = {
         md: {
             minHeight: scale(6),

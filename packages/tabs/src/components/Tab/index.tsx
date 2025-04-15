@@ -1,7 +1,14 @@
 import { useTabsTheme } from '../../context';
-import type { TabProps } from '../../types';
+import type { TabPropsType } from '../../types';
 
-export const Tab = ({ children, hidden, blocked, className, disabled, dataTestId }: TabProps) => {
+/**
+ * Tab component
+ * @param children tab content
+ * @param className additional content container class
+ * @param hidden is tab visually hidden
+ * @param disabled is tab disabled
+ */
+export const Tab = ({ children, hidden, blocked, className, disabled, dataTestId }: TabPropsType) => {
     const { getCSS } = useTabsTheme();
     if (!children) return null;
     if (blocked) return null;

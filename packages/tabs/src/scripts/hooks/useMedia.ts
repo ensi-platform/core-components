@@ -15,6 +15,14 @@ function getValue<T>(list: QueryList<T>): T[] {
         .filter(Boolean) as T[];
 }
 
+/**
+ * Hook to manage and track multiple media queries and their corresponding values.
+ *
+ * @param list - An array of tuples, where each tuple contains a value and a media query string.
+ * @param defaultValue - The default value to use when no media query matches.
+ *
+ * @returns An array of the current values based on the matching media queries.
+ */
 export function useMedia<T>(list: Params<T>, defaultValue: T): T[] {
     const [value, setValue] = useState<T[]>([defaultValue]);
     const [mediaQueryList, setMediaQueryList] = useState<QueryList<T>>([]);
