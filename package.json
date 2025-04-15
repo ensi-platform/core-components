@@ -12,7 +12,7 @@
         "*"
     ],
     "sideEffects": false,
-    "repository": "git@git.greensight.ru:greensight/frontend/greensight-core-components.git",
+    "repository": "https://github.com/ensi-platform/core-components.git",
     "workspaces": [
         "packages/*"
     ],
