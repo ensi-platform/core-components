@@ -8,6 +8,7 @@ import {
 } from '@ensi-platform/core-components-common';
 
 import type { MouseEvent } from 'react';
+import { useTranslation } from 'react-i18next';
 
 import type { SelectorView } from '../../types';
 
@@ -77,6 +78,8 @@ export const Header = ({
     onMonthClick,
     onYearClick,
 }: HeaderProps) => {
+    const { t } = useTranslation('translation');
+
     const linkStyles = useLinkCSS('blue');
 
     return (
@@ -87,7 +90,7 @@ export const Header = ({
                         <Button
                             theme="secondary"
                             onClick={onPrevArrowClick}
-                            aria-label="Предыдущий месяц"
+                            aria-label={t('translation:prevMonth')}
                             Icon={IconSmallChevronLeft}
                             hidden
                             css={{
@@ -106,7 +109,7 @@ export const Header = ({
                                 },
                             }}
                         >
-                            Предыдущий месяц
+                            {t('translation:prevMonth')}
                         </Button>
                     )}
                 </div>
@@ -130,7 +133,7 @@ export const Header = ({
                         <Button
                             theme="secondary"
                             onClick={onNextArrowClick}
-                            aria-label="Следующий месяц"
+                            aria-label={t('translation:nextMonth')}
                             Icon={IconSmallChevronRight}
                             hidden
                             css={{
@@ -149,7 +152,7 @@ export const Header = ({
                                 },
                             }}
                         >
-                            Следующий месяц
+                            {t('translation:components.nextMonth')}
                         </Button>
                     )}
                 </div>

@@ -46,17 +46,17 @@ export const Basic: StoryObj<ComponentProps<typeof Radio>> = {
 
         return (
             <>
-                <p>Выберите опцию:</p>
+                <p>Select an option:</p>
                 <Radio
                     {...getProps('1')}
-                    label="Опция 1"
+                    label="Option 1"
                     labelCSS={{
                         color: 'gold',
                     }}
                 />
-                <Radio {...getProps('2')} label="Опция 2" disabled allowUnselectDisabledOptions />
-                <Radio {...getProps('3')} label="Опция 3" disabled allowUnselectDisabledOptions />
-                <Radio {...getProps('4')} label="Опция 4" />
+                <Radio {...getProps('2')} label="Option 2" disabled allowUnselectDisabledOptions />
+                <Radio {...getProps('3')} label="Option 3" disabled allowUnselectDisabledOptions />
+                <Radio {...getProps('4')} label="Option 4" />
             </>
         );
     },

@@ -2,6 +2,7 @@ import { useDidUpdateEffect, useThemeCSSPart } from '@ensi-platform/core-compone
 
 import { endOfDay, startOfDay, startOfMonth } from 'date-fns';
 import { forwardRef, useCallback, useMemo, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 
 import { DaysTable } from './components/days-table';
 import { Header } from './components/header';
@@ -40,6 +41,8 @@ export const Calendar = forwardRef<HTMLDivElement, CalendarProps>(
         },
         ref
     ) => {
+        const { t } = useTranslation('constants');
+
         const [view, setView] = useState<View>(defaultView);
         const [scrolled, setScrolled] = useState(false);
 
@@ -166,7 +169,7 @@ export const Calendar = forwardRef<HTMLDivElement, CalendarProps>(
             <div {...getRootProps({ ref })} data-test-id={dataTestId} className={className} css={containerCSS}>
                 <CalendarThemeContext.Provider value={contextValue}>
                     <Header
-                        month={monthName(activeMonth)}
+                        month={monthName(activeMonth, t)}
                         year={activeMonth.getFullYear().toString()}
                         prevArrowVisible={canSetPrevMonth}
                         nextArrowVisible={canSetNextMonth}

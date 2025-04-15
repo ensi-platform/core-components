@@ -11,6 +11,7 @@ import {
 import { Popup, PopupContent, PopupFooter, PopupHeader } from '@ensi-platform/core-components-popup';
 
 import { type ReactNode, useMemo } from 'react';
+import { useTranslation } from 'react-i18next';
 
 import { ActionEnum, ThemesEnum } from './scripts/enums';
 import type { IActionPopupProps } from './types';
@@ -35,46 +36,48 @@ export const ActionPopup = ({
     disableFooter,
     ...props
 }: IActionPopupProps) => {
+    const { t } = useTranslation('translation');
+
     const btnParams = useMemo(() => {
         switch (action) {
             case ActionEnum.DELETE: {
                 return {
                     // TODO Разобраться почему в REP не работает тема button-a из core-components-common
                     theme: 'dangerous',
-                    actionButtonText: 'Удалить',
-                    closeButtonText: 'Не удалять',
+                    actionButtonText: t('translation:delete'),
+                    closeButtonText: t('translation:notDelete'),
                 };
             }
             case ActionEnum.COPY: {
                 return {
                     theme: 'primary',
-                    actionButtonText: 'Дублировать',
-                    closeButtonText: 'Не дублировать',
+                    actionButtonText: t('translation:duplicate'),
+                    closeButtonText: t('translation:notDuplicate'),
                 };
             }
             case ActionEnum.CONFIRM: {
                 return {
                     theme: 'primary',
-                    actionButtonText: 'Подтвердить',
-                    closeButtonText: 'Отмена',
+                    actionButtonText: t('translation:confirm'),
+                    closeButtonText: t('translation:cancel'),
                 };
             }
             case ActionEnum.UNTIE: {
                 return {
                     theme: 'primary',
-                    actionButtonText: 'Отвязать',
-                    closeButtonText: 'Не отвязывать',
+                    actionButtonText: t('translation:untie'),
+                    closeButtonText: t('translation:notUntie'),
                 };
             }
             default: {
                 return {
                     theme: 'primary',
-                    actionButtonText: 'Сохранить',
-                    closeButtonText: 'Не сохранять',
+                    actionButtonText: t('translation:save'),
+                    closeButtonText: t('translation:notSave'),
                 };
             }
         }
-    }, [action]);
+    }, [action, t]);
 
     const leftAddonIcon = (): ReactNode => {
         switch (leftAddonIconTheme) {

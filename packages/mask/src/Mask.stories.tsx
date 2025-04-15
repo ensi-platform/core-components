@@ -1,4 +1,4 @@
-import { Button, ErrorMessages, regPhone, scale } from '@ensi-platform/core-components-common';
+import { Button, regPhone, scale } from '@ensi-platform/core-components-common';
 import { Form, FormFieldWrapper, FormReset } from '@ensi-platform/core-components-form';
 
 import { action } from '@storybook/addon-actions';
@@ -53,7 +53,7 @@ export const WithForm: StoryObj<ComponentProps<typeof Mask>> = {
             <Form
                 initialValues={{ phone: '+7(999) 888-77-66' }}
                 validationSchema={Yup.object().shape({
-                    phone: Yup.string().matches(regPhone, 'Check phone').required(ErrorMessages.REQUIRED),
+                    phone: Yup.string().matches(regPhone, 'Check phone').required('Required field'),
                 })}
                 onSubmit={action('onSubmit')}
             >

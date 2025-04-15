@@ -9,7 +9,7 @@ export default {
     title: 'Components / Picture',
     component: Picture,
     args: {
-        alt: 'замещающий текст',
+        alt: 'replacement text',
         width: '600',
         height: '400',
         sources: [

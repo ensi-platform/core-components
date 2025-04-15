@@ -1,5 +1,5 @@
 {
-    "include": ["src", "../../typings", "src/internal-theme-provider.stories.tsx"],
+    "include": ["src", "../../typings", "src/core-components-provider.stories.tsx"],
     "extends": "../../tsconfig.json",
     "compilerOptions": {
         "outDir": "dist",

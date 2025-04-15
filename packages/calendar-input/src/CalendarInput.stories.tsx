@@ -1,4 +1,4 @@
-import { Button, ErrorMessages, scale } from '@ensi-platform/core-components-common';
+import { Button, scale } from '@ensi-platform/core-components-common';
 import { Form, FormFieldWrapper, FormReset } from '@ensi-platform/core-components-form';
 
 import { action } from '@storybook/addon-actions';
@@ -38,7 +38,7 @@ export const Basic: StoryObj<ComponentProps<typeof CalendarInput> & { rangeBehav
         return (
             <div style={{ maxWidth: 450 }}>
                 <CalendarInput
-                    label="Инпут выбора даты"
+                    label="Date selection input"
                     platform="desktop"
                     view={view}
                     picker
@@ -54,7 +54,7 @@ export const Basic: StoryObj<ComponentProps<typeof CalendarInput> & { rangeBehav
                         console.log('value', value);
                     }}
                 >
-                    Отправить
+                    Send
                 </Button>
             </div>
         );
@@ -66,14 +66,14 @@ export const WithForm: StoryObj<ComponentProps<typeof CalendarInput> & { rangeBe
         <Form
             initialValues={{ calendar: '12.12.2024' }}
             validationSchema={Yup.object().shape({
-                calendar: Yup.string().required(ErrorMessages.REQUIRED),
+                calendar: Yup.string().required('Required field'),
             })}
             onSubmit={action('onSubmit')}
         >
             <FormFieldWrapper name="calendar">
                 <CalendarInput
                     picker
-                    placeholder="Дата"
+                    placeholder="Date"
                     view="date"
                     platform="desktop"
                     label="Calendar input with default value"

@@ -86,16 +86,6 @@ export enum Days {
     SUNDAY,
 }
 
-export const daysValues = {
-    [`${Days.MONDAY}`]: 'Понедельник',
-    [`${Days.TUESDAY}`]: 'Вторник',
-    [`${Days.WEDNESDAY}`]: 'Среда',
-    [`${Days.THIRSDAY}`]: 'Четверг',
-    [`${Days.FRIDAY}`]: 'Пятница',
-    [`${Days.SATURDAY}`]: 'Суббота',
-    [`${Days.SUNDAY}`]: 'Воскресенье',
-};
-
 export enum ButtonNameEnum {
     SAVE = 'save',
     APPLY = 'apply',

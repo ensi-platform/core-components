@@ -1,4 +1,4 @@
-import { Button, ErrorMessages, scale } from '@ensi-platform/core-components-common';
+import { Button, scale } from '@ensi-platform/core-components-common';
 import { Form, FormField, FormFieldWrapper, FormReset } from '@ensi-platform/core-components-form';
 import type { SelectItem, SelectPayload } from '@ensi-platform/core-components-select';
 
@@ -116,12 +116,12 @@ export const Basic: StoryObj<Args> = {
             setSelected(payload.selected === null ? [] : payload.selected);
         }, []);
 
-        const transformCollapsedTagText = (count: number) => `+${count} элементов`;
+        const transformCollapsedTagText = (count: number) => `+${count} elements`;
 
         return (
             <div style={{ width: 500, minHeight: 800 }}>
                 <p>
-                    Выбраны значения: <b>{JSON.stringify(selectedValues)}</b>
+                    Selected values: <b>{JSON.stringify(selectedValues)}</b>
                 </p>
                 <SimpleSelectWithTags
                     {...args}
@@ -131,14 +131,14 @@ export const Basic: StoryObj<Args> = {
                     onOpen={payload => {
                         setOpen(payload.open!);
                     }}
-                    placeholder="Выберите"
+                    placeholder="Select"
                     onInput={handleInput}
                     transformCollapsedTagText={transformCollapsedTagText}
                     value={value}
                     onChange={handleChange}
                 />
                 <Button css={{ marginTop: scale(1) }} onClick={() => setOpen(!open)}>
-                    {!open ? 'Открыть' : 'Закрыть'} вручную
+                    {!open ? 'Open' : 'Close'} manually
                 </Button>
             </div>
         );
@@ -167,7 +167,7 @@ export const WithForm: StoryObj<ComponentProps<typeof SelectWithTags>> = {
             <Form
                 initialValues={{ selectValue: [42, 131], otherField: '' }}
                 validationSchema={Yup.object().shape({
-                    selectValue: Yup.array().min(1, ErrorMessages.REQUIRED).required(ErrorMessages.REQUIRED),
+                    selectValue: Yup.array().min(1, 'Required field').required('Required field'),
                 })}
                 onSubmit={action('onSubmit')}
             >

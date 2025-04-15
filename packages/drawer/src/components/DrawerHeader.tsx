@@ -1,11 +1,14 @@
 import { IconCross } from '@ensi-platform/core-components-common';
 
 import { type FC, useMemo } from 'react';
+import { useTranslation } from 'react-i18next';
 
 import { useDrawerContext } from '../scripts';
 import type { IDrawerHeaderProps } from '../types';
 
 const DrawerHeader: FC<IDrawerHeaderProps> = ({ title, hasCloseButton = false, onClose, ...props }) => {
+    const { t } = useTranslation('translation');
+
     const { getCSS } = useDrawerContext();
     const styles = useMemo(
         () =>
@@ -18,7 +21,7 @@ const DrawerHeader: FC<IDrawerHeaderProps> = ({ title, hasCloseButton = false, o
     return (
         <div css={styles} {...props}>
             {hasCloseButton && onClose && (
-                <button aria-label="Закрыть панель" css={getCSS('closer')} onClick={onClose} type="button">
+                <button aria-label={t('translation:closePanel')} css={getCSS('closer')} onClick={onClose} type="button">
                     <IconCross />
                 </button>
             )}
