@@ -1,4 +1,4 @@
-import { Input } from '@ensi-platform/core-components-input';
+import { Component as Input } from '@ensi-platform/core-components-input';
 
 import { forwardRef } from 'react';
 
@@ -9,7 +9,7 @@ import type { IFormFieldProps } from './types';
  * Field - is just Input, controlled with RHF
  */
 export const FormField = forwardRef<HTMLInputElement, IFormFieldProps>(
-    ({ name, className, wrapperCSS, block = true, ...props }, ref) => {
+    ({ name, className, block = true, ...props }, ref) => {
         const { fieldState, field, setFieldValue, onChangeHandler, inputProps } = useFieldHook({
             name,
         });
@@ -24,7 +24,6 @@ export const FormField = forwardRef<HTMLInputElement, IFormFieldProps>(
             <div className={className} css={{ width: '100%' }}>
                 <Input
                     block={block}
-                    wrapperCSS={wrapperCSS}
                     value={field.value}
                     onInput={e => {
                         field.onChange(e);

@@ -3,58 +3,91 @@ import { useThemeCSSPart } from '@ensi-platform/core-components-common';
 import { type CSSObject } from '@emotion/react';
 
 import deepmerge from 'deepmerge';
-import { forwardRef, useMemo } from 'react';
+import { forwardRef, useCallback, useMemo } from 'react';
 
-import FormMessage from './components/FormMessage';
-import { formControlThemes } from './themes/defaultTheme';
-import { type FormControlProps, type FormControlThemeState } from './types';
+import FormControlError from './components/FormControlError';
+import { formControlThemes } from './themes/index';
+import {
+    type TErrorAdditionalProps,
+    type TErrorProps,
+    type TFormControlProps,
+    type TFormControlThemeState,
+    type TLabelAdditionalProps,
+    type TLabelProps,
+} from './types';
+import { getPartComponent } from './utils/getPartComponent';
 
-const EMPTY_OBJECT: any = {};
+const CSS_EMPTY_OBJECT: CSSObject = {};
 
-export const FormControl = forwardRef<HTMLDivElement, FormControlProps>(
+export const Component = forwardRef<HTMLDivElement, TFormControlProps>(
     (
         {
             block = false,
             theme: themeProp = 'basic',
-            errorPlacement = 'above',
             size = 'md',
             variant = 'primary',
             className,
-            labelCSS = EMPTY_OBJECT,
-            fieldCSS = EMPTY_OBJECT,
-            leftAddonsCSS = EMPTY_OBJECT,
-            rightAddonsCSS = EMPTY_OBJECT,
-            wrapperCSS = EMPTY_OBJECT,
+            fieldCSS = CSS_EMPTY_OBJECT,
+            controlWrapperCSS = CSS_EMPTY_OBJECT,
             disabled,
             readOnly,
             focused,
             filled,
-            error,
-            hint,
-            label,
-            leftAddons,
-            rightAddons,
+            error: errorProp,
+            hint: hintProp,
+            label: labelProp,
+            leftAddons: leftAddonsProp,
+            rightAddons: rightAddonsProp,
             bottomAddons,
             children,
             htmlFor,
             labelWrap = false,
-            labelProps = EMPTY_OBJECT,
-            showError = true,
             ...restProps
         },
         ref
     ) => {
         const theme = typeof themeProp === 'string' ? formControlThemes[themeProp] : themeProp;
 
+        const {
+            Component: label,
+            css: labelCSS,
+            className: labelClassName,
+            props: labelProps,
+        } = useMemo(() => getPartComponent<TLabelAdditionalProps, TLabelProps>(labelProp), [labelProp]);
+        const {
+            Component: leftAddons,
+            css: leftAddonsOutsideCSS,
+            className: leftAddonsClassName,
+        } = useMemo(() => getPartComponent(leftAddonsProp), [leftAddonsProp]);
+        const {
+            Component: rightAddons,
+            css: rightAddonsOutsideCSS,
+            className: rightAddonsClassName,
+        } = useMemo(() => getPartComponent(rightAddonsProp), [rightAddonsProp]);
+
+        const {
+            Component: hint,
+            css: hintOutsideCSS,
+            className: hintClassName,
+        } = useMemo(() => getPartComponent(hintProp), [hintProp]);
+
+        const {
+            Component: error,
+            css: errorOutsideCSS,
+            className: errorClassName,
+            visible: errorVisible = true,
+            placement: errorPlacement = 'above',
+        } = useMemo(() => getPartComponent<TErrorAdditionalProps, TErrorProps>(errorProp), [errorProp]);
+
         // eslint-disable-next-line no-nested-ternary
-        const errorMessage = (showError ? (typeof error === 'boolean' ? '' : error) : '') as string;
+        const errorMessage = errorVisible ? error : '';
 
         const hasError = !!error;
 
         const hasLeftAddons = !!leftAddons;
         const hasRightAddons = !!rightAddons || !!error;
 
-        const state = useMemo<Omit<FormControlThemeState, 'theme'>>(
+        const state = useMemo<Omit<TFormControlThemeState, 'theme'>>(
             () => ({
                 block,
                 disabled,
@@ -85,74 +118,99 @@ export const FormControl = forwardRef<HTMLDivElement, FormControlProps>(
 
         const getCSS = useThemeCSSPart(theme, state);
 
-        const totalWrapperCSS = useMemo(
-            () => deepmerge.all<CSSObject>([getCSS('wrapper'), wrapperCSS!]),
-            [wrapperCSS, getCSS]
+        const wrapperCSS = useMemo(() => getCSS('wrapper'), [getCSS]);
+        const fieldInnerCSS = useMemo(() => deepmerge.all<CSSObject>([getCSS('field'), fieldCSS!]), [fieldCSS, getCSS]);
+        const hintCSS = useMemo(
+            () => deepmerge.all<CSSObject>([getCSS('hint'), hintOutsideCSS]),
+            [getCSS, hintOutsideCSS]
         );
-
-        const innerCSS = useMemo(() => deepmerge.all<CSSObject>([getCSS('inner'), fieldCSS!]), [fieldCSS, getCSS]);
-
+        const leftAddonsCSS = useMemo(
+            () => deepmerge.all<CSSObject>([getCSS('addons', { isLeft: true }), leftAddonsOutsideCSS]),
+            [getCSS, leftAddonsOutsideCSS]
+        );
+        const rightAddonsCSS = useMemo(
+            () => deepmerge.all<CSSObject>([getCSS('addons', { isLeft: false }), rightAddonsOutsideCSS]),
+            [getCSS, rightAddonsOutsideCSS]
+        );
+        const errorCSS = useMemo(
+            () => deepmerge.all<CSSObject>([getCSS('error'), errorOutsideCSS]),
+            [getCSS, errorOutsideCSS]
+        );
         const totalClearCSS = useMemo(() => getCSS('clear'), [getCSS]);
 
+        const labelInnerProps = useMemo(
+            () => ({
+                css: {
+                    ...(getCSS('label') as CSSObject),
+                    ...labelCSS,
+                },
+                title: !labelWrap && typeof label === 'string' ? label : undefined,
+            }),
+            [getCSS, label, labelCSS, labelWrap]
+        );
+
+        const controlWrapperInnerCSS = useMemo(
+            () =>
+                deepmerge.all<CSSObject>([
+                    {
+                        flexGrow: 1,
+                        ...(!labelWrap && {
+                            textOverflow: 'ellipsis',
+                            overflow: 'hidden',
+                        }),
+                        '.control': getCSS('control'),
+                    },
+                    controlWrapperCSS,
+                ]),
+            []
+        );
+
+        const FormMessageComponent = useCallback(
+            () => (
+                <FormControlError className={errorClassName} css={errorCSS} type="error">
+                    {errorMessage}
+                </FormControlError>
+            ),
+            [errorCSS, errorClassName, errorMessage]
+        );
+
         return (
-            <div className={className} css={totalWrapperCSS}>
+            <div className={className} css={wrapperCSS}>
                 {label && (
-                    <label
-                        htmlFor={htmlFor}
-                        css={{
-                            ...(getCSS('label') as CSSObject),
-                            ...labelCSS,
-                        }}
-                        {...(!labelWrap &&
-                            typeof label === 'string' && {
-                                title: label,
-                            })}
-                        {...labelProps}
-                    >
+                    <label htmlFor={htmlFor} className={labelClassName} {...labelInnerProps} {...labelProps}>
                         {label}
                     </label>
                 )}
 
-                {errorMessage && errorPlacement === 'above' && (
-                    <FormMessage message={errorMessage} css={getCSS('error')} type="error" />
-                )}
+                {errorMessage && errorPlacement === 'above' && <FormMessageComponent />}
 
-                <div {...restProps} css={{ ...innerCSS, '.clear': totalClearCSS }} ref={ref}>
+                <div {...restProps} css={{ ...fieldInnerCSS, '.clear': totalClearCSS }} ref={ref}>
                     {leftAddons && (
-                        <div css={deepmerge.all<CSSObject>([getCSS('addons', { isLeft: true }), leftAddonsCSS])}>
+                        <div className={leftAddonsClassName} css={leftAddonsCSS}>
                             {leftAddons}
                         </div>
                     )}
 
-                    <div
-                        css={{
-                            flexGrow: 1,
-                            ...(!labelWrap && {
-                                textOverflow: 'ellipsis',
-                                overflow: 'hidden',
-                            }),
-                            '.control': getCSS('controlWrapper') as CSSObject,
-                        }}
-                    >
-                        {children}
-                    </div>
+                    <div css={controlWrapperInnerCSS}>{children}</div>
                     {rightAddons && (
-                        <div css={deepmerge.all<CSSObject>([getCSS('addons', { isLeft: false }), rightAddonsCSS])}>
+                        <div className={rightAddonsClassName} css={rightAddonsCSS}>
                             {rightAddons}
                         </div>
                     )}
                 </div>
 
-                {errorMessage && errorPlacement === 'under' && (
-                    <FormMessage message={errorMessage} css={getCSS('error')} type="error" />
-                )}
+                {errorMessage && errorPlacement === 'under' && <FormMessageComponent />}
 
                 {bottomAddons}
 
-                {hint && <span css={getCSS('sub') as CSSObject}>{hint}</span>}
+                {hint && (
+                    <span className={hintClassName} css={hintCSS}>
+                        {hint}
+                    </span>
+                )}
             </div>
         );
     }
 );
 
-export default FormControl;
+export default Component;

@@ -1,4 +1,3 @@
-# Компонент form-control
-Базовый компонент для построения полей ввода — input, textarea, select и др
+Basic component for building input fields — input, textarea, select, etc.
 
-Основан на  [alfalab/core-components](https://github.com/alfa-laboratory/core-components)
+Based on [alfalab/core-components](https://github.com/alfa-laboratory/core-components)

@@ -1,4 +1,4 @@
-import { Input } from '@ensi-platform/core-components-input';
+import { Component as Input } from '@ensi-platform/core-components-input';
 
 import { type FormEvent, forwardRef, useCallback } from 'react';
 
@@ -10,7 +10,7 @@ import type { ITypedFieldProps } from './types';
  * TypedField - is just Input, controlled with RHF, with onBlur-transformations according to fieldType prop
  */
 export const FormTypedField = forwardRef<HTMLInputElement, ITypedFieldProps>(
-    ({ name, className, wrapperCSS, block = true, fieldType = 'positiveInt', dataType = 'number', ...props }, ref) => {
+    ({ name, className, block = true, fieldType = 'positiveInt', dataType = 'number', ...props }, ref) => {
         const { fieldState, field, onChange, setFieldValue, inputProps } = useFieldHook({
             name,
         });
@@ -65,7 +65,6 @@ export const FormTypedField = forwardRef<HTMLInputElement, ITypedFieldProps>(
                     {...commonProps}
                     value={field.value}
                     block={block}
-                    wrapperCSS={wrapperCSS}
                     onInput={e => {
                         field.onChange(e);
                         onChangeHandler(e);

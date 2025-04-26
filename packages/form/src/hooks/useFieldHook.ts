@@ -1,7 +1,7 @@
 import { type SyntheticEvent, useCallback } from 'react';
 import { type NativeFieldValue, useController, useFormContext } from 'react-hook-form';
 
-import { type IFormFieldWrapperProps } from '../components/FieldWrapper/types';
+import { type IFormFieldWrapperProps } from '../components/FormFieldWrapper/types';
 import useForm from '../context/form';
 
 /**

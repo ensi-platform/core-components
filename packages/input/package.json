@@ -17,6 +17,7 @@
         "@emotion/styled": "^11.11.5"
     },
     "dependencies": {
+        "classnames": "2.5.1",
         "tslib": "^2.6.2",
         "deepmerge": "4.3.1",
         "react-merge-refs": "1.1.0",

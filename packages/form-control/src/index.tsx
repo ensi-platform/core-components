@@ -1,9 +1,7 @@
-import { formControlThemes } from './themes/defaultTheme';
-
-export { formControlThemes };
+export { formControlThemes } from './themes';
 
 export * from './Component';
 export * from './types';
 
-export * from './components/FormMessage';
-export * from './components/FormMessage/types';
+export * from './components/FormControlError';
+export * from './components/FormControlError/types';

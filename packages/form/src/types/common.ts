@@ -34,3 +34,10 @@ export interface IFieldWrapperProps<T extends IFieldValueType> {
      */
     error?: string;
 }
+
+export interface IFormFieldComponent {
+    /**
+     * Field name
+     */
+    name: string;
+}

@@ -1,6 +1,6 @@
 import { Button, ErrorMessages, IconSmallUser as ProfileIcon, scale } from '@ensi-platform/core-components-common';
 import { Form, FormFieldWrapper, FormReset } from '@ensi-platform/core-components-form';
-import { FormControlSize } from '@ensi-platform/core-components-form-control';
+import { FormControlSizeEnum } from '@ensi-platform/core-components-form-control';
 
 import { action } from '@storybook/addon-actions';
 import type { Meta, StoryObj } from '@storybook/react';
@@ -9,7 +9,7 @@ import * as Yup from 'yup';
 import type { ComponentProps } from 'react';
 
 import README from '../README.md';
-import { Input } from './index';
+import { Component as Input } from './index';
 
 export default {
     title: 'Components / Input',
@@ -38,7 +38,7 @@ export default {
     },
     argTypes: {
         size: {
-            options: Object.values(FormControlSize),
+            options: Object.values(FormControlSizeEnum),
             control: { type: 'radio' },
         },
     },

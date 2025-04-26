@@ -4,12 +4,12 @@ import type { Meta, StoryObj } from '@storybook/react';
 import type { ComponentProps } from 'react';
 
 import README from '../README.md';
-import { FormControl } from './index';
-import { FormControlSize } from './types';
+import { Component } from './index';
+import { FormControlSizeEnum } from './types';
 
 export default {
     title: 'Components / FormControl',
-    component: FormControl,
+    component: Component,
     parameters: {
         docs: {
             description: {
@@ -18,48 +18,38 @@ export default {
         },
     },
     args: {
-        errorPlacement: 'above',
         label: 'Пример текста',
         focused: false,
         disabled: false,
         readOnly: false,
         filled: false,
-        error: 'Ошибка',
+        error: '',
         hint: 'Подсказка',
         size: 'md',
     },
     argTypes: {
-        errorPlacement: {
-            options: ['above', 'under'],
-            control: { type: 'radio' },
-        },
         size: {
-            options: Object.values(FormControlSize),
+            options: Object.values(FormControlSizeEnum),
             control: { type: 'radio' },
         },
     },
-} as Meta<typeof FormControl>;
+} as Meta<typeof Component>;
 
-export const Basic: StoryObj<Omit<ComponentProps<typeof FormControl>, 'theme'>> = {
+export const Basic: StoryObj<Omit<ComponentProps<typeof Component>, 'theme'>> = {
     render: args => (
-        <FormControl
+        <Component
             rightAddons={<p>R</p>}
             leftAddons={<p>L</p>}
             bottomAddons={<p>Bottom addons</p>}
             onClick={action('click on field')}
-            fieldCSS={{
-                ':hover': {
-                    opacity: 0.5,
-                },
-            }}
             {...args}
         >
             <div
                 className="control"
                 style={{ height: '100%', color: 'green', display: 'flex', alignItems: 'center', padding: '0 8px' }}
             >
-                I am a UI element
+                UI element
             </div>
-        </FormControl>
+        </Component>
     ),
 };

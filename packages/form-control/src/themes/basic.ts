@@ -1,10 +1,10 @@
 import { type OptionizedCSS, defaultTheme, extractCSSOption, scale } from '@ensi-platform/core-components-common';
 
-import type { FormControlSize, FormControlTheme, FormControlVariant } from '../types';
+import type { FormControlSizeEnum, FormControlVariantEnum, TFormControlTheme } from '../types/index';
 
 const { colors, typography } = defaultTheme;
 
-const basicTheme: FormControlTheme = {
+export const basicTheme: TFormControlTheme = {
     wrapper: ({ block }) => ({
         maxWidth: '100%',
         width: 'fit-content',
@@ -13,8 +13,8 @@ const basicTheme: FormControlTheme = {
     error: ({ errorPlacement }) => ({
         [errorPlacement === 'above' ? 'marginBottom' : 'marginTop']: scale(1),
     }),
-    inner: ({ size, focused, hasError, disabled }) => {
-        const sized: OptionizedCSS<typeof FormControlSize> = {
+    field: ({ size, focused, hasError, disabled }) => {
+        const sized: OptionizedCSS<typeof FormControlSizeEnum> = {
             sm: {
                 ...typography('bodySm'),
             },
@@ -49,8 +49,8 @@ const basicTheme: FormControlTheme = {
             }),
         };
     },
-    controlWrapper: ({ size, hasRightAddons, hasLeftAddons, disabled }) => {
-        const sized: OptionizedCSS<typeof FormControlSize> = {
+    control: ({ size, hasRightAddons, hasLeftAddons, disabled }) => {
+        const sized: OptionizedCSS<typeof FormControlSizeEnum> = {
             sm: {
                 padding: `${scale(1, true)}px ${scale(1)}px`,
                 minHeight: scale(3),
@@ -99,7 +99,7 @@ const basicTheme: FormControlTheme = {
         };
     },
     label: ({ size = 'md', hasError, labelWrap }) => {
-        const sized: OptionizedCSS<typeof FormControlSize> = {
+        const sized: OptionizedCSS<typeof FormControlSizeEnum> = {
             sm: {
                 ...(typography('bodySmBold') as any),
                 marginBottom: scale(1, true),
@@ -129,7 +129,7 @@ const basicTheme: FormControlTheme = {
         };
     },
     addons: ({ isLeft, size = 'md', disabled }) => {
-        const paddings: OptionizedCSS<typeof FormControlSize> = {
+        const paddings: OptionizedCSS<typeof FormControlSizeEnum> = {
             sm: {
                 [!isLeft ? 'paddingRight' : 'paddingLeft']: scale(1, true),
             },
@@ -149,8 +149,8 @@ const basicTheme: FormControlTheme = {
             ...extractCSSOption(paddings, size),
         };
     },
-    sub: ({ size = 'md', variant = 'primary' }) => {
-        const sized: OptionizedCSS<typeof FormControlSize> = {
+    hint: ({ size = 'md', variant = 'primary' }) => {
+        const sized: OptionizedCSS<typeof FormControlSizeEnum> = {
             sm: {
                 marginTop: scale(1),
             },
@@ -159,7 +159,7 @@ const basicTheme: FormControlTheme = {
             },
             lg: { ...(typography('bodySm') as any), marginTop: scale(3, true) },
         };
-        const variants: OptionizedCSS<typeof FormControlVariant> = {
+        const variants: OptionizedCSS<typeof FormControlVariantEnum> = {
             primary: { color: colors?.grey600 },
         };
         return {
@@ -169,7 +169,7 @@ const basicTheme: FormControlTheme = {
         };
     },
     clear: ({ size = 'md', hasRightAddons }) => {
-        const sized: OptionizedCSS<typeof FormControlSize> = {
+        const sized: OptionizedCSS<typeof FormControlSizeEnum> = {
             sm: {},
             md: {
                 ...(hasRightAddons && {
@@ -185,12 +185,4 @@ const basicTheme: FormControlTheme = {
             ...extractCSSOption(sized, size),
         };
     },
-};
-
-export const formControlThemes = {
-    basic: basicTheme as FormControlTheme,
-};
-
-export const setBasicFormControlTheme = (popupTheme: FormControlTheme) => {
-    formControlThemes.basic = popupTheme;
 };

@@ -1,5 +1,5 @@
 import { IconCheck, useMergeCSS, useThemeCSSPart } from '@ensi-platform/core-components-common';
-import { FormMessage } from '@ensi-platform/core-components-form-control';
+import { FormControlError } from '@ensi-platform/core-components-form-control';
 
 import { type CSSObject } from '@emotion/react';
 
@@ -126,7 +126,7 @@ export const Checkbox = forwardRef<HTMLLabelElement, ICheckboxProps>(
                             </span>
                         )}
 
-                        {error && !hideError && <FormMessage type="error" id={`${inputId}-error`} message={error} />}
+                        {error && !hideError && <FormControlError id={`${inputId}-error`}>{error}</FormControlError>}
                     </div>
                 )}
             </div>

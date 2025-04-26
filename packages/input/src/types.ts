@@ -1,144 +1,99 @@
-import type { FormControlProps } from '@ensi-platform/core-components-form-control';
+import type { TFormControlProps } from '@ensi-platform/core-components-form-control';
 
 import type { CSSObject } from '@emotion/react';
 
-import type { ChangeEvent, InputHTMLAttributes, MouseEvent, ReactNode, Ref } from 'react';
+import type { ChangeEvent, InputHTMLAttributes, MouseEvent, Ref } from 'react';
 
-export type InputProps = Omit<
-    InputHTMLAttributes<HTMLInputElement>,
-    'size' | 'type' | 'value' | 'defaultValue' | 'onChange' | 'onClick' | 'onMouseDown' | 'enterKeyHint'
-> & {
+export interface IInputNativeProps
+    extends Omit<
+        InputHTMLAttributes<HTMLInputElement>,
+        'size' | 'type' | 'value' | 'defaultValue' | 'onChange' | 'onClick' | 'onMouseDown' | 'enterKeyHint'
+    > {}
+
+export interface IInputFormControlProps extends Omit<TFormControlProps, 'children'> {}
+
+export interface IInputBaseProps {
     /**
-     * Значение поля ввода
+     * Input value
      */
     value?: string;
 
     /**
-     * Начальное значение поля
-     */
-    defaultValue?: string;
-
-    error?: string;
-
-    /**
-     * Растягивает компонент на ширину контейнера
-     */
-    block?: boolean;
-
-    /**
-     * Крестик для очистки поля
+     * Clear state
      */
     clear?: boolean;
 
-    theme?: FormControlProps['theme'] | keyof FormControlProps['theme'];
-    variant?: FormControlProps['variant'];
-    size?: FormControlProps['size'];
-    labelWrap?: FormControlProps['labelWrap'];
     /**
-     * Флаг отображения ошибки
+     * Input type
      */
-    showError?: boolean;
+    type?:
+        | 'number'
+        | 'card'
+        | 'email'
+        | 'money'
+        | 'password'
+        | 'tel'
+        | 'text'
+        | 'time'
+        | 'color'
+        | 'url'
+        | 'datetime-local'
+        | 'date'
+        | 'link';
 
     /**
-     * Текст подсказки
-     */
-    hint?: ReactNode;
-
-    /**
-     * Лейбл компонента
-     */
-    label?: ReactNode;
-
-    /**
-     * Атрибут type
-     */
-    type?: 'number' | 'card' | 'email' | 'money' | 'password' | 'tel' | 'text' | 'time' | 'color' | 'url' | 'link';
-
-    /**
-     * Ref для обертки input
+     * Form control Ref
      */
     wrapperRef?: Ref<HTMLDivElement>;
 
     /**
-     * Слот слева
-     */
-    leftAddons?: ReactNode;
-
-    /**
-     * Слот справа
-     */
-    rightAddons?: ReactNode;
-
-    /**
-     * Внутренний слот слева
-     */
-    innerLeftAddons?: ReactNode;
-
-    /**
-     * Слот под инпутом
-     */
-    bottomAddons?: ReactNode;
-
-    /**
-     * Дополнительный класс
+     * Form control class
      */
     className?: string;
 
     /**
-     * Дополнительный стиль для поля
+     * Max number of characters
      */
-    fieldCSS?: CSSObject;
+    maxLength?: number;
 
     /**
-     * Дополнительный стиль для обертки
+     * Form control wrapper css
      */
     wrapperCSS?: CSSObject;
 
     /**
-     * Дополнительный стиль инпута
+     * input class
+     */
+    inputClassName?: string;
+    /**
+     * input css
      */
     inputCSS?: CSSObject;
-
     /**
-     * Дополнительный стиль для лейбла
+     * Input handler
      */
-    labelCSS?: CSSObject;
+    onInput?: (event: ChangeEvent<HTMLInputElement>, payload?: { value: string }) => void;
 
     /**
-     * Дополнительный стиль для аддонов
+     * Change handler
      */
-    leftAddonsCSS?: CSSObject;
-    rightAddonsCSS?: CSSObject;
+    onChange?: (event: ChangeEvent<HTMLInputElement>, payload?: { value: string }) => void;
 
     /**
-     * Запрещает ввод с клавиатуры
-     */
-    disableUserInput?: boolean;
-
-    /**
-     * Обработчик поля ввода
-     */
-    onChange?: (event: ChangeEvent<HTMLInputElement>, payload: { value: string }) => void;
-
-    /**
-     * Обработчик нажатия на кнопку очистки
+     * Clear handler
      */
     onClear?: (event: MouseEvent<HTMLButtonElement>) => void;
 
     /**
-     * Обработчик клика по полю
-     */
-    onClick?: (event: MouseEvent<HTMLDivElement>) => void;
-
-    /**
-     * Обработчик MouseDown по полю
+     * Mouse down handler
      */
     onMouseDown?: (event: MouseEvent<HTMLDivElement>) => void;
 
     /**
-     * Обработчик MouseUp по полю
+     * Mouse up handler
      */
     onMouseUp?: (event: MouseEvent<HTMLDivElement>) => void;
+}
 
-    isLegend?: boolean;
-};
+export type TInputProps = Omit<TFormControlProps & IInputNativeProps & IInputFormControlProps, keyof IInputBaseProps> &
+    IInputBaseProps;
