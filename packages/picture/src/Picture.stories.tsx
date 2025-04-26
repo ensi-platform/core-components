@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import type { CSSProperties, ComponentProps } from 'react';
 
 import README from '../README.md';
-import { Picture } from './index';
+import { Component as Picture } from './index';
 
 export default {
     title: 'Components / Picture',
@@ -22,16 +22,10 @@ export default {
                 image: '/android-chrome-512x512.png',
             },
         ],
-        loading: 'lazy',
-        objectFit: 'none',
     },
     argTypes: {
         objectFit: {
             options: ['cover', 'contain', 'fill', 'none', 'scale-down'],
-            control: { type: 'radio' },
-        },
-        loading: {
-            options: ['lazy', 'eager', ''],
             control: { type: 'radio' },
         },
     },

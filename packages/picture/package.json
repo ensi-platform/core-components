@@ -17,6 +17,7 @@
         "@emotion/styled": "^11.11.5"
     },
     "dependencies": {
-        "tslib": "^2.6.2"
+        "tslib": "^2.6.2",
+        "deepmerge": "4.3.1"
     }
 }

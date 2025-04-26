@@ -47,7 +47,6 @@
             "@ensi-platform/core-components-popup/*": ["packages/popup/src/*"],
             "@ensi-platform/core-components-portal/*": ["packages/portal/src/*"],
             "@ensi-platform/core-components-price/*": ["packages/price/src/*"],
-            "@ensi-platform/core-components-radio/*": ["packages/radio/src/*"],
             "@ensi-platform/core-components-rating/*": ["packages/rating/src/*"],
             "@ensi-platform/core-components-select/*": ["packages/select/src/*"],
             "@ensi-platform/core-components-select-with-tags/*": ["packages/select-with-tags/src/*"],

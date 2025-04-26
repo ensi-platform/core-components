@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import type { ComponentProps } from 'react';
 
 import README from '../README.md';
-import { Badge } from './index';
+import { Component as Badge } from './index';
 
 export default {
     title: 'Components / Badge',
@@ -16,7 +16,7 @@ export default {
         },
     },
     args: {
-        text: 'В работе',
+        children: 'В работе',
         type: 'warning',
     },
     argTypes: {

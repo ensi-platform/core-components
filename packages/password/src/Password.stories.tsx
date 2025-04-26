@@ -1,5 +1,5 @@
 import { Button, ErrorMessages, regOneDigit, regOneLetter, scale } from '@ensi-platform/core-components-common';
-import { Form, FormFieldWrapper, FormReset } from '@ensi-platform/core-components-form';
+import { Form, FormReset } from '@ensi-platform/core-components-form';
 
 import { action } from '@storybook/addon-actions';
 import type { Meta, StoryObj } from '@storybook/react';
@@ -8,7 +8,7 @@ import * as Yup from 'yup';
 import { type ComponentProps, useState } from 'react';
 
 import README from '../README.md';
-import { Password } from './index';
+import { FormComponent as FormPassword, Component as Password } from './index';
 
 export default {
     title: 'Components / Password',
@@ -26,17 +26,7 @@ export const Basic: StoryObj<ComponentProps<typeof Password>> = {
     render: args => {
         const [value, setValue] = useState('');
 
-        return (
-            <Password
-                {...args}
-                field={{
-                    value,
-                    onChange: event => {
-                        setValue(event.target.value);
-                    },
-                }}
-            />
-        );
+        return <Password {...args} value={value} onChange={e => setValue(e.target.value)} />;
     },
 };
 
@@ -55,9 +45,7 @@ export const WithForm: StoryObj<ComponentProps<typeof Password>> = {
                 })}
                 onSubmit={action('onSubmit')}
             >
-                <FormFieldWrapper name="password" label="Пароль">
-                    <Password {...args} />
-                </FormFieldWrapper>
+                <FormPassword name="password" label="Пароль" {...args} />
                 <br />
                 <Button type="submit" style={{ marginRight: scale(2) }}>
                     Submit
