@@ -50,7 +50,6 @@
             "@ensi-platform/core-components-rating/*": ["packages/rating/src/*"],
             "@ensi-platform/core-components-select/*": ["packages/select/src/*"],
             "@ensi-platform/core-components-select-with-tags/*": ["packages/select-with-tags/src/*"],
-            "@ensi-platform/core-components-skip/*": ["packages/skip/src/*"],
             "@ensi-platform/core-components-stack/*": ["packages/stack/src/*"],
             "@ensi-platform/core-components-switcher/*": ["packages/switcher/src/*"],
             "@ensi-platform/core-components-tabs/*": ["packages/tabs/src/*"],

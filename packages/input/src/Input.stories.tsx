@@ -9,7 +9,7 @@ import * as Yup from 'yup';
 import type { ComponentProps } from 'react';
 
 import README from '../README.md';
-import { Component as Input } from './index';
+import { Input } from './index';
 
 export default {
     title: 'Components / Input',

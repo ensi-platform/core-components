@@ -1,21 +1,19 @@
 import { scale } from '@ensi-platform/core-components-common';
 
-import type { ReactNode } from 'react';
+import type { FC, ReactNode } from 'react';
+
+import type { IBlockBodyProps } from './types';
 
 export interface BlockBodyProps {
     className?: string;
     children?: ReactNode | ReactNode[];
 }
 
-const BlockBody = ({ className, children }: BlockBodyProps) => (
+export const BlockBody: FC<IBlockBodyProps> = props => (
     <div
-        className={className}
         css={{
             padding: `${scale(2)}px ${scale(3)}px`,
         }}
-    >
-        {children}
-    </div>
+        {...props}
+    />
 );
-
-export default BlockBody;

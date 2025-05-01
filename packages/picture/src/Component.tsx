@@ -9,7 +9,7 @@ import type { IPictureProps } from './types';
 
 const EMPTY_CSS: CSSObject = {};
 
-export const Component: FC<IPictureProps> = ({
+export const Picture: FC<IPictureProps> = ({
     imgClassName,
     imgCSS = EMPTY_CSS,
     sources,

@@ -8,7 +8,7 @@ import * as Yup from 'yup';
 import { type ComponentProps, useState } from 'react';
 
 import README from '../README.md';
-import { FormComponent as FormMaskField, Component as Mask } from './index';
+import { FormMaskField, Mask } from './index';
 
 /** Телефонный номер (+7(000) 000-00-00) */
 const maskPhone = '+7(000) 000-00-00';

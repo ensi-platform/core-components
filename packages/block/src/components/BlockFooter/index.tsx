@@ -1,14 +1,10 @@
 import { defaultTheme, scale } from '@ensi-platform/core-components-common';
 
-import type { ReactNode } from 'react';
+import type { FC } from 'react';
 
-export interface BlockFooterProps {
-    className?: string;
-    children?: ReactNode;
-    borderColor?: string;
-}
+import type { IBlockFooterProps } from './types';
 
-const BlockFooter = ({ className, children, borderColor = defaultTheme.colors.grey400 }: BlockFooterProps) => (
+export const BlockFooter: FC<IBlockFooterProps> = ({ borderColor = defaultTheme.colors.grey400, ...props }) => (
     <div
         css={{
             borderTop: `1px solid ${borderColor}`,
@@ -18,10 +14,6 @@ const BlockFooter = ({ className, children, borderColor = defaultTheme.colors.gr
             alignItems: 'center',
             minHeight: scale(8),
         }}
-        className={className}
-    >
-        {children}
-    </div>
+        {...props}
+    />
 );
-
-export default BlockFooter;

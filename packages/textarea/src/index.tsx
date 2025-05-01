@@ -1,5 +1,4 @@
-import Textarea from './Textarea';
+export * from './Component';
+export * from './FormComponent';
 
 export * from './types';
-
-export { Textarea };

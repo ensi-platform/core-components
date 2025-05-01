@@ -8,7 +8,7 @@ import * as Yup from 'yup';
 import { type ComponentProps, useState } from 'react';
 
 import README from '../README.md';
-import { FormComponent as FormPassword, Component as Password } from './index';
+import { FormPasswordField, Password } from './index';
 
 export default {
     title: 'Components / Password',
@@ -45,7 +45,7 @@ export const WithForm: StoryObj<ComponentProps<typeof Password>> = {
                 })}
                 onSubmit={action('onSubmit')}
             >
-                <FormPassword name="password" label="Пароль" {...args} />
+                <FormPasswordField name="password" label="Пароль" {...args} />
                 <br />
                 <Button type="submit" style={{ marginRight: scale(2) }}>
                     Submit

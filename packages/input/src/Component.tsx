@@ -1,4 +1,4 @@
-import { Component as FormControl } from '@ensi-platform/core-components-form-control';
+import { FormControl } from '@ensi-platform/core-components-form-control';
 
 import type { CSSObject } from '@emotion/react';
 
@@ -24,7 +24,7 @@ import type { TInputProps } from './types';
 
 const CSS_EMPTY_OBJECT: CSSObject = {};
 
-export const Component = forwardRef<HTMLInputElement, TInputProps>(
+export const Input = forwardRef<HTMLInputElement, TInputProps>(
     (
         {
             size,

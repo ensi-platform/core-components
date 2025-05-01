@@ -13,7 +13,7 @@ const BACKGROUND: Record<string, string> = {
     [BadgeTypeEnum.WARNING]: colors?.warning,
 };
 
-export const Component: FC<IBadgeProps> = ({
+export const Badge: FC<IBadgeProps> = ({
     children,
     bgColor = colors.secondaryHover,
     type = BadgeTypeEnum.REGULAR,

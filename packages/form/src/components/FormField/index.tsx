@@ -1,4 +1,4 @@
-import { Component as Input } from '@ensi-platform/core-components-input';
+import { Input } from '@ensi-platform/core-components-input';
 
 import { forwardRef } from 'react';
 

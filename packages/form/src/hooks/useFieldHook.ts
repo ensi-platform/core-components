@@ -48,7 +48,7 @@ export const useFieldHook = ({ name }: Pick<IFormFieldWrapperProps, 'name'>) => 
      * accepts input event with target value
      */
     const onChangeHandler = useCallback(
-        <T extends HTMLInputElement, E extends Event>(e: SyntheticEvent<T, E>) => {
+        <T, E extends Event>(e: SyntheticEvent<T, E>) => {
             field.onChange(e);
             onChange(name, (e.target as EventTarget & HTMLInputElement).value);
             field.onBlur();

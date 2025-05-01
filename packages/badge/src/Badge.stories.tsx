@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import type { ComponentProps } from 'react';
 
 import README from '../README.md';
-import { Component as Badge } from './index';
+import { Badge } from './index';
 
 export default {
     title: 'Components / Badge',

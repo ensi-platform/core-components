@@ -1,108 +1,43 @@
-import type { IFieldWrapperProps } from '@ensi-platform/core-components-form';
-import type { FormControlProps } from '@ensi-platform/core-components-form-control';
+import type { IFormFieldComponent } from '@ensi-platform/core-components-form';
+import type { TFormControlProps } from '@ensi-platform/core-components-form-control';
 
 import type { CSSObject } from '@emotion/react';
 
-import type { HTMLProps, ReactNode, Ref } from 'react';
+import type { Ref } from 'react';
+import type { TextareaAutosizeProps } from 'react-textarea-autosize';
 
-interface ITextareaInputProps {
-    size?: FormControlProps['size'];
-    /** Maximum length of value */
-    maxLength?: number;
-    /** Threshold in percentage of limit */
-    threshold?: number;
-
-    block?: boolean;
-
-    /** resize flag */
-    isResize?: boolean;
+export interface ITextareaBaseProps {
     /**
-     * Лейбл компонента
-     */
-    label?: ReactNode;
-    /**
-     * Слот под инпутом
-     */
-    bottomAddons?: ReactNode;
-
-    labelWrap?: FormControlProps['labelWrap'];
-    /**
-     * Отображение ошибки
-     */
-    error?: string;
-    /**
-     * Текст подсказки
-     */
-    hint?: ReactNode;
-    /**
-     * Дополнительный класс
-     */
-    className?: string;
-    /**
-     * Дополнительный стиль поля ввода
-     */
-    textAreaCSS?: CSSObject;
-    /**
-     * Дополнительный стиль для лейбла
-     */
-    labelCSS?: CSSObject;
-    /**
-     * Дополнительный стиль для аддонов
-     */
-    leftAddonsCSS?: CSSObject;
-    rightAddonsCSS?: CSSObject;
-    /**
-     * Слот слева
-     */
-    leftAddons?: ReactNode;
-    /**
-     * Слот справа
-     */
-    rightAddons?: ReactNode;
-    /**
-     * Ref для обертки TextArea
+     * Form control Ref
      */
     wrapperRef?: Ref<HTMLDivElement>;
     /**
-     * Флаг отображения ошибки
-     */
-    showError?: boolean;
-    /**
-     * Дополнительный стиль для поля
-     */
-    fieldCSS?: CSSObject;
-    /**
-     * Дополнительный стиль для обертки
+     * Form control wrapper css
      */
     wrapperCSS?: CSSObject;
+    /**
+     * Textarea value
+     */
+    value: string;
+    /**
+     * Maximum length of value
+     */
+    maxLength?: number;
+    /**
+     * Threshold in percentage of limit
+     */
+    threshold?: number;
+    /**
+     * resize flag
+     */
+    isResize?: boolean;
 }
 
-interface ITextareaFieldProps {
-    /** Input name (inner) */
-    name?: string;
-    /**
-     * Значение поля ввода
-     */
-    value?: string;
-}
+export interface ITextareaFormControlProps extends Omit<TFormControlProps, 'onInput' | 'onInput' | 'children'> {}
 
-export interface ITextareaProps
-    extends Omit<HTMLProps<HTMLDivElement>, 'ref' | 'size' | 'value' | 'label'>,
-        Partial<IFieldWrapperProps<string>>,
-        ITextareaInputProps,
-        ITextareaFieldProps {
-    /** Minimum number of visible rows */
-    minRows?: number;
-    /** Maximum number of visible rows */
-    maxRows?: number;
-    /**
-     * Function invoked on textarea height change, accepting height as the first argument
-     * and an object with optional additional information as the second argument.
-     */
-    onHeightChange?: (height: number, options?: { rowHeight?: number }) => void;
-    /**
-     * Reuse previously computed measurements when computing height of textarea.
-     * Default: false
-     */
-    cacheMeasurements?: boolean;
-}
+export type TTextareaProps = TextareaAutosizeProps & ITextareaFormControlProps & ITextareaBaseProps;
+
+/**
+ * Textarea form component props
+ */
+export type TFormTextareaFieldProps = Omit<TTextareaProps & IFormFieldComponent, 'value' | 'defaultValue' | 'error'>;

@@ -2,10 +2,10 @@ import { useFieldHook } from '@ensi-platform/core-components-form';
 
 import { forwardRef, useCallback } from 'react';
 
-import { Component } from './Component';
+import { Mask } from './Component';
 import type { TFormFieldMaskProps } from './types';
 
-export const FormComponent = forwardRef<HTMLInputElement, TFormFieldMaskProps>(
+export const FormMaskField = forwardRef<HTMLInputElement, TFormFieldMaskProps>(
     ({ name, onInput, onClear, ...props }, ref) => {
         const { fieldState, field, onChangeHandler, inputProps } = useFieldHook({
             name,
@@ -33,7 +33,7 @@ export const FormComponent = forwardRef<HTMLInputElement, TFormFieldMaskProps>(
             [field, onClear]
         );
         return (
-            <Component
+            <Mask
                 value={field.value}
                 onInput={onChangeInner}
                 error={fieldState.error?.message}
@@ -43,5 +43,3 @@ export const FormComponent = forwardRef<HTMLInputElement, TFormFieldMaskProps>(
         );
     }
 );
-
-export default FormComponent;

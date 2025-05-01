@@ -2,10 +2,10 @@ import { useFieldHook } from '@ensi-platform/core-components-form';
 
 import { forwardRef, useCallback } from 'react';
 
-import { Component } from './Component';
-import type { TFormFieldMaskProps } from './types';
+import { Password } from './Component';
+import type { TFormPasswordFieldProps } from './types';
 
-export const FormComponent = forwardRef<HTMLInputElement, TFormFieldMaskProps>(
+export const FormPasswordField = forwardRef<HTMLInputElement, TFormPasswordFieldProps>(
     ({ name, onInput, onClear, ...props }, ref) => {
         const { fieldState, field, onChangeHandler, inputProps } = useFieldHook({
             name,
@@ -17,7 +17,7 @@ export const FormComponent = forwardRef<HTMLInputElement, TFormFieldMaskProps>(
             ...props,
         };
 
-        const onChangeInner: Required<TFormFieldMaskProps>['onInput'] = useCallback(
+        const onChangeInner: Required<TFormPasswordFieldProps>['onInput'] = useCallback(
             e => {
                 onChangeHandler(e);
                 onInput?.(e);
@@ -25,7 +25,7 @@ export const FormComponent = forwardRef<HTMLInputElement, TFormFieldMaskProps>(
             [onChangeHandler, onInput]
         );
 
-        const onClearInner: Required<TFormFieldMaskProps>['onClear'] = useCallback(
+        const onClearInner: Required<TFormPasswordFieldProps>['onClear'] = useCallback(
             e => {
                 field.onChange(undefined, '');
                 onClear?.(e);
@@ -33,7 +33,7 @@ export const FormComponent = forwardRef<HTMLInputElement, TFormFieldMaskProps>(
             [field, onClear]
         );
         return (
-            <Component
+            <Password
                 value={field.value}
                 onInput={onChangeInner}
                 error={fieldState.error?.message}
@@ -43,5 +43,3 @@ export const FormComponent = forwardRef<HTMLInputElement, TFormFieldMaskProps>(
         );
     }
 );
-
-export default FormComponent;

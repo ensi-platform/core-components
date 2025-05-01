@@ -19,7 +19,7 @@ import { getPartComponent } from './utils/getPartComponent';
 
 const CSS_EMPTY_OBJECT: CSSObject = {};
 
-export const Component = forwardRef<HTMLDivElement, TFormControlProps>(
+export const FormControl = forwardRef<HTMLDivElement, TFormControlProps>(
     (
         {
             block = false,
@@ -162,7 +162,7 @@ export const Component = forwardRef<HTMLDivElement, TFormControlProps>(
                     },
                     controlWrapperCSS,
                 ]),
-            []
+            [controlWrapperCSS, getCSS, labelWrap]
         );
 
         const FormMessageComponent = useCallback(
@@ -212,5 +212,3 @@ export const Component = forwardRef<HTMLDivElement, TFormControlProps>(
         );
     }
 );
-
-export default Component;

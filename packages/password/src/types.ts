@@ -9,4 +9,4 @@ export interface IPasswordProps extends TInputProps {}
 /**
  * Password form component props
  */
-export type TFormFieldMaskProps = Omit<IPasswordProps & IFormFieldComponent, 'value' | 'defaultValue' | 'error'>;
+export type TFormPasswordFieldProps = Omit<IPasswordProps & IFormFieldComponent, 'value' | 'defaultValue' | 'error'>;
