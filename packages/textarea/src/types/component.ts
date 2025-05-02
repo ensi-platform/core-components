@@ -1,20 +1,9 @@
 import type { IFormFieldComponent } from '@ensi-platform/core-components-form';
-import type { TFormControlProps } from '@ensi-platform/core-components-form-control';
+import type { IFormControlExtendsProps } from '@ensi-platform/core-components-form-control';
 
-import type { CSSObject } from '@emotion/react';
-
-import type { Ref } from 'react';
 import type { TextareaAutosizeProps } from 'react-textarea-autosize';
 
 export interface ITextareaBaseProps {
-    /**
-     * Form control Ref
-     */
-    wrapperRef?: Ref<HTMLDivElement>;
-    /**
-     * Form control wrapper css
-     */
-    wrapperCSS?: CSSObject;
     /**
      * Textarea value
      */
@@ -33,7 +22,7 @@ export interface ITextareaBaseProps {
     isResize?: boolean;
 }
 
-export interface ITextareaFormControlProps extends Omit<TFormControlProps, 'onInput' | 'onInput' | 'children'> {}
+export interface ITextareaFormControlProps extends IFormControlExtendsProps {}
 
 export type TTextareaProps = TextareaAutosizeProps & ITextareaFormControlProps & ITextareaBaseProps;
 

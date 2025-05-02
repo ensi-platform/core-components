@@ -4,12 +4,12 @@ import type { Meta, StoryObj } from '@storybook/react';
 import type { ComponentProps } from 'react';
 
 import README from '../README.md';
-import { Component } from './index';
+import { FormControl } from './index';
 import { FormControlSizeEnum } from './types';
 
 export default {
     title: 'Components / FormControl',
-    component: Component,
+    component: FormControl,
     parameters: {
         docs: {
             description: {
@@ -33,11 +33,11 @@ export default {
             control: { type: 'radio' },
         },
     },
-} as Meta<typeof Component>;
+} as Meta<typeof FormControl>;
 
-export const Basic: StoryObj<Omit<ComponentProps<typeof Component>, 'theme'>> = {
+export const Basic: StoryObj<Omit<ComponentProps<typeof FormControl>, 'theme'>> = {
     render: args => (
-        <Component
+        <FormControl
             rightAddons={<p>R</p>}
             leftAddons={<p>L</p>}
             bottomAddons={<p>Bottom addons</p>}
@@ -50,6 +50,6 @@ export const Basic: StoryObj<Omit<ComponentProps<typeof Component>, 'theme'>> = 
             >
                 UI element
             </div>
-        </Component>
+        </FormControl>
     ),
 };

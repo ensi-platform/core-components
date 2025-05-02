@@ -1,6 +1,6 @@
 import type { CalendarProps } from '@ensi-platform/core-components-calendar';
 import type { IFieldWrapperProps } from '@ensi-platform/core-components-form';
-import type { InputProps } from '@ensi-platform/core-components-input';
+import type { TInputProps } from '@ensi-platform/core-components-input';
 import type { PopoverProps } from '@ensi-platform/core-components-popover';
 
 import type { CSSObject } from '@emotion/react';
@@ -33,7 +33,7 @@ export type DateSegments<T = string> = {
 };
 
 export interface BaseCalendarInputProps
-    extends Omit<InputProps, 'onChange' | 'wrapperRef'>,
+    extends Omit<TInputProps, 'onChange' | 'wrapperRef' | 'error'>,
         Partial<IFieldWrapperProps<string>> {
     /**
      * Автоматическое исправление ввода
@@ -114,6 +114,8 @@ export interface BaseCalendarInputProps
      * Обработчик изменения значения
      */
     onChange?: (event: ChangeEvent<HTMLInputElement> | null, payload: { value: string }) => void;
+
+    disableUserInput?: boolean;
 }
 
 export interface InnerDateInputProps extends Omit<BaseCalendarInputProps, 'view'> {
@@ -167,7 +169,9 @@ export interface InnerDateRangeInputProps extends Omit<InnerDateInputProps, 'onC
     onComplete?: (value: string, dateFrom: Date, dateTo: Date) => void;
 }
 
-export interface InnerTimeInputProps extends Omit<InputProps, 'onChange'>, Partial<IFieldWrapperProps<string>> {
+export interface InnerTimeInputProps
+    extends Omit<TInputProps, 'onChange' | 'error'>,
+        Partial<IFieldWrapperProps<string>> {
     /**
      * Автоматическое исправление ввода
      *  @default true

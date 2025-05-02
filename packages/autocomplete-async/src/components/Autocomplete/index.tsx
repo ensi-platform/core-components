@@ -1,6 +1,6 @@
 import { defaultTheme } from '@ensi-platform/core-components-common';
 import type { IFieldWrapperProps } from '@ensi-platform/core-components-form';
-import type { InputProps } from '@ensi-platform/core-components-input';
+import type { TInputProps } from '@ensi-platform/core-components-input';
 import {
     BaseSelect,
     Arrow as DefaultArrow,
@@ -158,7 +158,7 @@ export const useAutocomplete = (
 
     const [isDirtySearch, setDirtySearch] = useState(false);
 
-    const handleInput = useCallback<Exclude<InputProps['onChange'], undefined>>((_, payload) => {
+    const handleInput = useCallback<Required<TInputProps>['onChange']>((_, payload) => {
         setSearch(payload.value);
         setDirtySearch(!!payload.value.length);
     }, []);
@@ -305,7 +305,7 @@ export const Autocomplete = forwardRef<HTMLInputElement, IAutocompleteProps & Pa
                 setSelectedValues(newValues);
                 setFieldValue?.(newValues);
             },
-            [onChange, selectedOptions, setFieldValue]
+            [onChange, selectedOptions, setFieldValue, setSelectedValues]
         );
 
         return (

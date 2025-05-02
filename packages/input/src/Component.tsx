@@ -1,4 +1,4 @@
-import { FormControl } from '@ensi-platform/core-components-form-control';
+import { FormControl, getFormControlProps } from '@ensi-platform/core-components-form-control';
 
 import type { CSSObject } from '@emotion/react';
 
@@ -9,6 +9,7 @@ import {
     type ChangeEvent,
     type FocusEvent,
     type MouseEvent,
+    type ReactNode,
     forwardRef,
     useCallback,
     useId,
@@ -27,21 +28,6 @@ const CSS_EMPTY_OBJECT: CSSObject = {};
 export const Input = forwardRef<HTMLInputElement, TInputProps>(
     (
         {
-            size,
-            variant,
-            theme,
-            label,
-            hint,
-            leftAddons,
-            rightAddons,
-            bottomAddons,
-            error,
-            block,
-            className,
-            fieldCSS,
-            wrapperCSS,
-            controlWrapperCSS,
-
             id,
             type = 'text',
             clear,
@@ -59,7 +45,7 @@ export const Input = forwardRef<HTMLInputElement, TInputProps>(
 
             onAnimationStart: onAnimationStartProps,
             value: valueProps,
-            wrapperRef,
+            defaultValue = '',
             readOnly,
             placeholder,
             maxLength,
@@ -75,11 +61,16 @@ export const Input = forwardRef<HTMLInputElement, TInputProps>(
         const inputRef = useRef<HTMLInputElement>(null);
 
         const [focused, setFocused] = useState(props.autoFocus);
-        const [stateValue, setStateValue] = useState('');
+        const [stateValue, setStateValue] = useState(defaultValue);
         const [autofilled, setAutofilled] = useState(false);
         const filled = Boolean(uncontrolled ? stateValue : externalValue);
 
         const value = uncontrolled ? stateValue : externalValue;
+
+        const { formControlProps, fieldProps } = getFormControlProps(props);
+        const { rightAddons, label } = formControlProps;
+
+        const labelComponent = typeof label === 'object' ? (label as { Component: ReactNode })?.Component : label;
 
         const onChange = useCallback(
             (event: ChangeEvent<HTMLInputElement>) => {
@@ -180,31 +171,19 @@ export const Input = forwardRef<HTMLInputElement, TInputProps>(
 
         return (
             <FormControl
-                ref={wrapperRef}
+                {...formControlProps}
                 htmlFor={htmlFor}
-                label={label}
-                hint={hint}
-                error={error}
-                leftAddons={leftAddons}
                 rightAddons={rightAddonsInner}
-                bottomAddons={bottomAddons}
                 filled={filled || autofilled || focused || !!placeholder?.length}
                 focused={focused}
-                block={block}
                 readOnly={readOnly}
                 disabled={disabled}
-                theme={theme}
-                size={size}
-                variant={variant}
-                className={className}
-                css={{ cursor: disabled ? 'not-allowed' : 'text', ...wrapperCSS }}
-                fieldCSS={fieldCSS}
-                controlWrapperCSS={controlWrapperCSS}
+                css={{ cursor: disabled ? 'not-allowed' : 'text' }}
                 onMouseDown={onMouseDown}
                 onMouseUp={onMouseUp}
             >
                 <input
-                    {...props}
+                    {...fieldProps}
                     id={htmlFor}
                     className={cn('control', inputClassName)}
                     placeholder={placeholder}
@@ -218,8 +197,9 @@ export const Input = forwardRef<HTMLInputElement, TInputProps>(
                     ref={mergeRefs([ref, inputRef])}
                     type={type}
                     value={uncontrolled ? stateValue : value}
+                    defaultValue={defaultValue}
                     readOnly={readOnly}
-                    aria-label={typeof label === 'string' ? label : undefined}
+                    aria-label={typeof labelComponent === 'string' ? labelComponent : undefined}
                 />
             </FormControl>
         );

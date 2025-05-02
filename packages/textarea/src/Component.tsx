@@ -1,5 +1,5 @@
 import { defaultTheme, scale } from '@ensi-platform/core-components-common';
-import { FormControl } from '@ensi-platform/core-components-form-control';
+import { FormControl, getFormControlProps } from '@ensi-platform/core-components-form-control';
 
 import type { CSSObject } from '@emotion/react';
 
@@ -8,8 +8,6 @@ import { type ChangeEvent, type FocusEvent, forwardRef, useCallback, useMemo, us
 import TextareaAutosize from 'react-textarea-autosize';
 
 import type { TTextareaProps } from './types';
-
-const emptyStyle = {};
 
 export const BASE_CSS: CSSObject = {
     border: `none`,
@@ -20,19 +18,6 @@ const { colors } = defaultTheme;
 export const Textarea = forwardRef<HTMLTextAreaElement, TTextareaProps>(
     (
         {
-            size,
-            variant,
-            theme,
-            label,
-            hint,
-            leftAddons,
-            rightAddons,
-            bottomAddons,
-            error,
-            block,
-            fieldCSS = emptyStyle,
-            wrapperCSS,
-            controlWrapperCSS,
             readOnly,
 
             name,
@@ -48,7 +33,6 @@ export const Textarea = forwardRef<HTMLTextAreaElement, TTextareaProps>(
 
             onFocus,
             onBlur,
-            wrapperRef,
             onInput,
             onHeightChange,
             cacheMeasurements = false,
@@ -61,6 +45,8 @@ export const Textarea = forwardRef<HTMLTextAreaElement, TTextareaProps>(
         const [focused, setFocused] = useState(autoFocus);
 
         const filled = Boolean(value);
+
+        const { formControlProps, fieldProps } = getFormControlProps(props);
 
         const handlerInput = useCallback(
             (e: ChangeEvent<HTMLTextAreaElement>) => {
@@ -97,46 +83,38 @@ export const Textarea = forwardRef<HTMLTextAreaElement, TTextareaProps>(
 
         const renderError = useMemo(
             () =>
-                error ||
+                formControlProps.error ||
                 (Number.isInteger(maxLength) && isExceed && lenEnd < 0 ? `Ты превышаешь на ${Math.abs(lenEnd)}` : ''),
-            [maxLength, lenEnd, error, isExceed]
+            [maxLength, lenEnd, formControlProps.error, isExceed]
         );
 
         const renderHint = useMemo(
             () =>
-                hint ||
+                formControlProps.hint ||
                 (Number.isInteger(maxLength) && isExceed && lenEnd > 0 ? `У тебя осталось ${Math.abs(lenEnd)}` : ''),
-            [maxLength, lenEnd, hint, isExceed]
+            [maxLength, lenEnd, formControlProps.hint, isExceed]
         );
 
         // TODO: react 18 useId()
         const htmlFor = props.id;
 
-        const innerCSS = useMemo(() => deepmerge.all<CSSObject>([BASE_CSS, fieldCSS]), [fieldCSS]);
+        const innerCSS = useMemo(
+            () => deepmerge.all<CSSObject>([BASE_CSS, formControlProps.fieldCSS || {}]),
+            [formControlProps.fieldCSS]
+        );
 
         return (
             <FormControl
+                {...formControlProps}
                 htmlFor={htmlFor}
-                ref={wrapperRef}
                 disabled={disabled}
                 readOnly={readOnly}
                 error={renderError}
-                label={label}
                 hint={renderHint}
-                leftAddons={leftAddons}
-                rightAddons={rightAddons}
-                bottomAddons={bottomAddons}
-                fieldCSS={innerCSS}
-                block={block}
                 filled={filled || focused || !!placeholder?.length}
                 focused={focused}
-                theme={theme}
-                size={size}
-                variant={variant}
-                css={{ cursor: disabled ? 'not-allowed' : 'text', ...wrapperCSS }}
-                controlWrapperCSS={controlWrapperCSS}
-                // onMouseDown={onMouseDown}
-                // onMouseUp={onMouseUp}
+                fieldCSS={innerCSS}
+                css={{ cursor: disabled ? 'not-allowed' : 'text' }}
             >
                 <TextareaAutosize
                     ref={ref}
@@ -153,14 +131,14 @@ export const Textarea = forwardRef<HTMLTextAreaElement, TTextareaProps>(
                     onBlur={onBlurHandler}
                     onFocus={onFocusHandler}
                     readOnly={readOnly}
-                    {...props}
+                    {...fieldProps}
                     css={{
                         display: 'block',
                         width: '100%',
                         padding: scale(1),
                         borderRadius: 2,
                         background: colors?.grey100,
-                        borderColor: error ? colors?.danger : colors?.grey400,
+                        borderColor: formControlProps.error ? colors?.danger : colors?.grey400,
 
                         ...(!readOnly && { ':focus': { borderColor: colors?.primary, outline: 'none' } }),
                         ...(!isResize && { resize: 'none' }),

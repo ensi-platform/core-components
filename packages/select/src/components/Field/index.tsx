@@ -1,5 +1,5 @@
 import { type EnumLike, defaultTheme } from '@ensi-platform/core-components-common';
-import { FormControl, FormControlSize, FormControlVariant } from '@ensi-platform/core-components-form-control';
+import { FormControl, FormControlSizeEnum, FormControlVariantEnum } from '@ensi-platform/core-components-form-control';
 
 import { type ReactNode, cloneElement, isValidElement, useCallback, useMemo, useRef, useState } from 'react';
 
@@ -67,8 +67,8 @@ export const Field = ({
 
     const { size, variant, getCSS } = useSelectTheme();
 
-    const controlSize = getSameEnumValue(size, FormControlSize);
-    const controlVariant = getSameEnumValue(variant, FormControlVariant);
+    const controlSize = getSameEnumValue(size, FormControlSizeEnum);
+    const controlVariant = getSameEnumValue(variant, FormControlVariantEnum);
 
     const totalFieldCSS = useMemo(() => getCSS('field'), [getCSS]);
 

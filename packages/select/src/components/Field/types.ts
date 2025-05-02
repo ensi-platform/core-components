@@ -1,10 +1,10 @@
-import type { FormControlProps } from '@ensi-platform/core-components-form-control';
+import type { IFormControlExtendsProps } from '@ensi-platform/core-components-form-control';
 
 import type { AriaAttributes, FocusEvent, MouseEvent, ReactElement, ReactNode, RefAttributes } from 'react';
 
 import type { SelectItem } from '../../types';
 
-export interface FieldProps extends FormControlProps {
+export interface FieldProps extends IFormControlExtendsProps {
     id?: string;
 
     /**
@@ -56,4 +56,9 @@ export interface FieldProps extends FormControlProps {
         id: string;
     } & RefAttributes<HTMLDivElement | HTMLInputElement> &
         AriaAttributes;
+
+    /**
+     * Дизейбл
+     */
+    disabled?: boolean;
 }

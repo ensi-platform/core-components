@@ -1,9 +1,9 @@
-import type { InputProps } from '@ensi-platform/core-components-input';
+import type { TInputProps } from '@ensi-platform/core-components-input';
 
 export type DataType = 'string' | 'number';
 export type FieldType = 'positiveInt' | 'positiveFloat';
 
-export interface ITypedFieldProps extends Omit<InputProps, 'children'> {
+export interface ITypedFieldProps extends Omit<TInputProps, 'children'> {
     /**
      * Name of field
      */

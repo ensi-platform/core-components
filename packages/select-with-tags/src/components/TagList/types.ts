@@ -15,7 +15,6 @@ export type TagListOwnProps = {
     transformTagText?: (tagText?: ReactNode) => ReactNode;
     Tag?: TagComponent;
     handleUpdatePopover?: () => void;
-    rightAddons?: ReactNode;
     isLoading?: boolean;
     overflow?: 'grow-height' | 'truncate';
     collapseOnClose?: boolean;

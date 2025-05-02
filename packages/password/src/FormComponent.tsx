@@ -20,7 +20,7 @@ export const FormPasswordField = forwardRef<HTMLInputElement, TFormPasswordField
         const onChangeInner: Required<TFormPasswordFieldProps>['onInput'] = useCallback(
             e => {
                 onChangeHandler(e);
-                onInput?.(e);
+                onInput?.(e, { value: e.target.value });
             },
             [onChangeHandler, onInput]
         );

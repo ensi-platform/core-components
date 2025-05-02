@@ -1,8 +1,8 @@
-import type { TFormControlProps } from '@ensi-platform/core-components-form-control';
+import type { IFormControlExtendsProps, TFormControlProps } from '@ensi-platform/core-components-form-control';
 
 import type { CSSObject } from '@emotion/react';
 
-import type { ChangeEvent, InputHTMLAttributes, MouseEvent, Ref } from 'react';
+import type { ChangeEvent, InputHTMLAttributes, MouseEvent } from 'react';
 
 export interface IInputNativeProps
     extends Omit<
@@ -10,13 +10,18 @@ export interface IInputNativeProps
         'size' | 'type' | 'value' | 'defaultValue' | 'onChange' | 'onClick' | 'onMouseDown' | 'enterKeyHint'
     > {}
 
-export interface IInputFormControlProps extends Omit<TFormControlProps, 'children'> {}
+export interface IInputFormControlProps extends IFormControlExtendsProps {}
 
 export interface IInputBaseProps {
     /**
      * Input value
      */
     value?: string;
+
+    /**
+     * Default input value
+     */
+    defaultValue?: string;
 
     /**
      * Clear state
@@ -42,11 +47,6 @@ export interface IInputBaseProps {
         | 'link';
 
     /**
-     * Form control Ref
-     */
-    wrapperRef?: Ref<HTMLDivElement>;
-
-    /**
      * Form control class
      */
     className?: string;
@@ -55,11 +55,6 @@ export interface IInputBaseProps {
      * Max number of characters
      */
     maxLength?: number;
-
-    /**
-     * Form control wrapper css
-     */
-    wrapperCSS?: CSSObject;
 
     /**
      * input class
@@ -72,12 +67,12 @@ export interface IInputBaseProps {
     /**
      * Input handler
      */
-    onInput?: (event: ChangeEvent<HTMLInputElement>, payload?: { value: string }) => void;
+    onInput?: (event: ChangeEvent<HTMLInputElement>, payload: { value: string }) => void;
 
     /**
      * Change handler
      */
-    onChange?: (event: ChangeEvent<HTMLInputElement>, payload?: { value: string }) => void;
+    onChange?: (event: ChangeEvent<HTMLInputElement>, payload: { value: string }) => void;
 
     /**
      * Clear handler

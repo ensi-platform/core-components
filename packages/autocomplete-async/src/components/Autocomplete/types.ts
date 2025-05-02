@@ -1,5 +1,5 @@
-import type { FormControlProps } from '@ensi-platform/core-components-form-control';
-import type { InputProps } from '@ensi-platform/core-components-input';
+import type { TFormControlProps } from '@ensi-platform/core-components-form-control';
+import type { TInputProps } from '@ensi-platform/core-components-input';
 import type { FieldProps, SelectProps, SelectThemeProps } from '@ensi-platform/core-components-select';
 import type { SelectWithTagsProps } from '@ensi-platform/core-components-select-with-tags';
 
@@ -14,16 +14,16 @@ export interface IAutocompleteProps
                 'collapseTagList' | 'moveInputToNewLine' | 'transformCollapsedTagText' | 'transformTagText'
             >
         >,
-        Pick<InputProps, 'readOnly'> {
+        Pick<TInputProps, 'readOnly'> {
     /**
      * Компонент ввода значения
      */
-    Input?: FC<InputProps & RefAttributes<HTMLInputElement>>;
+    Input?: FC<TInputProps & RefAttributes<HTMLInputElement>>;
 
     /**
      * Пропсы, которые будут прокинуты в инпут
      */
-    inputProps?: InputProps & Record<string, unknown>;
+    inputProps?: TInputProps & Record<string, unknown>;
 
     /**
      * Значение поля ввода
@@ -48,5 +48,5 @@ export type AutocompleteFieldPropsType = FieldProps &
     Pick<IAutocompleteProps, 'Input' | 'inputProps' | 'value' | 'onInput' | 'readOnly'> & {
         name?: string;
         bottomAddons?: ReactNode;
-        size?: FormControlProps['size'];
+        size?: TFormControlProps['size'];
     };

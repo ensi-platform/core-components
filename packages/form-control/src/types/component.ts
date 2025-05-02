@@ -1,7 +1,7 @@
 import type { CSSObject } from '@emotion/react';
 import type { BaseThemeState } from '@greensight/gds';
 
-import type { HTMLAttributes, ReactNode } from 'react';
+import type { HTMLAttributes, ReactNode, Ref } from 'react';
 
 import type { formControlThemes } from '../themes';
 import type { FormControlSizeEnum, FormControlVariantEnum, IFormControlState, TFormControlTheme } from './themes';
@@ -18,7 +18,7 @@ export type THintProps = TPartComponent;
 export type TAddonsProps = TPartComponent;
 export type TBottomAddonsProps = TPartComponentNode;
 
-export type TLabelAdditionalProps = { props?: Omit<HTMLAttributes<HTMLLabelElement>, 'className'> };
+export type TLabelAdditionalProps = { props?: Omit<HTMLAttributes<HTMLLabelElement>, 'className'>; wrap?: boolean };
 export type TLabelProps = TPartComponent<TLabelAdditionalProps>;
 
 export type TErrorAdditionalProps = { visible?: boolean; placement: IFormControlState['errorPlacement'] };
@@ -78,7 +78,10 @@ type TFormControlComponentTheme = Partial<
 };
 
 type TFormControlStateProps = Partial<
-    Omit<IFormControlState, 'hasInnerLabel' | 'hasError' | 'hasRightAddons' | 'hasLeftAddons' | 'errorPlacement'>
+    Omit<
+        IFormControlState,
+        'hasInnerLabel' | 'hasError' | 'hasRightAddons' | 'hasLeftAddons' | 'errorPlacement' | 'labelWrap'
+    >
 >;
 
 export type TFormControlProps = TFormControlComponentTheme &
@@ -96,3 +99,14 @@ export type TFormControlProps = TFormControlComponentTheme &
          */
         children?: ReactNode;
     };
+
+export interface IFormControlExtendsProps
+    extends IFormControlParts,
+        Pick<TFormControlComponentTheme, 'theme' | 'size' | 'variant'>,
+        Pick<IFormControlState, 'block'>,
+        IFormControlCSS {
+    /**
+     * Form control Ref
+     */
+    wrapperRef?: Ref<HTMLDivElement>;
+}

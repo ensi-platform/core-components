@@ -1,5 +1,5 @@
 import type { IFieldWrapperProps } from '@ensi-platform/core-components-form';
-import type { FormControlProps } from '@ensi-platform/core-components-form-control';
+import type { IFormControlExtendsProps } from '@ensi-platform/core-components-form-control';
 import type { PopoverProps } from '@ensi-platform/core-components-popover';
 
 import type { CSSObject } from '@emotion/react';
@@ -174,7 +174,7 @@ export interface SelectPopover {
 }
 
 export interface SelectProps
-    extends Omit<FormControlProps, 'theme' | 'size' | 'variant' | 'onChange' | 'onFocus' | 'onBlur'>,
+    extends Omit<IFormControlExtendsProps, 'theme' | 'size' | 'variant' | 'error'>,
         Partial<IFieldWrapperProps<SelectItemValueType | SelectItemValueType[]>>,
         Partial<SelectThemeProps>,
         SelectPopover,

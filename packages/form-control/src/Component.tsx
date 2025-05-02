@@ -41,7 +41,6 @@ export const FormControl = forwardRef<HTMLDivElement, TFormControlProps>(
             bottomAddons,
             children,
             htmlFor,
-            labelWrap = false,
             ...restProps
         },
         ref
@@ -53,6 +52,7 @@ export const FormControl = forwardRef<HTMLDivElement, TFormControlProps>(
             css: labelCSS,
             className: labelClassName,
             props: labelProps,
+            wrap: labelWrap = false,
         } = useMemo(() => getPartComponent<TLabelAdditionalProps, TLabelProps>(labelProp), [labelProp]);
         const {
             Component: leftAddons,

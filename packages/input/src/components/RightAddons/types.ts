@@ -1,5 +1,6 @@
 import type { MouseEvent } from 'react';
-import type { TInputProps } from 'src/types';
+
+import type { TInputProps } from '../../types';
 
 export interface IRightAddonsProps {
     rightAddons: TInputProps['rightAddons'];

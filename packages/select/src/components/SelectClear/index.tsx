@@ -29,23 +29,34 @@ interface IClearableFieldProps extends FieldProps {
     disabled?: boolean;
 }
 
-const ClearableField = ({ Field = DefaultField, children, fieldRef, disabled, ...props }: IClearableFieldProps) => (
+const ClearableField = ({
+    Field = DefaultField,
+    children,
+    fieldRef,
+    disabled,
+    rightAddons,
+    ...props
+}: IClearableFieldProps) => (
     <Field
         {...props}
         innerProps={{
             ...props.innerProps,
             ref: mergeRefs([props.innerProps.ref!, fieldRef]),
         }}
-        rightAddonsCSS={{
-            ...props.rightAddonsCSS,
-            gap: scale(1, true),
+        rightAddons={{
+            Component: (
+                <>
+                    {!!props.selected?.length && props.selected && !disabled && children}
+                    {rightAddons}
+                </>
+            ),
+            css: {
+                ...(rightAddons && typeof rightAddons === 'object' && 'css' in rightAddons
+                    ? { ...rightAddons.css }
+                    : {}),
+                gap: scale(1, true),
+            },
         }}
-        rightAddons={
-            <>
-                {!!props.selected?.length && props.selected && !disabled && children}
-                {props.rightAddons}
-            </>
-        }
     />
 );
 

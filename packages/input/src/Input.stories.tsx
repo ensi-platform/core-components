@@ -30,7 +30,6 @@ export default {
         disabled: false,
         hint: '',
         label: 'Логин',
-        labelWrap: true,
         defaultValue: 'login@mail.ru',
         readOnly: false,
         placeholder: 'Введите логин',
@@ -54,23 +53,21 @@ export const Basic: StoryObj<ComponentProps<typeof Input> & { withIcon: boolean 
 export const WithForm: StoryObj<ComponentProps<typeof Input>> = {
     args: {},
     render: args => (
-        <div style={{ width: 500, minHeight: 800 }}>
-            <Form
-                initialValues={{ text: 'Default value' }}
-                validationSchema={Yup.object().shape({
-                    text: Yup.string().min(5, ErrorMessages.MIN_SYMBOLS(3)).required(ErrorMessages.REQUIRED),
-                })}
-                onSubmit={action('onSubmit')}
-            >
-                <FormFieldWrapper name="text" label="Enter some text">
-                    <Input id="example-input" {...args} />
-                </FormFieldWrapper>
-                <br />
-                <Button type="submit" style={{ marginRight: scale(2) }}>
-                    Submit
-                </Button>
-                <FormReset theme="secondary">Reset</FormReset>
-            </Form>
-        </div>
+        <Form
+            initialValues={{ text: 'Default value' }}
+            validationSchema={Yup.object().shape({
+                text: Yup.string().min(5, ErrorMessages.MIN_SYMBOLS(3)).required(ErrorMessages.REQUIRED),
+            })}
+            onSubmit={action('onSubmit')}
+        >
+            <FormFieldWrapper name="text" label="Enter some text">
+                <Input id="example-input" {...args} />
+            </FormFieldWrapper>
+            <br />
+            <Button type="submit" style={{ marginRight: scale(2) }}>
+                Submit
+            </Button>
+            <FormReset theme="secondary">Reset</FormReset>
+        </Form>
     ),
 };

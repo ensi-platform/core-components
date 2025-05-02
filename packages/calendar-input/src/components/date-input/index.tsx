@@ -194,13 +194,21 @@ export const DateInput = forwardRef<HTMLInputElement, InnerDateInputProps>(
                     onBlur={handleBlur}
                     error={error || getInnerError()}
                     block
-                    rightAddons={
-                        <>
-                            {rightAddons}
-                            {picker && <IconCalendar onClick={onPickerClick} onMouseDown={preventDefault} />}
-                        </>
-                    }
-                    rightAddonsCSS={{ fill: colors?.grey800, paddingRight: scale(1) }}
+                    rightAddons={{
+                        Component: (
+                            <>
+                                {rightAddons}
+                                {picker && <IconCalendar onClick={onPickerClick} onMouseDown={preventDefault} />}
+                            </>
+                        ),
+                        css: {
+                            ...(rightAddons && typeof rightAddons === 'object' && 'css' in rightAddons
+                                ? { ...rightAddons.css }
+                                : {}),
+                            fill: colors?.grey800,
+                            paddingRight: scale(1),
+                        },
+                    }}
                 />
                 {platform === 'desktop' ? (
                     <Popover

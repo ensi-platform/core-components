@@ -1,5 +1,5 @@
 import { scale } from '@ensi-platform/core-components-common';
-import { FormControl, type FormControlProps } from '@ensi-platform/core-components-form-control';
+import { FormControl } from '@ensi-platform/core-components-form-control';
 import { BASE_INPUT_CSS } from '@ensi-platform/core-components-input';
 import { LoadingSkeleton } from '@ensi-platform/core-components-loading-skeleton';
 import type { FieldProps } from '@ensi-platform/core-components-select';
@@ -21,7 +21,7 @@ import {
 import { calculateTotalElementsPerRow } from '../../scripts/helpers';
 import type { TagListOwnProps } from './types';
 
-export const TagList: FC<FieldProps & FormControlProps & TagListOwnProps> = ({
+export const TagList: FC<FieldProps & TagListOwnProps> = ({
     size = 'md',
     isOpen,
     disabled,
@@ -217,7 +217,6 @@ export const TagList: FC<FieldProps & FormControlProps & TagListOwnProps> = ({
                 filled={filled || !!placeholder}
                 block
                 size={size}
-                labelCSS={{}}
                 css={fieldCSS}
                 onClick={handleClick}
                 onMouseDown={handleMouseDown}
