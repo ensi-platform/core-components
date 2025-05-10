@@ -62,3 +62,4 @@ export * from './scripts/hooks';
 export * from './scripts/regex';
 export * from './scripts/mask';
 export * from './icons-export';
+export * from './locales';

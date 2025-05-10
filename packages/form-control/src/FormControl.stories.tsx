@@ -19,13 +19,13 @@ export default {
     },
     args: {
         errorPlacement: 'above',
-        label: 'Пример текста',
+        label: 'Example text',
         focused: false,
         disabled: false,
         readOnly: false,
         filled: false,
-        error: 'Ошибка',
-        hint: 'Подсказка',
+        error: 'Error',
+        hint: 'Example text',
         size: 'md',
     },
     argTypes: {

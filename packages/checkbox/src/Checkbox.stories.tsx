@@ -1,4 +1,4 @@
-import { Button, ErrorMessages, defaultTheme, scale } from '@ensi-platform/core-components-common';
+import { Button, defaultTheme, scale } from '@ensi-platform/core-components-common';
 import { Form, FormFieldWrapper, FormReset } from '@ensi-platform/core-components-form';
 import { FormMessage } from '@ensi-platform/core-components-form-control';
 
@@ -127,7 +127,7 @@ export const Basic: StoryObj<ComponentProps<typeof Checkbox>> = {
                     onChange?.(event);
                 }}
             >
-                Вариант 1
+                Variant 1
             </Checkbox>
         );
     },
@@ -148,13 +148,13 @@ export const WithLink: StoryObj<ComponentProps<typeof Checkbox>> = {
                         onChange?.(event);
                     }}
                 >
-                    Я прочитал и принимаю{' '}
+                    I have read and accept{' '}
                     <a href="/" style={{ textDecoration: 'underline' }}>
-                        Пользовательское соглашение
+                        User Agreement
                     </a>{' '}
-                    и{' '}
+                    and{' '}
                     <a href="/" style={{ textDecoration: 'underline' }}>
-                        Согласие на обработку персональных данных
+                        Consent to the processing of personal data
                     </a>
                 </Checkbox>
             </div>
@@ -196,8 +196,8 @@ export const WithForm: StoryObj<ComponentProps<typeof Checkbox>> = {
                 checkboxGroup: [],
             }}
             validationSchema={Yup.object().shape({
-                checkbox: Yup.boolean().required(ErrorMessages.REQUIRED),
-                checkboxGroup: Yup.array().min(1, ErrorMessages.REQUIRED).required(ErrorMessages.REQUIRED),
+                checkbox: Yup.boolean().required('Required field'),
+                checkboxGroup: Yup.array().min(1, 'Required field').required('Required field'),
             })}
             onSubmit={action('submit')}
         >

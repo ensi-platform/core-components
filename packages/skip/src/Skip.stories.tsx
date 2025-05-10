@@ -21,5 +21,5 @@ export default {
 
 export const Basic: StoryObj<ComponentProps<typeof Skip>> = {
     args: {},
-    render: () => <Skip link="#main">К основному контенту</Skip>,
+    render: () => <Skip link="#main">To the main content</Skip>,
 };

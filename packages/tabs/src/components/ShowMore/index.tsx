@@ -8,6 +8,7 @@ import {
 } from '@ensi-platform/core-components-select';
 
 import type { FC, FocusEvent, MouseEvent } from 'react';
+import { useTranslation } from 'react-i18next';
 
 import { useTabsTheme } from '../../context';
 import type { ShowMoreButtonProps } from '../../types';
@@ -23,6 +24,8 @@ const ButtonField = ({
 }: Pick<FieldProps, 'innerProps' | 'Arrow' | 'className' | 'disabled' | 'id'> & {
     count?: number;
 }) => {
+    const { t } = useTranslation('translation');
+
     const { getCSS } = useTabsTheme();
 
     const { id: innerId, ref, onBlur, onFocus, onClick, ...restInnerProps } = innerProps;
@@ -56,7 +59,7 @@ const ButtonField = ({
                 id={innerId || id}
                 {...restInnerProps}
             >
-                Больше ({count}) {Arrow}
+                {t('translation:more')} ({count}) {Arrow}
             </button>
         </div>
     );

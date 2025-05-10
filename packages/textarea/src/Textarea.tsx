@@ -5,6 +5,7 @@ import type { CSSObject } from '@emotion/react';
 
 import deepmerge from 'deepmerge';
 import { type ChangeEvent, useMemo, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import TextareaAutosize from 'react-textarea-autosize';
 
 import type { ITextareaProps } from './types';
@@ -49,6 +50,8 @@ export const Textarea = ({
     cacheMeasurements = false,
     ...props
 }: ITextareaProps) => {
+    const { t } = useTranslation('translation');
+
     const [lenEnd, setLenEnd] = useState(maxLength);
     const [isExceed, setExceed] = useState(false);
 
@@ -63,15 +66,19 @@ export const Textarea = ({
     const renderError = useMemo(
         () =>
             error ||
-            (Number.isInteger(maxLength) && isExceed && lenEnd < 0 ? `Ты превышаешь на ${Math.abs(lenEnd)}` : ''),
-        [maxLength, lenEnd, error, isExceed]
+            (Number.isInteger(maxLength) && isExceed && lenEnd < 0
+                ? `${t('translation:moreThan')} ${Math.abs(lenEnd)}`
+                : ''),
+        [maxLength, lenEnd, error, isExceed, t]
     );
 
     const renderHint = useMemo(
         () =>
             hint ||
-            (Number.isInteger(maxLength) && isExceed && lenEnd > 0 ? `У тебя осталось ${Math.abs(lenEnd)}` : ''),
-        [maxLength, lenEnd, hint, isExceed]
+            (Number.isInteger(maxLength) && isExceed && lenEnd > 0
+                ? `${t('translation:remained')} ${Math.abs(lenEnd)}`
+                : ''),
+        [maxLength, lenEnd, hint, isExceed, t]
     );
 
     // TODO: react 18 useId()
