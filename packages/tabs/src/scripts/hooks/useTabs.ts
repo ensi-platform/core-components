@@ -1,6 +1,17 @@
 import { type KeyboardEvent, type MouseEvent, type MutableRefObject, useCallback, useRef, useState } from 'react';
 
-import type { TabListTitle, UseTabsProps } from '../../types';
+import type { TabListTitleType, UseTabsProps } from '../../types';
+
+/**
+ * Custom hook to manage tabs with selection and focus handling.
+ *
+ * @param titles - The list of tab titles.
+ * @param selectedId - The ID of the currently selected tab.
+ * @param onChange - The callback function for when the selected tab changes.
+ * @returns ```getTabListItemProps``` - Function to get properties for tab list items.
+ * @returns ```selectedTab``` - The currently selected tab element.
+ * @returns ```focusedTab``` - The currently focused tab element.
+ */
 
 export function useTabs({ titles = [], selectedId, onChange }: UseTabsProps) {
     const [selectedTab, setSelectedTab] = useState<HTMLButtonElement | null>(null);
@@ -8,7 +19,7 @@ export function useTabs({ titles = [], selectedId, onChange }: UseTabsProps) {
     const itemRefs = useRef<HTMLButtonElement[]>([]);
 
     const handleItemRef = useCallback(
-        (node: HTMLButtonElement, item: TabListTitle, index: number) => {
+        (node: HTMLButtonElement, item: TabListTitleType, index: number) => {
             if (node && item.id === selectedId) setSelectedTab(node);
             itemRefs.current[index] = node;
         },
@@ -16,9 +27,9 @@ export function useTabs({ titles = [], selectedId, onChange }: UseTabsProps) {
     );
 
     const handleItemClick = useCallback(
-        (event: MouseEvent, item: TabListTitle) => {
-            // При желании можно вообще отключить возможность подсветить кастомный таб линией снизу
-            // Полезно для ссылок, по желанию клиента.
+        (event: MouseEvent, item: TabListTitleType) => {
+            // It's possible to disable tab highlight with underline
+            // Useful for links if needed
             if (item.renderTitle && item.unfocusable) return;
             if (onChange && item.id !== selectedId) {
                 onChange(event, { selectedId: item.id });

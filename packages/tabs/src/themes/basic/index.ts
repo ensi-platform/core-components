@@ -1,13 +1,11 @@
 import { type OptionizedCSS, defaultTheme, extractCSSOption, scale } from '@ensi-platform/core-components-common';
 
-// eslint-disable-next-line import/no-cycle
-import type { TabsSize, TabsTheme } from '../../types';
-// eslint-disable-next-line import/no-cycle
+import type { TabsSize, TabsThemeType } from '../../types';
 import { toggle } from './toggle';
 
 const { colors, typography } = defaultTheme;
 
-export const basicTheme: TabsTheme = {
+export const basicTheme: TabsThemeType = {
     container: () => ({
         position: 'relative',
         overflow: 'hidden',

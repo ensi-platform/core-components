@@ -1,10 +1,25 @@
 import { type ButtonHTMLAttributes, forwardRef } from 'react';
 
 import { useTabsTheme } from '../../context';
-import type { TabListTitle } from '../../types';
+import type { TabListTitleType } from '../../types';
 
-type Props = TabListTitle & Omit<ButtonHTMLAttributes<HTMLButtonElement>, 'id'>;
+type Props = TabListTitleType & Omit<ButtonHTMLAttributes<HTMLButtonElement>, 'id'>;
 
+/**
+ * Tab heading component
+ * @param id tab unique id
+ * @param toggleCSS additional tab heading css
+ * @param title string title of tab
+ * @param rightAddons right addon on heading
+ * @param leftAddons left addon on heading
+ * @param hidden hide tab and heading visually
+ * @param selected is this tab selected
+ * @param disabled is this tab disabled
+ * @param collapsed is this tab collapsed
+ * @param focused is it shown visually that tab is selected
+ * @param isOption is it in collapsed list
+ * @param countErrors number of errors in this tab
+ */
 export const Title = forwardRef<HTMLButtonElement, Props>(
     (
         {

@@ -4,6 +4,14 @@ import { ResizeObserver as ResizeObserverPolyfill } from '@juggle/resize-observe
 
 import { type DependencyList, useRef, useState } from 'react';
 
+/**
+ * Hook to manage collapsible elements within a container.
+ *
+ * @param selectors - The CSS selectors to identify the elements to be managed.
+ * @param deps The dependency list for the hook.
+ *
+ * @returns An object containing the ```containerRef``` - ref prop for container, ```addonRef``` - ref prop for addon, and ```idsCollapsedElements``` - array of IDs of collapsed items.
+ */
 export const useCollapsibleElements = <ContainerType extends HTMLElement, AddonType extends HTMLElement>(
     selectors: string,
     deps: DependencyList = []
@@ -31,7 +39,7 @@ export const useCollapsibleElements = <ContainerType extends HTMLElement, AddonT
 
             const moreElementRect = moreElements.pop()?.getBoundingClientRect();
             const elements = Array.from(container.querySelectorAll(selectors)) as HTMLElement[];
-            const containerWidth = (inlineSize || container.clientWidth) - (moreElementRect?.width || 0) * 1.5; // при рассчётах, даём кнопке "Ещё" чуть больше места, чтобы точно влезла
+            const containerWidth = (inlineSize || container.clientWidth) - (moreElementRect?.width || 0) * 1.5; // use more space so button will definetely be placed
 
             const collapsedIds = elements.reduce<string[]>((acc, element) => {
                 const { offsetLeft, offsetWidth, id } = element;

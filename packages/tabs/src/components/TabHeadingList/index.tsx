@@ -1,32 +1,44 @@
 import { useEffect, useMemo, useRef } from 'react';
 
 import { useTabsTheme } from '../../context';
-import { useMedia } from '../../scripts/hooks/useMedia';
-import { useTablistTitles } from '../../scripts/hooks/useTablistTitles';
-import { createSyntheticMouseEvent } from '../../scripts/syntheticEvents';
-import type { ShowMoreButtonOption, TabListProps, TabsMatchMedia } from '../../types';
+import { createSyntheticMouseEvent, useMedia, useTablistTitles } from '../../scripts';
+import type { IShowMoreButtonOption, ITabHeadingListProps, TabsMatchMediaType } from '../../types';
 import { KeyboardFocusable } from '../KeyboardFocusable';
 import { ScrollableContainer } from '../ScrollableContainer';
 import { ShowMoreButton as DefaultTooltipButton } from '../ShowMore';
 import { Title } from '../Title';
 
-export const TabList = ({
-    ShowMoreButton: TooltipButton = DefaultTooltipButton,
+/**
+ * Parent component for list of ```Tab``` components
+ * @param breakpoint width breakpoint for desktop version
+ * @param className additional class for tab headings list
+ * @param containerCSS additional CSS for list container
+ * @param ShowMoreButton custom component for 'Show more' button
+ * @param titles list of tabs heading
+ * @param selectedId current selected tab id
+ * @param collapsedTabsIds list of collapsed tabs ids
+ * @param scrollable use scrollable container for tab headings
+ * @param collpsible collapse extra tab headings into dropdown list
+ * @param onChange handler for tab change event
+ * @param dataTestId id for automatic testing
+ */
+export const TabHeadingList = ({
+    breakpoint = 1024,
     className,
     containerCSS,
+    ShowMoreButton: TooltipButton = DefaultTooltipButton,
     titles = [],
+    collapsedTabsIds,
     selectedId = titles.length ? titles[0].id : undefined,
     scrollable: propsScrollable = true,
     collapsible: propsCollapsible,
-    collapsedTabsIds,
     onChange,
     dataTestId,
-    breakpoint = 1024,
-}: TabListProps) => {
+}: ITabHeadingListProps) => {
     const lineRef = useRef<HTMLDivElement>(null);
     const wrapperRef = useRef<HTMLDivElement>(null);
 
-    const [view] = useMedia<TabsMatchMedia>([['desktop', `(min-width: ${breakpoint}px)`]], 'desktop');
+    const [view] = useMedia<TabsMatchMediaType>([['desktop', `(min-width: ${breakpoint}px)`]], 'desktop');
 
     const scrollable = view === 'desktop' ? propsScrollable : true;
     const collapsible = view === 'desktop' ? propsCollapsible : false;
@@ -49,7 +61,7 @@ export const TabList = ({
 
     const collapsedOptions = useMemo(
         () =>
-            tablistTitles.reduce<ShowMoreButtonOption[]>((options, title) => {
+            tablistTitles.reduce<IShowMoreButtonOption[]>((options, title) => {
                 if (title.collapsed) {
                     options.push({
                         label: title.title,
@@ -63,12 +75,12 @@ export const TabList = ({
         [tablistTitles]
     );
 
-    const handleOptionsChange = (_: any, { selected }: { selected: any }) => {
-        if (selected?.value && onChange) {
+    const handleOptionsChange = (_: any, { selected }: { selected?: { value?: any }[] | null }) => {
+        if (selected && selected[0]?.value && onChange) {
             const nativeMouseEvent = new MouseEvent('change');
             const syntheticMouseEvent = createSyntheticMouseEvent(nativeMouseEvent);
 
-            onChange(syntheticMouseEvent, { selectedId: selected?.value });
+            onChange(syntheticMouseEvent, { selectedId: selected[0]?.value });
         }
     };
 

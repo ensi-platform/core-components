@@ -1,26 +1,13 @@
-import { type BaseThemeState, useThemeCSSPart } from '@ensi-platform/core-components-common';
+import { useThemeCSSPart } from '@ensi-platform/core-components-common';
 
 import { type FC, type ReactNode, createContext, useContext, useMemo } from 'react';
 
-import type { TabsSize, TabsState, TabsTheme, TabsThemeState, TabsVariant } from './types';
+import type { ITabsContextProps, ITabsThemeContext } from './types/context';
 
-const useFoo = () => useThemeCSSPart<Omit<TabsThemeState, 'theme'>, TabsTheme>(...([] as never as [any, any]));
-
-type Context = Required<BaseThemeState<typeof TabsVariant, typeof TabsSize, TabsTheme>> & {
-    state: TabsState;
-    getCSS: ReturnType<typeof useFoo>;
-    idPrefix: string;
-};
-
-type ContextProps = Required<BaseThemeState<typeof TabsVariant, typeof TabsSize, TabsTheme>> & {
-    idPrefix: string;
-    state: TabsState;
-};
-
-const TabsThemeContext = createContext<Context | null>(null);
+const TabsThemeContext = createContext<ITabsThemeContext | null>(null);
 TabsThemeContext.displayName = 'TabsThemeContext';
 
-export const TabsThemeProvider: FC<{ children: ReactNode } & ContextProps> = ({
+export const TabsThemeProvider: FC<{ children: ReactNode } & ITabsContextProps> = ({
     idPrefix,
     children,
     size,
@@ -34,7 +21,7 @@ export const TabsThemeProvider: FC<{ children: ReactNode } & ContextProps> = ({
         variant,
     });
 
-    const value = useMemo<Context>(
+    const value = useMemo<ITabsThemeContext>(
         () => ({
             getCSS,
             idPrefix,
