@@ -5,11 +5,11 @@ import type { Meta, StoryObj } from '@storybook/react';
 import type { ComponentProps } from 'react';
 
 import README from '../README.md';
-import { type IInternalThemeProviderProps, InternalThemeProvider } from './index';
+import { CoreComponentsProvider, type ICoreComponentsProviderProps } from './index';
 
 export default {
-    title: 'Components / InternalThemeProvider',
-    component: InternalThemeProvider,
+    title: 'Components / CoreComponentsProvider',
+    component: CoreComponentsProvider,
     parameters: {
         docs: {
             description: {
@@ -26,12 +26,12 @@ export default {
             description: "Provider's children.",
         },
     },
-} as Meta<IInternalThemeProviderProps>;
+} as Meta<ICoreComponentsProviderProps>;
 
-export const Basic: StoryObj<ComponentProps<typeof InternalThemeProvider>> = {
+export const Basic: StoryObj<ComponentProps<typeof CoreComponentsProvider>> = {
     render: () => (
-        <InternalThemeProvider>
+        <CoreComponentsProvider>
             <Button theme="outline">Button with custom theme</Button>
-        </InternalThemeProvider>
+        </CoreComponentsProvider>
     ),
 };

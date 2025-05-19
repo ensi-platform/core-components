@@ -1,4 +1,4 @@
-import { Button, ErrorMessages, IconSmallUser as ProfileIcon, scale } from '@ensi-platform/core-components-common';
+import { Button, IconSmallUser as ProfileIcon, scale } from '@ensi-platform/core-components-common';
 import { Form, FormFieldWrapper, FormReset } from '@ensi-platform/core-components-form';
 import { FormControlSize } from '@ensi-platform/core-components-form-control';
 
@@ -29,11 +29,11 @@ export default {
         clear: false,
         disabled: false,
         hint: '',
-        label: 'Логин',
+        label: 'Login',
         labelWrap: true,
         defaultValue: 'login@mail.ru',
         readOnly: false,
-        placeholder: 'Введите логин',
+        placeholder: 'Enter login',
         withIcon: true,
     },
     argTypes: {
@@ -58,7 +58,7 @@ export const WithForm: StoryObj<ComponentProps<typeof Input>> = {
             <Form
                 initialValues={{ text: 'Default value' }}
                 validationSchema={Yup.object().shape({
-                    text: Yup.string().min(5, ErrorMessages.MIN_SYMBOLS(3)).required(ErrorMessages.REQUIRED),
+                    text: Yup.string().min(5, 'Minimum 5 symbols').required('Required field'),
                 })}
                 onSubmit={action('onSubmit')}
             >

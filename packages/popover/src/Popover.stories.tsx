@@ -24,7 +24,7 @@ export const Basic: StoryObj<Omit<ComponentProps<typeof Popover>, 'anchorElement
     parameters: {
         docs: {
             description: {
-                story: 'Обычное применение',
+                story: 'Typical application',
             },
         },
     },

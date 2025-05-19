@@ -2,6 +2,7 @@ import { IconMinus, IconPlus, Layout, useThemeCSSPart } from '@ensi-platform/cor
 import { FormControl } from '@ensi-platform/core-components-form-control';
 
 import { type ChangeEvent, useEffect, useMemo, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 
 import { counterThemes } from './themes/defaultTheme';
 import type { CounterProps, CounterThemeState } from './types';
@@ -24,6 +25,8 @@ export const Counter = ({
     rounded = false,
     ...props
 }: CounterProps) => {
+    const { t } = useTranslation('translation');
+
     const themeState = useMemo<CounterThemeState>(
         () => ({
             hasLabel: !!label,
@@ -94,7 +97,7 @@ export const Counter = ({
                         type="button"
                         onClick={() => changeValue(Number(innerValue) - step)}
                         disabled={Number(innerValue) < Number(min + step)}
-                        title={`Уменьшить на ${step}`}
+                        title={`${t('translation:decrease')} ${step}`}
                         css={getCSS('decrButton')}
                     >
                         <IconMinus css={getCSS('icon')} />
@@ -120,7 +123,7 @@ export const Counter = ({
                         type="button"
                         onClick={() => changeValue(Number(innerValue) + step)}
                         disabled={Number(innerValue) > Number(max - step)}
-                        title={`Увеличить на ${step}`}
+                        title={`${t('translation:increase')} ${step}`}
                         css={getCSS('incrButton')}
                     >
                         <IconPlus css={getCSS('icon')} />

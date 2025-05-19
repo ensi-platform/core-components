@@ -66,7 +66,7 @@ const Template: Story = {
                         popupDispatch({ type: ActionType.Add });
                     }}
                 >
-                    Открыть
+                    Open
                 </Button>
                 <ActionPopup
                     {...popupState}
@@ -115,7 +115,7 @@ const useActionHook = () => {
                     popupDispatch({
                         type: ActionType.Delete,
                         payload: {
-                            title: 'Вы уверены, что хотите удалить атрибут?',
+                            title: 'Are you sure you want to remove the attribute?',
                             popupAction: ActionEnum.DELETE,
                             onAction: async () => {
                                 alert('onAction');
@@ -124,7 +124,7 @@ const useActionHook = () => {
                     });
                 }}
             >
-                Открыть
+                Open
             </Button>
             <ActionPopup popupState={popupState} popupDispatch={popupDispatch} />
         </>

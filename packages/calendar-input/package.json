@@ -26,7 +26,8 @@
         "@ensi-platform/core-components-common": "^1.0.0",
         "@ensi-platform/core-components-input": "^1.0.0",
         "@ensi-platform/core-components-popover": "^1.0.0",
-        "@ensi-platform/core-components-calendar": "^1.0.0"
+        "@ensi-platform/core-components-calendar": "^1.0.0",
+        "react-i18next": "^15.4.1"
     },
     "devDependencies": {
         "yup": "^1.4.0",
