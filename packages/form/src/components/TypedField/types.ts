@@ -16,4 +16,12 @@ export interface ITypedFieldProps extends Omit<TInputProps, 'children'> {
      * Return value type
      */
     dataType?: DataType;
+    /**
+     * Max value
+     */
+    max?: number;
+    /**
+     * Min value
+     */
+    min?: number;
 }

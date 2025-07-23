@@ -79,7 +79,6 @@ export const FormControl = forwardRef<HTMLDivElement, TFormControlProps>(
             placement: errorPlacement = 'above',
         } = useMemo(() => getPartComponent<TErrorAdditionalProps, TErrorProps>(errorProp), [errorProp]);
 
-        // eslint-disable-next-line no-nested-ternary
         const errorMessage = errorVisible ? error : '';
 
         const hasError = !!error;
