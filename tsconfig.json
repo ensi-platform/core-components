@@ -56,7 +56,8 @@
             "@ensi-platform/core-components-tags/*": ["packages/tags/src/*"],
             "@ensi-platform/core-components-textarea/*": ["packages/textarea/src/*"],
             "@ensi-platform/core-components-tooltip/*": ["packages/tooltip/src/*"],
-            "@ensi-platform/core-components-internal-theme-provider/*": ["packages/internal-theme-provider/src/*"]
+            "@ensi-platform/core-components-internal-theme-provider/*": ["packages/internal-theme-provider/src/*"],
+            "@ensi-platform/core-components-core-components-provider/*": ["packages/core-components-provider/src/*"]
         }
     },
     "exclude": ["node_modules", "dist", "**/*.test*"],

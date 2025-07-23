@@ -16,7 +16,7 @@ export default {
         },
     },
     args: {
-        children: 'В работе',
+        text: 'In progress',
         type: 'warning',
     },
     argTypes: {

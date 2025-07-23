@@ -1,4 +1,4 @@
-import { Button, ErrorMessages, scale } from '@ensi-platform/core-components-common';
+import { Button, scale } from '@ensi-platform/core-components-common';
 import { Form, FormReset } from '@ensi-platform/core-components-form';
 
 import { action } from '@storybook/addon-actions';
@@ -33,7 +33,7 @@ export const Basic: StoryObj<Args> = {
         disabled: false,
         error: '',
         hint: '',
-        label: 'Оставьте комментарий',
+        label: 'Leave a comment',
         readOnly: false,
         minRows: 3,
         maxRows: 8,
@@ -56,7 +56,7 @@ export const WithForm: StoryObj<ComponentProps<typeof Textarea>> = {
             <Form
                 initialValues={{ text: 'Default value' }}
                 validationSchema={Yup.object().shape({
-                    text: Yup.string().min(5, ErrorMessages.MIN_SYMBOLS(5)).required(ErrorMessages.REQUIRED),
+                    text: Yup.string().min(5, 'Minimum 5 symbols').required('Required field'),
                 })}
                 onSubmit={action('onSubmit')}
             >

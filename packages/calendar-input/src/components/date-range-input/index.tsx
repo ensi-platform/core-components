@@ -5,6 +5,7 @@ import { Popover } from '@ensi-platform/core-components-popover';
 
 import startOfMonth from 'date-fns/startOfMonth';
 import { type ChangeEvent, type FocusEvent, forwardRef, useEffect, useMemo, useRef, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import mergeRefs from 'react-merge-refs';
 
 import { DATE_RANGE_SEPARATOR, DEFAULT_MAX_DATE, DEFAULT_MIN_DATE } from '../../scripts/constants';
@@ -51,6 +52,8 @@ export const DateRangeInput = forwardRef<HTMLInputElement, InnerDateRangeInputPr
         },
         ref
     ) => {
+        const { t } = useTranslation('translation');
+
         const [value, setValue] = useState(defaultValue);
         const [calendarMonth, setCalendarMonth] = useState(calendarProps.defaultMonth);
 
@@ -85,7 +88,7 @@ export const DateRangeInput = forwardRef<HTMLInputElement, InnerDateRangeInputPr
         const getInnerError = () => {
             if (autoCorrection) {
                 return (isCompleteDate(from) && !validFrom) || (isCompleteDate(to) && !validTo)
-                    ? 'Эта дата недоступна'
+                    ? t('translation:notAvailableDate')
                     : '';
             }
         };

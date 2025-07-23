@@ -227,7 +227,7 @@ export const Basic: StoryObj<ComponentProps<typeof Popup>> = {
                     }}
                     disabled={!showMore || isLoading}
                 >
-                    {isLoading ? 'Принять...' : 'Принять'}
+                    {isLoading ? 'Accept...' : 'Accept'}
                 </Button>
             </>
         );
@@ -243,7 +243,7 @@ export const Basic: StoryObj<ComponentProps<typeof Popup>> = {
                     </>
                 )}
                 <Button size="sm" type="button" onClick={() => setShowMore(!showMore)}>
-                    {showMore ? 'Скрыть' : 'Показать еще'}
+                    {showMore ? 'Hide' : 'Show more'}
                 </Button>
             </>
         );

@@ -42,10 +42,6 @@ export const humanize = (str: string) => {
 
 export const randomizeInt = (min: number, max: number) => Math.floor(min + Math.random() * (max + 1 - min));
 
-export const declOfNum = (n: number, titles: string[]) =>
-    // eslint-disable-next-line no-nested-ternary
-    titles[n % 10 === 1 && n % 100 !== 11 ? 0 : n % 10 >= 2 && n % 10 <= 4 && (n % 100 < 10 || n % 100 >= 20) ? 1 : 2];
-
 export const getCodeFromUrl = (url: string) => {
     const pathArr = url.split('/').filter(Boolean);
     return pathArr[pathArr.length - 1];
